@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "7713a03fddff808147dc",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 bjb1-17606 使用 conda 环境（非 venv）。激活命令：source /root/miniconda3/etc/profile.d/conda.sh && conda activate",
+  "task_key": "bcc2f6e8-9370-4053-844f-a9007354f9ff",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/bcc2f6e8-9370-4053-844f-a9007354f9ff.jsonl",
+    "occurrence": 1,
+    "bytes": 1146419,
+    "sha256": "1919d0076638bd720db36a5b7e8fe0f9b4682730a82d8689a90aad89a51b60d0"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 1,
+    "tool_calls": 150,
+    "roles": {
+      "record": 81,
+      "user": 1,
+      "assistant": 72,
+      "tool_call": 150,
+      "tool_result": 150
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7713a03fddff808147dc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 452,
+      "chunks": [
+        {
+          "path": "7713a03fddff808147dc-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "7713a03fddff808147dc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7713a03fddff808147dc-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-bjb1-17606-conda-venv-source-root-miniconda3-etc-profile-d-conda.md"
+}

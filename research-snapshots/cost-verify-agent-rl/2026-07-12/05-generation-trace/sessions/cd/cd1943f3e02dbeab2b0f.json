@@ -1,0 +1,463 @@
+{
+  "schema_version": "1.0",
+  "id": "cd1943f3e02dbeab2b0f",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check if a code fix was applied across several files. The fix changes γ(d) formula from using (1-d) to using d",
+  "task_key": "agent-ab50474da7533fb2a",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ab50474da7533fb2a.jsonl",
+    "occurrence": 1,
+    "bytes": 68496,
+    "sha256": "f60f53e896bfd8293ea037cac14102fe93afd683156b53247416b2c75a06110c"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T07:24:25.755Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check if a code fix was applied across several files. The fix changes γ(d) formula from using (1-d) to using d in continuous mode, and updates gamma_planning/gamma_max defaults from 0.97 to 1.0.\n\nCheck these files:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/build_dpo_pairs.py - look for the continuous gamma mode calculation, check if it uses `d` or `(1-d)`\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/etadn_discount.py - check gamma_planning in ETADNConfig (should be 1.0), and any get_gamma_for_divergence function for continuous mode\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py - check --gamma_max default value\n\nFor each file, report: does it exist, what's the current value for the relevant parameter, was the fix applied or not?"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b8498260-b8e1-4a92-a74e-4f35128dd81c",
+            "agentId": "ab50474da7533fb2a",
+            "type": "user",
+            "uuid": "7d672315-b9fc-40d6-b4c0-5809e25ec425",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T07:24:28.042Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll check these three files for the specific changes you mentioned. Let me read them now."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d672315-b9fc-40d6-b4c0-5809e25ec425",
+            "isSidechain": true,
+            "agentId": "ab50474da7533fb2a",
+            "requestId": "req_011CazAigKJon1dv2bgYRTED",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "244ae3f0-b844-4adf-ab6e-6f94aa182542",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QpL1AKJHtf2Y4iYDXY2ttM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36728,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36728,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T07:24:28.270Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TMdf5rS7zALF5YwUGRnAAr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/build_dpo_pairs.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "244ae3f0-b844-4adf-ab6e-6f94aa182542",
+            "isSidechain": true,
+            "agentId": "ab50474da7533fb2a",
+            "requestId": "req_011CazAigKJon1dv2bgYRTED",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "10021522-db8d-48aa-bf3f-d697e08398bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QpL1AKJHtf2Y4iYDXY2ttM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36728,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36728,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T07:24:28.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TMdf5rS7zALF5YwUGRnAAr",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Build DPO preference pairs from classified failures and expert trajectories.\n2\t\n3\tFix [2026-05-12]: Use true divergence point instead of LLM-reported failure_step.\n4\tOld logic used failure_step as split point, but expert and failure trajectories\n5\tmay already differ before that step → prompt-chosen state inconsistency.\n6\tNew logic compares action sequences step-by-step to find the real divergence.\n7\t\n8\tFor each classified failure:\n9\t  1. Match expert trajectory by game_file\n10\t  2. Compare actions step-by-step to find divergence point\n11\t  3. Shared prefix = prompt, expert continuation = chosen, failure continuation = rejected\n12\t\n13\tInput:\n14\t  - classified_errors.jsonl (error_type, failure_step, conversations)\n15\t  - alfworld_sft.json (expert trajectories)\n16\t  - (optional) trajectory_dir with failure JSONL files\n17\t  - (optional) trajectory JSONL files directly (--trajectory_input, v8 format)\n18\t\n19\tOutput per line:\n20\t  {prompt, chosen, rejected, error_type, gamma_e, correction_span,\n21\t   task_id, task_type, game_file, failure_step, divergence_step, d, metadata}\n22\t\n23\tUsage:\n24\t  # Discrete gamma (original):\n25\t  python src/build_dpo_pairs.py \\\n26\t    --classified outputs/classify_compare_with_hint_20.jsonl \\\n27\t    --expert data/alfworld_sft.json \\\n28\t    --output data/dpo_pairs_v2.jsonl \\\n29\t    --gamma action=0.85,verification=0.92,planning=0.97\n30\t\n31\t  # Continuous gamma (ETADN):\n32\t  python src/build_dpo_pairs.py \\\n33\t    --trajectory_input \"outputs/traj_v8_*.jsonl\" \\\n34\t    --expert data/alfworld_sft.json \\\n35\t    --output data/dpo_pairs_continuous.jsonl \\\n36\t    --gamma_mode continuous --gamma_min 0.85 --gamma_max 1.0\n37\t\n38\tDependencies: (stdlib only)\n39\t\"\"\"\n40\t\n41\timport argparse\n42\timport glob as glob_mod\n43\timport json\n44\timport logging\n45\timport statistics\n46\tfrom collections import Counter, defaultdict\n47\tfrom pathlib import Path\n48\t\n49\tlogger = logging.getLogger(\"build_dpo\")\n50\t\n51\tDEFAULT_GAMMA_MAP = {\n52\t    \"action\": 0.85,\n53\t    \"verification\": 0.92,\n54\t    \"planning\": 1.0,\n55\t}\n56\t\n57\t\n58\tdef parse_gamma_arg(s: str) -> dict[str, float]:\n59\t    \"\"\"Parse 'action=0.85,verification=0.92,planning=0.97' → dict.\"\"\"\n60\t    gamma_map = dict(DEFAULT_GAMMA_MAP)\n61\t    for item in s.split(\",\"):\n62\t        k, v = item.strip().split(\"=\")\n63\t        gamma_map[k.strip()] = float(v.strip())\n64\t    return gamma_map\n65\t\n66\t\n67\t# ---------------------------------------------------------------------------\n68\t# Game file normalization\n69\t# ---------------------------------------------------------------------------\n70\t\n71\tdef normalize_game_file(game_file: str) -> str:\n72\t    \"\"\"Extract <task_dir>/<trial_dir> as matching key.\n73\t\n74\t    Expert:     data/json_2.1.1/train/<task>/<trial>\n75\t    Trajectory: /root/.../json_2.1.1/train/<task>/<trial>/game.tw-pddl\n76\t    \"\"\"\n77\t    gf = game_file.rstrip(\"/\")\n78\t    if gf.endswith(\"/game.tw-pddl\"):\n79\t        gf = gf[: -len(\"/game.tw-pddl\")]\n80\t    parts = gf.split(\"/\")\n81\t    return \"/\".join(parts[-2:]) if len(parts) >= 2 else gf\n82\t\n83\t\n84\t# ---------------------------------------------------------------------------\n85\t# Message helpers\n86\t# ---------------------------------------------------------------------------\n87\t\n88\tdef _role(msg: dict) -> str:\n89\t    \"\"\"Get role from either format.\"\"\"\n90\t    return msg.get(\"role\") or {\"human\": \"user\", \"gpt\": \"assistant\"}.get(msg.get(\"from\", \"\"), \"\")\n91\t\n92\t\n93\tdef _content(msg: dict) -> str:\n94\t    \"\"\"Get content from either format.\"\"\"\n95\t    return msg.get(\"content\") or msg.get(\"value\", \"\")\n96\t\n97\t\n98\tdef msg_to_standard(msg: dict) -> dict:\n99\t    return {\"role\": _role(msg), \"content\": _content(msg)}\n100\t\n101\t\n102\t# ---------------------------------------------------------------------------\n103\t# Step extraction\n104\t# ---------------------------------------------------------------------------\n105\t\n106\tdef find_task_start(conversations: list) -> int:\n107\t    \"\"\"Index of first action step after the actual task description.\n108\t\n109\t    Handles both expert (no ICL) and trajectory (with ICL prefix) formats by\n110\t    finding the LAST 'Your task is to:' user message, then the first action after it.\n111\t    \"\"\"\n112\t    task_desc_idx = -1\n113\t    for i, msg in enumerate(conversations):\n114\t        if _role(msg) in (\"user\", \"human\") and \"Your task is to:\" in _content(msg):\n115\t            task_desc_idx = i\n116\t\n117\t    search_from = task_desc_idx + 1 if task_desc_idx >= 0 else 0\n118\t    for i in range(search_from, len(conversations)):\n119\t        if _role(conversations[i]) in (\"assistant\", \"gpt\") and \"Action:\" in _content(conversations[i]):\n120\t            return i\n121\t\n122\t    return len(conversations)\n123\t\n124\t\n125\tdef extract_steps(conversations: list, start_idx: int) -> list[tuple[dict, dict | None]]:\n126\t    \"\"\"Extract (action_msg, obs_msg|None) pairs from start_idx onward.\"\"\"\n127\t    steps = []\n128\t    i = start_idx\n129\t    while i < len(conversations):\n130\t        if _role(conversations[i]) in (\"assistant\", \"gpt\"):\n131\t            action = conversations[i]\n132\t            obs = None\n133\t            if i + 1 < len(conversations) and _role(conversations[i + 1]) in (\"user\", \"human\"):\n134\t                obs = conversations[i + 1]\n135\t                i += 2\n136\t            else:\n137\t                i += 1\n138\t            steps.append((action, obs))\n139\t        else:\n140\t            i += 1\n141\t    return steps\n142\t\n143\t\n144\tdef count_expert_action_steps(expert: dict) -> int:\n145\t    return sum(\n146\t        1\n147\t        for m in expert[\"conversations\"]\n148\t        if m[\"from\"] == \"gpt\" and \"Action:\" in m.get(\"value\", \"\")\n149\t    )\n150\t\n151\t\n152\t# ---------------------------------------------------------------------------\n153\t# Action comparison\n154\t# ---------------------------------------------------------------------------\n155\t\n156\tdef extract_action_text(content: str) -> str:\n157\t    \"\"\"Extract normalized 'Action: ...' line from a step message.\n158\t\n159\t    ALFWorld actions follow \"Thought: ...\\\\nAction: <action>\". We extract\n160\t    the action part and normalize whitespace + case for robust comparison.\n161\t    \"\"\"\n162\t    for line in content.split(\"\\n\"):\n163\t        stripped = line.strip()\n164\t        if stripped.lower().startswith(\"action:\"):\n165\t            return \" \".join(stripped[len(\"action:\"):].split()).lower()\n166\t    return \" \".join(content.split()).lower()\n167\t\n168\t\n169\tdef find_divergence_point(\n170\t    expert_steps: list[tuple[dict, dict | None]],\n171\t    fail_steps: list[tuple[dict, dict | None]],\n172\t) -> int:\n173\t    \"\"\"Find the first step where expert and failure trajectories take different actions.\n174\t\n175\t    Compares normalized action strings step-by-step. In ALFWorld, same game_file\n176\t    + same actions → same observations, so action match guarantees state match.\n177\t\n178\t    Args:\n179\t        expert_steps: List of (action_msg, obs_msg|None) from expert trajectory.\n180\t        fail_steps: List of (action_msg, obs_msg|None) from failure trajectory.\n181\t\n182\t    Returns:\n183\t        0-based index of the first differing step. If one is a prefix of the\n184\t        other, returns the shorter length (no shared step beyond that).\n185\t    \"\"\"\n186\t    min_len = min(len(expert_steps), len(fail_steps))\n187\t    for i in range(min_len):\n188\t        expert_action = extract_action_text(_content(expert_steps[i][0]))\n189\t        fail_action = extract_action_text(_content(fail_steps[i][0]))\n190\t        if expert_action != fail_action:\n191\t            return i\n192\t    return min_len\n193\t\n194\t\n195\t# ---------------------------------------------------------------------------\n196\t# Pair construction\n197\t# ---------------------------------------------------------------------------\n198\t\n199\tdef build_pair(\n200\t    rec: dict,\n201\t    expert: dict,\n202\t    gamma_map: dict[str, float] | None = None,\n203\t    gamma_mode: str = \"error_type\",\n204\t    gamma_min: float = 0.85,\n205\t    gamma_max: float = 1.0,\n206\t) -> dict | None:\n207\t    \"\"\"Build one DPO pair using true divergence point between expert and failure.\"\"\"\n208\t    if gamma_map is None:\n209\t        gamma_map = DEFAULT_GAMMA_MAP\n210\t\n211\t    fail_convs = rec[\"conversations\"]\n212\t    expert_convs = expert[\"conversations\"]\n213\t\n214\t    fail_start = find_task_start(fail_convs)\n215\t    expert_start = find_task_start(expert_convs)\n216\t\n217\t    fail_steps = extract_steps(fail_convs, fail_start)\n218\t    expert_steps = extract_steps(expert_convs, expert_start)\n219\t\n220\t    if not fail_steps or not expert_steps:\n221\t        return None\n222\t\n223\t    divergence = find_divergence_point(expert_steps, fail_steps)\n224\t\n225\t    if divergence >= len(expert_steps) or divergence >= len(fail_steps):\n226\t        logger.debug(\n227\t            \"task_id=%s: no divergence found (expert=%d, fail=%d steps, div=%d)\",\n228\t            rec.get(\"task_id\"), len(expert_steps), len(fail_steps), divergence,\n229\t        )\n230\t        return None\n231\t\n232\t    correction_span = len(expert_steps) - divergence\n233\t    error_type = rec.get(\"error_type\", \"unknown\")\n234\t\n235\t    # Compute d (normalized divergence position) and gamma_e\n236\t    # d = div_point / expert_length; early diverge (d≈0) → low γ (steep φ decay)\n237\t    d = divergence / len(expert_steps) if len(expert_steps) > 0 else 0.0\n238\t    if gamma_mode == \"continuous\":\n239\t        gamma_e = gamma_min + (gamma_max - gamma_min) * d\n240\t    else:\n241\t        gamma_e = gamma_map.get(error_type, gamma_map.get(\"verification\", 0.92))\n242\t\n243\t    # Prompt: ICL/header + shared prefix steps (identical actions + observations)\n244\t    prompt_msgs = [msg_to_standard(m) for m in fail_convs[:fail_start]]\n245\t    for i in range(divergence):\n246\t        action, obs = expert_steps[i]\n247\t        prompt_msgs.append(msg_to_standard(action))\n248\t        if obs is not None:\n249\t            prompt_msgs.append(msg_to_standard(obs))\n250\t\n251\t    # Chosen: expert continuation from divergence point\n252\t    chosen_msgs = []\n253\t    for i in range(divergence, len(expert_steps)):\n254\t        action, obs = expert_steps[i]\n255\t        chosen_msgs.append(msg_to_standard(action))\n256\t        if obs is not None:\n257\t            chosen_msgs.append(msg_to_standard(obs))\n258\t\n259\t    # Rejected: failure continuation from divergence point\n260\t    rejected_msgs = []\n261\t    for i in range(divergence, len(fail_steps)):\n262\t        action, obs = fail_steps[i]\n263\t        rejected_msgs.append(msg_to_standard(action))\n264\t        if obs is not None:\n265\t            rejected_msgs.append(msg_to_standard(obs))\n266\t\n267\t    if not chosen_msgs or not rejected_msgs:\n268\t        return None\n269\t\n270\t    # Infer task_type from expert game_file (format: <task_type>/<trial_id>)\n271\t    gf = expert.get(\"game_file\", \"\")\n272\t    parts = gf.split(\"/\")\n273\t    task_type = \"\"\n274\t    for p in parts:\n275\t        if p.startswith((\"pick_\", \"clean_\", \"heat_\", \"cool_\", \"put_\", \"examine_\", \"look_\")):\n276\t            task_type = p\n277\t            break\n278\t    if not task_type:\n279\t        task_type = rec.get(\"task_type\", \"\")\n280\t\n281\t    return {\n282\t        \"prompt\": prompt_msgs,\n283\t        \"chosen\": chosen_msgs,\n284\t        \"rejected\": rejected_msgs,\n285\t        \"error_type\": error_type,\n286\t        \"gamma_e\": round(gamma_e, 6),\n287\t        \"d\": round(d, 6),\n288\t        \"correction_span\": correction_span,\n289\t        \"task_id\": rec.get(\"task_id\"),\n290\t        \"task_type\": task_type,\n291\t        \"game_file\": rec.get(\"game_file\", \"\"),\n292\t        \"failure_step\": rec.get(\"failure_step\", -1),\n293\t        \"divergence_step\": divergence + 1,\n294\t        \"metadata\": {\n295\t            \"expert_steps\": len(expert_steps),\n296\t            \"model_steps\": len(fail_steps),\n297\t            \"divergence_step\": divergence,\n298\t            \"gamma_mode\": gamma_mode,\n299\t            \"classification_source\": rec.get(\"llm_original_type_source\", \"unknown\"),\n300\t        },\n301\t    }\n302\t\n303\t\n304\t# ---------------------------------------------------------------------------\n305\t# Data loading\n306\t# ---------------------------------------------------------------------------\n307\t\n308\tdef load_expert_index(path: str) -> dict:\n309\t    with open(path) as f:\n310\t        experts = json.load(f)\n311\t    index = {}\n312\t    for ex in experts:\n313\t        index[normalize_game_file(ex[\"game_file\"])] = ex\n314\t    logger.info(\"Loaded %d experts\", len(experts))\n315\t    return index\n316\t\n317\t\n318\tdef load_classified(path: str) -> list:\n319\t    records = []\n320\t    with open(path) as f:\n321\t        for line in f:\n322\t            if line.strip():\n323\t                records.append(json.loads(line))\n324\t    logger.info(\"Loaded %d classified records\", len(records))\n325\t    return records\n326\t\n327\t\n328\tdef load_trajectories_from_dir(traj_dir: str) -> dict:\n329\t    \"\"\"Index trajectory files by normalized game_file (fallback for missing conversations).\"\"\"\n330\t    index = {}\n331\t    for p in sorted(Path(traj_dir).glob(\"*.jsonl\")):\n332\t        with open(p) as f:\n333\t            for line in f:\n334\t                if line.strip():\n335\t                    traj = json.loads(line)\n336\t                    index[normalize_game_file(traj.get(\"game_file\", \"\"))] = traj\n337\t    logger.info(\"Loaded %d trajectories from %s\", len(index), traj_dir)\n338\t    return index\n339\t\n340\t\n341\tdef load_trajectory_input(pattern: str) -> list[dict]:\n342\t    \"\"\"Load failure records from trajectory JSONL files (v8 format).\n343\t\n344\t    Supports comma-separated paths and glob patterns.\n345\t    Only returns records with reward=False.\n346\t    \"\"\"\n347\t    paths: list[str] = []\n348\t    for part in pattern.split(\",\"):\n349\t        part = part.strip()\n350\t        expanded = glob_mod.glob(part)\n351\t        if expanded:\n352\t            paths.extend(expanded)\n353\t        else:\n354\t            paths.append(part)\n355\t\n356\t    records = []\n357\t    for p in sorted(set(paths)):\n358\t        with open(p) as f:\n359\t            for line in f:\n360\t                if not line.strip():\n361\t                    continue\n362\t                traj = json.loads(line)\n363\t                if traj.get(\"reward\") is True:\n364\t                    continue\n365\t                records.append(traj)\n366\t    logger.info(\"Loaded %d failure trajectories from %d files\", len(records), len(paths))\n367\t    return records\n368\t\n369\t\n370\t# ---------------------------------------------------------------------------\n371\t# Main\n372\t# ---------------------------------------------------------------------------\n373\t\n374\tdef main():\n375\t    parser = argparse.ArgumentParser(\n376\t        description=\"Build DPO pairs from classified failures + expert trajectories\"\n377\t    )\n378\t    parser.add_argument(\n379\t        \"--classified\",\n380\t        type=str,\n381\t        default=\"data/classified/classified_errors.jsonl\",\n382\t        help=\"Classified errors JSONL\",\n383\t    )\n384\t    parser.add_argument(\n385\t        \"--expert\",\n386\t        type=str,\n387\t        default=\"eto_repo/data/alfworld_sft.json\",\n388\t        help=\"Expert trajectories JSON\",\n389\t    )\n390\t    parser.add_argument(\n391\t        \"--trajectory_dir\",\n392\t        type=str,\n393\t        default=None,\n394\t        help=\"Failure trajectory JSONL dir (optional; uses classified conversations if omitted)\",\n395\t    )\n396\t    parser.add_argument(\n397\t        \"--trajectory_input\",\n398\t        type=str,\n399\t        default=None,\n400\t        help=\"Trajectory JSONL files (v8 format), comma-separated or glob pattern. \"\n401\t             \"Only reward=False records are used. Bypasses --classified.\",\n402\t    )\n403\t    parser.add_argument(\n404\t        \"--output\",\n405\t        type=str,\n406\t        default=\"data/dpo_pairs_v2.jsonl\",\n407\t        help=\"Output JSONL path\",\n408\t    )\n409\t    parser.add_argument(\n410\t        \"--gamma\",\n411\t        type=str,\n412\t        default=\"action=0.85,verification=0.92,planning=0.97\",\n413\t        help=\"Per-error-type γ_e values (error_type mode): action=0.85,verification=0.92,planning=0.97\",\n414\t    )\n415\t    parser.add_argument(\n416\t        \"--gamma_mode\",\n417\t        type=str,\n418\t        choices=[\"error_type\", \"continuous\"],\n419\t        default=\"error_type\",\n420\t        help=\"Gamma computation mode: 'error_type' (discrete per error type) or \"\n421\t             \"'continuous' (γ(d) = γ_min + (γ_max - γ_min) × d)\",\n422\t    )\n423\t    parser.add_argument(\n424\t        \"--gamma_min\",\n425\t        type=float,\n426\t        default=0.85,\n427\t        help=\"γ_min for continuous mode (early divergence → heavy discount). Default: 0.85\",\n428\t    )\n429\t    parser.add_argument(\n430\t        \"--gamma_max\",\n431\t        type=float,\n432\t        default=1.0,\n433\t        help=\"γ_max for continuous mode (late divergence → near uniform). Default: 1.0\",\n434\t    )\n435\t    args = parser.parse_args()\n436\t\n437\t    logging.basicConfig(level=logging.INFO, format=\"%(name)s %(levelname)s %(message)s\")\n438\t\n439\t    gamma_map = parse_gamma_arg(args.gamma)\n440\t    if args.gamma_mode == \"continuous\":\n441\t        logger.info(\"γ mode: continuous, γ_min=%.4f, γ_max=%.4f\", args.gamma_min, args.gamma_max)\n442\t    else:\n443\t        logger.info(\"γ mode: error_type, map: %s\", gamma_map)\n444\t\n445\t    expert_index = load_expert_index(args.expert)\n446\t\n447\t    # Load failure records: --trajectory_input (v8) or --classified\n448\t    if args.trajectory_input:\n449\t        classified = load_trajectory_input(args.trajectory_input)\n450\t    else:\n451\t        classified = load_classified(args.classified)\n452\t\n453\t    traj_index = None\n454\t    if args.trajectory_dir:\n455\t        traj_index = load_trajectories_from_dir(args.trajectory_dir)\n456\t\n457\t    out = Path(args.output)\n458\t    out.parent.mkdir(parents=True, exist_ok=True)\n459\t\n460\t    pairs = []\n461\t    skipped: Counter = Counter()\n462\t\n463\t    for rec in classified:\n464\t        # In error_type mode, skip unknown error types; in continuous mode, skip nothing\n465\t        if args.gamma_mode == \"error_type\" and rec.get(\"error_type\") in (\"unknown\", None):\n466\t            skipped[\"unknown_error_type\"] += 1\n467\t            continue\n468\t\n469\t        key = normalize_game_file(rec.get(\"game_file\", \"\"))\n470\t        expert = expert_index.get(key)\n471\t        if expert is None:\n472\t            skipped[\"no_expert_match\"] += 1\n473\t            continue\n474\t\n475\t        if not rec.get(\"conversations\"):\n476\t            if traj_index:\n477\t                traj = traj_index.get(key)\n478\t                if traj and traj.get(\"conversations\"):\n479\t                    rec[\"conversations\"] = traj[\"conversations\"]\n480\t                else:\n481\t                    skipped[\"no_conversations\"] += 1\n482\t                    continue\n483\t            else:\n484\t                skipped[\"no_conversations\"] += 1\n485\t                continue\n486\t\n487\t        pair = build_pair(\n488\t            rec, expert, gamma_map,\n489\t            gamma_mode=args.gamma_mode,\n490\t            gamma_min=args.gamma_min,\n491\t            gamma_max=args.gamma_max,\n492\t        )\n493\t        if pair is None:\n494\t            skipped[\"build_failed\"] += 1\n495\t            continue\n496\t        pairs.append(pair)\n497\t\n498\t    with open(out, \"w\") as f:\n499\t        for pair in pairs:\n500\t            f.write(json.dumps(pair, ensure_ascii=False) + \"\\n\")\n501\t\n502\t    logger.info(\"Built %d DPO pairs -> %s\", len(pairs), out)\n503\t    if skipped:\n504\t        logger.info(\"Skipped: %s\", dict(skipped))\n505\t\n506\t    # --- summary ---\n507\t    print(f\"\\n{'=' * 60}\")\n508\t    print(\"DPO PAIR CONSTRUCTION SUMMARY\")\n509\t    print(f\"{'=' * 60}\")\n510\t    print(f\"Total pairs: {len(pairs)}\")\n511\t    print(f\"Gamma mode:  {args.gamma_mode}\")\n512\t\n513\t    if args.gamma_mode == \"continuous\":\n514\t        _print_continuous_summary(pairs, args)\n515\t    else:\n516\t        _print_error_type_summary(pairs, gamma_map)\n517\t\n518\t    # Common: divergence step distribution\n519\t    div_steps = [p[\"divergence_step\"] for p in pairs]\n520\t    if div_steps:\n521\t        print(f\"\\nDivergence step distribution:\")\n522\t        print(f\"  min={min(div_steps)}, max={max(div_steps)}, \"\n523\t              f\"mean={sum(div_steps)/len(div_steps):.1f}, \"\n524\t              f\"step1={sum(1 for d in div_steps if d == 1)}\")\n525\t    if skipped:\n526\t        print(f\"\\nSkipped: {dict(skipped)}\")\n527\t    print(f\"{'=' * 60}\")\n528\t\n529\t\n530\tdef _print_continuous_summary(pairs: list[dict], args) -> None:\n531\t    \"\"\"Summary for continuous gamma mode.\"\"\"\n532\t    d_vals = [p[\"d\"] for p in pairs]\n533\t    gamma_vals = [p[\"gamma_e\"] for p in pairs]\n534\t\n535\t    if not d_vals:\n536\t        return\n537\t\n538\t    print(f\"γ_min={args.gamma_min}, γ_max={args.gamma_max}\")\n539\t\n540\t    print(f\"\\nd (normalized divergence position):\")\n541\t    print(f\"  min={min(d_vals):.4f}, max={max(d_vals):.4f}, \"\n542\t          f\"mean={statistics.mean(d_vals):.4f}, median={statistics.median(d_vals):.4f}\")\n543\t\n544\t    print(f\"\\nγ_e distribution:\")\n545\t    print(f\"  min={min(gamma_vals):.4f}, max={max(gamma_vals):.4f}, \"\n546\t          f\"mean={statistics.mean(gamma_vals):.4f}, median={statistics.median(gamma_vals):.4f}\")\n547\t\n548\t    early = sum(1 for d in d_vals if d < 0.2)\n549\t    mid = sum(1 for d in d_vals if 0.2 <= d < 0.5)\n550\t    late = sum(1 for d in d_vals if d >= 0.5)\n551\t    print(f\"\\n{'Region':<20} {'Count':>6} {'Fraction':>10}\")\n552\t    print(\"-\" * 40)\n553\t    n = len(d_vals)\n554\t    print(f\"{'early (d<0.2)':<20} {early:>6} {early/n:>10.1%}\")\n555\t    print(f\"{'mid (0.2≤d<0.5)':<20} {mid:>6} {mid/n:>10.1%}\")\n556\t    print(f\"{'late (d≥0.5)':<20} {late:>6} {late/n:>10.1%}\")\n557\t\n558\t\n559\tdef _print_error_type_summary(pairs: list[dict], gamma_map: dict) -> None:\n560\t    \"\"\"Summary for error_type gamma mode.\"\"\"\n561\t    by_type: dict[str, list[int]] = defaultdict(list)\n562\t    for p in pairs:\n563\t        by_type[p[\"error_type\"]].append(p[\"correction_span\"])\n564\t\n565\t    print(f\"\\n{'Type':<15} {'Count':>6} {'Avg CSpan':>10} {'γ_e':>6}\")\n566\t    print(\"-\" * 42)\n567\t    for et in (\"action\", \"verification\", \"planning\"):\n568\t        spans = by_type.get(et, [])\n569\t        ge = gamma_map.get(et, \"-\")\n570\t        if spans:\n571\t            avg = sum(spans) / len(spans)\n572\t            print(f\"{et:<15} {len(spans):>6} {avg:>10.2f} {ge:>6}\")\n573\t        else:\n574\t            print(f\"{et:<15}      0          - {ge:>6}\")\n575\t    # Show any other types that appeared\n576\t    for et, spans in sorted(by_type.items()):\n577\t        if et not in (\"action\", \"verification\", \"planning\"):\n578\t            avg = sum(spans) / len(spans)\n579\t            ge = gamma_map.get(et, \"-\")\n580\t            print(f\"{et:<15} {len(spans):>6} {avg:>10.2f} {ge:>6}\")\n581\t\n582\t\n583\tif __name__ == \"__main__\":\n584\t    main()\n585\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10021522-db8d-48aa-bf3f-d697e08398bf",
+            "isSidechain": true,
+            "promptId": "b8498260-b8e1-4a92-a74e-4f35128dd81c",
+            "agentId": "ab50474da7533fb2a",
+            "type": "user",
+            "uuid": "fac83879-c022-46f2-becb-29a3fb191d84",
+            "sourceToolAssistantUUID": "10021522-db8d-48aa-bf3f-d697e08398bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T07:24:28.720Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PuP4ddwMrSH2SZ624Wy6WJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/etadn_discount.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fac83879-c022-46f2-becb-29a3fb191d84",
+            "isSidechain": true,
+            "agentId": "ab50474da7533fb2a",
+            "requestId": "req_011CazAigKJon1dv2bgYRTED",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "00b8ec22-010e-4d1a-9390-9fd8fe002a0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QpL1AKJHtf2Y4iYDXY2ttM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36728,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36728,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T07:24:28.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PuP4ddwMrSH2SZ624Wy6WJ",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"ETADN error-type-aware temporal discount for DMPO.\n3\t\n4\tCore formula:\n5\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n6\t\n7\tWhere:\n8\t    t = current timestep (0-indexed)\n9\t    T = total trajectory length\n10\t    γ = gamma_e (error-type-specific discount factor)\n11\t\n12\tγ_e mapping:\n13\t    action errors      → γ_a = 0.85 (short correction span, concentrated credit)\n14\t    verification errors → γ_v = 0.92 (medium span, moderate spread)\n15\t    planning errors     → γ_p = 1.0 (long span, uniform credit)\n16\t\n17\tIntegration with DPO/DMPO:\n18\t    Standard DPO loss: L = -log σ(β · (log π(y_w|x) - log π(y_l|x)))\n19\t    DMPO adds per-step weighting: replace uniform sum with φ-weighted sum\n20\t    ETADN: γ in φ varies by error_type of the (chosen, rejected) pair\n21\t\n22\tDependencies: torch only\n23\t\"\"\"\n24\timport torch\n25\timport torch.nn.functional as F\n26\tfrom dataclasses import dataclass\n27\t\n28\t\n29\t@dataclass\n30\tclass ETADNConfig:\n31\t    gamma_action: float = 0.85\n32\t    gamma_verification: float = 0.92\n33\t    gamma_planning: float = 1.0\n34\t    beta: float = 0.1\n35\t    label_smoothing: float = 0.0\n36\t\n37\t\n38\tdef phi(t: int, T: int, gamma: float) -> float:\n39\t    \"\"\"DMPO credit assignment weight for timestep t of T.\n40\t\n41\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n42\t\n43\t    Sums to 1 over t ∈ [0, T-1] for any γ ∈ (0, 1).\n44\t    \"\"\"\n45\t    if T <= 0:\n46\t        return 0.0\n47\t    if abs(gamma - 1.0) < 1e-8:\n48\t        return 1.0 / T\n49\t    if abs(gamma) < 1e-12:\n50\t        return 1.0 if t == 0 else 0.0\n51\t    numerator = (gamma ** t) * (1.0 - gamma ** (T - t))\n52\t    denominator = 1.0 - gamma ** T\n53\t    return numerator / denominator\n54\t\n55\t\n56\tdef compute_discount_weights(T: int, gamma: float) -> torch.Tensor:\n57\t    \"\"\"φ weight vector of length T. Returns shape (T,) float32 tensor.\"\"\"\n58\t    if T <= 0:\n59\t        return torch.tensor([], dtype=torch.float32)\n60\t    if abs(gamma - 1.0) < 1e-8:\n61\t        return torch.full((T,), 1.0 / T, dtype=torch.float32)\n62\t    if abs(gamma) < 1e-12:\n63\t        w = torch.zeros(T, dtype=torch.float32)\n64\t        w[0] = 1.0\n65\t        return w\n66\t    t = torch.arange(T, dtype=torch.float64)\n67\t    g = torch.tensor(gamma, dtype=torch.float64)\n68\t    numerator = g.pow(t) * (1 - g.pow(T - t))\n69\t    denominator = 1 - g.pow(torch.tensor(T, dtype=torch.float64))\n70\t    w = (numerator / denominator).float()\n71\t    return w / w.sum()\n72\t\n73\t\n74\tdef get_gamma_for_error_type(error_type: str, config: ETADNConfig) -> float:\n75\t    \"\"\"Look up γ_e by error type string.\"\"\"\n76\t    mapping = {\n77\t        \"action\": config.gamma_action,\n78\t        \"verification\": config.gamma_verification,\n79\t        \"planning\": config.gamma_planning,\n80\t    }\n81\t    return mapping.get(error_type, config.gamma_verification)\n82\t\n83\t\n84\t# ---------------------------------------------------------------------------\n85\t# DPO loss variants\n86\t# ---------------------------------------------------------------------------\n87\t\n88\tdef _dpo_loss_from_logratios(\n89\t    chosen_logratios: torch.Tensor,\n90\t    rejected_logratios: torch.Tensor,\n91\t    beta: float,\n92\t    label_smoothing: float = 0.0,\n93\t) -> torch.Tensor:\n94\t    \"\"\"Standard DPO loss from per-sample log-ratio scalars.\n95\t\n96\t    L = -log σ(β · (chosen_logratio - rejected_logratio))\n97\t    \"\"\"\n98\t    logits = beta * (chosen_logratios - rejected_logratios)\n99\t    if label_smoothing > 0:\n100\t        loss = (\n101\t            (1 - label_smoothing) * F.logsigmoid(logits)\n102\t            + label_smoothing * F.logsigmoid(-logits)\n103\t        )\n104\t    else:\n105\t        loss = F.logsigmoid(logits)\n106\t    return -loss.mean()\n107\t\n108\t\n109\tdef uniform_dpo_loss(\n110\t    chosen_logps: torch.Tensor,\n111\t    rejected_logps: torch.Tensor,\n112\t    ref_chosen_logps: torch.Tensor,\n113\t    ref_rejected_logps: torch.Tensor,\n114\t    lengths: torch.Tensor,\n115\t    beta: float = 0.1,\n116\t    label_smoothing: float = 0.0,\n117\t) -> torch.Tensor:\n118\t    \"\"\"Standard DPO with uniform per-token weighting (baseline).\n119\t\n120\t    Args:\n121\t        chosen_logps: (batch, max_len) per-token log probs for chosen\n122\t        rejected_logps: (batch, max_len) per-token log probs for rejected\n123\t        ref_chosen_logps: (batch, max_len) reference model per-token log probs\n124\t        ref_rejected_logps: (batch, max_len) reference model per-token log probs\n125\t        lengths: (batch,) valid token count per sample\n126\t        beta: DPO temperature\n127\t        label_smoothing: label smoothing factor\n128\t    \"\"\"\n129\t    batch_size, max_len = chosen_logps.shape\n130\t    mask = torch.arange(max_len, device=chosen_logps.device).unsqueeze(0) < lengths.unsqueeze(1)\n131\t    mask = mask.float()\n132\t\n133\t    chosen_sums = (chosen_logps * mask).sum(dim=1)\n134\t    rejected_sums = (rejected_logps * mask).sum(dim=1)\n135\t    ref_chosen_sums = (ref_chosen_logps * mask).sum(dim=1)\n136\t    ref_rejected_sums = (ref_rejected_logps * mask).sum(dim=1)\n137\t\n138\t    chosen_logratios = chosen_sums - ref_chosen_sums\n139\t    rejected_logratios = rejected_sums - ref_rejected_sums\n140\t\n141\t    return _dpo_loss_from_logratios(\n142\t        chosen_logratios, rejected_logratios, beta, label_smoothing\n143\t    )\n144\t\n145\t\n146\tdef single_gamma_dpo_loss(\n147\t    chosen_logps: torch.Tensor,\n148\t    rejected_logps: torch.Tensor,\n149\t    ref_chosen_logps: torch.Tensor,\n150\t    ref_rejected_logps: torch.Tensor,\n151\t    lengths: torch.Tensor,\n152\t    gamma: float = 0.92,\n153\t    beta: float = 0.1,\n154\t    label_smoothing: float = 0.0,\n155\t) -> torch.Tensor:\n156\t    \"\"\"DMPO with a single shared γ for all samples (ablation baseline).\"\"\"\n157\t    batch_size, max_len = chosen_logps.shape\n158\t    device = chosen_logps.device\n159\t\n160\t    results_chosen = torch.zeros(batch_size, device=device)\n161\t    results_rejected = torch.zeros(batch_size, device=device)\n162\t    results_ref_chosen = torch.zeros(batch_size, device=device)\n163\t    results_ref_rejected = torch.zeros(batch_size, device=device)\n164\t\n165\t    for i in range(batch_size):\n166\t        T = int(lengths[i].item())\n167\t        if T <= 0:\n168\t            continue\n169\t        w = compute_discount_weights(T, gamma).to(device)\n170\t        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n171\t        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n172\t        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n173\t        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n174\t\n175\t    chosen_logratios = results_chosen - results_ref_chosen\n176\t    rejected_logratios = results_rejected - results_ref_rejected\n177\t\n178\t    return _dpo_loss_from_logratios(\n179\t        chosen_logratios, rejected_logratios, beta, label_smoothing\n180\t    )\n181\t\n182\t\n183\tdef etadn_dpo_loss(\n184\t    chosen_logps: torch.Tensor,\n185\t    rejected_logps: torch.Tensor,\n186\t    ref_chosen_logps: torch.Tensor,\n187\t    ref_rejected_logps: torch.Tensor,\n188\t    error_types: list[str],\n189\t    lengths: torch.Tensor,\n190\t    config: ETADNConfig,\n191\t) -> torch.Tensor:\n192\t    \"\"\"ETADN-aware DPO loss with per-error-type temporal discount.\n193\t\n194\t    For each sample in the batch:\n195\t    1. Look up γ_e based on error_type\n196\t    2. Compute φ(t, T, γ_e) weights for sequence length T\n197\t    3. Compute weighted sum of per-token log prob differences\n198\t    4. Apply standard DPO loss with β\n199\t    \"\"\"\n200\t    batch_size, max_len = chosen_logps.shape\n201\t    device = chosen_logps.device\n202\t\n203\t    results_chosen = torch.zeros(batch_size, device=device)\n204\t    results_rejected = torch.zeros(batch_size, device=device)\n205\t    results_ref_chosen = torch.zeros(batch_size, device=device)\n206\t    results_ref_rejected = torch.zeros(batch_size, device=device)\n207\t\n208\t    for i in range(batch_size):\n209\t        T = int(lengths[i].item())\n210\t        if T <= 0:\n211\t            continue\n212\t        gamma = get_gamma_for_error_type(error_types[i], config)\n213\t        w = compute_discount_weights(T, gamma).to(device)\n214\t        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n215\t        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n216\t        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n217\t        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n218\t\n219\t    chosen_logratios = results_chosen - results_ref_chosen\n220\t    rejected_logratios = results_rejected - results_ref_rejected\n221\t\n222\t    return _dpo_loss_from_logratios(\n223\t        chosen_logratios, rejected_logratios, config.beta, config.label_smoothing\n224\t    )\n225\t\n226\t\n227\t# ---------------------------------------------------------------------------\n228\t# Self-tests\n229\t# ---------------------------------------------------------------------------\n230\t\n231\tdef _test_phi_weights_properties():\n232\t    \"\"\"φ weights: positive, monotonically decreasing for γ<1, γ=1 is uniform.\"\"\"\n233\t    for gamma in [0.5, 0.85, 0.92, 0.97, 0.99]:\n234\t        for T in [1, 3, 5, 10, 20]:\n235\t            w = compute_discount_weights(T, gamma)\n236\t            assert len(w) == T\n237\t            assert (w > 0).all(), f\"gamma={gamma}, T={T}: non-positive weights\"\n238\t            for i in range(1, T):\n239\t                assert w[i] <= w[i - 1] + 1e-6, (\n240\t                    f\"gamma={gamma}, T={T}: not monotonically decreasing at {i}\"\n241\t                )\n242\t    # γ=1 → uniform\n243\t    w_uniform = compute_discount_weights(5, 1.0)\n244\t    assert abs(w_uniform.sum().item() - 1.0) < 1e-5\n245\t    assert abs(w_uniform[0].item() - 0.2) < 1e-5\n246\t    # scalar φ matches vectorized\n247\t    for gamma in [0.85, 0.97]:\n248\t        T = 8\n249\t        w = compute_discount_weights(T, gamma)\n250\t        for t in range(T):\n251\t            assert abs(w[t].item() - phi(t, T, gamma)) < 1e-5, (\n252\t                f\"phi mismatch at t={t}, T={T}, gamma={gamma}\"\n253\t            )\n254\t    print(\"  phi weights properties: PASS\")\n255\t\n256\t\n257\tdef _test_phi_shape_by_gamma():\n258\t    \"\"\"Lower γ → steeper decay; higher γ → more uniform.\"\"\"\n259\t    T = 10\n260\t    w_low = compute_discount_weights(T, 0.85)\n261\t    w_high = compute_discount_weights(T, 0.97)\n262\t\n263\t    # φ(0,T,γ) = 1 for all γ, so first weight is the same\n264\t    assert abs(w_low[0].item() - 1.0) < 1e-5\n265\t    assert abs(w_high[0].item() - 1.0) < 1e-5\n266\t    # Lower γ decays faster → last weight should be smaller\n267\t    assert w_low[-1] < w_high[-1], \"Low gamma should decay faster at the tail\"\n268\t    # γ=0.97 should be more uniform (smaller max-min spread)\n269\t    spread_low = (w_low.max() - w_low.min()).item()\n270\t    spread_high = (w_high.max() - w_high.min()).item()\n271\t    assert spread_low > spread_high, \"High gamma should be more uniform\"\n272\t    print(\"  phi shape by gamma: PASS\")\n273\t\n274\t\n275\tdef _test_dpo_loss_gradients():\n276\t    \"\"\"All three loss variants should produce finite loss and valid gradients.\"\"\"\n277\t    torch.manual_seed(42)\n278\t    batch_size, max_len = 4, 8\n279\t    config = ETADNConfig()\n280\t\n281\t    chosen = torch.randn(batch_size, max_len, requires_grad=True)\n282\t    rejected = torch.randn(batch_size, max_len, requires_grad=True)\n283\t    ref_chosen = torch.randn(batch_size, max_len)\n284\t    ref_rejected = torch.randn(batch_size, max_len)\n285\t    lengths = torch.tensor([6, 8, 5, 7])\n286\t    error_types = [\"action\", \"verification\", \"planning\", \"action\"]\n287\t\n288\t    # Uniform DPO\n289\t    loss_u = uniform_dpo_loss(chosen, rejected, ref_chosen, ref_rejected, lengths)\n290\t    loss_u.backward(retain_graph=True)\n291\t    assert torch.isfinite(loss_u), f\"uniform loss not finite: {loss_u}\"\n292\t    assert chosen.grad is not None\n293\t    chosen.grad.zero_()\n294\t\n295\t    # Single-gamma DMPO\n296\t    loss_s = single_gamma_dpo_loss(\n297\t        chosen, rejected, ref_chosen, ref_rejected, lengths, gamma=0.92\n298\t    )\n299\t    loss_s.backward(retain_graph=True)\n300\t    assert torch.isfinite(loss_s), f\"single_gamma loss not finite: {loss_s}\"\n301\t    chosen.grad.zero_()\n302\t\n303\t    # ETADN\n304\t    loss_e = etadn_dpo_loss(\n305\t        chosen, rejected, ref_chosen, ref_rejected, error_types, lengths, config\n306\t    )\n307\t    loss_e.backward()\n308\t    assert torch.isfinite(loss_e), f\"etadn loss not finite: {loss_e}\"\n309\t\n310\t    print(f\"  uniform_dpo_loss:      {loss_u.item():.4f}\")\n311\t    print(f\"  single_gamma_dpo_loss: {loss_s.item():.4f}\")\n312\t    print(f\"  etadn_dpo_loss:        {loss_e.item():.4f}\")\n313\t    print(\"  gradient check: PASS\")\n314\t\n315\t\n316\tdef _test_gamma_lookup():\n317\t    \"\"\"get_gamma_for_error_type should return correct values.\"\"\"\n318\t    config = ETADNConfig()\n319\t    assert get_gamma_for_error_type(\"action\", config) == 0.85\n320\t    assert get_gamma_for_error_type(\"verification\", config) == 0.92\n321\t    assert get_gamma_for_error_type(\"planning\", config) == 1.0\n322\t    assert get_gamma_for_error_type(\"unknown\", config) == 0.92  # fallback\n323\t    print(\"  gamma lookup: PASS\")\n324\t\n325\t\n326\tif __name__ == \"__main__\":\n327\t    print(\"ETADN discount module self-tests\")\n328\t    print(\"=\" * 40)\n329\t    _test_phi_weights_properties()\n330\t    _test_phi_shape_by_gamma()\n331\t    _test_gamma_lookup()\n332\t    _test_dpo_loss_gradients()\n333\t    print(\"=\" * 40)\n334\t    print(\"All tests passed.\")\n335\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00b8ec22-010e-4d1a-9390-9fd8fe002a0d",
+            "isSidechain": true,
+            "promptId": "b8498260-b8e1-4a92-a74e-4f35128dd81c",
+            "agentId": "ab50474da7533fb2a",
+            "type": "user",
+            "uuid": "35c32bb1-6d95-4786-b6b4-348a7d492f6c",
+            "sourceToolAssistantUUID": "00b8ec22-010e-4d1a-9390-9fd8fe002a0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T07:24:28.846Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G8qDkHuyzWbP9Aq9aHEkQx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35c32bb1-6d95-4786-b6b4-348a7d492f6c",
+            "isSidechain": true,
+            "agentId": "ab50474da7533fb2a",
+            "requestId": "req_011CazAigKJon1dv2bgYRTED",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "11e7022c-c78b-45ed-b0e6-bf96ad1ad8c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QpL1AKJHtf2Y4iYDXY2ttM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36728,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 262,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 36728
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 262,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 36728,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 36728,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T07:24:28.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G8qDkHuyzWbP9Aq9aHEkQx",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"DPO training with ETADN temporal discount weighting.\n3\t\n4\tTwo modes:\n5\t  single_gamma: all samples share one gamma (baseline / gamma sweep)\n6\t  etadn: per-sample gamma_e read from JSONL (ETADN method)\n7\t\n8\tKey design: gamma(d) is NOT computed here. In etadn mode it comes directly\n9\tfrom the JSONL gamma_e field produced by build_dpo_pairs.py.\n10\t\n11\tInput: JSONL from build_dpo_pairs.py\n12\t  Each line: {prompt, chosen, rejected, gamma_e, error_type, ...}\n13\t  prompt/chosen/rejected are lists of message dicts [{role, content}, ...]\n14\t\n15\tOutput: model checkpoints in --output_dir\n16\t\n17\tMemory strategy: reference model logps are precomputed once before training,\n18\tso only the policy model stays on GPU during the training loop.\n19\t\n20\tDependencies: torch, transformers, wandb\n21\t\"\"\"\n22\timport argparse\n23\timport json\n24\timport logging\n25\timport os\n26\timport sys\n27\tfrom functools import partial\n28\tfrom pathlib import Path\n29\t\n30\timport torch\n31\timport torch.nn.functional as F\n32\tfrom torch.utils.data import Dataset, DataLoader\n33\tfrom transformers import (\n34\t    AutoModelForCausalLM,\n35\t    AutoTokenizer,\n36\t    get_cosine_schedule_with_warmup,\n37\t)\n38\t\n39\tsys.path.insert(0, str(Path(__file__).resolve().parent))\n40\tfrom dmpo_loss import compute_phi_weights\n41\t\n42\tlogger = logging.getLogger(\"train_dpo\")\n43\t\n44\t\n45\t# ---------------------------------------------------------------------------\n46\t# Dataset\n47\t# ---------------------------------------------------------------------------\n48\t\n49\t\n50\tclass DPODataset(Dataset):\n51\t    \"\"\"DPO dataset from JSONL with prompt/chosen/rejected message lists.\"\"\"\n52\t\n53\t    def __init__(self, data_path: str, tokenizer, max_length: int, mode: str, gamma: float):\n54\t        self.samples = []\n55\t        with open(data_path) as f:\n56\t            for line in f:\n57\t                if line.strip():\n58\t                    self.samples.append(json.loads(line))\n59\t        self.tokenizer = tokenizer\n60\t        self.max_length = max_length\n61\t        self.mode = mode\n62\t        self.gamma = gamma\n63\t        logger.info(\"Loaded %d DPO samples from %s\", len(self.samples), data_path)\n64\t\n65\t    def __len__(self):\n66\t        return len(self.samples)\n67\t\n68\t    def __getitem__(self, idx):\n69\t        sample = self.samples[idx]\n70\t        prompt = sample[\"prompt\"]\n71\t        chosen = sample[\"chosen\"]\n72\t        rejected = sample[\"rejected\"]\n73\t\n74\t        # gamma source: JSONL gamma_e for etadn, CLI --gamma for single_gamma\n75\t        gamma = sample[\"gamma_e\"] if self.mode == \"etadn\" else self.gamma\n76\t\n77\t        # Tokenize prompt to measure prefix length\n78\t        prompt_ids = self.tokenizer.apply_chat_template(\n79\t            prompt, add_generation_prompt=True, return_dict=False\n80\t        )\n81\t        # Tokenize full sequences (prompt + response)\n82\t        chosen_ids = self.tokenizer.apply_chat_template(prompt + chosen, return_dict=False)\n83\t        rejected_ids = self.tokenizer.apply_chat_template(prompt + rejected, return_dict=False)\n84\t\n85\t        prompt_len = min(len(prompt_ids), self.max_length)\n86\t        chosen_ids = chosen_ids[: self.max_length]\n87\t        rejected_ids = rejected_ids[: self.max_length]\n88\t\n89\t        return {\n90\t            \"idx\": idx,\n91\t            \"chosen_ids\": chosen_ids,\n92\t            \"rejected_ids\": rejected_ids,\n93\t            \"prompt_len\": prompt_len,\n94\t            \"gamma\": gamma,\n95\t        }\n96\t\n97\t\n98\t# ---------------------------------------------------------------------------\n99\t# Collation\n100\t# ---------------------------------------------------------------------------\n101\t\n102\t\n103\tdef collate_dpo(batch: list[dict], pad_token_id: int) -> dict:\n104\t    \"\"\"Pad chosen and rejected sequences separately.\"\"\"\n105\t    max_c = max(len(b[\"chosen_ids\"]) for b in batch)\n106\t    max_r = max(len(b[\"rejected_ids\"]) for b in batch)\n107\t\n108\t    indices, gammas, prompt_lens = [], [], []\n109\t    chosen_ids, chosen_mask, chosen_resp_lens = [], [], []\n110\t    rejected_ids, rejected_mask, rejected_resp_lens = [], [], []\n111\t\n112\t    for b in batch:\n113\t        pl = b[\"prompt_len\"]\n114\t        indices.append(b[\"idx\"])\n115\t        prompt_lens.append(pl)\n116\t        gammas.append(b[\"gamma\"])\n117\t\n118\t        c = b[\"chosen_ids\"]\n119\t        c_pad = max_c - len(c)\n120\t        chosen_ids.append(c + [pad_token_id] * c_pad)\n121\t        chosen_mask.append([1] * len(c) + [0] * c_pad)\n122\t        chosen_resp_lens.append(max(len(c) - pl, 0))\n123\t\n124\t        r = b[\"rejected_ids\"]\n125\t        r_pad = max_r - len(r)\n126\t        rejected_ids.append(r + [pad_token_id] * r_pad)\n127\t        rejected_mask.append([1] * len(r) + [0] * r_pad)\n128\t        rejected_resp_lens.append(max(len(r) - pl, 0))\n129\t\n130\t    return {\n131\t        \"indices\": indices,\n132\t        \"chosen_ids\": torch.tensor(chosen_ids, dtype=torch.long),\n133\t        \"chosen_mask\": torch.tensor(chosen_mask, dtype=torch.long),\n134\t        \"rejected_ids\": torch.tensor(rejected_ids, dtype=torch.long),\n135\t        \"rejected_mask\": torch.tensor(rejected_mask, dtype=torch.long),\n136\t        \"prompt_lens\": prompt_lens,\n137\t        \"chosen_resp_lens\": chosen_resp_lens,\n138\t        \"rejected_resp_lens\": rejected_resp_lens,\n139\t        \"gammas\": gammas,\n140\t    }\n141\t\n142\t\n143\t# ---------------------------------------------------------------------------\n144\t# Per-token log probs\n145\t# ---------------------------------------------------------------------------\n146\t\n147\t\n148\tdef get_per_token_logps(\n149\t    model: torch.nn.Module,\n150\t    input_ids: torch.Tensor,\n151\t    attention_mask: torch.Tensor,\n152\t) -> torch.Tensor:\n153\t    \"\"\"Per-token log P(token_t | prefix[:t]).\n154\t\n155\t    Returns (B, L) where position t holds log P(input_ids[t] | input_ids[:t]).\n156\t    Position 0 is always 0 (no conditioning context for the first token).\n157\t    \"\"\"\n158\t    outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n159\t    logits = outputs.logits[:, :-1, :]  # (B, L-1, V)\n160\t    labels = input_ids[:, 1:]  # (B, L-1)\n161\t    log_probs = F.log_softmax(logits, dim=-1)\n162\t    token_logps = torch.gather(log_probs, 2, labels.unsqueeze(-1)).squeeze(-1)\n163\t    # Left-pad one zero so result[t] aligns with input_ids[t]\n164\t    return F.pad(token_logps, (1, 0), value=0.0)\n165\t\n166\t\n167\t# ---------------------------------------------------------------------------\n168\t# Reference logps precomputation\n169\t# ---------------------------------------------------------------------------\n170\t\n171\t\n172\t@torch.no_grad()\n173\tdef precompute_ref_logps(\n174\t    model: torch.nn.Module,\n175\t    dataset: DPODataset,\n176\t    tokenizer,\n177\t    device: torch.device,\n178\t    batch_size: int,\n179\t) -> tuple[dict[int, torch.Tensor], dict[int, torch.Tensor]]:\n180\t    \"\"\"Precompute reference model logps for all samples (response tokens only).\n181\t\n182\t    Returns two dicts mapping sample index -> (resp_len,) CPU tensor.\n183\t    After this call the model can be switched to training mode in-place.\n184\t    \"\"\"\n185\t    model.eval()\n186\t    loader = DataLoader(\n187\t        dataset,\n188\t        batch_size=batch_size,\n189\t        shuffle=False,\n190\t        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n191\t    )\n192\t\n193\t    ref_chosen: dict[int, torch.Tensor] = {}\n194\t    ref_rejected: dict[int, torch.Tensor] = {}\n195\t\n196\t    for batch in loader:\n197\t        c_logps = get_per_token_logps(\n198\t            model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n199\t        )\n200\t        r_logps = get_per_token_logps(\n201\t            model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n202\t        )\n203\t\n204\t        B = batch[\"chosen_ids\"].shape[0]\n205\t        for i in range(B):\n206\t            idx = batch[\"indices\"][i]\n207\t            pl = batch[\"prompt_lens\"][i]\n208\t            c_rl = batch[\"chosen_resp_lens\"][i]\n209\t            r_rl = batch[\"rejected_resp_lens\"][i]\n210\t            ref_chosen[idx] = c_logps[i, pl : pl + c_rl].cpu()\n211\t            ref_rejected[idx] = r_logps[i, pl : pl + r_rl].cpu()\n212\t\n213\t    logger.info(\"Precomputed ref logps for %d samples\", len(ref_chosen))\n214\t    return ref_chosen, ref_rejected\n215\t\n216\t\n217\t# ---------------------------------------------------------------------------\n218\t# Batch loss\n219\t# ---------------------------------------------------------------------------\n220\t\n221\t\n222\tdef compute_batch_loss(\n223\t    policy_model: torch.nn.Module,\n224\t    batch: dict,\n225\t    ref_chosen_all: dict[int, torch.Tensor],\n226\t    ref_rejected_all: dict[int, torch.Tensor],\n227\t    beta: float,\n228\t    device: torch.device,\n229\t) -> tuple[torch.Tensor, dict]:\n230\t    \"\"\"Forward policy model and compute phi-weighted DPO loss.\"\"\"\n231\t    # Policy forward\n232\t    pc_logps = get_per_token_logps(\n233\t        policy_model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n234\t    )\n235\t    pr_logps = get_per_token_logps(\n236\t        policy_model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n237\t    )\n238\t\n239\t    B = batch[\"chosen_ids\"].shape[0]\n240\t    losses = []\n241\t    chosen_rewards = []\n242\t    rejected_rewards = []\n243\t\n244\t    for i in range(B):\n245\t        idx = batch[\"indices\"][i]\n246\t        pl = batch[\"prompt_lens\"][i]\n247\t        c_rl = batch[\"chosen_resp_lens\"][i]\n248\t        r_rl = batch[\"rejected_resp_lens\"][i]\n249\t        gamma = batch[\"gammas\"][i]\n250\t\n251\t        if c_rl <= 0 or r_rl <= 0:\n252\t            continue\n253\t\n254\t        # phi discount weights from etadn_discount\n255\t        w_c = compute_phi_weights(c_rl, gamma).to(device)\n256\t        w_r = compute_phi_weights(r_rl, gamma).to(device)\n257\t\n258\t        # Policy response logps\n259\t        pc = pc_logps[i, pl : pl + c_rl]\n260\t        pr = pr_logps[i, pl : pl + r_rl]\n261\t\n262\t        # Precomputed ref response logps\n263\t        rc = ref_chosen_all[idx].to(device)\n264\t        rr = ref_rejected_all[idx].to(device)\n265\t\n266\t        # Weighted log-ratios\n267\t        chosen_logratio = (pc * w_c).sum() - (rc * w_c).sum()\n268\t        rejected_logratio = (pr * w_r).sum() - (rr * w_r).sum()\n269\t\n270\t        logit = beta * (chosen_logratio - rejected_logratio)\n271\t        losses.append(-F.logsigmoid(logit))\n272\t\n273\t        chosen_rewards.append(chosen_logratio.detach())\n274\t        rejected_rewards.append(rejected_logratio.detach())\n275\t\n276\t    if not losses:\n277\t        return torch.tensor(0.0, device=device, requires_grad=True), {}\n278\t\n279\t    loss = torch.stack(losses).mean()\n280\t    cr = torch.stack(chosen_rewards)\n281\t    rr = torch.stack(rejected_rewards)\n282\t    metrics = {\n283\t        \"loss\": loss.item(),\n284\t        \"chosen_reward\": cr.mean().item(),\n285\t        \"rejected_reward\": rr.mean().item(),\n286\t        \"reward_margin\": (cr - rr).mean().item(),\n287\t        \"reward_accuracy\": (cr > rr).float().mean().item(),\n288\t    }\n289\t    return loss, metrics\n290\t\n291\t\n292\t# ---------------------------------------------------------------------------\n293\t# Training\n294\t# ---------------------------------------------------------------------------\n295\t\n296\t\n297\tdef train(args: argparse.Namespace):\n298\t    import wandb\n299\t\n300\t    torch.manual_seed(args.seed)\n301\t    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n302\t\n303\t    wandb.init(\n304\t        project=args.wandb_project,\n305\t        name=args.wandb_run_name or f\"{args.mode}_s{args.seed}\",\n306\t        config=vars(args),\n307\t    )\n308\t\n309\t    # Tokenizer\n310\t    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n311\t    if tokenizer.pad_token_id is None:\n312\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n313\t\n314\t    # Model\n315\t    logger.info(\"Loading model: %s\", args.model_name)\n316\t    model = AutoModelForCausalLM.from_pretrained(\n317\t        args.model_name,\n318\t        torch_dtype=torch.bfloat16,\n319\t        trust_remote_code=True,\n320\t        device_map={\"\": device},\n321\t    )\n322\t\n323\t    # Dataset\n324\t    dataset = DPODataset(\n325\t        args.data_path, tokenizer, args.max_length, args.mode, args.gamma\n326\t    )\n327\t\n328\t    # Precompute ref logps (model is the ref at initialization)\n329\t    logger.info(\"Precomputing reference logps...\")\n330\t    ref_chosen, ref_rejected = precompute_ref_logps(\n331\t        model, dataset, tokenizer, device, args.batch_size\n332\t    )\n333\t\n334\t    # Switch to training mode\n335\t    model.gradient_checkpointing_enable()\n336\t    model.train()\n337\t\n338\t    loader = DataLoader(\n339\t        dataset,\n340\t        batch_size=args.batch_size,\n341\t        shuffle=True,\n342\t        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n343\t        drop_last=False,\n344\t    )\n345\t\n346\t    optimizer = torch.optim.AdamW(\n347\t        model.parameters(), lr=args.learning_rate, weight_decay=0.01\n348\t    )\n349\t    total_steps = len(loader) * args.num_epochs\n350\t    warmup_steps = min(total_steps // 10, 100)\n351\t    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\n352\t\n353\t    # Save training config\n354\t    out_dir = Path(args.output_dir)\n355\t    out_dir.mkdir(parents=True, exist_ok=True)\n356\t    with open(out_dir / \"training_config.json\", \"w\") as f:\n357\t        json.dump(vars(args), f, indent=2)\n358\t\n359\t    global_step = 0\n360\t    for epoch in range(args.num_epochs):\n361\t        epoch_loss = 0.0\n362\t        epoch_steps = 0\n363\t\n364\t        for batch in loader:\n365\t            loss, metrics = compute_batch_loss(\n366\t                model, batch, ref_chosen, ref_rejected, args.beta, device\n367\t            )\n368\t\n369\t            loss.backward()\n370\t            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n371\t            optimizer.step()\n372\t            scheduler.step()\n373\t            optimizer.zero_grad()\n374\t\n375\t            global_step += 1\n376\t            epoch_loss += loss.item()\n377\t            epoch_steps += 1\n378\t\n379\t            wandb.log(\n380\t                {\n381\t                    \"train/loss\": loss.item(),\n382\t                    \"train/lr\": scheduler.get_last_lr()[0],\n383\t                    **{f\"train/{k}\": v for k, v in metrics.items() if k != \"loss\"},\n384\t                },\n385\t                step=global_step,\n386\t            )\n387\t\n388\t            if global_step % 10 == 0:\n389\t                logger.info(\n390\t                    \"Step %d | Loss %.4f | Margin %.4f | Acc %.2f\",\n391\t                    global_step,\n392\t                    loss.item(),\n393\t                    metrics.get(\"reward_margin\", 0),\n394\t                    metrics.get(\"reward_accuracy\", 0),\n395\t                )\n396\t\n397\t        avg_loss = epoch_loss / max(epoch_steps, 1)\n398\t        logger.info(\"Epoch %d/%d | Avg Loss %.4f\", epoch + 1, args.num_epochs, avg_loss)\n399\t        wandb.log(\n400\t            {\"train/epoch_loss\": avg_loss, \"train/epoch\": epoch + 1}, step=global_step\n401\t        )\n402\t\n403\t        ckpt_dir = out_dir / f\"checkpoint-epoch{epoch + 1}\"\n404\t        model.save_pretrained(ckpt_dir)\n405\t        tokenizer.save_pretrained(ckpt_dir)\n406\t        logger.info(\"Saved checkpoint: %s\", ckpt_dir)\n407\t\n408\t    final_dir = out_dir / \"final\"\n409\t    model.save_pretrained(final_dir)\n410\t    tokenizer.save_pretrained(final_dir)\n411\t    logger.info(\"Training complete. Final model: %s\", final_dir)\n412\t    wandb.finish()\n413\t\n414\t\n415\t# ---------------------------------------------------------------------------\n416\t# CLI\n417\t# ---------------------------------------------------------------------------\n418\t\n419\t\n420\tdef main():\n421\t    parser = argparse.ArgumentParser(\n422\t        description=\"DPO training with ETADN temporal discount\"\n423\t    )\n424\t    parser.add_argument(\"--data_path\", type=str, required=True, help=\"DPO JSONL file\")\n425\t    parser.add_argument(\n426\t        \"--model_name\",\n427\t        type=str,\n428\t        default=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\",\n429\t    )\n430\t    parser.add_argument(\"--output_dir\", type=str, default=\"outputs/dpo\")\n431\t    parser.add_argument(\n432\t        \"--mode\",\n433\t        type=str,\n434\t        choices=[\"single_gamma\", \"etadn\"],\n435\t        required=True,\n436\t    )\n437\t    parser.add_argument(\n438\t        \"--gamma\", type=float, default=0.92, help=\"gamma for single_gamma mode\"\n439\t    )\n440\t    parser.add_argument(\n441\t        \"--gamma_min\", type=float, default=0.85, help=\"gamma_min for etadn (logged only)\"\n442\t    )\n443\t    parser.add_argument(\n444\t        \"--gamma_max\", type=float, default=1.0, help=\"gamma_max for etadn (logged only)\"\n445\t    )\n446\t    parser.add_argument(\"--seed\", type=int, default=42)\n447\t    parser.add_argument(\"--num_epochs\", type=int, default=3)\n448\t    parser.add_argument(\"--batch_size\", type=int, default=4)\n449\t    parser.add_argument(\"--learning_rate\", type=float, default=5e-7)\n450\t    parser.add_argument(\"--max_length\", type=int, default=2048)\n451\t    parser.add_argument(\"--wandb_project\", type=str, default=\"etadn-dpo\")\n452\t    parser.add_argument(\"--wandb_run_name\", type=str, default=None)\n453\t    parser.add_argument(\"--beta\", type=float, default=0.1, help=\"DPO temperature\")\n454\t    parser.add_argument(\"--gpu\", type=int, default=0)\n455\t    args = parser.parse_args()\n456\t\n457\t    logging.basicConfig(\n458\t        level=logging.INFO,\n459\t        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n460\t    )\n461\t\n462\t    train(args)\n463\t\n464\t\n465\tif __name__ == \"__main__\":\n466\t    main()\n467\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11e7022c-c78b-45ed-b0e6-bf96ad1ad8c4",
+            "isSidechain": true,
+            "promptId": "b8498260-b8e1-4a92-a74e-4f35128dd81c",
+            "agentId": "ab50474da7533fb2a",
+            "type": "user",
+            "uuid": "2b435b07-947a-424c-851a-4d621368840b",
+            "sourceToolAssistantUUID": "11e7022c-c78b-45ed-b0e6-bf96ad1ad8c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T07:24:34.640Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary of Code Fix Status\n\nI've checked all three files. Here are the results:\n\n### 1. **build_dpo_pairs.py** - ✓ FIX APPLIED\n- **File exists**: Yes\n- **Continuous gamma formula (line 239)**: `gamma_e = gamma_min + (gamma_max - gamma_min) * d`\n- **Status**: ✓ CORRECT - Uses `d` directly (not `1-d`)\n- **Default gamma_planning (line 54)**: Set to `1.0` ✓ (was 0.97)\n- **CLI --gamma_max default (line 432)**: Set to `1.0` ✓\n\n### 2. **etadn_discount.py** - ✓ FIX APPLIED\n- **File exists**: Yes\n- **gamma_planning in ETADNConfig (line 33)**: Set to `1.0` ✓ (was 0.97)\n- **No get_gamma_for_divergence function found** - The module uses `get_gamma_for_error_type()` instead (line 74), which looks up gamma by error type, not continuous divergence. This is correct for the discrete error-type mode.\n- **Continuous mode**: The module has phi weights and discount functions but they're called from other code, not defined here with continuous gamma formula.\n\n### 3. **train_dpo.py** - ✓ FIX APPLIED\n- **File exists**: Yes\n- **--gamma_max default (line 444)**: Set to `1.0` ✓ (correct value)\n\n### Conclusion\nAll three fixes have been successfully applied across the codebase:\n- Continuous gamma formula correctly uses `d` (not `1-d`)\n- All `gamma_planning` and `gamma_max` defaults are set to `1.0`\n- The changes are consistent and properly integrated"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b435b07-947a-424c-851a-4d621368840b",
+            "isSidechain": true,
+            "agentId": "ab50474da7533fb2a",
+            "requestId": "req_011CazAiuGvJiD8NcCZVXSUL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "940820ec-1d4c-41b2-ab4d-44b665a9fb62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/.claude/sessions/director_d4e4cd7f",
+            "sessionId": "c26d9c92-60f4-4071-afca-3c62aa7c8645",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "mellow-rolling-dewdrop",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ggk93CWAZg87KM4r5LE9Pw",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 19322,
+                "cache_read_input_tokens": 36728,
+                "output_tokens": 454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19322
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 454,
+                    "cache_read_input_tokens": 36728,
+                    "cache_creation_input_tokens": 19322,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19322,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-if-a-code-fix-was-applied-across-several-files-the-fix-changes.md"
+}

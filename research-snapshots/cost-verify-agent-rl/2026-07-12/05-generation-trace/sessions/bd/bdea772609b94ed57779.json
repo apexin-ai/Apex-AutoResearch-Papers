@@ -1,0 +1,2477 @@
+{
+  "schema_version": "1.0",
+  "id": "bdea772609b94ed57779",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for recent papers (2025-2026) that might compete with a proposal about \"learning when to self-verify in interacti",
+  "task_key": "agent-ad73687b938eb1b05",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ad73687b938eb1b05.jsonl",
+    "occurrence": 1,
+    "bytes": 139228,
+    "sha256": "853899b46524a092e7d17095aff633cf55adaac3e42860ccec55208e1a189d1a"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:04:55.078Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for recent papers (2025-2026) that might compete with a proposal about \"learning when to self-verify in interactive LLM agents via RL with behavioral grounding.\" I need to find papers the proposal might be missing.\n\nSearch for:\n1. \"selective verification LLM agent 2026\" on arXiv\n2. \"learned self-correction agent RL 2026\"\n3. \"agent verification reward shaping 2026\"\n4. \"action-change signal RL agent\" or \"behavioral grounding verification\"\n5. \"GRPO agent verification\" or \"GRPO selective compute\"\n6. \"Process Reward Agents\" or \"AgentPRM\" - verify these exist and check if they're relevant\n7. \"Uno-Orchestra\" arXiv 2605.05007 - verify this paper exists and its claims\n8. \"RISE self-verification\" arXiv 2505.13445\n\nFor each paper found, report: title, venue, date, and how it relates to learning when to verify in interactive agents. Focus especially on papers from March-May 2026 that might be concurrent work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "1e4d7018-d4a6-4cfa-a6c7-20da824cfda3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:04:55.080Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1e4d7018-d4a6-4cfa-a6c7-20da824cfda3",
+                "isSidechain": true,
+                "agentId": "ad73687b938eb1b05",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ec0b93cb-c02c-4123-aebe-6f894fdaa406",
+                "timestamp": "2026-05-10T19:04:55.080Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:04:58.499Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xx9D66v2cXAgpDFVtqSwHV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec0b93cb-c02c-4123-aebe-6f894fdaa406",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQi5vi46iZ56haucUhr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5bb73314-2981-4a97-9c9a-0f8c086802e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017MyC3Vuc2ziYYo6hAjnHef",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 802,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 802
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 802,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 802,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:04:58.505Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Xx9D66v2cXAgpDFVtqSwHV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bb73314-2981-4a97-9c9a-0f8c086802e4",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "6fea8d5f-817e-4a1f-b8cd-b840e7d48773",
+            "sourceToolAssistantUUID": "5bb73314-2981-4a97-9c9a-0f8c086802e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:05:04.620Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FifVHZTDKYWTqVJL7ZeCit",
+              "name": "WebSearch",
+              "input": {
+                "query": "selective verification LLM agent 2026 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fea8d5f-817e-4a1f-b8cd-b840e7d48773",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQiLnAhP2GFPn57DiMN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cf7a38b7-d68d-46e5-b440-4a6e02ff8c09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018LzX33q8KNv8CgWHGsZ4aF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9025,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:05:04.971Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XaB3FBuinG2xC5yW4PwDxp",
+              "name": "WebSearch",
+              "input": {
+                "query": "learned self-correction agent RL 2026 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf7a38b7-d68d-46e5-b440-4a6e02ff8c09",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQiLnAhP2GFPn57DiMN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9bad5647-e761-41b7-ad35-e3494d5effc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018LzX33q8KNv8CgWHGsZ4aF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9025,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1392
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 9025,
+                    "cache_creation_input_tokens": 1392,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1392,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:05:04.978Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0185DL57VDypkRR7S38fbfWe",
+              "name": "WebSearch",
+              "input": {
+                "query": "agent verification reward shaping 2026 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bad5647-e761-41b7-ad35-e3494d5effc4",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQiLnAhP2GFPn57DiMN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d70087f-daa4-479a-83be-867dda8af828",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018LzX33q8KNv8CgWHGsZ4aF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9025,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1392
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 9025,
+                    "cache_creation_input_tokens": 1392,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1392,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:05:11.001Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FifVHZTDKYWTqVJL7ZeCit",
+              "type": "tool_result",
+              "content": "Web search results for query: \"selective verification LLM agent 2026 arXiv\"\n\nLinks: [{\"title\":\"Sherlock: RELIABLE AND EFFICIENT AGENTIC WORKFLOW EXECUTION\",\"url\":\"https://arxiv.org/pdf/2511.00330\"},{\"title\":\"[2604.23069] ContextWeaver: Selective and Dependency-Structured Memory Construction for LLM Agents\",\"url\":\"https://arxiv.org/abs/2604.23069\"},{\"title\":\"[2605.05583] Belief Memory: Agent Memory Under Partial Observability\",\"url\":\"https://arxiv.org/abs/2605.05583\"},{\"title\":\"[2605.02289v1] EngiAgent: Fully Connected Coordination of LLM Agents for Solving Open-ended Engineering Problems with Feasible Solutions\",\"url\":\"https://arxiv.org/abs/2605.02289v1\"},{\"title\":\"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub\",\"url\":\"https://github.com/VoltAgent/awesome-ai-agent-papers\"},{\"title\":\"[2605.05973] Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking\",\"url\":\"https://arxiv.org/abs/2605.05973\"},{\"title\":\"Bridging LLM Planning Agents and Formal Methods: A Case Study in Plan Verification\",\"url\":\"https://arxiv.org/html/2510.03469v1\"},{\"title\":\"AgentGuard: Runtime Verification of AI Agents\",\"url\":\"https://arxiv.org/html/2509.23864v1\"},{\"title\":\"A Survey on the Security of Long-Term Memory in LLM Agents: Toward Mnemonic Sovereignty\",\"url\":\"https://arxiv.org/html/2604.16548v1\"},{\"title\":\"[2605.06068] VibeServe: Can AI Agents Build Bespoke LLM Serving Systems?\",\"url\":\"https://arxiv.org/abs/2605.06068\"}]\n\nI found several relevant results for your search on \"selective verification LLM agent 2026 arXiv\". Here are the key findings:\n\n## Most Relevant Result: Sherlock\n\nSherlock is the first framework that holistically explores the trade-offs between cost, accuracy, and latency by exploiting speculative execution opportunities with intelligent verifier selection. It employs selective speculative execution and rollback, overlapping verification with downstream computation while controlling rollback cost. Sherlock delivers up to 48.7% execution latency reduction and 26.0% cost reduction over baselines.\n\n## Other Related 2026 arXiv Papers on LLM Agents\n\nSeveral other relevant papers on LLM agent systems from 2026 were found:\n\n1. **ContextWeaver**: A selective and dependency-structured memory framework that organizes an agent's interaction trace into a graph of reasoning steps and selects the relevant context for future actions.\n\n2. **EngiAgent**: A multi-agent system with a fully connected coordinator that simulates expert workflows through specialized agents for problem analysis, modeling, verification, solving, and solution evaluation.\n\n3. **VibeServe**: The first agentic loop that generates entire LLM serving stacks end-to-end, using an outer loop to plan and track the search over system designs, and an inner loop to implement candidates, check correctness, and measure performance.\n\nThe Sherlock paper appears to be the most directly relevant to your query about selective verification in LLM agents.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf7a38b7-d68d-46e5-b440-4a6e02ff8c09",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "c5d6c0de-6e3c-45ad-84a9-5bd02daf4bb2",
+            "sourceToolAssistantUUID": "cf7a38b7-d68d-46e5-b440-4a6e02ff8c09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:05:12.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XaB3FBuinG2xC5yW4PwDxp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"learned self-correction agent RL 2026 arXiv\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2512.20745\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2603.15771\"},{\"title\":\"Training Language Models to Self-Correct via Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=CjwERcAU7w\"},{\"title\":\"[2409.12917] Training Language Models to Self-Correct via Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2409.12917\"},{\"title\":\"An Open Ended Deep Research Model via Multi-Agent ...\",\"url\":\"https://arxiv.org/pdf/2601.03743\"},{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"S2r: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2502.12853\"},{\"title\":\"Rethinking Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859v1\"},{\"title\":\"2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2409.12917\"},{\"title\":\"[2604.12617] SOAR: Self-Correction for Optimal Alignment and Refinement in Diffusion Models\",\"url\":\"https://arxiv.org/abs/2604.12617\"}]\n\nI found several relevant results about self-correction agents and reinforcement learning from 2026 arXiv papers:\n\n## Key Findings:\n\n1. **Tool-Augmented Mathematical Reasoning Agent (ICLR 2026)**: A system combines supervised fine-tuning on synthetic tool-invocation trajectories with large-scale reinforcement learning driven by outcome feedback to incentivize exploration and mastery of optimal, self-corrective tool-use strategies. The model exhibits emergent code self-correction capabilities with accuracy improving as tool invocations increase.\n\n2. **S2r - Self-Verify and Self-Correct via RL**: The approach employs both outcome-level and process-level reinforcement learning to enhance LLMs' self-verifying and self-correcting capabilities, using only rule-based reward models to improve validity of both processes.\n\n3. **Agentic RL Advancements**: StepPO (Wang et al., 2026b) is presented as a definitive position on step-level optimization in agentic reinforcement learning. OpenClaw-RL observes that next-state signals from agent interactions are universal learning sources, allowing a unified policy trained within a single loop for conversations, terminal executions, and software engineering tasks.\n\nThese papers represent recent advances in combining learned self-correction capabilities with reinforcement learning for agent development.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bad5647-e761-41b7-ad35-e3494d5effc4",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "c1ff2de2-4a4b-4550-97b5-50fbd340f982",
+            "sourceToolAssistantUUID": "9bad5647-e761-41b7-ad35-e3494d5effc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:05:13.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0185DL57VDypkRR7S38fbfWe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"agent verification reward shaping 2026 arXiv\"\n\nLinks: [{\"title\":\"Enhancing Agentic RL with Progressive Reward Shaping and...\",\"url\":\"https://arxiv.org/abs/2512.07478\"},{\"title\":\"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/html/2604.16004v1\"},{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"Agentic Reward Modeling: Verifying GUI Agent via Online Proactive Interaction\",\"url\":\"https://arxiv.org/html/2602.00575v1\"},{\"title\":\"[2601.22607] From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/abs/2601.22607\"},{\"title\":\"[2604.20627] Occupancy Reward Shaping: Improving Credit Assignment for Offline Goal-Conditioned Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2604.20627\"},{\"title\":\"Paper page - From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://huggingface.co/papers/2601.22607\"},{\"title\":\"Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems\",\"url\":\"https://arxiv.org/html/2502.19328v1\"},{\"title\":\"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\",\"url\":\"https://arxiv.org/html/2506.14245v2\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/html/2509.25779v2\"}]\n\nI found several recent arXiv papers from 2026 related to agent verification and reward shaping. Here are the key findings:\n\n## Recent 2026 Papers on Agent Verification and Reward Shaping\n\n**1. Enhancing Agentic RL with Progressive Reward Shaping (arXiv:2512.07478)**\n\nThis paper proposes two complementary techniques: Progressive Reward Shaping (PRS) and Value-based Sampling Policy Optimization (VSPO). The work addresses challenges including sparse, non-instructive rewards such as binary 0-1 verifiable signals, and gradient degradation in Group Relative Policy Optimization (GRPO). Experiments show that PRS consistently outperforms traditional binary rewards, and VSPO achieves superior stability, faster convergence, and higher final performance compared to SFT, PPO and GRPO baselines.\n\n**2. AgentV-RL: Scaling Reward Modeling with Agentic Verifier (arXiv:2604.16004)**\n\nThis paper proposes Agentic Verifier, a framework that transforms reward modeling into a multi-turn, tool-augmented deliberative process with complementary forward and backward agents - one traces solutions from premises to conclusions, while the other re-checks conclusions against their underlying premises, enabling a comprehensive, reliable, and interpretable assessment of solutions.\n\n**3. VAGEN: Agentic Interactive Verification (arXiv:2602.00575)**\n\nThe paper advocates for a paradigm shift from passive evaluation to Agentic Interactive Verification and introduces VAGEN, a framework that employs a verifier agent equipped with interaction tools to autonomously plan verification strategies and proactively probe the environment for evidence of task completion.\n\n**4. Agentic Reward Modeling: Integrating Human Preferences (arXiv:2502.19328)**\n\nThis work proposes agentic reward modeling, a reward system that combines reward models with verifiable correctness signals from different aspects to provide more reliable rewards.\n\nThese papers represent an emerging trend of integrating agentic approaches with reward modeling and verification for reinforcement learning systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d70087f-daa4-479a-83be-867dda8af828",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "528532c4-3407-4d09-b69b-ab44b6c0ac5d",
+            "sourceToolAssistantUUID": "4d70087f-daa4-479a-83be-867dda8af828",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:05:17.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H4hbkffP2SrUnrn8SGFDwa",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"action-change signal RL agent\" OR \"behavioral grounding verification\" arXiv 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "528532c4-3407-4d09-b69b-ab44b6c0ac5d",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQjTDQJLtSzYNnheYVE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "37192a87-71bb-413c-8485-209c59064dc6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017rrUJZTc1NEUAWkM4AVnY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 10417,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T19:05:18.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013MTMrgvZmJ9vsygMAiguwy",
+              "name": "WebSearch",
+              "input": {
+                "query": "GRPO agent verification OR \"GRPO selective compute\" arXiv 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37192a87-71bb-413c-8485-209c59064dc6",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQjTDQJLtSzYNnheYVE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ddd7a720-6b0d-424e-9ad7-8ff2c88827df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017rrUJZTc1NEUAWkM4AVnY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 10417,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T19:05:23.233Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FDGSRb2DUu12Sd8X82n27X",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Process Reward\" agents OR \"AgentPRM\" arXiv 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddd7a720-6b0d-424e-9ad7-8ff2c88827df",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQjTDQJLtSzYNnheYVE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a7312d14-84ab-46d1-a8e3-e6fa208aa91f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017rrUJZTc1NEUAWkM4AVnY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 10417,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T19:05:26.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H4hbkffP2SrUnrn8SGFDwa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"action-change signal RL agent\" OR \"behavioral grounding verification\" arXiv 2025 2026\"\n\nLinks: [{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"},{\"title\":\"LOGIGEN: Logic-Driven Generation of Verifiable Agentic Tasks\",\"url\":\"https://arxiv.org/html/2603.00540\"},{\"title\":\"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/html/2601.22607v1\"},{\"title\":\"Tasking Reinforcement Learning Agents through Formal ...\",\"url\":\"https://arxiv.org/pdf/2507.10741\"},{\"title\":\"[2512.03438] Multimodal Reinforcement Learning with Adaptive Verifier for AI Agents\",\"url\":\"https://arxiv.org/abs/2512.03438\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2602.11964\"},{\"title\":\"Ground-Compose-Reinforce: Grounding Language in Agentic Behaviours using Limited Data\",\"url\":\"https://arxiv.org/html/2507.10741\"},{\"title\":\"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/html/2604.16004v1\"},{\"title\":\"[2507.10741] Ground-Compose-Reinforce: Grounding Language in Agentic Behaviours using Limited Data\",\"url\":\"https://arxiv.org/abs/2507.10741\"},{\"title\":\"Ground-Compose-Reinforce: Tasking Reinforcement Learning Agents through Formal Language\",\"url\":\"https://arxiv.org/html/2507.10741v1\"}]\n\nBased on the web search results, I found several relevant papers from arXiv 2025-2026 related to your search terms. Here are the key findings:\n\n## Papers on Behavioral Grounding and Verification in RL Agents\n\n**1. Ground-Compose-Reinforce** (2025)\nThis is an end-to-end framework for training reinforcement learning agents directly from high-level task specifications, without relying on manually designed rewards or feature detectors. The work shows that Reward Machines can be grounded using limited data by exploiting compositionality, with experiments using only 350 labelled pretraining trajectories demonstrating complex behavior elicitation from high-level specifications.\n\n**2. Gaia2 Benchmark** (2026)\nThis work introduces a write action verifier that checks every state-changing action against oracle annotations, making the benchmark directly applicable to RLVR (Reinforcement Learning with Verifiable Rewards).\n\n**3. Argos: Multimodal Reinforcement Learning with Adaptive Verifier** (2025)\nThe work demonstrates that just relying on SFT post-training on highly curated reasoning data is insufficient, as agents invariably collapse to ungrounded solutions during RL without online verification. For each sample, Argos selects from a pool of teacher-model derived and rule-based scoring functions to simultaneously evaluate: (i) final response accuracy, (ii) spatiotemporal localization of referred entities and actions, and (iii) the quality of the reasoning process.\n\n**4. AgentV-RL: Scaling Reward Modeling with Agentic Verifier** (2026)\nThis proposes an Agentic Verifier framework that coordinates two specialized agents: the forward agent responsible for sufficiency checking by tracing logical flow, and the backward agent performing necessity checking by validating whether the solution is grounded in problem constraints.\n\nThese papers collectively address the challenge of ensuring that RL agents produce actions grounded in verifiable behavioral signals and environmental state changes.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37192a87-71bb-413c-8485-209c59064dc6",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "a6d35430-3d4a-48bc-bbdd-4a421889b478",
+            "sourceToolAssistantUUID": "37192a87-71bb-413c-8485-209c59064dc6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T19:05:28.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013MTMrgvZmJ9vsygMAiguwy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GRPO agent verification OR \"GRPO selective compute\" arXiv 2025 2026\"\n\nNo links found.\n\nThe search didn't return any results. Let me try a more focused search:\n\nLinks: [{\"title\":\"Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\",\"url\":\"https://arxiv.org/html/2605.05007\"},{\"title\":\"arXiv:2402.03300v3 [cs.CL] 27 Apr 2024\",\"url\":\"https://arxiv.org/pdf/2402.03300\"},{\"title\":\"[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\",\"url\":\"https://arxiv.org/abs/2402.03300\"},{\"title\":\"Balanced Aggregation: Understanding and Fixing Aggregation Bias in GRPO\",\"url\":\"https://arxiv.org/html/2605.04077\"},{\"title\":\"MC-GRPO: Median-Centered Group Relative Policy Optimization for Small-Rollout Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2601.22582\"},{\"title\":\"[2505.16854v1] Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://arxiv.org/abs/2505.16854v1\"},{\"title\":\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://arxiv.org/html/2505.16854v1\"},{\"title\":\"Kalman Filter Enhanced Group Relative Policy Optimization for Language Model Reasoning\",\"url\":\"https://arxiv.org/html/2505.07527\"},{\"title\":\"[2502.01652] Hybrid Group Relative Policy Optimization: A Multi-Sample Approach to Enhancing Policy Optimization\",\"url\":\"https://arxiv.org/abs/2502.01652\"},{\"title\":\"Token-Efficient RL for LLM Reasoning\",\"url\":\"https://arxiv.org/html/2504.20834v3\"}]\n\nBased on the search results, I found relevant information about GRPO and selective compute. Here's what the research shows:\n\n## GRPO and Selective Compute Research\n\nGroup Relative Policy Optimization (GRPO) is a variant of Proximal Policy Optimization (PPO) that enhances mathematical reasoning abilities while optimizing memory usage of PPO.\n\n### Agent Verification and GRPO\n\nRecent research has applied GRPO to agent systems with verification mechanisms. Agentic-GRPO is a multi-turn extension of GRPO that augments each rollout with observation- and process-level intermediate rewards to resolve the long-horizon credit-assignment problem. A verifier-gated training pipeline has been introduced with Agentic-GRPO, an agent-adaptive RL objective with structured credit assignment for multi-turn orchestration.\n\n### Selective Reasoning and Compute Efficiency\n\nGRPO encourages models to generate complete reasoning traces before answering, leading to increased token usage and computational cost. Research has explored enabling models to decide when reasoning is necessary, inspired by human-like thinking processes where people skip reasoning for easy questions but think carefully when needed. Recent work shows that selective reasoning can reduce completion length by up to 90% compared to vanilla GRPO, without sacrificing performance or even improving it.\n\n### Related Advances (2025-2026)\n\nMultiple recent improvements to GRPO have been published, including Median-Centered Group Relative Policy Optimization (MC-GRPO), a solution for small-rollout training, and Kalman Filter Enhanced Group Relative Policy Optimization (KRPO), which replaces group-mean-based advantage estimation with a Kalman-filter-based approach.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddd7a720-6b0d-424e-9ad7-8ff2c88827df",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "17645d19-dd5f-409f-a768-bb6a423fda08",
+            "sourceToolAssistantUUID": "ddd7a720-6b0d-424e-9ad7-8ff2c88827df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T19:05:33.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FDGSRb2DUu12Sd8X82n27X",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Process Reward\" agents OR \"AgentPRM\" arXiv 2025 2026\"\n\nLinks: [{\"title\":\"[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\",\"url\":\"https://arxiv.org/abs/2511.08325\"},{\"title\":\"[2502.10325] Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/abs/2502.10325\"},{\"title\":\"Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/html/2502.10325v1\"},{\"title\":\"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub\",\"url\":\"https://github.com/RyanLiu112/Awesome-Process-Reward-Models\"},{\"title\":\"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026\",\"url\":\"https://dl.acm.org/doi/abs/10.1145/3774904.3792551\"},{\"title\":\"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\",\"url\":\"https://arxiv.org/html/2511.08325v1\"},{\"title\":\"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\",\"url\":\"https://arxiv.org/html/2604.24198v1\"},{\"title\":\"[2601.12294] ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://arxiv.org/abs/2601.12294\"},{\"title\":\"Exploring Reasoning Reward Model for Agents\",\"url\":\"https://arxiv.org/html/2601.22154v2\"},{\"title\":\"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\",\"url\":\"https://arxiv.org/html/2604.09459v1\"}]\n\nI found several relevant papers on Process Reward Models and AgentPRM. Here are the key results:\n\n## AgentPRM Papers\n\nThere are two recent papers with the AgentPRM name:\n\n1. **AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress** (arXiv:2511.08325, November 2025)\n   This paper proposes a re-defined PRM for agent tasks that captures both the interdependence between sequential decisions and their contribution to the final goal. Large language models (LLMs) still encounter challenges in multi-turn decision-making tasks (i.e., agent tasks) like web shopping and browser navigation, which require making a sequence of intelligent decisions based on environmental feedback. Extensive experiments across different agentic tasks show that AgentPRM is over 8× more compute-efficient than baselines, and it demonstrates robust improvement when scaling up test-time compute.\n\n2. **Process Reward Models for LLM Agents: Practical Framework and Directions** (arXiv:2502.10325, February 2025)\n   This paper introduces Agent Process Reward Models (AgentPRM), a simple and scalable framework for training LLM agents to continually improve through interactions, following a lightweight actor-critic paradigm using Monte Carlo rollouts to compute reward targets and optimize policies. The evaluation on ALFWorld benchmark shows that small 3B models trained with AgentPRM and InversePRM outperform strong GPT-4o baselines.\n\n## Related Work\n\nRecent work in this area includes process reward models for various applications: GuidNav (GUI Navigation), MT-RewardTree (Machine Translation), Flower (LLM-Based Recommenders), GraphPRM (Graph Reasoning), ASPRM (Adaptive Step), VersaPRM (Multi-Domain Process Reward Model) and many others from 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7312d14-84ab-46d1-a8e3-e6fa208aa91f",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "d2db51f7-e29d-4e8c-804b-c02d73ded617",
+            "sourceToolAssistantUUID": "a7312d14-84ab-46d1-a8e3-e6fa208aa91f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T19:05:38.061Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016VG4u2tJXZAtSUNNTZDz31",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2605.05007 Uno-Orchestra parsimonious agent routing selective delegation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2db51f7-e29d-4e8c-804b-c02d73ded617",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQkvprJHJkG31czknnh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0ed389b5-243b-438d-be43-54c1a679348a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RuSGWvDGVcsEnoQJajsV9P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3076,
+                "cache_read_input_tokens": 13345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3076,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T19:05:38.602Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CNSFPXoAdq54k3U9N3dd96",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2505.13445 RISE self-verification"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ed389b5-243b-438d-be43-54c1a679348a",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQkvprJHJkG31czknnh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cc35b0cb-fd79-4b3d-874b-0abb1d480051",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RuSGWvDGVcsEnoQJajsV9P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3076,
+                "cache_read_input_tokens": 13345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3076,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T19:05:39.414Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UNjr6kN1qFhLYwGDUvXAqv",
+              "name": "WebSearch",
+              "input": {
+                "query": "S2r self-verify self-correct reinforcement learning arXiv 2502.12853"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc35b0cb-fd79-4b3d-874b-0abb1d480051",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQkvprJHJkG31czknnh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2521adf0-640b-49ec-8882-ca495ee7f258",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RuSGWvDGVcsEnoQJajsV9P",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3076,
+                "cache_read_input_tokens": 13345,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3076
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 13345,
+                    "cache_creation_input_tokens": 3076,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3076,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T19:05:44.466Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016VG4u2tJXZAtSUNNTZDz31",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2605.05007 Uno-Orchestra parsimonious agent routing selective delegation\"\n\nLinks: [{\"title\":\"[2605.05007] Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\",\"url\":\"https://arxiv.org/abs/2605.05007\"},{\"title\":\"Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\",\"url\":\"https://arxiv.org/html/2605.05007\"},{\"title\":\"[2605.05657] Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation\",\"url\":\"https://arxiv.org/abs/2605.05657\"},{\"title\":\"ANO: A Unified RL Framework for Robust Policy Optimization\",\"url\":\"https://arxiv.org/html/2605.02320v1\"},{\"title\":\"Orchestrating Intelligence: Confidence-Aware Routing for Efficient Multi-Agent Collaboration across Multi-Scale Models\",\"url\":\"https://arxiv.org/html/2601.04861\"},{\"title\":\"Adjacent Possible Innovation Dynamics on Local Optima Networks\",\"url\":\"https://arxiv.org/html/2605.01821\"},{\"title\":\"[2605.04448] Queue-Aware and Resilient Routing in LEO Satellite Networks Using Multi-Agent Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2605.04448\"},{\"title\":\"Multi-target Parallel Drug Discovery with Multi-agent Orchestration | OpenReview\",\"url\":\"https://openreview.net/forum?id=AhFsKmuaCb\"},{\"title\":\"[2605.01102] Towards Multi-Agent Autonomous Reasoning in Hydrodynamics\",\"url\":\"https://arxiv.org/abs/2605.01102\"},{\"title\":\"Queue-Aware and Resilient Routing in LEO Satellite Networks Using Multi-Agent Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2605.04448\"}]\n\nI found the paper you were searching for! Here's what I found:\n\nUno-Orchestra is a unified orchestration policy that selectively decomposes a task and dispatches each subtask to an admissible (model, primitive) pair, with both decisions learned together from curated RL trajectories grounded in real worker interactions.\n\nThe paper addresses the challenge that large language model (LLM) multi-agent systems typically rely on rigid orchestration, committing either to flat per-query routing or to hand-engineered task decomposition, so decomposition depth, worker choice, and inference budget are not jointly optimized under one objective.\n\nAgainst 22 baselines on a 13-benchmark suite spanning math, code, knowledge, long-context, and agentic tool-use, Uno-Orchestra reaches 77.0% macro pass@1, roughly 16% above the strongest workflow baseline, at roughly an order of magnitude lower per-query cost.\n\nThe paper was submitted to arXiv on May 6, 2026, and was authored by Zhiqing Cui and 13 other authors. You can access the full paper at https://arxiv.org/abs/2605.05007.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ed389b5-243b-438d-be43-54c1a679348a",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "abc04d82-1c40-48b3-98f2-b876321da597",
+            "sourceToolAssistantUUID": "0ed389b5-243b-438d-be43-54c1a679348a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T19:05:45.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CNSFPXoAdq54k3U9N3dd96",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2505.13445 RISE self-verification\"\n\nLinks: [{\"title\":\"[2505.13445] Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards\",\"url\":\"https://arxiv.org/abs/2505.13445\"},{\"title\":\"Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards\",\"url\":\"https://arxiv.org/html/2505.13445\"},{\"title\":\"[2505.13445v1] Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards\",\"url\":\"http://arxiv.org/abs/2505.13445v1\"},{\"title\":\"(PDF) Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards\",\"url\":\"https://www.researchgate.net/publication/391911898_Trust_But_Verify_A_Self-Verification_Approach_to_Reinforcement_Learning_with_Verifiable_Rewards\"},{\"title\":\"GitHub - xyliu-cs/RISE: [NeurIPS'25] Official Implementation of RISE (Reinforcing Reasoning with Self-Verification) · GitHub\",\"url\":\"https://github.com/xyliu-cs/rise\"},{\"title\":\"Zhaopeng Tu on X: \\\"Trust your AI, but can it trust itself? 🤔 Introducing an online reinforcement learning framework, RISE (Reinforcing Reasoning with Self-Verification), enabling LLMs to simultaneously level-up BOTH their problem-solving AND self-checking skills! 🧐 Problems tackled: ✅ https://t.co/PZE3BIBCh7\\\" / X\",\"url\":\"https://x.com/tuzhaopeng/status/1924838749676175617\"},{\"title\":\"RISE: Reasoning Enhancement via Iterative Self-Exploration in Multi-hop Question Answering\",\"url\":\"https://arxiv.org/html/2505.21940\"},{\"title\":\"ReVISE: Learning to Refine at Test-Time via Intrinsic Self-Verification\",\"url\":\"https://arxiv.org/html/2502.14565v1\"},{\"title\":\"Computer Science May 2025\",\"url\":\"http://arxiv.org/list/cs/2025-05?skip=6350&show=50\"},{\"title\":\"[2505.21940] RISE: Reasoning Enhancement via Iterative Self-Exploration in Multi-hop Question Answering\",\"url\":\"https://arxiv.org/abs/2505.21940\"}]\n\nBased on the search results, here's information about arXiv paper 2505.13445 on RISE self-verification:\n\n## Overview\n\nRISE (Reinforcing Reasoning with Self-Verification) is a novel online RL framework designed to tackle superficial self-reflection in LLMs.\n\n## The Problem\n\nA prevalent issue is \"superficial self-reflection\", where models fail to robustly verify their own outputs.\n\n## The Solution\n\nRISE explicitly and simultaneously trains an LLM to improve both its problem-solving and self-verification abilities within a single, integrated RL process. The core mechanism involves leveraging verifiable rewards from an outcome verifier to provide on-the-fly feedback for both solution generation and self-verification tasks. In each iteration, the model generates solutions, then critiques its own on-policy generated solutions, with both trajectories contributing to the policy update.\n\n## Results\n\nExtensive experiments on diverse mathematical reasoning benchmarks show that RISE consistently improves model's problem-solving accuracy while concurrently fostering strong self-verification skills. Compared to a Zero-RL baseline, RISE achieves up to a 2.8 × increase in verification accuracy on challenging mathematical benchmarks.\n\n## Paper Details\n\nThe paper was submitted on May 19, 2025 by authors including Xiaoyuan Liu, Tian Liang, Zhiwei He, and others.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc35b0cb-fd79-4b3d-874b-0abb1d480051",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "c3e753b4-8954-4150-8f8a-72ea35ae46cf",
+            "sourceToolAssistantUUID": "cc35b0cb-fd79-4b3d-874b-0abb1d480051",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T19:05:46.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UNjr6kN1qFhLYwGDUvXAqv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"S2r self-verify self-correct reinforcement learning arXiv 2502.12853\"\n\nLinks: [{\"title\":\"[2502.12853] S$^2$R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2502.12853\"},{\"title\":\"Paper page - S^2R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\",\"url\":\"https://huggingface.co/papers/2502.12853\"},{\"title\":\"S2r: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2502.12853\"},{\"title\":\"GitHub - NineAbyss/S2R: This is the official implementation of the paper \\\"S²R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\\\"\",\"url\":\"https://github.com/NineAbyss/S2R\"},{\"title\":\"S$^2$R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\",\"url\":\"https://www.researchgate.net/publication/389130216_S2R_Teaching_LLMs_to_Self-verify_and_Self-correct_via_Reinforcement_Learning\"},{\"title\":\"S2R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.1104/\"},{\"title\":\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://arxiv.org/html/2505.10832v1\"},{\"title\":\"Heimdall: test-time scaling on the generative verification\",\"url\":\"https://arxiv.org/html/2504.10337v1\"},{\"title\":\"S$^2$R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/sdollar2dollarr-teaching-llms-to-self-verify-self\"},{\"title\":\"R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2505.23794v1\"}]\n\nBased on the search results, here's what I found about S²R (arXiv 2502.12853):\n\n## Overview\n\nS²R is an efficient framework that enhances LLM reasoning by teaching models to self-verify and self-correct during inference.\n\n## Methodology\n\nThe framework first initializes LLMs with iterative self-verification and self-correction behaviors through supervised fine-tuning on carefully curated data, then further strengthens these skills by both outcome-level and process-level reinforcement learning with minimized resource requirements.\n\n## Key Results\n\nWith only 3.1k self-verifying and self-correcting behavior initialization samples, Qwen2.5-math-7B achieves an accuracy improvement from 51.0% to 81.6%, outperforming models trained on an equivalent amount of long-CoT distilled data.\n\n## Key Advantages\n\nThe paper addresses an important gap: existing approaches to incentivize LLMs' deep thinking abilities generally require large-scale data or significant training efforts, and it remains unclear how to improve the thinking abilities of less powerful base models.\n\n## Validation\n\nExtensive experiments and analysis based on three base models across both in-domain and out-of-domain benchmarks validate the effectiveness of S²R.\n\nThe paper was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025), and the code and data are available at https://github.com/NineAbyss/S2R.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2521adf0-640b-49ec-8882-ca495ee7f258",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "8d801cde-b77c-4af1-bf4f-532e8a9dba2b",
+            "sourceToolAssistantUUID": "2521adf0-640b-49ec-8882-ca495ee7f258",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T19:05:52.267Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017SjShAv7cUFubUSuKqD7rH",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Think or Not\" selective reasoning reinforcement learning 2505.16854 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d801cde-b77c-4af1-bf4f-532e8a9dba2b",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQmu9fzyENJFJTfKUtB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9c2a9549-5d3d-4949-8987-83ea702347c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqnkfMDGYe9Gi2VDXEVzNX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3010,
+                "cache_read_input_tokens": 16421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3010,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T19:05:53.209Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01De6CS1MEepJiMpMRaAUns7",
+              "name": "WebSearch",
+              "input": {
+                "query": "VAGEN agentic interactive verification arXiv 2602.00575 GUI agent"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c2a9549-5d3d-4949-8987-83ea702347c2",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQmu9fzyENJFJTfKUtB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b65be32c-6cc4-43bd-842e-2403a0090483",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqnkfMDGYe9Gi2VDXEVzNX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3010,
+                "cache_read_input_tokens": 16421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3010,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T19:05:53.900Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012BKcaY1UVDX5U3trzq9Qqz",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Rethinking Agentic Reinforcement Learning\" arXiv 2604.27859"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b65be32c-6cc4-43bd-842e-2403a0090483",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQmu9fzyENJFJTfKUtB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d08820e8-f8fb-4915-89f0-54c54ab6d93f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqnkfMDGYe9Gi2VDXEVzNX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3010,
+                "cache_read_input_tokens": 16421,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3010
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 16421,
+                    "cache_creation_input_tokens": 3010,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3010,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T19:05:57.367Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SjShAv7cUFubUSuKqD7rH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Think or Not\" selective reasoning reinforcement learning 2505.16854 arXiv\"\n\nLinks: [{\"title\":\"[2505.16854] Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://arxiv.org/abs/2505.16854\"},{\"title\":\"[2505.16854v1] Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://arxiv.org/abs/2505.16854v1\"},{\"title\":\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://arxiv.org/html/2505.16854\"},{\"title\":\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250516854W/abstract\"},{\"title\":\"Think or Not? Selective Reasoning via Reinforcement ...\",\"url\":\"https://arxiv.org/pdf/2505.16854\"},{\"title\":\"GitHub - kokolerk/TON: [NeurIPS 2025] Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://github.com/kokolerk/TON\"},{\"title\":\"TON - a kolerk Collection\",\"url\":\"https://huggingface.co/collections/kolerk/ton-682ad9038395c21e228a645b\"},{\"title\":\"(PDF) Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://www.researchgate.net/publication/391991924_Think_or_Not_Selective_Reasoning_via_Reinforcement_Learning_for_Vision-Language_Models\"},{\"title\":\"Paper page - Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\",\"url\":\"https://huggingface.co/papers/2505.16854\"},{\"title\":\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=qI95wZZCWh\"}]\n\nI found the paper! Here's what the search results reveal about this research:\n\n## Overview\n\n\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\" is a recent paper (arXiv 2505.16854) by Jiaqi Wang, Kevin Qinghong Lin, James Cheng, and Mike Zheng Shou.\n\n## Key Contribution\n\nThe paper explores how to enable vision-language models to first decide when reasoning is necessary, inspired by the human-like thinking process where people skip reasoning for easy questions but think carefully when needed.\n\n## Methodology\n\nThe researchers propose TON, a two-stage training strategy: (i) a supervised fine-tuning (SFT) stage with a \"thought dropout\" operation where reasoning traces are randomly replaced with empty thoughts, introducing a think-or-not format as a cold start for selective reasoning; (ii) a GRPO stage that enables the model to freely explore when to think or not, while maximizing task-aware outcome rewards.\n\n## Motivation\n\nThe work is motivated by limitations in Group Relative Policy Optimization (GRPO), a recent prominent method that encourages models to generate complete reasoning traces before answering, leading to increased token usage and computational cost.\n\nYou can access the paper at https://arxiv.org/abs/2505.16854 and find the code on GitHub at https://github.com/kokolerk/TON.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c2a9549-5d3d-4949-8987-83ea702347c2",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "207948e1-04be-4f55-a401-0587dad6f36e",
+            "sourceToolAssistantUUID": "9c2a9549-5d3d-4949-8987-83ea702347c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T19:06:00.727Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012BKcaY1UVDX5U3trzq9Qqz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Rethinking Agentic Reinforcement Learning\" arXiv 2604.27859\"\n\nLinks: [{\"title\":\"[2604.27859] A Brief Overview: Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/abs/2604.27859\"},{\"title\":\"Rethinking Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859v1\"},{\"title\":\"Rethinking Agentic Reinforcement Learning In Large Language Models | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2604.27859\"},{\"title\":\"A Brief Overview: Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859\"},{\"title\":\"Paper page - The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\",\"url\":\"https://huggingface.co/papers/2509.02547\"},{\"title\":\"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey | OpenReview\",\"url\":\"https://openreview.net/forum?id=RY19y2RI1O\"},{\"title\":\"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey | Intelligent Earth\",\"url\":\"https://intelligent-earth.ox.ac.uk/publication/2388322/scopus\"},{\"title\":\"Hao Hoang - Agentic Reinforcement Learning for LLMs\",\"url\":\"https://www.linkedin.com/posts/hoang-van-hao_agentic-reinforcement-learning-for-llms-activity-7369874345952931840-bLVY\"},{\"title\":\"Demystifying Reinforcement Learning in Agentic Reasoning\",\"url\":\"https://arxiv.org/html/2510.11701v1\"},{\"title\":\"AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2604.17337\"}]\n\nI found the paper you're looking for! Here's information about arXiv paper 2604.27859:\n\n## Paper Overview\n\nThe paper is titled \"Rethinking Agentic Reinforcement Learning In Large Language Models\" and was authored by Fangming Cui, Ruixiao Zhu, Cheng Fang, Sunan Li, and Jiahong Li, submitted on April 30, 2026.\n\n## Main Focus\n\nThe advent of powerful Large Language Models (LLMs) and increasingly complex, open-ended tasks has catalyzed a paradigm shift towards agentic paradigms within RL, with this emerging framework extending beyond traditional RL by emphasizing the development of autonomous agents capable of goal-setting, long-term planning, dynamic strategy adaptation, and interactive reasoning in uncertain, real-world environments.\n\n## Key Distinction\n\nUnlike conventional approaches that rely heavily on static objectives and episodic interactions, LLM-based Agentic RL incorporates cognitive-like capabilities such as meta-reasoning, self-reflection, and multi-step decision-making directly into the learning loop.\n\n## Paper Objectives\n\nThe paper provides a deep insight into the conceptual foundations, methodological innovations, and effective designs underlying this trend, while also identifying critical challenges and outlining promising future directions for building LLM-based Agentic RL.\n\nYou can access the paper directly on arXiv at https://arxiv.org/abs/2604.27859.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d08820e8-f8fb-4915-89f0-54c54ab6d93f",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "bb15365e-6dcd-446e-97c2-44dd62e2b19c",
+            "sourceToolAssistantUUID": "d08820e8-f8fb-4915-89f0-54c54ab6d93f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T19:06:02.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01De6CS1MEepJiMpMRaAUns7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"VAGEN agentic interactive verification arXiv 2602.00575 GUI agent\"\n\nLinks: [{\"title\":\"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents\",\"url\":\"https://arxiv.org/html/2510.16907v1\"},{\"title\":\"[2510.16907] VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents\",\"url\":\"https://arxiv.org/abs/2510.16907\"},{\"title\":\"GitHub - mll-lab-nu/VAGEN: Training VLM agents with multi-turn reinforcement learning · GitHub\",\"url\":\"https://github.com/mll-lab-nu/VAGEN\"},{\"title\":\"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents\",\"url\":\"https://vagen-ai.github.io/vagen_paper.pdf\"},{\"title\":\"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents | OpenReview\",\"url\":\"https://openreview.net/forum?id=xpjWEgf8zi\"},{\"title\":\"VAGEN - VLM Agent Training\",\"url\":\"https://vagen-ai.github.io/\"},{\"title\":\"[2602.11412] When Visibility Outpaces Verification: Delayed Verification and Narrative Lock-in in Agentic AI Discourse\",\"url\":\"https://arxiv.org/abs/2602.11412\"},{\"title\":\"[2602.11412v1] When Visibility Outpaces Verification: Delayed Verification and Narrative Lock-in in Agentic AI Discourse\",\"url\":\"https://arxiv.org/abs/2602.11412v1\"},{\"title\":\"VAGEN\",\"url\":\"https://vagen.readthedocs.io/en/latest/\"},{\"title\":\"[2602.11114v1] Learning to Compose for Cross-domain Agentic Workflow Generation\",\"url\":\"https://arxiv.org/abs/2602.11114v1\"}]\n\nBased on the search results, I found information about VAGEN, though the arXiv ID in your query (2602.00575) doesn't appear to match the main VAGEN paper. The search results show VAGEN is related to arXiv 2510.16907, not the ID you mentioned.\n\nHere's what I found about VAGEN:\n\nVAGEN is a multi-turn reinforcement learning framework designed specifically for training vision-language model (VLM) agents. It is a scalable training framework that decouples environment setup from model training, enabling efficient experimentation and algorithmic extensibility.\n\nThe approach addresses VLM agent training by architecturally enforcing and rewarding the agent's reasoning process via reinforcement learning, formulating it as a Partially Observable Markov Decision Process (POMDP), with decomposing the agent's reasoning into State Estimation (\"what is the current state?\") and Transition Modeling (\"what comes next?\") being critical for success.\n\nThe framework designs a World Modeling Reward that provides dense, turn-level supervision for accurate state prediction, and introduces Bi-Level General Advantage Estimation (Bi-Level GAE) for turn-aware credit assignment.\n\nA 3B-parameter model achieves a score of 0.82 across five diverse agent benchmarks, representing a 3× improvement over its untrained counterpart (0.21) and outperforming proprietary reasoning models such as GPT-5 (0.75), Gemini 2.5 Pro (0.67) and Claude 4.5 (0.62).\n\nNote: The arXiv ID 2602.00575 you mentioned doesn't appear in the search results. If you're looking for a different paper on \"agentic interactive verification,\" that specific ID may refer to a different work.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b65be32c-6cc4-43bd-842e-2403a0090483",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "55b74f32-7bf8-4840-9b13-f57299508511",
+            "sourceToolAssistantUUID": "b65be32c-6cc4-43bd-842e-2403a0090483",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T19:06:13.375Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PAFPg8eEaADTP1Fmxqds9A",
+              "name": "WebSearch",
+              "input": {
+                "query": "Argos multimodal reinforcement learning adaptive verifier arXiv 2512.03438"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55b74f32-7bf8-4840-9b13-f57299508511",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQo5cVY2SwGdE7ksFU6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "94cba1a1-3b0f-4744-af5c-516e3b8d65b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4bS2qWk67iBmrDZtG3qXF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 881,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 19431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2005,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T19:06:13.850Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBSbETBjxwZWEG5pZNtouZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"learning when to think\" adaptive reasoning R1 multi-stage RL arXiv 2505.10832"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94cba1a1-3b0f-4744-af5c-516e3b8d65b3",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQo5cVY2SwGdE7ksFU6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "11c5f0ae-4589-42c8-bc64-bc50044ac2df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4bS2qWk67iBmrDZtG3qXF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 881,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 19431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2005,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T19:06:15.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XLibyCMc2dKBp6QkJDWvUB",
+              "name": "WebSearch",
+              "input": {
+                "query": "Planner-R1 reward shaping efficient agentic RL smaller LLMs arXiv 2509.25779"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11c5f0ae-4589-42c8-bc64-bc50044ac2df",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQo5cVY2SwGdE7ksFU6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e9578cd9-29cc-4957-b2e8-eaafd1e695c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4bS2qWk67iBmrDZtG3qXF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 881,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 19431,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2005
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 881,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 19431,
+                    "cache_creation_input_tokens": 2005,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2005,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T19:06:17.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PAFPg8eEaADTP1Fmxqds9A",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Argos multimodal reinforcement learning adaptive verifier arXiv 2512.03438\"\n\nLinks: [{\"title\":\"[2512.03438] Multimodal Reinforcement Learning with Adaptive Verifier for AI Agents\",\"url\":\"https://arxiv.org/abs/2512.03438\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier for AI Agents\",\"url\":\"https://arxiv.org/pdf/2512.03438\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier for AI Agents | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2512.03438\"},{\"title\":\"Rohan Paul on X: \\\"The paper introduces a verifier called Argos that trains multimodal agents to stay visually grounded instead of hallucinating answers. Built on a 7B vision language model, Argos beats stronger video reasoning baselines while using much less reinforcement learning data. Standard https://t.co/QOFscywq4C\\\" / X\",\"url\":\"https://x.com/rohanpaul_ai/status/1996807746839282125\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier for AI Agents | Oier Mees\",\"url\":\"https://www.oiermees.com/publication/argos/\"},{\"title\":\"Agentic Verifier in Multimodal RL\",\"url\":\"https://www.emergentmind.com/topics/agentic-verifier\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier ...\",\"url\":\"https://www.researchgate.net/publication/398312989_Multimodal_Reinforcement_Learning_with_Agentic_Verifier_for_AI_Agents\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier ...\",\"url\":\"https://chatpaper.com/paper/215806\"},{\"title\":\"Multimodal Reinforcement Learning with Agentic Verifier for AI Agents - Microsoft Research\",\"url\":\"https://www.microsoft.com/en-us/research/publication/multimodal-reinforcement-learning-with-agentic-verifier-for-ai-agents/\"},{\"title\":\"\\\"VM AI increases FA's academic consistency..rxf\\\" - Results on X\",\"url\":\"https://twitter.com/search?q=VM+AI+increases+FA%E2%80%99s+academic+consistency..rxf\"}]\n\nBased on the search results, here's what I found about this research paper:\n\n## Overview\n\nArgos (Agentic Reward for Grounded & Objective Scoring) is a principled reward agent to train multimodal reasoning models for agentic tasks. It addresses the challenge that agentic reasoning models trained with multimodal reinforcement learning (MMRL) are almost universally optimized using sparse, outcome-based rewards computed based on the final answers.\n\n## Key Features\n\nFor each sample, Argos selects from a pool of teacher-model derived and rule-based scoring functions to simultaneously evaluate: (i) final response accuracy, (ii) spatiotemporal localization of referred entities and actions, and (iii) the quality of the reasoning process.\n\n## Results and Impact\n\nBy leveraging the agentic verifier across both SFT data curation and RL training, the model achieves state-of-the-art results across multiple agentic tasks such as spatial reasoning, visual hallucination as well as robotics and embodied AI benchmarks. The paper demonstrates that just relying on SFT post-training on highly curated reasoning data is insufficient, as agents invariably collapse to ungrounded solutions during RL without online verification.\n\n## Additional Benefits\n\nThe agentic verifier can help to reduce reward-hacking in MMRL, and the paper provides a theoretical justification for the effectiveness of Argos through the concept of pareto-optimality.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94cba1a1-3b0f-4744-af5c-516e3b8d65b3",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "1f11c111-48b1-4ae4-b4c8-633c1895047a",
+            "sourceToolAssistantUUID": "94cba1a1-3b0f-4744-af5c-516e3b8d65b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T19:06:20.376Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBSbETBjxwZWEG5pZNtouZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"learning when to think\" adaptive reasoning R1 multi-stage RL arXiv 2505.10832\"\n\nLinks: [{\"title\":\"[2505.10832] Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://arxiv.org/abs/2505.10832\"},{\"title\":\"(PDF) Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://www.researchgate.net/publication/391856570_Learning_When_to_Think_Shaping_Adaptive_Reasoning_in_R1-Style_Models_via_Multi-Stage_RL\"},{\"title\":\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2505.10832\"},{\"title\":\"Paper page - Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://huggingface.co/papers/2505.10832\"},{\"title\":\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://arxiv.org/html/2505.10832v3\"},{\"title\":\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250510832T/abstract\"},{\"title\":\"NeurIPS Poster Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\",\"url\":\"https://neurips.cc/virtual/2025/poster/118864\"},{\"title\":\"Learning When to Think: Shaping Adaptive Reasoning in ...\",\"url\":\"https://www.summarizepaper.com/en/arxiv-id/2505.10832v1/\"},{\"title\":\"Learning When to Think: Shaping Adaptive\",\"url\":\"https://openreview.net/pdf/dc89a6b0221240f7e120c7bd39c116d57711eec4.pdf\"},{\"title\":\"Paper page - AdaptThink: Reasoning Models Can Learn When to Think\",\"url\":\"https://huggingface.co/papers/2505.13417\"}]\n\nI found the paper! Here's what the search revealed:\n\n## \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n\nThis paper by Songjun Tu and 6 other authors addresses how to shape adaptive reasoning in R1-style models using multi-stage reinforcement learning.\n\n**Key Innovation:**\nInserting a simple ellipsis (\"...\") into the prompt can stochastically trigger either a thinking or no-thinking mode, revealing a latent controllability in the reasoning behavior.\n\n**The Problem Addressed:**\nDetailed reasoning can introduce substantial computational overhead and latency, particularly for simple problems. The research explores how to equip large reasoning models with adaptive thinking capabilities to dynamically decide whether to engage in explicit reasoning based on problem complexity.\n\n**The Solution - AutoThink Framework:**\nAutoThink is a multi-stage reinforcement learning framework that progressively optimizes reasoning policies via stage-wise reward shaping. It learns to invoke explicit reasoning only when necessary, while defaulting to succinct responses for simpler tasks.\n\n**Results:**\nAutoThink improves relative accuracy by 6.4 percent while reducing token usage by 52 percent on DeepSeek-R1-Distill-Qwen-1.5B, establishing a scalable and adaptive reasoning paradigm for large reasoning models.\n\nThe paper was submitted to arXiv on May 16, 2025 (arxiv ID: 2505.10832).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11c5f0ae-4589-42c8-bc64-bc50044ac2df",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "3ca3c906-2166-4e68-8b37-2e365e8f6508",
+            "sourceToolAssistantUUID": "11c5f0ae-4589-42c8-bc64-bc50044ac2df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T19:06:22.396Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XLibyCMc2dKBp6QkJDWvUB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Planner-R1 reward shaping efficient agentic RL smaller LLMs arXiv 2509.25779\"\n\nLinks: [{\"title\":\"[2509.25779] Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/abs/2509.25779\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/html/2509.25779v2\"},{\"title\":\"PLANNER-R1: REWARD SHAPING ENABLES EFFI- CIENT AGENTIC RL WITH SMALLER LLMS\",\"url\":\"https://arxiv.org/pdf/2509.25779\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250925779Z/abstract\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=CmOaD42eAT\"},{\"title\":\"PLANNER-R1: REWARD SHAPING ENABLES EFFI\",\"url\":\"https://openreview.net/pdf/24fff7e9068e6d8af9f07e73abfdcb0d788c3abe.pdf\"},{\"title\":\"Demystifying Reinforcement Learning for Long-Horizon Tool-Using Agents: A Comprehensive Recipe\",\"url\":\"https://arxiv.org/html/2603.21972\"},{\"title\":\"Agentic RL - a rohjain Collection\",\"url\":\"https://huggingface.co/collections/rohjain/agentic-rl\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=agentic+RL\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL ...\",\"url\":\"https://www.researchgate.net/publication/396048946_Planner-R1_Reward_Shaping_Enables_Efficient_Agentic_RL_with_Smaller_LLMs\"}]\n\nI found comprehensive information about the paper. Here's a summary of the key findings from Planner-R1 (arXiv:2509.25779):\n\n## Overview\n\nThe research investigated Agentic RL with large language models on the TravelPlanner benchmark.\n\n## Main Results\n\nThe Planner-R1 approach achieved a 56.9% final-pass rate with only 180 training queries, a 2.7× improvement over GPT-5's 21.2% baseline and the strongest agentic result on the public leaderboard.\n\n## Key Finding: Smaller Models with Reward Shaping\n\nA central finding was that smaller models (8B) were highly responsive to reward shaping: with dense process-level signals, they reached competitive performance while being 3.5× more compute-efficient and 1.5× more memory-efficient than 32B models.\n\nLarger models were more robust under sparse rewards but exhibited smaller relative gains from shaping and higher variance across runs.\n\n## Impact on Training Approaches\n\nWhile curriculum learning offered no significant benefit, shaped rewards consistently amplified learning dynamics, making 8B models the most efficient setting for agentic RL.\n\n## Generalization\n\nThese gains did not come at the cost of overfitting: fine-tuned models mostly maintained or exceeded baseline performance on out-of-domain tasks, including Multi-IF, NaturalPlan, and τ-Bench.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9578cd9-29cc-4957-b2e8-eaafd1e695c0",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "239de1c9-1312-4c27-8712-477f2bea9af7",
+            "sourceToolAssistantUUID": "e9578cd9-29cc-4957-b2e8-eaafd1e695c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T19:06:26.760Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y8nPFFywU6PtzqEs8YUbrG",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Agentic Reward Modeling\" proactive interaction verification GUI agent arXiv 2602.00575"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "239de1c9-1312-4c27-8712-477f2bea9af7",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQpXKqpb1HszQtUe2N5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ec99f903-ee7a-42a3-9875-0bc216c8cac2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Fhp8jJaZEsQQdLxbLzXcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3960,
+                "cache_read_input_tokens": 21436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3960,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T19:06:27.691Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JSsxqe9Q2cR8gtP77GV54o",
+              "name": "WebSearch",
+              "input": {
+                "query": "ToolPRMBench process reward model tool-using agents arXiv 2601.12294"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec99f903-ee7a-42a3-9875-0bc216c8cac2",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQpXKqpb1HszQtUe2N5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3bb9bea1-59ae-4b6b-baa2-d7c1e7e14387",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Fhp8jJaZEsQQdLxbLzXcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3960,
+                "cache_read_input_tokens": 21436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3960,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T19:06:28.331Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QUWwR45vfpzwkRcwCgAM1V",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"verifiable reward RL\" multi-turn interactive tool-using agents arXiv 2601.22607"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bb9bea1-59ae-4b6b-baa2-d7c1e7e14387",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQpXKqpb1HszQtUe2N5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ff4d23b1-cedf-4a20-98ac-25ef97b35407",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Fhp8jJaZEsQQdLxbLzXcB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3960,
+                "cache_read_input_tokens": 21436,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3960
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 21436,
+                    "cache_creation_input_tokens": 3960,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3960,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T19:06:30.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y8nPFFywU6PtzqEs8YUbrG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Agentic Reward Modeling\" proactive interaction verification GUI agent arXiv 2602.00575\"\n\nLinks: [{\"title\":\"Agentic Reward Modeling: Verifying GUI Agent via Online Proactive Interaction\",\"url\":\"https://arxiv.org/html/2602.00575v1\"},{\"title\":\"Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems\",\"url\":\"https://arxiv.org/html/2502.19328v1\"},{\"title\":\"ProRe: A Proactive Reward System for GUI Agents via Reasoner–Actor Collaboration\",\"url\":\"https://arxiv.org/html/2509.21823\"},{\"title\":\"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/html/2604.16004\"},{\"title\":\"Paper page - Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems\",\"url\":\"https://huggingface.co/papers/2502.19328\"},{\"title\":\"Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.775/\"},{\"title\":\"[2502.19328] Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems\",\"url\":\"https://arxiv.org/abs/2502.19328\"},{\"title\":\"GitHub - THU-KEG/Agentic-Reward-Modeling: [ACL 2025] Agentic Reward Modeling: Integrating Human Preferences with Verifiable Correctness Signals for Reliable Reward Systems\",\"url\":\"https://github.com/THU-KEG/Agentic-Reward-Modeling\"},{\"title\":\"[PDF] Agentic Reward Modeling: Integrating Human Preferences ...\",\"url\":\"https://www.semanticscholar.org/paper/ded8cf8b28bab1930f5c57b31f7906835dfeec38\"},{\"title\":\"Adaptive Milestone Reward for GUI Agents\",\"url\":\"https://arxiv.org/html/2602.11524v1\"}]\n\nBased on the search results, I found information about the paper you're looking for:\n\nVAGEN is a framework that employs a verifier agent equipped with interaction tools to autonomously plan verification strategies and proactively probe the environment for evidence of task completion. This paper, titled \"Agentic Reward Modeling: Verifying GUI Agent via Online Proactive Interaction,\" is available at arXiv 2602.00575 and was published on January 31, 2026.\n\nThe key innovation of this work is leveraging the principle that GUI tasks are typically easier to verify than to execute, using agents with interaction capabilities to actively probe and verify whether agents have successfully completed their assigned tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec99f903-ee7a-42a3-9875-0bc216c8cac2",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "7d0e1679-279f-4f69-b18b-e7d663515e28",
+            "sourceToolAssistantUUID": "ec99f903-ee7a-42a3-9875-0bc216c8cac2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T19:06:35.138Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JSsxqe9Q2cR8gtP77GV54o",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ToolPRMBench process reward model tool-using agents arXiv 2601.12294\"\n\nLinks: [{\"title\":\"[2601.12294] ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://arxiv.org/abs/2601.12294\"},{\"title\":\"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://arxiv.org/html/2601.12294\"},{\"title\":\"(PDF) ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://www.researchgate.net/publication/399931270_ToolPRMBench_Evaluating_and_Advancing_Process_Reward_Models_for_Tool-using_Agents\"},{\"title\":\"GitHub - David-Li0406/ToolPRMBench: Github repository for paper: \\\"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\\\"\",\"url\":\"https://github.com/David-Li0406/ToolPRMBench\"},{\"title\":\"Paper page - ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://huggingface.co/papers/2601.12294\"},{\"title\":\"Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/html/2502.10325v1\"},{\"title\":\"AgentProcessBench: Diagnosing Step-Level Process Quality in Tool-Using Agents\",\"url\":\"https://arxiv.org/html/2603.14465v1\"},{\"title\":\"[2601.22154] Exploring Reasoning Reward Model for Agents\",\"url\":\"https://arxiv.org/abs/2601.22154\"},{\"title\":\"ToolRM: Outcome Reward Models for Tool-Calling Large Language Models\",\"url\":\"https://arxiv.org/html/2509.11963v1\"},{\"title\":\"[2502.10325] Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/abs/2502.10325\"}]\n\nI've successfully found detailed information about ToolPRMBench (arXiv 2601.12294). Here's what the paper presents:\n\n## Overview\n\nToolPRMBench is a large-scale benchmark specifically designed to evaluate PRMs for tool-using agents. The paper addresses a gap in that there is a lack of systematic and reliable evaluation benchmarks for PRMs in tool-using settings.\n\n## Key Motivation\n\nReward-guided search methods have demonstrated strong potential in enhancing tool-using agents by effectively guiding sampling and exploration over complex action spaces, and as a core design, those search methods utilize process reward models (PRMs) to provide step-level rewards, enabling more fine-grained monitoring.\n\n## Benchmark Construction\n\nToolPRMBench is built on top of several representative tool-using benchmarks and converts agent trajectories into step-level test cases. Each case contains the interaction history, a correct action, a plausible but incorrect alternative, and relevant tool metadata.\n\nThe benchmark utilizes offline sampling to isolate local single-step errors and online sampling to capture realistic multi-step failures from full agent rollouts.\n\n## Data Quality\n\nA multi-LLM verification pipeline is proposed to reduce label noise and ensure data quality.\n\n## Results\n\nExtensive experiments are conducted across large language models, general PRMs, and tool-specialized PRMs on ToolPRMBench. The results reveal clear differences in PRM effectiveness and highlight the potential of specialized PRMs for tool-using.\n\nThe paper was submitted on January 18, 2026, and code and data are available at https://github.com/David-Li0406/ToolPRMBench.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bb9bea1-59ae-4b6b-baa2-d7c1e7e14387",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "fd09f777-5f40-47d8-876a-e33eae2fa601",
+            "sourceToolAssistantUUID": "3bb9bea1-59ae-4b6b-baa2-d7c1e7e14387",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T19:06:35.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QUWwR45vfpzwkRcwCgAM1V",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"verifiable reward RL\" multi-turn interactive tool-using agents arXiv 2601.22607\"\n\nLinks: [{\"title\":\"[2601.22607] From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/abs/2601.22607\"},{\"title\":\"Reliable Post-Training for Interactive Tool-Using Agents: Self-Evolving Data + Verifiable Rewards | Eigen AI\",\"url\":\"https://www.eigenai.com/blog/2026-02-23-reliable-post-training-interactive-tool-agents\"},{\"title\":\"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/html/2601.22607v1\"},{\"title\":\"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub\",\"url\":\"https://github.com/opendilab/awesome-RLVR\"},{\"title\":\"VERL-TOOL\",\"url\":\"https://openreview.net/pdf/555d5fad219667b4c33e09d336d79c8a6455ce5f.pdf\"},{\"title\":\"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\",\"url\":\"https://arxiv.org/html/2505.11821\"},{\"title\":\"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/html/2604.16004v1\"},{\"title\":\"Paper page - From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://huggingface.co/papers/2601.22607\"},{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"Exploring Reasoning Reward Model for Agents\",\"url\":\"https://arxiv.org/html/2601.22154\"}]\n\nI found the paper! Here are the key findings from the search results:\n\n## Paper Summary\n\nThe paper is titled \"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\" (arXiv 2601.22607).\n\n### Main Problem and Contribution\n\nInteractive tool-using agents must solve real-world tasks via multi-turn interaction with both humans and external environments, requiring dialogue state tracking, multi-step tool execution, while following complex instructions. Post-training such agents is challenging because synthesis for high-quality multi-turn tool-use data is difficult to scale, and reinforcement learning (RL) could face noisy signals caused by user simulation, leading to degraded training efficiency.\n\n### Proposed Solution\n\nThe authors propose a unified framework that combines a self-evolving data agent with verifier-based RL. Their system, EigenData, is a hierarchical multi-agent engine that synthesizes tool-grounded dialogues together with executable per-instance checkers, and improves generation reliability via closed-loop self-evolving process that updates prompts and workflow.\n\n### Results\n\nOn τ²-bench, this yields strong improvements (Airline 58.0% → 73.0% pass; Telecom 53.7% → 98.3% pass)\n\nThe paper was published on January 30, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff4d23b1-cedf-4a20-98ac-25ef97b35407",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "6ff26cc7-2513-4a7e-9127-284daa2f68a4",
+            "sourceToolAssistantUUID": "ff4d23b1-cedf-4a20-98ac-25ef97b35407",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T19:06:39.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XBssvBPCpcbHGDtxQmQpi1",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"selective compute\" \"when to verify\" LLM agent learned policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ff26cc7-2513-4a7e-9127-284daa2f68a4",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQqUFpYrZZpi4Rz1cHk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e1d0213-c7c4-495a-a05c-e6d10c128e0b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017WMDCQ9t3b6Y1fFwGRDte4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2857,
+                "cache_read_input_tokens": 25396,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2857,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T19:06:39.983Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SVoz3NJVEuwMP4HA6KfCx1",
+              "name": "WebSearch",
+              "input": {
+                "query": "Enhancing Agentic RL Progressive Reward Shaping VSPO arXiv 2512.07478"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e1d0213-c7c4-495a-a05c-e6d10c128e0b",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQqUFpYrZZpi4Rz1cHk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8b264253-0362-49b8-9f19-79d97de720a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017WMDCQ9t3b6Y1fFwGRDte4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2857,
+                "cache_read_input_tokens": 25396,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2857
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 25396,
+                    "cache_creation_input_tokens": 2857,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2857,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T19:06:46.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XBssvBPCpcbHGDtxQmQpi1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"selective compute\" \"when to verify\" LLM agent learned policy 2026\"\n\nLinks: [{\"title\":\"PoliSim@CHI 2026: LLM Agent Simulation for Policy | Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems\",\"url\":\"https://dl.acm.org/doi/full/10.1145/3772363.3778738\"},{\"title\":\"Demystifying evals for AI agents\",\"url\":\"https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents\"},{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"},{\"title\":\"LLM Landscape 2026: Differentiated Strategies of the Five Major Camps | QubitTool\",\"url\":\"https://qubittool.com/blog/llm-landscape-2026-five-camps\"},{\"title\":\"How to Use AI Agents to Run LLM Benchmarks: A Custom Evaluation Framework | MindStudio\",\"url\":\"https://www.mindstudio.ai/blog/ai-agents-custom-llm-benchmark-evaluation\"},{\"title\":\"Sherlock: RELIABLE AND EFFICIENT AGENTIC WORKFLOW EXECUTION\",\"url\":\"https://arxiv.org/pdf/2511.00330\"},{\"title\":\"AI evals are becoming the new compute bottleneck\",\"url\":\"https://huggingface.co/blog/evaleval/eval-costs-bottleneck\"},{\"title\":\"LLM Benchmarks Explained: MMLU, Chatbot Arena & SWE-bench Leaderboard (2026) | mysummit.school - AI for Managers Blog\",\"url\":\"https://mysummit.school/blog/en/how-llm-benchmarks-work-2026/\"},{\"title\":\"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure\",\"url\":\"https://lambda.ai/blog/iclr-2026-12-papers\"},{\"title\":\"Exploration Hacking: Can LLMs Learn to Resist RL Training?\",\"url\":\"https://arxiv.org/html/2604.28182v1\"}]\n\nBased on the web search results, I found highly relevant research related to your query. The most directly matching result is **Sherlock**, a recent system for agentic workflow serving.\n\nSherlock is about reliable and efficient agentic workflow serving with selective verification and speculative execution. This research directly addresses \"when to verify\" in LLM agent systems.\n\nThe key innovation in Sherlock involves a learned policy for deciding verification:\n\nA learning-based selector predicts the cost-optimal verifier per node via preference learning that models each verifier's relative utility considering performance and cost. Sherlock employs a lightweight strategy that combines heuristics and learned verifier selection for fast adaptability to online tasks.\n\nThe research identifies an important insight about verification in agent workflows: Tasks within the same category can favor different cost-optimal verifiers, revealing fine-grained variability in their effectiveness. This heterogeneity makes a single global verifier configuration inefficient, underscoring the need for a cost-aware, task-specific verifier selection strategy that dynamically balances accuracy and efficiency at runtime.\n\nThis approach to selective compute through learned verification policies appears to be a recent advancement (the Sherlock paper is from late 2024/early 2025) that directly addresses the question of when and where to apply verification in LLM agent workflows for 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e1d0213-c7c4-495a-a05c-e6d10c128e0b",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "6c762e1f-cc37-4662-bb58-85111f072f18",
+            "sourceToolAssistantUUID": "9e1d0213-c7c4-495a-a05c-e6d10c128e0b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T19:06:47.977Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SVoz3NJVEuwMP4HA6KfCx1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Enhancing Agentic RL Progressive Reward Shaping VSPO arXiv 2512.07478\"\n\nLinks: [{\"title\":\"Enhancing Agentic RL with Progressive Reward Shaping and...\",\"url\":\"https://arxiv.org/abs/2512.07478\"},{\"title\":\"Enhancing Agentic RL with Progressive Reward Shaping and Value-based Sampling Policy Optimization\",\"url\":\"https://arxiv.org/html/2512.07478\"},{\"title\":\"Enhancing Agentic RL with Progressive Reward Shaping and Value-based\",\"url\":\"https://openreview.net/pdf/9d171176438ae8cc9c9afd6ef5bd5d70402ab9b8.pdf\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=agentic+RL\"},{\"title\":\"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2509.22601v1\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/html/2509.25779v2\"},{\"title\":\"[2603.18859] RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models\",\"url\":\"https://arxiv.org/abs/2603.18859\"},{\"title\":\"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/html/2604.16004v1\"},{\"title\":\"[2604.16004] AgentV-RL: Scaling Reward Modeling with Agentic Verifier\",\"url\":\"https://arxiv.org/abs/2604.16004\"},{\"title\":\"[2509.25779] Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/abs/2509.25779\"}]\n\nI found the paper! Here's what I found about arXiv paper 2512.07478:\n\n## Paper Overview\n\nThe paper is titled \"Enhancing Agentic RL with Progressive Reward Shaping and Value-based Sampling Policy Optimization\".\n\n## Main Challenges Addressed\n\nThe paper addresses two key challenges in Agentic RL: (1) sparse, non-instructive rewards like binary 0-1 verifiable signals that provide limited guidance for intermediate steps and slow convergence; and (2) gradient degradation in Group Relative Policy Optimization (GRPO), where identical rewards within a rollout group yield zero advantage, reducing sample efficiency.\n\n## Proposed Solutions\n\nThe paper proposes two complementary techniques: Progressive Reward Shaping (PRS) and Value-based Sampling Policy Optimization (VSPO).\n\n**Progressive Reward Shaping (PRS):** PRS is a curriculum-inspired reward design that introduces dense, stage-wise feedback — encouraging models to first master parseable and properly formatted tool calls, then optimize for factual correctness and answer quality.\n\n**Value-based Sampling Policy Optimization (VSPO):** VSPO is an enhanced GRPO variant that replaces zero advantages samples with prompts selected by a task-value metric balancing difficulty and uncertainty, and applies value-smoothing clipping to stabilize gradient updates.\n\n## Results\n\nExperiments on multiple short-form and long-form QA benchmarks show that PRS consistently outperforms traditional binary rewards, and VSPO achieves superior stability, faster convergence, and higher final performance compared to SFT, PPO and GRPO baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b264253-0362-49b8-9f19-79d97de720a0",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "c765adf0-4865-4790-9693-48ceb34b8f9b",
+            "sourceToolAssistantUUID": "8b264253-0362-49b8-9f19-79d97de720a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-10T19:06:51.942Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01383fg71w5mBdPxB9rheogi",
+              "name": "WebSearch",
+              "input": {
+                "query": "RewardFlow topology-aware reward propagation state graphs agentic RL arXiv 2603.18859"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c765adf0-4865-4790-9693-48ceb34b8f9b",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQrQc5kZ7aiMGfb6hQg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "773528dc-ce6f-4c26-8e5c-347cd6cc05ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ex5TN2skgVwT4KciiZanEu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 28253,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2074,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-10T19:06:52.641Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019kJq6sqwjxcayCWkVQ8Pxs",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"adaptive verification\" \"compute allocation\" agent RL when to check 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "773528dc-ce6f-4c26-8e5c-347cd6cc05ac",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQrQc5kZ7aiMGfb6hQg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a3cfadbc-535e-487b-a3c0-4fbf13cdfdef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ex5TN2skgVwT4KciiZanEu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 28253,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2074
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 28253,
+                    "cache_creation_input_tokens": 2074,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2074,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-10T19:06:59.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01383fg71w5mBdPxB9rheogi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RewardFlow topology-aware reward propagation state graphs agentic RL arXiv 2603.18859\"\n\nLinks: [{\"title\":\"[2603.18859] RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models\",\"url\":\"https://arxiv.org/abs/2603.18859\"},{\"title\":\"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models\",\"url\":\"https://arxiv.org/html/2603.18859\"},{\"title\":\"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/402860521_RewardFlow_Topology-Aware_Reward_Propagation_on_State_Graphs_for_Agentic_RL_with_Large_Language_Models\"},{\"title\":\"RewardFlow: Propagating Reward in the State Graphs of Agentic Learning with LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=5oGJbM5u86\"},{\"title\":\"REWARDFLOW: PROPAGATING REWARD IN THE STATE ...\",\"url\":\"https://openreview.net/pdf?id=5oGJbM5u86\"},{\"title\":\"Reward shaping with hierarchical graph topology - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0031320323004442\"},{\"title\":\"Reward Generalization in RLHF: A Topological Perspective\",\"url\":\"https://arxiv.org/html/2402.10184\"},{\"title\":\"Topology-Aware Reinforcement Learning over Graphs for Resilient Power Distribution Networks\",\"url\":\"https://arxiv.org/html/2603.06964\"},{\"title\":\"RLAR: An Agentic Reward System for Multi-task Reinforcement Learning on Large Language Models\",\"url\":\"https://arxiv.org/html/2603.00724\"},{\"title\":\"[2402.10184] Reward Generalization in RLHF: A Topological Perspective\",\"url\":\"https://arxiv.org/abs/2402.10184\"}]\n\nI found the paper! Here's information about RewardFlow (arXiv 2603.18859):\n\n## Overview\n\nRewardFlow is a lightweight method for estimating state-level rewards tailored to agentic reasoning tasks. It addresses challenges posed by sparse terminal rewards and the computational costs of training dedicated reward models.\n\n## Key Technical Approach\n\nRewardFlow leverages the intrinsic topological structure of states within reasoning trajectories by constructing state graphs. It constructs a state graph from multiple rollouts and propagates terminal rewards from successful states to all visited states using graph propagation methods such as Breadth-First Search and Personalized PageRank.\n\nThe method treats topological signals as surrogates for process rewards by estimating how likely an intermediate state is to eventually reach a successful terminal state.\n\n## Evaluation Results\n\nThe paper evaluates RewardFlow on four agentic benchmarks spanning both text and visual modalities: Sokoban, ALFWorld, WebShop, and DeepResearch, achieving relative success-rate gains of 12.3% on ALFWorld and 27.7% on Sokoban over the strongest baseline, with 11.2% improvement on DeepResearch.\n\nWhen integrated as dense rewards for RL optimization, RewardFlow substantially outperforms prior RL baselines across four agentic reasoning benchmarks, demonstrating superior performance, robustness, and training efficiency.\n\nThe paper was published on arXiv on March 19, 2026, and the implementation is publicly available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "773528dc-ce6f-4c26-8e5c-347cd6cc05ac",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "96d6ae48-5499-4f15-aa60-663c293318eb",
+            "sourceToolAssistantUUID": "773528dc-ce6f-4c26-8e5c-347cd6cc05ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-10T19:07:01.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019kJq6sqwjxcayCWkVQ8Pxs",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"adaptive verification\" \"compute allocation\" agent RL when to check 2025 2026\"\n\nLinks: [{\"title\":\"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview\",\"url\":\"https://openreview.net/forum?id=JMDCMf7mlF\"},{\"title\":\"Adaptive Test-Time Compute Allocation\",\"url\":\"https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation\"},{\"title\":\"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization\",\"url\":\"https://arxiv.org/html/2604.14853v1\"},{\"title\":\"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure\",\"url\":\"https://arxiv.org/html/2602.03975v1\"},{\"title\":\"Deep|LLM 2026: From the Illusion of Model Development Stagnation to Large-Scale Real-World Agent Deployment\",\"url\":\"https://fundaai.substack.com/p/deepllm-2026-from-the-illusion-of\"},{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"[2512.03438] Multimodal Reinforcement Learning with Adaptive Verifier for AI Agents\",\"url\":\"https://arxiv.org/abs/2512.03438\"},{\"title\":\"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2505.11274\"},{\"title\":\"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub\",\"url\":\"https://github.com/opendilab/awesome-RLVR\"},{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"}]\n\nI found several relevant results about adaptive verification and compute allocation for agent reasoning systems. Here's what the search revealed:\n\n## Key Research Areas (2025-2026)\n\n**Anytime Verified Agents (AVA):** A framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, combining calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits.\n\n**Adaptive Test-Time Compute Allocation:** Recent work uses PRM or external verifier signals to adaptively prune, expand, or halt reasoning trajectories. In chain-of-thought settings, LATTS (Locally Adaptive Test-Time Scaling) employs step-level verifier scores to decide whether to accept, resample, backtrack, or terminate each reasoning step, allowing per-step compute adaptivity.\n\n**Verification-Cost-Limited Reasoning:** Recent approaches allocate verification according to state-local uncertainty rather than a uniform or purely problem-level rule, applying deterministic gating and ranking candidates with hybrid pre-verification scores.\n\n**RL for Adaptive Allocation:** Agents learn to adaptively allocate patience for test-time budgets, and models are trained through reward functions to learn to allocate token budgets and generate compliant outputs.\n\n**Broader Context on 2025-2026 Trends:** Differentiation has moved decisively to mid-training and reinforcement learning, where compute is converted into verifiable, executable skills.\n\nThe research shows an active shift toward decision-time adaptive approaches where the system learns when and how much to verify based on uncertainty and problem complexity.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3cfadbc-535e-487b-a3c0-4fbf13cdfdef",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "e1830d01-2fd7-4be1-a7cc-167eeffd9361",
+            "sourceToolAssistantUUID": "a3cfadbc-535e-487b-a3c0-4fbf13cdfdef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-10T19:07:07.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWEEL2ZVVgxzo2UKvXBpyx",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Anytime Verified Agents\" adaptive compute verification budget constraints arXiv 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1830d01-2fd7-4be1-a7cc-167eeffd9361",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQsNtg3gSy1AcJHHYkL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7154a542-ca0a-46ee-b533-f4dff700aeb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvdMeGCDhPbyMHd6AprGRJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2038,
+                "cache_read_input_tokens": 30327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2038,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-10T19:07:08.366Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0126y5JEk6huuYRWAnLP1PqJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "Uno-Orchestra arXiv 2605.05007 parsimonious selective delegation details method"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7154a542-ca0a-46ee-b533-f4dff700aeb0",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQsNtg3gSy1AcJHHYkL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18fdfd3a-0155-4775-961e-e53477c0d945",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvdMeGCDhPbyMHd6AprGRJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2038,
+                "cache_read_input_tokens": 30327,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2038
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 30327,
+                    "cache_creation_input_tokens": 2038,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2038,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-10T19:07:13.530Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWEEL2ZVVgxzo2UKvXBpyx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Anytime Verified Agents\" adaptive compute verification budget constraints arXiv 2026\"\n\nLinks: [{\"title\":\"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview\",\"url\":\"https://openreview.net/forum?id=JMDCMf7mlF\"},{\"title\":\"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure\",\"url\":\"https://arxiv.org/html/2602.03975\"},{\"title\":\"What If We Allocate Test-Time Compute Adaptively?\",\"url\":\"https://arxiv.org/html/2602.01070\"},{\"title\":\"Budget-Aware Tool-Use Enables Effective Agent Scaling\",\"url\":\"https://arxiv.org/html/2511.17006v1\"},{\"title\":\"Budget-aware Test-time Scaling via Discriminative Verification\",\"url\":\"https://arxiv.org/html/2510.14913v1\"},{\"title\":\"Agent Contracts: A Formal Framework for Resource-Bounded Autonomous AI Systems (Full)\",\"url\":\"https://arxiv.org/html/2601.08815v1\"},{\"title\":\"Reasoning on a Budget: A Survey of Adaptive and Controllable Test-Time Compute in LLMs\",\"url\":\"https://arxiv.org/html/2507.02076v1\"},{\"title\":\"arXiv:2505.11730v1 [cs.AI] 16 May 2025\",\"url\":\"https://arxiv.org/pdf/2505.11730\"},{\"title\":\"Zero-Trust Runtime Verification for Agentic Payment Protocols: Mitigating Replay and Context-Binding Failures in AP2 Citation: Authors. Title. Pages…. DOI:000000/11111.\",\"url\":\"https://arxiv.org/html/2602.06345v1\"},{\"title\":\"Sherlock: RELIABLE AND EFFICIENT AGENTIC WORKFLOW EXECUTION\",\"url\":\"https://arxiv.org/pdf/2511.00330\"}]\n\nBased on the search results, I found relevant information about \"Anytime Verified Agents\" and adaptive compute verification under budget constraints. Here are the key findings:\n\n## Anytime Verified Agents (AVA)\n\nAnytime Verified Agents (AVA) is a framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, with an extensible interface for tool use.\n\n### Key Problem\n\nExisting methods allocate computational resources using static strategies such as fixed search depths, constant self-consistency sampling, or uniform verification, so simple problems can consume as much compute as complex tasks.\n\n### AVA's Approach\n\nAVA combines calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits. The controller allocates compute based on uncertainty and estimated marginal reliability gains.\n\n### Evaluation\n\nAVA is evaluated on mathematical reasoning (GSM8K and MATH), multi-hop question answering (HotpotQA), and code generation (HumanEval), with two model backends.\n\nThe paper appears to be posted on OpenReview and represents recent work (dated © 2026) in the area of adaptive compute allocation for LLM-based reasoning systems operating under budget constraints.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7154a542-ca0a-46ee-b533-f4dff700aeb0",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "723227f2-f290-4b6d-86f0-cb0eee7ee00f",
+            "sourceToolAssistantUUID": "7154a542-ca0a-46ee-b533-f4dff700aeb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-10T19:07:14.900Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0126y5JEk6huuYRWAnLP1PqJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Uno-Orchestra arXiv 2605.05007 parsimonious selective delegation details method\"\n\nLinks: [{\"title\":\"[2605.05007] Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\",\"url\":\"https://arxiv.org/abs/2605.05007\"},{\"title\":\"Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\",\"url\":\"https://arxiv.org/html/2605.05007\"},{\"title\":\"Unsecured Lending via Delegated Underwriting\",\"url\":\"https://arxiv.org/html/2605.03307\"},{\"title\":\"Delegated Information ProvisionWe thank Martino Banchio, Gregorio Curello, Alkis Georgiadis-Harris, Nicola Pavoni, Marco Ottaviani, Mark Whitmeyer, and seminar audiences at Bielefeld, Bocconi, and Essex for their comments. Preusser acknowledges financial support by the European Research Council (HEUROPE 2022 ADG, GA No. 101055295 – InfoEcoScience).\",\"url\":\"https://arxiv.org/html/2603.10867\"},{\"title\":\"S-CAD: Selective Classical Advantage Distillation for Quantum Conference Key Agreement\",\"url\":\"https://arxiv.org/html/2605.02588\"},{\"title\":\"Emergence of Fluctuation Relations in UNO\",\"url\":\"https://arxiv.org/html/2406.09348v1\"},{\"title\":\"Selective Prediction from Agreement: A Lipschitz-Consistent Version Space Approach\",\"url\":\"https://arxiv.org/html/2605.02611v1\"},{\"title\":\"ANO: A Unified RL Framework for Robust Policy Optimization\",\"url\":\"https://arxiv.org/html/2605.02320v1\"},{\"title\":\"Selective social interactions and speed-induced leadership in schooling fish\",\"url\":\"https://arxiv.org/html/2305.17108\"},{\"title\":\"Authorization Propagation in Multi-Agent AI Systems: Identity Governance as Infrastructure\",\"url\":\"https://arxiv.org/html/2605.05440\"}]\n\nBased on the search results, here's what I found about the Uno-Orchestra paper (arXiv 2605.05007):\n\n## Overview\n\nUno-Orchestra addresses the problem that LLM multi-agent systems typically rely on rigid orchestration, committing either to flat per-query routing or hand-engineered task decomposition, where decomposition depth, worker choice, and inference budget are not jointly optimized.\n\n## Method\n\nUno-Orchestra introduces a unified orchestration policy that selectively decomposes a task and dispatches each subtask to an admissible (model, primitive) pair, with both decisions learned together from curated RL trajectories grounded in real worker interactions.\n\n## Performance\n\nAgainst 22 baselines on a 13-benchmark suite spanning math, code, knowledge, long-context, and agentic tool-use, Uno-Orchestra reaches 77.0% macro pass@1, roughly 16% above the strongest workflow baseline, at roughly an order of magnitude lower per-query cost.\n\nThe paper was submitted to arXiv on May 6, 2026, and has 14 authors led by Zhiqing Cui. For more detailed information about the method, you can access the full paper on the arXiv page.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18fdfd3a-0155-4775-961e-e53477c0d945",
+            "isSidechain": true,
+            "promptId": "087db35a-78d6-411e-b8d3-8caef3770d9e",
+            "agentId": "ad73687b938eb1b05",
+            "type": "user",
+            "uuid": "49605949-51b4-4bc5-a7e0-e8eb69edc14a",
+            "sourceToolAssistantUUID": "18fdfd3a-0155-4775-961e-e53477c0d945",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-10T19:08:28.679Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is my comprehensive report on recent papers (2025-2026) that may compete with or be missing from a proposal on \"learning when to self-verify in interactive LLM agents via RL with behavioral grounding.\"\n\n---\n\n## Highly Relevant Competing/Concurrent Papers\n\n### 1. S2R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning\n- **arXiv:** [2502.12853](https://arxiv.org/abs/2502.12853)\n- **Venue:** ACL 2025\n- **Date:** February 2025\n- **Relevance:** **Very high.** This paper directly trains LLMs to self-verify and self-correct using both outcome-level and process-level RL. It uses only rule-based reward models. With 3.1k behavior initialization samples, Qwen2.5-math-7B improves from 51.0% to 81.6%. The proposal must differentiate from this -- S2R focuses on math/reasoning domains, not interactive agents with environmental grounding.\n\n### 2. RISE: Reinforcing Reasoning with Self-Verification (Trust, But Verify)\n- **arXiv:** [2505.13445](https://arxiv.org/abs/2505.13445)\n- **Venue:** NeurIPS 2025\n- **Date:** May 2025\n- **Relevance:** **Very high.** RISE simultaneously trains a model to improve both problem-solving and self-verification within a single RL process, using verifiable rewards from an outcome verifier. Achieves up to 2.8x increase in verification accuracy. Key difference: RISE is applied to mathematical reasoning, not multi-turn interactive agents with environmental state changes.\n\n### 3. Think or Not? Selective Reasoning via RL for Vision-Language Models (TON)\n- **arXiv:** [2505.16854](https://arxiv.org/abs/2505.16854)\n- **Venue:** NeurIPS 2025\n- **Date:** May 2025\n- **Relevance:** **High.** Directly addresses the \"when to think\" question using GRPO. Uses a two-stage approach: SFT with \"thought dropout\" then GRPO to let the model explore when to reason vs. not. Reduces token usage by 90% without sacrificing performance. This is the \"selective compute\" angle applied to reasoning -- the proposal should cite this as the closest analog for selective verification.\n\n### 4. Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL (AutoThink)\n- **arXiv:** [2505.10832](https://arxiv.org/abs/2505.10832)\n- **Venue:** NeurIPS 2025\n- **Date:** May 2025\n- **Relevance:** **High.** Multi-stage RL framework that progressively optimizes when to invoke explicit reasoning vs. giving succinct answers. Improves accuracy by 6.4% while reducing tokens by 52%. Same conceptual space as \"learning when to verify\" but for reasoning rather than agent verification in environments.\n\n### 5. Anytime Verified Agents (AVA)\n- **Venue:** OpenReview (appears to be 2026 submission)\n- **Link:** [OpenReview](https://openreview.net/forum?id=JMDCMf7mlF)\n- **Relevance:** **Very high -- possibly the closest competitor.** AVA dynamically allocates compute across search, sampling, and verification within a user-specified budget. It combines calibrated uncertainty estimation, value-of-information-guided search expansion, and **selective verification cascades with early exits**. This directly addresses the question of \"when to verify\" in agents under budget constraints. The proposal must clearly differentiate from this work.\n\n### 6. AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\n- **arXiv:** [2511.08325](https://arxiv.org/abs/2511.08325)\n- **Venue:** ACM Web Conference 2026\n- **Date:** November 2025\n- **Relevance:** **High.** Confirms AgentPRM exists and is published. It redefines process reward models for agent tasks, capturing interdependence between sequential decisions. Is 8x more compute-efficient than baselines and shows improvement when scaling test-time compute. Relevant because process rewards could serve as the signal for when to verify.\n\n### 7. Process Reward Models for LLM Agents: Practical Framework (also called AgentPRM)\n- **arXiv:** [2502.10325](https://arxiv.org/abs/2502.10325)\n- **Date:** February 2025\n- **Relevance:** **High.** A second, separate AgentPRM paper. Introduces a lightweight actor-critic paradigm using Monte Carlo rollouts. Shows that 3B models trained with AgentPRM outperform GPT-4o baselines on ALFWorld. Directly relevant to process-level reward signals for agent verification decisions.\n\n### 8. Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\n- **arXiv:** [2605.05007](https://arxiv.org/abs/2605.05007)\n- **Date:** May 6, 2026\n- **Relevance:** **Moderate-high (concurrent work).** Verified to exist. Learns a unified orchestration policy that selectively decomposes tasks and dispatches subtasks, jointly optimizing decomposition depth, worker choice, and inference budget from RL trajectories grounded in real worker interactions. While focused on multi-agent routing rather than self-verification, the \"selective delegation\" and \"parsimonious compute\" framing overlaps conceptually with selective verification. 77.0% macro pass@1 across 13 benchmarks at 10x lower cost.\n\n---\n\n## Important Related Papers (Reward Shaping / Credit Assignment for Agents)\n\n### 9. AgentV-RL: Scaling Reward Modeling with Agentic Verifier\n- **arXiv:** [2604.16004](https://arxiv.org/abs/2604.16004)\n- **Date:** April 2026\n- **Relevance:** **High.** Introduces forward+backward agentic verifier agents for reward modeling. The forward agent traces solutions from premises to conclusions; the backward agent re-checks conclusions against premises. Relevant because it shows how verification can be structured as a learned agentic process.\n\n### 10. VAGEN / Agentic Reward Modeling: Verifying GUI Agent via Online Proactive Interaction\n- **arXiv:** [2602.00575](https://arxiv.org/abs/2602.00575)\n- **Date:** January 31, 2026\n- **Relevance:** **High.** Employs a verifier agent that proactively probes the environment to check task completion. Directly relevant to \"behavioral grounding\" -- uses interaction-based evidence rather than static output inspection to verify agent actions.\n\n### 11. Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\n- **arXiv:** [2509.25779](https://arxiv.org/abs/2509.25779)\n- **Date:** September 2025\n- **Relevance:** **Moderate-high.** Shows that process-level reward shaping makes 8B models highly competitive in agentic RL (2.7x improvement over GPT-5 baseline on TravelPlanner). Relevant to the proposal's use of reward signals -- demonstrates that dense process rewards are crucial for learning agent policies.\n\n### 12. RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL\n- **arXiv:** [2603.18859](https://arxiv.org/abs/2603.18859)\n- **Date:** March 19, 2026\n- **Relevance:** **Moderate-high.** Constructs state graphs from multiple rollouts and propagates terminal rewards using graph methods (BFS, Personalized PageRank) to estimate intermediate state value. This addresses credit assignment for when intermediate states contribute to success -- relevant because \"when to verify\" could be informed by state-graph topology.\n\n### 13. Enhancing Agentic RL with Progressive Reward Shaping and VSPO\n- **arXiv:** [2512.07478](https://arxiv.org/abs/2512.07478)\n- **Date:** December 2025\n- **Relevance:** **Moderate.** Directly addresses sparse reward problem in GRPO for agents. Proposes curriculum-inspired dense rewards (parseable tool calls first, then correctness). Addresses gradient degradation in GRPO. Relevant if the proposal uses GRPO as its RL algorithm.\n\n### 14. From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\n- **arXiv:** [2601.22607](https://arxiv.org/abs/2601.22607)\n- **Date:** January 30, 2026\n- **Relevance:** **Moderate-high.** Combines verifiable rewards with multi-turn interactive tool-using agents. Achieves strong gains on tau2-bench (58% to 73% on Airline). Directly relevant to training interactive agents with verifiable reward signals.\n\n### 15. Argos: Multimodal RL with Agentic Verifier\n- **arXiv:** [2512.03438](https://arxiv.org/abs/2512.03438)\n- **Date:** December 2025 (Microsoft Research)\n- **Relevance:** **Moderate-high.** Selects from a pool of scoring functions to evaluate final accuracy, spatiotemporal grounding, and reasoning quality. Key finding: agents collapse to ungrounded solutions during RL without online verification. Directly relevant to \"behavioral grounding\" as a verification criterion.\n\n### 16. ToolPRMBench: Evaluating Process Reward Models for Tool-using Agents\n- **arXiv:** [2601.12294](https://arxiv.org/abs/2601.12294)\n- **Date:** January 18, 2026\n- **Relevance:** **Moderate.** Provides a benchmark for evaluating step-level process rewards in tool-using agents. Relevant as infrastructure for evaluating the proposal's approach.\n\n### 17. Sherlock: Reliable and Efficient Agentic Workflow Execution\n- **arXiv:** [2511.00330](https://arxiv.org/abs/2511.00330)\n- **Date:** November 2025\n- **Relevance:** **Moderate-high.** Uses a learned verifier selector via preference learning to choose cost-optimal verifiers per node. Employs speculative execution with selective verification and rollback. Achieves 48.7% latency reduction. Relevant because it learns WHEN and WHICH verifier to apply at runtime.\n\n---\n\n## Summary of Key Gaps the Proposal Should Address\n\nThe landscape reveals these themes the proposal must differentiate from:\n\n1. **S2R and RISE** already train self-verification via RL but only for static reasoning (math), not interactive environments with state changes. The proposal's \"behavioral grounding\" (using action-change signals from the environment) is the key differentiator.\n\n2. **TON and AutoThink** learn \"when to think\" via GRPO/multi-stage RL but for selective reasoning depth, not for selective verification of actions in interactive environments.\n\n3. **AVA (Anytime Verified Agents)** is potentially the closest competitor -- it does adaptive verification allocation under budget constraints for agents. The proposal should clearly articulate how its RL-based approach differs from AVA's uncertainty-based heuristic allocation.\n\n4. **AgentV-RL and VAGEN/Agentic Reward Modeling** show that verification itself can be an agentic, interactive process -- the proposal should acknowledge and potentially build on this.\n\n5. **Uno-Orchestra** (May 2026, concurrent) learns selective delegation via RL grounded in worker interactions -- similar \"parsimonious compute\" philosophy but for routing rather than verification.\n\n6. **The GRPO variants** (PRS/VSPO, Planner-R1) address known issues with GRPO for agents -- if the proposal uses GRPO, it should reference these fixes.\n\nThe most critical papers to cite that the proposal might be missing: **AVA**, **TON/AutoThink** (for the \"learning when\" angle), **AgentV-RL** (April 2026), **RewardFlow** (March 2026), and **Uno-Orchestra** (May 2026 concurrent work).\n\nSources:\n- [S2R: Self-verify and Self-correct via RL](https://arxiv.org/abs/2502.12853)\n- [RISE: Trust, But Verify](https://arxiv.org/abs/2505.13445)\n- [TON: Think or Not? Selective Reasoning via RL](https://arxiv.org/abs/2505.16854)\n- [AutoThink: Learning When to Think](https://arxiv.org/abs/2505.10832)\n- [Anytime Verified Agents (AVA)](https://openreview.net/forum?id=JMDCMf7mlF)\n- [AgentPRM (Web Conference 2026)](https://arxiv.org/abs/2511.08325)\n- [AgentPRM (Practical Framework)](https://arxiv.org/abs/2502.10325)\n- [Uno-Orchestra](https://arxiv.org/abs/2605.05007)\n- [AgentV-RL](https://arxiv.org/abs/2604.16004)\n- [VAGEN/Agentic Reward Modeling for GUI Agents](https://arxiv.org/html/2602.00575v1)\n- [Planner-R1](https://arxiv.org/abs/2509.25779)\n- [RewardFlow](https://arxiv.org/abs/2603.18859)\n- [PRS + VSPO for Agentic RL](https://arxiv.org/abs/2512.07478)\n- [Verifiable-Reward RL for Tool-Using Agents](https://arxiv.org/abs/2601.22607)\n- [Argos: Multimodal RL with Agentic Verifier](https://arxiv.org/abs/2512.03438)\n- [ToolPRMBench](https://arxiv.org/abs/2601.12294)\n- [Sherlock](https://arxiv.org/pdf/2511.00330)\n- [Rethinking Agentic RL (Survey)](https://arxiv.org/abs/2604.27859)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49605949-51b4-4bc5-a7e0-e8eb69edc14a",
+            "isSidechain": true,
+            "agentId": "ad73687b938eb1b05",
+            "requestId": "req_011CauQtPjJV2jpjU6QfbfyY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e240603-a9f8-478a-8c03-16abd9c84aa9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f01f70a-3c46-4c97-8793-a9b22e29dd5e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UFfeqYkZLRbDHt8kr1dH1u",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1786,
+                "cache_read_input_tokens": 32365,
+                "output_tokens": 3538,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1786
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3538,
+                    "cache_read_input_tokens": 32365,
+                    "cache_creation_input_tokens": 1786,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1786,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-recent-papers-2025-2026-that-might-compete-with-a-proposal-about-le.md"
+}

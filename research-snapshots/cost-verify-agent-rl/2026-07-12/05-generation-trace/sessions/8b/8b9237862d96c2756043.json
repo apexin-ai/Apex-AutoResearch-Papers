@@ -1,0 +1,803 @@
+{
+  "schema_version": "1.0",
+  "id": "8b9237862d96c2756043",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for very recent papers (January-May 2026) on step-level credit assignment for LLM agent reinforcement learning th",
+  "task_key": "agent-a38d6324501fe7a2b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a38d6324501fe7a2b.jsonl",
+    "occurrence": 1,
+    "bytes": 44177,
+    "sha256": "200317b9f8972d81502d8f9ba7f9eaa55e3ea32011768d8ba2aa757807c8e7ef"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:02:28.267Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for very recent papers (January-May 2026) on step-level credit assignment for LLM agent reinforcement learning that might compete with the IAW proposal. Try these searches:\n1. \"step-level credit assignment LLM agent RL 2026\"\n2. \"non-uniform advantage weighting agent reinforcement learning 2026\"\n3. \"action-level reward shaping language model agent 2026\"\n4. \"selective optimization agent actions GRPO 2026\"\n5. \"StepPO step-aligned policy optimization agentic RL arXiv 2604\"\n6. \"T2PO uncertainty guided exploration multi-turn agentic RL\"\n7. \"SSVPO Sequential Shapley Values step-level credit ICLR 2026\"\n\nReport all papers found with their methods, venues, and how they relate to non-uniform optimization of agent actions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "3759066e-b679-44dd-8970-8e9827e33931",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:02:29.449Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these recent papers on step-level credit assignment for LLM agent reinforcement learning. Let me run all these searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3759066e-b679-44dd-8970-8e9827e33931",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bced71fc-a82f-476a-9d73-45fefc612b00",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:02:29.684Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VmBv4E2yw41mDRJSCn46Ky",
+              "name": "WebSearch",
+              "input": {
+                "query": "step-level credit assignment LLM agent RL 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bced71fc-a82f-476a-9d73-45fefc612b00",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "56286547-c962-4ce1-a507-2e370379e43d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:02:29.890Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W7CjBAMHSx9PUj9dyHwhg5",
+              "name": "WebSearch",
+              "input": {
+                "query": "non-uniform advantage weighting agent reinforcement learning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56286547-c962-4ce1-a507-2e370379e43d",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "26cf79b1-64d2-4e8d-a154-4ea0eb42e1d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:02:29.905Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7UMAbn24wUBDqqXzY2d7A",
+              "name": "WebSearch",
+              "input": {
+                "query": "action-level reward shaping language model agent 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26cf79b1-64d2-4e8d-a154-4ea0eb42e1d7",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8aa538e2-7fe5-4e1d-8120-6bbeb20400d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:02:30.103Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G6FX2fgdQkhF8Eh6CnbKGQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "selective optimization agent actions GRPO 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aa538e2-7fe5-4e1d-8120-6bbeb20400d1",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a51f5d7b-d6ea-419b-be95-01759f313f7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:02:30.305Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TcayKKUnq6SS4h2ppW4o4z",
+              "name": "WebSearch",
+              "input": {
+                "query": "StepPO step-aligned policy optimization agentic RL arXiv 2604"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a51f5d7b-d6ea-419b-be95-01759f313f7e",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "88316d9e-eb73-4b22-a0c5-9113ce0aa2e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 627,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:02:30.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015tkMyVCRtocDe7uAQr1vrc",
+              "name": "WebSearch",
+              "input": {
+                "query": "T2PO uncertainty guided exploration multi-turn agentic RL"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88316d9e-eb73-4b22-a0c5-9113ce0aa2e9",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5e65640f-5922-4e49-9fe9-f75399025dd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 627
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 627,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 627,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:02:30.527Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017pHeFvy9Dd6dDbR7ZPdbrZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "SSVPO Sequential Shapley Values step-level credit ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e65640f-5922-4e49-9fe9-f75399025dd0",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXGF1shQVqbQmBRZQc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "00225c8d-4e5d-439e-8b74-ca481eff69b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Pocu5jrzCdca5SdmciHCTZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 627
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 627,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 627,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:02:36.678Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TcayKKUnq6SS4h2ppW4o4z",
+              "type": "tool_result",
+              "content": "Web search results for query: \"StepPO step-aligned policy optimization agentic RL arXiv 2604\"\n\nLinks: [{\"title\":\"[2604.18401] StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2604.18401\"},{\"title\":\"StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2604.18401v1\"},{\"title\":\"Shuo Yu\",\"url\":\"https://www.catalyzex.com/author/Shuo%20Yu\"},{\"title\":\"Stepwise Alignment for Constrained Language Model Policy Optimization\",\"url\":\"https://arxiv.org/html/2404.11049\"},{\"title\":\"Act Wisely: Cultivating Meta-Cognitive Tool Use in Agentic Multimodal Models\",\"url\":\"https://arxiv.org/html/2604.08545\"},{\"title\":\"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization\",\"url\":\"https://arxiv.org/html/2505.15107\"},{\"title\":\"GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub\",\"url\":\"https://github.com/RUC-NLPIR/ARPO\"},{\"title\":\"Agentic Reinforced Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=TX4k7BF6aO\"},{\"title\":\"StaRPO: Stability-Augmented Reinforcement Policy Optimization\",\"url\":\"https://arxiv.org/html/2604.08905\"},{\"title\":\"ProMMSearchAgent: A Generalizable Multimodal Search Agent Trained with Process-Oriented Rewards\",\"url\":\"https://arxiv.org/html/2604.20486\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nStepPO presents a position on step-level Agentic RL, arguing that the conventional token-level Markov Decision Process (MDP) should be advanced to a step-level MDP formulation, and that the step, rather than the token, should be regarded as the proper action representation for LLM agents.\n\nThe paper proposes step-level credit assignment as the natural optimization counterpart of this formulation, thereby aligning policy optimization and reward propagation with the granularity of agent decisions.\n\nUnlike single-turn token-level alignment or reasoning enhancement, as in RLHF and RLVR, Agentic RL targets multi-turn interactive settings, where the goal is to optimize core agentic capabilities such as decision making and tool use while addressing new challenges including delayed and sparse rewards, as well as long and variable context.\n\nThe paper was published on arXiv as **2604.18401** and addresses a fundamental problem in how reinforcement learning is applied to LLM-based agents by shifting from token-level optimization to step-level optimization that better aligns with how agents actually make decisions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88316d9e-eb73-4b22-a0c5-9113ce0aa2e9",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "1d076016-3001-4e6f-a1b8-978a594d7641",
+            "sourceToolAssistantUUID": "88316d9e-eb73-4b22-a0c5-9113ce0aa2e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:02:37.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7UMAbn24wUBDqqXzY2d7A",
+              "type": "tool_result",
+              "content": "Web search results for query: \"action-level reward shaping language model agent 2026\"\n\nLinks: [{\"title\":\"Large Language Model Guided Incentive Aware Reward Design for Cooperative Multi-Agent Reinforcement Learning This work is currently under peer review.\",\"url\":\"https://arxiv.org/html/2603.24324\"},{\"title\":\"Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/html/2502.10325v1\"},{\"title\":\"Milestone-Guided Policy Learning for Long-Horizon Language Agents\",\"url\":\"https://arxiv.org/html/2605.06078\"},{\"title\":\"Scaling Autonomous Agents via Automatic Reward Modeling And Planning | OpenReview\",\"url\":\"https://openreview.net/forum?id=womU9cEwcO\"},{\"title\":\"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\",\"url\":\"https://arxiv.org/html/2509.25779v2\"},{\"title\":\"Empowering LLM Tool Invocation with Tool-call Reward Model | OpenReview\",\"url\":\"https://openreview.net/forum?id=LnBEASInVr\"},{\"title\":\"Reward Design with Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=10uNUgI5Kl\"},{\"title\":\"[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\",\"url\":\"https://arxiv.org/abs/2511.08325\"},{\"title\":\"A Brief Overview: Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859\"},{\"title\":\"A Simple Framework for Intrinsic Reward-Shaping for RL using LLM Feedback\",\"url\":\"https://alexzhang13.github.io/assets/pdfs/Reward_Shaping_LLM.pdf\"}]\n\nBased on the search results, here's what I found regarding action-level reward shaping for language model agents in 2026:\n\n## Recent Research on Reward Shaping for LLM Agents\n\nSeveral recent papers address reward shaping and fine-grained credit assignment for language model agents:\n\n**Action-Level and Process-Level Approaches:**\n\nMost existing agentic RL approaches rely solely on outcome-only reward signals, which assign credit at a coarse granularity. To address this, researchers propose specialized process reward models (TRM) designed to evaluate and reward each tool invocation.\n\nWhen applied to LLM agents for web navigation and tool use, trajectory-level methods assign identical credit to all actions regardless of individual contribution. BEACON exploits semantic milestones inherent to agentic tasks, enabling segment-level comparison within trajectories.\n\n**Effectiveness of Process-Level Reward Shaping:**\n\nSmaller models (8B) were highly responsive to reward shaping: with dense process-level signals, they reached competitive performance while being 3.5× more compute-efficient and 1.5× more memory-efficient than 32B models.\n\nNon-shaped rewards are noisy at low sample regimes with unstable performance, while shaped rewards lead to much more stable performance.\n\n**Key Challenge Being Addressed:**\n\nUnlike LLM reasoning, actions in agent tasks do not have a clear-cut correctness. Instead, they should be evaluated based on their proximity to the goal and the progress they have made.\n\nThese developments represent an active research area focused on improving credit assignment and training efficiency in language model agents through refined reward shaping mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aa538e2-7fe5-4e1d-8120-6bbeb20400d1",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "3cb1df8d-adca-42a1-9608-386e7f08479f",
+            "sourceToolAssistantUUID": "8aa538e2-7fe5-4e1d-8120-6bbeb20400d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T19:02:37.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015tkMyVCRtocDe7uAQr1vrc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"T2PO uncertainty guided exploration multi-turn agentic RL\"\n\nLinks: [{\"title\":\"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2605.02178v1\"},{\"title\":\"GitHub - WillDreamer/T2PO: [ICML2026 Spotlight] T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning · GitHub\",\"url\":\"https://github.com/WillDreamer/T2PO\"},{\"title\":\"TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents\",\"url\":\"https://arxiv.org/html/2602.11767v1\"},{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"},{\"title\":\"TURN-LEVEL TRAJECTORY OPTIMIZATION FOR ...\",\"url\":\"https://openreview.net/pdf?id=nYpOd7Eiq8\"},{\"title\":\"AT2PO: Agentic Turn-based Policy Optimization via Tree Search\",\"url\":\"https://arxiv.org/html/2601.04767v1\"},{\"title\":\"[2601.04767] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search\",\"url\":\"https://arxiv.org/abs/2601.04767\"},{\"title\":\"Explore | alphaXiv\",\"url\":\"https://www.alphaxiv.org/\"},{\"title\":\"Agentic Reinforced Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=TX4k7BF6aO\"},{\"title\":\"A2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\",\"url\":\"https://arxiv.org/html/2605.06200\"}]\n\nBased on the search results, I found comprehensive information about T2PO:\n\n## T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning\n\nT2PO is an ICML 2026 Spotlight paper on Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning.\n\n### Overview\n\nT2PO (Token- and Turn-level Policy Optimization) introduces a hierarchical uncertainty-aware framework that stabilizes multi-turn RL by explicitly controlling exploration through TTI, TDS, and RFT.\n\n### Key Mechanisms\n\nT2PO directly controls exploration at both the token and turn level using uncertainty signals, greatly improving stability and sample efficiency. More specifically:\n\n- T2PO tracks marginal uncertainty and triggers interventions when it dips below a threshold\n- T2PO resamples turns with negligible exploration progress, preventing wasted updates\n\n### Core Benefits\n\nBy explicitly regulating reasoning at both token and turn levels using intrinsic signals, T2PO effectively suppresses low-information action and mitigates training collapse without relying on additional reward shaping. Extensive experiments demonstrate that T2PO consistently improves training stability, exploration efficiency, and task performance.\n\n### Benchmarks\n\nT2PO achieved substantial gains on WebShop, ALFWorld, SearchQA and more—significantly better stability and learning efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e65640f-5922-4e49-9fe9-f75399025dd0",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "35b19dca-7bfa-474b-92ce-e7cc88051ab7",
+            "sourceToolAssistantUUID": "5e65640f-5922-4e49-9fe9-f75399025dd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T19:02:37.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VmBv4E2yw41mDRJSCn46Ky",
+              "type": "tool_result",
+              "content": "Web search results for query: \"step-level credit assignment LLM agent RL 2026\"\n\nLinks: [{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models\",\"url\":\"https://iclr.cc/virtual/2026/poster/10008182\"},{\"title\":\"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub\",\"url\":\"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL\"},{\"title\":\"Step-Level Credit Assignment\",\"url\":\"https://www.emergentmind.com/topics/step-level-credit-assignment\"},{\"title\":\"Paper page - From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\",\"url\":\"https://huggingface.co/papers/2604.09459\"},{\"title\":\"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\",\"url\":\"https://arxiv.org/html/2604.09459v1\"},{\"title\":\"Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview\",\"url\":\"https://openreview.net/forum?id=ooROvpmxMV\"},{\"title\":\"[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents\",\"url\":\"https://arxiv.org/abs/2603.08754\"},{\"title\":\"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=g33DGvnHYd\"},{\"title\":\"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models [Quick Review]\",\"url\":\"https://liner.com/review/ssvpo-effective-steplevel-credit-assignment-for-rl-training-of-language\"}]\n\nBased on the search results, here's what I found about step-level credit assignment in LLM agent RL in 2026:\n\n## Overview\n\nStep-level credit assignment localizes outcome responsibility to sequence steps, enabling fine-grained reward propagation in RL, multi-agent systems, and LLM reasoning.\n\n## Key Research Areas\n\nThe credit assignment problem manifests in two regimes: reasoning RL, where credit must be distributed across tokens and steps within a single chain-of-thought generation (500–30K+ tokens); and agentic RL, where multi-turn environment interaction introduces stochastic transitions, partial observability, and horizons of 100+ turns (100K–1M tokens), making episode-level credit increasingly uninformative.\n\n47 CA methods (41 core, 6 adjacent enablers) have been published between 2024 and early 2026, organizing them in a two-dimensional taxonomy by assignment granularity (token, segment, step, turn, multi-agent) and methodology (Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic).\n\n## Notable 2026 Methods\n\n**SSVPO**: SSVPO introduces an insertion MDP and Sequential Shapley Values (SSV), which measure each step's marginal contribution by reordering reasoning steps into alternative chains, ensuring fair credit assignment to all possible steps. SSVPO outperforms state-of-the-art RL methods, achieving up to an 11.6% gain in accuracy, an 18.1% reduction in token usage, and a 1.6× improvement in reasoning efficiency over vanilla methods.\n\n**HCAPO**: HCAPO leverages the LLM itself as a post-hoc critic to refine step-level Q-values through hindsight reasoning.\n\n**iStar**: iStar alternatively optimizes an implicit process reward model (PRM) with the policy model to generate step rewards for each action via a multi-turn DPO objective. The implicit step rewards are used to compute step-level advantages, which are combined with trajectory (or episode)-level advantages for policy updates.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56286547-c962-4ce1-a507-2e370379e43d",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "85de66f0-f4ce-4073-97e2-36de042c664b",
+            "sourceToolAssistantUUID": "56286547-c962-4ce1-a507-2e370379e43d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T19:02:37.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W7CjBAMHSx9PUj9dyHwhg5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"non-uniform advantage weighting agent reinforcement learning 2026\"\n\nLinks: [{\"title\":\"[1910.00177] Advantage-Weighted Regression: Simple and Scalable Off-Policy Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/1910.00177\"},{\"title\":\"GitHub - xbpeng/awr: Implementation of advantage-weighted regression. · GitHub\",\"url\":\"https://github.com/xbpeng/awr\"},{\"title\":\"Advantage-Weighted Regression (AWR)\",\"url\":\"https://www.emergentmind.com/topics/advantage-weighted-regression-awr\"},{\"title\":\"Learning to Optimize Multi-Objective Alignment Through Dynamic Reward Weighting\",\"url\":\"https://arxiv.org/html/2509.11452v1\"},{\"title\":\"Multi-agent reinforcement learning: weighting and partitioning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0893608099000246\"},{\"title\":\"Advantage-Weighted Regression: Simple and Scalable Off-Policy Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=ToWi1RjuEr8\"},{\"title\":\"Toward Generalized Web Agent Training: A Deep Dive into Entropy-Balanced Reinforcement Learning | Proceedings of the ACM Web Conference 2026\",\"url\":\"https://dl.acm.org/doi/10.1145/3774904.3792301\"},{\"title\":\"ADVANTAGE-WEIGHTED REGRESSION: SIMPLE AND ...\",\"url\":\"https://openreview.net/pdf/ec69fdc5cafd6a55f98afb0ffea7d424eaee6034.pdf\"},{\"title\":\"Explainable multi agent reinforcement learning framework for secure and adaptive communication in UAV swarm based fanets | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-026-39366-x\"},{\"title\":\"Ofﬂine Meta-Reinforcement Learning with Advantage Weighting\",\"url\":\"https://proceedings.mlr.press/v139/mitchell21a/mitchell21a.pdf\"}]\n\nI found several relevant research results related to advantage weighting in reinforcement learning. Here's what the search returned:\n\n## Key Findings\n\nThe most prominent research area appears to be Advantage-Weighted Regression (AWR), an off-policy reinforcement learning algorithm that uses advantage functions to weight data during policy regression. AWR consists of two standard supervised learning steps: one to regress onto target values for a value function, and another to regress onto weighted target actions for the policy.\n\nThe method employs a two-step process of value function regression and weighted policy optimization, leveraging exponential weighting to improve learning stability. Extensions such as FAWAC, CAWR, and QWR enhance safety, robustness, and sample efficiency, with applications spanning offline RL and language model alignment.\n\n## Recent 2026 Work\n\nMore recent work from 2026 includes research on dynamic weighting approaches: Dynamic reward weighting adaptively adjusts reward weights during the online reinforcement learning process, with continuous balancing that facilitates effective exploration of Pareto fronts in objective space.\n\nAdditionally, there's recent work on entropy-aware advantage estimation to prioritize learning on high-uncertainty tokens in the context of agentic reinforcement learning.\n\nThe search results don't reveal a specific method called \"non-uniform advantage weighting agent\" as a distinct named approach, but they do show that non-uniform weighting strategies are actively being researched in the context of modern reinforcement learning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26cf79b1-64d2-4e8d-a154-4ea0eb42e1d7",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "8fb75bfb-c189-4c14-b5da-1fb7b7556b7b",
+            "sourceToolAssistantUUID": "26cf79b1-64d2-4e8d-a154-4ea0eb42e1d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T19:02:37.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G6FX2fgdQkhF8Eh6CnbKGQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"selective optimization agent actions GRPO 2026\"\n\nLinks: [{\"title\":\"M2GRPO: Mamba-based Multi-Agent Group Relative Policy Optimization for Biomimetic Underwater Robots Pursuit\",\"url\":\"https://arxiv.org/html/2604.19404\"},{\"title\":\"[2604.19404] M$^{2}$GRPO: Mamba-based Multi-Agent Group Relative Policy Optimization for Biomimetic Underwater Robots Pursuit\",\"url\":\"https://arxiv.org/abs/2604.19404\"},{\"title\":\"Reinforcement Learning (RL) Guide | Unsloth Documentation\",\"url\":\"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide\"},{\"title\":\"Group Relative Policy Optimization (GRPO)\",\"url\":\"https://cameronrwolfe.substack.com/p/grpo\"},{\"title\":\"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub\",\"url\":\"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes\"},{\"title\":\"Constrained Group Relative Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2602.05863\"},{\"title\":\"Training-Free Group Relative Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=tyUnYbE7Gi\"},{\"title\":\"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1\",\"url\":\"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf\"},{\"title\":\"Reinforcement Learning | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/06-policy-gradients\"},{\"title\":\"Unlocking Agentic RL Training for GPT-OSS: A Practical Retrospective\",\"url\":\"https://huggingface.co/blog/LinkedIn/gpt-oss-agentic-rl\"}]\n\nBased on the search results, I found several relevant papers and resources about GRPO (Group Relative Policy Optimization) in 2026, though the specific query about \"selective optimization agent actions GRPO\" appears to relate primarily to one key work:\n\n## Key Finding: M2GRPO Framework\n\nThe M2GRPO (Mamba-based Multi-Agent Group Relative Policy Optimization) framework integrates a selective state-space Mamba policy with group-relative policy optimization under the centralized-training and decentralized-execution (CTDE) paradigm.\n\nA Mamba-based policy network is proposed which leverages selective state-space modeling to capture long-term temporal dependencies from local observation histories, while incorporating attention-enhanced interaction features to represent dynamic relational features within a unified interaction framework.\n\nThe framework was submitted on April 21, 2026, and extension simulation and real-world experiments have verified the effectiveness of the proposed framework, demonstrating the first integration of a Mamba-based decentralized policy with multi-agent group-relative optimization for underwater multi-robot decision-making.\n\n## Other GRPO-Related Work in 2026\n\nAdditionally, there are other notable GRPO variants emerging in 2026:\n\n- **Constrained GRPO**: GRPO has been extended to constrained policy optimization by enforcing user-specified behavioral constraints with thresholds.\n\n- **Training-Free GRPO**: Training-Free Group Relative Policy Optimization proposes a fundamental rethinking of agentic RL by instantiating the policy as a frozen LLM paired with a variable experiential context, shifting optimization from the parameter space to the context space.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a51f5d7b-d6ea-419b-be95-01759f313f7e",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "157193f7-a2a1-4b10-8df9-bc2af9923ceb",
+            "sourceToolAssistantUUID": "a51f5d7b-d6ea-419b-be95-01759f313f7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T19:02:38.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017pHeFvy9Dd6dDbR7ZPdbrZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SSVPO Sequential Shapley Values step-level credit ICLR 2026\"\n\nLinks: [{\"title\":\"ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models\",\"url\":\"https://iclr.cc/virtual/2026/poster/10008182\"},{\"title\":\"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=g33DGvnHYd\"},{\"title\":\"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models [Quick Review]\",\"url\":\"https://liner.com/review/ssvpo-effective-steplevel-credit-assignment-for-rl-training-of-language\"},{\"title\":\"SeqSHAP: Subsequence Level Shapley Value Explanations for Sequential Predictions | OpenReview\",\"url\":\"https://openreview.net/forum?id=0h4_YLDhf4K\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://openreview.net/pdf?id=wg3rBImn3O\"},{\"title\":\"AN AUCTION PLATFORM FOR AI AGENT MARKETPLACES\",\"url\":\"https://openreview.net/pdf?id=2on6M4DRey\"},{\"title\":\"Rethinking Shapley Value for Data Contribution | OpenReview\",\"url\":\"https://openreview.net/forum?id=ruaqPzbs7E\"},{\"title\":\"Provably Accurate Shapley Value Estimation via Leverage Score Sampling | OpenReview\",\"url\":\"https://openreview.net/forum?id=wg3rBImn3O\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/710f3f8473b93394505a082f9a8f3ba2-Paper-Conference.pdf\"},{\"title\":\"Published as a conference paper at ICLR 2021 SHAPLEY EXPLANATION NETWORKS\",\"url\":\"https://openreview.net/pdf/12770a255a18bc6c25ce69bdda082fd0d7a8cc87.pdf\"}]\n\nBased on the search results, I found relevant information about SSVPO (Sequential Shapley Value Policy Optimization) presented at ICLR 2026:\n\n## SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models\n\nSSVPO is a step-level credit assignment framework inspired by multi-agent RL that proposes Sequential Shapley Value Policy Optimization.\n\n### Key Components\n\nSSVPO introduces an insertion MDP and Sequential Shapley Values (SSV), which measure each step's marginal contribution by reordering reasoning steps into alternative chains, ensuring fair credit assignment to all possible steps.\n\n### Motivation\n\nPost-training with outcome-based reinforcement learning (RL) can further enhance reasoning but is inefficient because it relies solely on final rewards. Recent credit assignment–based RL methods provide intermediate feedback, yet they often struggle to fairly evaluate each step's importance, especially in partially correct reasoning chains.\n\n### Performance Results\n\nAcross 7 benchmarks, SSVPO outperforms state-of-the-art RL methods, both outcome-based (RLOO, GRPO, DAPO) and credit assignment–based (VinePPO, SPO), achieving up to an 11.6% gain in accuracy, an 18.1% reduction in token usage, and a 1.6× improvement in reasoning efficiency over vanilla methods.\n\n### Theoretical Contributions\n\nThe authors provide a theoretical proof that SSV fairness allocates credits and demonstrate that SSV as the new advantage baseline is consistent with Proximal Policy Optimization (PPO).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00225c8d-4e5d-439e-8b74-ca481eff69b2",
+            "isSidechain": true,
+            "promptId": "2c71ce81-a737-4243-8ee6-6db7c3c2b875",
+            "agentId": "a38d6324501fe7a2b",
+            "type": "user",
+            "uuid": "f7e02e0b-578c-4495-a103-31b7e7ac43a0",
+            "sourceToolAssistantUUID": "00225c8d-4e5d-439e-8b74-ca481eff69b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T19:02:55.226Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! I found several highly relevant papers from January-May 2026 on step-level credit assignment for LLM agent reinforcement learning. Here's a comprehensive report:\n\n## Papers Found (January-May 2026)\n\n### 1. **SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models**\n- **Venue:** ICLR 2026 (Poster)\n- **arXiv:** Not specified, but published at ICLR 2026\n- **Key Method:** Sequential Shapley Values (SSV) with insertion MDP\n- **Core Innovation:** Measures each step's marginal contribution by reordering reasoning steps into alternative chains to ensure fair credit assignment. SSV serves as the advantage baseline, proven consistent with PPO.\n- **Results:** Up to 11.6% accuracy gain, 18.1% reduction in token usage, 1.6× improvement in reasoning efficiency over vanilla methods\n- **Relation to IAW:** Direct competitor - uses game-theoretic (Shapley value) approach to non-uniformly weight step-level contributions, achieving similar goals as non-uniform advantage weighting\n\n### 2. **StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning**\n- **Venue:** arXiv 2604.18401 (April 2026)\n- **Key Method:** Step-level MDP formulation vs. token-level MDP\n- **Core Innovation:** Proposes that the step (not token) should be the proper action representation for LLM agents. Aligns policy optimization and reward propagation with agent decision granularity.\n- **Focus:** Multi-turn interactive settings with delayed/sparse rewards and long context\n- **Relation to IAW:** Foundational positioning paper - argues for step-level optimization; natural framework for non-uniform weighting approaches like IAW\n\n### 3. **T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning**\n- **Venue:** ICML 2026 (Spotlight)\n- **arXiv:** 2605.02178 (May 2026)\n- **Key Method:** Hierarchical uncertainty-aware framework (Token- and Turn-level Policy Optimization)\n- **Core Innovation:** Directly controls exploration at both token and turn levels using uncertainty signals (TTI, TDS, RFT). Suppresses low-information actions without additional reward shaping.\n- **Results:** Improvements on WebShop, ALFWorld, SearchQA with better stability and efficiency\n- **Relation to IAW:** Orthogonal approach - uses uncertainty to selectively optimize tokens/turns rather than value-based weighting, but achieves similar selective optimization goal\n\n### 4. **M2GRPO: Mamba-based Multi-Agent Group Relative Policy Optimization for Biomimetic Underwater Robots Pursuit**\n- **Venue:** arXiv 2604.19404 (April 2026)\n- **Key Method:** Selective state-space modeling (Mamba) with GRPO\n- **Core Innovation:** Integrates selective SSM policy with group-relative policy optimization under CTDE paradigm\n- **Relation to IAW:** Uses selective mechanisms in policy architecture, demonstrates group-relative approaches as alternative to individual step weighting\n\n### 5. **Other Related 2026 Work**\n\n**From Search Results:**\n- **HCAPO:** Post-hoc critic refinement using LLM itself to refine step-level Q-values\n- **iStar:** Implicit process reward model (PRM) optimized with policy to generate step rewards via multi-turn DPO; combines step-level with trajectory-level advantages\n- **ARPO (Agentic Reinforced Policy Optimization):** ICLR 2026 paper on agent RL\n- **Constrained GRPO:** GRPO extended with user-specified behavioral constraints\n- **Training-Free GRPO:** Shifts optimization from parameter to context space using frozen LLM\n\n### 6. **Process-Level Reward Shaping Work (Related)**\n- **AgentPRM:** Process Reward Models via Step-Wise Promise and Progress\n- **Planner-R1:** Reward shaping for efficient agentic RL with smaller LLMs\n- **Tool-call Reward Model:** Action-level rewards for tool invocation evaluation\n\n## Key Relationships to IAW (Non-Uniform Advantage Weighting)\n\n**Direct Competitors (Same Goal, Different Methods):**\n- **SSVPO:** Game-theoretic non-uniform weighting via Shapley values\n- **StepPO:** Foundational framework enabling step-level non-uniform optimization\n\n**Complementary Approaches (Orthogonal Mechanisms):**\n- **T2PO:** Uncertainty-guided selective optimization at step/token level\n- **M2GRPO & Constrained GRPO:** Group/constraint-based selective optimization\n- **iStar & HCAPO:** Hybrid step+trajectory level advantages\n\n**Related Technical Areas:**\n- Process reward models (AgentPRM, Tool-call RM) provide fine-grained signals that enable non-uniform weighting\n- Reward shaping literature (Planner-R1) discusses why step/action-level rewards outperform episode-level\n\nThe research landscape shows convergence on the importance of step-level credit assignment, with SSVPO and StepPO being the most direct competitors to IAW, each proposing different mechanisms (Shapley values vs. direct insertion MDP formulation vs. uncertainty-guided selection) to achieve non-uniform optimization of agent actions.\n\nSources:\n- [SSVPO at ICLR 2026](https://iclr.cc/virtual/2026/poster/10008182)\n- [StepPO arXiv 2604.18401](https://arxiv.org/abs/2604.18401)\n- [T2PO arXiv 2605.02178](https://arxiv.org/html/2605.02178v1)\n- [M2GRPO arXiv 2604.19404](https://arxiv.org/abs/2604.19404)\n- [ARPO at ICLR 2026](https://github.com/RUC-NLPIR/ARPO)\n- [AgentPRM arXiv 2511.08325](https://arxiv.org/abs/2511.08325)\n- [Agentic RL Survey](https://github.com/blacksnail789521/Agentic-RL-Training-Recipes)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7e02e0b-578c-4495-a103-31b7e7ac43a0",
+            "isSidechain": true,
+            "agentId": "a38d6324501fe7a2b",
+            "requestId": "req_011CauQXzHr4AFvdk96osi6K",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b97b2f08-c3bd-4a2a-99ef-2ba6fe007de7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73cacb99-a11d-4823-af3a-25d235e73069",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0187BH9Yg3sbE4827csha6ZQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7515,
+                "cache_read_input_tokens": 16780,
+                "output_tokens": 1538,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7515
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1538,
+                    "cache_read_input_tokens": 16780,
+                    "cache_creation_input_tokens": 7515,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7515,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-very-recent-papers-january-may-2026-on-step-level-credit-assignment.md"
+}

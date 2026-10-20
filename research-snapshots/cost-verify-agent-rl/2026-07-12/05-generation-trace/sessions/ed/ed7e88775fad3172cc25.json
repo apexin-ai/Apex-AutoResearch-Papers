@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ed7e88775fad3172cc25",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 已知信息 ### 服务器环境 - bjb1-17606: 2× RTX PRO 6000 Blackwell 94GB - conda 环境（非 venv）：source /root/miniconda",
+  "task_key": "84d7b6c4-86ca-487b-bec6-d7c6d6320c8f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/84d7b6c4-86ca-487b-bec6-d7c6d6320c8f.jsonl",
+    "occurrence": 1,
+    "bytes": 913803,
+    "sha256": "a526e7ead8b62c1ac88336565e7ed43f1a8889fde7608ba553982ba89316eaca"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "record": 58,
+      "user": 1,
+      "assistant": 49,
+      "tool_call": 67,
+      "tool_result": 67
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ed7e88775fad3172cc25-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "ed7e88775fad3172cc25-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "ed7e88775fad3172cc25-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-bjb1-17606-2-rtx-pro-6000-blackwell-94gb-conda-venv-source-root.md"
+}

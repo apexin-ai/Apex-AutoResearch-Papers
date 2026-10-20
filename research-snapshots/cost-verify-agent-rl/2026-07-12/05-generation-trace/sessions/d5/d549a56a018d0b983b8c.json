@@ -1,0 +1,962 @@
+{
+  "schema_version": "1.0",
+  "id": "d549a56a018d0b983b8c",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Extract specific experiment data from a large JSON registry file for plotting training curves. The file is at: `/home/ub",
+  "task_key": "agent-a21a14a12fb1d00d3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a21a14a12fb1d00d3.jsonl",
+    "occurrence": 1,
+    "bytes": 55875,
+    "sha256": "0b2fef2f105351512e868b808f3c62df33357adaa7f66529a0da2d02eedbc495"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T20:43:23.317Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Extract specific experiment data from a large JSON registry file for plotting training curves.\n\nThe file is at: `/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt`\n\nThe file is JSON with schema: `{result: string}` — the `result` field is itself a JSON string that needs parsing.\n\nI need data for these specific experiments:\n1. **hsweep_h2_seed1** (W&B run_id: 7o9bjszm) — Cell A monotonic collapse\n2. **factorial_h2_episodeadv_seed1** (W&B run_id: 6liw7fm1) — Cell B oscillation\n3. **exp029** or anything with \"episode_level\" or \"episode-level\" — Cell D stable learning\n4. **hsweep_h2_seed2** (W&B run_id: jhwyg4tc) — Cell A seed2 late recovery\n\nFor each, extract ALL available fields, especially:\n- Any training metrics (success rate, action validity, etc.) at each step\n- W&B run_id if present\n- Validation metrics\n- experiment name/id\n- Any \"metrics\" or \"results\" fields\n\nUse python or jq to parse the file. First probe the structure, then extract the relevant experiments.\n\nReturn the complete extracted data for all 4 experiments in a structured format. Be thorough — include every metric and data point available."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "a9e82083-75ba-47a2-8681-156f3bec3240",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T20:43:23.322Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a9e82083-75ba-47a2-8681-156f3bec3240",
+                "isSidechain": true,
+                "agentId": "a21a14a12fb1d00d3",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f54379f4-aad2-45ca-9193-aab9fb1e4723",
+                "timestamp": "2026-05-18T20:43:23.322Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+                "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T20:43:25.836Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by probing the file structure, then extract the relevant experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f54379f4-aad2-45ca-9193-aab9fb1e4723",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAggw6H7sSb6kyZGnpwx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2b5a6353-67dd-49fb-9f30-a0855cb95d57",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkHe6RcwEqsjuckroJeJa6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16430,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16430,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T20:43:27.332Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N4SX5kuLGoL6PtnxKko7n2",
+              "name": "Bash",
+              "input": {
+                "command": "wc -c /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt",
+                "description": "Check file size"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b5a6353-67dd-49fb-9f30-a0855cb95d57",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAggw6H7sSb6kyZGnpwx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c90e2f4d-c49a-4cb5-9242-c9e249c88465",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkHe6RcwEqsjuckroJeJa6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16430,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16430,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T20:43:27.494Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N4SX5kuLGoL6PtnxKko7n2",
+              "type": "tool_result",
+              "content": "109346 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c90e2f4d-c49a-4cb5-9242-c9e249c88465",
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "848a3cde-134d-4c08-91d4-06be3974b0b6",
+            "sourceToolAssistantUUID": "c90e2f4d-c49a-4cb5-9242-c9e249c88465",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T20:43:29.358Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017VzzziEnYdvK97iWgVZbtd",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt') as f:\n    outer = json.load(f)\nprint('Outer keys:', list(outer.keys()))\nprint('Type of result:', type(outer.get('result')))\nresult_str = outer['result']\nprint('Result string length:', len(result_str))\nprint('First 500 chars of result:', result_str[:500])\n\"",
+                "description": "Probe outer JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "848a3cde-134d-4c08-91d4-06be3974b0b6",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAggw6H7sSb6kyZGnpwx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e56a2bdf-d99f-40b9-991a-04aa60d0bea2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CkHe6RcwEqsjuckroJeJa6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16430,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 429,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16430
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 429,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16430,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16430,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T20:43:29.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017VzzziEnYdvK97iWgVZbtd",
+              "type": "tool_result",
+              "content": "Outer keys: ['result']\nType of result: <class 'str'>\nResult string length: 96105\nFirst 500 chars of result: {\"success\": true, \"data\": {\"experiments\": {\"exp029_episode_level_seed2\": {\"status\": \"DONE\", \"retry_count\": 3, \"created_at\": \"2026-05-18T04:48:01.826Z\", \"updated_at\": \"2026-05-18T18:25:16.249Z\", \"hypothesis\": \"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\", \"parent\": \"exp029_episod",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e56a2bdf-d99f-40b9-991a-04aa60d0bea2",
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "fef70d63-e2c7-4a26-82ad-c453bccff636",
+            "sourceToolAssistantUUID": "e56a2bdf-d99f-40b9-991a-04aa60d0bea2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T20:43:31.985Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I can see the structure. Now let me parse the inner JSON and extract the relevant experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef70d63-e2c7-4a26-82ad-c453bccff636",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAghPHd2BHyDKoR6kV1r",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "74b79246-bb01-4ff5-9bfe-c147ef3376b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmBc5338iVC2AhWS673Nc4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1636,
+                "cache_read_input_tokens": 16430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1636,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T20:43:34.689Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GDGTa7pdk8WGHAgsbJfnTQ",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nprint('Inner keys:', list(inner.keys()))\nprint('Success:', inner.get('success'))\ndata = inner.get('data', {})\nprint('Data keys:', list(data.keys()))\nexperiments = data.get('experiments', {})\nprint('Number of experiments:', len(experiments))\nprint('Experiment names:')\nfor name in sorted(experiments.keys()):\n    print(f'  {name}')\n\"",
+                "description": "Parse inner JSON and list all experiment names"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74b79246-bb01-4ff5-9bfe-c147ef3376b6",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAghPHd2BHyDKoR6kV1r",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f5f32828-b467-4f8d-8e36-9f792c3efe54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmBc5338iVC2AhWS673Nc4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1636,
+                "cache_read_input_tokens": 16430,
+                "output_tokens": 327,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1636
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 327,
+                    "cache_read_input_tokens": 16430,
+                    "cache_creation_input_tokens": 1636,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1636,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T20:43:34.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GDGTa7pdk8WGHAgsbJfnTQ",
+              "type": "tool_result",
+              "content": "Inner keys: ['success', 'data', 'error', 'metadata']\nSuccess: True\nData keys: ['experiments', 'count', 'total', 'baseline']\nNumber of experiments: 48\nExperiment names:\n  exp003\n  exp007\n  exp008_sft\n  exp009\n  exp010\n  exp011\n  exp012\n  exp012b\n  exp013\n  exp013b\n  exp013c\n  exp013d\n  exp013e\n  exp013f\n  exp015\n  exp016\n  exp017_expert_sft\n  exp019_expert_sft_v2\n  exp019b_expert_sft_v3\n  exp020_grpo_from_sft\n  exp020b_grpo_from_sft\n  exp021_ragen_sft_v4\n  exp022_grpo_from_sft_v4\n  exp023_grpo_parallel\n  exp023c_grpo_serial\n  exp024_success_gated_grpo\n  exp025\n  exp025b\n  exp025c\n  exp026_step_independent_grpo\n  exp027_stable_grpo\n  exp028_prereq_zeroshot\n  exp028a_recipe_fix\n  exp028c_selfguide_recipe\n  exp029_episode_level\n  exp029_episode_level_seed2\n  exp_001\n  exp_001b\n  exp_002\n  factorial_h2_episodeadv_seed1\n  gae_baseline_seed1\n  gsweep_g050_h5_seed1\n  gsweep_g080_h5_seed1\n  gsweep_g095_h5_seed1\n  gsweep_g100_h5_seed1\n  hsweep_h2_seed1\n  hsweep_h2_seed2\n  hsweep_h2_seed2_reeval_ood",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5f32828-b467-4f8d-8e36-9f792c3efe54",
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "330a6dbf-44f4-4747-aa39-9bc74754e6bb",
+            "sourceToolAssistantUUID": "f5f32828-b467-4f8d-8e36-9f792c3efe54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T20:43:37.399Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 target experiments are present. Now let me extract all their data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "330a6dbf-44f4-4747-aa39-9bc74754e6bb",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAghn9JBP7Vxz925NQB5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "077356db-c477-40f6-ae41-04675cc1260c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013g6SY9QtHpVTpmxKWzcYZX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 801,
+                "cache_read_input_tokens": 18066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 801,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T20:43:40.756Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S1wtedKiwvmhoRWmyf3KuA",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\ntargets = [\n    'hsweep_h2_seed1',\n    'factorial_h2_episodeadv_seed1',\n    'exp029_episode_level',\n    'exp029_episode_level_seed2',\n    'hsweep_h2_seed2',\n]\n\nfor name in targets:\n    if name in experiments:\n        exp = experiments[name]\n        print(f\"\\n{'='*80}\")\n        print(f\"EXPERIMENT: {name}\")\n        print(f\"{'='*80}\")\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n    else:\n        print(f\"\\n*** {name} NOT FOUND ***\")\n\nPYEOF",
+                "description": "Extract all data for the 4 target experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "077356db-c477-40f6-ae41-04675cc1260c",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAghn9JBP7Vxz925NQB5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76183d40-07af-4596-ba2c-070a773834ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013g6SY9QtHpVTpmxKWzcYZX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 801,
+                "cache_read_input_tokens": 18066,
+                "output_tokens": 427,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 801
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 427,
+                    "cache_read_input_tokens": 18066,
+                    "cache_creation_input_tokens": 801,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 801,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T20:43:40.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S1wtedKiwvmhoRWmyf3KuA",
+              "type": "tool_result",
+              "content": "================================================================================\nEXPERIMENT: hsweep_h2_seed1\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T04:37:11.061Z\",\n  \"updated_at\": \"2026-05-17T14:36:40.246Z\",\n  \"hypothesis\": \"Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality\",\n  \"parent\": \"exp029_episode_level\",\n  \"spec\": {\n    \"command\": \"bash /root/cost-verify-agent-rl/scripts/launch_hsweep.sh 2 1\",\n    \"server\": \"bjb1-17606\",\n    \"gpu\": [\n      \"cuda:0\",\n      \"cuda:1\"\n    ],\n    \"pid\": \"920380\",\n    \"model_name\": \"Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4)\",\n    \"data_path\": \"RAGEN expert data (same as exp029)\",\n    \"data_count\": \"16 train tasks / 128 val tasks\",\n    \"seed\": 10000,\n    \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\",\n    \"algorithm\": \"GRPO + step_independent (h=2)\",\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\",\n    \"eval_data\": \"N/A (training experiment, not eval)\",\n    \"key_params\": {\n      \"context_window_mode\": \"step_independent\",\n      \"step_independent_history_length\": 2,\n      \"total_training_steps\": 15,\n      \"test_freq\": 5,\n      \"save_freq\": 5,\n      \"gamma\": 0.95,\n      \"kl_loss_coef\": 0.01,\n      \"group_size\": 8\n    }\n  },\n  \"metrics\": {\n    \"train_step\": 15,\n    \"total_steps\": 15,\n    \"wandb_run_id\": \"7o9bjszm\",\n    \"step1\": {\n      \"success\": 0.1875,\n      \"pass_at_8\": 0.4375,\n      \"invalid_action\": 0.027\n    },\n    \"step2\": {\n      \"success\": 0.1484,\n      \"pass_at_8\": 0.5,\n      \"invalid_action\": 0.02\n    },\n    \"step3\": {\n      \"success\": 0.1875,\n      \"pass_at_8\": 0.625,\n      \"invalid_action\": 0.028\n    },\n    \"step4\": {\n      \"success\": 0.0547,\n      \"pass_at_8\": 0.25,\n      \"invalid_action\": 0.264\n    },\n    \"step5\": {\n      \"success\": 0.0156,\n      \"pass_at_8\": 0.0625,\n      \"invalid_action\": 0.369\n    },\n    \"step6\": {\n      \"success\": 0.0313,\n      \"pass_at_8\": 0.25,\n      \"invalid_action\": 0.471\n    },\n    \"step7\": {\n      \"success\": 0.0469,\n      \"pass_at_8\": 0.1875,\n      \"invalid_action\": 0.502\n    },\n    \"step8\": {\n      \"success\": 0.0156,\n      \"pass_at_8\": 0.125,\n      \"invalid_action\": 0.542\n    },\n    \"step9\": {\n      \"success\": 0,\n      \"pass_at_8\": 0,\n      \"invalid_action\": 0.641\n    },\n    \"step10\": {\n      \"success\": 0.0234\n    },\n    \"step11_15\": {\n      \"success\": 0,\n      \"invalid_action\": 0.972\n    },\n    \"val_final\": {\n      \"success\": 0,\n      \"invalid_action\": 0.999,\n      \"action_is_valid\": 0.0006\n    },\n    \"checkpoint\": \"global_step_5,10,15\",\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/\",\n    \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\",\n    \"gpu_util\": \"95-100%\",\n    \"collapse_onset\": \"step3→step4\",\n    \"elapsed_hours\": 10.04,\n    \"step15_entropy\": 0.342,\n    \"step15_kl_loss\": 0.777,\n    \"step15_grad_norm\": 1.611,\n    \"auto_next_triggered\": true,\n    \"seed2_pid\": 945877,\n    \"seed2_wandb\": \"jhwyg4tc\"\n  },\n  \"plan_id\": \"plan_002\",\n  \"conclusion\": \"success\",\n  \"notes\": \"15 steps 完成。Hypothesis 验证：h=2 step_independent 确实灾难性崩溃（step 3→4 onset, step 9 归零, step 11-15 持续为零）。Final val: success=0%, invalid_action=99.9%, action_is_valid=0.06%。模型彻底退化到几乎只输出无效动作。\",\n  \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15\",\n  \"log_path\": \"/root/runs/cost-verify-agent-rl/hsweep-h2-seed1.log\",\n  \"completed_at\": \"2026-05-17T14:35:27.052Z\"\n}\n\n================================================================================\nEXPERIMENT: factorial_h2_episodeadv_seed1\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 2,\n  \"created_at\": \"2026-05-17T18:17:23.327Z\",\n  \"updated_at\": \"2026-05-18T10:22:36.071Z\",\n  \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\",\n  \"parent\": \"hsweep_h2_seed1\",\n  \"server\": \"westd-47453\",\n  \"gpu\": \"cuda:0,cuda:1\",\n  \"reproduce\": {\n    \"command\": \"bash -c \\\"export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\"\",\n    \"finished_at\": \"2026-05-18T10:16:37.005Z\"\n  },\n  \"failure_reason\": \"False positive: W&B atexit BrokenPipeError during cleanup. Training completed all 15/15 steps normally.\",\n  \"completed_at\": \"2026-05-17T19:23:42.236Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-17T19:23:44.970401+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-17T20:06:00.076942+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T10:16:44.344646+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    }\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\"\",\n    \"server\": \"westd-47453\",\n    \"gpu\": [\n      \"cuda:0\",\n      \"cuda:1\"\n    ],\n    \"pid\": 475745,\n    \"wandb_run_id\": \"jsrvwcfd\",\n    \"model_name\": \"Qwen3-1.7B-SFT (exp021)\",\n    \"seed\": 42,\n    \"data_path\": \"ALFWorld valid_unseen\",\n    \"data_count\": \"3553 train + 134 OOD eval\",\n    \"log_path\": \"~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log\",\n    \"env\": \"TMPDIR=/root/autodl-tmp/tmp TORCH_COMPILE_DISABLE=1\",\n    \"checkpoint_source\": \"Qwen3-1.7B-SFT exp021\",\n    \"eval_data\": \"ALFWorld valid_unseen 134 tasks (OOD)\"\n  },\n  \"metrics\": {\n    \"completed_steps\": \"15/15\",\n    \"wandb_run_id\": \"6liw7fm1\",\n    \"val_step5\": {\n      \"success\": 0.0597,\n      \"dataset\": \"AlfworldOOD_134tasks\"\n    },\n    \"val_step15\": {\n      \"success\": 0.0075\n    },\n    \"kl_loss_trajectory\": {\n      \"step1\": 0.238,\n      \"step5\": 0.735,\n      \"step10\": 1.029,\n      \"step15\": 2.845\n    },\n    \"ppo_kl_range\": \"0.025-0.096\",\n    \"best_checkpoint\": \"global_step_5\",\n    \"best_val_success\": 0.0597,\n    \"train_step1\": {\n      \"success\": 0.203,\n      \"pass_at_8\": 0.688\n    },\n    \"train_step6\": {\n      \"success\": 0.258,\n      \"pass_at_8\": 0.813\n    },\n    \"checkpoint_paths\": {\n      \"step5\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\",\n      \"step10\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\",\n      \"step15\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\"\n    },\n    \"exit_cause\": \"W&B atexit BrokenPipeError (false positive)\",\n    \"kl_issue\": \"kl_loss_coef=0.01 too low, policy drifted after step 5\",\n    \"status_note\": \"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\"\n  },\n  \"notes\": \"W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。\",\n  \"conclusion\": \"success\"\n}\n\n================================================================================\nEXPERIMENT: exp029_episode_level\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T08:49:53.280Z\",\n  \"updated_at\": \"2026-05-18T04:11:39.305Z\",\n  \"hypothesis\": \"Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。\",\n  \"parent\": \"exp028c_selfguide_recipe\",\n  \"notes\": \"Director 决策 early-stop at step 15（val success 28.125%, pass@8=92.9%）释放 GPU 给 h-sweep。MVP 已通过（step 5 val=25%, 2x baseline）。Episode-level 训练假设确认：从 12.5% baseline 提升到 28.125%，而 step-independent 崩塌到 0%。Checkpoint: global_step_15。\",\n  \"server\": \"bjb1-17606\",\n  \"gpu\": \"cuda:0,cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"bjb1-17606\",\n    \"gpu\": \"cuda:0,cuda:1\",\n    \"started_at\": \"2026-05-16T09:49:15.902Z\",\n    \"finished_at\": \"2026-05-16T19:20:32.435Z\",\n    \"training_hours\": 9.52\n  },\n  \"failure_reason\": null,\n  \"completed_at\": null,\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T16:10:47.902736+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T18:24:49.059842+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T19:09:41.491953+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T19:20:35.794556+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\",\n      \"metrics\": {\n        \"step_0_val\": {\n          \"success\": 12.5,\n          \"pass_at_1\": 12.5,\n          \"action_is_valid\": 78.3,\n          \"episodes\": 32,\n          \"note\": \"当前 run (W&B 6d4oml60) val_before_train\"\n        },\n        \"step_1_train\": {\n          \"success\": 17.97,\n          \"pass_at_8\": 56.25,\n          \"action_is_valid\": 68.24,\n          \"action_is_effective\": 99.47,\n          \"num_actions\": 42.03,\n          \"entropy\": 0.02775,\n          \"kl_loss\": 0.000915,\n          \"pg_loss\": -4.59e-05,\n          \"grad_norm\": 1.267,\n          \"score_mean\": 1.797,\n          \"response_length\": 7112,\n          \"response_length_max\": 16381,\n          \"time_s\": 1810,\n          \"note\": \"当前 run。success 17.97% > baseline 12.5%。entropy/grad_norm 正常（full mode token-mean 量纲）\"\n        }\n      },\n      \"notes\": \"当前运行: PID 889859, W&B 6d4oml60。正确日志: /root/autodl-tmp/exp029_restart.log。Step 1 完成(30m10s/step)，step 2 进行中。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。val env_groups=32。ETA 全部 100 steps ≈ 50h。\"\n    }\n  },\n  \"conclusion\": \"success\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp029_episode_level\\\"\",\n    \"server\": \"bjb1-17606\",\n    \"gpu\": [\n      \"cuda:0\",\n      \"cuda:1\"\n    ],\n    \"pid\": \"902342\",\n    \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_episode_level.log\",\n    \"submitted_at\": \"2026-05-16T20:12:30.835Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029/global_step_15/actor/huggingface\",\n    \"wall_clock_seconds\": 30261.8,\n    \"gpu_hours\": 16.81\n  },\n  \"metrics\": {\n    \"reeval_ood_134tasks\": {\n      \"success\": 0.2388,\n      \"action_is_valid\": 0.5683,\n      \"action_is_effective\": 0.916,\n      \"manager_invalid_action\": 0.0839,\n      \"reward_mean\": 2.388,\n      \"best_at_8\": 8.88,\n      \"dataset\": \"AlfworldSG_OOD_134tasks\",\n      \"date\": \"2026-05-18\"\n    }\n  }\n}\n\n================================================================================\nEXPERIMENT: exp029_episode_level_seed2\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 3,\n  \"created_at\": \"2026-05-18T04:48:01.826Z\",\n  \"updated_at\": \"2026-05-18T18:25:16.249Z\",\n  \"hypothesis\": \"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\",\n  \"parent\": \"exp029_episode_level\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-18T17:27:12.433Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\",\n  \"completed_at\": \"2026-05-18T05:41:19.165Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T05:41:22.770723+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T06:18:18.594301+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T07:41:53.887922+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T09:53:02.637445+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T10:29:27.034216+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T15:00:41.979643+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T15:20:52.909936+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T17:27:16.338465+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    }\n  },\n  \"spec\": {\n    \"command\": \"cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp029_episode_level_seed2\",\n    \"server\": \"bjb1-17606\",\n    \"gpu\": \"cuda:0,1\",\n    \"pid\": 66897,\n    \"wandb_run_id\": \"25d60jf4\",\n    \"data_path\": \"ALFWorld\",\n    \"data_count\": 134,\n    \"model_name\": \"Qwen3-1.7B (SFT v4 checkpoint)\",\n    \"seed\": 43,\n    \"checkpoint_source\": \"exp021_ragen_sft_v4\",\n    \"eval_data\": \"AlfworldSG_OOD 134 tasks\",\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed2/\",\n    \"log_path\": \"/root/runs/cost-verify-agent-rl/exp029_seed2_resume_step15.log\",\n    \"hyperparams\": {\n      \"total_training_steps\": 100,\n      \"enable_gradient_checkpointing\": true,\n      \"ppo_mini_batch_size\": 8,\n      \"ppo_max_token_len_per_gpu\": 16384,\n      \"env_groups\": 8,\n      \"group_size\": 8,\n      \"optimizer_offload\": false,\n      \"max_actor_ckpt_to_keep\": 3\n    },\n    \"notes\": \"Resume from step 15 after disk full crash. step_25 corrupted (truncated optimizer files). Deleted step_5/10/20/25 ckpts. max_actor_ckpt_to_keep=3. optimizer_offload=false. Using conda base env.\"\n  },\n  \"conclusion\": \"killed\",\n  \"notes\": \"Director 止损 kill。bjb1 累计 10+ 次失败。step 15 val=21.875% (32 tasks)，数据保留在 /root/autodl-tmp/checkpoints/exp029-seed2/。计划转移到 westd cuda:0,1 继续（factorial 完成后）。\"\n}\n\n================================================================================\nEXPERIMENT: hsweep_h2_seed2\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T14:37:14.817Z\",\n  \"updated_at\": \"2026-05-18T02:55:38.705Z\",\n  \"hypothesis\": \"h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.\",\n  \"parent\": \"hsweep_h2_seed1\",\n  \"spec\": {\n    \"command\": \"python train.py --config-name _alfworld_hsweep_h2 seed.train=20000 trainer.experiment_name=hsweep-h2-seed2\",\n    \"server\": \"bjb1-17606\",\n    \"gpu\": \"cuda:0,1\",\n    \"pid\": 945877,\n    \"wandb_run_id\": \"jhwyg4tc\",\n    \"model_name\": \"Qwen3-1.7B\",\n    \"seed\": 20000,\n    \"data_path\": \"ALFWorld\",\n    \"data_count\": \"134 train tasks\",\n    \"checkpoint_source\": \"Qwen3-1.7B base (same as hsweep_h2_seed1, not from parent checkpoint)\",\n    \"eval_data\": \"ALFWorld val 16 tasks\",\n    \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s2.log\",\n    \"notes\": \"auto_next triggered from hsweep_h2_seed1 completion. LOG_PER_SAMPLE_ADV=1 for plan_004 advantage logging.\",\n    \"env\": \"LOG_PER_SAMPLE_ADV=1\",\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\"\n  },\n  \"metrics\": {\n    \"current_step\": \"15/15\",\n    \"completed\": true,\n    \"val_step5\": {\n      \"success\": 0\n    },\n    \"val_step10\": {\n      \"success\": 0\n    },\n    \"val_step15\": {\n      \"success\": 0.09375\n    },\n    \"train_step14\": {\n      \"success\": 0.2656,\n      \"pass_at_8\": 0.6875\n    },\n    \"train_step15\": {\n      \"success\": 0.2812,\n      \"pass_at_8\": 0.625,\n      \"entropy\": 0.401,\n      \"ppo_kl\": 0.006\n    },\n    \"train_success_peak\": {\n      \"step\": 15,\n      \"value\": 0.2812\n    },\n    \"adv_log_lines\": 3000,\n    \"adv_episodes\": {\n      \"total\": 128,\n      \"success\": 65,\n      \"fail\": 63\n    },\n    \"adv_analysis\": {\n      \"sign_outcome_agreement\": 0.5207,\n      \"point_biserial_r\": 0.068,\n      \"p_adv_pos_given_success\": 0.3706,\n      \"p_adv_pos_given_failure\": 0.306,\n      \"magnitude_decay_gamma\": 0.9426,\n      \"distribution_overlap\": 0.878,\n      \"verdict\": \"52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\"\n    },\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\",\n    \"checkpoint_warning\": \"seed2 overwrote seed1 step15 checkpoint in same directory\",\n    \"status_note\": \"COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random.\"\n  },\n  \"conclusion\": \"success\",\n  \"notes\": \"15/15 步正常完成 + final val。Hypothesis NOT confirmed：seed2 未复现 seed1 的 catastrophic collapse。关键差异：(1) action_is_valid 始终 88-100%（seed1 崩至 0.06%）(2) val step 15 恢复到 9.375%（seed1 终值 0%）(3) train step 15 success=28.1%（seed1 终值 0%）。Val step 0/5/10 确实为 0%，说明 h=2 确实造成学习困难，但不是 seed1 那样的不可逆 catastrophic collapse。Collapse 行为是 seed-dependent 的，不是 robust finding。ADV log 3000 行可用于 sign misattribution 分析。注意：checkpoint 写入 hsweep-h2/ 目录（与 seed1 共享，global_step_15 被覆盖）。\",\n  \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15\",\n  \"log_path\": \"/root/runs/cost-verify-agent-rl/hsweep-h2-seed2.log\",\n  \"completed_at\": \"2026-05-18T02:52:28.352Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76183d40-07af-4596-ba2c-070a773834ff",
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "2dcd2fb7-e740-438a-9249-c9ed312584dc",
+            "sourceToolAssistantUUID": "76183d40-07af-4596-ba2c-070a773834ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T20:43:44.344Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check for any additional step-by-step training metrics that might be in the `exp029_episode_level` extra data, and check the `baseline` field."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dcd2fb7-e740-438a-9249-c9ed312584dc",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAgiDzohuVxF9Bpucf2B",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b7791db3-c64f-4006-b1b3-106356b68397",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013djmx8apAvjhkyjSvvj3Bz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7967,
+                "cache_read_input_tokens": 18867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7967,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T20:43:52.462Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GD8PhaxHK2srKCwzAoYNEv",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/d17e30c6-966f-4a44-811f-536f6eafa9b6/tool-results/mcp-agent-ml-research-read_registry-1779136986931.txt') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\n\n# Check baseline data\nbaseline = inner['data'].get('baseline')\nif baseline:\n    print(\"BASELINE DATA:\")\n    print(json.dumps(baseline, indent=2))\nelse:\n    print(\"No baseline field\")\n\n# Also check exp029_episode_level's extra.previous_failure.metrics for detailed step data\nexp029 = inner['data']['experiments']['exp029_episode_level']\nprev = exp029.get('extra', {}).get('previous_failure', {}).get('metrics', {})\nprint(\"\\n\\nexp029 previous_failure metrics (detailed step data):\")\nprint(json.dumps(prev, indent=2))\n\n# Check hsweep_h2_seed2 reeval_ood if exists\nreeval = inner['data']['experiments'].get('hsweep_h2_seed2_reeval_ood')\nif reeval:\n    print(\"\\n\\nhsweep_h2_seed2_reeval_ood:\")\n    print(json.dumps(reeval, indent=2))\n\nPYEOF",
+                "description": "Check baseline and extra metrics data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7791db3-c64f-4006-b1b3-106356b68397",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAgiDzohuVxF9Bpucf2B",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c36b84f-2d59-4fe7-a52c-ebc2eb32e276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013djmx8apAvjhkyjSvvj3Bz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7967,
+                "cache_read_input_tokens": 18867,
+                "output_tokens": 493,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7967
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 493,
+                    "cache_read_input_tokens": 18867,
+                    "cache_creation_input_tokens": 7967,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7967,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T20:43:52.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GD8PhaxHK2srKCwzAoYNEv",
+              "type": "tool_result",
+              "content": "No baseline field\n\n\nexp029 previous_failure metrics (detailed step data):\n{\n  \"step_0_val\": {\n    \"success\": 12.5,\n    \"pass_at_1\": 12.5,\n    \"action_is_valid\": 78.3,\n    \"episodes\": 32,\n    \"note\": \"\\u5f53\\u524d run (W&B 6d4oml60) val_before_train\"\n  },\n  \"step_1_train\": {\n    \"success\": 17.97,\n    \"pass_at_8\": 56.25,\n    \"action_is_valid\": 68.24,\n    \"action_is_effective\": 99.47,\n    \"num_actions\": 42.03,\n    \"entropy\": 0.02775,\n    \"kl_loss\": 0.000915,\n    \"pg_loss\": -4.59e-05,\n    \"grad_norm\": 1.267,\n    \"score_mean\": 1.797,\n    \"response_length\": 7112,\n    \"response_length_max\": 16381,\n    \"time_s\": 1810,\n    \"note\": \"\\u5f53\\u524d run\\u3002success 17.97% > baseline 12.5%\\u3002entropy/grad_norm \\u6b63\\u5e38\\uff08full mode token-mean \\u91cf\\u7eb2\\uff09\"\n  }\n}\n\n\nhsweep_h2_seed2_reeval_ood:\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T04:12:03.656Z\",\n  \"updated_at\": \"2026-05-18T05:13:33.875Z\",\n  \"hypothesis\": \"Evaluate hsweep_h2_seed2 checkpoint (step 15) on OOD 134 tasks to get comparable metric with exp029 reeval (23.88%). If val success remains low (~9% in-distribution), confirms collapse is real even with late recovery.\",\n  \"parent\": \"hsweep_h2_seed2\",\n  \"spec\": {\n    \"command\": \"python train.py --config-name _alfworld_hsweep_h2_seed2_reeval_ood\",\n    \"server\": \"bjb1-17606\",\n    \"gpu\": [\n      \"cuda:0\",\n      \"cuda:1\"\n    ],\n    \"model_name\": \"Qwen3-1.7B (hsweep-h2 step 15, seed2)\",\n    \"data_path\": \"ALFWorld valid_unseen\",\n    \"data_count\": \"134 OOD tasks\",\n    \"seed\": 10001,\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15\",\n    \"eval_data\": \"AlfworldSG_OOD 134 tasks\",\n    \"log_path\": \"/root/runs/cost-verify-agent-rl/hsweep-h2-seed2-reeval-ood.log\",\n    \"checkpoint_path\": \"N/A (eval only)\"\n  },\n  \"metrics\": {\n    \"success\": 0.0373,\n    \"action_is_valid\": 0.994,\n    \"action_is_effective\": 1,\n    \"pass_at_1\": 0.0373,\n    \"num_actions\": 48.53,\n    \"response_length\": 8501,\n    \"dataset\": \"AlfworldSG_OOD_134tasks\",\n    \"date\": \"2026-05-18\",\n    \"note\": \"Valid actions (99.4%) but cannot complete tasks - generates long ineffective sequences\"\n  },\n  \"conclusion\": \"success\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-18T05:09:58.763Z\"\n  },\n  \"failure_reason\": \"N/A - completed successfully. OOD success=3.73%. Process exit was expected (eval-only run).\",\n  \"completed_at\": \"2026-05-18T05:09:59.965Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T05:10:04.087054+00:00\"\n      }\n    ]\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c36b84f-2d59-4fe7-a52c-ebc2eb32e276",
+            "isSidechain": true,
+            "promptId": "5200e6b8-0eed-4cdc-997d-df92efda12e4",
+            "agentId": "a21a14a12fb1d00d3",
+            "type": "user",
+            "uuid": "be3661aa-9d36-45fb-860e-fe9128c1d3b4",
+            "sourceToolAssistantUUID": "7c36b84f-2d59-4fe7-a52c-ebc2eb32e276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T20:44:27.699Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extracted data for all requested experiments:\n\n---\n\n## 1. hsweep_h2_seed1 (Cell A — Monotonic Collapse)\n\n- **W&B run_id**: `7o9bjszm`\n- **Status**: DONE, conclusion: success\n- **Seed**: 10000\n- **Server**: bjb1-17606, GPU: cuda:0, cuda:1\n- **Algorithm**: GRPO + step_independent (h=2), gamma=0.95, kl_loss_coef=0.01, group_size=8\n- **Model**: Qwen3-1.7B (SFT checkpoint exp021)\n- **Training steps**: 15/15, elapsed 10.04 hours\n\n**Step-by-step training metrics** (success / pass_at_8 / invalid_action):\n\n| Step | Success | Pass@8 | Invalid Action |\n|------|---------|--------|----------------|\n| 1 | 0.1875 | 0.4375 | 0.027 |\n| 2 | 0.1484 | 0.5 | 0.02 |\n| 3 | 0.1875 | 0.625 | 0.028 |\n| 4 | 0.0547 | 0.25 | 0.264 |\n| 5 | 0.0156 | 0.0625 | 0.369 |\n| 6 | 0.0313 | 0.25 | 0.471 |\n| 7 | 0.0469 | 0.1875 | 0.502 |\n| 8 | 0.0156 | 0.125 | 0.542 |\n| 9 | 0.0 | 0.0 | 0.641 |\n| 10 | 0.0234 | — | — |\n| 11-15 | 0.0 | — | 0.972 |\n\n**Final validation**: success=0%, invalid_action=99.9%, action_is_valid=0.06%\n**Collapse onset**: step 3 → step 4\n**Step 15 diagnostics**: entropy=0.342, kl_loss=0.777, grad_norm=1.611\n**Checkpoint**: `/root/autodl-tmp/checkpoints/hsweep-h2/`\n\n---\n\n## 2. factorial_h2_episodeadv_seed1 (Cell B — Oscillation)\n\n- **W&B run_id**: `6liw7fm1` (final run); earlier run `jsrvwcfd`\n- **Status**: DONE, conclusion: success, retry_count: 2\n- **Seed**: 42\n- **Server**: westd-47453, GPU: cuda:0, cuda:1\n- **Model**: Qwen3-1.7B-SFT (exp021)\n- **Eval data**: ALFWorld valid_unseen 134 OOD tasks\n\n**Training metrics**:\n- Step 1: success=0.203, pass_at_8=0.688\n- Step 6: success=0.258, pass_at_8=0.813\n\n**Validation metrics**:\n- val_step5: success=0.0597 (best checkpoint)\n- val_step15: success=0.0075\n\n**KL loss trajectory**:\n- Step 1: 0.238\n- Step 5: 0.735\n- Step 10: 1.029\n- Step 15: 2.845\n\n**PPO KL range**: 0.025–0.096\n**Best val success**: 0.0597 at step 5\n**KL issue**: kl_loss_coef=0.01 too low, policy drifted after step 5\n**V-shaped recovery pattern**: 20.3% → 3.1% → 15.63%\n**Checkpoint paths**: step5/10/15 at `/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/`\n\n---\n\n## 3. exp029_episode_level (Cell D — Stable Learning)\n\n- **W&B run_id**: `6d4oml60` (from previous_failure metrics)\n- **Status**: DONE, conclusion: success\n- **Server**: bjb1-17606, GPU: cuda:0, cuda:1\n- **Model**: Qwen3-1.7B (SFT v4), full episode context mode\n- **Training**: 15 steps (early-stopped from planned 100), 9.52 hours, 16.81 GPU-hours\n\n**Step 0 validation (before training)**:\n- success=12.5%, pass_at_1=12.5%, action_is_valid=78.3%, episodes=32\n\n**Step 1 training**:\n- success=17.97%, pass_at_8=56.25%, action_is_valid=68.24%, action_is_effective=99.47%\n- num_actions=42.03, entropy=0.02775, kl_loss=0.000915, pg_loss=-4.59e-5\n- grad_norm=1.267, score_mean=1.797, response_length=7112, response_length_max=16381, time=1810s\n\n**OOD Re-evaluation (134 tasks)**:\n- success=0.2388, action_is_valid=0.5683, action_is_effective=0.916\n- manager_invalid_action=0.0839, reward_mean=2.388, best_at_8=8.88\n\n**Note**: val success reached 28.125% (pass@8=92.9%) at step 15 on 32 in-distribution tasks. OOD 134-task eval: 23.88%.\n**Checkpoint**: `/root/autodl-tmp/checkpoints/exp029/global_step_15/actor/huggingface`\n\n**Also: exp029_episode_level_seed2**:\n- W&B run_id: `25d60jf4`, seed=43, status: killed (disk issues)\n- val at step 15: success=21.875% (32 tasks) before kill\n- Checkpoint at `/root/autodl-tmp/checkpoints/exp029-seed2/`\n\n---\n\n## 4. hsweep_h2_seed2 (Cell A Seed 2 — Late Recovery)\n\n- **W&B run_id**: `jhwyg4tc`\n- **Status**: DONE, conclusion: success\n- **Seed**: 20000\n- **Server**: bjb1-17606, GPU: cuda:0, cuda:1\n- **Model**: Qwen3-1.7B (same SFT checkpoint as seed1)\n- **Environment**: LOG_PER_SAMPLE_ADV=1 (advantage logging for sign misattribution analysis)\n\n**Validation metrics**:\n- val_step5: success=0.0\n- val_step10: success=0.0\n- val_step15: success=0.09375\n\n**Training metrics**:\n- Step 14: success=0.2656, pass_at_8=0.6875\n- Step 15: success=0.2812, pass_at_8=0.625, entropy=0.401, ppo_kl=0.006\n- Train success peak: step 15, value=0.2812\n\n**Advantage analysis** (3000 log lines, 128 episodes: 65 success / 63 fail):\n- sign_outcome_agreement: 0.5207 (52%, near-random)\n- point_biserial_r: 0.068\n- p_adv_pos_given_success: 0.3706\n- p_adv_pos_given_failure: 0.306\n- magnitude_decay_gamma: 0.9426\n- distribution_overlap: 0.878\n- **Verdict**: 52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\n\n**OOD Re-evaluation** (hsweep_h2_seed2_reeval_ood, 134 tasks):\n- success=0.0373, action_is_valid=0.994, action_is_effective=1.0\n- pass_at_1=0.0373, num_actions=48.53, response_length=8501\n- Note: valid actions (99.4%) but cannot complete tasks\n\n**Key finding**: Did NOT replicate seed1's catastrophic collapse. action_is_valid stayed 88-100% throughout (vs seed1 collapsing to 0.06%). Val recovered to 9.375% at step 15. Collapse behavior is seed-dependent.\n**Checkpoint**: `/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15` (warning: seed2 overwrote seed1's step15 checkpoint)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be3661aa-9d36-45fb-860e-fe9128c1d3b4",
+            "isSidechain": true,
+            "agentId": "a21a14a12fb1d00d3",
+            "requestId": "req_011CbAgj69o5xwpfFrtoe6Yq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a25ef812-8dd9-47cb-9c67-926c4fc2e115",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "d17e30c6-966f-4a44-811f-536f6eafa9b6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0157G43CBVVzMS5mNJuWvVQM",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1608,
+                "cache_read_input_tokens": 26834,
+                "output_tokens": 2159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1608
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2159,
+                    "cache_read_input_tokens": 26834,
+                    "cache_creation_input_tokens": 1608,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1608,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-extract-specific-experiment-data-from-a-large-json-registry-file-for-plotting.md"
+}

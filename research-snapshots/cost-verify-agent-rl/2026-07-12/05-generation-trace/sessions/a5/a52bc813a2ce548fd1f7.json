@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "id": "a52bc813a2ce548fd1f7",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_ops_gpu-violation-fix-urgent_20260512T165817]: Worker worker_ops_gpu-violation-fix-urgent_202",
+  "task_key": "0cbbb70e-da2c-4b64-85cf-0d24c0294860",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/0cbbb70e-da2c-4b64-85cf-0d24c0294860.jsonl",
+    "occurrence": 1,
+    "bytes": 1143632,
+    "sha256": "ff7622eb09f7d4715da703d7aac0c7155e48125a33714f09186af9f312a16ce6"
+  },
+  "statistics": {
+    "messages": 378,
+    "user_turns": 19,
+    "tool_calls": 95,
+    "roles": {
+      "record": 92,
+      "user": 19,
+      "assistant": 77,
+      "tool_call": 95,
+      "tool_result": 95
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0002.json",
+          "message_count": 12
+        },
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "a52bc813a2ce548fd1f7-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-ops-gpu-violation-fix-urgent-20260512t165817-worker-worker.md"
+}

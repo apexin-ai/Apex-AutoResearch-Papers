@@ -1,0 +1,2131 @@
+{
+  "schema_version": "1.0",
+  "id": "ac9712c8974762183561",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Use WebSearch to find: 1. **Current best open-source LLMs for agent tasks (2026)**: - Search \"best open source LLM 2026 ",
+  "task_key": "agent-abe1d2538ad641a1a",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-abe1d2538ad641a1a.jsonl",
+    "occurrence": 1,
+    "bytes": 99469,
+    "sha256": "81c359c019ae91c7ceaa67458e2b7c7e8bd5d007db0a1d27528176a1b9f711b7"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T17:06:41.963Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use WebSearch to find:\n\n1. **Current best open-source LLMs for agent tasks (2026)**:\n   - Search \"best open source LLM 2026 agent\" \n   - Search \"best open source 7B parameter model 2026\"\n   - Search \"SOTA open source language model agent benchmark 2026\"\n   - I need to know: what is the current frontier 7B-class open-source model suitable for agent RL fine-tuning? (The proposal mentions using a 7B model with GRPO training)\n\n2. **Conference deadlines after 2026-05-10**:\n   - Search \"NeurIPS 2026 submission deadline\"\n   - Search \"AAAI 2027 submission deadline\"\n   - Search \"ICLR 2027 submission deadline\"\n   - Search \"AAMAS 2027 deadline\"\n   - Search \"COLM 2026 deadline\"\n   - Search \"EMNLP 2026 submission deadline\"\n   - Only report venues whose submission deadline is AFTER May 10, 2026\n\n3. **Open-AgentRL GitHub implementation**:\n   - Search \"github.com Open-AgentRL\" or \"github Open-AgentRL GRPO agent\"\n   - Search \"github GRPO agent training infrastructure\"\n   - Is there a ready-to-use codebase for GRPO training of agents?\n\nReport all findings with specific dates and URLs where possible."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "1f5790d9-6b9f-477c-8374-d8e69e5cb0d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T17:06:41.968Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1f5790d9-6b9f-477c-8374-d8e69e5cb0d9",
+                "isSidechain": true,
+                "agentId": "abe1d2538ad641a1a",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3700bc95-8087-463f-b6d0-7f3d0bc2f108",
+                "timestamp": "2026-05-10T17:06:41.968Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T17:06:44.985Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for all of this information in parallel. Let me first load the WebSearch tool schema."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3700bc95-8087-463f-b6d0-7f3d0bc2f108",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFhEBDpMmsgcFbWsrKu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "30edc8cc-b06f-402f-a96b-90d183de05f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ux6QPWH7Vbsp4b1mgKPdjC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 866,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 866,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T17:06:45.425Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C6tdG8atDHbxscmiyrNdPb",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30edc8cc-b06f-402f-a96b-90d183de05f3",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFhEBDpMmsgcFbWsrKu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd81df8c-bb69-4785-85af-b0f6eb2c24d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ux6QPWH7Vbsp4b1mgKPdjC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 866,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 866,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T17:06:45.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01C6tdG8atDHbxscmiyrNdPb",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd81df8c-bb69-4785-85af-b0f6eb2c24d7",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "9c61b053-fa26-4d2e-9c62-036521bef6fa",
+            "sourceToolAssistantUUID": "dd81df8c-bb69-4785-85af-b0f6eb2c24d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T17:06:49.632Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me launch all the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c61b053-fa26-4d2e-9c62-036521bef6fa",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFhVBN5vtKH6vUS31CV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb684a11-73d1-4581-83f0-9ba953588128",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016JupqtSeFEGq6hBLaERrqh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8170,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T17:06:49.859Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3tPpA6weV2v1z2Bn1W2G8",
+              "name": "WebSearch",
+              "input": {
+                "query": "best open source LLM 2026 agent"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb684a11-73d1-4581-83f0-9ba953588128",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFhVBN5vtKH6vUS31CV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ac3f22b9-41ab-4484-aaf7-4d8872eea02d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016JupqtSeFEGq6hBLaERrqh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 8170,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1415
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 8170,
+                    "cache_creation_input_tokens": 1415,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1415,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T17:06:57.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F3tPpA6weV2v1z2Bn1W2G8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"best open source LLM 2026 agent\"\n\nLinks: [{\"title\":\"The Best Open-Source LLMs in 2026\",\"url\":\"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models\"},{\"title\":\"Ultimate Guide - The Best Open Source LLM For Agent Workflow in 2026\",\"url\":\"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Agent-Workflow\"},{\"title\":\"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio\",\"url\":\"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026\"},{\"title\":\"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings\",\"url\":\"https://llm-stats.com/leaderboards/open-llm-leaderboard\"},{\"title\":\"GitHub - kaushikb11/awesome-llm-agents: A curated list of awesome LLM agents frameworks. · GitHub\",\"url\":\"https://github.com/kaushikb11/awesome-llm-agents\"},{\"title\":\"Best Open Source LLM 2026 Ranking + Ollama Guide\",\"url\":\"https://whatllm.org/best-open-source-llm\"},{\"title\":\"The Best Open Source Frameworks For Building AI Agents in 2026\",\"url\":\"https://www.firecrawl.dev/blog/best-open-source-agent-frameworks\"},{\"title\":\"Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI\",\"url\":\"https://onyx.app/open-llm-leaderboard\"},{\"title\":\"Best Open-Source LLMs April 2026: Benchmarks, Licensing & Deployment Guide | Lushbinary\",\"url\":\"https://lushbinary.com/blog/best-open-source-llms-april-2026-comparison-guide/\"},{\"title\":\"Best Open Source LLMs in 2026: Rankings and Licensing Comparison | Onyx AI\",\"url\":\"https://onyx.app/insights/best-open-source-llms-2026\"}]\n\nBased on the search results, here are the best open-source LLMs for agent workflows in 2026:\n\n## Top Models for Agent Workflows\n\nThe top three recommendations for 2026 are GLM-4.5-Air, Qwen3-Coder-30B-A3B-Instruct, and Qwen3-30B-A3B-Thinking-2507—each chosen for their outstanding agent capabilities, tool integration, and ability to push the boundaries of open source LLM agent workflows.\n\nFor agentic coding specifically, Qwen 3.6 Plus is the strongest overall performer for demanding agentic coding tasks, with the longest context window in the class (1M tokens), reliable tool use, and benchmark scores that put it close to closed-source frontier models.\n\n## Other Strong Contenders\n\nDeepSeek-V4 is designed for long-context reasoning, coding, and agentic workflows, with two large MoE models: DeepSeek-V4-Pro (1.6T total, 49B active) is the flagship model for maximum reasoning, coding, and agentic performance.\n\nKimi-K2.6 is the latest open-weight model from Moonshot AI, positioned as a long-context, agent-oriented LLM for coding, building on the base of K2 on practical task execution, with improved stability, tool use, and multi-step coding and planning.\n\nMiMo-V2.5 is the latest open-source model family from Xiaomi for agentic coding, long-horizon reasoning, and multimodal workflows, with MiMo-V2.5-Pro (1.02T total, 42B active) as the flagship LLM for coding agents.\n\n## Key Advantage in 2026\n\nThe biggest shift in 2026 isn't just model quality — it's that open-source models now support the agentic patterns (function calling, tool use, MCP integration) that were previously exclusive to proprietary APIs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac3f22b9-41ab-4484-aaf7-4d8872eea02d",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "8bc673f1-f45b-435e-80c8-043dd364ce58",
+            "sourceToolAssistantUUID": "ac3f22b9-41ab-4484-aaf7-4d8872eea02d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T17:07:02.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LibSN3h8MfUqTejpw2QrbL",
+              "name": "WebSearch",
+              "input": {
+                "query": "best open source 7B parameter model 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bc673f1-f45b-435e-80c8-043dd364ce58",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c9148a42-3246-420d-8628-d259c58b0728",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T17:07:03.361Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NAGEazgUVxMgZj691BXbUU",
+              "name": "WebSearch",
+              "input": {
+                "query": "SOTA open source language model agent benchmark 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9148a42-3246-420d-8628-d259c58b0728",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0a27cc05-7926-48bd-ae28-94220b7116dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T17:07:04.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0166bZaHXEVm3zXPGEhogt7Y",
+              "name": "WebSearch",
+              "input": {
+                "query": "NeurIPS 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a27cc05-7926-48bd-ae28-94220b7116dd",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a8d70849-f386-4a09-a939-0097fcefe4ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T17:07:04.699Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GdXYzKbG2KsCtcvCbUJ7bE",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8d70849-f386-4a09-a939-0097fcefe4ed",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2b206710-4e40-4773-9916-7d1f13419809",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T17:07:05.090Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ci5pAVKXHBhaJa4TVPMR2n",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b206710-4e40-4773-9916-7d1f13419809",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fd3f242e-08d1-478f-9327-094f8c5053aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T17:07:05.789Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M8wKCKrUMkneZ29PHGtQPc",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAMAS 2027 deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd3f242e-08d1-478f-9327-094f8c5053aa",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "86de5164-ff51-436c-9414-84a60eb84895",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T17:07:06.047Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsopRnW9k7twhwdQjvXqtd",
+              "name": "WebSearch",
+              "input": {
+                "query": "COLM 2026 deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86de5164-ff51-436c-9414-84a60eb84895",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6fa27000-c273-4197-9130-21712faa9d3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T17:07:06.145Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015STu3HVAMJYsNPBzwcryqp",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fa27000-c273-4197-9130-21712faa9d3a",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2beaaf6e-337d-45dd-8418-58952d0d53bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T17:07:06.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X7dS5EnWeQ9NAJL4Bzwg7d",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com Open-AgentRL"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2beaaf6e-337d-45dd-8418-58952d0d53bc",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "41007c3b-acf5-4224-8292-b87b0a58f372",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T17:07:07.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PhiV1QHMzZsfVQ8hMGnog5",
+              "name": "WebSearch",
+              "input": {
+                "query": "github GRPO agent training infrastructure 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41007c3b-acf5-4224-8292-b87b0a58f372",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFiQfn3vWcyvf9mkrMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "074d6cc9-f727-412d-876f-a22340fdc881",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuFTbSMDffAsP97bS7m3NT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 9585,
+                "output_tokens": 454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1104
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 454,
+                    "cache_read_input_tokens": 9585,
+                    "cache_creation_input_tokens": 1104,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1104,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T17:07:09.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GdXYzKbG2KsCtcvCbUJ7bE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 submission deadline\"\n\nLinks: [{\"title\":\"AAAI Conference on Artificial Intelligence - AAAI\",\"url\":\"https://aaai.org/conference/aaai/\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...\",\"url\":\"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/\"},{\"title\":\"Key deadlines in AI and ML conferences\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"}]\n\nBased on the search results, here's what I found about AAAI 2027:\n\nThe Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\nRegarding the submission deadline, the AAAI 2027 paper submission deadline is TBD (UTC-12). However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.\n\nThe official deadline has not yet been announced, but based on previous AAAI conferences, you can expect the deadline to be announced sometime in the coming months, with submissions likely opening in mid-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b206710-4e40-4773-9916-7d1f13419809",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "a7d8b9d2-2bd9-475a-b90e-8c8cc9cb309b",
+            "sourceToolAssistantUUID": "2b206710-4e40-4773-9916-7d1f13419809",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T17:07:09.658Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ci5pAVKXHBhaJa4TVPMR2n",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2027 submission deadline\"\n\nLinks: [{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"Key deadlines in AI and ML conferences\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"International Conference on Learning Representations - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations\"},{\"title\":\"ICLR 2026 Author Guide\",\"url\":\"https://iclr.cc/Conferences/2026/AuthorGuide\"},{\"title\":\"ICLR | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"}]\n\nBased on the search results, I found information about the ICLR conference schedule, but the results primarily contain details about ICLR 2026 rather than ICLR 2027. \n\nFrom the search results, ICLR 2027 is scheduled to take place May 16-21, 2027 in Toronto, Canada. However, the specific submission deadline for ICLR 2027 has not yet been officially announced in these search results.\n\nTypically, ICLR is held in late April or early May each year, and based on the pattern from ICLR 2026 (which had a September 24 submission deadline), the ICLR 2027 submission deadline will likely be announced on the official ICLR website once the call for papers is officially opened. I'd recommend checking the official ICLR website at iclr.cc for the most current and official deadline information for ICLR 2027.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd3f242e-08d1-478f-9327-094f8c5053aa",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "56467c57-e272-40db-ac57-7ec66fe2eff4",
+            "sourceToolAssistantUUID": "fd3f242e-08d1-478f-9327-094f8c5053aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T17:07:09.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015STu3HVAMJYsNPBzwcryqp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 submission deadline\"\n\nLinks: [{\"title\":\"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/\"},{\"title\":\"2026 *ACL Conference Dates | Computational Linguistics\",\"url\":\"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14\"},{\"title\":\"EMNLP 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=EMNLP%2F2026%2FConference\"},{\"title\":\"EMNLP 2026 (@emnlpmeeting) / Posts / X\",\"url\":\"https://x.com/emnlpmeeting\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"Dates and Venues\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0\"},{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"Call for workshops: EMNLP & AACL\",\"url\":\"https://groups.google.com/g/ml-news/c/W-fucfhVto4\"},{\"title\":\"emnlp 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=emnlp26\"}]\n\nBased on the search results, EMNLP 2026 uses the ACL Rolling Review (ARR) exclusively for submissions. Rather than a direct submission deadline to EMNLP itself, papers are submitted to ARR in multiple cycles throughout the year, and authors can then commit accepted papers with reviews to EMNLP 2026.\n\nThe EMNLP 2026 conference will be held in Budapest, Hungary from October 24th to October 29th, 2026.\n\nFor the most current and specific ARR submission cycle deadlines that would apply to EMNLP 2026, you would need to check the official EMNLP 2026 website at https://2026.emnlp.org/ or the ARR website at http://aclrollingreview.org, as the search results indicate there are upcoming ARR cycles but don't show the complete details of all deadlines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2beaaf6e-337d-45dd-8418-58952d0d53bc",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "1a5012e1-a4f2-4deb-ba48-ee172a8dde81",
+            "sourceToolAssistantUUID": "2beaaf6e-337d-45dd-8418-58952d0d53bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T17:07:09.926Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M8wKCKrUMkneZ29PHGtQPc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAMAS 2027 deadline\"\n\nLinks: [{\"title\":\"AAMAS: Adaptive Agents and Multi-Agents Systems 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=10\"},{\"title\":\"Apply to Medical School with the AMCAS® Program | Students & Residents\",\"url\":\"https://students-residents.aamc.org/applying-medical-school-amcas/apply-medical-school-amcas-program\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"Call for Competitions | AAMAS\",\"url\":\"https://cyprusconferences.org/aamas2026/call-for-competitions/\"},{\"title\":\"Conference Calendar\",\"url\":\"https://gabriel-istrate.github.io/tcs-calendar.html\"},{\"title\":\"ALA: Adaptive and Learning Agents 2027 2026 2025 .. ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=133\"},{\"title\":\"AAMAS 2025 Detroit\",\"url\":\"https://aamas2025.org/\"},{\"title\":\"AAMAS 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ifaamas.org%2FAAMAS%2F2027%2FConference\"},{\"title\":\"AAMAS 2027 | OpenReview\",\"url\":\"https://openreview.net/group?id=ifaamas.org%2FAAMAS%2F2027\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"}]\n\nBased on the search results, I found limited specific information about AAMAS 2027 submission deadlines. The search results show that AAMAS 2027 is scheduled for May 19-23, 2027, but the specific paper submission deadline has not yet been announced or finalized. \n\nOne source notes that the deadline information is \"predicted based on 2026 schedule pattern\" and recommends verifying on the official conference website.\n\nFor the most current and accurate AAMAS 2027 submission deadlines, I recommend checking the official AAMAS conference website or the OpenReview platform (openreview.net), which typically hosts the submission portal for AAMAS conferences.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86de5164-ff51-436c-9414-84a60eb84895",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "e6e2ff78-2a13-43ea-bf07-05e16fa2436e",
+            "sourceToolAssistantUUID": "86de5164-ff51-436c-9414-84a60eb84895",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T17:07:10.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsopRnW9k7twhwdQjvXqtd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"COLM 2026 deadline\"\n\nLinks: [{\"title\":\"COLM 2026: Key Dates\",\"url\":\"https://colmweb.org/dates.html\"},{\"title\":\"COLM 2026: Call for Papers\",\"url\":\"https://colmweb.org/cfp.html\"},{\"title\":\"COLM 2026\",\"url\":\"https://colmweb.org/\"},{\"title\":\"Conference on Language Modeling on X: \\\"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\\\" / X\",\"url\":\"https://x.com/COLM_conf/status/2000952051212415394\"},{\"title\":\"Update COLM 2026 conference data · huggingface/ai-deadlines at 24c5765\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/24c57653b9088a356b4b2d88e6a64cb4db5fbba5\"},{\"title\":\"Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research\",\"url\":\"https://www.servicenow.com/research/event/2026-colm.html\"},{\"title\":\"COLM 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference\"},{\"title\":\"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com\",\"url\":\"https://www.conferencedeadlines.com/conference/colm\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"COLM 2026: Author Guide\",\"url\":\"https://colmweb.org/AuthorGuide.html\"}]\n\nBased on the search results, here are the key deadlines for COLM 2026:\n\n**Main Submission Deadlines:**\n- Abstract deadline: Thursday, March 26, 2026\n- Full paper submission deadline: Tuesday, March 31, 2026\n\n**Review and Decision Timeline:**\n- Rebuttal period: May 22 - June 8, 2026\n- Notification deadline: July 8, 2026\n\n**Workshop Submissions:**\n- Suggested submission deadline for workshop contributions: June 23, 2026\n\n**Conference Details:**\n- COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fa27000-c273-4197-9130-21712faa9d3a",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "99ad3a53-3feb-42bf-b042-2b668fea33f9",
+            "sourceToolAssistantUUID": "6fa27000-c273-4197-9130-21712faa9d3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T17:07:11.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0166bZaHXEVm3zXPGEhogt7Y",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NeurIPS 2026 submission deadline\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://neurips.cc/Conferences/2026/Dates\"},{\"title\":\"NeurIPS 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference\"},{\"title\":\"NeurIPS 2026\",\"url\":\"https://neurips.cc/\"},{\"title\":\"Call for Papers 2026\",\"url\":\"https://neurips.cc/Conferences/2026/CallForPapers\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"2026 Conference\",\"url\":\"https://neurips.cc/Conferences/2026\"},{\"title\":\"NeurIPS Conference (@NeurIPSConf) / X\",\"url\":\"https://x.com/NeurIPSConf\"},{\"title\":\"NeurIPS: Neural Information Processing Systems 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=2212\"},{\"title\":\"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01\"},{\"title\":\"2026 Conference – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/category/2026-conference/\"}]\n\nBased on the search results, here is the submission deadline information for NeurIPS 2026:\n\nThe abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.\n\nNote that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.\n\nThe conference itself will be held December 6th through December 12th, 2026, and author notification is scheduled for September 24, 2026 (AoE).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8d70849-f386-4a09-a939-0097fcefe4ed",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "1b5bc2ba-7911-466a-ac0b-dc0aef668a81",
+            "sourceToolAssistantUUID": "a8d70849-f386-4a09-a939-0097fcefe4ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T17:07:11.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NAGEazgUVxMgZj691BXbUU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SOTA open source language model agent benchmark 2026\"\n\nLinks: [{\"title\":\"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA\",\"url\":\"https://www.codesota.com/llm\"},{\"title\":\"Code Generation Benchmarks 2026: SOTA LLMs for Programming | CodeSOTA | CodeSOTA\",\"url\":\"https://www.codesota.com/code-generation\"},{\"title\":\"Codesota — the open, callable registry of SOTA\",\"url\":\"https://www.codesota.com/\"},{\"title\":\"LLM Leaderboard 2026 — Compare Top AI Models - Vellum\",\"url\":\"https://www.vellum.ai/llm-leaderboard\"},{\"title\":\"How To Evaluate State‑Of‑The‑Art LLM Models: A Complete Guide | Deepchecks\",\"url\":\"https://www.deepchecks.com/evaluate-state-of-the-art-llm-models/\"},{\"title\":\"OpenSOTA — Agentic & Coding LLM Leaderboards\",\"url\":\"https://www.opensota.ai/\"},{\"title\":\"Microsoft AI Releases Harrier-OSS-v1: A New Family of Multilingual Embedding Models Hitting SOTA on Multilingual MTEB v2 - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2026/03/30/microsoft-ai-releases-harrier-oss-v1-a-new-family-of-multilingual-embedding-models-hitting-sota-on-multilingual-mteb-v2/\"},{\"title\":\"The State-of-the-Art in Open-Source Large Language Models: A New Era of AI Innovation | by Frank Morales Aguilera | AI Simplified in Plain English | Medium\",\"url\":\"https://medium.com/ai-simplified-in-plain-english/the-state-of-the-art-in-open-source-large-language-models-a-new-era-of-ai-innovation-9a379aad0a23\"},{\"title\":\"The Best Open-Source LLMs in 2026\",\"url\":\"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models\"},{\"title\":\"CodeSOTA — Open AI Benchmark Registry and SOTA API\",\"url\":\"https://www.codesota.com/papers\"}]\n\nBased on the search results, here's what I found about SOTA open-source language model agent benchmarks in 2026:\n\n## Major Benchmark Resources\n\nCodeSOTA provides independent ML benchmarks and verified state of the art across 17 research areas, with a free /api/sota endpoint for agents, notebooks, and downstream tools. It's the successor to Papers with Code.\n\nOpenSOTA aggregates the most authoritative public benchmarks, weights them transparently, and refreshes on every commit.\n\n## Key Agent Benchmarks Tracked\n\nA 2026 Berkeley RDI study found that eight major agent benchmarks — including SWE-bench Verified, Terminal-Bench, WebArena, OSWorld, GAIA, and FieldWorkArena are being monitored for quality and potential issues.\n\nMulti-step real-world tasks include search, files, and reasoning, with function-calling agents over ALFWorld, DB, KG, OS, and WebShop.\n\n## Top Open-Source Models for Agent Tasks\n\nDeepSeek-V4-Pro is one of the strongest open-source models for reasoning-heavy and coding-heavy workloads, showing competitive results across major reasoning and agentic benchmarks.\n\nDeepSeek-R1 often outperforms peers on benchmarks designed for complex reasoning, mathematical problem-solving, and agentic coding such as GPQA, MATH, and SWE-Bench.\n\nKimi-K2.6 is an agent-oriented LLM for coding from Moonshot AI, positioned as a long-context model with improved stability, tool use, and multi-step coding and planning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a27cc05-7926-48bd-ae28-94220b7116dd",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "8781e463-57b6-4aab-83ee-c7e089eb8a33",
+            "sourceToolAssistantUUID": "0a27cc05-7926-48bd-ae28-94220b7116dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T17:07:12.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LibSN3h8MfUqTejpw2QrbL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"best open source 7B parameter model 2026\"\n\nLinks: [{\"title\":\"Ultimate Guide - The Fastest Open Source LLMs in 2026\",\"url\":\"https://www.siliconflow.com/articles/en/fastest-open-source-LLMs\"},{\"title\":\"Best Open Source LLMs: Complete 2026 Guide | Contabo Blog\",\"url\":\"https://contabo.com/blog/open-source-llms/\"},{\"title\":\"Best Open-Source LLMs Under 7B Parameters (Run Locally in 2026)\",\"url\":\"https://mljourney.com/best-open-source-llms-under-7b-parameters-run-locally-in-2026/\"},{\"title\":\"Ultimate Guide - The Best Small LLMs Under 10B Parameters in 2026\",\"url\":\"https://www.siliconflow.com/articles/en/best-small-LLMs-under-10B-parameters\"},{\"title\":\"Best Local LLM Models 2026 | Developer Comparison\",\"url\":\"https://www.sitepoint.com/best-local-llm-models-2026/\"},{\"title\":\"I Tested a 7B Model That Beat Models 7× Its Size. Here’s What I Found. | Towards AI\",\"url\":\"https://towardsai.net/p/machine-learning/i-tested-a-7b-model-that-beat-models-7x-its-size-heres-what-i-found\"},{\"title\":\"Best Open-Source LLMs in 2026: A Practical Guide by Use Case - ML Journey\",\"url\":\"https://mljourney.com/best-open-source-llms-in-2026-a-practical-guide-by-use-case/\"},{\"title\":\"How Far Can a 7B Model Really Go in 2026? I Tested It, the results are shocking. | by Manash Pratim, PhD | ILLUMINATION | Medium\",\"url\":\"https://medium.com/illumination/how-far-can-a-7b-model-really-go-in-2026-i-tested-it-ae115f65c26b\"},{\"title\":\"15 Best Open Source AI Models & LLMs in 2026 (Tested and Reviewed)\",\"url\":\"https://elephas.app/blog/best-open-source-ai-models\"},{\"title\":\"Model Catalog - LM Studio\",\"url\":\"https://lmstudio.ai/models\"}]\n\nBased on the search results, here are the best open-source 7B parameter models in 2026:\n\n## Top 7B Models\n\nThe top picks for 2026 are Qwen/Qwen3-8B, DeepSeek-R1-Distill-Qwen-7B, and Qwen/Qwen2.5-VL-7B-Instruct.\n\n### DeepSeek-R1-Distill-Qwen-7B\nDeepSeek's 7B instruct-tuned variant is one of the best open-source models for problem-solving, coding, and structured tasks, competing with much larger models in complex problem-solving. For specialized mathematical and programming tasks, DeepSeek-R1-Distill-Qwen-7B delivers exceptional performance.\n\n### Qwen2.5-VL-7B-Instruct\nQwen2.5-VL-7B-Instruct is a 7B parameter multimodal model equipped with powerful visual comprehension capabilities. It can analyze text, charts, and layouts within images, understand long videos, and capture events with remarkable accuracy.\n\n### Qwen2.5-Coder-7B\nAlibaba's Qwen2.5-Coder family dominates coding benchmarks at every size tier in 2026. The 7B variant fits on 8GB VRAM and outperforms general-purpose models twice its size on code generation, debugging, and refactoring.\n\n### Other Strong 7B Options\nMistral Small 3's 7B model achieves approximately 50 tokens per second on mid-range 16GB hardware at Q4_K_M, the fastest in this comparison. It scores 8.0 on MT-Bench, the instruction-following benchmark.\n\nQwen 3 7B posts the highest HumanEval score (76.0) of any model under 8B parameters in this comparison, a 3.4-point margin over Llama 3.3's 72.6.\n\n### Notable Exception: Falcon-H1R-7B\nFalcon-H1R 7B achieved AIME-24 mathematics of 88.1%, better than ServiceNow's Apriel 1.5 — a 15-billion parameter model that scored 86.2%. On LiveCodeBench coding challenges, it scored 68.6%, best in class for models under 8B parameters.\n\nThe choice depends on your specific needs: coding, multimodal vision tasks, mathematical reasoning, or general-purpose instruction-following.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9148a42-3246-420d-8628-d259c58b0728",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "5aa7ed54-7ad7-4571-93d6-2f83be27abc1",
+            "sourceToolAssistantUUID": "c9148a42-3246-420d-8628-d259c58b0728",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T17:07:15.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X7dS5EnWeQ9NAJL4Bzwg7d",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com Open-AgentRL\"\n\nLinks: [{\"title\":\"GitHub - Gen-Verse/Open-AgentRL: [ICML 2026] RLAnything & DemyAgent: General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings · GitHub\",\"url\":\"https://github.com/Gen-Verse/Open-AgentRL\"},{\"title\":\"GitHub - xlang-ai/OpenAgents: [COLM 2024] OpenAgents: An Open Platform for Language Agents in the Wild · GitHub\",\"url\":\"https://github.com/xlang-ai/OpenAgents\"},{\"title\":\"GitHub - openagents-org/openagents: OpenAgents - AI Agent Networks for Open Collaboration · GitHub\",\"url\":\"https://github.com/openagents-org/openagents\"},{\"title\":\"OpenAgents · GitHub\",\"url\":\"https://github.com/OpenAgentsInc\"},{\"title\":\"GitHub - vercel-labs/open-agents: An open source template for building cloud agents. · GitHub\",\"url\":\"https://github.com/vercel-labs/open-agents\"},{\"title\":\"OpenAI Agents SDK\",\"url\":\"https://openai.github.io/openai-agents-python/\"},{\"title\":\"GitHub - the-open-agent/openagent: ⚡️next-generation personal AI assistant powered by LLM, RAG and agent loops, supporting computer-use, browser-use and coding agent, demo: https://demo.openagentai.org\",\"url\":\"https://github.com/the-open-agent/openagent\"},{\"title\":\"GitHub - OpenAgentLLM/OpenAgent: 🔓 The open-source autonomous agent LLM initiative 🔓\",\"url\":\"https://github.com/OpenAgentLLM/OpenAgent\"},{\"title\":\"GitHub - rohanarun/Open-Agent-Studio · GitHub\",\"url\":\"https://github.com/rohanarun/Open-Agent-Studio\"},{\"title\":\"GitHub - openai/openai-agents-python: A lightweight, powerful framework for multi-agent workflows · GitHub\",\"url\":\"https://github.com/openai/openai-agents-python\"}]\n\nBased on the search results, I found the primary repository you're looking for:\n\n## Open-AgentRL\n\nOpen-AgentRL is a project for \"General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings\" associated with ICML 2026.\n\n### Key Features\n\nThe project proposes RLAnything, a reinforcement learning framework that dynamically optimizes components through closed-loop optimization. The policy is trained with integrated feedback from outcome and step-wise signals from a reward model, the reward model is jointly optimized via consistency feedback, and automatic environment adaptation improves training for both reward and policy models.\n\n### Recent Updates\n\nIn February 2026, they released OpenClaw-RL, a fully asynchronous RL framework built on top of Open-AgentRL for personalized agentic AI, and fully open-sourced RLAnything including training code across GUI Agent, LLM Agent, and Coding LLM settings.\n\nModel checkpoints are available including both policy models (RLAnything-7B/8B) and reward models (RLAnything-Reward-8B/14B).\n\nThe repository is located at: https://github.com/Gen-Verse/Open-AgentRL\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41007c3b-acf5-4224-8292-b87b0a58f372",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "197e55f8-c2f3-429b-94e8-a8fbb3497bae",
+            "sourceToolAssistantUUID": "41007c3b-acf5-4224-8292-b87b0a58f372",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T17:07:17.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PhiV1QHMzZsfVQ8hMGnog5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github GRPO agent training infrastructure 2026\"\n\nLinks: [{\"title\":\"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub\",\"url\":\"https://github.com/AMAP-ML/Tree-GRPO\"},{\"title\":\"GitHub - RLinf/RLinf: RLinf: Reinforcement Learning Infrastructure for Embodied and Agentic AI · GitHub\",\"url\":\"https://github.com/RLinf/RLinf\"},{\"title\":\"GitHub - Gen-Verse/OpenClaw-RL: OpenClaw-RL: Train any agent simply by talking · GitHub\",\"url\":\"https://github.com/Gen-Verse/OpenClaw-RL\"},{\"title\":\"GitHub - OpenPipe/ART: Agent Reinforcement Trainer: train multi-step agents for real-world tasks using GRPO. Give your agents on-the-job training. Reinforcement learning for Qwen3.5, GPT-OSS, Llama, and more! · GitHub\",\"url\":\"https://github.com/OpenPipe/ART\"},{\"title\":\"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \\\"Group-in-Group Policy Optimization for LLM Agent Training\\\" · GitHub\",\"url\":\"https://github.com/langfengq/verl-agent\"},{\"title\":\"hello-agents/docs/chapter11/Chapter11-Agentic-RL.md at main · datawhalechina/hello-agents\",\"url\":\"https://github.com/datawhalechina/hello-agents/blob/main/docs/chapter11/Chapter11-Agentic-RL.md\"},{\"title\":\"GitHub - kechirojp/sb3-grpo: GRPO (Group Relative Policy Optimization) implementation for Stable Baselines3. Drop-in PPO replacement with instant action comparison. Easy pip install, full API compatibility. Used by DeepSeek for LLM training. · GitHub\",\"url\":\"https://github.com/kechirojp/sb3-grpo\"},{\"title\":\"GitHub - FareedKhan-dev/multi-agent-training-grpo: A multi-agent system trained with GRPO for reliable long-horizon task planning and execution. · GitHub\",\"url\":\"https://github.com/FareedKhan-dev/multi-agent-training-grpo\"},{\"title\":\"grpo · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/grpo\"},{\"title\":\"GitHub - microsoft/agent-lightning: The absolute trainer to light up AI agents. · GitHub\",\"url\":\"https://github.com/microsoft/agent-lightning\"}]\n\nBased on the search results, here are the key findings about GitHub GRPO agent training infrastructure in 2026:\n\n## Recent GRPO Training Infrastructure Projects\n\nRLinf is a flexible and scalable RL infrastructure that supports diverse RL training workflows (PPO, GRPO, SAC and so on), while enabling users to easily scale RL training to a large number of GPU nodes without modifying code. Recent updates in 2026 include support for DM0, Dexbotic for SFT-RL integration, and Dexmal DOS-W1 for real-world reinforcement learning.\n\nART (Agent Reinforcement Trainer) is an open-source RL framework that improves agent reliability by allowing LLMs to learn from experience, providing an ergonomic harness for integrating GRPO into any python application.\n\nverl-agent is an extension of veRL designed for training LLM/VLM agents via RL, with implementations of various RL algorithms including GRPO, PPO, DAPO, GSPO, RLOO and a new state-of-the-art algorithm GiGPO.\n\nOpenClaw-RL v1 is a fully asynchronous RL framework for training personalized AI agents from natural conversation feedback, supporting training general agents with large-scale environment parallelization.\n\n## Novel Research Approaches\n\nTree-GRPO, accepted by ICLR 2026, proposes adopting a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL, based on ReAct step-level nodes.\n\nAgentFlow combines planner, executor, verifier, and generator agents with the Flow-GRPO algorithm to tackle long-horizon, sparse-reward tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "074d6cc9-f727-412d-876f-a22340fdc881",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "7d683990-c871-4baa-8eca-bb5eeb970295",
+            "sourceToolAssistantUUID": "074d6cc9-f727-412d-876f-a22340fdc881",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T17:07:19.427Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more specific details on the EMNLP 2026 ARR deadlines and AAAI 2027."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d683990-c871-4baa-8eca-bb5eeb970295",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ed21b24d-99e7-4daa-97b9-49e15826ee0c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8717,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T17:07:20.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MDH1o3xRjigeCU7NqyD1d1",
+              "name": "WebSearch",
+              "input": {
+                "query": "ACL Rolling Review ARR 2026 submission deadlines June July August"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed21b24d-99e7-4daa-97b9-49e15826ee0c",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "20a6f0f2-9439-4b56-9819-67ce3a3a99d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8717,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T17:07:21.077Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BZCbJpCdpUnAM9FD4jVVKx",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 paper submission deadline date August September 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20a6f0f2-9439-4b56-9819-67ce3a3a99d8",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6ad96cc6-733b-4480-964c-728deaf024c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8717,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T17:07:21.919Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PVVDkyF76sTTZBBZmMTigs",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2027 submission deadline date September October 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ad96cc6-733b-4480-964c-728deaf024c0",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e9038f34-890c-452c-bbef-65135c141b9e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8717,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T17:07:22.445Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018bcf4jGj97tbdWtM1HjDkC",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAMAS 2027 paper submission deadline October 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9038f34-890c-452c-bbef-65135c141b9e",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "92db2805-b764-4c60-92ca-b1dd879e96cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8717,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T17:07:22.923Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0145KrGijcctQMPe9r1yfKe2",
+              "name": "WebSearch",
+              "input": {
+                "query": "Qwen3 8B GRPO reinforcement learning fine-tuning agent 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92db2805-b764-4c60-92ca-b1dd879e96cc",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFjpsLso7UNH7mbQRcR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6bea7ac3-cedf-49ed-a940-a1b366b89dc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QQVGDw7TBtqSa1im7xuRk4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8717,
+                "cache_read_input_tokens": 10689,
+                "output_tokens": 303,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8717
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 303,
+                    "cache_read_input_tokens": 10689,
+                    "cache_creation_input_tokens": 8717,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8717,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T17:07:25.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BZCbJpCdpUnAM9FD4jVVKx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 paper submission deadline date August September 2026\"\n\nLinks: [{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"Key deadlines in AI and ML conferences\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...\",\"url\":\"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/\"},{\"title\":\"AAAI-26 Submission Instructions - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/submission-instructions/\"},{\"title\":\"AI/ML Conference Timeline | NIU AI\",\"url\":\"https://www.niuai.org/resources/conference-timeline/\"}]\n\nBased on the search results, here's what I found regarding the AAAI 2027 paper submission deadline:\n\nThe AAAI 2027 paper submission deadline is TBD (to be determined). The official deadline has not yet been announced.\n\nHowever, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. This aligns with your inquiry about August/September 2026 dates.\n\nAAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027. For the most up-to-date information, the official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ad96cc6-733b-4480-964c-728deaf024c0",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "67c45379-c5d8-4f85-8f91-d715bdde8e62",
+            "sourceToolAssistantUUID": "6ad96cc6-733b-4480-964c-728deaf024c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T17:07:25.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MDH1o3xRjigeCU7NqyD1d1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ACL Rolling Review ARR 2026 submission deadlines June July August\"\n\nLinks: [{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"ACLRollingReview (@ReviewAcl) / Posts / X\",\"url\":\"https://x.com/ReviewAcl\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"aclrollingreview/dates.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/dates.md\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"}]\n\nBased on the search results, here's what I found regarding ACL Rolling Review (ARR) 2026 submission deadlines:\n\n## Key Information About ARR 2026 Deadlines\n\nARR switched from 8-week review cycles to 10-week cycles, with the new schedule starting in May 2025. This means that instead of 6 cycles a year there will generally be 5.\n\n## Specific 2026 Deadlines\n\nFor the early 2026 cycles:\n- The January 2026 submission deadline was January 5, 2026\n\nUnfortunately, the search results did not contain specific submission deadline dates for the June, July, and August 2026 ARR cycles. The available information indicates that the submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc.\n\nFor the most current and detailed information about June, July, and August 2026 submission deadlines, I recommend checking the official ACL Rolling Review website at aclrollingreview.org/dates, which should have the complete schedule for all 2026 cycles.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20a6f0f2-9439-4b56-9819-67ce3a3a99d8",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "101df55c-f1b8-4758-974c-16e3c848ece9",
+            "sourceToolAssistantUUID": "20a6f0f2-9439-4b56-9819-67ce3a3a99d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T17:07:26.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018bcf4jGj97tbdWtM1HjDkC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAMAS 2027 paper submission deadline October 2026\"\n\nLinks: [{\"title\":\"Submission Instructions (Main Technical Track) | AAMAS\",\"url\":\"https://cyprusconferences.org/aamas2026/submission-instructions/\"},{\"title\":\"AAMAS 2026 Main Track: Abstract Submission in 4 Weeks (October 1st) - Hcitaly - ISTI\",\"url\":\"https://mailman1.isti.cnr.it/hyperkitty/list/hcitaly@isti.cnr.it/thread/KVSAJUOI656UTIFASFKDUSB3ZO4T5ZV7/\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"[Corpora-List] AAMAS 2026 Main Track: Abstract Submission in 4 Weeks (October 1st)\",\"url\":\"https://www.mail-archive.com/corpora@list.elra.info/msg04903.html\"},{\"title\":\"Call for Papers (Main Track) | AAMAS\",\"url\":\"https://cyprusconferences.org/aamas2026/call-for-papers-main-track/\"},{\"title\":\"AAMAS 2025 Detroit\",\"url\":\"https://aamas2025.org/\"},{\"title\":\"AAMAS: Adaptive Agents and Multi-Agents Systems 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=10\"},{\"title\":\"AAMAS 2026 Main Track: Abstract Submission in 4 Weeks (October 1st) - Corpora - ELRA lists\",\"url\":\"https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/TL4E2TGSZ4Z2SMS2XF6ATJJNATRSKMKA/\"},{\"title\":\"AAMAS 2026 : Adaptive Agents and Multi-Agents Systems\",\"url\":\"http://www.wikicfp.com/cfp/servlet/event.showcfp?copyownerid=90704&eventid=188710\"},{\"title\":\"aamas 2026 - AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/conference/?id=aamas26\"}]\n\nBased on the search results, I found information about AAMAS 2026, but not AAMAS 2027. The search results show that for AAMAS 2026, the paper submission deadline was October 8, 2025, with an abstract submission deadline of October 1, 2025.\n\nHowever, there does not appear to be any information about AAMAS 2027 deadlines in the search results. Since today's date is May 10, 2026, it's likely that the AAMAS 2027 call for papers has not yet been announced or the information is not widely available online yet. Typically, major conferences announce their submission deadlines 6-9 months before the deadline, so you may want to check the official AAMAS website or contact the organizers directly for information about AAMAS 2027.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92db2805-b764-4c60-92ca-b1dd879e96cc",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "766ebcac-60f3-4913-85ac-9b8d95407bfe",
+            "sourceToolAssistantUUID": "92db2805-b764-4c60-92ca-b1dd879e96cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T17:07:28.515Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PVVDkyF76sTTZBBZmMTigs",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2027 submission deadline date September October 2026\"\n\nLinks: [{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"Key deadlines in AI and ML conferences\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"International Conference on Learning Representations - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations\"},{\"title\":\"ICLR 2026 Author Guide\",\"url\":\"https://iclr.cc/Conferences/2026/AuthorGuide\"},{\"title\":\"ICLR | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"}]\n\nI found information about ICLR 2026, but the search results don't contain specific details about the ICLR 2027 submission deadline. Let me search more specifically for ICLR 2027.\n\nLinks: [{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"Key deadlines in AI and ML conferences\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"2025 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2025/Dates\"},{\"title\":\"International Conference on Learning Representations - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations\"},{\"title\":\"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona\",\"url\":\"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona\"},{\"title\":\"Future Meetings\",\"url\":\"https://iclr.cc/Conferences/FutureMeetings\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"}]\n\nBased on my search results, I was unable to find information about the official ICLR 2027 submission deadline from the official ICLR website (iclr.cc). \n\nThe search results show that ICLR 2026 is April 23-27 in Rio de Janeiro, Brazil, and the Fifteenth annual conference (2027) location and dates are to be announced.\n\nThe search results also included some third-party conference websites that list various \"ICLR\" events, but there are predatory ICLR conferences being promoted through the World Academy of Science, Engineering and Technology organization, and current and future ICLR conference information will only be provided through the official website and OpenReview.net.\n\nFor accurate information about ICLR 2027 submission deadlines, I recommend checking:\n- The official ICLR website: https://iclr.cc/\n- OpenReview.net for conference submissions\n\nSince ICLR 2027 details have not yet been officially announced, the submission deadline date for September-October 2026 may not yet be publicly available.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9038f34-890c-452c-bbef-65135c141b9e",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "4dab52ce-6ae4-4fd4-bf52-6da79c60f4b0",
+            "sourceToolAssistantUUID": "e9038f34-890c-452c-bbef-65135c141b9e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T17:07:29.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0145KrGijcctQMPe9r1yfKe2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Qwen3 8B GRPO reinforcement learning fine-tuning agent 2026\"\n\nLinks: [{\"title\":\"Qwen3.5 Fine-tuning Guide | Unsloth Documentation\",\"url\":\"https://unsloth.ai/docs/models/qwen3.5/fine-tune\"},{\"title\":\"Qwen3 - How to Run & Fine-tune | Unsloth Documentation\",\"url\":\"https://docs.unsloth.ai/models/qwen3-how-to-run-and-fine-tune\"},{\"title\":\"Qwen3 8B | Open Laboratory\",\"url\":\"https://openlaboratory.com/models/qwen3-8b/\"},{\"title\":\"GitHub - 2U1/Qwen-VL-Series-Finetune: An open-source implementaion for fine-tuning Qwen-VL series by Alibaba Cloud. · GitHub\",\"url\":\"https://github.com/2U1/Qwen-VL-Series-Finetune\"},{\"title\":\"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub\",\"url\":\"https://github.com/QwenLM/Qwen3.6\"},{\"title\":\"Qwen\",\"url\":\"https://qwenlm.github.io/\"},{\"title\":\"Reinforcement Learning (RL) Guide | Unsloth Documentation\",\"url\":\"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide\"},{\"title\":\"Unsloth - Qwen - Read the Docs\",\"url\":\"https://qwen.readthedocs.io/en/latest/training/unsloth.html\"},{\"title\":\"Unsloth Docs | Unsloth Documentation\",\"url\":\"https://unsloth.ai/docs\"},{\"title\":\"Plan Then Action: High-Level Planning Guidance Reinforcement Learning for LLM Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=YfJdLI8daz\"}]\n\nBased on the web search results, here's what I found about Qwen3 8B GRPO reinforcement learning fine-tuning and agent development in 2026:\n\n## GRPO Training for Qwen3-8B\n\nQwen3-8B was trained using GRPO (Gradient-based Reinforcement Policy Optimization) for effective parameter updates during its post-training phase. For the 8B variant, a strong-to-weak distillation approach was used, where the model distilled knowledge from larger Qwen3 architectures such as Qwen3-32B and Qwen3-235b-a22b.\n\n## Fine-Tuning and Reinforcement Learning Support\n\nGRPO works in Unsloth if you disable fast vLLM inference and use Unsloth inference instead. Advanced GRPO notebooks for fine-tuning Qwen3 include new proximity-based reward functions and Hugging Face's Open-R1 math dataset.\n\n## Agent Capabilities\n\nSubsequent reinforcement learning on over 20 general-domain tasks aimed to further align the model with human preferences, correct undesirable behaviors, and refine its instructional and agentic proficiency.\n\n## Framework Support\n\nTraining frameworks, including UnSloth, Swift, and Llama-Factory, are recommended for fine-tuning models with SFT, DPO, GRPO, and other techniques.\n\nThe results indicate that Qwen3-8B has been specifically designed with GRPO-based reinforcement learning for agentic capabilities, with multiple frameworks available for fine-tuning in 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6bea7ac3-cedf-49ed-a940-a1b366b89dc8",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "62a77154-db70-4b55-a302-61949212aff3",
+            "sourceToolAssistantUUID": "6bea7ac3-cedf-49ed-a940-a1b366b89dc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T17:07:32.443Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get one more round of specific searches to fill in gaps on EMNLP and ICLR deadlines, and more details on Open-AgentRL."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62a77154-db70-4b55-a302-61949212aff3",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFkk7sV4idvYeM5bzn7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8463c46-6297-42a6-a4e1-2b10919f850f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AV8jXX2zacy2raFxYZGSdj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4584,
+                "cache_read_input_tokens": 19406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T17:07:33.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016JWn9uN4KwXuNYJ7S52QQS",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 commitment deadline ARR cycle"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8463c46-6297-42a6-a4e1-2b10919f850f",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFkk7sV4idvYeM5bzn7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e4ac0659-966d-4e9e-a51b-e94f2e1eadfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AV8jXX2zacy2raFxYZGSdj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4584,
+                "cache_read_input_tokens": 19406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T17:07:33.860Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017UyfR94WSigJwEXFdSUa7h",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICML 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4ac0659-966d-4e9e-a51b-e94f2e1eadfa",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFkk7sV4idvYeM5bzn7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "26c44793-b614-4c20-8870-0135361afd3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AV8jXX2zacy2raFxYZGSdj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4584,
+                "cache_read_input_tokens": 19406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T17:07:34.415Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RRjKSyou3ex5N2VoXvLQ4n",
+              "name": "WebSearch",
+              "input": {
+                "query": "Open-AgentRL Gen-Verse RLAnything GRPO 7B model details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26c44793-b614-4c20-8870-0135361afd3d",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFkk7sV4idvYeM5bzn7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a4c3f3a1-77e0-4c78-ae4f-4f218683ab7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AV8jXX2zacy2raFxYZGSdj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4584,
+                "cache_read_input_tokens": 19406,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4584
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 19406,
+                    "cache_creation_input_tokens": 4584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4584,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T17:07:38.439Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017UyfR94WSigJwEXFdSUa7h",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICML 2026 submission deadline\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://icml.cc/Conferences/2026/Dates\"},{\"title\":\"ICML 2026 Call for Papers\",\"url\":\"https://icml.cc/Conferences/2026/CallForPapers\"},{\"title\":\"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected\",\"url\":\"https://eu.36kr.com/en/p/3540848514510723\"},{\"title\":\"ICML 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc%2F2026%2FConference\"},{\"title\":\"ICML 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26\"},{\"title\":\"ICML 2026 Call for Post-Conference Workshops\",\"url\":\"https://icml.cc/Conferences/2026/CallForWorkshops\"},{\"title\":\"ICML 2026 Call For Position Papers\",\"url\":\"https://icml.cc/Conferences/2026/CallForPositionPapers\"},{\"title\":\"ICML 2026 Peer Review FAQ\",\"url\":\"https://icml.cc/Conferences/2026/PeerReviewFAQ\"},{\"title\":\"ICML 2026 Author Instructions\",\"url\":\"https://icml.cc/Conferences/2026/AuthorInstructions\"},{\"title\":\"Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683\"}]\n\nBased on the search results, the ICML 2026 submission deadline for full papers is January 28, 2026. \n\nIt's also worth noting that the abstract and paper submission deadlines are strict, with no extensions given under any circumstances. Authors should include a full title, complete author list, and complete abstract by the abstract submission deadline, and the author list cannot be changed after that deadline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26c44793-b614-4c20-8870-0135361afd3d",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "f0ff0a45-aba3-4757-9161-5308a02af08c",
+            "sourceToolAssistantUUID": "26c44793-b614-4c20-8870-0135361afd3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-10T17:07:38.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016JWn9uN4KwXuNYJ7S52QQS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 commitment deadline ARR cycle\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Dates and Venues\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"EMNLP 2026 (@emnlpmeeting) / Posts / X\",\"url\":\"https://x.com/emnlpmeeting?lang=en\"},{\"title\":\"EMNLP 2026 on X: \\\"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/1892259536137785419\"}]\n\nBased on the search results, here is the key information about EMNLP 2026's commitment deadline in the ARR cycle:\n\nThe EMNLP commitment deadline is August 2, 2026. \n\nPapers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link. \n\nThe workflow is as follows: Authors commit their reviewed articles to a publication venue (e.g., EMNLP 2026), where Senior Area Chairs and Program Chairs make acceptance decisions from the ARR reviews and meta-reviews. At each cycle, after a paper has been fully reviewed, authors have the option to commit their paper to a conference, or revise and resubmit for another round of reviews.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4ac0659-966d-4e9e-a51b-e94f2e1eadfa",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "b1cbee51-71fc-46f6-9b55-73870d47fb04",
+            "sourceToolAssistantUUID": "e4ac0659-966d-4e9e-a51b-e94f2e1eadfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-10T17:07:41.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RRjKSyou3ex5N2VoXvLQ4n",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Open-AgentRL Gen-Verse RLAnything GRPO 7B model details\"\n\nLinks: [{\"title\":\"GitHub - Gen-Verse/Open-AgentRL: [ICML 2026] RLAnything & DemyAgent: General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings · GitHub\",\"url\":\"https://github.com/Gen-Verse/Open-AgentRL\"},{\"title\":\"GitHub - Gen-Verse/OpenClaw-RL: OpenClaw-RL: Train any agent simply by talking · GitHub\",\"url\":\"https://github.com/Gen-Verse/OpenClaw-RL\"},{\"title\":\"Open-AgentRL - a Gen-Verse Collection\",\"url\":\"https://huggingface.co/collections/Gen-Verse/open-agentrl\"},{\"title\":\"Gen-Verse - Princeton-AI\",\"url\":\"https://github.com/Gen-Verse\"},{\"title\":\"GitHub - ai-native-agentic/openclaw-rl: OpenClaw-RL: Train any agent simply by talking · GitHub\",\"url\":\"https://github.com/ai-native-agentic/openclaw-rl\"},{\"title\":\"Feature: Conversational RL Personalization — Online Model Fine-Tuning from Live User Feedback (inspired by OpenClaw-RL) · Issue #498 · NousResearch/hermes-agent\",\"url\":\"https://github.com/NousResearch/hermes-agent/issues/498\"},{\"title\":\"7B Fully Open Source Moxin-LLM/VLM – From Pretraining to GRPO-based Reinforcement Learning Enhancement\",\"url\":\"https://arxiv.org/html/2412.06845v6\"},{\"title\":\"Grouped Relative Policy Optimization (GRPO) - Open Instruct\",\"url\":\"https://allenai.github.io/open-instruct/algorithms/grpo/\"},{\"title\":\"Paper page - OpenClaw-RL: Train Any Agent Simply by Talking\",\"url\":\"https://huggingface.co/papers/2603.10165\"},{\"title\":\"RLAnything: Forge Environment, Policy, and Reward Model in Completely Dynamic RL System | Scilit\",\"url\":\"https://www.scilit.com/publications/75f0d97a47d2fdb5ab00056f4b9f6090\"}]\n\nBased on the search results, here are the key details about the Open-AgentRL Gen-Verse RLAnything GRPO 7B model:\n\n## Model Overview\n\nRLAnything & DemyAgent are general and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings, and this work was presented at ICML 2026.\n\n## Model Checkpoints and Available Models\n\nThe model checkpoints include both policy models (RLAnything-7B/8B) and reward models (RLAnything-Reward-8B/14B) across various settings. Additionally, SFT models include Qwen2.5-7B-RA-SFT and Qwen3-4B-RA-SFT, with an RL-trained model called DemyAgent-4B.\n\n## GRPO Algorithm Details\n\nIn Binary RL (GRPO), a Process Reward Model scores each turn based on next-state feedback, and the scalar reward is then used with GRPO advantage estimation and a PPO-style clipped surrogate loss.\n\n## Training Approach\n\nRLAnything is a reinforcement learning framework that dynamically forges environment, policy, and reward models through closed-loop optimization. The policy is trained with integrated feedback from step-wise and outcome signals, while the reward model is jointly optimized via consistency feedback.\n\n## Performance\n\nRLAnything yields substantial gains across various representative LLM and agentic tasks, boosting Qwen3-VL-8B-Thinking by 9.1% on OSWorld and Qwen2.5-7B-Instruct by 18.7% and 11.9% on AlfWorld and LiveBench, respectively.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4c3f3a1-77e0-4c78-ae4f-4f218683ab7b",
+            "isSidechain": true,
+            "promptId": "014ebcaf-b9cb-4c62-96ca-6b6758a8d8ee",
+            "agentId": "abe1d2538ad641a1a",
+            "type": "user",
+            "uuid": "e08d8664-36bd-45e5-a674-b488b145a7c4",
+            "sourceToolAssistantUUID": "a4c3f3a1-77e0-4c78-ae4f-4f218683ab7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-10T17:08:33.140Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the comprehensive report of all findings.\n\n---\n\n## 1. Current Best Open-Source LLMs for Agent Tasks (2026)\n\n### Frontier 7B-Class Models Suitable for Agent RL Fine-Tuning\n\nThe leading 7B-class open-source models in 2026 are:\n\n- **Qwen3-8B** -- The strongest overall 7B-class model. It was itself trained using GRPO during post-training, and has explicit agentic capabilities (tool use, function calling). It posts the highest HumanEval score (76.0) of any model under 8B parameters. Multiple frameworks (Unsloth, Swift, Llama-Factory) support GRPO fine-tuning of this model. **This is the recommended base model for your 7B GRPO agent RL fine-tuning proposal.**\n\n- **Qwen2.5-7B-Instruct** -- Also used as a base model by Open-AgentRL/RLAnything, with demonstrated 18.7% improvement on AlfWorld and 11.9% on LiveBench after RL training.\n\n- **DeepSeek-R1-Distill-Qwen-7B** -- Exceptional for reasoning-heavy tasks, competitive with much larger models on math and coding benchmarks.\n\n- **Falcon-H1R-7B** -- Achieved 88.1% on AIME-24 mathematics and 68.6% on LiveCodeBench, best in class under 8B parameters.\n\n- **Qwen2.5-Coder-7B** -- Dominates coding benchmarks at the 7B tier; fits on 8GB VRAM.\n\n### Larger Open-Source Frontier Models (for reference)\n\n- **DeepSeek-V4-Pro** (1.6T total, 49B active MoE) -- Flagship for reasoning, coding, and agentic performance\n- **Kimi-K2.6** (Moonshot AI) -- Agent-oriented, long-context LLM with strong tool use\n- **Qwen 3.6 Plus** -- Strongest for agentic coding with 1M token context\n- **MiMo-V2.5-Pro** (Xiaomi, 1.02T total, 42B active) -- Flagship for coding agents\n\n---\n\n## 2. Conference Deadlines After May 10, 2026\n\n### ALREADY PASSED (before May 10, 2026) -- Not viable:\n\n| Venue | Deadline | Status |\n|-------|----------|--------|\n| **NeurIPS 2026** | Abstract: May 4, 2026; Full paper: May 6, 2026 (AOE) | **PASSED** |\n| **ICML 2026** | January 28, 2026 | **PASSED** |\n| **COLM 2026** | Abstract: March 26, 2026; Full paper: March 31, 2026 | **PASSED** |\n\n### UPCOMING (after May 10, 2026) -- Viable targets:\n\n| Venue | Deadline | Conference Date | Location |\n|-------|----------|----------------|----------|\n| **EMNLP 2026** | ARR submission: **May 25, 2026**; Commitment deadline: **August 2, 2026** | Oct 24-29, 2026 | Budapest, Hungary |\n| **AAAI 2027** | **TBD, expected July-August 2026** (based on historical pattern) | Feb 16-23, 2027 | Montreal, Canada |\n| **ICLR 2027** | **TBD, expected ~September 2026** (based on ICLR 2026 pattern of Sep 24 deadline) | May 16-21, 2027 | Toronto, Canada |\n| **AAMAS 2027** | **TBD, expected ~October 2026** (AAMAS 2026 had Oct 1/8 deadlines) | May 19-23, 2027 | TBD |\n\n**Most urgent actionable deadline: EMNLP 2026 ARR submission on May 25, 2026 -- only 15 days away.**\n\n---\n\n## 3. Open-AgentRL GitHub Implementation\n\n### Open-AgentRL (Gen-Verse) -- YES, a ready-to-use codebase exists\n\n- **Repository**: [https://github.com/Gen-Verse/Open-AgentRL](https://github.com/Gen-Verse/Open-AgentRL)\n- **Paper**: Accepted at **ICML 2026** (\"RLAnything & DemyAgent\")\n- **Scope**: General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings\n- **Available model checkpoints**:\n  - Policy models: RLAnything-7B, RLAnything-8B\n  - Reward models: RLAnything-Reward-8B, RLAnything-Reward-14B\n  - SFT models: Qwen2.5-7B-RA-SFT, Qwen3-4B-RA-SFT\n  - RL-trained: DemyAgent-4B\n- **GRPO usage**: Uses Binary RL (GRPO) where a Process Reward Model scores each turn, with GRPO advantage estimation and PPO-style clipped surrogate loss\n- **Results**: Boosts Qwen2.5-7B-Instruct by +18.7% on AlfWorld, +11.9% on LiveBench; Qwen3-VL-8B-Thinking by +9.1% on OSWorld\n- **Related project**: [OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL) -- Fully asynchronous RL framework built on Open-AgentRL for personalized agentic AI\n\n### Other GRPO Agent Training Frameworks\n\n- **[OpenPipe/ART](https://github.com/OpenPipe/ART)** (Agent Reinforcement Trainer) -- Train multi-step agents using GRPO for Qwen3.5, GPT-OSS, Llama, and more\n- **[Tree-GRPO](https://github.com/AMAP-ML/Tree-GRPO)** (ICLR 2026) -- Tree-search rollout strategy replacing independent chain-based rollouts for LLM agent RL\n- **[verl-agent](https://github.com/langfengq/verl-agent)** -- Extension of veRL for training LLM/VLM agents via RL with GRPO, PPO, DAPO, and GiGPO\n- **[RLinf](https://github.com/RLinf/RLinf)** -- Scalable RL infrastructure supporting GRPO, PPO, SAC across multiple GPU nodes\n- **[microsoft/agent-lightning](https://github.com/microsoft/agent-lightning)** -- Microsoft's agent trainer\n\n---\n\n### Summary Recommendation\n\nFor a 7B model with GRPO training for agent tasks: **use Qwen3-8B (or Qwen2.5-7B-Instruct) as the base model**, with **Open-AgentRL** as the primary training codebase (ICML 2026, already includes GRPO, 7B checkpoints, and multi-environment support). The most immediate conference target is **EMNLP 2026** (ARR deadline May 25), followed by **AAAI 2027** (~July-August 2026) and **ICLR 2027** (~September 2026).\n\n---\n\nSources:\n- [The Best Open-Source LLMs in 2026 (BentoML)](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Best Open Source LLM for Agent Workflow (SiliconFlow)](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Agent-Workflow)\n- [Best Small LLMs Under 10B Parameters (SiliconFlow)](https://www.siliconflow.com/articles/en/best-small-LLMs-under-10B-parameters)\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI 2027 Conference Deadline Tracker](https://www.getpaperpilot.com/deadlines/aaai-2027.html)\n- [ICLR Conference](https://iclr.cc/)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [EMNLP 2026 ARR Deadline Announcement (X/Twitter)](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [AAMAS 2027 on OpenReview](https://openreview.net/group?id=ifaamas.org%2FAAMAS%2F2027%2FConference)\n- [Open-AgentRL (GitHub)](https://github.com/Gen-Verse/Open-AgentRL)\n- [OpenClaw-RL (GitHub)](https://github.com/Gen-Verse/OpenClaw-RL)\n- [OpenPipe/ART (GitHub)](https://github.com/OpenPipe/ART)\n- [Tree-GRPO (GitHub)](https://github.com/AMAP-ML/Tree-GRPO)\n- [verl-agent (GitHub)](https://github.com/langfengq/verl-agent)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [AI Conference Deadlines](https://mlciv.com/ai-deadlines/)\n- [AI & ML Conference Deadlines 2026-2027](https://trybibby.com/conference-deadlines)\n- [Open-AgentRL on HuggingFace](https://huggingface.co/collections/Gen-Verse/open-agentrl)\n- [Qwen3 GRPO Fine-tuning (Unsloth)](https://docs.unsloth.ai/models/qwen3-how-to-run-and-fine-tune)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e08d8664-36bd-45e5-a674-b488b145a7c4",
+            "isSidechain": true,
+            "agentId": "abe1d2538ad641a1a",
+            "requestId": "req_011CauFmaF5dviaktQzqMnRH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0b68fea8-ae57-4b19-8d27-8d7679c9999f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JGQqAjLg7fQL49XR1WLj4q",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2720,
+                "cache_read_input_tokens": 23990,
+                "output_tokens": 2577,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2720
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2577,
+                    "cache_read_input_tokens": 23990,
+                    "cache_creation_input_tokens": 2720,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2720,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000047"
+        }
+      ],
+      "message_count": 47
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-use-websearch-to-find-1-current-best-open-source-llms-for-agent-tasks-2026-sea.md"
+}

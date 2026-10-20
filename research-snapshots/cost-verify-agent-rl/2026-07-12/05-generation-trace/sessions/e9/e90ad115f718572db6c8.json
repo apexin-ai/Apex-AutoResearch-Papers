@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e90ad115f718572db6c8",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> westd-47453 和 bjb1-17606 都用 conda 环境。W&B entity: xiaoyucorynne-, project: cost-verify-agent-rl。Seed 7 W&",
+  "task_key": "6d8d8849-153c-4ab1-bd29-da25b79e1c24",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/6d8d8849-153c-4ab1-bd29-da25b79e1c24.jsonl",
+    "occurrence": 1,
+    "bytes": 771938,
+    "sha256": "fe892eafa465cecfc3bcc7a8856ae232e5be24f80637085d20916e5657e4adbb"
+  },
+  "statistics": {
+    "messages": 90,
+    "user_turns": 1,
+    "tool_calls": 28,
+    "roles": {
+      "record": 22,
+      "user": 1,
+      "assistant": 11,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e90ad115f718572db6c8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "e90ad115f718572db6c8-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "e90ad115f718572db6c8-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-47453-bjb1-17606-conda-w-b-entity-xiaoyucorynne-project-co.md"
+}

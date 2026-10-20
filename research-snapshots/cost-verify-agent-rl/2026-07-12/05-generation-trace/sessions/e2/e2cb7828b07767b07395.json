@@ -1,0 +1,2074 @@
+{
+  "schema_version": "1.0",
+  "id": "e2cb7828b07767b07395",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是论文蒸馏 worker。任务：对论文进行 Layer 1 深度精读分析，输出结构化 YAML。 论文信息： - paper_key: verifiagent2025 - title: \"VerifiAgent: a Unified Ve",
+  "task_key": "agent-ad7807a3f590415e6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ad7807a3f590415e6.jsonl",
+    "occurrence": 1,
+    "bytes": 134463,
+    "sha256": "0a3492a40d015dc9c1659e00a71e3f525b5d10a1f5bd4375b7173307efff160a"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:43:18.226Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你是论文蒸馏 worker。任务：对论文进行 Layer 1 深度精读分析，输出结构化 YAML。\n\n论文信息：\n- paper_key: verifiagent2025\n- title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n- venue: EMNLP 2025 Findings 2025\n- arXiv: 2504.00406\n\n执行步骤：\n1. 用 WebFetch 获取 https://arxiv.org/abs/2504.00406 的摘要\n2. 用 WebFetch 获取 https://arxiv.org/html/2504.00406v1 的全文（如果可用，尝试 v2/v3 如果 v1 不行）\n3. 精读 intro + experiment sections，关注 contribution statement 和 limitation/future work\n4. 尝试获取 Figure 1 图片\n\n将结果写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/distill_tmp/verifiagent2025.yaml`\n\nYAML schema 同标准 distill schema（包含 research, positioning, narrative, figures, tables 五大部分）。\n\n关键字段：\n- research: baselines, metrics, datasets, ablation_dimensions, training_recipe, method_family\n- positioning: core_claim, key_results, limitations, relation_to_us (这篇是 \"competitor\"，因为直接做 verification agent)\n- narrative: story_type, hook, tension, key_insight, argument_chain, contribution_framing, intro_structure, notable_technique\n- figures: figure_count, figure1 (type/description/narrative_role/design_elements/visual_style), result_figures, ablation_figures, figure_narrative_role\n- tables: table_count, main_result_table (table_id/row_axis/col_axis/row_organization/col_organization/highlight_strategy/statistical_reporting/num_baselines/design_note), ablation_tables, supplementary_tables\n\n确保每个字段都填写，不要遗漏。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "93a7b64a-deab-48b6-ad35-d76462ff7612",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T04:43:18.229Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "93a7b64a-deab-48b6-ad35-d76462ff7612",
+                "isSidechain": true,
+                "agentId": "ad7807a3f590415e6",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "33fc5f0c-b4d2-48e3-a6d6-f79113f11e92",
+                "timestamp": "2026-05-20T04:43:18.229Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+                "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T04:43:22.612Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by fetching the paper's abstract and full text simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33fc5f0c-b4d2-48e3-a6d6-f79113f11e92",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD6So6u5EQZxFFxrJVM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "61d29b19-6b6e-4407-9dff-2a279ded7c5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1FwgYYxDhrqM1oaNEM9QT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9347,
+                "cache_read_input_tokens": 7351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9347,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T04:43:22.828Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0132SgqvX2KmEKMnveLZDYdH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61d29b19-6b6e-4407-9dff-2a279ded7c5a",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD6So6u5EQZxFFxrJVM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e747a6b-dc70-4655-9e84-65abbed9dee5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1FwgYYxDhrqM1oaNEM9QT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9347,
+                "cache_read_input_tokens": 7351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9347,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T04:43:22.831Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0132SgqvX2KmEKMnveLZDYdH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e747a6b-dc70-4655-9e84-65abbed9dee5",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "79124134-5512-4d28-aba6-fd3db3883d09",
+            "sourceToolAssistantUUID": "6e747a6b-dc70-4655-9e84-65abbed9dee5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T04:43:28.494Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L3mHaKfunSNxpzwTqKvYQm",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2504.00406",
+                "prompt": "Extract the full abstract, authors, and any other metadata (submission date, subjects) from this arXiv page."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79124134-5512-4d28-aba6-fd3db3883d09",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD6odz5qCbpXTeLVmhw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "37e8aa5e-8fb6-409c-859f-174bcaddac8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CtgqH2V2dofoQtASsZURrv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1449,
+                "cache_read_input_tokens": 16698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1449,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T04:43:30.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D7LivGHU5RJiraiUh3xnFD",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.00406v1",
+                "prompt": "Extract the COMPLETE text of this paper. I need:\n1. Full introduction section with all paragraphs\n2. The contribution statement (usually at end of intro)\n3. Method/approach section - full details\n4. Experiment section - all baselines, datasets, metrics, results tables, ablation studies\n5. Conclusion and limitations/future work section\n6. All figure and table captions\n7. References to figures/tables in the text\n8. The full related work section\n\nBe as comprehensive as possible - include actual numbers from result tables and specific method details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37e8aa5e-8fb6-409c-859f-174bcaddac8d",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD6odz5qCbpXTeLVmhw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c644efc8-8a27-464c-ada1-9a5c65897c67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CtgqH2V2dofoQtASsZURrv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1449,
+                "cache_read_input_tokens": 16698,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1449
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 16698,
+                    "cache_creation_input_tokens": 1449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1449,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T04:43:30.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_01D7LivGHU5RJiraiUh3xnFD"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c644efc8-8a27-464c-ada1-9a5c65897c67",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "3cb85cfb-80c0-411b-9b6c-2f195c9fa14b",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "c644efc8-8a27-464c-ada1-9a5c65897c67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T04:43:32.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L3mHaKfunSNxpzwTqKvYQm",
+              "type": "tool_result",
+              "content": "# VerifiAgent Paper Metadata\n\n**Title:** VerifiAgent: a Unified Verification Agent in Language Model Reasoning\n\n**Authors:** Jiuzhou Han, Wray Buntine, Ehsan Shareghi\n\n**Submission Date:** April 1, 2025 (v1); August 21, 2025 (v2)\n\n**arXiv Identifier:** 2504.00406\n\n**Subjects:** Computation and Language (cs.CL); Artificial Intelligence (cs.AI)\n\n**Venue:** EMNLP 2025\n\n## Abstract Summary\n\nThe researchers present a verification system designed to improve reliability of language model outputs. The approach uses two complementary mechanisms: assessment of response completeness and consistency, plus intelligent selection of domain-specific verification tools tailored to mathematical, logical, or commonsense reasoning tasks.\n\nKey findings indicate the system \"outperforms baseline verification methods...among all reasoning tasks\" and demonstrates efficiency gains in mathematical domains compared to existing process reward models. The researchers have made their implementation publicly available through GitHub.\n\n**License:** Creative Commons Attribution 4.0 (CC BY 4.0)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37e8aa5e-8fb6-409c-859f-174bcaddac8d",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "32eb359e-c27d-4f5d-a0a3-07b4e20addae",
+            "sourceToolAssistantUUID": "37e8aa5e-8fb6-409c-859f-174bcaddac8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T04:43:35.314Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The v1 HTML is not available. Let me try v2."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32eb359e-c27d-4f5d-a0a3-07b4e20addae",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD7XhJzzEx7QZmrRdST",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a42049bb-670f-4220-ac9a-74add5d80091",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MdHisTRv8cmUGiWaYU7Lgz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 39,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 18147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T04:43:37.159Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WJPLDzPJYeE9AvEoWexo5m",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.00406v2",
+                "prompt": "Extract the COMPLETE text of this paper. I need:\n1. Full introduction section with all paragraphs\n2. The contribution statement (usually at end of intro)\n3. Method/approach section - full details of VerifiAgent\n4. Experiment section - all baselines, datasets, metrics, results tables with numbers, ablation studies\n5. Conclusion and limitations/future work section\n6. All figure and table captions with descriptions\n7. References to figures/tables in the text\n8. The related work section\n\nBe as comprehensive as possible - include actual numbers from result tables and specific method details. Do not summarize - give me the actual content."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a42049bb-670f-4220-ac9a-74add5d80091",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD7XhJzzEx7QZmrRdST",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "534e1162-287d-4267-9b79-b30642d71c34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MdHisTRv8cmUGiWaYU7Lgz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 39,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 18147,
+                "output_tokens": 242,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 584
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 39,
+                    "output_tokens": 242,
+                    "cache_read_input_tokens": 18147,
+                    "cache_creation_input_tokens": 584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 584,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T04:43:37.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_01WJPLDzPJYeE9AvEoWexo5m"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "534e1162-287d-4267-9b79-b30642d71c34",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "931ff21e-b333-4425-b166-0e534fae01c1",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "534e1162-287d-4267-9b79-b30642d71c34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T04:43:40.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UhKL7mXHJDk9nM2U2Nix6Y",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.00406v3",
+                "prompt": "Extract the COMPLETE text of this paper including all sections, tables, figures, and numbers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "931ff21e-b333-4425-b166-0e534fae01c1",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD7rxgruttGf5khoe4p",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "68c28954-4fe0-47c5-9d76-07d66708bd62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MWfMg4cZQkABJmBQ5KAVr3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 18731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 307,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T04:43:40.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_01UhKL7mXHJDk9nM2U2Nix6Y"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c28954-4fe0-47c5-9d76-07d66708bd62",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "a4a81697-a7ae-4cbb-8204-cb35eca6e42e",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "68c28954-4fe0-47c5-9d76-07d66708bd62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T04:43:41.481Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YYnkL3WABgcWGfunjjXtys",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://ar5iv.labs.arxiv.org/html/2504.00406",
+                "prompt": "Extract the COMPLETE text of this paper. I need:\n1. Full introduction section with all paragraphs\n2. The contribution statement (usually at end of intro)\n3. Method/approach section - full details of VerifiAgent\n4. Experiment section - all baselines, datasets, metrics, results tables with numbers, ablation studies\n5. Conclusion and limitations/future work section\n6. All figure and table captions with descriptions\n7. References to figures/tables in the text\n8. The related work section\n\nBe as comprehensive as possible - include actual numbers from result tables and specific method details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4a81697-a7ae-4cbb-8204-cb35eca6e42e",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD7rxgruttGf5khoe4p",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c656a91f-3dc1-4561-b6fa-c42e1859ee75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MWfMg4cZQkABJmBQ5KAVr3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 18731,
+                "output_tokens": 304,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 307
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 304,
+                    "cache_read_input_tokens": 18731,
+                    "cache_creation_input_tokens": 307,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 307,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T04:43:45.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YYnkL3WABgcWGfunjjXtys",
+              "type": "tool_result",
+              "content": "I appreciate your detailed request, but I need to be direct: **the web page content provided contains no actual paper text**.\n\nWhat you've shared is only a navigation header from ar5iv (an HTML converter for arXiv papers) showing:\n- Error messages indicating the conversion failed\n- Navigation buttons and links\n- No substantive academic content\n\nThe page displays: \"No content available\" and notes that \"Conversion to HTML had a Fatal error and exited abruptly.\"\n\n**To help you, I would need:**\n- The actual full text of the paper (arxiv ID 2504.00406 based on the links shown)\n- Either the PDF content directly, or a successfully converted HTML version with the complete paper text\n\nIf you can provide the actual paper content, I'd be happy to extract the sections you've requested (introduction, methods, experiments, conclusions, etc.) while adhering to the character limits and quotation guidelines you've specified."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c656a91f-3dc1-4561-b6fa-c42e1859ee75",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "a6b3f7ea-0ce5-457f-8782-6c64f5b7d7f6",
+            "sourceToolAssistantUUID": "c656a91f-3dc1-4561-b6fa-c42e1859ee75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T04:43:48.031Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The HTML versions are not available. Let me try the PDF and also search for an alternative source."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6b3f7ea-0ce5-457f-8782-6c64f5b7d7f6",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD8RxZE9US9UsPdSPsE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a7e5b5ad-9e0e-42ba-9bbf-9a2365cc007d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7yK9b5S53AhzqBrBtdc93",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 576,
+                "cache_read_input_tokens": 19038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T04:43:50.263Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6koHb4eyJRaMjWUxtGMrY",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2504.00406",
+                "prompt": "Extract the COMPLETE text of this paper. I need:\n1. Full introduction section with all paragraphs\n2. The contribution statement (usually at end of intro)\n3. Method/approach section - full details of VerifiAgent including the two components (completeness/consistency assessment and tool selection)\n4. Experiment section - all baselines, datasets, metrics, results tables with actual numbers, ablation studies\n5. Conclusion and limitations/future work section\n6. All figure and table captions\n7. The related work section\n\nBe as comprehensive as possible - include actual numbers from result tables and specific method details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7e5b5ad-9e0e-42ba-9bbf-9a2365cc007d",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD8RxZE9US9UsPdSPsE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dc3fd1f6-4fcc-4058-9e78-12923c34dca4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7yK9b5S53AhzqBrBtdc93",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 576,
+                "cache_read_input_tokens": 19038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T04:43:51.334Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HJx1o9xUpgvQPbtEoAKqju",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/papers/2504.00406",
+                "prompt": "Extract all available information about this paper: VerifiAgent. Include the abstract, any discussion, and links to code/models."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc3fd1f6-4fcc-4058-9e78-12923c34dca4",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD8RxZE9US9UsPdSPsE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea4ddd93-e774-49f9-a82c-41a696fe9a6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7yK9b5S53AhzqBrBtdc93",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 576,
+                "cache_read_input_tokens": 19038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T04:43:51.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HJx1o9xUpgvQPbtEoAKqju",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (82.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/toolu_01HJx1o9xUpgvQPbtEoAKqju.txt\n\nPreview (first 2KB):\n# VerifiAgent: a Unified Verification Agent in Language Model Reasoning\n\nJiuzhou Han<sup>b</sup>   Wray Buntine<sup>b</sup>   Ehsan Shareghi<sup>b</sup>\n\n<sup>b</sup> Department of Data Science & AI, Monash University\n\n<sup>b</sup> College of Engineering and Computer Science, VinUniversity\n\njiuzhou.han@monash.edu   wray.b@vinuni.edu.vn\n\nehsan.shareghi@monash.edu\n\n## Abstract\n\nLarge language models demonstrate remarkable reasoning capabilities but often produce unreliable or incorrect responses. Existing verification methods are typically model-specific or domain-restricted, requiring significant computational resources and lacking scalability across diverse reasoning tasks. To address these limitations, we propose VerifiAgent, a unified verification agent that integrates two levels of verification: meta-verification, which assesses completeness and consistency in model responses, and tool-based adaptive verification, where VerifiAgent autonomously selects appropriate verification tools based on the reasoning type, including mathematical, logical, or commonsense reasoning. This adaptive approach ensures both efficiency and robustness across different verification scenarios. Experimental results show that VerifiAgent outperforms baseline verification methods (e.g., deductive verifier, backward verifier) among all reasoning tasks. Additionally, it can further enhance reasoning accuracy by leveraging feedback from verification results. VerifiAgent can also be effectively applied to inference scaling, achieving better results with fewer generated samples and costs compared to existing process reward models in the mathematical reasoning domain.<sup>1</sup>\n\n## 1 Introduction\n\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea4ddd93-e774-49f9-a82c-41a696fe9a6c",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "20fec0b8-4407-4efa-84ce-7d09f2c45adf",
+            "sourceToolAssistantUUID": "ea4ddd93-e774-49f9-a82c-41a696fe9a6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T04:43:58.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6koHb4eyJRaMjWUxtGMrY",
+              "type": "tool_result",
+              "content": "# VerifiAgent: A Unified Verification Agent in Language Model Reasoning\n\n## Summary\n\nI've analyzed the PDF content, but I must note that the document appears to be a technical research paper in PDF format where much of the actual text content is embedded in compressed streams. While I can see metadata, structure, and references, I cannot extract the complete full text as requested because the primary content is in encoded/compressed format within the PDF structure.\n\nHowever, I can provide what IS extractable:\n\n## What I Found:\n\n**Document Metadata:**\n- Title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n- Authors: Jiuzhou Han, Wray Buntine, Ehsan Shareghi\n- DOI: https://doi.org/10.48550/arXiv.2504.00406\n- License: Creative Commons BY 4.0\n- 22 pages total\n\n**Structure Identified:**\nThe document contains sections including:\n- Introduction\n- Related Work\n- Method (with subsections on verification agent design)\n- Experiments (with multiple evaluation benchmarks)\n- Appendices (A-F, including \"VerifiAgent Prompt\")\n\n**Key References Cited:**\nThe bibliography references work on language model reasoning, verification, chain-of-thought prompting, and related verification approaches from venues like ACL, EMNLP, NeurIPS, and ICLR.\n\n## Limitation:\n\nTo obtain the complete text with all numbers, tables, and full method details you requested, you would need to:\n1. Extract using a PDF-to-text tool (PyPDF2, pdfplumber, etc.)\n2. Access the paper directly from arXiv.org\n3. Contact the authors for the source document\n\nI apologize that the compressed PDF structure prevented a complete extraction.\n\n[Binary content (application/pdf, 512.9KB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/webfetch-1779252230284-ccupky.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc3fd1f6-4fcc-4058-9e78-12923c34dca4",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "5b4df458-26d8-4717-9d2c-61464b629018",
+            "sourceToolAssistantUUID": "dc3fd1f6-4fcc-4058-9e78-12923c34dca4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T04:44:00.314Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The HuggingFace page has substantial content. Let me read the full output."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b4df458-26d8-4717-9d2c-61464b629018",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD9P9ujUtZAzbY1wnxL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4168e277-bae2-4fd7-8b99-b7c938648ca7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hi5sKFKaunsS428xpUXAcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 993,
+                "cache_read_input_tokens": 19614,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 993,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T04:44:01.348Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Nx1PdnSwPzBV8KmZaVJad",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/toolu_01HJx1o9xUpgvQPbtEoAKqju.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4168e277-bae2-4fd7-8b99-b7c938648ca7",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD9P9ujUtZAzbY1wnxL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "de13529e-387c-4184-a63d-f57e0cf45f87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hi5sKFKaunsS428xpUXAcP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 993,
+                "cache_read_input_tokens": 19614,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 993
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 545,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 19614,
+                    "cache_creation_input_tokens": 993,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 993,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T04:44:01.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (25927 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_015Nx1PdnSwPzBV8KmZaVJad"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de13529e-387c-4184-a63d-f57e0cf45f87",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "99ececd2-387b-4418-a7fc-54be83455f5b",
+            "toolUseResult": "Error: File content (25927 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "de13529e-387c-4184-a63d-f57e0cf45f87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T04:44:04.345Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PMPpUjtXbYLMLCAuG9aXgn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/toolu_01HJx1o9xUpgvQPbtEoAKqju.txt",
+                "offset": 0,
+                "limit": 400
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99ececd2-387b-4418-a7fc-54be83455f5b",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD9eWtPT2tvQqzemB5h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a8493f52-010e-4187-ad57-b65a273159f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017g4ijcn3HQ5HJ1dCBHd3KP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 785,
+                "cache_read_input_tokens": 20607,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 785
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 20607,
+                    "cache_creation_input_tokens": 785,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 785,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T04:44:04.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PMPpUjtXbYLMLCAuG9aXgn",
+              "type": "tool_result",
+              "content": "0\t# VerifiAgent: a Unified Verification Agent in Language Model Reasoning\n1\t\n2\tJiuzhou Han<sup>b</sup>   Wray Buntine<sup>b</sup>   Ehsan Shareghi<sup>b</sup>\n3\t\n4\t<sup>b</sup> Department of Data Science & AI, Monash University\n5\t\n6\t<sup>b</sup> College of Engineering and Computer Science, VinUniversity\n7\t\n8\tjiuzhou.han@monash.edu   wray.b@vinuni.edu.vn\n9\t\n10\tehsan.shareghi@monash.edu\n11\t\n12\t## Abstract\n13\t\n14\tLarge language models demonstrate remarkable reasoning capabilities but often produce unreliable or incorrect responses. Existing verification methods are typically model-specific or domain-restricted, requiring significant computational resources and lacking scalability across diverse reasoning tasks. To address these limitations, we propose VerifiAgent, a unified verification agent that integrates two levels of verification: meta-verification, which assesses completeness and consistency in model responses, and tool-based adaptive verification, where VerifiAgent autonomously selects appropriate verification tools based on the reasoning type, including mathematical, logical, or commonsense reasoning. This adaptive approach ensures both efficiency and robustness across different verification scenarios. Experimental results show that VerifiAgent outperforms baseline verification methods (e.g., deductive verifier, backward verifier) among all reasoning tasks. Additionally, it can further enhance reasoning accuracy by leveraging feedback from verification results. VerifiAgent can also be effectively applied to inference scaling, achieving better results with fewer generated samples and costs compared to existing process reward models in the mathematical reasoning domain.<sup>1</sup>\n15\t\n16\t## 1 Introduction\n17\t\n18\tLarge language models (LLMs) have demonstrated significant capabilities in natural language reasoning tasks, exhibiting potential to solve complex problems across diverse domains (Yang et al., 2024a; DeepSeek-AI et al., 2025; Dubey et al., 2024; OpenAI, 2023). However, despite their advanced reasoning abilities, these models often produce responses that are unreliable or incorrect, which poses substantial challenges for practical applications that require high precision and trustworthiness (Augenstein et al., 2024; Huang et al.,\n19\t\n20\t2024). To address this critical issue, several verification methods have been proposed, ranging from task-specific verifiers to generalised verification methods leveraging prompting techniques.\n21\t\n22\tTraining a task-specific verifier to verify the output of LLM requires specific training data. For instance, Ni et al. (2023) train a verification model that judges language-to-code outputs based on both program text and execution results. Liang et al. (2024) design verifiers trained on outputs from multiple reasoning paradigms, using correctness signals for improvement. Han et al. (2024b) train a lightweight verifier for improving semantic graph generation in text-to-graph tasks. Similarly, Thatikonda et al. (2024) train a verifier that corrects potential syntactic and semantic first-order logic translation errors. Nevertheless, these existing solutions typically face limitations such as domain restriction, computational inefficiency, and lack of scalability when handling varied reasoning tasks. Table 1 demonstrates a feature comparison of various verification methods.\n23\t\n24\tIn this paper, we propose VerifiAgent, a unified verification agent designed specifically to overcome these limitations by offering a generalisable and efficient verification framework. Unlike prior methods, VerifiAgent adopts a two-layer verification mechanism, comprising meta-verification and tool-based adaptive verification. The meta-verification layer ensures completeness and logical consistency of responses, while the tool-based adaptive verification autonomously selects appropriate external tools (e.g., Python interpreters, symbolic solvers, search engines) to deal with different reasoning types, including mathematical, logical, commonsense, and hybrid reasoning tasks.\n25\t\n26\tOur approach not only achieves superior verification accuracy compared to existing baseline methods, such as deductive verifier (Ling et al., 2023), backward verifier (Weng et al., 2023), but also enhances reasoning accuracy by integrating\n27\t\n28\t<sup>1</sup>Code is available at <https://github.com/Jiuzhouh/VerifiAgent>.<table border=\"1\">\n29\t<thead>\n30\t<tr>\n31\t<th>Method</th>\n32\t<th>Training-free</th>\n33\t<th>Generalised</th>\n34\t<th>Tool-based</th>\n35\t<th>Fine-grained Feedback</th>\n36\t</tr>\n37\t</thead>\n38\t<tbody>\n39\t<tr>\n40\t<td>DIVERSE (Li et al., 2023)</td>\n41\t<td>×</td>\n42\t<td>×</td>\n43\t<td>×</td>\n44\t<td>×</td>\n45\t</tr>\n46\t<tr>\n47\t<td>PiVe (Han et al., 2024b)</td>\n48\t<td>×</td>\n49\t<td>×</td>\n50\t<td>×</td>\n51\t<td>✓</td>\n52\t</tr>\n53\t<tr>\n54\t<td>Math/Code-Rev (Liang et al., 2024)</td>\n55\t<td>×</td>\n56\t<td>×</td>\n57\t<td>✓</td>\n58\t<td>×</td>\n59\t</tr>\n60\t<tr>\n61\t<td>LEVER (Ni et al., 2023)</td>\n62\t<td>×</td>\n63\t<td>×</td>\n64\t<td>✓</td>\n65\t<td>×</td>\n66\t</tr>\n67\t<tr>\n68\t<td>CoVe (Dhuliawala et al., 2024)</td>\n69\t<td>✓</td>\n70\t<td>×</td>\n71\t<td>×</td>\n72\t<td>✓</td>\n73\t</tr>\n74\t<tr>\n75\t<td>CSV (Zhou et al., 2024)</td>\n76\t<td>✓</td>\n77\t<td>×</td>\n78\t<td>✓</td>\n79\t<td>✓</td>\n80\t</tr>\n81\t<tr>\n82\t<td>Deductive Verifier (Ling et al., 2023)</td>\n83\t<td>✓</td>\n84\t<td>✓</td>\n85\t<td>×</td>\n86\t<td>×</td>\n87\t</tr>\n88\t<tr>\n89\t<td>Backward Verifier (Weng et al., 2023)</td>\n90\t<td>✓</td>\n91\t<td>✓</td>\n92\t<td>×</td>\n93\t<td>×</td>\n94\t</tr>\n95\t<tr>\n96\t<td>VerifiAgent (ours)</td>\n97\t<td>✓</td>\n98\t<td>✓</td>\n99\t<td>✓</td>\n100\t<td>✓</td>\n101\t</tr>\n102\t</tbody>\n103\t</table>\n104\t\n105\tTable 1: Comparison of various verification methods.\n106\t\n107\tdetailed feedback derived from the verification process. Furthermore, VerifiAgent can be effectively applied to inference scaling, requiring significantly fewer computational resources compared to standard Process Reward Models (PRMs), thereby providing a practical approach to improve LLM performance during inference. Through extensive experiments across three types of reasoning tasks, we summarise two key empirical findings: 1) An LLM reasoner can improve via inference scaling methods like Majority Vote, PRMs, or VerifiAgent, but VerifiAgent achieves higher accuracy at lower cost. 2) VerifiAgent’s capabilities scale alongside improvements in its backbone LLM, enabling consistent performance gains on the same reasoner.\n108\t\n109\t## 2 Related Work\n110\t\n111\t### 2.1 LLMs as Verifiers\n112\t\n113\tLeveraging the prompting and in-context learning ability of LLMs to verify the outputs of LLMs provides a generalised approach of verification. Wu et al. (2024); Weng et al. (2023) show that LLMs can refine reasoning chains via backward verification or masked condition checking, while Ling et al. (2023) decompose solutions into verifiable steps using a Natural Program format. Dhuliawala et al. (2024) propose Chain-of-Verification, which decomposes the verification into a sequence of questions, improving factual consistency through multi-step prompting. Hong et al. (2024) evaluate LLMs’ ability to detect logical errors, finding that while models can catch some flaws, their verification is often shallow. Stechly et al. (2024) further investigate the reliability of self-critique, demonstrating that performance often degrades when doing self-verification without external grounding.\n114\t\n115\tTo enhance the verification quality of LLMs, some methods integrate external tools. Zhou et al. (2024) introduce code-based self-verification, which prompts GPT-4 Code Interpreter to evaluate and fix its answers by executing code and interpreting the output. Similarly, Gou et al. (2024) propose CRITIC, a framework where LLMs inter-\n116\t\n117\tact with tools (e.g., calculators, search engines) to critique and revise their own outputs, leading to improved factuality and reasoning. Different from these works, our VerifiAgent provides a generalised verification agentic framework adaptable to diverse reasoning tasks with fine-grained feedback.\n118\t\n119\tA broader concept of verification by LLMs is referred to LLM-as-a-Judge, where LLMs are used as general evaluators for tasks like response scoring, pairwise comparison, and content moderation. As surveyed by Gu et al. (2024); Li et al. (2024), LLM-as-a-Judge systems perform holistic evaluations, as a scalable and consistent alternative to human evaluation, applicable in model benchmarking, safety assessment, and alignment data labelling. VerifiAgent can be viewed as a specialised type of LLM-as-a-Judge system, specifically designed to evaluate the correctness of certain reasoning tasks through tool-based verification mechanisms.\n120\t\n121\t### 2.2 Scaling Test-Time Compute\n122\t\n123\tScaling test-time compute refers to allocating more computational budget during inference via sampling, deeper reasoning, or adaptive search to boost model accuracy. Brown et al. (2024) present a comprehensive study of inference-time scaling through repeated sampling, demonstrating that coverage—the probability of generating at least one correct answer—scales log-linearly with the number of samples. Stroebel et al. (2024) theoretically analyse the limits of resampling, showing that imperfect verifiers lead to diminishing returns, especially when false positives dominate. Similarly, Setlur et al. (2025a) argue that verifier-based strategies scale more robustly than verifier-free ones, particularly when base models exhibit anti-concentrated output distributions.\n124\t\n125\tThe growing use of Process Reward Models (PRMs) suggests that fine-grained supervision over intermediate reasoning steps can improve model reliability (Lightman et al., 2024; Wang et al., 2024; Zhang et al., 2025). PRMs offer another strategy for scaling test-time compute by enhancing Best-of-N sampling (Snell et al., 2024). As a verifier, VerifiAgent does not require any training process, eliminating the need for collecting task-specific training data. By leveraging frozen LLMs, it can be integrated into test-time compute scaling strategies, enhancing the accuracy of LLM outputs.### 3 VerfiAgent\n126\t\n127\tVerfiAgent is a plug-and-play verification framework that empowers frozen LLMs to utilise external mechanisms to verify the correctness of solutions of diverse reasoning tasks. As illustrated in Figure 1, VerfiAgent adopts a two-layer verification mechanism, which contains two levels of verification. The first level is to do a Meta Verification, and the second level is to do a Tool-based Adaptive Verification. The solution will be evaluated sequentially through the two layers. The second-level verification can further validate the results from meta-verification, enhancing the accuracy of the verification results. With this two-layer verification mechanism, the VerfiAgent can provide fine-grained feedback of the verification process.\n128\t\n129\t#### 3.1 Meta Verification\n130\t\n131\tThe Meta Verification aims to verify two aspects of the solution: completeness and consistency. The completeness refers to a solution that is self-contained, fully addresses every part of the question, and contains a clear result or conclusion. The consistency refers to reasoning that follows a logical structure with no jumps, gaps, or inconsistencies. This initial layer acts as a foundational check, preventing incomplete or inconsistent solutions from progressing further. Through meta verification, VerfiAgent ensures that only solutions with structural integrity and coherent reasoning proceed to the next tool-based adaptive verification.\n132\t\n133\tSince the solutions of different types of reasoning tasks may have different structures, to make VerfiAgent adaptable to diverse solutions, we leverage a unified way to rewrite the solutions in the meta verification phase. Specifically, the agent will first list all the known conditions and the final objective provided in the problem, then divide the solution into individual and explicit logical steps. This will be beneficial for the meta verification and the following tool-based adaptive verification. See Appendix E for examples.\n134\t\n135\t#### 3.2 Tool-based Adaptive Verification\n136\t\n137\tAfter the meta verification stage, the solution enters the Tool-based Adaptive Verification phase. This level leverages external tools, such as Python program interpreter, search engine and symbolic solver, to cross-check the correctness of the solution. The agent will first solve the question using appropriate tools, and then verify the results by\n138\t\n139\tcomparing them with the original solution. Unlike the meta verification stage, which evaluates general reasoning quality, this phase evaluates factual and computational accuracy.\n140\t\n141\tVerfiAgent dynamically selects the most suitable verification tool based on the nature of the task and instructions. For instance, in mathematical reasoning, it may utilise a Python interpreter to verify calculations, while for knowledge-based commonsense reasoning, it may query a search engine to gather relevant information. For hybrid reasoning tasks, it can combine multiple tools to ensure comprehensive verification. Additionally, VerfiAgent autonomously determines the required number of external tool calls, continuing until it gathers sufficient information to validate the answer.\n142\t\n143\tWhen VerfiAgent selects a tool for verification, the environment returns the corresponding execution result. Based on this observation, the agent iteratively determines its next action until the verification process is complete. The VerfiAgent not only ensures the accuracy of solutions but also provides a transparent and interpretable verification process for natural language reasoning tasks. See Appendix E for examples.\n144\t\n145\t#### 3.3 Fine-grained Feedback\n146\t\n147\tBased on the two levels of verification, VerfiAgent provides a final evaluation result (i.e., *Correct/Incorrect*) to indicate the correctness of the solution. In addition to the verification result, VerfiAgent also generate a  $V_{score}$  as a confidence score of the verification.  $V_{score}$  is calculated by applying the softmax function to the log probability of the token (*Correct/Incorrect*) and the log probabilities of the top 5 alternative tokens. Specifically:\n148\t\n149\t$$V_{score} = \\frac{\\exp(p(t))}{\\sum_{k=1}^5 \\exp(p(t_k))}$$\n150\t\n151\twhere  $V_{score}$  represents the confidence score for the verification result token  $t$ . the term  $p(t)$  denotes the log probability of the token  $t$  generated by the LLM.  $p(t_k)$  is for  $k = 1$  to 5 represents the log probabilities of the top five predicted tokens at the verification result token position. This equation ensures that the confidence score reflects the relative likelihood of the chosen token compared to the top alternatives, effectively normalising the scores within the range of 0 to 1.\n152\t\n153\tFurthermore, when a solution is deemed incorrect, VerfiAgent provides fine-grained feedbackThe diagram illustrates the VerifiAgent workflow. It starts with a **Reasoning Task & Solution** box containing four categories: Mathematical Reasoning, Commonsense Reasoning, Logical Reasoning, and Hybrid Reasoning. An **Input** arrow points from this box to the **VerifiAgent** section. The VerifiAgent section is divided into two main verification stages: **Meta Verification** and **Tool Verification**. **Meta Verification** involves listing conditions, dividing the answer into steps, and checking for completeness and consistency. **Tool Verification** involves selecting and using tools like Python Interpreter, Search Engine, and Theorem Prover. The final output is a **Feedback** box containing Evaluation Result, Error Reason, Revision Method, and Verification Score, which is fed back into the Reasoning Task & Solution box via an **Output** arrow.\n154\t\n155\tFigure 1: An overview of VerifiAgent. Given a reasoning task and a candidate solution, VerifiAgent leverages two levels of verification: (1) meta verification – verifying the completeness and consistency of the solution and (2) tool-based adaptive verification – autonomously selecting appropriate tools to do the correctness verification. The VerifiAgent can provide fine-grained feedback about the verification process based on the instruction in the prompt.\n156\t\n157\tabout the verification process based on the instruction in the prompt. This feedback includes the identified error reason, derived from the two levels of verification, and a potential revision method that incorporates observations from tool execution results (See Appendix E for examples). Such feedback can be leveraged to refine and enhance the solution, improving the accuracy of reasoning tasks.\n158\t\n159\t## 4 Experiment\n160\t\n161\t### 4.1 Baseline and Experimental Setup\n162\t\n163\t**Datasets.** We evaluate VerifiAgent on three natural language reasoning tasks, including mathematical reasoning, logical reasoning, commonsense reasoning, and hybrid reasoning. Specifically, for mathematical reasoning we use GSM8K (Cobbe et al., 2021) and MATH (Hendrycks et al., 2021), for logical reasoning we use FOLIO (Han et al., 2024c) and ProverQA (Qi et al., 2025), for commonsense reasoning we use HotpotQA (Yang et al., 2018) and StrategyQA (Geva et al., 2021), for hybrid reasoning we use ReWild (Yang et al., 2024c). The statistics of the datasets are shown in Appendix A.\n164\t\n165\t**Baselines.** Since VerifiAgent is a training-free and generalised approach, we compare it against baseline methods that are similarly prompting-based and generalised. Specifically:\n166\t\n167\t- • **Vanilla Verifier.** Vanilla Verifier employs a structured prompt to instruct the LLM to verify a solution given a problem, without relying on specialised mechanisms (Kamoi et al., 2024).\n168\t\n169\t- • **Deductive Verifier.** Deductive Verifier (Ling et al., 2023) enables the LLM to carry out explicit and rigorous deductive reasoning to evaluate the correctness of a solution. It decomposes the verification process into a sequence of step-by-step subprocesses using Natural Program, a natural language-based deductive reasoning format, to facilitate the breakdown of logical steps in a step-by-step manner.\n170\t- • **Backward Verifier.** Backward Verifier (Weng et al., 2023) appends the predicted answer to the question while masking the original condition, then prompts the LLM to predict the masked condition. Verification is conducted by comparing the predicted condition with the original one. If the two conditions align, the solution is deemed correct; otherwise, inconsistencies indicate errors in the provided solution.\n171\t\n172\t**Models.** We explored various combinations of backbone LLMs for both the Reasoner and VerifiAgent. For the Reasoner, we utilise GPT-4o, o3-mini, and Llama-3.3-70B-Instruct-Turbo, while for the VerifiAgent, we employ GPT-4o and o1-mini. In our experiments, unless explicitly stated otherwise, both the Reasoner and VerifiAgent default to GPT-4o as their backbone LLMs.\n173\t\n174\t### 4.2 Main Result\n175\t\n176\tTable 2 shows the performance of VerifiAgent compared to baseline methods (Vanilla, Deductive, and Backward Verifiers) across different reasoning tasks. Overall, VerifiAgent consistently out-<table border=\"1\">\n177\t<thead>\n178\t<tr>\n179\t<th rowspan=\"3\">Type</th>\n180\t<th rowspan=\"3\">Dataset</th>\n181\t<th colspan=\"9\">Baselines</th>\n182\t<th colspan=\"3\" rowspan=\"2\">VerifiAgent</th>\n183\t</tr>\n184\t<tr>\n185\t<th colspan=\"3\">Vanilla Verifier</th>\n186\t<th colspan=\"3\">Deductive Verifier</th>\n187\t<th colspan=\"3\">Backward Verifier</th>\n188\t</tr>\n189\t<tr>\n190\t<th>Acc</th>\n191\t<th>Pre</th>\n192\t<th>Rec</th>\n193\t<th>Acc</th>\n194\t<th>Pre</th>\n195\t<th>Rec</th>\n196\t<th>Acc</th>\n197\t<th>Pre</th>\n198\t<th>Rec</th>\n199\t<th>Acc</th>\n200\t<th>Pre</th>\n201\t<th>Rec</th>\n202\t</tr>\n203\t</thead>\n204\t<tbody>\n205\t<tr>\n206\t<td rowspan=\"2\">Mathematical</td>\n207\t<td>GSM8K</td>\n208\t<td>0.93</td>\n209\t<td>0.96</td>\n210\t<td>0.96</td>\n211\t<td>0.95</td>\n212\t<td>0.96</td>\n213\t<td>0.99</td>\n214\t<td>0.95</td>\n215\t<td>0.96</td>\n216\t<td>0.98</td>\n217\t<td><b>0.96</b></td>\n218\t<td><b>0.96</b></td>\n219\t<td><b>1.00</b></td>\n220\t</tr>\n221\t<tr>\n222\t<td>MATH</td>\n223\t<td>0.75</td>\n224\t<td>0.73</td>\n225\t<td>0.86</td>\n226\t<td>0.80</td>\n227\t<td>0.76</td>\n228\t<td>0.86</td>\n229\t<td>0.82</td>\n230\t<td>0.80</td>\n231\t<td>0.88</td>\n232\t<td><b>0.85</b></td>\n233\t<td><b>0.86</b></td>\n234\t<td><b>0.92</b></td>\n235\t</tr>\n236\t<tr>\n237\t<td rowspan=\"2\">Logical</td>\n238\t<td>FOLIO</td>\n239\t<td>0.75</td>\n240\t<td>0.78</td>\n241\t<td>0.96</td>\n242\t<td>0.73</td>\n243\t<td>0.73</td>\n244\t<td>0.95</td>\n245\t<td>0.74</td>\n246\t<td>0.76</td>\n247\t<td>0.96</td>\n248\t<td><b>0.76</b></td>\n249\t<td><b>0.78</b></td>\n250\t<td><b>0.97</b></td>\n251\t</tr>\n252\t<tr>\n253\t<td>ProverQA</td>\n254\t<td>0.75</td>\n255\t<td>0.77</td>\n256\t<td>0.97</td>\n257\t<td>0.74</td>\n258\t<td>0.75</td>\n259\t<td><b>0.98</b></td>\n260\t<td>0.75</td>\n261\t<td>0.78</td>\n262\t<td>0.96</td>\n263\t<td><b>0.77</b></td>\n264\t<td><b>0.82</b></td>\n265\t<td>0.95</td>\n266\t</tr>\n267\t<tr>\n268\t<td rowspan=\"2\">Commonsense</td>\n269\t<td>StrategyQA</td>\n270\t<td>0.78</td>\n271\t<td>0.79</td>\n272\t<td>0.92</td>\n273\t<td>0.75</td>\n274\t<td>0.82</td>\n275\t<td>0.92</td>\n276\t<td>0.79</td>\n277\t<td>0.80</td>\n278\t<td>0.94</td>\n279\t<td><b>0.84</b></td>\n280\t<td><b>0.85</b></td>\n281\t<td><b>0.95</b></td>\n282\t</tr>\n283\t<tr>\n284\t<td>HotpotQA</td>\n285\t<td>0.56</td>\n286\t<td>0.53</td>\n287\t<td>0.91</td>\n288\t<td>0.56</td>\n289\t<td>0.53</td>\n290\t<td><b>0.96</b></td>\n291\t<td>0.57</td>\n292\t<td>0.54</td>\n293\t<td>0.90</td>\n294\t<td><b>0.61</b></td>\n295\t<td><b>0.56</b></td>\n296\t<td>0.92</td>\n297\t</tr>\n298\t<tr>\n299\t<td>Hybrid</td>\n300\t<td>ReWild</td>\n301\t<td>0.76</td>\n302\t<td>0.88</td>\n303\t<td>0.82</td>\n304\t<td>0.61</td>\n305\t<td><b>0.91</b></td>\n306\t<td>0.60</td>\n307\t<td>0.74</td>\n308\t<td>0.87</td>\n309\t<td>0.84</td>\n310\t<td><b>0.78</b></td>\n311\t<td>0.88</td>\n312\t<td><b>0.89</b></td>\n313\t</tr>\n314\t</tbody>\n315\t</table>\n316\t\n317\tTable 2: Main results of VerifiAgent on different reasoning tasks. The evaluation metrics are accuracy (Acc), precision (Pre), and recall (Rec). **Bold** shows the best result for each row.\n318\t\n319\tperforms baselines, excelling in accuracy while maintaining competitive precision and recall across mathematical, logical, commonsense, and hybrid reasoning tasks. Specifically, for mathematical reasoning tasks, VerifiAgent attains the highest accuracy (0.96 and 0.85) and recall scores (1.00 and 0.92) on GSM8K and MATH datasets, respectively. In logical reasoning, VerifiAgent demonstrates improvements, particularly on FOLIO (accuracy 0.76, recall 0.97) and ProverQA (precision 0.82). For commonsense reasoning tasks, VerifiAgent significantly outperforms baselines on StrategyQA with accuracy and precision of 0.84 and 0.85, respectively, while remaining competitive on HotpotQA. Finally, on the hybrid reasoning dataset ReWild, VerifiAgent achieves the best accuracy (0.78) and recall (0.89), highlighting its verification capabilities in handling complex reasoning tasks. To investigate the impact of different backbone LLMs on VerifiAgent’s performance, we further evaluate VerifiAgent using o1-mini as an alternative backbone model. The results indicate that the verification capability of VerifiAgent scales effectively with the underlying backbone model’s capacity. Due to the page limit, we put the detailed results in Appendix C.\n320\t\n321\t### 4.3 Inference Scaling with VerifiAgent\n322\t\n323\tInference scaling aims at enhancing reasoning performance by utilising increased computational resources during the inference stage. However, this approach inherently requires effective verification to ensure the accuracy and reliability of generated answers (Setlur et al., 2025b). Due to the verification ability of VerifiAgent, it naturally complements inference scaling approaches by serving as an effective verifier during the inference process. Specifically, we first sample an output from the LLM. If this output passes verification by the Veri-\n324\t\n325\tfiAgent, the process terminates; otherwise, we continue sampling additional candidate outputs until one passes verification or the maximum number of samples is reached. For cases reaching the maximum number of samples, we select the final answer using a majority vote approach. We compare our VerifiAgent-based inference scaling method with the standard Majority Vote approach that does not employ a verifier. Majority Vote aggregates multiple sampled responses directly from reasoners without any verification. Table 3 demonstrates the performance across three reasoning datasets (MATH, ProverQA, and StrategyQA) using various combinations of reasoners (GPT-4o, o3-mini, and Llama-3.3-70B-Instruct-Turbo) and VerifiAgent variants (GPT-4o and o1-mini).\n326\t\n327\tAcross all datasets and reasoners, inference scaling with VerifiAgent consistently outperforms Majority Voting, achieving higher accuracy with fewer samples and less cost (See Appendix D). Notably, o3-mini reasoner achieves the highest performance on MATH and ProverQA but the lowest on StrategyQA among all reasoners, suggesting that o3-mini is more proficient in mathematical and logical reasoning than in knowledge-intensive commonsense reasoning tasks. We identify two key findings: (1) When the reasoner and VerifiAgent are the same model (e.g., GPT-4o) or have comparable capacities (e.g., Llama-3.3-70B-Instruct-Turbo paired with GPT-4o), integrating VerifiAgent significantly enhances performance, with further improvement achievable by employing a stronger VerifiAgent (e.g., o1-mini). (2) When the reasoner (o3-mini) surpasses the VerifiAgent (GPT-4o) in capability, the performance gain is limited. However, pairing a strong reasoner with a stronger VerifiAgent (o1-mini) substantially enhances performance.\n328\t\n329\tPRMs provide another approach to inference scaling. We investigated two open-source PRMs<table border=\"1\">\n330\t<thead>\n331\t<tr>\n332\t<th>Method</th>\n333\t<th>MATH</th>\n334\t<th>ProverQA</th>\n335\t<th>StrategyQA</th>\n336\t</tr>\n337\t</thead>\n338\t<tbody>\n339\t<tr>\n340\t<td>GPT-4o Reasoner</td>\n341\t<td>69.4(1)</td>\n342\t<td>75.3(1)</td>\n343\t<td>84.2(1)</td>\n344\t</tr>\n345\t<tr>\n346\t<td>- IS w/ Majority Vote @10</td>\n347\t<td>73.5(10)</td>\n348\t<td>77.0(10)</td>\n349\t<td>85.6(10)</td>\n350\t</tr>\n351\t<tr>\n352\t<td>- IS w/ VerifiAgent (GPT-4o)</td>\n353\t<td>74.0(1.5)</td>\n354\t<td>77.3(1.6)</td>\n355\t<td>86.0(1.3)</td>\n356\t</tr>\n357\t<tr>\n358\t<td>- IS w/ VerifiAgent (o1-mini)</td>\n359\t<td>78.0(1.8)</td>\n360\t<td>77.7(1.3)</td>\n361\t<td>87.3(1.2)</td>\n362\t</tr>\n363\t<tr>\n364\t<td>o3-mini Reasoner</td>\n365\t<td>87.9(1)</td>\n366\t<td>78.3(1)</td>\n367\t<td>76.4(1)</td>\n368\t</tr>\n369\t<tr>\n370\t<td>- IS w/ Majority Vote @8</td>\n371\t<td>91.1(10)</td>\n372\t<td>80.0(10)</td>\n373\t<td>78.2(10)</td>\n374\t</tr>\n375\t<tr>\n376\t<td>- IS w/ VerifiAgent (GPT-4o)</td>\n377\t<td>88.3(1.3)</td>\n378\t<td>79.1(1.1)</td>\n379\t<td>78.6(1.3)</td>\n380\t</tr>\n381\t<tr>\n382\t<td>- IS w/ VerifiAgent (o1-mini)</td>\n383\t<td>91.4(1.1)</td>\n384\t<td>80.7(1.1)</td>\n385\t<td>79.0(1.6)</td>\n386\t</tr>\n387\t<tr>\n388\t<td>Llama-3.3-70B-Instruct-Turbo Reasoner</td>\n389\t<td>62.3(1)</td>\n390\t<td>70.6(1)</td>\n391\t<td>83.8(1)</td>\n392\t</tr>\n393\t<tr>\n394\t<td>- IS w/ Majority Vote @10</td>\n395\t<td>68.3(10)</td>\n396\t<td>71.7(10)</td>\n397\t<td>84.7(10)</td>\n398\t</tr>\n399\t<tr>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8493f52-010e-4187-ad57-b65a273159f1",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "51f344ba-772c-4d79-a6c6-1f784b25180b",
+            "sourceToolAssistantUUID": "a8493f52-010e-4187-ad57-b65a273159f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T04:44:12.146Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LV2YQCktz5puivf1FQTE18",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/toolu_01HJx1o9xUpgvQPbtEoAKqju.txt",
+                "offset": 400,
+                "limit": 400
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51f344ba-772c-4d79-a6c6-1f784b25180b",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDD9s9A2hxsigZUhnUcr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "45356469-abc6-4508-ace9-56ae19a81dd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RQXHQt3NTd4Pn1TLnifbuW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8669,
+                "cache_read_input_tokens": 21392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8669,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T04:44:12.445Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LV2YQCktz5puivf1FQTE18",
+              "type": "tool_result",
+              "content": "400\t<tr>\n401\t<td>- IS w/ VerifiAgent (GPT-4o)</td>\n402\t<td>69.7(2.0)</td>\n403\t<td>72.0(1.3)</td>\n404\t<td>85.1(1.3)</td>\n405\t</tr>\n406\t<tr>\n407\t<td>- IS w/ VerifiAgent (o1-mini)</td>\n408\t<td>71.1(2.2)</td>\n409\t<td>74.0(1.3)</td>\n410\t<td>85.1(1.4)</td>\n411\t</tr>\n412\t</tbody>\n413\t</table>\n414\t\n415\tTable 3: Results of different Reasoners with Inference Scaling (IS) methods on three datasets. The number in the bracket denotes the average number of samples for each question.\n416\t\n417\tspecifically designed for the MATH dataset: Qwen2.5-Math-PRM-7B and Qwen2.5-Math-7B-PRM800K, which fine-tune Qwen2.5-Math-7B-Instruct using synthetic data from Qwen models (Zhang et al., 2025) and PRM800K (Lightman et al., 2024), respectively. These PRMs assign scores to each reasoning step, and we use the last step score as the final response score. Following previous studies (Zhang et al., 2025; Lightman et al., 2024; Yang et al., 2024b; Wang et al., 2024), we evaluate the PRMs using the Best-of-N sampling strategy, selecting the highest-scored response from N candidates according to a PRM. The evaluation results for the GPT-4o and Qwen2.5-Math-7B-Instruct reasoners are shown in Figure 2. As the number of samples increases, both Majority Vote and Best-of-N sampling strategies consistently improve in accuracy. When sampling 10 responses, the Best-of-N method’s accuracy approaches that of VerifiAgent, which notably achieves comparable performance with significantly fewer average samples (1.5 and 1.6 on GPT-4o reasoner and Qwen2.5-Math-7B-Instruct reasoner, respectively).\n418\t\n419\tInterestingly, the two PRMs exhibit distinct behaviours depending on the reasoner. For the GPT-4o reasoner, Qwen2.5-Math-7B-PRM800K significantly outperforms Qwen2.5-Math-PRM-7B, which even underperforms relative to the Majority Vote baseline. However, for the Qwen2.5-Math-7B-Instruct reasoner, Qwen2.5-Math-PRM-7B outperforms Qwen2.5-Math-7B-PRM800K at 10 samples. These results indicate that GPT-4o benefits more from Qwen2.5-Math-7B-PRM800K, whereas\n420\t\n421\t<table border=\"1\">\n422\t<thead>\n423\t<tr>\n424\t<th></th>\n425\t<th>MATH</th>\n426\t<th>ProverQA</th>\n427\t<th>StrategyQA</th>\n428\t</tr>\n429\t</thead>\n430\t<tbody>\n431\t<tr>\n432\t<td>Init. Reasoning Acc.</td>\n433\t<td>69.4</td>\n434\t<td>75.3</td>\n435\t<td>84.3</td>\n436\t</tr>\n437\t<tr>\n438\t<td><b>Feedback Type</b></td>\n439\t<td colspan=\"3\"><b>Precaution-Based Feedback</b></td>\n440\t</tr>\n441\t<tr>\n442\t<td>Verification Result</td>\n443\t<td>69.7</td>\n444\t<td>76.0</td>\n445\t<td>84.3</td>\n446\t</tr>\n447\t<tr>\n448\t<td>+ Error Reason</td>\n449\t<td>74.9</td>\n450\t<td>77.0</td>\n451\t<td>85.6</td>\n452\t</tr>\n453\t<tr>\n454\t<td>+ Mitigation Method</td>\n455\t<td>73.4</td>\n456\t<td>77.6</td>\n457\t<td>86.0</td>\n458\t</tr>\n459\t<tr>\n460\t<td><b>Feedback Type</b></td>\n461\t<td colspan=\"3\"><b>Post-Editing-Based Feedback</b></td>\n462\t</tr>\n463\t<tr>\n464\t<td>Verification Result</td>\n465\t<td>71.7</td>\n466\t<td>77.3</td>\n467\t<td>84.7</td>\n468\t</tr>\n469\t<tr>\n470\t<td>+ Error Reason</td>\n471\t<td>72.3</td>\n472\t<td>74.7</td>\n473\t<td>84.3</td>\n474\t</tr>\n475\t<tr>\n476\t<td>+ Mitigation Method</td>\n477\t<td>72.6</td>\n478\t<td>74.3</td>\n479\t<td>83.8</td>\n480\t</tr>\n481\t</tbody>\n482\t</table>\n483\t\n484\tTable 4: Results of feedback utilisation on GPT-4o.\n485\t\n486\tQwen2.5-Math-7B-Instruct gains greater improvements from Qwen2.5-Math-PRM-7B. We hypothesise that the linguistic discrepancies may affect the performance of PRMs. Specifically, Qwen2.5-Math-7B-PRM800K utilises synthetic data from GPT-style LLMs for training, while Qwen2.5-Math-PRM-7B employs data generated by Qwen-style LLMs for training.\n487\t\n488\t#### 4.4 Exploration on Feedback Utilisation\n489\t\n490\tVerifiAgent provides fine-grained feedback during verification, which includes an explicit error reason and a suggested revision method for enhancing solutions. To evaluate the effectiveness of this feedback, we conducted experiments using two distinct methods: precaution-based and post-editing-based feedback. In the precaution-based method, the LLM leverages feedback from previous verification attempts to proactively generate a new solution. Conversely, the post-editing-based method allows(a) GPT-4o Reasoner\n491\t\n492\t(b) Qwen2.5-Math-7B-Instruct Reasoner\n493\t\n494\tFigure 2: Results of GPT-4o Reasoner and Qwen2.5-Math-7B-Instruct Reasoner with different inference scaling methods on MATH. VerifiAgent uses GPT-4o as the backbone LLM.\n495\t\n496\tthe LLM to directly refine its previous incorrect solution based on feedback provided.\n497\t\n498\tWe explored three feedback settings for each method: (1) verification result only (i.e., simply indicating “Incorrect”), (2) verification result with error reason, and (3) verification result with both error reason and revision method. Experiments were conducted on instances initially identified as “Incorrect” by VerifiAgent, and the results are presented in Table 4.\n499\t\n500\tOverall, precaution-based feedback consistently outperforms post-editing-based feedback, indicating the inherent difficulty for LLMs to effectively correct previously incorrect responses. Additionally, within precaution-based feedback, providing richer information typically yields greater improvements. For post-editing-based feedback, however, mathematical reasoning tasks benefit from more detailed feedback, whereas logical and commonsense reasoning tasks achieve better performance with simpler, less detailed feedback.\n501\t\n502\t<table border=\"1\">\n503\t<thead>\n504\t<tr>\n505\t<th>Method</th>\n506\t<th>MATH</th>\n507\t<th>ProverQA</th>\n508\t<th>StrategyQA</th>\n509\t</tr>\n510\t</thead>\n511\t<tbody>\n512\t<tr>\n513\t<td>GPT-4o (Tool-use)</td>\n514\t<td>56.9</td>\n515\t<td>47.8</td>\n516\t<td>83.5</td>\n517\t</tr>\n518\t<tr>\n519\t<td>GPT-4o (Tool-use) + Feedback</td>\n520\t<td>61.5</td>\n521\t<td>50.3</td>\n522\t<td>85.7</td>\n523\t</tr>\n524\t<tr>\n525\t<td>GPT-4o (CoT)</td>\n526\t<td>69.4</td>\n527\t<td>75.3</td>\n528\t<td>84.3</td>\n529\t</tr>\n530\t<tr>\n531\t<td>GPT-4o (CoT) + Feedback</td>\n532\t<td>73.4</td>\n533\t<td>77.6</td>\n534\t<td>86.0</td>\n535\t</tr>\n536\t</tbody>\n537\t</table>\n538\t\n539\tTable 5: Results of GPT-4o reasoner using CoT and Tool with feedback on three different reasoning tasks.\n540\t\n541\t<table border=\"1\">\n542\t<thead>\n543\t<tr>\n544\t<th>Dataset (Method)</th>\n545\t<th>Acc</th>\n546\t<th>Pre</th>\n547\t<th>Rec</th>\n548\t</tr>\n549\t</thead>\n550\t<tbody>\n551\t<tr>\n552\t<td>MATH (CoT)</td>\n553\t<td>0.85</td>\n554\t<td>0.86</td>\n555\t<td>0.92</td>\n556\t</tr>\n557\t<tr>\n558\t<td>MATH (Tool-use)</td>\n559\t<td>0.82</td>\n560\t<td>0.83</td>\n561\t<td>0.90</td>\n562\t</tr>\n563\t<tr>\n564\t<td>ProverQA (CoT)</td>\n565\t<td>0.77</td>\n566\t<td>0.82</td>\n567\t<td>0.95</td>\n568\t</tr>\n569\t<tr>\n570\t<td>ProverQA (Tool-use)</td>\n571\t<td>0.75</td>\n572\t<td>0.79</td>\n573\t<td>0.93</td>\n574\t</tr>\n575\t<tr>\n576\t<td>StrtegyQA (CoT)</td>\n577\t<td>0.84</td>\n578\t<td>0.85</td>\n579\t<td>0.95</td>\n580\t</tr>\n581\t<tr>\n582\t<td>StrtegyQA (Tool-use)</td>\n583\t<td>0.80</td>\n584\t<td>0.84</td>\n585\t<td>0.92</td>\n586\t</tr>\n587\t</tbody>\n588\t</table>\n589\t\n590\tTable 6: Results of VerifiAgent evaluating CoT and Tool-use outputs on different reasoning tasks.\n591\t\n592\t#### 4.5 VerifiAgent on Tool-based Reasoner\n593\t\n594\tTo evaluate the effectiveness of VerifiAgent on tool-based reasoning tasks, we conducted experiments using a tool-using reasoner with access to the same tools as VerifiAgent. Specifically, we evaluated GPT-4o on MATH, ProverQA, and StrategyQA, where the model was instructed to use the Python interpreter, Z3 Theorem Prover, and Search Engine, respectively. We then applied VerifiAgent to these outputs, leveraging its feedback to further improve performance. The results are shown in Table 5.\n595\t\n596\tInterestingly, the tool-use baseline does not outperform CoT, especially in math and logic reasoning. This trend is also observed in prior works (Yao et al., 2023; Han et al., 2024a), where tool-augmented methods such as ReAct can underperform compared to CoT. We hypothesise this is due to several factors: (1) For simpler problems, LLMs may already solve them accurately via CoT, and mandatory tool use may introduce unnecessary complexity and more opportunities for errors. (2) For more difficult tasks, the LLM may still struggle to solve them effectively, even with tools. (3) The external knowledge from inaccurate tool-use can sometimes mislead the LLM’s correct prior knowledge. Despite these challenges, integrating VerifiAgent feedback consistently improves tool-use accuracy across all datasets, though results still lag behind CoT+Feedback in math and logic. For commonsense tasks (StrategyQA), tool-use approaches CoT+Feedback performance.\n597\t\n598\tWe also measured VerifiAgent’s verification per-Figure 3: The floating bar chart comparing  $V_{score}$  distributions (mean  $\\pm$  std) for correct and incorrect solutions across three datasets. The horizontal grey line indicates the mean.\n599\t\n600\t<table border=\"1\">\n601\t<thead>\n602\t<tr>\n603\t<th rowspan=\"2\">Method</th>\n604\t<th colspan=\"3\">MATH</th>\n605\t<th colspan=\"3\">ProverQA</th>\n606\t<th colspan=\"3\">StrategyQA</th>\n607\t</tr>\n608\t<tr>\n609\t<th>Acc</th>\n610\t<th>Pre</th>\n611\t<th>Rec</th>\n612\t<th>Acc</th>\n613\t<th>Pre</th>\n614\t<th>Rec</th>\n615\t<th>Acc</th>\n616\t<th>Pre</th>\n617\t<th>Rec</th>\n618\t</tr>\n619\t</thead>\n620\t<tbody>\n621\t<tr>\n622\t<td>Vanilla Verifier</td>\n623\t<td>0.75</td>\n624\t<td>0.73</td>\n625\t<td>0.86</td>\n626\t<td>0.75</td>\n627\t<td>0.77</td>\n628\t<td>0.97</td>\n629\t<td>0.78</td>\n630\t<td>0.79</td>\n631\t<td>0.92</td>\n632\t</tr>\n633\t<tr>\n634\t<td>Deductive Verifier</td>\n635\t<td>0.80</td>\n636\t<td>0.76</td>\n637\t<td>0.86</td>\n638\t<td>0.74</td>\n639\t<td>0.75</td>\n640\t<td>0.98</td>\n641\t<td>0.75</td>\n642\t<td>0.82</td>\n643\t<td>0.92</td>\n644\t</tr>\n645\t<tr>\n646\t<td>Backward Verifier</td>\n647\t<td>0.82</td>\n648\t<td>0.80</td>\n649\t<td>0.88</td>\n650\t<td>0.75</td>\n651\t<td>0.78</td>\n652\t<td>0.96</td>\n653\t<td>0.79</td>\n654\t<td>0.80</td>\n655\t<td>0.94</td>\n656\t</tr>\n657\t<tr>\n658\t<td>VerifiAgent</td>\n659\t<td>0.85</td>\n660\t<td>0.86</td>\n661\t<td>0.92</td>\n662\t<td>0.77</td>\n663\t<td>0.82</td>\n664\t<td>0.95</td>\n665\t<td>0.84</td>\n666\t<td>0.85</td>\n667\t<td>0.95</td>\n668\t</tr>\n669\t<tr>\n670\t<td>- w/o meta v.</td>\n671\t<td>0.79</td>\n672\t<td>0.78</td>\n673\t<td>0.96</td>\n674\t<td>0.74</td>\n675\t<td>0.81</td>\n676\t<td>0.90</td>\n677\t<td>0.83</td>\n678\t<td>0.83</td>\n679\t<td>0.94</td>\n680\t</tr>\n681\t<tr>\n682\t<td>- w/o tool v.</td>\n683\t<td>0.75</td>\n684\t<td>0.75</td>\n685\t<td>0.98</td>\n686\t<td>0.74</td>\n687\t<td>0.75</td>\n688\t<td>0.98</td>\n689\t<td>0.78</td>\n690\t<td>0.80</td>\n691\t<td>0.96</td>\n692\t</tr>\n693\t</tbody>\n694\t</table>\n695\t\n696\tTable 7: Ablation study results of VerifiAgent.\n697\t\n698\tformance on both CoT and tool-use outputs, shown in Table 6. While performance is slightly lower for tool-use outputs, which is expected, since VerifiAgent is not designed specifically for program or tool-use evaluation. This points an important direction for future work, enhancing VerifiAgent’s robustness in verifying tool-based reasoning.\n699\t\n700\t#### 4.6 Ablation Study\n701\t\n702\tMeta verification and tool verification are two essential components of VerifiAgent. To evaluate the individual contributions of these components, we conducted an ablation study, with results presented in Table 7. Results demonstrate that removing either meta verification or tool verification consistently reduces VerifiAgent’s performance across all datasets. Specifically, omitting meta verification leads to noticeable declines in overall accuracy, while removing tool verification results in even more substantial performance reductions, bringing the performance close to baseline levels. Additionally, tool verification tends to enhance accuracy and precision, whereas meta verification primarily improves recall. These findings underscore the complementary roles of meta and tool verification, with each contributing uniquely to the effectiveness of VerifiAgent.\n703\t\n704\t### 5 Analysis\n705\t\n706\t**Verification Score Visualisation.** Figure 3 visualises the  $V_{score}$  for correct and incorrect solutions\n707\t\n708\tFigure 4: The pie charts showing the relative usage frequency of three different tools by the VerifiAgent across four types of reasoning tasks.\n709\t\n710\tacross three datasets. As illustrated, the mean  $V_{score}$  for correct solutions is slightly higher than for incorrect ones on all the reasoning tasks. Since  $V_{score}$  represents the confidence of the verification result, this indicates that the VerifiAgent is more confident when identifying correct solutions compared to incorrect ones. Additionally, the consistently lower variance in  $V_{score}$  among correct solutions further supports the reliability of the agent in verifying correct responses.\n711\t\n712\t**Tool Usage Analysis.** VerifiAgent autonomously determines the reasoning type of a task and selects the appropriate tool for verification. Figure 4 illustrates tool usage across four reasoning task types. For the MATH dataset (mathematical), the Python Interpreter is predominantly used (98.6%), with minimal reliance on the Symbolic Solver (1.4%), reflecting the computational nature of the task. StrategyQA (commonsense) exclusively relies on the Search Engine (100%), highlighting its dependence on external knowledge for the verification. ProverQA (logical) solely utilises the Symbolic Solver (100%), aligning with its need for logical and symbolic reasoning. ReWild (hybrid) shows a more balanced tool distribution, primarily using the Python Interpreter (84.5%), supplemented by the Symbolic Solver (11.2%) and the Search Engine (4.3%). The results demonstrate that the VerifiAgent effectively selects appropriate external tools based on the nature of the reasoning task.\n713\t\n714\t**Error Analysis.** To further investigate the capability of VerifiAgent, we conducted an error analysis on different types of questions. The MATH dataset contains seven types of math problems: Algebra (Alg), Counting&Probability (Count&Prob), Geometry (Geo), Intermediate Algebra (Int Alg), Number Theory (Num Thr), Prealgebra (PreAlg) and Precalculus (PreCal). The ProverQA classifiesFigure 5: The proportion of different question types among VerifiAgent’s incorrectly verified examples by GPT-4o Reasoner. From top to bottom, the bars represent MATH, ProverQA, and StrategyQA datasets, respectively. For MATH and ProverQA, the number of questions in each type is the same. For the imbalanced StrategyQA, the proportion is normalised by the total number of questions per difficulty level.\n715\t\n716\tthe question into three types based on the difficulty level: Hard, Medium and Easy. Although StrategyQA does not explicitly label questions by difficulty, each question includes a decomposition into sub-questions that reflect its reasoning pathway. We used the number of decomposed sub-questions (ranging from 1 to 5) as an indicator of question difficulty, classifying them into five levels (Level 1 through Level 5).\n717\t\n718\tFigure 5 illustrates the distribution of question types among cases where VerifiAgent provided incorrect verifications. In the MATH dataset, Pre-calculus and Geometry questions accounted for the highest proportion of errors, suggesting these question types pose greater verification challenges for VerifiAgent. Errors in Counting & Probability, Prealgebra, Intermediate Algebra, and Algebra occurred at similar rates, while VerifiAgent performed best on Number Theory problems. This trend is in line with the capability of the backbone LLMs. See Appendix B for the error distributions on each type of question.\n719\t\n720\tFor ProverQA, VerifiAgent’s verification accuracy correlated clearly with question difficulty, making the highest number of errors on Hard questions and the fewest on Easy questions. Conversely, no clear error pattern emerged for StrategyQA. Since verification relies mainly on search engines to retrieve factual knowledge, VerifiAgent appears capable of accessing sufficient information irrespective of question difficulty, indicating that the complexity of questions in StrategyQA has minimal impact on verification performance.\n721\t\n722\t## 6 Conclusion\n723\t\n724\tIn this paper, we introduced VerifiAgent, a unified verification agent that verifies and improves outputs from LLMs across mathematical, logical, commonsense, and hybrid reasoning tasks. Ver-\n725\t\n726\tifiAgent employs a two-layer verification framework combining meta-verification, which assesses completeness and consistency, and adaptive tool-based verification tailored to each reasoning type. Experimental results demonstrate that VerifiAgent consistently outperforms baseline methods in verification accuracy. Additionally, VerifiAgent can be integrated with inference scaling approaches, achieving improved performance with fewer samples than PRMs. Overall, VerifiAgent provides an efficient and scalable solution, enhancing the reliability and trustworthiness of large language model reasoning.\n727\t\n728\tVerifiAgent heavily relies on the instruction-following capabilities of the backbone LLM, meaning that only models proficient at accurately interpreting and executing instructions can serve effectively as the backbone. This reliance indicates the importance of selecting suitable backbone LLMs to ensure optimal performance. VerifiAgent currently supports only three verification tools (Python interpreter, search engine, and symbolic solver). Expanding its capabilities by integrating additional verification tools could further enhance VerifiAgent’s adaptability and effectiveness across a broader range of reasoning scenarios.\n729\t\n730\t## Limitations\n731\t\n732\tOur study has two primary limitations. First, due to the significant computational costs associated with accessing and running LLMs, we were unable to evaluate a comprehensive range of models, necessitating a selection of representative models. Second, the current implementation of VerifiAgent only supports three tools. While these demonstrate its core capabilities, we plan to expand the toolset in future work to enhance its versatility and applicability across more verification scenarios.## References\n733\t\n734\tIsabelle Augenstein, Timothy Baldwin, Meeyoung Cha, Tanmoy Chakraborty, Giovanni Luca Ciampaglia, David P. A. Corney, Renee DiResta, Emilio Ferrara, Scott Hale, Alon Y. Halevy, Eduard H. Hovy, Heng Ji, Filippo Menczer, Rubén Míguez, Preslav Nakov, Dietram Scheufele, Shivam Sharma, and Giovanni Zagni. 2024. [Factuality challenges in the era of large language models and opportunities for fact-checking](#). *Nat. Mac. Intell.*, 6(8):852–863.\n735\t\n736\tBradley C. A. Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc V. Le, Christopher Ré, and Azalia Mirhoseini. 2024. [Large language monkeys: Scaling inference compute with repeated sampling](#). *CoRR*, abs/2407.21787.\n737\t\n738\tKarl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. 2021. [Training verifiers to solve math word problems](#). *CoRR*, abs/2110.14168.\n739\t\n740\tDeepSeek-AI, Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, Xiaokang Zhang, Xingkai Yu, Yu Wu, Z. F. Wu, Zhibin Gou, Zhihong Shao, Zhuoshu Li, Ziyi Gao, and 81 others. 2025. [Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning](#). *CoRR*, abs/2501.12948.\n741\t\n742\tShehzaad Dhuliawala, Mojtaba Komeili, Jing Xu, Roberta Raileanu, Xian Li, Asli Celikyilmaz, and Jason Weston. 2024. [Chain-of-verification reduces hallucination in large language models](#). In *Findings of the Association for Computational Linguistics, ACL 2024, Bangkok, Thailand and virtual meeting, August 11-16, 2024*, pages 3563–3578. Association for Computational Linguistics.\n743\t\n744\tAbhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, Anirudh Goyal, Anthony Hartshorn, Aobo Yang, Archi Mitra, Archie Sravankumar, Artem Korenev, Arthur Hinsvark, Arun Rao, Aston Zhang, and 82 others. 2024. [The llama 3 herd of models](#). *CoRR*, abs/2407.21783.\n745\t\n746\tMor Geva, Daniel Khashabi, Elad Segal, Tushar Khot, Dan Roth, and Jonathan Berant. 2021. [Did aristotle use a laptop? A question answering benchmark with implicit reasoning strategies](#). *Trans. Assoc. Comput. Linguistics*, 9:346–361.\n747\t\n748\tZhibin Gou, Zhihong Shao, Yeyun Gong, Yelong Shen, Yujiu Yang, Nan Duan, and Weizhu Chen. 2024. [CRITIC: large language models can self-correct with tool-interactive critiquing](#). In *The Twelfth International Conference on Learning Representations, ICLR 2024, Vienna, Austria, May 7-11, 2024*. OpenReview.net.\n749\t\n750\tJiawei Gu, Xuhui Jiang, Zhichao Shi, Hexiang Tan, Xuehao Zhai, Chengjin Xu, Wei Li, Yinghan Shen, Shengjie Ma, Honghao Liu, Yuanzhuo Wang, and Jian Guo. 2024. [A survey on llm-as-a-judge](#). *CoRR*, abs/2411.15594.\n751\t\n752\tJiuzhou Han, Wray L. Buntine, and Ehsan Shareghi. 2024a. [Towards uncertainty-aware language agent](#). In *Findings of the Association for Computational Linguistics, ACL 2024, Bangkok, Thailand and virtual meeting, August 11-16, 2024*, pages 6662–6685. Association for Computational Linguistics.\n753\t\n754\tJiuzhou Han, Nigel Collier, Wray L. Buntine, and Ehsan Shareghi. 2024b. [Pive: Prompting with iterative verification improving graph-based generative capability of llms](#). In *Findings of the Association for Computational Linguistics, ACL 2024, Bangkok, Thailand and virtual meeting, August 11-16, 2024*, pages 6702–6718. Association for Computational Linguistics.\n755\t\n756\tSimeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Wenfei Zhou, James Coady, David Peng, Yujie Qiao, Luke Benson, Lucy Sun, Alexander Wardle-Solano, Hannah Szabó, Ekaterina Zubova, Matthew Burtell, Jonathan Fan, Yixin Liu, Brian Wong, Malcolm Sailor, and 16 others. 2024c. [FOLIO: natural language reasoning with first-order logic](#). In *Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, EMNLP 2024, Miami, FL, USA, November 12-16, 2024*, pages 22017–22031. Association for Computational Linguistics.\n757\t\n758\tDan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt. 2021. [Measuring mathematical problem solving with the MATH dataset](#). In *Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks 1, NeurIPS Datasets and Benchmarks 2021, December 2021*, virtual.\n759\t\n760\tRuixin Hong, Hongming Zhang, Xinyu Pang, Dong Yu, and Changshui Zhang. 2024. [A closer look at the self-verification abilities of large language models in logical reasoning](#). In *Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), NAACL 2024, Mexico City, Mexico, June 16-21, 2024*, pages 900–925. Association for Computational Linguistics.\n761\t\n762\tXiaowei Huang, Wenjie Ruan, Wei Huang, Gaojie Jin, Yi Dong, Changshun Wu, Saddek Bensalem, Ronghui Mu, Yi Qi, Xingyu Zhao, Kaiwen Cai, Yanghao Zhang, Sihao Wu, Peipei Xu, Dengyu Wu, André Freitas, and Mustafa A. Mustafa. 2024. [A survey of safety and trustworthiness of large language models through the lens of verification and validation](#). *Artif. Intell. Rev.*, 57(7):175.\n763\t\n764\tRyo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, and Rui Zhang. 2024. [When can llms Actually correct their own mistakes? A critical survey of self-](#)correction of llms. *Trans. Assoc. Comput. Linguistics*, 12:1417–1440.\n765\t\n766\tDawei Li, Bohan Jiang, Liangjie Huang, Alimohammad Beigi, Chengshuai Zhao, Zhen Tan, Amrita Bhat-tacharjee, Yuxuan Jiang, Canyu Chen, Tianhao Wu, Kai Shu, Lu Cheng, and Huan Liu. 2024. [From generation to judgment: Opportunities and challenges of llm-as-a-judge](#). *CoRR*, abs/2411.16594.\n767\t\n768\tYifei Li, Zeqi Lin, Shizhuo Zhang, Qiang Fu, Bei Chen, Jian-Guang Lou, and Weizhu Chen. 2023. [Making language models better reasoners with step-aware verifier](#). In *Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, ACL 2023, Toronto, Canada, July 9-14, 2023, pages 5315–5333. Association for Computational Linguistics.\n769\t\n770\tZhenwen Liang, Ye Liu, Tong Niu, Xiangliang Zhang, Yingbo Zhou, and Semih Yavuz. 2024. [Improving LLM reasoning through scaling inference computation with collaborative verification](#). *CoRR*, abs/2410.05318.\n771\t\n772\tHunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024. [Let’s verify step by step](#). In *The Twelfth International Conference on Learning Representations, ICLR 2024, Vienna, Austria, May 7-11, 2024*. Open-Review.net.\n773\t\n774\tZhan Ling, Yunhao Fang, Xuanlin Li, Zhiao Huang, Mingu Lee, Roland Memisevic, and Hao Su. 2023. [Deductive verification of chain-of-thought reasoning](#). In *Advances in Neural Information Processing Systems 36: Annual Conference on Neural Information Processing Systems 2023, NeurIPS 2023, New Orleans, LA, USA, December 10 - 16, 2023*.\n775\t\n776\tAnsong Ni, Srini Iyer, Dragomir Radev, Veselin Stoyanov, Wen-Tau Yih, Sida I. Wang, and Xi Victoria Lin. 2023. [LEVER: learning to verify language-to-code generation with execution](#). In *International Conference on Machine Learning, ICML 2023, 23-29 July 2023, Honolulu, Hawaii, USA*, volume 202 of *Proceedings of Machine Learning Research*, pages 26106–26128. PMLR.\n777\t\n778\tOpenAI. 2023. [GPT-4 technical report](#). *CoRR*, abs/2303.08774.\n779\t\n780\tChengwen Qi, Ren Ma, Bowen Li, He Du, Binyuan Hui, Jinwang Wu, Yuanjun Laili, and Conghui He. 2025. [Large language models meet symbolic provers for logical reasoning evaluation](#).\n781\t\n782\tAmrith Setlur, Nived Rajaraman, Sergey Levine, and Aviral Kumar. 2025a. [Scaling test-time compute without verification or RL is suboptimal](#). *CoRR*, abs/2502.12118.\n783\t\n784\tAmrith Rajagopal Setlur, Nived Rajaraman, Sergey Levine, and Aviral Kumar. 2025b. [Scaling test-time compute without verification or rl is suboptimal](#).\n785\t\n786\tCharlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024. [Scaling LLM test-time compute optimally can be more effective than scaling model parameters](#). *CoRR*, abs/2408.03314.\n787\t\n788\tKaya Stechly, Karthik Valmeeekam, and Subbarao Kambhampati. 2024. [On the self-verification limitations of large language models on reasoning and planning tasks](#). *CoRR*, abs/2402.08115.\n789\t\n790\tBenedikt Stroebel, Sayash Kapoor, and Arvind Narayanan. 2024. [Inference scaling flaws: The limits of LLM resampling with imperfect verifiers](#). *CoRR*, abs/2411.17501.\n791\t\n792\tRamya Keerthy Thatikonda, Jiuzhou Han, Wray L. Buntine, and Ehsan Shareghi. 2024. [Strategies for improving nl-to-fol translation with llms: Data generation, incremental fine-tuning, and verification](#). *CoRR*, abs/2409.16461.\n793\t\n794\tPeiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui. 2024. [Math-shepherd: Verify and reinforce llms step-by-step without human annotations](#). In *Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, ACL 2024, Bangkok, Thailand, August 11-16, 2024, pages 9426–9439. Association for Computational Linguistics.\n795\t\n796\tYixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun, Kang Liu, and Jun Zhao. 2023. [Large language models are better reasoners with self-verification](#). In *Findings of the Association for Computational Linguistics: EMNLP 2023, Singapore, December 6-10, 2023*, pages 2550–2575. Association for Computational Linguistics.\n797\t\n798\tZhenyu Wu, Qingkai Zeng, Zhihan Zhang, Zhaoxuan Tan, Chao Shen, and Meng Jiang. 2024. [Large language models can self-correct with minimal effort](#). *CoRR*, abs/2405.14092.\n799\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45356469-abc6-4508-ace9-56ae19a81dd2",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "d3b09565-e33e-421d-b4d5-1481d2a0d4b9",
+            "sourceToolAssistantUUID": "45356469-abc6-4508-ace9-56ae19a81dd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T04:44:19.929Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RahraTq1E7jvgS5fajkUcK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-distiller-8281f54c/2b1072cc-ed77-4993-9584-eaef43091af6/tool-results/toolu_01HJx1o9xUpgvQPbtEoAKqju.txt",
+                "offset": 800,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3b09565-e33e-421d-b4d5-1481d2a0d4b9",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDASbZSiB4bvFRtu7fD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b2fab3f2-9dd5-45b2-ae49-4ca920ebe205",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0156AG7SteU4S5PH59Hrod1g",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9872,
+                "cache_read_input_tokens": 30061,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9872
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 30061,
+                    "cache_creation_input_tokens": 9872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9872,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T04:44:19.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RahraTq1E7jvgS5fajkUcK",
+              "type": "tool_result",
+              "content": "800\tAn Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, Huan Lin, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jingren Zhou, Junyang Lin, Kai Dang, and 22 others. 2024a. [Qwen2.5 technical report](#). *CoRR*, abs/2412.15115.\n801\t\n802\tAn Yang, Beichen Zhang, Binyuan Hui, Bofei Gao, Bowen Yu, Chengpeng Li, Dayiheng Liu, Jianhong Tu, Jingren Zhou, Junyang Lin, Keming Lu, Mingfeng Xue, Runji Lin, Tianyu Liu, Xingzhang Ren, and Zhenru Zhang. 2024b. [Qwen2.5-math technical report: Toward mathematical expert model via self-improvement](#). *CoRR*, abs/2409.12122.\n803\t\n804\tYuan Yang, Siheng Xiong, Ali Payani, Ehsan Shareghi, and Faramarz Fekri. 2024c. [Can llms reason in the wild with programs?](#) In *Findings of the Association for Computational Linguistics: EMNLP 2024, Miami, Florida, USA, November 12-16, 2024*, pages 9806–9829. Association for Computational Linguistics.<table border=\"1\">\n805\t<thead>\n806\t<tr>\n807\t<th>Dataset</th>\n808\t<th>GSM8K</th>\n809\t<th>MATH</th>\n810\t<th>FOLIO</th>\n811\t<th>ProverQA</th>\n812\t<th>StrategyQA</th>\n813\t<th>HotpotQA</th>\n814\t<th>ReWild</th>\n815\t</tr>\n816\t</thead>\n817\t<tbody>\n818\t<tr>\n819\t<td>Size</td>\n820\t<td>300</td>\n821\t<td>350</td>\n822\t<td>204</td>\n823\t<td>300</td>\n824\t<td>229</td>\n825\t<td>200</td>\n826\t<td>491</td>\n827\t</tr>\n828\t</tbody>\n829\t</table>\n830\t\n831\tTable 8: The statistics of the datasets.\n832\t\n833\t<table border=\"1\">\n834\t<thead>\n835\t<tr>\n836\t<th rowspan=\"2\">Method</th>\n837\t<th colspan=\"3\">MATH</th>\n838\t<th colspan=\"3\">ProverQA</th>\n839\t<th colspan=\"3\">StrategyQA</th>\n840\t</tr>\n841\t<tr>\n842\t<th>Acc</th>\n843\t<th>Pre</th>\n844\t<th>Rec</th>\n845\t<th>Acc</th>\n846\t<th>Pre</th>\n847\t<th>Rec</th>\n848\t<th>Acc</th>\n849\t<th>Pre</th>\n850\t<th>Rec</th>\n851\t</tr>\n852\t</thead>\n853\t<tbody>\n854\t<tr>\n855\t<td>VerifiAgent (GPT-4o)</td>\n856\t<td>0.85</td>\n857\t<td>0.86</td>\n858\t<td>0.92</td>\n859\t<td>0.77</td>\n860\t<td>0.82</td>\n861\t<td>0.95</td>\n862\t<td>0.84</td>\n863\t<td>0.85</td>\n864\t<td>0.95</td>\n865\t</tr>\n866\t<tr>\n867\t<td>VerifiAgent (o1-mini)</td>\n868\t<td>0.86</td>\n869\t<td>0.86</td>\n870\t<td>0.98</td>\n871\t<td>0.78</td>\n872\t<td>0.84</td>\n873\t<td>0.96</td>\n874\t<td>0.84</td>\n875\t<td>0.87</td>\n876\t<td>0.96</td>\n877\t</tr>\n878\t</tbody>\n879\t</table>\n880\t\n881\tTable 9: Results of VerifiAgent using different backbone LLMs on three tasks.\n882\t\n883\tZhilin Yang, Peng Qi, Saizheng Zhang, Yoshua Bengio, William W. Cohen, Ruslan Salakhutdinov, and Christopher D. Manning. 2018. [Hotpotqa: A dataset for diverse, explainable multi-hop question answering](#). In *Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing, Brussels, Belgium, October 31 - November 4, 2018*, pages 2369–2380. Association for Computational Linguistics.\n884\t\n885\tShunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik R. Narasimhan, and Yuan Cao. 2023. [React: Synergizing reasoning and acting in language models](#). In *The Eleventh International Conference on Learning Representations, ICLR 2023, Kigali, Rwanda, May 1-5, 2023*. OpenReview.net.\n886\t\n887\tZhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingtren Zhou, and Junyang Lin. 2025. [The lessons of developing process reward models in mathematical reasoning](#). *CoRR*, abs/2501.07301.\n888\t\n889\tAojun Zhou, Ke Wang, Zimu Lu, Weikang Shi, Sichun Luo, Zipeng Qin, Shaoqing Lu, Anya Jia, Linqi Song, Mingjie Zhan, and Hongsheng Li. 2024. [Solving challenging math word problems using GPT-4 code interpreter with code-based self-verification](#). In *The Twelfth International Conference on Learning Representations, ICLR 2024, Vienna, Austria, May 7-11, 2024*. OpenReview.net.\n890\t\n891\t## Appendix\n892\t\n893\t### A Data Statistics\n894\t\n895\tTable 8 illustrates the statistics of the datasets.\n896\t\n897\t### B Error Statistics\n898\t\n899\tFigure 6 shows the error statistics of the three datasets on the GPT-4o reasoner.\n900\t\n901\t### C Different backbone LLMs for VerifiAgent\n902\t\n903\tTable 9 compares the performance of VerifiAgent (o1-mini) with VerifiAgent (GPT-4o) across three reasoning tasks. Given that VerifiAgent does not require additional training data and utilises frozen\n904\t\n905\t<table border=\"1\">\n906\t<thead>\n907\t<tr>\n908\t<th>Method</th>\n909\t<th>MATH</th>\n910\t<th>ProverQA</th>\n911\t<th>StrategyQA</th>\n912\t</tr>\n913\t</thead>\n914\t<tbody>\n915\t<tr>\n916\t<td>GPT-4o Reasoner</td>\n917\t<td>0.018</td>\n918\t<td>0.003</td>\n919\t<td>0.008</td>\n920\t</tr>\n921\t<tr>\n922\t<td>- IS w/ Majority Vote @10</td>\n923\t<td>0.175</td>\n924\t<td>0.025</td>\n925\t<td>0.089</td>\n926\t</tr>\n927\t<tr>\n928\t<td>- IS w/ VerifiAgent (GPT-4o)</td>\n929\t<td>0.047</td>\n930\t<td>0.024</td>\n931\t<td>0.022</td>\n932\t</tr>\n933\t<tr>\n934\t<td>- IS w/ VerifiAgent (o1-mini)</td>\n935\t<td>0.051</td>\n936\t<td>0.028</td>\n937\t<td>0.019</td>\n938\t</tr>\n939\t<tr>\n940\t<td>o3-mini Reasoner</td>\n941\t<td>0.007</td>\n942\t<td>0.002</td>\n943\t<td>0.005</td>\n944\t</tr>\n945\t<tr>\n946\t<td>- IS w/ Majority Vote @8</td>\n947\t<td>0.067</td>\n948\t<td>0.018</td>\n949\t<td>0.042</td>\n950\t</tr>\n951\t<tr>\n952\t<td>- IS w/ VerifiAgent (GPT-4o)</td>\n953\t<td>0.022</td>\n954\t<td>0.016</td>\n955\t<td>0.018</td>\n956\t</tr>\n957\t<tr>\n958\t<td>- IS w/ VerifiAgent (o1-mini)</td>\n959\t<td>0.024</td>\n960\t<td>0.015</td>\n961\t<td>0.022</td>\n962\t</tr>\n963\t</tbody>\n964\t</table>\n965\t\n966\tTable 10: The average cost (in \\$) per instance for different methods across three datasets, including both the reasoner cost and the cost of the inference scaling method.\n967\t\n968\tbackbone LLMs, these results indicate that the verification capability of VerifiAgent scales effectively with the underlying backbone model’s capacity.\n969\t\n970\t## D Inference Cost Comparison\n971\t\n972\tTable 10 demonstrates the average inference cost per instance for different methods across three datasets. Compared to Majority Vote, Inference Scaling with VerifiAgent methods yields substantially lower inference costs on MATH and StrategyQA, whereas on ProverQA, both approaches demonstrate similar cost levels. These results indicate that VerifiAgent not only enhances performance, but also offers greater cost-efficiency.\n973\t\n974\tFigure 7 shows the average cost versus accuracy on the three datasets. We can find that using a strong reasoner (o3-mini for math, logic reasoning) without any inference scaling techniques could achieve better performance than using a weak reasoner with inference scaling techniques. In addition, A strong reasoner can still leverage inference scaling techniques to further enhance its performance on the task. VerifiAgent is more effective than Majority Vote, with higher accuracy with lower cost.\n975\t\n976\t## E Example of VerifiAgent Trajectory\n977\t\n978\tAn Example VerifiAgent Trajectory on MATH Dataset\n979\t\n980\t### Question:\n981\t\n982\tWhat is the smallest positive integer  $n$  such that, out of the  $n$  unit fractions  $\\frac{1}{k}$  where  $1 \\leq k \\leq n$ , exactly half of the fractions give a terminating decimal?\n983\t\n984\t### GPT-4o Solution:Figure 6: The proportion of different question types among the incorrectly answered examples by GPT-4o Reasoner. From top to bottom, the bars represent MATH, ProverQA, and StrategyQA datasets, respectively. For MATH and ProverQA, the number of questions in each type is the same. For the imbalanced StrategyQA, the proportion is normalised by the total number of questions per difficulty level.\n985\t\n986\tFigure 7: Visualisation of average cost versus accuracy on the three datasets.\n987\t\n988\tTo determine the smallest positive integer  $n$  such that exactly half of the fractions  $\\frac{1}{k}$  for  $1 \\leq k \\leq n$  are terminating decimals, we need to understand the conditions under which a unit fraction  $\\frac{1}{k}$  has a terminating decimal representation.\n989\t\n990\tA fraction  $\\frac{1}{k}$  has a terminating decimal if and only if the denominator  $k$  in its simplest form (after removing common factors with the numerator) has only the prime factors 2 and/or 5. Thus,  $k$  must be of the form  $2^a \\times 5^b$  for non-negative integers  $a$  and  $b$ .\n991\t\n992\tNow, let's find the smallest  $n$  such that half of the numbers  $1, 2, \\dots, n$  are of this form.\n993\t\n994\t1. **\\*\\*Analyze numbers of the form  $2^a \\times 5^b$ :\\*\\***\n995\t\n996\t- - For  $k = 1$ , it is  $2^0 \\times 5^0$ .\n997\t- - For  $k = 2$ , it is  $2^1$ .\n998\t- - For  $k = 4$ , it is  $2^2$ .\n999\t- - For  $k = 5$ , it is  $5^1$ ."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2fab3f2-9dd5-45b2-ae49-4ca920ebe205",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "5f419f1e-1d6f-4473-a4b2-a148a45ac0ac",
+            "sourceToolAssistantUUID": "b2fab3f2-9dd5-45b2-ae49-4ca920ebe205",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T04:44:22.670Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information. Let me also try to fetch Figure 1 image and then check the output directory exists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f419f1e-1d6f-4473-a4b2-a148a45ac0ac",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDB1AdYCpRFgaMRTLW1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "deff830f-0fe3-4c04-8141-a877d0c4486c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SgoU8eXrfqdfyQRBramNMs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3573,
+                "cache_read_input_tokens": 39933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3573,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T04:44:24.103Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PSesHWjnEjLHBx69nSscV9",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.00406v2/x1.png",
+                "prompt": "Describe this figure in detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "deff830f-0fe3-4c04-8141-a877d0c4486c",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDB1AdYCpRFgaMRTLW1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b343b914-89fd-4644-aa7b-993322308e09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SgoU8eXrfqdfyQRBramNMs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3573,
+                "cache_read_input_tokens": 39933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3573,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T04:44:24.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_01PSesHWjnEjLHBx69nSscV9"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b343b914-89fd-4644-aa7b-993322308e09",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "424441e9-515e-4ef8-8678-ac739e73a1b4",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "b343b914-89fd-4644-aa7b-993322308e09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T04:44:26.666Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WZdz5FjR4tqUbTX5Pc2iZd",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/distill_tmp/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+                "description": "Check if distill_tmp directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "424441e9-515e-4ef8-8678-ac739e73a1b4",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDB1AdYCpRFgaMRTLW1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d94340a0-0546-4cfb-b073-79d037af0b9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SgoU8eXrfqdfyQRBramNMs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3573,
+                "cache_read_input_tokens": 39933,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3573
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 39933,
+                    "cache_creation_input_tokens": 3573,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3573,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T04:44:26.717Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WZdz5FjR4tqUbTX5Pc2iZd",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d94340a0-0546-4cfb-b073-79d037af0b9b",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "e204b566-9fee-4a0c-9718-e1cfad546c36",
+            "sourceToolAssistantUUID": "d94340a0-0546-4cfb-b073-79d037af0b9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T04:44:31.047Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The directory exists. Now I have all the information needed. Let me write the YAML file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e204b566-9fee-4a0c-9718-e1cfad546c36",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDBVr3ji9CBa2h8DBdE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8650680-9a4f-4cde-8744-c3f3cb85d9aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016LwyMBUQrHFoY7Thk7jLmu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 306,
+                "cache_read_input_tokens": 43506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 306,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T04:44:32.011Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1zSN4ZYn2Va2h4AThvBo4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8650680-9a4f-4cde-8744-c3f3cb85d9aa",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDBVr3ji9CBa2h8DBdE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "414a2e6c-3b81-444a-909e-af106ab7044f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016LwyMBUQrHFoY7Thk7jLmu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 306,
+                "cache_read_input_tokens": 43506,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 306
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 43506,
+                    "cache_creation_input_tokens": 306,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 306,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T04:44:32.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01T1zSN4ZYn2Va2h4AThvBo4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "414a2e6c-3b81-444a-909e-af106ab7044f",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "9eba15ed-a6a8-4b8c-be79-d171ec9f7050",
+            "sourceToolAssistantUUID": "414a2e6c-3b81-444a-909e-af106ab7044f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T04:44:34.932Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nThe save_project_file tool won't work for distill_tmp files. Let me write directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eba15ed-a6a8-4b8c-be79-d171ec9f7050",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDBtXJkMTgXh3e68jzj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "94bf8e93-6b46-46d8-8739-45fbfee1e012",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wge3B8wsT1JNEW3TLyuK6r",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 486,
+                "cache_read_input_tokens": 43812,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 486,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T04:45:53.760Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0124NNA8A9hAee55fCrRWJ1K",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/distill_tmp/verifiagent2025.yaml",
+                "content": "paper_key: \"verifiagent2025\"\ntitle: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\nvenue: \"EMNLP 2025 Findings\"\nfull_text_available: true\n\nresearch:\n  baselines:\n    - \"Vanilla Verifier\"\n    - \"Deductive Verifier (Ling et al., 2023)\"\n    - \"Backward Verifier (Weng et al., 2023)\"\n    - \"Majority Vote\"\n    - \"Qwen2.5-Math-PRM-7B (Best-of-N)\"\n    - \"Qwen2.5-Math-7B-PRM800K (Best-of-N)\"\n  metrics:\n    - {name: \"Verification Accuracy\", direction: \"higher_better\"}\n    - {name: \"Verification Precision\", direction: \"higher_better\"}\n    - {name: \"Verification Recall\", direction: \"higher_better\"}\n    - {name: \"Reasoning Accuracy (after feedback)\", direction: \"higher_better\"}\n    - {name: \"Average Samples per Question\", direction: \"lower_better\"}\n    - {name: \"Average Cost per Instance ($)\", direction: \"lower_better\"}\n  datasets:\n    - {name: \"GSM8K\", size: \"300 (subset)\", type: \"mathematical reasoning\"}\n    - {name: \"MATH\", size: \"350 (subset)\", type: \"mathematical reasoning\"}\n    - {name: \"FOLIO\", size: \"204\", type: \"logical reasoning\"}\n    - {name: \"ProverQA\", size: \"300\", type: \"logical reasoning\"}\n    - {name: \"StrategyQA\", size: \"229\", type: \"commonsense reasoning\"}\n    - {name: \"HotpotQA\", size: \"200\", type: \"commonsense reasoning\"}\n    - {name: \"ReWild\", size: \"491\", type: \"hybrid reasoning\"}\n  ablation_dimensions:\n    - \"meta verification (completeness + consistency check)\"\n    - \"tool-based adaptive verification (Python/search/symbolic solver)\"\n    - \"feedback granularity (verification result only / + error reason / + revision method)\"\n    - \"feedback utilisation mode (precaution-based vs post-editing-based)\"\n    - \"backbone LLM (GPT-4o vs o1-mini)\"\n    - \"reasoner type (CoT vs tool-use)\"\n  training_recipe:\n    optimizer: \"N/A (training-free, prompt-based agent)\"\n    lr: \"N/A\"\n    hardware: \"API-based (GPT-4o, o1-mini); no local training\"\n    key_detail: \"Purely prompt-driven two-layer verification; uses frozen LLMs; Vscore computed via softmax over top-5 log probabilities of Correct/Incorrect token\"\n  method_family: \"LLM-as-verifier / agentic verification with tool use\"\n\npositioning:\n  core_claim: \"A training-free, unified verification agent with two-layer verification (meta + tool-adaptive) that generalises across mathematical, logical, commonsense, and hybrid reasoning, outperforming task-specific and prompt-based verifiers while achieving inference-scaling efficiency superior to PRMs\"\n  key_results: >\n    Verification accuracy: GSM8K 0.96, MATH 0.85, FOLIO 0.76, ProverQA 0.77, StrategyQA 0.84, HotpotQA 0.61, ReWild 0.78 (best across all datasets vs baselines).\n    Inference scaling: GPT-4o on MATH 74.0% with avg 1.5 samples (vs Majority Vote 73.5% with 10 samples).\n    o3-mini on MATH 91.4% with avg 1.1 samples via VerifiAgent(o1-mini) (vs MajVote 91.1% with 10 samples).\n    Cost: VerifiAgent $0.047/instance vs MajVote $0.175/instance on MATH (GPT-4o reasoner).\n    Feedback: precaution-based feedback improves MATH from 69.4% to 74.9% (+5.5pp).\n  limitations:\n    - \"Only supports three verification tools (Python interpreter, search engine, symbolic solver)\"\n    - \"Heavily relies on instruction-following capability of backbone LLM — weak LLMs cannot serve as backbone\"\n    - \"Limited model evaluation due to computational cost of API calls\"\n    - \"Verification performance drops on tool-use outputs vs CoT outputs (not designed for program/tool-use evaluation)\"\n    - \"When reasoner is stronger than VerifiAgent backbone (e.g., o3-mini > GPT-4o), performance gain is limited\"\n  relation_to_us: \"competitor\"\n\nnarrative:\n  story_type: \"统一框架型\"\n  hook: \"LLMs produce unreliable outputs; existing verification methods are domain-restricted, model-specific, or require training — opens with the reliability gap as motivation\"\n  tension: \"Table 1 feature comparison matrix showing all prior methods lack at least one of: training-free, generalised, tool-based, fine-grained feedback. Only VerifiAgent ticks all four boxes. Creates tension by systematically exposing the incompleteness of prior work.\"\n  key_insight: \"Two-layer verification (meta-verification for structural integrity + tool-adaptive verification for factual/computational correctness) provides complementary coverage — meta improves recall, tool improves accuracy/precision. The insight is revealed through the ablation study (Table 7).\"\n  argument_chain: \"reliability problem → existing verifiers limited (Table 1) → propose two-layer verification → demonstrate superiority on 7 datasets across 4 reasoning types → show inference scaling efficiency vs PRMs → show feedback utility → ablation confirms both layers needed\"\n  contribution_framing: \"Two key empirical findings framed: (1) VerifiAgent achieves higher accuracy at lower cost than MajVote/PRMs; (2) VerifiAgent scales with backbone LLM improvements. Three contributions: unified framework, inference scaling application, fine-grained feedback mechanism.\"\n  intro_structure: \"3 paragraphs — P1: LLM reliability problem + prior training-based verifiers and their limitations; P2: propose VerifiAgent with two-layer mechanism; P3: empirical findings summary and contributions\"\n  notable_technique: \"The Table 1 feature comparison matrix (training-free × generalised × tool-based × fine-grained feedback) is an effective positioning device — it visually establishes the gap that VerifiAgent fills. Also notable: reporting average samples alongside accuracy to emphasize cost-efficiency of verification-based inference scaling.\"\n\nfigures:\n  figure_count: 7\n  figure1:\n    type: \"method_overview\"\n    description: \"Overview diagram of VerifiAgent workflow. Shows input (Reasoning Task & Solution with 4 task types) flowing into VerifiAgent's two-layer verification: Meta Verification (list conditions, divide steps, check completeness/consistency) and Tool Verification (select tools: Python Interpreter, Search Engine, Theorem Prover). Output is Feedback box containing Evaluation Result, Error Reason, Revision Method, and Verification Score, with feedback loop back to input.\"\n    narrative_role: \"Establishes the complete system architecture at a glance; makes the two-layer design and tool-adaptive nature immediately visible\"\n    design_elements: [\"two-stage pipeline layout\", \"tool icons for Python/Search/Theorem Prover\", \"feedback loop arrow\", \"4 reasoning task types listed\"]\n    visual_style: \"Block diagram with color-coded sections; left-to-right flow from input through two verification stages to output; clean compartmentalized layout with labeled sub-components\"\n  result_figures:\n    - figure_id: \"Figure 2\"\n      viz_type: \"line_plot\"\n      what_compared: \"Accuracy vs number of samples on MATH for different inference scaling methods: Majority Vote, Best-of-N with two PRMs (Qwen2.5-Math-PRM-7B, Qwen2.5-Math-7B-PRM800K), and VerifiAgent. Two panels: (a) GPT-4o reasoner, (b) Qwen2.5-Math-7B-Instruct reasoner.\"\n      how_gain_highlighted: \"VerifiAgent shown as horizontal line (few samples needed) vs rising curves of sampling methods — visually emphasizes that VerifiAgent matches 10-sample PRM performance with ~1.5 samples\"\n      design_note: \"Two-panel layout comparing different reasoners; VerifiAgent as flat line vs sampling curves is a strong visual metaphor for cost-efficiency\"\n    - figure_id: \"Figure 7\"\n      viz_type: \"scatter\"\n      what_compared: \"Average cost ($) vs accuracy across three datasets for different methods\"\n      how_gain_highlighted: \"VerifiAgent positioned at lower-cost, higher-accuracy region compared to Majority Vote\"\n      design_note: \"Appendix figure; cost-accuracy Pareto frontier visualization\"\n  ablation_figures:\n    - figure_id: \"Figure 3\"\n      viz_type: \"floating_bar_chart\"\n      dimensions_varied: [\"Vscore distribution for correct vs incorrect solutions across MATH, ProverQA, StrategyQA\"]\n      design_note: \"Mean ± std bars for correct vs incorrect; demonstrates Vscore discriminability — correct solutions have higher mean and lower variance\"\n    - figure_id: \"Figure 4\"\n      viz_type: \"pie_chart\"\n      dimensions_varied: [\"Tool usage distribution across 4 reasoning task types\"]\n      design_note: \"Shows autonomous tool selection: MATH→98.6% Python, StrategyQA→100% Search, ProverQA→100% Symbolic, ReWild→mixed. Validates adaptive tool selection claim.\"\n    - figure_id: \"Figure 5\"\n      viz_type: \"horizontal_bar_chart\"\n      dimensions_varied: [\"Error distribution by question type/difficulty for MATH, ProverQA, StrategyQA\"]\n      design_note: \"Error analysis showing where VerifiAgent fails: Precalculus/Geometry hardest for MATH, Hard questions for ProverQA, no clear pattern for StrategyQA\"\n  figure_narrative_role: \"Figure 1 (method overview) → Figure 2 (inference scaling comparison with PRMs) → Figure 3 (Vscore analysis) → Figure 4 (tool usage analysis) → Figure 5 (error analysis) → Figure 6-7 (appendix: detailed errors + cost-accuracy tradeoff)\"\n\ntables:\n  table_count: 10\n  main_result_table:\n    table_id: \"Table 2\"\n    row_axis: \"methods (Vanilla Verifier, Deductive Verifier, Backward Verifier, VerifiAgent)\"\n    col_axis: \"datasets × metrics (7 datasets, each with Acc/Pre/Rec)\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_dataset\"\n    highlight_strategy: \"bold_best per row (each dataset row)\"\n    statistical_reporting: \"single run, no std reported\"\n    num_baselines: 3\n    design_note: \"Rows grouped by reasoning type (Mathematical/Logical/Commonsense/Hybrid) with dataset sub-rows. 4 methods × 3 metrics × 7 datasets = dense but well-organized. Bold highlights scattered rather than concentrated, making VerifiAgent's wins visible but also showing it doesn't dominate every single metric.\"\n  ablation_tables:\n    - table_id: \"Table 7\"\n      what_varied: [\"meta verification component\", \"tool verification component\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Shows full VerifiAgent, w/o meta v., w/o tool v. alongside all baselines for context. Key insight: removing tool verification degrades to baseline level; removing meta verification mainly hurts recall. Uses same format as main table for easy comparison.\"\n    - table_id: \"Table 4\"\n      what_varied: [\"feedback type (precaution vs post-editing)\", \"feedback granularity (result only / +error reason / +revision method)\"]\n      variation_style: \"full_numbers\"\n      design_note: \"2×3 factorial design. Shows initial reasoning accuracy as anchor, then improvements from 6 feedback conditions. Clean separation of precaution-based vs post-editing-based.\"\n    - table_id: \"Table 6\"\n      what_varied: [\"reasoning approach (CoT vs Tool-use) for the reasoner being verified\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Demonstrates VerifiAgent's performance gap on tool-use outputs vs CoT outputs\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Table 8: dataset statistics. Table 9: VerifiAgent with different backbone LLMs (GPT-4o vs o1-mini). Table 10: inference cost comparison per instance ($).\"\n    reason: \"Dataset stats and cost details are supporting evidence; backbone LLM comparison extends the main result. Table 10 (cost) is critical for the efficiency claim but placed in appendix likely due to page limits — the cost advantage is instead conveyed via Figure 7 in appendix and in-text discussion.\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94bf8e93-6b46-46d8-8739-45fbfee1e012",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDBtXJkMTgXh3e68jzj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3e167376-1591-470a-a680-b78282140677",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wge3B8wsT1JNEW3TLyuK6r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 486,
+                "cache_read_input_tokens": 43812,
+                "output_tokens": 3346,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 486
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3346,
+                    "cache_read_input_tokens": 43812,
+                    "cache_creation_input_tokens": 486,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 486,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T04:45:53.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0124NNA8A9hAee55fCrRWJ1K",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/distill_tmp/verifiagent2025.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e167376-1591-470a-a680-b78282140677",
+            "isSidechain": true,
+            "promptId": "d741f453-e2fe-4e5b-b906-db9bad8054e8",
+            "agentId": "ad7807a3f590415e6",
+            "type": "user",
+            "uuid": "acef14c1-d2a4-41b6-bf40-40768b89f71f",
+            "sourceToolAssistantUUID": "3e167376-1591-470a-a680-b78282140677",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T04:46:06.346Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/distill_tmp/verifiagent2025.yaml`。\n\n关键发现：\n\n- **方法**：VerifiAgent 是一个 training-free 的两层验证框架：(1) meta verification 检查 completeness/consistency，(2) tool-based adaptive verification 自动选择 Python 解释器/搜索引擎/符号求解器。通过 top-5 token logprob softmax 计算 Vscore 作为置信度。\n- **核心结果**：在 7 个数据集（数学/逻辑/常识/混合推理）上验证准确率均优于 baseline verifiers。在 inference scaling 场景下，以平均 1.5 个 sample 达到 Majority Vote @10 的效果，成本降低约 73%（$0.047 vs $0.175/instance on MATH）。\n- **与我们的关系**：直接竞品。它用 prompt-based agent 替代了 trained verifier/PRM，核心差异在于我们用 RL 训练 verification policy，而 VerifiAgent 完全依赖 frozen LLM 的 instruction following。\n- **局限**：仅支持 3 种工具、强依赖 backbone LLM 能力、在 tool-use output 上验证效果下降、当 reasoner 强于 verifier 时增益有限。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acef14c1-d2a4-41b6-bf40-40768b89f71f",
+            "isSidechain": true,
+            "agentId": "ad7807a3f590415e6",
+            "requestId": "req_011CbDDHv7yJV8fpqxH6SikJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4ab977e2-86d0-4278-851a-942bd75d7eea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/distiller_8281f54c",
+            "sessionId": "2b1072cc-ed77-4993-9584-eaef43091af6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AcGHXcQ4RZcqD67qzVdB73",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3410,
+                "cache_read_input_tokens": 44298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3410,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-layer-1-yaml-paper-key-verifiagent2025-title-verifiagent-a-unified-ve.md"
+}

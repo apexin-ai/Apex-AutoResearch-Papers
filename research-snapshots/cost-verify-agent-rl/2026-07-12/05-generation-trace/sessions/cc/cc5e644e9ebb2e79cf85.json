@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cc5e644e9ebb2e79cf85",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cost-verify-agent-rl ## 运行环境 - 服务器名: bjb1-17606 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "d7c0f713-897f-4bd7-afd4-fe95bc092edb",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/d7c0f713-897f-4bd7-afd4-fe95bc092edb.jsonl",
+    "occurrence": 1,
+    "bytes": 583991,
+    "sha256": "66c6cc472091e6c06efc3868c2c82234a008e9d65bccfcb1ff26854b5eb2e47d"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 48,
+      "tool_call": 59,
+      "tool_result": 59
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "cc5e644e9ebb2e79cf85-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "cc5e644e9ebb2e79cf85-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "cc5e644e9ebb2e79cf85-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cost-verify-agent-rl-bjb1-17606-ssh-root-ssh-execute-submit-tr-copy-35.md"
+}

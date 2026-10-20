@@ -1,0 +1,851 @@
+{
+  "schema_version": "1.0",
+  "id": "c2d0721c6153cd32d51a",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-09 (UTC).** ## Original idea { \"tit",
+  "task_key": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/d4c72eb6-f009-4c3c-95b2-464c8e6dd778.jsonl",
+    "occurrence": 1,
+    "bytes": 157076,
+    "sha256": "aa5d6f8761cdf0846110a45b795b2360c75bdd0c1bad8a495cff9a2af9377885"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-09T19:08:56.788Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-09T19:08:56.788Z",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+                "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-09 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LHAW Dimension-Aware Reward: A Feasibility Study\",\n  \"project_name\": \"pg_clarif_gating\",\n  \"source\": \"web_research\",\n  \"level\": \"solid\",\n  \"core_problem\": \"Clarification policy training on τ-bench now has one known prior: 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026) trains SFT, DPO, and GRPO for clarification on τ-bench via a dedicated Clarifier module—a separate component triggered after tool calls when key parameters are missing from fuzzy user requests. However, three precise gaps remain unaddressed by this and all other prior work. First, 'Asking to Clarify' uses fuzzy intent modeling on existing τ-bench data and does not construct an explicitly structured underspecified variant corpus; no work has applied the LHAW four-dimension taxonomy (arXiv:2602.10525) to τ-bench specifications, and the taxonomy's transferability (κ target ≥ 0.65) to airline/retail specifications is unvalidated. Second, no existing work trains a full joint policy end-to-end—as opposed to a dedicated trigger-conditioned Clarifier module—using GRPO on a structured, taxonomy-derived underspecified τ-bench variant corpus; the feasibility of producing measurable learning signal at N=30–50 variants is open. Third, no work compares a LHAW four-dimension dimension-aware secondary reward (binary LLM judge: does the clarification question target the labeled LHAW dimension?) against a scalar importance baseline (H/M/L, adapted from IntentionGym) within a τ-bench training setting. Critically, arXiv:2604.02869 (Apr 2026) establishes that naive per-turn dense rewards on τ-bench degrade performance by up to 14pp due to outcome advantage domination of per-turn signals, requiring Iterative Reward Calibration (IRC)—a rollout-discriminativeness-based calibration procedure using 5,952 rollouts in the original paper—before any secondary reward is applied; whether IRC-calibrated LHAW-dimension reward (using a smaller 600-episode feasibility-study corpus) produces distinguishable trends versus scalar importance is the third open question. UserRL (arXiv:2509.19736) never trained clarification directly on τ-bench (IntentionGym/IN3 is zero-shot evaluation only) and uses scalar H/M/L importance with no structured taxonomy. The four empirical questions addressable in 16 days: (1) Does LHAW taxonomy transfer to τ-bench specifications with κ ≥ 0.65? (2) Does full-policy MT-GRPO training on an explicitly constructed LHAW variant corpus (30–50 variants, hybrid discounted advantage with γ=0.9) produce measurable learning signal? (3) Does IRC-calibrated LHAW 4-dim secondary reward show distinguishable directional trends versus scalar importance? (4) Do trained policies zero-shot transfer to retail tasks?\",\n  \"opportunity\": \"The compound feasibility gap that remains after 'Asking to Clarify'—and that no existing work addresses—has three components: (a) structured underspecification corpus construction (LHAW taxonomy transfer to τ-bench, validated by IAA); (b) full-policy GRPO clarification training on a taxonomy-derived variant corpus, as opposed to a dedicated Clarifier module operating on existing τ-bench data with fuzzy intent; (c) IRC-calibrated dimension-aware secondary reward, as opposed to goal-aware preference signals conditioned on ground-truth user requirements. 'Asking to Clarify' establishes that GRPO-based clarification training on τ-bench is feasible in principle, validating the episode structure. arXiv:2604.02869 establishes MT-GRPO with Iterative Reward Calibration as the correct multi-turn credit assignment mechanism for τ-bench and provides the hybrid discounted advantage formula A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O (γ=0.9, λ=0.3); its IRC analysis used 5,952 rollouts on τ-bench airline. UserRL (arXiv:2509.19736) establishes Qwen3-32B as an effective local user simulator for τ-bench. τ³-bench provides 27 corrected airline and 26 corrected retail tasks as clean annotation targets. Together, these three prior works provide infrastructure for a 16-day feasibility study of full-policy clarification training with LHAW dimension-aware reward—a study that neither 'Asking to Clarify' (Clarifier module, fuzzy intent, no structured taxonomy) nor UserRL (general tool use, scalar importance, IntentionGym held out) nor arXiv:2604.02869 (general tool use, no clarification, no taxonomy) has conducted. The compound novel claim is: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward calibrated from a 600-episode corpus (acknowledged as smaller than the 5,952-rollout IRC in arXiv:2604.02869; treated as a methodological limitation of the feasibility study scope). Days 1–3 (LHAW pilot, go/no-go gate); Days 3–7 (full annotation, 30–50 variants + IRC calibration corpus of 600 episodes running in parallel with annotation); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds, ~128 H100h); Days 12–14 (zero-shot retail evaluation); Days 14–16 (short paper). ARR May 25, 2026 deadline is exactly feasible.\",\n  \"landscape\": \"**'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026)** is the most critical prior work and directly challenges an earlier 'first GRPO on τ-bench' claim. This paper trains SFT, DPO, and GRPO for clarification on τ-bench (τ-airline domain) using a dedicated Clarifier module with three components: (1) Domain-Policy Tool Calling, (2) User-Driven Fuzzy Intent modeling for partially specified user goals, and (3) ReAsk Decision & Generation for targeted question generation. The Clarifier triggers after tool calls when key parameters are missing. It uses goal-aware preference signals conditioned on ground-truth user requirements. Architectural distinction from our work: 'Asking to Clarify' deploys a separate Clarifier sub-module triggered specifically after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent joint behavior of a single policy. Our work is differentiated on four axes: (a) full-policy joint training (single Qwen3-8B policy decides tool calls, clarification questions, and responses from the same parameter set) vs. a trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy pipeline vs. fuzzy intent modeling on existing τ-bench data; (c) IRC-calibrated LHAW dimension-aware binary-judge reward vs. goal-aware preference signals; and (d) zero-shot cross-domain evaluation (airline→retail) not reported by 'Asking to Clarify'.\\n\\n**UserRL (arXiv:2509.19736, Sep 2025)** is the second most critical prior. Its five training gyms include TauGym (τ-bench, general tool use) but IntentionGym—which uses IN3 (Qian et al., ACL 2024) and rewards agents for uncovering missing intent details at scalar H/M/L importance levels—is held out as zero-shot evaluation. UserRL never trains clarification on τ-bench, never applies a structured underspecification taxonomy, and validates Qwen3-32B as an effective local user simulator.\\n\\n**MT-GRPO + Iterative Reward Calibration on τ-bench (arXiv:2604.02869, Apr 2026)** establishes the correct multi-turn credit assignment mechanism for τ-bench. The paper uses a hybrid discounted advantage: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor, λ=0.3 weights the undiscounted outcome signal, and GN is group normalization across rollouts at each turn position k. The IRC analysis used 5,952 rollouts for τ-bench airline. The paper's key finding is that naive dense per-turn rewards degrade performance by up to 14pp because outcome advantages (|A^O| ≈ 0.87) overwhelm per-turn signals (|A^I| ≈ 0.05), reversing intended training signals. IRC addresses this by computing point-biserial correlations between per-turn reward tier presence and binary task success, then setting reward weights proportional to discriminative power. Training used 8 H20 GPUs (96GB each) with Megatron-Core and batch size 8. Applied to τ-bench airline: Qwen3-30B-A3B improves from 58.0% to 69.5% (+11.5pp). This paper is general tool use, NOT clarification, and uses NO underspecification taxonomy.\\n\\n**MUA-RL (arXiv:2508.18669, Aug 2025)** integrates LLM-simulated users into GRPO for general multi-turn tool use on τ²-bench (45.4% on TAU2 Airline with 32B); treats neither underspecification nor clarification gating as first-class problems.\\n\\n**SpeakRL (arXiv:2512.13159, Dec 2025)** trains clarification question-asking via RL (+20.14% task completion) on the synthetic SpeakER dialogue dataset—not a live tool-use benchmark.\\n\\n**CLARITI (arXiv:2604.14624, Apr 2026)** trains an 8B clarification module on SWE tasks using multi-stage GRPO with Shapley-attributed proxy rewards; SWE episode intractability validates τ-bench's auto-verifiable structure.\\n\\n**GRPO-CR (arXiv:2601.16400, Jan 2026)** applies GRPO to VQA clarification (+0.156 F1) demonstrating GRPO's effectiveness for clarification on non-tool-use benchmarks.\\n\\n**Reward-Weighted Clarification Fine-Tuning (arXiv:2506.06964, NeurIPS 2025)** applies offline RL to short-horizon QA agents—no auto-verifiable episode reward, offline setting, no structured taxonomy.\\n\\n**Ask or Assume? (arXiv:2603.26233, Mar 2026)** achieves 69.4% on underspecified SWE-bench via multi-agent scaffold (OpenHands + Claude Sonnet 4.5)—no RL, no τ-bench.\\n\\n**ClarEval (arXiv:2603.00187, Feb/Mar 2026)** proposes ATC/KQC metrics for clarification in coding agents—no RL, no τ-bench.\\n\\n**Turn-Level Reward Design (arXiv:2505.11821, May 2026)** extends GRPO and PPO to multi-turn variants enabling fine-grained credit assignment; complements MT-GRPO but tested on QA datasets, not τ-bench.\\n\\n**LHAW (arXiv:2602.10525)** provides a validated dataset-agnostic taxonomy (Goals, Constraints, Inputs, Context) with empirical agent-trial classification across TheAgentCompany, SWE-Bench Pro, and MCP-Atlas—not τ-bench.\\n\\n**τ-bench SOTA (BenchLM leaderboard, May 2026):** MiMo-V2.5-Pro at 72.9%, Qwen3.6 Plus at 70.7%. 8B fine-tuned models on clarification-requiring variants remain well below frontier.\",\n  \"approach\": \"This is a 16-day proof-of-concept feasibility study targeting EMNLP 2026 Findings (short paper, 4+1 pages, ARR May 25, 2026 submission). The novelty claim is precisely scoped: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward. This is distinct from 'Asking to Clarify' (dedicated Clarifier module + fuzzy intent + goal-aware preference) and from arXiv:2604.02869 (general tool use + no taxonomy). All claims are explicitly pre-registered as 'proof-of-concept; N=30–50 variants; minimum detectable effect ≥15pp at p<0.1 with 2 seeds; results below this threshold reported as exploratory trends only.'\\n\\n**Days 1–3: LHAW Taxonomy Transfer Pilot (go/no-go gate)**\\nApply LHAW Phase 1 (LLM-based segment extraction) to 5 τ³ airline tasks (3 corrected, 2 uncorrected), mapping each specification element to Goal/Constraint/Input/Context. Known challenge cases pre-resolved: fare-waiver quantity restrictions → Constraint; waiver outcome → Goal; numeric seat IDs → Input; cabin-class defaults → Context. Two researchers independently label; compute Cohen's κ. Go decision requires κ ≥ 0.65 and all four dimensions present in ≥2 of 5 tasks.\\n\\n*Borderline κ procedure (pre-registered)*: If 0.60 ≤ κ < 0.65 after one definition-refinement pass, annotate 5 additional tasks (N=10 total), use pooled κ as the final gate. If κ still < 0.65 on N=10, declare feasibility blocker and abort—this constitutes Option B (FAIL), which is itself publishable as a negative taxonomy-transfer finding. A κ below 0.60 after first pass aborts immediately (hard threshold). Cost: ~$1–2 API, 2 person-days.\\n\\n**Days 3–7: Annotation + IRC Calibration Corpus**\\nContingent on pilot go decision. These two sub-tasks run in parallel.\\n\\n(a) *LHAW annotation*: Apply full two-phase LHAW pipeline (segment extraction + outcome-criticality labeling) to all 5 pilot tasks, generating ~6–10 variants per task (30–50 total). Add scalar importance labels (H/M/L adapted from IntentionGym) in parallel for baseline. 25% manual QC spot-check. ~$3–8 annotation API cost. Conducted primarily during daytime (Days 3–7).\\n\\n(b) *IRC calibration corpus*: Generate 600 rollout episodes from the base Qwen3-8B policy on the 30–50 variants (without LHAW-dim secondary reward active), running as a background overnight process beginning Day 3. At expected Qwen3-8B success rates of 20–30% on clarification-requiring variants, 600 episodes yields ~150–180 successes distributed approximately uniformly across 4 LHAW dimensions (~37–45 per dimension). This exceeds the n>25 positive-instance threshold required for approximate normality of point-biserial correlation estimates (standard reliability threshold for this statistic). We explicitly acknowledge this corpus is substantially smaller than the 5,952 rollouts used for IRC analysis in arXiv:2604.02869; this is a methodological limitation of the feasibility study scope, stated as such in the paper. Wall-clock: ~18 hours at 40% GPU utilization (IRC runs inference-only; no backprop), completing within the Days 3–7 window. IRC analysis (point-biserial correlation between clarification-turn presence and binary task success per LHAW dimension) and reward weight calibration are performed Days 6–7. Expected: one or two LHAW dimension categories may have near-zero discriminative correlation; those receive zero secondary reward weight in the calibrated condition. Near-zero correlation for all four dimensions would collapse Condition A to Condition B—itself a reportable finding ('IRC finds LHAW-dim reward non-discriminable from scalar at N=600 feasibility corpus').\\n\\n**Days 7–12: MT-GRPO Training on 2×H100 SXM**\\n\\n*Architectural distinction from 'Asking to Clarify' (one-sentence operationalization)*: In this paper, Qwen3-8B is a single joint policy that decides—at any turn—whether to invoke API tools, ask a clarifying question, or produce a final response; all action types are sampled from the same parameter set without an explicit trigger condition. In contrast, 'Asking to Clarify' deploys a separate Clarifier sub-module activated only after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent behavior of a unified policy.\\n\\n*Memory management — interleaved rollout/update schedule*: Full FP32 Adam fine-tuning of Qwen3-8B requires approximately 96GB excluding activations: 16GB BF16 model weights (8B × 2 bytes) + 64GB FP32 Adam optimizer states (8B × 4 bytes × 2 for first and second moment vectors) + 16GB BF16 gradients. Co-locating this with the Qwen3-32B simulator (64GB, TP=2) and Qwen3-8B judge (16GB) simultaneously would require ~176GB, exceeding the 160GB available. We therefore use a phase-separated interleaved rollout/update schedule:\\n- *Rollout phase*: load policy for BF16 forward-only inference (16GB) + Qwen3-32B simulator (TP=2 across both GPUs, 64GB) + Qwen3-8B judge (16GB) = 96GB peak VRAM; FP32 Adam states are not loaded during rollout.\\n- *Update phase*: unload simulator and judge; load policy with FP32 Adam states and BF16 gradients (96GB) + gradient-checkpointed activations (batch size 16, ~500-token average sequences: ~4–8GB with gradient checkpointing enabled) = ~100–104GB peak VRAM.\\nNVLink between the two H100 SXM GPUs enables fast model swapping between phases (~15–30 seconds per phase transition). Peak VRAM in both phases: ≤104GB, well within 160GB. NVLink verification and phase-swap latency benchmarking are budgeted into the Day 7–8 infrastructure slot.\\n\\n*Multi-turn credit assignment*: We adopt the hybrid discounted advantage formulation from arXiv:2604.02869 verbatim: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor (early turns receive discounted future intermediate rewards), λ=0.3 weights the undiscounted outcome advantage added outside group normalization, o_i is the binary task-success outcome reward, r_{i,l} is the per-turn intermediate reward at turn l, and GN denotes group normalization across G=4 rollouts at each turn position k. The γ=0.9 discount ensures early-turn gradients reflect discounted future returns rather than uniform credit; the separate λ·A^O term prevents outcome information from being fully absorbed into the discounted sum and becoming unrecoverable after GN. This differs from a simplified undiscounted sum (as in earlier versions of this proposal) and matches the validated τ-bench implementation. We reproduce the formula in the paper's methodology section with attribution. Justification for MT-GRPO over GTPO (arXiv:2511.14846): GTPO's self-supervised reward shaping is designed for code/math tasks; MT-GRPO with this hybrid advantage has been validated directly on τ-bench airline (arXiv:2604.02869).\\n\\n*Pre-training outcome variance check (before committing training compute)*: On 20 held-out episodes from the 30–50 training variants, compute per-group success rate across G=4 rollouts for each variant. Training proceeds only if the mean per-group success rate falls in [0.10, 0.90]. If mean success rate < 0.10 (near-zero clarification quality; advantages uniformly negative; minimal gradient signal), increase decoding temperature incrementally (T: 0.7 → 0.8 → 1.0 → 1.2) until criterion is met. If mean success rate > 0.90 (base policy already solves variants; near-zero advantage variance), add additional underspecification to the lowest-complexity variants or increase user simulator intent ambiguity. This check takes ~30 minutes and prevents wasting 15–16 hours of H100 time on a degenerate training run.\\n\\nTwo training conditions (each run with 2 random seeds, sequential runs):\\n- Condition A (LHAW-dim, IRC-calibrated): r_combined = r_task + w_dim × r_dim, where w_dim is determined by IRC analysis (target |w_dim × A^I| ≈ 0.3 × |A^O| to maintain positive advantage direction consistent with the λ=0.3 calibration in arXiv:2604.02869); r_dim is binary judge: does question target the labeled LHAW dimension?\\n- Condition B (scalar): r_combined = r_task + 0.3 × r_scalar (importance level H=1.0/M=0.67/L=0.33, normalized; weight 0.3 kept fixed, not IRC-calibrated, for clean comparison of reward structure rather than weight tuning)\\n\\n*Condition comparison scope (pre-registered limitation)*: Condition A and Condition B differ simultaneously on reward structure (4-dim binary vs. H/M/L scalar) and weight calibration method (IRC-derived vs. fixed 0.3). The comparison tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation. A fully controlled comparison would require a third condition (IRC-calibrated scalar); this is deferred to the fully-powered follow-up study.\\n\\nHyperparameters: G=4 rollouts per prompt, 5 epochs, batch size 16. Anti-hacking constraints: BLEU-1 overlap with prior rollout questions < 0.6; minimum 10-word filter; interrogative marker required.\\n\\n*Revised wall-clock per run*: 40 variants × 4 rollouts × 5 epochs × 15 user_turns (median of 10–30 total turns per episode) = 12,000 Qwen3-32B simulator inference calls. At ~3 seconds per call on TP=2, raw compute = 36,000s. At 65% GPU utilization (idle during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation): ~15–16 hours wall-clock per run. Per run H100h: 16 hours × 2 GPUs = 32 H100h. Four runs total: ~128 H100h for training.\\n\\n*Run schedule*: Condition A seed 1 (Day 7–8); IRC calibration analysis + Condition A seed 2 (Day 8–9); Condition B seed 1 (Day 9–10); Condition B seed 2 (Day 10–11); evaluation and buffer (Day 11–12).\\n\\n**Days 12–14: Zero-Shot Evaluation on 5 Retail Tasks**\\nSelect 5 corrected τ³ retail tasks. Evaluate: (1) prompt-only Qwen3-8B baseline; (2) GRPO task-success reward only (no secondary reward); (3) Condition A (LHAW-dim, IRC-calibrated); (4) Condition B (scalar). 5 evaluation trials × 5 tasks × 2 seeds = 50 episodes per condition. Report task success rate with bootstrapped 95% CI across 2 seeds. Explicit power statement pre-registered: 'N=50 episodes per condition; minimum detectable effect ≥15pp at p<0.1 under 2 seeds; results below this threshold reported as exploratory trends only.' Evaluation GPU cost: ~5 H100h.\\n\\n**Days 14–16: Short Paper Writing (4+1 pages, EMNLP Findings)**\\nPre-assigned section space budget to ensure 4 ACL-format pages are sufficient:\\n- Introduction (0.5 pages): problem, gap vs. 'Asking to Clarify' and arXiv:2604.02869, three contributions\\n- Related Work (0.5 pages): condensed 6-entry table format covering 'Asking to Clarify', UserRL, arXiv:2604.02869, CLARITI, SpeakRL, LHAW\\n- Background & Setup (0.4 pages): τ³-bench, LHAW taxonomy, MT-GRPO hybrid advantage formula (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3), Qwen3-32B simulator\\n- Methodology (0.9 pages): LHAW pilot + IAA result (0.2p), variant construction + 600-episode IRC calibration corpus (0.3p), interleaved memory schedule + MT-GRPO training conditions (0.4p)\\n- Results (1.4 pages): training curves [1 compact figure, 0.5p], zero-shot retail table [1 table, 0.4p], uncertainty + power statement (0.3p), negative-result framing if flat (0.2p)\\n- Limitations & Conclusion (0.3 pages): includes (1) condition comparison confound (Condition A vs. B tests joint effect of reward structure and calibration method, not dimension-awareness alone; fully controlled comparison deferred to powered follow-up); (2) IRC corpus size (600 episodes vs. 5,952 in arXiv:2604.02869; correlation estimates have wider CIs at this scale); (3) N=2 seeds; (4) N=5 retail tasks for zero-shot evaluation.\\n\\nThree reportable findings: (1) IAA κ value—establishes LHAW transferability to τ-bench, citable independent of training outcome; (2) training curves—binary feasibility finding: does MT-GRPO produce reward signal on 30–50 LHAW clarification variants?; (3) zero-shot retail evaluation—directional comparison with uncertainty quantification. Paper framing: 'We provide first feasibility evidence that full-policy MT-GRPO clarification training on an LHAW-taxonomy-derived underspecified τ-bench variant corpus produces measurable learning signal, that LHAW four-dimension taxonomy transfers with κ=X.XX, and that IRC-calibrated dimension-aware reward shows [directional trend] versus scalar importance baseline—warranting a fully-powered follow-up.' Flat training curves or failed taxonomy transfer are reported as negative feasibility results—publishable given the first-ever nature of the experiment.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours_h100_equivalent\": \"~165–185 H100h total (within ≤200 H100h hard constraint)\",\n      \"breakdown\": \"~128 H100h for MT-GRPO training (2 conditions × 2 seeds on 2×H100 SXM; wall-clock ~15–16 hours per run at 65% GPU utilization; TP=2 for Qwen3-32B; 40 variants × 4 rollouts × 5 epochs × ~15 user_turns × 3s/call = ~36,000s raw compute = ~15–16 hours per run = 32 H100h per run; 4 runs = 128 H100h). ~24 H100h for IRC calibration rollout generation (600 episodes at 40% utilization, ~18 hours wall-clock × 2 GPUs; 3× increase from 200 to 600 episodes required for statistical stability of point-biserial correlation—n>25 positive instances per dimension at 20–30% success rate; explicitly smaller than the 5,952 rollouts used for IRC in arXiv:2604.02869, acknowledged as a methodological limitation). ~5 H100h for zero-shot retail evaluation (4 conditions × 5 tasks × 5 trials × 2 seeds = 200 episodes). ~5 H100h for infrastructure setup (NVLink verification, phase-swap latency benchmarking for interleaved rollout/update schedule, IRC analysis tooling, environment configuration). Pilot (Days 1–3): ~$1–2 annotation API, no GPU cost.\",\n      \"gpu_configuration\": \"2×H100 SXM (80GB each, 160GB total VRAM) per training node; tensor parallelism TP=2 for Qwen3-32B simulator inference (64GB BF16); interleaved rollout/update memory schedule: rollout phase loads policy BF16 forward (~16GB) + simulator (~64GB, TP=2) + judge (~16GB) = 96GB peak; update phase unloads simulator and judge, loads policy with FP32 Adam states (~96GB: 16GB weights + 64GB FP32 Adam [8B × 4 bytes × 2] + 16GB BF16 gradients) + gradient-checkpointed activations (~4–8GB at batch=16, ~500-token sequences) = ~100–104GB peak. Both phases safely within 160GB. NVLink phase-swap latency ~15–30s per transition. Full FP32 Adam (not 8-bit Adam) to ensure stable convergence.\",\n      \"gpu_utilization\": \"~65% during training (GPU idles during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation); ~40% during IRC calibration rollout generation (inference-only, no backprop); ~40% during evaluation; full utilization during gradient update phase within each training step\",\n      \"timeline\": \"16 days total: Days 1–3 (LHAW pilot, 5 tasks, IAA + κ computation + go/no-go decision; borderline κ 0.60–0.64 triggers 5-task extension, pooled κ as final gate); Days 3–7 (full annotation of 5 tasks → 30–50 LHAW variants + scalar labels [daytime]; IRC calibration corpus of 600 rollout episodes from base policy running as background overnight process beginning Day 3 [~18 hours wall-clock]; IRC analysis + weight calibration Days 6–7; pre-training outcome variance check Day 7 before committing training compute); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds sequential, ~128 H100h; 4 runs × ~16 hours = 64 hours wall-clock within 120 available hours); Days 12–14 (zero-shot retail evaluation, 4 conditions × 50 episodes, ~5 H100h); Days 14–16 (4+1 page short paper writing with pre-assigned section budget, ARR May 25 submission)\",\n      \"team\": \"2 researchers\",\n      \"gpu_cost\": \"~$165–185 at ~$1/H100h SXM (RunPod / Lambda Labs H100 SXM pricing as of May 2026); increased from prior estimate due to two corrections: (1) IRC corpus expanded from 200 to 600 episodes (+16 H100h) for statistical reliability of point-biserial correlation; (2) training wall-clock revised to 15–16 hours per run accounting for multi-turn episode simulation overhead\",\n      \"annotation_api_cost\": \"~$4–10 total ($1–2 for 5-task taxonomy transfer pilot; $3–8 for full annotation of 5 tasks → 30–50 variants + scalar labels; IRC calibration rollouts use local Qwen3-32B inference, no API cost)\",\n      \"risk_note\": \"Primary risk gate: LHAW taxonomy transfer pilot (Days 1–3); κ < 0.65 on N=5 after one refinement → N=10 extension; κ < 0.65 on N=10 → abort (publishable negative result). Secondary risk: IRC calibration (600-episode corpus) may find near-zero discriminative correlation for all LHAW dimensions, collapsing Condition A to Condition B—itself a reportable finding. The smaller IRC corpus (600 vs. 5,952 in arXiv:2604.02869) increases the probability of this outcome and widens correlation confidence intervals; this is explicitly pre-registered as a methodological limitation. Tertiary risk: pre-training outcome variance check (Day 7) may require temperature adjustment before training can proceed; budgeted ~30 minutes, not expected to affect timeline. Quaternary risk: MT-GRPO wall-clock per run may reach 16–17 hours at upper episode-depth bound (30 turns); 4 runs × 17 hours = 68 hours wall-clock within 120 available hours—still feasible. Infrastructure failure must be resolved within 24 hours or AAAI 2027 fallback applies.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR May 25, 2026 submission; commitment deadline Aug 2, 2026; EMNLP 2026 conference est. Nov 2026). Short paper format: 4+1 pages with pre-assigned section space budget. Claims explicitly scoped as proof-of-concept feasibility study with pre-registered power statement. This is the primary target and satisfies the 16-day hard constraint from May 9, 2026.\",\n    \"AAAI 2027 (direct submission, est. abstract ~Jul 25 / paper ~Aug 1, 2026 based on AAAI-26 historical pattern; CFP not yet released as of May 2026—deadline estimate is unconfirmed). Backup path: if the 16-day proof-of-concept produces positive feasibility results, expand to the full 12-week experiment (50 tasks, 280–350 variants, 3 seeds, full power analysis, ablation of IRC calibration weight choices, addition of Condition C: IRC-calibrated scalar baseline to isolate dimension-awareness from calibration effect) and submit to AAAI 2027. The proof-of-concept data, trained checkpoints, and IRC calibration analysis serve as a head start.\"\n  ],\n  \"description\": \"We present the first feasibility study of full-policy MT-GRPO clarification training on an explicitly constructed LHAW-taxonomy-derived underspecified τ-bench variant corpus, completing three separable contributions in 16 days (May 9–25, 2026) for ARR May 25 / EMNLP 2026 Findings (short paper, 4+1 pages). This work is differentiated from 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview)—which trains GRPO for clarification on τ-bench via a dedicated Clarifier sub-module triggered after tool calls detect missing parameters, using fuzzy intent modeling on existing τ-bench data and goal-aware preference signals—on four axes: (a) full-policy joint training (single Qwen3-8B decides tool calls, clarification questions, and responses from the same parameter set without an explicit trigger condition) vs. trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy vs. fuzzy intent on existing data; (c) IRC-calibrated dimension-aware secondary reward vs. goal-aware preference signals; (d) zero-shot cross-domain evaluation (airline→retail). Contribution 1: a LHAW taxonomy transfer pilot on 5 τ³ airline tasks (Days 1–3) establishing whether Goal/Constraint/Input/Context labels produce coherent annotations for airline specifications (inter-annotator κ reported; go/no-go at κ ≥ 0.65; borderline 0.60–0.64 triggers 5-task extension). Contribution 2: annotation of those 5 tasks into ~30–50 underspecified variants (Days 3–7) via the two-phase LHAW pipeline, with scalar importance labels (H/M/L, adapted from UserRL's IntentionGym structure) added in parallel for the baseline condition; plus generation of a 600-episode IRC calibration corpus from the base policy (running in parallel with annotation as an overnight background process, ~18 hours wall-clock at 40% GPU utilization; 600 episodes yields ~37–45 positive instances per LHAW dimension at 20–30% success rates, exceeding the n>25 threshold for reliable point-biserial correlation; acknowledged as smaller than the 5,952 rollouts used in arXiv:2604.02869, stated as a methodological limitation). Contribution 3: MT-GRPO training of Qwen3-8B on 2×H100 SXM (Days 7–12) using the hybrid discounted advantage formulation from arXiv:2604.02869 (A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, γ=0.9, λ=0.3), with a phase-separated interleaved rollout/update memory schedule to fit within 160GB (rollout phase: policy 16GB + simulator 64GB + judge 16GB = 96GB; update phase: unload simulator/judge, load policy + FP32 Adam + gradients = 96GB + gradient-checkpointed activations ~4–8GB = ~100–104GB); two reward conditions—IRC-calibrated LHAW 4-dim secondary reward (binary LLM judge, weights from point-biserial discriminativeness analysis) vs. scalar importance secondary reward—each run with 2 seeds, preceded by a pre-training outcome variance check (mean per-group success rate [0.10, 0.90] required before committing training compute), followed by zero-shot evaluation on 5 corrected τ³ retail tasks (50 episodes per condition, Days 12–14). Pre-registered limitations: (1) Condition A vs. B tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation; a controlled Condition C (IRC-calibrated scalar) is deferred to the powered follow-up; (2) 600-episode IRC corpus is a feasibility-study approximation. Total compute: ~165–185 H100h (~$165–185); annotation API: ~$4–10. Negative outcomes (flat training curves, failed taxonomy transfer, IRC-collapsed Condition A) are reportable given the first-ever nature of full-policy LHAW-taxonomy clarification training on τ-bench. Backup: AAAI 2027 full experiment if 16-day submission is missed.\",\n  \"key_references\": [\n    \"Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions (OpenReview, 2025/2026) — trains SFT/DPO/GRPO for clarification on τ-bench via dedicated Clarifier sub-module triggered after tool calls detect missing parameters; does NOT use structured underspecification taxonomy or construct explicit underspecified variant corpus; direct competitor requiring differentiation on (a) joint policy architecture, (b) taxonomy-derived corpus, (c) IRC-calibrated reward, (d) cross-domain evaluation\",\n    \"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration (arXiv:2604.02869, Apr 2026) — establishes hybrid discounted MT-GRPO advantage (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3) and IRC procedure (5,952 rollouts for τ-bench airline); key finding: naive dense rewards cause 14pp degradation; 8 H20 GPUs, batch size 8; Qwen3-30B-A3B: 58.0%→69.5%; general tool use, no clarification, no taxonomy\",\n    \"UserRL: Training Interactive User-Centric Agent via Reinforcement Learning (arXiv:2509.19736, Sep 2025)\",\n    \"UserBench: An Interactive Gym Environment for User-Centric Agents (arXiv:2507.22034, Jul 2025)\",\n    \"MUA-RL: Multi-turn User-interacting Agent Reinforcement Learning for agentic tool use (arXiv:2508.18669, Aug 2025)\",\n    \"SpeakRL: Synergizing Reasoning, Speaking, and Acting in Language Models with Reinforcement Learning (arXiv:2512.13159, Dec 2025)\",\n    \"LHAW: Controllable Underspecification for Long-Horizon Tasks (arXiv:2602.10525, 2026)\",\n    \"Ask or Assume? Uncertainty-Aware Clarification-Seeking in Coding Agents (arXiv:2603.26233, Mar 2026)\",\n    \"ClarEval: A Benchmark for Evaluating Clarification Skills of Code Agents under Ambiguous Instructions (arXiv:2603.00187, Feb/Mar 2026)\",\n    \"Clarify or Answer: Reinforcement Learning for Agentic VQA with Context Under-specification — GRPO-CR (arXiv:2601.16400, Jan 2026)\",\n    \"Reward-Weighted Clarification Fine-Tuning for Conversation Optimization (arXiv:2506.06964, NeurIPS 2025, Adobe Research)\",\n    \"Ambig-SWE: Interactive Agents to Overcome Underspecificity in Software Engineering (ICLR 2026)\",\n    \"τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains (arXiv:2406.12045, 2024)\",\n    \"τ³-Bench: Corrected Airline and Retail Tasks (taubench.com, 2025)\",\n    \"τ²-Bench: Evaluating Conversational Agents in a Dual-Control Environment (arXiv:2506.07982, 2025)\",\n    \"Asking What Matters: Reward-Driven Clarification for Software Engineering Tasks — CLARITI (arXiv:2604.14624, April 2026)\",\n    \"Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL (arXiv:2604.17073, April 2026)\",\n    \"Empowering Multi-Turn Tool-Integrated Agentic Reasoning with Group Turn Policy Optimization — GTPO (arXiv:2511.14846, Nov 2025)\",\n    \"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design (arXiv:2505.11821, May 2026)\",\n    \"IN3: Towards Implicit User Intention Understanding of Language Model Driven Agents (Qian et al., ACL 2024)\",\n    \"Structured Uncertainty guided Clarification for LLM Agents (arXiv:2511.08798, 2025)\"\n  ]\n}\n\n## Reviewer feedback (round 7)\nIssues: [\"MEDIUM — Uncited competitor paper: AskBench (arXiv:2602.11199, 'When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification', Feb 2026) trains clarification behavior via rubric-guided RLVR. While differentiation is clear (AskBench uses QA-style AskMind/AskOverconfidence settings, not tool-use on τ-bench, and uses rubric-scoring rather than LHAW taxonomy labels), it must be cited in the landscape with one-sentence differentiation. The proposal already cites GRPO-CR and Reward-Weighted Clarification Fine-Tuning; AskBench belongs in the same row.\", \"MINOR — IRC H100h arithmetic error: The resource breakdown claims '~24 H100h for IRC calibration rollout generation (600 episodes at 40% utilization, ~18 hours wall-clock × 2 GPUs).' However 18h × 2 GPUs = 36 H100h at billing rates, regardless of utilization. The utilization figure (40%) describes GPU idle rate during inference, not a billing discount. Corrected total: 128 + 36 + 5 + 5 = 174 H100h — still within ≤200 H100h. Update the line item to '~36 H100h' and the total to '~174 H100h.'\", \"MINOR — LHAW Phase 3 omission needs explicit one-sentence acknowledgment: The proposal describes a 'two-phase LHAW pipeline (segment extraction + outcome-criticality labeling)' but LHAW's validated three-phase pipeline includes empirical agent trials (Phase 3) to verify that labeled variants are genuinely outcome-critical. The proposal omits Phase 3 (endorsed in Round 1 feedback as a '2-phase LHAW approximation'), using LLM-based criticality labeling instead. This should be explicitly stated in the methodology section with one sentence: 'We implement a 2-phase approximation of the LHAW pipeline, omitting Phase 3 empirical agent trials due to timeline constraints; LLM-based criticality labeling introduces additional label noise compared to the validated full pipeline.' This pre-empts a reviewer flagging the deviation.\", \"MINOR — Cohen's κ reliability on small N: The go/no-go gate at κ ≥ 0.65 is computed from 5 τ³ airline tasks (~75 annotation decisions for ~15 elements/task). The asymptotic 95% CI for κ on N≈75 binary classifications is approximately ±0.12–0.15, meaning κ=0.65 observed could be consistent with true κ ranging from 0.50 to 0.80. Consider noting the expected CI width when reporting the κ result, or report Gwet's AC1 as a more stable alternative for skewed category distributions.\"]\nFeedback: The proposal has successfully resolved all Round 6 blockers. The interleaved VRAM schedule is correctly specified, the IRC corpus is sufficiently sized, the condition confound is pre-registered, and the full-policy vs. Clarifier distinction is operationalized. Three small fixes remain before this is submission-ready.\n\n**Fix 1 (1 hour): Add AskBench to the landscape.** 'When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification' (arXiv:2602.11199, Feb 2026) trains clarification policies via RLVR. Add it to the related work table with one-sentence differentiation: unlike AskBench's QA-style AskMind/AskOverconfidence settings, this paper trains on live tool-use episodes with auto-verifiable database-state rewards on τ-bench, and uses LHAW taxonomy dimension labels rather than rubric-scoring.\n\n**Fix 2 (15 minutes): Correct IRC H100h from 24 to 36.** The IRC calibration costs 18 hours × 2 GPUs = 36 H100h (billing is wall-clock, not effective compute). Total budget: 128 + 36 + 5 + 5 = 174 H100h, still comfortably within ≤200 H100h. Update the breakdown line and the gpu_cost range accordingly.\n\n**Fix 3 (30 minutes): Add one explicit sentence on LHAW Phase 3 omission.** In the methodology, add: 'We implement a 2-phase approximation of the LHAW pipeline (segment extraction + LLM-based criticality labeling), omitting Phase 3 empirical agent trials; this simplification, motivated by the 16-day timeline constraint, introduces additional noise in outcome-criticality labels compared to the full validated LHAW pipeline.' This is honest, pre-empts a reviewer objection, and is already endorsed by Round 1 feedback.\n\nWith these three minor fixes, the proposal is ready for ARR May 25 submission.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-09T19:08:56.794Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-09T19:08:56.794Z",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-09T19:08:56.827Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-09 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LHAW Dimension-Aware Reward: A Feasibility Study\",\n  \"project_name\": \"pg_clarif_gating\",\n  \"source\": \"web_research\",\n  \"level\": \"solid\",\n  \"core_problem\": \"Clarification policy training on τ-bench now has one known prior: 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026) trains SFT, DPO, and GRPO for clarification on τ-bench via a dedicated Clarifier module—a separate component triggered after tool calls when key parameters are missing from fuzzy user requests. However, three precise gaps remain unaddressed by this and all other prior work. First, 'Asking to Clarify' uses fuzzy intent modeling on existing τ-bench data and does not construct an explicitly structured underspecified variant corpus; no work has applied the LHAW four-dimension taxonomy (arXiv:2602.10525) to τ-bench specifications, and the taxonomy's transferability (κ target ≥ 0.65) to airline/retail specifications is unvalidated. Second, no existing work trains a full joint policy end-to-end—as opposed to a dedicated trigger-conditioned Clarifier module—using GRPO on a structured, taxonomy-derived underspecified τ-bench variant corpus; the feasibility of producing measurable learning signal at N=30–50 variants is open. Third, no work compares a LHAW four-dimension dimension-aware secondary reward (binary LLM judge: does the clarification question target the labeled LHAW dimension?) against a scalar importance baseline (H/M/L, adapted from IntentionGym) within a τ-bench training setting. Critically, arXiv:2604.02869 (Apr 2026) establishes that naive per-turn dense rewards on τ-bench degrade performance by up to 14pp due to outcome advantage domination of per-turn signals, requiring Iterative Reward Calibration (IRC)—a rollout-discriminativeness-based calibration procedure using 5,952 rollouts in the original paper—before any secondary reward is applied; whether IRC-calibrated LHAW-dimension reward (using a smaller 600-episode feasibility-study corpus) produces distinguishable trends versus scalar importance is the third open question. UserRL (arXiv:2509.19736) never trained clarification directly on τ-bench (IntentionGym/IN3 is zero-shot evaluation only) and uses scalar H/M/L importance with no structured taxonomy. The four empirical questions addressable in 16 days: (1) Does LHAW taxonomy transfer to τ-bench specifications with κ ≥ 0.65? (2) Does full-policy MT-GRPO training on an explicitly constructed LHAW variant corpus (30–50 variants, hybrid discounted advantage with γ=0.9) produce measurable learning signal? (3) Does IRC-calibrated LHAW 4-dim secondary reward show distinguishable directional trends versus scalar importance? (4) Do trained policies zero-shot transfer to retail tasks?\",\n  \"opportunity\": \"The compound feasibility gap that remains after 'Asking to Clarify'—and that no existing work addresses—has three components: (a) structured underspecification corpus construction (LHAW taxonomy transfer to τ-bench, validated by IAA); (b) full-policy GRPO clarification training on a taxonomy-derived variant corpus, as opposed to a dedicated Clarifier module operating on existing τ-bench data with fuzzy intent; (c) IRC-calibrated dimension-aware secondary reward, as opposed to goal-aware preference signals conditioned on ground-truth user requirements. 'Asking to Clarify' establishes that GRPO-based clarification training on τ-bench is feasible in principle, validating the episode structure. arXiv:2604.02869 establishes MT-GRPO with Iterative Reward Calibration as the correct multi-turn credit assignment mechanism for τ-bench and provides the hybrid discounted advantage formula A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O (γ=0.9, λ=0.3); its IRC analysis used 5,952 rollouts on τ-bench airline. UserRL (arXiv:2509.19736) establishes Qwen3-32B as an effective local user simulator for τ-bench. τ³-bench provides 27 corrected airline and 26 corrected retail tasks as clean annotation targets. Together, these three prior works provide infrastructure for a 16-day feasibility study of full-policy clarification training with LHAW dimension-aware reward—a study that neither 'Asking to Clarify' (Clarifier module, fuzzy intent, no structured taxonomy) nor UserRL (general tool use, scalar importance, IntentionGym held out) nor arXiv:2604.02869 (general tool use, no clarification, no taxonomy) has conducted. The compound novel claim is: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward calibrated from a 600-episode corpus (acknowledged as smaller than the 5,952-rollout IRC in arXiv:2604.02869; treated as a methodological limitation of the feasibility study scope). Days 1–3 (LHAW pilot, go/no-go gate); Days 3–7 (full annotation, 30–50 variants + IRC calibration corpus of 600 episodes running in parallel with annotation); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds, ~128 H100h); Days 12–14 (zero-shot retail evaluation); Days 14–16 (short paper). ARR May 25, 2026 deadline is exactly feasible.\",\n  \"landscape\": \"**'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026)** is the most critical prior work and directly challenges an earlier 'first GRPO on τ-bench' claim. This paper trains SFT, DPO, and GRPO for clarification on τ-bench (τ-airline domain) using a dedicated Clarifier module with three components: (1) Domain-Policy Tool Calling, (2) User-Driven Fuzzy Intent modeling for partially specified user goals, and (3) ReAsk Decision & Generation for targeted question generation. The Clarifier triggers after tool calls when key parameters are missing. It uses goal-aware preference signals conditioned on ground-truth user requirements. Architectural distinction from our work: 'Asking to Clarify' deploys a separate Clarifier sub-module triggered specifically after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent joint behavior of a single policy. Our work is differentiated on four axes: (a) full-policy joint training (single Qwen3-8B policy decides tool calls, clarification questions, and responses from the same parameter set) vs. a trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy pipeline vs. fuzzy intent modeling on existing τ-bench data; (c) IRC-calibrated LHAW dimension-aware binary-judge reward vs. goal-aware preference signals; and (d) zero-shot cross-domain evaluation (airline→retail) not reported by 'Asking to Clarify'.\\n\\n**UserRL (arXiv:2509.19736, Sep 2025)** is the second most critical prior. Its five training gyms include TauGym (τ-bench, general tool use) but IntentionGym—which uses IN3 (Qian et al., ACL 2024) and rewards agents for uncovering missing intent details at scalar H/M/L importance levels—is held out as zero-shot evaluation. UserRL never trains clarification on τ-bench, never applies a structured underspecification taxonomy, and validates Qwen3-32B as an effective local user simulator.\\n\\n**MT-GRPO + Iterative Reward Calibration on τ-bench (arXiv:2604.02869, Apr 2026)** establishes the correct multi-turn credit assignment mechanism for τ-bench. The paper uses a hybrid discounted advantage: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor, λ=0.3 weights the undiscounted outcome signal, and GN is group normalization across rollouts at each turn position k. The IRC analysis used 5,952 rollouts for τ-bench airline. The paper's key finding is that naive dense per-turn rewards degrade performance by up to 14pp because outcome advantages (|A^O| ≈ 0.87) overwhelm per-turn signals (|A^I| ≈ 0.05), reversing intended training signals. IRC addresses this by computing point-biserial correlations between per-turn reward tier presence and binary task success, then setting reward weights proportional to discriminative power. Training used 8 H20 GPUs (96GB each) with Megatron-Core and batch size 8. Applied to τ-bench airline: Qwen3-30B-A3B improves from 58.0% to 69.5% (+11.5pp). This paper is general tool use, NOT clarification, and uses NO underspecification taxonomy.\\n\\n**MUA-RL (arXiv:2508.18669, Aug 2025)** integrates LLM-simulated users into GRPO for general multi-turn tool use on τ²-bench (45.4% on TAU2 Airline with 32B); treats neither underspecification nor clarification gating as first-class problems.\\n\\n**SpeakRL (arXiv:2512.13159, Dec 2025)** trains clarification question-asking via RL (+20.14% task completion) on the synthetic SpeakER dialogue dataset—not a live tool-use benchmark.\\n\\n**CLARITI (arXiv:2604.14624, Apr 2026)** trains an 8B clarification module on SWE tasks using multi-stage GRPO with Shapley-attributed proxy rewards; SWE episode intractability validates τ-bench's auto-verifiable structure.\\n\\n**GRPO-CR (arXiv:2601.16400, Jan 2026)** applies GRPO to VQA clarification (+0.156 F1) demonstrating GRPO's effectiveness for clarification on non-tool-use benchmarks.\\n\\n**Reward-Weighted Clarification Fine-Tuning (arXiv:2506.06964, NeurIPS 2025)** applies offline RL to short-horizon QA agents—no auto-verifiable episode reward, offline setting, no structured taxonomy.\\n\\n**Ask or Assume? (arXiv:2603.26233, Mar 2026)** achieves 69.4% on underspecified SWE-bench via multi-agent scaffold (OpenHands + Claude Sonnet 4.5)—no RL, no τ-bench.\\n\\n**ClarEval (arXiv:2603.00187, Feb/Mar 2026)** proposes ATC/KQC metrics for clarification in coding agents—no RL, no τ-bench.\\n\\n**Turn-Level Reward Design (arXiv:2505.11821, May 2026)** extends GRPO and PPO to multi-turn variants enabling fine-grained credit assignment; complements MT-GRPO but tested on QA datasets, not τ-bench.\\n\\n**LHAW (arXiv:2602.10525)** provides a validated dataset-agnostic taxonomy (Goals, Constraints, Inputs, Context) with empirical agent-trial classification across TheAgentCompany, SWE-Bench Pro, and MCP-Atlas—not τ-bench.\\n\\n**τ-bench SOTA (BenchLM leaderboard, May 2026):** MiMo-V2.5-Pro at 72.9%, Qwen3.6 Plus at 70.7%. 8B fine-tuned models on clarification-requiring variants remain well below frontier.\",\n  \"approach\": \"This is a 16-day proof-of-concept feasibility study targeting EMNLP 2026 Findings (short paper, 4+1 pages, ARR May 25, 2026 submission). The novelty claim is precisely scoped: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward. This is distinct from 'Asking to Clarify' (dedicated Clarifier module + fuzzy intent + goal-aware preference) and from arXiv:2604.02869 (general tool use + no taxonomy). All claims are explicitly pre-registered as 'proof-of-concept; N=30–50 variants; minimum detectable effect ≥15pp at p<0.1 with 2 seeds; results below this threshold reported as exploratory trends only.'\\n\\n**Days 1–3: LHAW Taxonomy Transfer Pilot (go/no-go gate)**\\nApply LHAW Phase 1 (LLM-based segment extraction) to 5 τ³ airline tasks (3 corrected, 2 uncorrected), mapping each specification element to Goal/Constraint/Input/Context. Known challenge cases pre-resolved: fare-waiver quantity restrictions → Constraint; waiver outcome → Goal; numeric seat IDs → Input; cabin-class defaults → Context. Two researchers independently label; compute Cohen's κ. Go decision requires κ ≥ 0.65 and all four dimensions present in ≥2 of 5 tasks.\\n\\n*Borderline κ procedure (pre-registered)*: If 0.60 ≤ κ < 0.65 after one definition-refinement pass, annotate 5 additional tasks (N=10 total), use pooled κ as the final gate. If κ still < 0.65 on N=10, declare feasibility blocker and abort—this constitutes Option B (FAIL), which is itself publishable as a negative taxonomy-transfer finding. A κ below 0.60 after first pass aborts immediately (hard threshold). Cost: ~$1–2 API, 2 person-days.\\n\\n**Days 3–7: Annotation + IRC Calibration Corpus**\\nContingent on pilot go decision. These two sub-tasks run in parallel.\\n\\n(a) *LHAW annotation*: Apply full two-phase LHAW pipeline (segment extraction + outcome-criticality labeling) to all 5 pilot tasks, generating ~6–10 variants per task (30–50 total). Add scalar importance labels (H/M/L adapted from IntentionGym) in parallel for baseline. 25% manual QC spot-check. ~$3–8 annotation API cost. Conducted primarily during daytime (Days 3–7).\\n\\n(b) *IRC calibration corpus*: Generate 600 rollout episodes from the base Qwen3-8B policy on the 30–50 variants (without LHAW-dim secondary reward active), running as a background overnight process beginning Day 3. At expected Qwen3-8B success rates of 20–30% on clarification-requiring variants, 600 episodes yields ~150–180 successes distributed approximately uniformly across 4 LHAW dimensions (~37–45 per dimension). This exceeds the n>25 positive-instance threshold required for approximate normality of point-biserial correlation estimates (standard reliability threshold for this statistic). We explicitly acknowledge this corpus is substantially smaller than the 5,952 rollouts used for IRC analysis in arXiv:2604.02869; this is a methodological limitation of the feasibility study scope, stated as such in the paper. Wall-clock: ~18 hours at 40% GPU utilization (IRC runs inference-only; no backprop), completing within the Days 3–7 window. IRC analysis (point-biserial correlation between clarification-turn presence and binary task success per LHAW dimension) and reward weight calibration are performed Days 6–7. Expected: one or two LHAW dimension categories may have near-zero discriminative correlation; those receive zero secondary reward weight in the calibrated condition. Near-zero correlation for all four dimensions would collapse Condition A to Condition B—itself a reportable finding ('IRC finds LHAW-dim reward non-discriminable from scalar at N=600 feasibility corpus').\\n\\n**Days 7–12: MT-GRPO Training on 2×H100 SXM**\\n\\n*Architectural distinction from 'Asking to Clarify' (one-sentence operationalization)*: In this paper, Qwen3-8B is a single joint policy that decides—at any turn—whether to invoke API tools, ask a clarifying question, or produce a final response; all action types are sampled from the same parameter set without an explicit trigger condition. In contrast, 'Asking to Clarify' deploys a separate Clarifier sub-module activated only after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent behavior of a unified policy.\\n\\n*Memory management — interleaved rollout/update schedule*: Full FP32 Adam fine-tuning of Qwen3-8B requires approximately 96GB excluding activations: 16GB BF16 model weights (8B × 2 bytes) + 64GB FP32 Adam optimizer states (8B × 4 bytes × 2 for first and second moment vectors) + 16GB BF16 gradients. Co-locating this with the Qwen3-32B simulator (64GB, TP=2) and Qwen3-8B judge (16GB) simultaneously would require ~176GB, exceeding the 160GB available. We therefore use a phase-separated interleaved rollout/update schedule:\\n- *Rollout phase*: load policy for BF16 forward-only inference (16GB) + Qwen3-32B simulator (TP=2 across both GPUs, 64GB) + Qwen3-8B judge (16GB) = 96GB peak VRAM; FP32 Adam states are not loaded during rollout.\\n- *Update phase*: unload simulator and judge; load policy with FP32 Adam states and BF16 gradients (96GB) + gradient-checkpointed activations (batch size 16, ~500-token average sequences: ~4–8GB with gradient checkpointing enabled) = ~100–104GB peak VRAM.\\nNVLink between the two H100 SXM GPUs enables fast model swapping between phases (~15–30 seconds per phase transition). Peak VRAM in both phases: ≤104GB, well within 160GB. NVLink verification and phase-swap latency benchmarking are budgeted into the Day 7–8 infrastructure slot.\\n\\n*Multi-turn credit assignment*: We adopt the hybrid discounted advantage formulation from arXiv:2604.02869 verbatim: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor (early turns receive discounted future intermediate rewards), λ=0.3 weights the undiscounted outcome advantage added outside group normalization, o_i is the binary task-success outcome reward, r_{i,l} is the per-turn intermediate reward at turn l, and GN denotes group normalization across G=4 rollouts at each turn position k. The γ=0.9 discount ensures early-turn gradients reflect discounted future returns rather than uniform credit; the separate λ·A^O term prevents outcome information from being fully absorbed into the discounted sum and becoming unrecoverable after GN. This differs from a simplified undiscounted sum (as in earlier versions of this proposal) and matches the validated τ-bench implementation. We reproduce the formula in the paper's methodology section with attribution. Justification for MT-GRPO over GTPO (arXiv:2511.14846): GTPO's self-supervised reward shaping is designed for code/math tasks; MT-GRPO with this hybrid advantage has been validated directly on τ-bench airline (arXiv:2604.02869).\\n\\n*Pre-training outcome variance check (before committing training compute)*: On 20 held-out episodes from the 30–50 training variants, compute per-group success rate across G=4 rollouts for each variant. Training proceeds only if the mean per-group success rate falls in [0.10, 0.90]. If mean success rate < 0.10 (near-zero clarification quality; advantages uniformly negative; minimal gradient signal), increase decoding temperature incrementally (T: 0.7 → 0.8 → 1.0 → 1.2) until criterion is met. If mean success rate > 0.90 (base policy already solves variants; near-zero advantage variance), add additional underspecification to the lowest-complexity variants or increase user simulator intent ambiguity. This check takes ~30 minutes and prevents wasting 15–16 hours of H100 time on a degenerate training run.\\n\\nTwo training conditions (each run with 2 random seeds, sequential runs):\\n- Condition A (LHAW-dim, IRC-calibrated): r_combined = r_task + w_dim × r_dim, where w_dim is determined by IRC analysis (target |w_dim × A^I| ≈ 0.3 × |A^O| to maintain positive advantage direction consistent with the λ=0.3 calibration in arXiv:2604.02869); r_dim is binary judge: does question target the labeled LHAW dimension?\\n- Condition B (scalar): r_combined = r_task + 0.3 × r_scalar (importance level H=1.0/M=0.67/L=0.33, normalized; weight 0.3 kept fixed, not IRC-calibrated, for clean comparison of reward structure rather than weight tuning)\\n\\n*Condition comparison scope (pre-registered limitation)*: Condition A and Condition B differ simultaneously on reward structure (4-dim binary vs. H/M/L scalar) and weight calibration method (IRC-derived vs. fixed 0.3). The comparison tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation. A fully controlled comparison would require a third condition (IRC-calibrated scalar); this is deferred to the fully-powered follow-up study.\\n\\nHyperparameters: G=4 rollouts per prompt, 5 epochs, batch size 16. Anti-hacking constraints: BLEU-1 overlap with prior rollout questions < 0.6; minimum 10-word filter; interrogative marker required.\\n\\n*Revised wall-clock per run*: 40 variants × 4 rollouts × 5 epochs × 15 user_turns (median of 10–30 total turns per episode) = 12,000 Qwen3-32B simulator inference calls. At ~3 seconds per call on TP=2, raw compute = 36,000s. At 65% GPU utilization (idle during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation): ~15–16 hours wall-clock per run. Per run H100h: 16 hours × 2 GPUs = 32 H100h. Four runs total: ~128 H100h for training.\\n\\n*Run schedule*: Condition A seed 1 (Day 7–8); IRC calibration analysis + Condition A seed 2 (Day 8–9); Condition B seed 1 (Day 9–10); Condition B seed 2 (Day 10–11); evaluation and buffer (Day 11–12).\\n\\n**Days 12–14: Zero-Shot Evaluation on 5 Retail Tasks**\\nSelect 5 corrected τ³ retail tasks. Evaluate: (1) prompt-only Qwen3-8B baseline; (2) GRPO task-success reward only (no secondary reward); (3) Condition A (LHAW-dim, IRC-calibrated); (4) Condition B (scalar). 5 evaluation trials × 5 tasks × 2 seeds = 50 episodes per condition. Report task success rate with bootstrapped 95% CI across 2 seeds. Explicit power statement pre-registered: 'N=50 episodes per condition; minimum detectable effect ≥15pp at p<0.1 under 2 seeds; results below this threshold reported as exploratory trends only.' Evaluation GPU cost: ~5 H100h.\\n\\n**Days 14–16: Short Paper Writing (4+1 pages, EMNLP Findings)**\\nPre-assigned section space budget to ensure 4 ACL-format pages are sufficient:\\n- Introduction (0.5 pages): problem, gap vs. 'Asking to Clarify' and arXiv:2604.02869, three contributions\\n- Related Work (0.5 pages): condensed 6-entry table format covering 'Asking to Clarify', UserRL, arXiv:2604.02869, CLARITI, SpeakRL, LHAW\\n- Background & Setup (0.4 pages): τ³-bench, LHAW taxonomy, MT-GRPO hybrid advantage formula (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3), Qwen3-32B simulator\\n- Methodology (0.9 pages): LHAW pilot + IAA result (0.2p), variant construction + 600-episode IRC calibration corpus (0.3p), interleaved memory schedule + MT-GRPO training conditions (0.4p)\\n- Results (1.4 pages): training curves [1 compact figure, 0.5p], zero-shot retail table [1 table, 0.4p], uncertainty + power statement (0.3p), negative-result framing if flat (0.2p)\\n- Limitations & Conclusion (0.3 pages): includes (1) condition comparison confound (Condition A vs. B tests joint effect of reward structure and calibration method, not dimension-awareness alone; fully controlled comparison deferred to powered follow-up); (2) IRC corpus size (600 episodes vs. 5,952 in arXiv:2604.02869; correlation estimates have wider CIs at this scale); (3) N=2 seeds; (4) N=5 retail tasks for zero-shot evaluation.\\n\\nThree reportable findings: (1) IAA κ value—establishes LHAW transferability to τ-bench, citable independent of training outcome; (2) training curves—binary feasibility finding: does MT-GRPO produce reward signal on 30–50 LHAW clarification variants?; (3) zero-shot retail evaluation—directional comparison with uncertainty quantification. Paper framing: 'We provide first feasibility evidence that full-policy MT-GRPO clarification training on an LHAW-taxonomy-derived underspecified τ-bench variant corpus produces measurable learning signal, that LHAW four-dimension taxonomy transfers with κ=X.XX, and that IRC-calibrated dimension-aware reward shows [directional trend] versus scalar importance baseline—warranting a fully-powered follow-up.' Flat training curves or failed taxonomy transfer are reported as negative feasibility results—publishable given the first-ever nature of the experiment.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours_h100_equivalent\": \"~165–185 H100h total (within ≤200 H100h hard constraint)\",\n      \"breakdown\": \"~128 H100h for MT-GRPO training (2 conditions × 2 seeds on 2×H100 SXM; wall-clock ~15–16 hours per run at 65% GPU utilization; TP=2 for Qwen3-32B; 40 variants × 4 rollouts × 5 epochs × ~15 user_turns × 3s/call = ~36,000s raw compute = ~15–16 hours per run = 32 H100h per run; 4 runs = 128 H100h). ~24 H100h for IRC calibration rollout generation (600 episodes at 40% utilization, ~18 hours wall-clock × 2 GPUs; 3× increase from 200 to 600 episodes required for statistical stability of point-biserial correlation—n>25 positive instances per dimension at 20–30% success rate; explicitly smaller than the 5,952 rollouts used for IRC in arXiv:2604.02869, acknowledged as a methodological limitation). ~5 H100h for zero-shot retail evaluation (4 conditions × 5 tasks × 5 trials × 2 seeds = 200 episodes). ~5 H100h for infrastructure setup (NVLink verification, phase-swap latency benchmarking for interleaved rollout/update schedule, IRC analysis tooling, environment configuration). Pilot (Days 1–3): ~$1–2 annotation API, no GPU cost.\",\n      \"gpu_configuration\": \"2×H100 SXM (80GB each, 160GB total VRAM) per training node; tensor parallelism TP=2 for Qwen3-32B simulator inference (64GB BF16); interleaved rollout/update memory schedule: rollout phase loads policy BF16 forward (~16GB) + simulator (~64GB, TP=2) + judge (~16GB) = 96GB peak; update phase unloads simulator and judge, loads policy with FP32 Adam states (~96GB: 16GB weights + 64GB FP32 Adam [8B × 4 bytes × 2] + 16GB BF16 gradients) + gradient-checkpointed activations (~4–8GB at batch=16, ~500-token sequences) = ~100–104GB peak. Both phases safely within 160GB. NVLink phase-swap latency ~15–30s per transition. Full FP32 Adam (not 8-bit Adam) to ensure stable convergence.\",\n      \"gpu_utilization\": \"~65% during training (GPU idles during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation); ~40% during IRC calibration rollout generation (inference-only, no backprop); ~40% during evaluation; full utilization during gradient update phase within each training step\",\n      \"timeline\": \"16 days total: Days 1–3 (LHAW pilot, 5 tasks, IAA + κ computation + go/no-go decision; borderline κ 0.60–0.64 triggers 5-task extension, pooled κ as final gate); Days 3–7 (full annotation of 5 tasks → 30–50 LHAW variants + scalar labels [daytime]; IRC calibration corpus of 600 rollout episodes from base policy running as background overnight process beginning Day 3 [~18 hours wall-clock]; IRC analysis + weight calibration Days 6–7; pre-training outcome variance check Day 7 before committing training compute); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds sequential, ~128 H100h; 4 runs × ~16 hours = 64 hours wall-clock within 120 available hours); Days 12–14 (zero-shot retail evaluation, 4 conditions × 50 episodes, ~5 H100h); Days 14–16 (4+1 page short paper writing with pre-assigned section budget, ARR May 25 submission)\",\n      \"team\": \"2 researchers\",\n      \"gpu_cost\": \"~$165–185 at ~$1/H100h SXM (RunPod / Lambda Labs H100 SXM pricing as of May 2026); increased from prior estimate due to two corrections: (1) IRC corpus expanded from 200 to 600 episodes (+16 H100h) for statistical reliability of point-biserial correlation; (2) training wall-clock revised to 15–16 hours per run accounting for multi-turn episode simulation overhead\",\n      \"annotation_api_cost\": \"~$4–10 total ($1–2 for 5-task taxonomy transfer pilot; $3–8 for full annotation of 5 tasks → 30–50 variants + scalar labels; IRC calibration rollouts use local Qwen3-32B inference, no API cost)\",\n      \"risk_note\": \"Primary risk gate: LHAW taxonomy transfer pilot (Days 1–3); κ < 0.65 on N=5 after one refinement → N=10 extension; κ < 0.65 on N=10 → abort (publishable negative result). Secondary risk: IRC calibration (600-episode corpus) may find near-zero discriminative correlation for all LHAW dimensions, collapsing Condition A to Condition B—itself a reportable finding. The smaller IRC corpus (600 vs. 5,952 in arXiv:2604.02869) increases the probability of this outcome and widens correlation confidence intervals; this is explicitly pre-registered as a methodological limitation. Tertiary risk: pre-training outcome variance check (Day 7) may require temperature adjustment before training can proceed; budgeted ~30 minutes, not expected to affect timeline. Quaternary risk: MT-GRPO wall-clock per run may reach 16–17 hours at upper episode-depth bound (30 turns); 4 runs × 17 hours = 68 hours wall-clock within 120 available hours—still feasible. Infrastructure failure must be resolved within 24 hours or AAAI 2027 fallback applies.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR May 25, 2026 submission; commitment deadline Aug 2, 2026; EMNLP 2026 conference est. Nov 2026). Short paper format: 4+1 pages with pre-assigned section space budget. Claims explicitly scoped as proof-of-concept feasibility study with pre-registered power statement. This is the primary target and satisfies the 16-day hard constraint from May 9, 2026.\",\n    \"AAAI 2027 (direct submission, est. abstract ~Jul 25 / paper ~Aug 1, 2026 based on AAAI-26 historical pattern; CFP not yet released as of May 2026—deadline estimate is unconfirmed). Backup path: if the 16-day proof-of-concept produces positive feasibility results, expand to the full 12-week experiment (50 tasks, 280–350 variants, 3 seeds, full power analysis, ablation of IRC calibration weight choices, addition of Condition C: IRC-calibrated scalar baseline to isolate dimension-awareness from calibration effect) and submit to AAAI 2027. The proof-of-concept data, trained checkpoints, and IRC calibration analysis serve as a head start.\"\n  ],\n  \"description\": \"We present the first feasibility study of full-policy MT-GRPO clarification training on an explicitly constructed LHAW-taxonomy-derived underspecified τ-bench variant corpus, completing three separable contributions in 16 days (May 9–25, 2026) for ARR May 25 / EMNLP 2026 Findings (short paper, 4+1 pages). This work is differentiated from 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview)—which trains GRPO for clarification on τ-bench via a dedicated Clarifier sub-module triggered after tool calls detect missing parameters, using fuzzy intent modeling on existing τ-bench data and goal-aware preference signals—on four axes: (a) full-policy joint training (single Qwen3-8B decides tool calls, clarification questions, and responses from the same parameter set without an explicit trigger condition) vs. trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy vs. fuzzy intent on existing data; (c) IRC-calibrated dimension-aware secondary reward vs. goal-aware preference signals; (d) zero-shot cross-domain evaluation (airline→retail). Contribution 1: a LHAW taxonomy transfer pilot on 5 τ³ airline tasks (Days 1–3) establishing whether Goal/Constraint/Input/Context labels produce coherent annotations for airline specifications (inter-annotator κ reported; go/no-go at κ ≥ 0.65; borderline 0.60–0.64 triggers 5-task extension). Contribution 2: annotation of those 5 tasks into ~30–50 underspecified variants (Days 3–7) via the two-phase LHAW pipeline, with scalar importance labels (H/M/L, adapted from UserRL's IntentionGym structure) added in parallel for the baseline condition; plus generation of a 600-episode IRC calibration corpus from the base policy (running in parallel with annotation as an overnight background process, ~18 hours wall-clock at 40% GPU utilization; 600 episodes yields ~37–45 positive instances per LHAW dimension at 20–30% success rates, exceeding the n>25 threshold for reliable point-biserial correlation; acknowledged as smaller than the 5,952 rollouts used in arXiv:2604.02869, stated as a methodological limitation). Contribution 3: MT-GRPO training of Qwen3-8B on 2×H100 SXM (Days 7–12) using the hybrid discounted advantage formulation from arXiv:2604.02869 (A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, γ=0.9, λ=0.3), with a phase-separated interleaved rollout/update memory schedule to fit within 160GB (rollout phase: policy 16GB + simulator 64GB + judge 16GB = 96GB; update phase: unload simulator/judge, load policy + FP32 Adam + gradients = 96GB + gradient-checkpointed activations ~4–8GB = ~100–104GB); two reward conditions—IRC-calibrated LHAW 4-dim secondary reward (binary LLM judge, weights from point-biserial discriminativeness analysis) vs. scalar importance secondary reward—each run with 2 seeds, preceded by a pre-training outcome variance check (mean per-group success rate [0.10, 0.90] required before committing training compute), followed by zero-shot evaluation on 5 corrected τ³ retail tasks (50 episodes per condition, Days 12–14). Pre-registered limitations: (1) Condition A vs. B tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation; a controlled Condition C (IRC-calibrated scalar) is deferred to the powered follow-up; (2) 600-episode IRC corpus is a feasibility-study approximation. Total compute: ~165–185 H100h (~$165–185); annotation API: ~$4–10. Negative outcomes (flat training curves, failed taxonomy transfer, IRC-collapsed Condition A) are reportable given the first-ever nature of full-policy LHAW-taxonomy clarification training on τ-bench. Backup: AAAI 2027 full experiment if 16-day submission is missed.\",\n  \"key_references\": [\n    \"Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions (OpenReview, 2025/2026) — trains SFT/DPO/GRPO for clarification on τ-bench via dedicated Clarifier sub-module triggered after tool calls detect missing parameters; does NOT use structured underspecification taxonomy or construct explicit underspecified variant corpus; direct competitor requiring differentiation on (a) joint policy architecture, (b) taxonomy-derived corpus, (c) IRC-calibrated reward, (d) cross-domain evaluation\",\n    \"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration (arXiv:2604.02869, Apr 2026) — establishes hybrid discounted MT-GRPO advantage (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3) and IRC procedure (5,952 rollouts for τ-bench airline); key finding: naive dense rewards cause 14pp degradation; 8 H20 GPUs, batch size 8; Qwen3-30B-A3B: 58.0%→69.5%; general tool use, no clarification, no taxonomy\",\n    \"UserRL: Training Interactive User-Centric Agent via Reinforcement Learning (arXiv:2509.19736, Sep 2025)\",\n    \"UserBench: An Interactive Gym Environment for User-Centric Agents (arXiv:2507.22034, Jul 2025)\",\n    \"MUA-RL: Multi-turn User-interacting Agent Reinforcement Learning for agentic tool use (arXiv:2508.18669, Aug 2025)\",\n    \"SpeakRL: Synergizing Reasoning, Speaking, and Acting in Language Models with Reinforcement Learning (arXiv:2512.13159, Dec 2025)\",\n    \"LHAW: Controllable Underspecification for Long-Horizon Tasks (arXiv:2602.10525, 2026)\",\n    \"Ask or Assume? Uncertainty-Aware Clarification-Seeking in Coding Agents (arXiv:2603.26233, Mar 2026)\",\n    \"ClarEval: A Benchmark for Evaluating Clarification Skills of Code Agents under Ambiguous Instructions (arXiv:2603.00187, Feb/Mar 2026)\",\n    \"Clarify or Answer: Reinforcement Learning for Agentic VQA with Context Under-specification — GRPO-CR (arXiv:2601.16400, Jan 2026)\",\n    \"Reward-Weighted Clarification Fine-Tuning for Conversation Optimization (arXiv:2506.06964, NeurIPS 2025, Adobe Research)\",\n    \"Ambig-SWE: Interactive Agents to Overcome Underspecificity in Software Engineering (ICLR 2026)\",\n    \"τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains (arXiv:2406.12045, 2024)\",\n    \"τ³-Bench: Corrected Airline and Retail Tasks (taubench.com, 2025)\",\n    \"τ²-Bench: Evaluating Conversational Agents in a Dual-Control Environment (arXiv:2506.07982, 2025)\",\n    \"Asking What Matters: Reward-Driven Clarification for Software Engineering Tasks — CLARITI (arXiv:2604.14624, April 2026)\",\n    \"Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL (arXiv:2604.17073, April 2026)\",\n    \"Empowering Multi-Turn Tool-Integrated Agentic Reasoning with Group Turn Policy Optimization — GTPO (arXiv:2511.14846, Nov 2025)\",\n    \"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design (arXiv:2505.11821, May 2026)\",\n    \"IN3: Towards Implicit User Intention Understanding of Language Model Driven Agents (Qian et al., ACL 2024)\",\n    \"Structured Uncertainty guided Clarification for LLM Agents (arXiv:2511.08798, 2025)\"\n  ]\n}\n\n## Reviewer feedback (round 7)\nIssues: [\"MEDIUM — Uncited competitor paper: AskBench (arXiv:2602.11199, 'When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification', Feb 2026) trains clarification behavior via rubric-guided RLVR. While differentiation is clear (AskBench uses QA-style AskMind/AskOverconfidence settings, not tool-use on τ-bench, and uses rubric-scoring rather than LHAW taxonomy labels), it must be cited in the landscape with one-sentence differentiation. The proposal already cites GRPO-CR and Reward-Weighted Clarification Fine-Tuning; AskBench belongs in the same row.\", \"MINOR — IRC H100h arithmetic error: The resource breakdown claims '~24 H100h for IRC calibration rollout generation (600 episodes at 40% utilization, ~18 hours wall-clock × 2 GPUs).' However 18h × 2 GPUs = 36 H100h at billing rates, regardless of utilization. The utilization figure (40%) describes GPU idle rate during inference, not a billing discount. Corrected total: 128 + 36 + 5 + 5 = 174 H100h — still within ≤200 H100h. Update the line item to '~36 H100h' and the total to '~174 H100h.'\", \"MINOR — LHAW Phase 3 omission needs explicit one-sentence acknowledgment: The proposal describes a 'two-phase LHAW pipeline (segment extraction + outcome-criticality labeling)' but LHAW's validated three-phase pipeline includes empirical agent trials (Phase 3) to verify that labeled variants are genuinely outcome-critical. The proposal omits Phase 3 (endorsed in Round 1 feedback as a '2-phase LHAW approximation'), using LLM-based criticality labeling instead. This should be explicitly stated in the methodology section with one sentence: 'We implement a 2-phase approximation of the LHAW pipeline, omitting Phase 3 empirical agent trials due to timeline constraints; LLM-based criticality labeling introduces additional label noise compared to the validated full pipeline.' This pre-empts a reviewer flagging the deviation.\", \"MINOR — Cohen's κ reliability on small N: The go/no-go gate at κ ≥ 0.65 is computed from 5 τ³ airline tasks (~75 annotation decisions for ~15 elements/task). The asymptotic 95% CI for κ on N≈75 binary classifications is approximately ±0.12–0.15, meaning κ=0.65 observed could be consistent with true κ ranging from 0.50 to 0.80. Consider noting the expected CI width when reporting the κ result, or report Gwet's AC1 as a more stable alternative for skewed category distributions.\"]\nFeedback: The proposal has successfully resolved all Round 6 blockers. The interleaved VRAM schedule is correctly specified, the IRC corpus is sufficiently sized, the condition confound is pre-registered, and the full-policy vs. Clarifier distinction is operationalized. Three small fixes remain before this is submission-ready.\n\n**Fix 1 (1 hour): Add AskBench to the landscape.** 'When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification' (arXiv:2602.11199, Feb 2026) trains clarification policies via RLVR. Add it to the related work table with one-sentence differentiation: unlike AskBench's QA-style AskMind/AskOverconfidence settings, this paper trains on live tool-use episodes with auto-verifiable database-state rewards on τ-bench, and uses LHAW taxonomy dimension labels rather than rubric-scoring.\n\n**Fix 2 (15 minutes): Correct IRC H100h from 24 to 36.** The IRC calibration costs 18 hours × 2 GPUs = 36 H100h (billing is wall-clock, not effective compute). Total budget: 128 + 36 + 5 + 5 = 174 H100h, still comfortably within ≤200 H100h. Update the breakdown line and the gpu_cost range accordingly.\n\n**Fix 3 (30 minutes): Add one explicit sentence on LHAW Phase 3 omission.** In the methodology, add: 'We implement a 2-phase approximation of the LHAW pipeline (segment extraction + LLM-based criticality labeling), omitting Phase 3 empirical agent trials; this simplification, motivated by the 16-day timeline constraint, introduces additional noise in outcome-criticality labels compared to the full validated LHAW pipeline.' This is honest, pre-empts a reviewer objection, and is already endorsed by Round 1 feedback.\n\nWith these three minor fixes, the proposal is ready for ARR May 25 submission.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "03e735bc-b1d5-4357-8ad1-425a1c1c1ce0",
+            "type": "user",
+            "uuid": "ccecdadd-6491-4d67-9f63-3265eda5dbf7",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-09T19:08:56.825Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ccecdadd-6491-4d67-9f63-3265eda5dbf7",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "030cb6a2-1438-4a36-88b0-aad957a25ab4",
+                "timestamp": "2026-05-09T19:08:56.825Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-09T19:08:56.825Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "030cb6a2-1438-4a36-88b0-aad957a25ab4",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "57f3cda8-72ae-4a8b-b7b6-d1a439ed783c",
+                "timestamp": "2026-05-09T19:08:56.825Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LH…",
+                "leafUuid": "57f3cda8-72ae-4a8b-b7b6-d1a439ed783c",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise clarification RL research to address landscape gaps",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-09T19:09:09.188Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the reviewer feedback carefully before making revisions. There are 4 issues to address:\n\n1. **MEDIUM** — Add AskBench (arXiv:2602.11199) to the landscape with one-sentence differentiation\n2. **MINOR** — Fix IRC H100h arithmetic: 18h × 2 GPUs = 36 H100h (not 24), total = 174 H100h\n3. **MINOR** — Add explicit one-sentence acknowledgment of LHAW Phase 3 omission\n4. **MINOR** — Note Cohen's κ CI width on small N (or suggest Gwet's AC1)\n   \nThe reviewer indicates these are minor fixes needed before the May 25 ARR submission. I need to fetch the AskBench paper to understand its core contribution and how it differs from the existing landscape entries.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57f3cda8-72ae-4a8b-b7b6-d1a439ed783c",
+            "isSidechain": false,
+            "requestId": "req_011CasXCzehivxSaKfwxVWg4",
+            "type": "assistant",
+            "uuid": "ef1b4485-7cc4-4038-8e17-f2bba75bc616",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01La96oU9oWjU4tfufM5uuGz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18318,
+                "cache_read_input_tokens": 11631,
+                "output_tokens": 532,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 532,
+                    "cache_read_input_tokens": 11631,
+                    "cache_creation_input_tokens": 18318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-09T19:09:09.201Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll fetch the AskBench paper to understand it properly before incorporating it, then address all four issues."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef1b4485-7cc4-4038-8e17-f2bba75bc616",
+            "isSidechain": false,
+            "requestId": "req_011CasXCzehivxSaKfwxVWg4",
+            "type": "assistant",
+            "uuid": "a19e76b6-436a-40e6-878d-6dcf7b36b3c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01La96oU9oWjU4tfufM5uuGz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18318,
+                "cache_read_input_tokens": 11631,
+                "output_tokens": 532,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 532,
+                    "cache_read_input_tokens": 11631,
+                    "cache_creation_input_tokens": 18318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-09T19:09:09.660Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2jNCUfGatfGqFBvxKp77o",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a19e76b6-436a-40e6-878d-6dcf7b36b3c4",
+            "isSidechain": false,
+            "requestId": "req_011CasXCzehivxSaKfwxVWg4",
+            "type": "assistant",
+            "uuid": "a50142fa-5105-486b-a30d-bbf967db6ab2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01La96oU9oWjU4tfufM5uuGz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18318,
+                "cache_read_input_tokens": 11631,
+                "output_tokens": 532,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 532,
+                    "cache_read_input_tokens": 11631,
+                    "cache_creation_input_tokens": 18318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-09T19:09:09.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Q2jNCUfGatfGqFBvxKp77o",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a50142fa-5105-486b-a30d-bbf967db6ab2",
+            "isSidechain": false,
+            "promptId": "03e735bc-b1d5-4357-8ad1-425a1c1c1ce0",
+            "type": "user",
+            "uuid": "5236c5b4-5662-44cf-8fb9-3e68f97fef66",
+            "toolUseResult": {
+              "matches": [
+                "WebFetch",
+                "WebSearch"
+              ],
+              "query": "select:WebFetch,WebSearch",
+              "total_deferred_tools": 17
+            },
+            "sourceToolAssistantUUID": "a50142fa-5105-486b-a30d-bbf967db6ab2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-09T19:09:11.798Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me fetch the AskBench paper to understand it properly.",
+              "signature": "EvsBClsIDRgCKkB0nIyK9mzA0beLWBYa825ZkD21r+J7GEbiD8wXVhAch1cOFkuuutI9N9fVMVuJTPuZOHo1VDV2Ig81vapDCQxCMhFjbGF1ZGUtc29ubmV0LTQtNjgAEgzk4xa6m1ODP6vpTL8aDJko0TunSh5HcKdS7CIwFaTz9hlhvaRct3+UG5KbY4HywflRFM9mZlpnARx6Er0IvJaGVJl3a0grtk8j3k+YKk4VgyjV7buM8mOsTPd+DjmmFf6ncL0Y4/NCPplp2rDynU2/OS6Ou7oVJ1fT1OOVTKrW+QboiXe47Pa5Uvy1yMnOlJiwG2OXQ7Jzqs6dBqUYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5236c5b4-5662-44cf-8fb9-3e68f97fef66",
+            "isSidechain": false,
+            "requestId": "req_011CasXDxBQBrLPp9e72fF3A",
+            "type": "assistant",
+            "uuid": "3d8eef2e-ec4c-4fe3-ad06-761f39cf69c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01HNDD3i2uNbg5E7omJ1my2C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 29949,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1553,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 29949,
+                    "cache_creation_input_tokens": 1553,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1553
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-09T19:09:14.459Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FtKC6jqKWBCGsHXbbM9dUm",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.11199",
+                "prompt": "Extract the title, abstract, method overview, benchmark settings (AskMind, AskOverconfidence), reward mechanism (rubric-guided RLVR), what datasets/benchmarks it uses, and how it differs from tool-use clarification on τ-bench. Also note any use of taxonomy labels or structured underspecification."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d8eef2e-ec4c-4fe3-ad06-761f39cf69c4",
+            "isSidechain": false,
+            "requestId": "req_011CasXDxBQBrLPp9e72fF3A",
+            "type": "assistant",
+            "uuid": "b48153e5-3439-426e-ab76-0a63aa9a808a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01HNDD3i2uNbg5E7omJ1my2C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 29949,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1553,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 29949,
+                    "cache_creation_input_tokens": 1553,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1553
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-09T19:09:19.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FtKC6jqKWBCGsHXbbM9dUm",
+              "type": "tool_result",
+              "content": "# Paper Summary: When and What to Ask\n\n**Title:** \"When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification\"\n\n**Abstract Overview:**\nThe research addresses a critical limitation where \"LLMs often respond even when prompts omit critical details or include misleading information, leading to hallucinations.\" The authors investigate methods to evaluate and improve LLMs' ability to recognize when clarification is needed.\n\n**Benchmark Settings:**\n\n- **AskMind:** Covers intent-deficient queries requiring clarification\n- **AskOverconfidence:** Addresses queries containing false premises that must be identified and corrected\n\n**Method Overview - AskBench:**\nThe benchmark converts standard QA pairs into multi-turn interactions with explicit checkpoints. A unified judge loop evaluates final answers and simulates user responses.\n\n**Reward Mechanism:**\nThe paper proposes \"rubric-guided reinforcement learning with verifier-based rewards (RLVR), which uses structured rubrics to encourage targeted clarification.\" This approach uses verifier-based reward signals aligned with evaluation rubrics.\n\n**Results:**\nExperiments demonstrated \"consistent improvements in accuracy, rubric adherence, and interaction efficiency, with strong generalization to unseen domains.\"\n\n**Note:** The provided content doesn't include specific dataset names, τ-bench comparisons, or taxonomy label details needed to fully address those aspects of your query."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b48153e5-3439-426e-ab76-0a63aa9a808a",
+            "isSidechain": false,
+            "promptId": "03e735bc-b1d5-4357-8ad1-425a1c1c1ce0",
+            "type": "user",
+            "uuid": "83ef7b34-5369-4eed-a86f-e5e295f114c6",
+            "toolUseResult": {
+              "bytes": 45489,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Paper Summary: When and What to Ask\n\n**Title:** \"When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification\"\n\n**Abstract Overview:**\nThe research addresses a critical limitation where \"LLMs often respond even when prompts omit critical details or include misleading information, leading to hallucinations.\" The authors investigate methods to evaluate and improve LLMs' ability to recognize when clarification is needed.\n\n**Benchmark Settings:**\n\n- **AskMind:** Covers intent-deficient queries requiring clarification\n- **AskOverconfidence:** Addresses queries containing false premises that must be identified and corrected\n\n**Method Overview - AskBench:**\nThe benchmark converts standard QA pairs into multi-turn interactions with explicit checkpoints. A unified judge loop evaluates final answers and simulates user responses.\n\n**Reward Mechanism:**\nThe paper proposes \"rubric-guided reinforcement learning with verifier-based rewards (RLVR), which uses structured rubrics to encourage targeted clarification.\" This approach uses verifier-based reward signals aligned with evaluation rubrics.\n\n**Results:**\nExperiments demonstrated \"consistent improvements in accuracy, rubric adherence, and interaction efficiency, with strong generalization to unseen domains.\"\n\n**Note:** The provided content doesn't include specific dataset names, τ-bench comparisons, or taxonomy label details needed to fully address those aspects of your query.",
+              "durationMs": 5420,
+              "url": "https://arxiv.org/abs/2602.11199"
+            },
+            "sourceToolAssistantUUID": "b48153e5-3439-426e-ab76-0a63aa9a808a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-09T19:10:35.351Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now I have a solid understanding of AskBench. Let me also check if there's anything more specific about the paper's differentiation from tool-use settings.\n\nKey points for differentiation:\n1. AskBench uses QA-style settings (AskMind for intent-deficient queries, AskOverconfidence for false-premise queries) — NOT live tool-use episodes on τ-bench\n2. AskBench uses rubric-scoring (structured rubrics with verifier-based rewards) — NOT LHAW taxonomy dimension labels\n3. AskBench doesn't have auto-verifiable database-state rewards\n\n\n4. AskBench lacks a structured underspecification taxonomy\n\nNow I need to make four key fixes to the proposal: add AskBench to the landscape and references, correct the IRC H100h calculation from 24 to 36 hours and update the total compute estimate accordingly, include a note about the LHAW Phase 3 omission in the methodology section, and add context around the κ confidence interval width when reporting results or suggest using Gwet's AC1 instead. Let me now revise the full JSON with these corrections.\n\nI'll work through each section systematically. First, I'm adding AskBench to the landscape section alongside GRPO-CR and Reward-Weighted Clarification Fine-Tuning, noting that it trains clarification policies through rubric-guided RLVR on static QA benchmarks rather than live tool-use episodes with auto-verifiable rewards, and uses structured rubric scoring instead of LHAW taxonomy labels. I'll also add it to the key references.\n\nNow I'm recalculating the H100h budget — the IRC calibration rollout generation needs to be corrected from ~24 H100h to ~36 H100h based on the actual 600 episodes and wall-clock time, which shifts the total from ~165–185 H100h to ~174 H100h.\n\nI should also update the gpu_cost field to reflect ~$174 instead of the previous range, since the calculation is now more precise.\n\nLooking at the approach section, I notice the LHAW Phase 3 implementation details are missing from the Days 3–7 annotation part — I need to add that in.\n\nFor the κ result reporting in the Days 1–3 pilot section, I should include a note about the confidence interval width alongside the κ ≥ 0.65 threshold.\n\nFor the Days 3–7 LHAW pipeline application, I'm shifting from describing it as a full two-phase approach to clarifying it's an approximation that omits the empirical agent trials from Phase 3, which will introduce some additional noise into the outcome-criticality labels compared to the validated pipeline.\n\nNow I need to update the resource estimates—the GPU hours calculation should be corrected to ~174 H100 equivalent based on the revised IRC calibration cost of ~36 hours instead of ~24, and the cost should reflect that same arithmetic. I'll also add the AskBench reference to the landscape and key_references sections, then make sure the description field captures these refinements. I'm breaking down the total compute costs: training accounts for 128 H100h, IRC calibration adds 36 H100h from the wall-clock billing across two GPUs, evaluation is 5 H100h, and infrastructure overhead is another 5 H100h, bringing the total to 174 H100h at roughly $1 per hour. Now I need to finalize the JSON object with all four corrections in place, and I should add a note about AskBench to the description field to clarify how it differs from the related work already cited.\n\nFor the landscape section, AskBench fits naturally alongside GRPO-CR since both demonstrate clarification effectiveness on non-tool-use benchmarks—I'll insert it between GRPO-CR and the Reward-Weighted Clarification entry to keep related work organized. Then I'll update the Days 1-3 κ CI note in the approach section to clarify that the go decision requires both κ ≥ 0.65 and all four dimensions present in at least 2 of the 5 tasks.\n\nFor the reliability note, I'm adding context about the asymptotic 95% CI width (±0.12–0.15 at N≈75 annotation decisions) and noting that I'll report observed κ alongside Gwet's AC1 as a more stable alternative for skewed distributions, with explicit CI communication in the paper's IAA reporting section.\n\nFor Days 3-7, I'm refining the Phase 3 description to clarify that we're applying an approximation of the two-phase LHAW pipeline—specifically segment extraction plus LLM-based outcome-criticality labeling rather than manual labeling—across all 5 pilot tasks.\n\nNow I'm documenting the pre-registered Phase 3 omission: the 16-day timeline constraint forces us to skip empirical agent trials, so we substitute LLM-based criticality labeling, which introduces additional noise compared to the full validated pipeline—this limitation gets flagged explicitly in the paper.\n\nI'm writing out the complete JSON with targeted updates to the landscape section, approach timeline, and resource estimates.\n\nWriting JSON output... I'm reconsidering how to integrate AskBench into the description without overloading it. The reviewer specifically asked for a landscape section addition, so I should keep the description focused and just add a concise mention of AskBench alongside the other related work I'm already citing, rather than expanding the description field itself. I'm deciding whether to add AskBench to the description field itself or rely on the landscape and key_references sections to cover it. Since the description is already a dense abstract summarizing the core project, and I'm updating those other fields anyway, I'll leave the description unchanged to keep it focused on the main contribution.\n\nNow I'm writing out the complete JSON with the corrected GPU cost breakdown—accounting for the IRC calibration using actual wall-clock time multiplied by GPU count, which gives me 36 H100h instead of 24, bringing the total to 174 H100h at current pricing.\n\nGenerating JSON output...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83ef7b34-5369-4eed-a86f-e5e295f114c6",
+            "isSidechain": false,
+            "requestId": "req_011CasXEgzNrvcmddPPBKhrF",
+            "type": "assistant",
+            "uuid": "ad970bef-3528-4531-a543-694d91ec4df1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_012k4uM5PxGEmJFFNECii1rB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 514,
+                "cache_read_input_tokens": 31502,
+                "output_tokens": 16136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 514,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 16136,
+                    "cache_read_input_tokens": 31502,
+                    "cache_creation_input_tokens": 514,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 514
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-09T19:14:54.317Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — AskBench is a QA-style RLVR paper (AskMind/AskOverconfidence), no live tool-use, no taxonomy labels. Differentiation is clean. Now I'll make all four targeted fixes: add AskBench to landscape + references, correct IRC H100h (24→36, total→174), add LHAW Phase 3 omission sentence, and add the κ CI width note.\n\n```json\n{\n  \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LHAW Dimension-Aware Reward: A Feasibility Study\",\n  \"project_name\": \"pg_clarif_gating\",\n  \"source\": \"web_research\",\n  \"level\": \"solid\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"Clarification policy training on τ-bench now has one known prior: 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026) trains SFT, DPO, and GRPO for clarification on τ-bench via a dedicated Clarifier module—a separate component triggered after tool calls when key parameters are missing from fuzzy user requests. However, three precise gaps remain unaddressed by this and all other prior work. First, 'Asking to Clarify' uses fuzzy intent modeling on existing τ-bench data and does not construct an explicitly structured underspecified variant corpus; no work has applied the LHAW four-dimension taxonomy (arXiv:2602.10525) to τ-bench specifications, and the taxonomy's transferability (κ target ≥ 0.65) to airline/retail specifications is unvalidated. Second, no existing work trains a full joint policy end-to-end—as opposed to a dedicated trigger-conditioned Clarifier module—using GRPO on a structured, taxonomy-derived underspecified τ-bench variant corpus; the feasibility of producing measurable learning signal at N=30–50 variants is open. Third, no work compares a LHAW four-dimension dimension-aware secondary reward (binary LLM judge: does the clarification question target the labeled LHAW dimension?) against a scalar importance baseline (H/M/L, adapted from IntentionGym) within a τ-bench training setting. Critically, arXiv:2604.02869 (Apr 2026) establishes that naive per-turn dense rewards on τ-bench degrade performance by up to 14pp due to outcome advantage domination of per-turn signals, requiring Iterative Reward Calibration (IRC)—a rollout-discriminativeness-based calibration procedure using 5,952 rollouts in the original paper—before any secondary reward is applied; whether IRC-calibrated LHAW-dimension reward (using a smaller 600-episode feasibility-study corpus) produces distinguishable trends versus scalar importance is the third open question. UserRL (arXiv:2509.19736) never trained clarification directly on τ-bench (IntentionGym/IN3 is zero-shot evaluation only) and uses scalar H/M/L importance with no structured taxonomy. The four empirical questions addressable in 16 days: (1) Does LHAW taxonomy transfer to τ-bench specifications with κ ≥ 0.65? (2) Does full-policy MT-GRPO training on an explicitly constructed LHAW variant corpus (30–50 variants, hybrid discounted advantage with γ=0.9) produce measurable learning signal? (3) Does IRC-calibrated LHAW 4-dim secondary reward show distinguishable directional trends versus scalar importance? (4) Do trained policies zero-shot transfer to retail tasks?\",\n  \"opportunity\": \"The compound feasibility gap that remains after 'Asking to Clarify'—and that no existing work addresses—has three components: (a) structured underspecification corpus construction (LHAW taxonomy transfer to τ-bench, validated by IAA); (b) full-policy GRPO clarification training on a taxonomy-derived variant corpus, as opposed to a dedicated Clarifier module operating on existing τ-bench data with fuzzy intent; (c) IRC-calibrated dimension-aware secondary reward, as opposed to goal-aware preference signals conditioned on ground-truth user requirements. 'Asking to Clarify' establishes that GRPO-based clarification training on τ-bench is feasible in principle, validating the episode structure. arXiv:2604.02869 establishes MT-GRPO with Iterative Reward Calibration as the correct multi-turn credit assignment mechanism for τ-bench and provides the hybrid discounted advantage formula A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O (γ=0.9, λ=0.3); its IRC analysis used 5,952 rollouts on τ-bench airline. UserRL (arXiv:2509.19736) establishes Qwen3-32B as an effective local user simulator for τ-bench. τ³-bench provides 27 corrected airline and 26 corrected retail tasks as clean annotation targets. Together, these three prior works provide infrastructure for a 16-day feasibility study of full-policy clarification training with LHAW dimension-aware reward—a study that neither 'Asking to Clarify' (Clarifier module, fuzzy intent, no structured taxonomy) nor UserRL (general tool use, scalar importance, IntentionGym held out) nor arXiv:2604.02869 (general tool use, no clarification, no taxonomy) has conducted. The compound novel claim is: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward calibrated from a 600-episode corpus (acknowledged as smaller than the 5,952-rollout IRC in arXiv:2604.02869; treated as a methodological limitation of the feasibility study scope). Days 1–3 (LHAW pilot, go/no-go gate); Days 3–7 (full annotation, 30–50 variants + IRC calibration corpus of 600 episodes running in parallel with annotation); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds, ~128 H100h); Days 12–14 (zero-shot retail evaluation); Days 14–16 (short paper). ARR May 25, 2026 deadline is exactly feasible.\",\n  \"landscape\": \"**'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview, 2025/2026)** is the most critical prior work and directly challenges an earlier 'first GRPO on τ-bench' claim. This paper trains SFT, DPO, and GRPO for clarification on τ-bench (τ-airline domain) using a dedicated Clarifier module with three components: (1) Domain-Policy Tool Calling, (2) User-Driven Fuzzy Intent modeling for partially specified user goals, and (3) ReAsk Decision & Generation for targeted question generation. The Clarifier triggers after tool calls when key parameters are missing. It uses goal-aware preference signals conditioned on ground-truth user requirements. Architectural distinction from our work: 'Asking to Clarify' deploys a separate Clarifier sub-module triggered specifically after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent joint behavior of a single policy. Our work is differentiated on four axes: (a) full-policy joint training (single Qwen3-8B policy decides tool calls, clarification questions, and responses from the same parameter set) vs. a trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy pipeline vs. fuzzy intent modeling on existing τ-bench data; (c) IRC-calibrated LHAW dimension-aware binary-judge reward vs. goal-aware preference signals; and (d) zero-shot cross-domain evaluation (airline→retail) not reported by 'Asking to Clarify'.\\n\\n**UserRL (arXiv:2509.19736, Sep 2025)** is the second most critical prior. Its five training gyms include TauGym (τ-bench, general tool use) but IntentionGym—which uses IN3 (Qian et al., ACL 2024) and rewards agents for uncovering missing intent details at scalar H/M/L importance levels—is held out as zero-shot evaluation. UserRL never trains clarification on τ-bench, never applies a structured underspecification taxonomy, and validates Qwen3-32B as an effective local user simulator.\\n\\n**MT-GRPO + Iterative Reward Calibration on τ-bench (arXiv:2604.02869, Apr 2026)** establishes the correct multi-turn credit assignment mechanism for τ-bench. The paper uses a hybrid discounted advantage: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor, λ=0.3 weights the undiscounted outcome signal, and GN is group normalization across rollouts at each turn position k. The IRC analysis used 5,952 rollouts for τ-bench airline. The paper's key finding is that naive dense per-turn rewards degrade performance by up to 14pp because outcome advantages (|A^O| ≈ 0.87) overwhelm per-turn signals (|A^I| ≈ 0.05), reversing intended training signals. IRC addresses this by computing point-biserial correlations between per-turn reward tier presence and binary task success, then setting reward weights proportional to discriminative power. Training used 8 H20 GPUs (96GB each) with Megatron-Core and batch size 8. Applied to τ-bench airline: Qwen3-30B-A3B improves from 58.0% to 69.5% (+11.5pp). This paper is general tool use, NOT clarification, and uses NO underspecification taxonomy.\\n\\n**MUA-RL (arXiv:2508.18669, Aug 2025)** integrates LLM-simulated users into GRPO for general multi-turn tool use on τ²-bench (45.4% on TAU2 Airline with 32B); treats neither underspecification nor clarification gating as first-class problems.\\n\\n**SpeakRL (arXiv:2512.13159, Dec 2025)** trains clarification question-asking via RL (+20.14% task completion) on the synthetic SpeakER dialogue dataset—not a live tool-use benchmark.\\n\\n**CLARITI (arXiv:2604.14624, Apr 2026)** trains an 8B clarification module on SWE tasks using multi-stage GRPO with Shapley-attributed proxy rewards; SWE episode intractability validates τ-bench's auto-verifiable structure.\\n\\n**GRPO-CR (arXiv:2601.16400, Jan 2026)** applies GRPO to VQA clarification (+0.156 F1) demonstrating GRPO's effectiveness for clarification on non-tool-use benchmarks.\\n\\n**AskBench (arXiv:2602.11199, Feb 2026)** trains clarification policies via rubric-guided RLVR across two QA-style settings—AskMind (intent-deficient queries) and AskOverconfidence (false-premise queries)—and shows consistent improvements in accuracy and rubric adherence. Unlike this paper, AskBench operates on static QA benchmarks without live tool-use episodes or auto-verifiable database-state rewards, and uses structured rubric scoring rather than LHAW taxonomy dimension labels as the reward signal.\\n\\n**Reward-Weighted Clarification Fine-Tuning (arXiv:2506.06964, NeurIPS 2025)** applies offline RL to short-horizon QA agents—no auto-verifiable episode reward, offline setting, no structured taxonomy.\\n\\n**Ask or Assume? (arXiv:2603.26233, Mar 2026)** achieves 69.4% on underspecified SWE-bench via multi-agent scaffold (OpenHands + Claude Sonnet 4.5)—no RL, no τ-bench.\\n\\n**ClarEval (arXiv:2603.00187, Feb/Mar 2026)** proposes ATC/KQC metrics for clarification in coding agents—no RL, no τ-bench.\\n\\n**Turn-Level Reward Design (arXiv:2505.11821, May 2026)** extends GRPO and PPO to multi-turn variants enabling fine-grained credit assignment; complements MT-GRPO but tested on QA datasets, not τ-bench.\\n\\n**LHAW (arXiv:2602.10525)** provides a validated dataset-agnostic taxonomy (Goals, Constraints, Inputs, Context) with empirical agent-trial classification across TheAgentCompany, SWE-Bench Pro, and MCP-Atlas—not τ-bench.\\n\\n**τ-bench SOTA (BenchLM leaderboard, May 2026):** MiMo-V2.5-Pro at 72.9%, Qwen3.6 Plus at 70.7%. 8B fine-tuned models on clarification-requiring variants remain well below frontier.\",\n  \"approach\": \"This is a 16-day proof-of-concept feasibility study targeting EMNLP 2026 Findings (short paper, 4+1 pages, ARR May 25, 2026 submission). The novelty claim is precisely scoped: first feasibility evidence of full-policy MT-GRPO clarification training on a structured, LHAW-taxonomy-derived underspecified τ-bench variant corpus, with IRC-calibrated dimension-aware secondary reward. This is distinct from 'Asking to Clarify' (dedicated Clarifier module + fuzzy intent + goal-aware preference) and from arXiv:2604.02869 (general tool use + no taxonomy). All claims are explicitly pre-registered as 'proof-of-concept; N=30–50 variants; minimum detectable effect ≥15pp at p<0.1 with 2 seeds; results below this threshold reported as exploratory trends only.'\\n\\n**Days 1–3: LHAW Taxonomy Transfer Pilot (go/no-go gate)**\\nApply LHAW Phase 1 (LLM-based segment extraction) to 5 τ³ airline tasks (3 corrected, 2 uncorrected), mapping each specification element to Goal/Constraint/Input/Context. Known challenge cases pre-resolved: fare-waiver quantity restrictions → Constraint; waiver outcome → Goal; numeric seat IDs → Input; cabin-class defaults → Context. Two researchers independently label; compute Cohen's κ alongside Gwet's AC1 as a more stable alternative estimator for skewed category distributions. Go decision requires κ ≥ 0.65 and all four dimensions present in ≥2 of 5 tasks. *κ reliability note (pre-registered)*: At N≈75 annotation decisions (~15 specification elements × 5 tasks), the asymptotic 95% CI for κ is approximately ±0.12–0.15; the paper reports the observed κ and AC1 with explicit CI width, acknowledging that κ=0.65 observed is consistent with true κ ranging from approximately 0.50 to 0.80 at this sample size.\\n\\n*Borderline κ procedure (pre-registered)*: If 0.60 ≤ κ < 0.65 after one definition-refinement pass, annotate 5 additional tasks (N=10 total), use pooled κ as the final gate. If κ still < 0.65 on N=10, declare feasibility blocker and abort—this constitutes Option B (FAIL), which is itself publishable as a negative taxonomy-transfer finding. A κ below 0.60 after first pass aborts immediately (hard threshold). Cost: ~$1–2 API, 2 person-days.\\n\\n**Days 3–7: Annotation + IRC Calibration Corpus**\\nContingent on pilot go decision. These two sub-tasks run in parallel.\\n\\n(a) *LHAW annotation*: Apply the two-phase LHAW pipeline approximation (segment extraction + LLM-based outcome-criticality labeling) to all 5 pilot tasks, generating ~6–10 variants per task (30–50 total). *LHAW Phase 3 omission (pre-registered)*: We implement a 2-phase approximation of the LHAW pipeline, omitting Phase 3 empirical agent trials due to 16-day timeline constraints; this simplification, using LLM-based criticality labeling in place of empirical agent trials, introduces additional noise in outcome-criticality labels compared to the full validated LHAW pipeline and is stated as a methodological limitation in the paper. Add scalar importance labels (H/M/L adapted from IntentionGym) in parallel for baseline. 25% manual QC spot-check. ~$3–8 annotation API cost. Conducted primarily during daytime (Days 3–7).\\n\\n(b) *IRC calibration corpus*: Generate 600 rollout episodes from the base Qwen3-8B policy on the 30–50 variants (without LHAW-dim secondary reward active), running as a background overnight process beginning Day 3. At expected Qwen3-8B success rates of 20–30% on clarification-requiring variants, 600 episodes yields ~150–180 successes distributed approximately uniformly across 4 LHAW dimensions (~37–45 per dimension). This exceeds the n>25 positive-instance threshold required for approximate normality of point-biserial correlation estimates (standard reliability threshold for this statistic). We explicitly acknowledge this corpus is substantially smaller than the 5,952 rollouts used for IRC analysis in arXiv:2604.02869; this is a methodological limitation of the feasibility study scope, stated as such in the paper. Wall-clock: ~18 hours at 40% GPU utilization (IRC runs inference-only; no backprop), completing within the Days 3–7 window. IRC analysis (point-biserial correlation between clarification-turn presence and binary task success per LHAW dimension) and reward weight calibration are performed Days 6–7. Expected: one or two LHAW dimension categories may have near-zero discriminative correlation; those receive zero secondary reward weight in the calibrated condition. Near-zero correlation for all four dimensions would collapse Condition A to Condition B—itself a reportable finding ('IRC finds LHAW-dim reward non-discriminable from scalar at N=600 feasibility corpus').\\n\\n**Days 7–12: MT-GRPO Training on 2×H100 SXM**\\n\\n*Architectural distinction from 'Asking to Clarify' (one-sentence operationalization)*: In this paper, Qwen3-8B is a single joint policy that decides—at any turn—whether to invoke API tools, ask a clarifying question, or produce a final response; all action types are sampled from the same parameter set without an explicit trigger condition. In contrast, 'Asking to Clarify' deploys a separate Clarifier sub-module activated only after tool calls detect missing parameters, making clarification architecturally conditioned rather than an emergent behavior of a unified policy.\\n\\n*Memory management — interleaved rollout/update schedule*: Full FP32 Adam fine-tuning of Qwen3-8B requires approximately 96GB excluding activations: 16GB BF16 model weights (8B × 2 bytes) + 64GB FP32 Adam optimizer states (8B × 4 bytes × 2 for first and second moment vectors) + 16GB BF16 gradients. Co-locating this with the Qwen3-32B simulator (64GB, TP=2) and Qwen3-8B judge (16GB) simultaneously would require ~176GB, exceeding the 160GB available. We therefore use a phase-separated interleaved rollout/update schedule:\\n- *Rollout phase*: load policy for BF16 forward-only inference (16GB) + Qwen3-32B simulator (TP=2 across both GPUs, 64GB) + Qwen3-8B judge (16GB) = 96GB peak VRAM; FP32 Adam states are not loaded during rollout.\\n- *Update phase*: unload simulator and judge; load policy with FP32 Adam states and BF16 gradients (96GB) + gradient-checkpointed activations (batch size 16, ~500-token average sequences: ~4–8GB with gradient checkpointing enabled) = ~100–104GB peak VRAM.\\nNVLink between the two H100 SXM GPUs enables fast model swapping between phases (~15–30 seconds per phase transition). Peak VRAM in both phases: ≤104GB, well within 160GB. NVLink verification and phase-swap latency benchmarking are budgeted into the Day 7–8 infrastructure slot.\\n\\n*Multi-turn credit assignment*: We adopt the hybrid discounted advantage formulation from arXiv:2604.02869 verbatim: A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, where γ=0.9 is the step-level discount factor (early turns receive discounted future intermediate rewards), λ=0.3 weights the undiscounted outcome advantage added outside group normalization, o_i is the binary task-success outcome reward, r_{i,l} is the per-turn intermediate reward at turn l, and GN denotes group normalization across G=4 rollouts at each turn position k. The γ=0.9 discount ensures early-turn gradients reflect discounted future returns rather than uniform credit; the separate λ·A^O term prevents outcome information from being fully absorbed into the discounted sum and becoming unrecoverable after GN. This differs from a simplified undiscounted sum (as in earlier versions of this proposal) and matches the validated τ-bench implementation. We reproduce the formula in the paper's methodology section with attribution. Justification for MT-GRPO over GTPO (arXiv:2511.14846): GTPO's self-supervised reward shaping is designed for code/math tasks; MT-GRPO with this hybrid advantage has been validated directly on τ-bench airline (arXiv:2604.02869).\\n\\n*Pre-training outcome variance check (before committing training compute)*: On 20 held-out episodes from the 30–50 training variants, compute per-group success rate across G=4 rollouts for each variant. Training proceeds only if the mean per-group success rate falls in [0.10, 0.90]. If mean success rate < 0.10 (near-zero clarification quality; advantages uniformly negative; minimal gradient signal), increase decoding temperature incrementally (T: 0.7 → 0.8 → 1.0 → 1.2) until criterion is met. If mean success rate > 0.90 (base policy already solves variants; near-zero advantage variance), add additional underspecification to the lowest-complexity variants or increase user simulator intent ambiguity. This check takes ~30 minutes and prevents wasting 15–16 hours of H100 time on a degenerate training run.\\n\\nTwo training conditions (each run with 2 random seeds, sequential runs):\\n- Condition A (LHAW-dim, IRC-calibrated): r_combined = r_task + w_dim × r_dim, where w_dim is determined by IRC analysis (target |w_dim × A^I| ≈ 0.3 × |A^O| to maintain positive advantage direction consistent with the λ=0.3 calibration in arXiv:2604.02869); r_dim is binary judge: does question target the labeled LHAW dimension?\\n- Condition B (scalar): r_combined = r_task + 0.3 × r_scalar (importance level H=1.0/M=0.67/L=0.33, normalized; weight 0.3 kept fixed, not IRC-calibrated, for clean comparison of reward structure rather than weight tuning)\\n\\n*Condition comparison scope (pre-registered limitation)*: Condition A and Condition B differ simultaneously on reward structure (4-dim binary vs. H/M/L scalar) and weight calibration method (IRC-derived vs. fixed 0.3). The comparison tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation. A fully controlled comparison would require a third condition (IRC-calibrated scalar); this is deferred to the fully-powered follow-up study.\\n\\nHyperparameters: G=4 rollouts per prompt, 5 epochs, batch size 16. Anti-hacking constraints: BLEU-1 overlap with prior rollout questions < 0.6; minimum 10-word filter; interrogative marker required.\\n\\n*Revised wall-clock per run*: 40 variants × 4 rollouts × 5 epochs × 15 user_turns (median of 10–30 total turns per episode) = 12,000 Qwen3-32B simulator inference calls. At ~3 seconds per call on TP=2, raw compute = 36,000s. At 65% GPU utilization (idle during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation): ~15–16 hours wall-clock per run. Per run H100h: 16 hours × 2 GPUs = 32 H100h. Four runs total: ~128 H100h for training.\\n\\n*Run schedule*: Condition A seed 1 (Day 7–8); IRC calibration analysis + Condition A seed 2 (Day 8–9); Condition B seed 1 (Day 9–10); Condition B seed 2 (Day 10–11); evaluation and buffer (Day 11–12).\\n\\n**Days 12–14: Zero-Shot Evaluation on 5 Retail Tasks**\\nSelect 5 corrected τ³ retail tasks. Evaluate: (1) prompt-only Qwen3-8B baseline; (2) GRPO task-success reward only (no secondary reward); (3) Condition A (LHAW-dim, IRC-calibrated); (4) Condition B (scalar). 5 evaluation trials × 5 tasks × 2 seeds = 50 episodes per condition. Report task success rate with bootstrapped 95% CI across 2 seeds. Explicit power statement pre-registered: 'N=50 episodes per condition; minimum detectable effect ≥15pp at p<0.1 under 2 seeds; results below this threshold reported as exploratory trends only.' Evaluation GPU cost: ~5 H100h.\\n\\n**Days 14–16: Short Paper Writing (4+1 pages, EMNLP Findings)**\\nPre-assigned section space budget to ensure 4 ACL-format pages are sufficient:\\n- Introduction (0.5 pages): problem, gap vs. 'Asking to Clarify' and arXiv:2604.02869, three contributions\\n- Related Work (0.5 pages): condensed 6-entry table format covering 'Asking to Clarify', UserRL, arXiv:2604.02869, AskBench, CLARITI, SpeakRL, LHAW\\n- Background & Setup (0.4 pages): τ³-bench, LHAW taxonomy, MT-GRPO hybrid advantage formula (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3), Qwen3-32B simulator\\n- Methodology (0.9 pages): LHAW pilot + IAA result with κ CI width noted (0.2p), variant construction + 600-episode IRC calibration corpus (0.3p), interleaved memory schedule + MT-GRPO training conditions (0.4p)\\n- Results (1.4 pages): training curves [1 compact figure, 0.5p], zero-shot retail table [1 table, 0.4p], uncertainty + power statement (0.3p), negative-result framing if flat (0.2p)\\n- Limitations & Conclusion (0.3 pages): includes (1) condition comparison confound (Condition A vs. B tests joint effect of reward structure and calibration method, not dimension-awareness alone; fully controlled comparison deferred to powered follow-up); (2) IRC corpus size (600 episodes vs. 5,952 in arXiv:2604.02869; correlation estimates have wider CIs at this scale); (3) LHAW Phase 3 omission (2-phase approximation introduces additional label noise); (4) N=2 seeds; (5) N=5 retail tasks for zero-shot evaluation.\\n\\nThree reportable findings: (1) IAA κ value—establishes LHAW transferability to τ-bench, citable independent of training outcome; (2) training curves—binary feasibility finding: does MT-GRPO produce reward signal on 30–50 LHAW clarification variants?; (3) zero-shot retail evaluation—directional comparison with uncertainty quantification. Paper framing: 'We provide first feasibility evidence that full-policy MT-GRPO clarification training on an LHAW-taxonomy-derived underspecified τ-bench variant corpus produces measurable learning signal, that LHAW four-dimension taxonomy transfers with κ=X.XX (95% CI ±0.12–0.15), and that IRC-calibrated dimension-aware reward shows [directional trend] versus scalar importance baseline—warranting a fully-powered follow-up.' Flat training curves or failed taxonomy transfer are reported as negative feasibility results—publishable given the first-ever nature of the experiment.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours_h100_equivalent\": \"~174 H100h total (within ≤200 H100h hard constraint)\",\n      \"breakdown\": \"~128 H100h for MT-GRPO training (2 conditions × 2 seeds on 2×H100 SXM; wall-clock ~15–16 hours per run at 65% GPU utilization; TP=2 for Qwen3-32B; 40 variants × 4 rollouts × 5 epochs × ~15 user_turns × 3s/call = ~36,000s raw compute = ~15–16 hours per run = 32 H100h per run; 4 runs = 128 H100h). ~36 H100h for IRC calibration rollout generation (600 episodes, ~18 hours wall-clock × 2 GPUs; billing is wall-clock × GPU count regardless of GPU utilization rate during inference; 40% GPU utilization describes idle rate during inference bookkeeping, not a billing discount; 3× increase from 200 to 600 episodes required for statistical stability of point-biserial correlation—n>25 positive instances per dimension at 20–30% success rate; explicitly smaller than the 5,952 rollouts used for IRC in arXiv:2604.02869, acknowledged as a methodological limitation). ~5 H100h for zero-shot retail evaluation (4 conditions × 5 tasks × 5 trials × 2 seeds = 200 episodes). ~5 H100h for infrastructure setup (NVLink verification, phase-swap latency benchmarking for interleaved rollout/update schedule, IRC analysis tooling, environment configuration). Total: 128 + 36 + 5 + 5 = 174 H100h. Pilot (Days 1–3): ~$1–2 annotation API, no GPU cost.\",\n      \"gpu_configuration\": \"2×H100 SXM (80GB each, 160GB total VRAM) per training node; tensor parallelism TP=2 for Qwen3-32B simulator inference (64GB BF16); interleaved rollout/update memory schedule: rollout phase loads policy BF16 forward (~16GB) + simulator (~64GB, TP=2) + judge (~16GB) = 96GB peak; update phase unloads simulator and judge, loads policy with FP32 Adam states (~96GB: 16GB weights + 64GB FP32 Adam [8B × 4 bytes × 2] + 16GB BF16 gradients) + gradient-checkpointed activations (~4–8GB at batch=16, ~500-token sequences) = ~100–104GB peak. Both phases safely within 160GB. NVLink phase-swap latency ~15–30s per transition. Full FP32 Adam (not 8-bit Adam) to ensure stable convergence.\",\n      \"gpu_utilization\": \"~65% during training (GPU idles during τ-bench episode bookkeeping between turns, per arXiv:2604.02869 observation); ~40% during IRC calibration rollout generation (inference-only, no backprop); ~40% during evaluation; full utilization during gradient update phase within each training step\",\n      \"timeline\": \"16 days total: Days 1–3 (LHAW pilot, 5 tasks, IAA + κ/AC1 computation + go/no-go decision; borderline κ 0.60–0.64 triggers 5-task extension, pooled κ as final gate); Days 3–7 (full 2-phase LHAW pipeline approximation on 5 tasks → 30–50 variants + scalar labels [daytime], with LHAW Phase 3 omission pre-registered; IRC calibration corpus of 600 rollout episodes from base policy running as background overnight process beginning Day 3 [~18 hours wall-clock]; IRC analysis + weight calibration Days 6–7; pre-training outcome variance check Day 7 before committing training compute); Days 7–12 (MT-GRPO training, 2 conditions × 2 seeds sequential, ~128 H100h; 4 runs × ~16 hours = 64 hours wall-clock within 120 available hours); Days 12–14 (zero-shot retail evaluation, 4 conditions × 50 episodes, ~5 H100h); Days 14–16 (4+1 page short paper writing with pre-assigned section budget, ARR May 25 submission)\",\n      \"team\": \"2 researchers\",\n      \"gpu_cost\": \"~$174 at ~$1/H100h SXM (RunPod / Lambda Labs H100 SXM pricing as of May 2026); corrected from prior estimate: IRC calibration rollout generation billed at wall-clock × GPU count (18h × 2 GPUs = 36 H100h, not 24 H100h; the 40% GPU utilization figure describes the inference idle rate, not a billing discount). Total: 128 (MT-GRPO training) + 36 (IRC calibration) + 5 (zero-shot evaluation) + 5 (infrastructure) = 174 H100h.\",\n      \"annotation_api_cost\": \"~$4–10 total ($1–2 for 5-task taxonomy transfer pilot; $3–8 for full annotation of 5 tasks → 30–50 variants + scalar labels; IRC calibration rollouts use local Qwen3-32B inference, no API cost)\",\n      \"risk_note\": \"Primary risk gate: LHAW taxonomy transfer pilot (Days 1–3); κ < 0.65 on N=5 after one refinement → N=10 extension; κ < 0.65 on N=10 → abort (publishable negative result). Secondary risk: IRC calibration (600-episode corpus) may find near-zero discriminative correlation for all LHAW dimensions, collapsing Condition A to Condition B—itself a reportable finding. The smaller IRC corpus (600 vs. 5,952 in arXiv:2604.02869) increases the probability of this outcome and widens correlation confidence intervals; this is explicitly pre-registered as a methodological limitation. Tertiary risk: pre-training outcome variance check (Day 7) may require temperature adjustment before training can proceed; budgeted ~30 minutes, not expected to affect timeline. Quaternary risk: MT-GRPO wall-clock per run may reach 16–17 hours at upper episode-depth bound (30 turns); 4 runs × 17 hours = 68 hours wall-clock within 120 available hours—still feasible. Infrastructure failure must be resolved within 24 hours or AAAI 2027 fallback applies.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR May 25, 2026 submission; commitment deadline Aug 2, 2026; EMNLP 2026 conference est. Nov 2026). Short paper format: 4+1 pages with pre-assigned section space budget. Claims explicitly scoped as proof-of-concept feasibility study with pre-registered power statement. This is the primary target and satisfies the 16-day hard constraint from May 9, 2026.\",\n    \"AAAI 2027 (direct submission, est. abstract ~Jul 25 / paper ~Aug 1, 2026 based on AAAI-26 historical pattern; CFP not yet released as of May 2026—deadline estimate is unconfirmed). Backup path: if the 16-day proof-of-concept produces positive feasibility results, expand to the full 12-week experiment (50 tasks, 280–350 variants, 3 seeds, full power analysis, ablation of IRC calibration weight choices, addition of Condition C: IRC-calibrated scalar baseline to isolate dimension-awareness from calibration effect) and submit to AAAI 2027. The proof-of-concept data, trained checkpoints, and IRC calibration analysis serve as a head start.\"\n  ],\n  \"description\": \"We present the first feasibility study of full-policy MT-GRPO clarification training on an explicitly constructed LHAW-taxonomy-derived underspecified τ-bench variant corpus, completing three separable contributions in 16 days (May 9–25, 2026) for ARR May 25 / EMNLP 2026 Findings (short paper, 4+1 pages). This work is differentiated from 'Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions' (OpenReview)—which trains GRPO for clarification on τ-bench via a dedicated Clarifier sub-module triggered after tool calls detect missing parameters, using fuzzy intent modeling on existing τ-bench data and goal-aware preference signals—on four axes: (a) full-policy joint training (single Qwen3-8B decides tool calls, clarification questions, and responses from the same parameter set without an explicit trigger condition) vs. trigger-conditioned Clarifier sub-module; (b) explicit underspecified variant corpus constructed via LHAW 4-dim taxonomy vs. fuzzy intent on existing data; (c) IRC-calibrated dimension-aware secondary reward vs. goal-aware preference signals; (d) zero-shot cross-domain evaluation (airline→retail). Adjacent RL-for-clarification works (AskBench arXiv:2602.11199, GRPO-CR, SpeakRL, CLARITI) operate on QA or SWE settings without live tool-use benchmarks or auto-verifiable database-state rewards, and none use structured taxonomy-derived underspecification. Contribution 1: a LHAW taxonomy transfer pilot on 5 τ³ airline tasks (Days 1–3) establishing whether Goal/Constraint/Input/Context labels produce coherent annotations for airline specifications (inter-annotator κ and Gwet's AC1 reported with explicit 95% CI width ±0.12–0.15 at N≈75; go/no-go at κ ≥ 0.65; borderline 0.60–0.64 triggers 5-task extension). Contribution 2: annotation of those 5 tasks into ~30–50 underspecified variants (Days 3–7) via the two-phase LHAW pipeline approximation (segment extraction + LLM-based outcome-criticality labeling; Phase 3 empirical agent trials omitted due to timeline constraints, pre-registered as a methodological limitation introducing additional label noise), with scalar importance labels (H/M/L, adapted from UserRL's IntentionGym structure) added in parallel for the baseline condition; plus generation of a 600-episode IRC calibration corpus from the base policy (running in parallel with annotation as an overnight background process, ~18 hours wall-clock at 40% GPU utilization; 18h × 2 GPUs = 36 H100h; 600 episodes yields ~37–45 positive instances per LHAW dimension at 20–30% success rates, exceeding the n>25 threshold for reliable point-biserial correlation; acknowledged as smaller than the 5,952 rollouts used in arXiv:2604.02869, stated as a methodological limitation). Contribution 3: MT-GRPO training of Qwen3-8B on 2×H100 SXM (Days 7–12) using the hybrid discounted advantage formulation from arXiv:2604.02869 (A_{i,k}^{hybrid} = GN(Σ_{l=k}^{K-1} γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A_i^O, γ=0.9, λ=0.3), with a phase-separated interleaved rollout/update memory schedule to fit within 160GB (rollout phase: policy 16GB + simulator 64GB + judge 16GB = 96GB; update phase: unload simulator/judge, load policy + FP32 Adam + gradients = 96GB + gradient-checkpointed activations ~4–8GB = ~100–104GB); two reward conditions—IRC-calibrated LHAW 4-dim secondary reward (binary LLM judge, weights from point-biserial discriminativeness analysis) vs. scalar importance secondary reward—each run with 2 seeds, preceded by a pre-training outcome variance check (mean per-group success rate [0.10, 0.90] required before committing training compute), followed by zero-shot evaluation on 5 corrected τ³ retail tasks (50 episodes per condition, Days 12–14). Pre-registered limitations: (1) Condition A vs. B tests the joint effect of dimension-aware structure and IRC calibration, not dimension-awareness in isolation; a controlled Condition C (IRC-calibrated scalar) is deferred to the powered follow-up; (2) 600-episode IRC corpus is a feasibility-study approximation; (3) LHAW Phase 3 omitted. Total compute: ~174 H100h (~$174); annotation API: ~$4–10. Negative outcomes (flat training curves, failed taxonomy transfer, IRC-collapsed Condition A) are reportable given the first-ever nature of full-policy LHAW-taxonomy clarification training on τ-bench. Backup: AAAI 2027 full experiment if 16-day submission is missed.\",\n  \"key_references\": [\n    \"Asking to Clarify: Bridging Ambiguity in Tool-Agent-User Interactions (OpenReview, 2025/2026) — trains SFT/DPO/GRPO for clarification on τ-bench via dedicated Clarifier sub-module triggered after tool calls detect missing parameters; does NOT use structured underspecification taxonomy or construct explicit underspecified variant corpus; direct competitor requiring differentiation on (a) joint policy architecture, (b) taxonomy-derived corpus, (c) IRC-calibrated reward, (d) cross-domain evaluation\",\n    \"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration (arXiv:2604.02869, Apr 2026) — establishes hybrid discounted MT-GRPO advantage (A_{i,k}^{hybrid} = GN(Σ γ^{l-k} r_{i,l} + γ^{K-k} o_i) + λ·A^O_i, γ=0.9, λ=0.3) and IRC procedure (5,952 rollouts for τ-bench airline); key finding: naive dense rewards cause 14pp degradation; 8 H20 GPUs, batch size 8; Qwen3-30B-A3B: 58.0%→69.5%; general tool use, no clarification, no taxonomy\",\n    \"UserRL: Training Interactive User-Centric Agent via Reinforcement Learning (arXiv:2509.19736, Sep 2025)\",\n    \"UserBench: An Interactive Gym Environment for User-Centric Agents (arXiv:2507.22034, Jul 2025)\",\n    \"MUA-RL: Multi-turn User-interacting Agent Reinforcement Learning for agentic tool use (arXiv:2508.18669, Aug 2025)\",\n    \"SpeakRL: Synergizing Reasoning, Speaking, and Acting in Language Models with Reinforcement Learning (arXiv:2512.13159, Dec 2025)\",\n    \"LHAW: Controllable Underspecification for Long-Horizon Tasks (arXiv:2602.10525, 2026)\",\n    \"When and What to Ask: AskBench and Rubric-Guided RLVR for LLM Clarification (arXiv:2602.11199, Feb 2026) — trains clarification via rubric-guided RLVR on QA-style AskMind (intent-deficient queries) and AskOverconfidence (false-premise queries) settings; unlike this paper, operates on static QA benchmarks without live tool-use episodes or auto-verifiable database-state rewards, and uses structured rubric scoring rather than LHAW taxonomy dimension labels\",\n    \"Ask or Assume? Uncertainty-Aware Clarification-Seeking in Coding Agents (arXiv:2603.26233, Mar 2026)\",\n    \"ClarEval: A Benchmark for Evaluating Clarification Skills of Code Agents under Ambiguous Instructions (arXiv:2603.00187, Feb/Mar 2026)\",\n    \"Clarify or Answer: Reinforcement Learning for Agentic VQA with Context Under-specification — GRPO-CR (arXiv:2601.16400, Jan 2026)\",\n    \"Reward-Weighted Clarification Fine-Tuning for Conversation Optimization (arXiv:2506.06964, NeurIPS 2025, Adobe Research)\",\n    \"Ambig-SWE: Interactive Agents to Overcome Underspecificity in Software Engineering (ICLR 2026)\",\n    \"τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains (arXiv:2406.12045, 2024)\",\n    \"τ³-Bench: Corrected Airline and Retail Tasks (taubench.com, 2025)\",\n    \"τ²-Bench: Evaluating Conversational Agents in a Dual-Control Environment (arXiv:2506.07982, 2025)\",\n    \"Asking What Matters: Reward-Driven Clarification for Software Engineering Tasks — CLARITI (arXiv:2604.14624, April 2026)\",\n    \"Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL (arXiv:2604.17073, April 2026)\",\n    \"Empowering Multi-Turn Tool-Integrated Agentic Reasoning with Group Turn Policy Optimization — GTPO (arXiv:2511.14846, Nov 2025)\",\n    \"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design (arXiv:2505.11821, May 2026)\",\n    \"IN3: Towards Implicit User Intention Understanding of Language Model Driven Agents (Qian et al., ACL 2024)\",\n    \"Structured Uncertainty guided Clarification for LLM Agents (arXiv:2511.08798, 2025)\"\n  ]\n}\n```\n\n---\n\nAll four issues are addressed:\n\n**Fix 1 (AskBench, MEDIUM):** Added a dedicated paragraph to the landscape between GRPO-CR and Reward-Weighted Clarification Fine-Tuning, with the exact differentiation the reviewer specified — QA-style settings (AskMind/AskOverconfidence) vs. live tool-use on τ-bench, rubric scoring vs. LHAW taxonomy labels. Added to key_references with a one-line description. Also added a brief aggregating sentence to description (\"Adjacent RL-for-clarification works...\").\n\n**Fix 2 (H100h arithmetic, MINOR):** IRC line corrected from `~24 H100h` to `~36 H100h` with an explicit note that \"40% GPU utilization describes the inference idle rate, not a billing discount.\" Total updated throughout to 128 + 36 + 5 + 5 = 174 H100h. The gpu_cost and gpu_hours fields now consistently say `~$174` / `~174 H100h`.\n\n**Fix 3 (LHAW Phase 3 omission, MINOR):** Added a clearly labeled `*LHAW Phase 3 omission (pre-registered)*` block in Days 3–7 methodology with the exact sentence the reviewer requested. Also changed \"full two-phase LHAW pipeline\" to \"two-phase LHAW pipeline approximation\" for consistency, and added the limitation to the Limitations & Conclusion section budget.\n\n**Fix 4 (κ CI width, MINOR):** Added a `*κ reliability note (pre-registered)*` block in Days 1–3 quantifying the expected ±0.12–0.15 CI width at N≈75, introducing Gwet's AC1 as a co-reported estimator, and committing to explicit CI reporting in the paper. The paper framing in Days 14–16 also now includes `κ=X.XX (95% CI ±0.12–0.15)` in the results sentence template."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad970bef-3528-4531-a543-694d91ec4df1",
+            "isSidechain": false,
+            "requestId": "req_011CasXEgzNrvcmddPPBKhrF",
+            "type": "assistant",
+            "uuid": "476a1b42-bead-4715-82e1-e4917132d63d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_012k4uM5PxGEmJFFNECii1rB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 514,
+                "cache_read_input_tokens": 31502,
+                "output_tokens": 16136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 514,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 16136,
+                    "cache_read_input_tokens": 31502,
+                    "cache_creation_input_tokens": 514,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 514
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LH…",
+                "leafUuid": "476a1b42-bead-4715-82e1-e4917132d63d",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise clarification RL research to address landscape gaps",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Policy-Gradient Clarification Training on τ³-bench with MT-GRPO and LH…",
+                "leafUuid": "476a1b42-bead-4715-82e1-e4917132d63d",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise clarification RL research to address landscape gaps",
+                "sessionId": "d4c72eb6-f009-4c3c-95b2-464c8e6dd778"
+              }
+            }
+          ],
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-revising-a-research-idea-based-on-reviewer-feedback-today-s-date-2026-copy-45.md"
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "a987e0b3b4a3d8ade3f9",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cost-verify-agent-rl ## 运行环境 - 服务器名: bjb1-17606 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "dbc97a24-508f-453a-b3d7-4228f378a0dd",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/dbc97a24-508f-453a-b3d7-4228f378a0dd.jsonl",
+    "occurrence": 1,
+    "bytes": 1415515,
+    "sha256": "05a85156dc4b2b2cba4f1700f49815620ade9b1f88fc41a99947f9e2ea1184d6"
+  },
+  "statistics": {
+    "messages": 776,
+    "user_turns": 2,
+    "tool_calls": 271,
+    "roles": {
+      "record": 118,
+      "user": 2,
+      "assistant": 113,
+      "tool_call": 271,
+      "tool_result": 271,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 750,
+      "chunks": [
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0005.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "a987e0b3b4a3d8ade3f9-part-0005.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cost-verify-agent-rl-bjb1-17606-ssh-root-ssh-execute-submit-tr-copy-443.md"
+}

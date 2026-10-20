@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d0c947a773c6cee9aa",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-10 (UTC).** Only recommend ve",
+  "task_key": "66a45f5c-4b9e-4a84-8964-f29eb6e1db7a",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/66a45f5c-4b9e-4a84-8964-f29eb6e1db7a.jsonl",
+    "occurrence": 1,
+    "bytes": 790414,
+    "sha256": "f6e593178bf49901c396f36ceeab96df76e6688d5aa15a58d8ce319327fca57e"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 5,
+    "tool_calls": 13,
+    "roles": {
+      "record": 32,
+      "user": 5,
+      "assistant": 13,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "b6d0c947a773c6cee9aa-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date-copy-11.md"
+}
