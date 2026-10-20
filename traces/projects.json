@@ -288,6 +288,19 @@
       }
     },
     {
+      "project": "contrastive_entrain_calib--export-20260712",
+      "title": "The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration (July export snapshot)",
+      "catalog": "../research-snapshots/contrastive_entrain_calib/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1216,
+        "messages": 158766,
+        "user_turns": 5791,
+        "tool_calls": 43848,
+        "unparsed_lines": 10,
+        "conversation": 1216
+      }
+    },
+    {
       "project": "contrastive_graph_jailbreak_detect",
       "title": "contrastive graph jailbreak detect",
       "catalog": "../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/catalog.json",

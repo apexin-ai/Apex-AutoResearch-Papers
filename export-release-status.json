@@ -342,6 +342,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2012
+        },
+        "contrastive_entrain_calib": {
+          "status": "uploaded",
+          "project": "contrastive_entrain_calib",
+          "collection": "contrastive_entrain_calib--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "e76e3c2ee04f955790187dc54c9450ed3316a10de4affa5a7f0a72f2a012a9a2",
+          "indexed_members": 1221,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1216
         }
       },
       "status": "in_progress",
