@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "8b022e42a64ccba0ab79",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "c3aa69c0-58a2-423f-8929-4a89eedccad6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/c3aa69c0-58a2-423f-8929-4a89eedccad6.jsonl",
+    "occurrence": 1,
+    "bytes": 1370403,
+    "sha256": "2a4ae5098bf9291c5085b4ebeb20768b1280fea3c129034bd743f1b5a90b9342"
+  },
+  "statistics": {
+    "messages": 853,
+    "user_turns": 1,
+    "tool_calls": 345,
+    "roles": {
+      "record": 125,
+      "user": 1,
+      "assistant": 37,
+      "tool_call": 345,
+      "tool_result": 345
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b022e42a64ccba0ab79-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 851,
+      "chunks": [
+        {
+          "path": "8b022e42a64ccba0ab79-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8b022e42a64ccba0ab79-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b022e42a64ccba0ab79-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b022e42a64ccba0ab79-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b022e42a64ccba0ab79-part-0005.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-158.md"
+}

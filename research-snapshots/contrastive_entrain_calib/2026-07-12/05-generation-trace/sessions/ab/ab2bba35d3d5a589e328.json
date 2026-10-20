@@ -1,0 +1,1414 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2bba35d3d5a589e328",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read ALL tex files from the paper at `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_ca",
+  "task_key": "agent-a9ea56a89a347f615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a9ea56a89a347f615.jsonl",
+    "occurrence": 1,
+    "bytes": 103011,
+    "sha256": "9e18b9826aa6529273e71bb92a07dbf3486270b11610aae4e1b4d53c469bf1e9"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:16:54.578Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read ALL tex files from the paper at `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/` and also `docs/paper/main.tex`. \n\nFor each file, extract ALL numerical values that appear - specifically:\n- AUROC values (0.xxx format)\n- SYCONScore values\n- ToF/NoF values  \n- Percentages (xx%)\n- Checkpoint step numbers\n- Sample counts\n- Ratios (like 1.7×, 3.7×)\n- Any other quantitative claims\n\nFor each number, note:\n1. The exact value\n2. Which file and approximate context (what sentence/table/figure it's in)\n3. What it refers to (e.g., \"AUROC for Qwen3-8B\", \"ToF for GRPO seed 1\")\n\nBe thorough - read every file completely. Output a structured list organized by section.\n\nImportant: Read the full content of every .tex file. Don't skip any."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "3fcfc334-6e81-413f-a8d6-52d88a7fb886",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:16:54.582Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3fcfc334-6e81-413f-a8d6-52d88a7fb886",
+                "isSidechain": true,
+                "agentId": "a9ea56a89a347f615",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f43ce7c9-e67d-4e70-af51-37c87a646d51",
+                "timestamp": "2026-05-23T19:16:54.582Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:16:57.060Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read all the tex files systematically. Let me start by finding all files and reading them."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f43ce7c9-e67d-4e70-af51-37c87a646d51",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL392X3xtuStmA4tDQMA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8a67f687-0fd1-46a0-9f87-51459745ab0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHJRnSW7vXm8wjoVCgDW5P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14046,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14046,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:16:57.679Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0195Api3w1hrwFnfYLdBdHz1",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a67f687-0fd1-46a0-9f87-51459745ab0e",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL392X3xtuStmA4tDQMA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "59f859bc-1275-463a-9b74-5e9c94221ba4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHJRnSW7vXm8wjoVCgDW5P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14046,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14046,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:16:57.704Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195Api3w1hrwFnfYLdBdHz1",
+              "type": "tool_result",
+              "content": "docs/paper/_stale/direction_quality.tex\ndocs/paper/_stale/cosine_failure.tex\ndocs/paper/_stale/probe_trap.tex\ndocs/paper/_stale/related_work.tex\ndocs/paper/_stale/framework.tex\ndocs/paper/_stale/introduction.tex\ndocs/paper/_stale/discussion.tex\ndocs/paper/_stale/conclusion.tex\ndocs/paper/_stale/abstract.tex\ndocs/paper/_stale/limitations.tex\ndocs/paper/sections/probe_trap.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/cosine_failure.tex\ndocs/paper/main.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/framework.tex\ndocs/paper/sections/direction_quality.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59f859bc-1275-463a-9b74-5e9c94221ba4",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "5e37b6d7-baf4-4bf5-a216-abc6a0668519",
+            "sourceToolAssistantUUID": "59f859bc-1275-463a-9b74-5e9c94221ba4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:17:00.193Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read all the active section files and main.tex in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e37b6d7-baf4-4bf5-a216-abc6a0668519",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3923c355-9c05-4aad-9662-6bd235990cc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:17:02.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6VXw5zT78tKycPXS3bHY2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3923c355-9c05-4aad-9662-6bd235990cc8",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "974c099c-3869-4390-b014-58058a97bec7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:17:02.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6VXw5zT78tKycPXS3bHY2",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[hyperref]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{multirow}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{subcaption}\n12\t\n13\t\\newcommand{\\dsyc}{d_{\\text{syc}}}\n14\t\\newcommand{\\tof}{\\text{ToF}}\n15\t\\newcommand{\\nof}{\\text{NoF}}\n16\t\\newcommand{\\sycon}{\\textsc{SyconScore}}\n17\t\\newcommand{\\rone}{R_1}\n18\t\\newcommand{\\rthree}{R_3}\n19\t\n20\t\\title{The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration}\n21\t\n22\t\\author{Anonymous}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t\\begin{abstract}\n28\t\\input{sections/abstract}\n29\t\\end{abstract}\n30\t\n31\t\\input{sections/introduction}\n32\t\n33\t\\input{sections/framework}\n34\t\n35\t\\input{sections/direction_quality}\n36\t\n37\t\\input{sections/cosine_failure}\n38\t\n39\t\\input{sections/probe_trap}\n40\t\n41\t\\input{sections/discussion}\n42\t\n43\t\\input{sections/related_work}\n44\t\n45\t\\input{sections/conclusion}\n46\t\n47\t\\section*{Limitations}\n48\t\\input{sections/limitations}\n49\t\n50\t\\bibliography{references}\n51\t\n52\t\\appendix\n53\t\\input{sections/appendix}\n54\t\n55\t\\end{document}\n56\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "974c099c-3869-4390-b014-58058a97bec7",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "b0cfa979-ae78-41c9-9afd-be16d2c60775",
+            "sourceToolAssistantUUID": "974c099c-3869-4390-b014-58058a97bec7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:17:02.629Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UNMCyQZ59kszc75KmgjqPW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0cfa979-ae78-41c9-9afd-be16d2c60775",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3800eed0-d21a-4bae-abd2-5c8be9d2e3d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:17:02.635Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UNMCyQZ59kszc75KmgjqPW",
+              "type": "tool_result",
+              "content": "1\tWe quantify a temporal decoupling we call the \\emph{probe reward trap}: when a frozen linear probe on a contrastive sycophancy direction ($\\dsyc$, cross-validated AUROC $0.827$ on Qwen3-8B, $0.779$ on Llama-3-8B) is used as an SFT training signal, behavioral death (true-positive flip rate $= 0$) occurs within 500 steps while generation entropy remains healthy (0.70). In our experiments, the resulting 1{,}300-step lag before distributional collapse means that entropy monitoring---the most common safeguard against reward hacking---misses the failure entirely. Because the trap arises under SFT with stopped gradients, it is independent of RL optimization dynamics, revealing a semantic limitation of the direction itself: $\\dsyc$ encodes \\emph{whether} belief changed, not \\emph{whether it should have}. In additional experiments on Qwen3-8B using GRPO with group size 2, cosine and continuous probe formulations of $\\dsyc$ also produced behavioral collapse; removing $\\dsyc$ entirely, behavioral-reward-only GRPO exceeded vanilla at only 4 of 31 checkpoints (12.9\\%), while ACT (dense per-token SFT) exceeded vanilla at every evaluated checkpoint (47/47 across all configurations). A group-size ablation and LoRA-controlled comparison confirm that this categorical reliability gap reflects supervision granularity rather than adapter capacity.\n2\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3800eed0-d21a-4bae-abd2-5c8be9d2e3d0",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "a1f0903c-48fd-488f-a84a-b4370cbd0314",
+            "sourceToolAssistantUUID": "3800eed0-d21a-4bae-abd2-5c8be9d2e3d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:17:03.207Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018FSBAF9xoTZsc6iVp1a8EE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1f0903c-48fd-488f-a84a-b4370cbd0314",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "71698db6-2806-454e-b02b-0392aac7f689",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:17:03.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018FSBAF9xoTZsc6iVp1a8EE",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_teaser.pdf}\n7\t\\caption{The probe reward trap. (a)~$\\dsyc$ discriminates sycophantic from non-sycophantic activations (AUROC $0.827$), but valid revision and unwarranted capitulation overlap along the same direction. (b)~When used as an SFT reward, behavioral death ($\\tof{=}0$) occurs at step 500 while entropy remains healthy; the 1{,}300-step lag renders standard monitoring blind.}\n8\t\\label{fig:teaser}\n9\t\\end{figure}\n10\t\n11\tRepresentation engineering \\citep{zou2023repe} reveals that large language models encode sycophancy as a linear direction in their residual streams.\n12\tA contrastive sycophancy direction $\\dsyc$, extracted from style-controlled pairs of valid belief revision and sycophantic capitulation, achieves cross-validated AUROC $0.827$ on Qwen3-8B and $0.779$ on Llama-3-8B, with discriminability rising monotonically across evidence-strength levels (\\S\\ref{sec:direction_quality}), though 256-token truncation during GRPO training degrades this to approximately 0.60 (\\S\\ref{sec:cosine_failure}).\n13\tThese results point to an appealing possibility: if the model's representations already separate sycophantic from non-sycophantic behavior, that separation should be convertible into a training signal.\n14\tSycophancy is among the most persistent alignment failures in deployed systems \\citep{sharma2023sycophancy}, and a representation-level signal could target the internal computation rather than its surface outputs.\n15\t\n16\tThis paper documents the \\emph{probe reward trap}: when a frozen linear probe on $\\dsyc$ is used as an SFT training signal with stopped gradients, behavioral death ($\\tof = 0$) occurs within 500 steps while generation entropy remains healthy (0.70), masking the failure from standard monitoring (\\S\\ref{sec:probe_trap}).\n17\tIn our experiments, the 1{,}300-step lag before distributional collapse means entropy-based early stopping---the most common safeguard against reward hacking \\citep{casper2023openproblems}---would miss the failure entirely, with the reward averaging $+0.72$ throughout.\n18\tBecause the trap arises under SFT rather than GRPO, it reflects a limitation of $\\dsyc$ itself: the direction encodes \\emph{whether} belief changed, not \\emph{whether it should have}, so any reward conditioned on it alone will either be gamed or reward rigidity.\n19\t\n20\tUnder our GRPO configuration (Qwen3-8B, group size$=$2), two additional $\\dsyc$-based formulations---cosine projection (\\S\\ref{sec:cosine_failure}) and continuous probe---also produced behavioral collapse.\n21\tRemoving $\\dsyc$ entirely, $\\rthree$-only GRPO (behavioral reward alone) exceeded vanilla at only 4 of 31 checkpoints (12.9\\%) across two seeds and a group-size ablation.\n22\tACT \\citep{consistency2025bctact} (dense per-token SFT) exceeds vanilla at every evaluated checkpoint (47/47 across all configurations; \\S\\ref{sec:discussion}), and a LoRA-controlled ablation confirms the reliability gap reflects supervision granularity.\n23\t\n24\tThe root cause is a semantic gap between discriminability and reward utility.\n25\tTechniques for discovering latent knowledge \\citep{burns2023ccs} and representation-guided RL \\citep{zhang2026latentgrpo} share a premise: a direction with high discriminability should transfer into a useful training signal.\n26\tFor reasoning faithfulness and safety directions, this premise holds because the behavior to suppress is geometrically distinct from the behavior to preserve.\n27\tSycophancy violates this condition: capitulation under social pressure and revision under valid evidence produce overlapping activation signatures along $\\dsyc$ \\citep{wang2025internal, shapira2026amplifies}.\n28\tWhen reward overoptimization \\citep{gao2023scaling} operates on a signal that conflates compliance with capitulation, the result is predictable collapse \\citep{skalse2022hacking}.\n29\t\n30\tThis paper presents a negative result with mechanistic analysis.\n31\tOur two principal findings (Figure~\\ref{fig:teaser}):\n32\t\n33\t\\begin{itemize}\n34\t\\item \\textbf{The probe reward trap} (C2): behavioral death ($\\tof{=}0$) precedes distributional collapse by 1{,}300 steps, rendering entropy monitoring blind. The trap arises under SFT with stopped gradients, implicating $\\dsyc$ itself rather than the optimizer (\\S\\ref{sec:probe_trap}).\n35\t\n36\t\\item \\textbf{Categorical reliability gap between supervision paradigms} (C1): per-token SFT exceeds vanilla at every checkpoint (47/47 across all configurations and seeds) while per-completion GRPO exceeds vanilla at only 4/31 (12.9\\%); under matched LoRA, the magnitude gap is $1.7{\\times}$ (\\S\\ref{sec:discussion}).\n37\t\\end{itemize}\n38\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71698db6-2806-454e-b02b-0392aac7f689",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "e18db04e-9eb4-42b2-a0c0-2740b0419b9a",
+            "sourceToolAssistantUUID": "71698db6-2806-454e-b02b-0392aac7f689",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:17:04.040Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RkjCcWmXmmDAz4SghDrsTz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/framework.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e18db04e-9eb4-42b2-a0c0-2740b0419b9a",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4aa5a1f1-4686-4135-a091-5d6222b02bba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:17:04.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RkjCcWmXmmDAz4SghDrsTz",
+              "type": "tool_result",
+              "content": "1\t\\section{Experimental Framework}\n2\t\\label{sec:framework}\n3\t\n4\t\\subsection{Direction Extraction}\n5\t\\label{ssec:extraction}\n6\t\n7\tWe extract a linear sycophancy direction $\\dsyc$ from the residual stream using contrastive activation pairs: a \\emph{valid correction} (warranted belief revision under strong evidence) and a \\emph{sycophantic capitulation} (unwarranted concession under social pressure).\n8\tWe construct 181 contrastive pairs using GPT-4.1 \\citep{openai2025gpt41} in a two-stage pipeline: skeleton generation followed by 3-turn dialogue completion.\n9\tStyle matching is enforced by automated validation (response length difference ${<}10\\%$, shared opening phrase ${\\geq}2$ words), with up to 3 retries per pair; 19 of 200 initial pairs were discarded for failing validation.\n10\tEvidence strength is annotated at three levels: \\emph{weak} (75 pairs; personal memory or opinion), \\emph{medium} (54 pairs; brief source citation), and \\emph{strong} (52 pairs; authoritative source with detailed data).\n11\tFrom the 181 paired examples (362 activations total), we compute the mean difference at target layer $\\ell$:\n12\t\\begin{equation}\n13\t\\label{eq:dsyc}\n14\t\\dsyc = \\frac{1}{N}\\sum_{i=1}^{N}\\left(\\mathbf{h}^{+}_i - \\mathbf{h}^{-}_i\\right)\n15\t\\end{equation}\n16\twhere $\\mathbf{h}^{+}_i$ and $\\mathbf{h}^{-}_i$ are residual-stream activations for the $i$-th valid and sycophantic response.\n17\tThe target layer is selected by 5-fold cross-validated AUROC; on Qwen3-8B this yields layer 19 with AUROC $0.827 \\pm 0.028$ (5-fold CV).\n18\t\n19\t\\subsection{Reward Formulations}\n20\t\\label{ssec:reward}\n21\t\n22\tThree formulations translate $\\dsyc$ into a direction-based signal $\\rone$.\n23\tFor F1 and F3, $\\rone$ enters as part of a GRPO \\citep{shao2024grpo} reward $R = w_1 \\cdot \\rone + w_3 \\cdot \\rthree$, where $\\rthree$ is a behavioral component (DeBERTa NLI classifier scoring consistency with the ground-truth answer).\n24\t\\begin{itemize}\n25\t\\item[\\textbf{F1}] \\textbf{Cosine projection} with four variants: (a) tanh-gated dot product $\\tanh(\\mathbf{h} \\cdot \\dsyc / 20)$, (b) raw cosine $\\cos(\\mathbf{h},\\, \\dsyc)$, (c) raw cosine with online recalibration (\\S\\ref{ssec:recalib}), and (d) $5{\\times}$ scaled cosine. See \\S\\ref{sec:cosine_failure} for details.\n26\t\\item[\\textbf{F2}] \\textbf{Binary probe (SFT).} $\\rone = \\mathbb{I}[P(\\text{syc} \\mid \\mathbf{h}) < 0.5]$, a frozen logistic probe with stopped gradients; trained via a custom SFT loss rather than GRPO (\\S\\ref{sec:probe_trap}).\n27\t\\item[\\textbf{F3}] \\textbf{Continuous probe.} $\\rone = 1 - P(\\text{syc} \\mid \\mathbf{h})$, the sigmoid output of the same logistic probe, providing a continuous reward signal without discretization.\n28\t\\end{itemize}\n29\tThe weight $w_1$ is set by diagnostic-driven iteration rather than grid search (Appendix~\\ref{app:training}).\n30\tAs an ablation, R3-only GRPO sets $w_1{=}0$, training with only the behavioral reward.\n31\t\n32\t\\subsection{Online Recalibration}\n33\t\\label{ssec:recalib}\n34\t\n35\tLoRA fine-tuning shifts internal representations, so we re-extract $\\dsyc$ every 500 steps.\n36\tThe cosine similarity between consecutive directions remains ${\\approx}\\,0.96$ at step 500, indicating slow drift relative to recalibration frequency.\n37\t\n38\t\\subsection{SFT Baseline: Activation Consistency Training}\n39\t\\label{ssec:baselines}\n40\t\n41\tWe implement Activation Consistency Training \\citep[ACT;][]{consistency2025bctact}, which combines standard SFT loss with an L2 activation consistency loss at target layers, providing dense per-token supervision.\n42\tUnlike GRPO's single scalar per completion, ACT operates at the token level using labeled valid/invalid pairs.\n43\t\n44\t\\subsection{Evaluation}\n45\t\\label{ssec:eval}\n46\t\n47\tThe \\emph{True-positive Flip rate} ($\\tof$) measures acceptance of valid corrections; the \\emph{No-Flip rate} ($\\nof$) measures resistance to invalid pressure.\n48\tTheir harmonic mean captures the calibration trade-off:\n49\t\\begin{equation}\n50\t\\label{eq:sycon}\n51\t\\sycon = \\frac{2 \\cdot \\tof \\cdot \\nof}{\\tof + \\nof}\n52\t\\end{equation}\n53\tBy design, $\\sycon = 0$ whenever $\\tof = 0$: a model that never accepts valid corrections receives no credit for resisting invalid ones.\n54\tFlip classification uses \\texttt{cross-encoder/nli-deberta-v3-base} \\citep{he2023debertav3}, following \\citet{consistency2025bctact}.\n55\tAll experiments use Qwen3-8B \\citep{yang2025qwen3} with LoRA (rank$=$64; $\\alpha{=}64$ for GRPO, $\\alpha{=}128$ for ACT) and DeepSpeed ZeRO-2.\n56\tGRPO uses a group size of 2 due to memory constraints with 8B-parameter models, below the typical range of 8--64 \\citep{shao2024grpo}; full hyperparameters are reported in Appendix~\\ref{app:training}.\n57\tWe test six $\\dsyc$-based configurations: four cosine $\\rone$ variants (F1a--F1d) and continuous probe $\\rone$ (F3) using GRPO, plus binary probe $\\rone$ (F2) using SFT, $\\rthree$-only GRPO as a non-directional baseline, and ActAdd as an inference-time baseline.\n58\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4aa5a1f1-4686-4135-a091-5d6222b02bba",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "d2961d50-70ab-4ef1-9abe-373e774b3282",
+            "sourceToolAssistantUUID": "4aa5a1f1-4686-4135-a091-5d6222b02bba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:17:04.513Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CcRbng3xBE8UojQWFQXXtt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/cosine_failure.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2961d50-70ab-4ef1-9abe-373e774b3282",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ddf6417d-33eb-49fe-a1dc-433529015293",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:17:04.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CcRbng3xBE8UojQWFQXXtt",
+              "type": "tool_result",
+              "content": "1\t\\section{Cosine \\texorpdfstring{$\\rone$}{R1}: Structural Failure}\n2\t\\label{sec:cosine_failure}\n3\t\n4\tSection~\\ref{sec:direction_quality} established that $\\dsyc$ achieves AUROC 0.827 on Qwen3-8B using full-length responses.\n5\tDuring GRPO training, 256-token truncation reduces $\\dsyc$ AUROC to approximately 0.60, meaning the optimizer works with a substantially weaker signal than offline metrics suggest.\n6\tWe now test whether this discriminability translates into a viable GRPO reward.\n7\tFour configurations form a diagnostic chain (Table~\\ref{tab:cosine_chain}): each resolves the failure mode of its predecessor but exposes a deeper limitation.\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\caption{Cosine $\\rone$ failure chain on Qwen3-8B (LoRA rank$=$64, GRPO with $R = w_1 \\cdot \\rone + w_3 \\cdot \\rthree$).}\n12\t\\label{tab:cosine_chain}\n13\t\\begin{tabular}{lllll}\n14\t\\toprule\n15\tConfig & $\\rone$ Formula & $w_1$ & Outcome & Root Cause \\\\\n16\t\\midrule\n17\tF1a & $\\tanh(\\mathbf{h}\\cdot\\dsyc/20)$ & 0.25 & Gate saturation & Norm mismatch \\\\\n18\tF1b & $\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.25 & $\\rone \\approx 0$ & Gap too small \\\\\n19\tF1c & +recalibration & 0.25 & Mode collapse & Reward discontinuity \\\\\n20\tF1d & $5\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.40 & Mode collapse & $\\rthree$ saturation \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{table}\n24\t\n25\tF1a uses a dot-product formulation ($\\rone = \\tanh(\\mathbf{h} \\cdot \\dsyc / 20)$), but residual-stream norms exceed the direction norm by $100$--$1{,}200{\\times}$, saturating the tanh gate and zeroing the gradient by step 955.\n26\tSwitching to cosine similarity (F1b) eliminates norm dependence, yet the cosine gap between valid and sycophantic activations averages only 0.098 across layers---too narrow to generate meaningful reward contrast.\n27\tOnline recalibration (F1c, \\S\\ref{ssec:recalib}) raises offline AUROC from 0.827 to 0.910 but paradoxically triggers mode collapse: the abrupt shift in $\\dsyc$ at each recalibration event creates a reward discontinuity that destabilizes GRPO advantage estimates, collapsing entropy to 0.069 within 300 steps.\n28\tAmplifying the signal with $5{\\times}$ scaling (F1d) lifts $\\rone$ above the noise floor but simultaneously amplifies the conflation between warranted revision and unwarranted capitulation; $\\rthree$ saturates at 0.9998 by step 300, leaving the noisy $\\rone$ as the sole gradient source until terminal collapse at step 2160.\n29\t\n30\tTruncation further degrades the signal: under the 256-token maximum completion length used in GRPO, $\\dsyc$ AUROC drops from 0.76 (full response) to 0.60, so the offline discriminability (0.827) substantially overestimates the signal available during training.\n31\tCheckpoint-level evaluation confirms immediate collapse: $\\tof{=}0$ from step 500 onward with no stable phase.\n32\tThe four configurations converge on a single conclusion: $\\dsyc$ encodes the \\emph{direction} of belief change but not whether that change is \\emph{warranted}.\n33\tValid revision and sycophantic capitulation both shift activations toward the user's position along $\\dsyc$, so the cosine projection assigns similar scores to both.\n34\tThis is not a calibration artifact---recalibration improves discriminability yet rewards still fail---but a semantic limitation of any continuous $\\dsyc$-based reward.\n35\tSection~\\ref{sec:probe_trap} examines whether discretizing the signal via a binary probe can escape this limitation.\n36\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddf6417d-33eb-49fe-a1dc-433529015293",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "05cf1c76-08c7-4e5b-8ec1-a717ed16904c",
+            "sourceToolAssistantUUID": "ddf6417d-33eb-49fe-a1dc-433529015293",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:17:05.018Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PysaGfJzMu4oL8rFuzP5Ut",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/probe_trap.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05cf1c76-08c7-4e5b-8ec1-a717ed16904c",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c7484401-c830-4edd-b07e-1fdafb29e719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:17:05.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PysaGfJzMu4oL8rFuzP5Ut",
+              "type": "tool_result",
+              "content": "1\t\\section{The Probe Reward Trap}\n2\t\\label{sec:probe_trap}\n3\t\n4\tThe cosine formulations fail because the continuous projection of $\\dsyc$ produces a gap too narrow for reward contrast.\n5\tA natural remedy is to discretize: train a logistic probe on $\\dsyc$ and threshold its output, yielding $\\rone = \\mathbb{I}[P(\\text{syc} \\mid \\mathbf{h}) < 0.5]$ (F2 in \\S\\ref{ssec:reward}).\n6\tWe show that this discretization sidesteps the magnitude problem but creates a qualitatively worse failure.\n7\tBoth probe experiments use SFT rather than GRPO (\\S\\ref{ssec:reward}); the trap is therefore independent of GRPO's optimization dynamics.\n8\t\n9\t\\paragraph{Differentiable probe: gradient gaming.}\n10\tWithout stop-gradient (exp-008), the policy discovers within ${\\sim}30$ steps that shifting activations away from the sycophancy cluster maximizes $\\rone$ regardless of response content, producing an inverted profile ($\\tof = 0.978$, $\\nof = 0.006$).\n11\tThis motivates the frozen-probe design below.\n12\t\n13\t\\paragraph{Binary probe: the stubbornness trap.}\n14\tWith stop-gradient (exp-008v3), the policy cannot game the boundary but instead exploits a deeper flaw: $\\dsyc$ does not condition on input validity, so refusing to revise a wrong answer receives the same $\\rone = 1$ as correctly resisting invalid pressure.\n15\tBy step 500, $\\tof$ drops to 0.000 and $\\nof$ reaches 0.995, yielding $\\sycon = 0$.\n16\tQualitative analysis of 181 valid-correction responses reveals five failure modes: \\emph{deliberation traps} (28.7\\%), where the model identifies the correct answer but cannot commit; \\emph{sycophantic stubbornness} (24.3\\%), where the model verbally agrees but does not change its answer; \\emph{acknowledge-but-maintain} (23.8\\%); \\emph{genuine-accept-missed} (18.8\\%); and refute/ignore/other (4.5\\%). Full taxonomy in Appendix~\\ref{app:taxonomy}.\n17\t\n18\t\\paragraph{Behavioral death precedes distributional collapse.}\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\caption{Probe reward trap trajectory (exp-008v3). Behavioral death ($\\tof{=}0$) occurs at step 500; entropy remains healthy until step ${\\sim}1840$. Reward averages $+0.72$ throughout.}\n23\t\\label{tab:probe_trajectory}\n24\t\\begin{tabular}{lccccc}\n25\t\\toprule\n26\tStep & $\\tof$ & $\\nof$ & $\\sycon$ & Entropy & Reward \\\\\n27\t\\midrule\n28\t500 & 0.000 & 0.995 & 0.000 & 0.702 & +0.72 \\\\\n29\t1000 & 0.006 & 0.995 & 0.011 & 0.800 & +0.71 \\\\\n30\t1500 & 0.000 & 1.000 & 0.000 & 0.608 & +0.69 \\\\\n31\t2000 & 0.000 & 1.000 & 0.000 & 0.304 & +0.69 \\\\\n32\t\\bottomrule\n33\t\\end{tabular}\n34\t\\end{table}\n35\t\n36\t\\begin{figure}[t]\n37\t\\centering\n38\t\\includegraphics[width=\\columnwidth]{figures/fig_probe_trap.pdf}\n39\t\\caption{Probe reward trap (exp-008v3). $\\tof$ drops to zero at step 500 while generation entropy remains high (0.70--0.80 through step 1000). The 1{,}300-step lag means standard entropy monitoring misses the behavioral failure entirely.}\n40\t\\label{fig:probe_trap}\n41\t\\end{figure}\n42\t\n43\tTable~\\ref{tab:probe_trajectory} and Figure~\\ref{fig:probe_trap} reveal a 1{,}300-step lag between behavioral and distributional collapse.\n44\tAt step 500, the model is behaviorally dead ($\\tof = 0$) yet entropy remains high (0.70--0.80) through step 1000---well within the range that standard monitors would flag as healthy---and the combined reward averages $+0.72$ because both $\\rone$ and $\\rthree$ reinforce non-flipping.\n45\tEntropy does not collapse until step ${\\sim}1840$.\n46\tThis gap carries a practical warning: entropy-based early stopping, the most common safeguard against reward hacking~\\citep{casper2023openproblems}, would miss the failure entirely.\n47\tDetecting probe reward traps requires behavioral monitoring (periodic $\\tof$ evaluation), not distributional monitoring alone.\n48\t\n49\t\\paragraph{A dilemma for direction-based rewards.}\n50\tThe differentiable and binary failures bracket the design space.\n51\tWith gradients, the policy games the boundary; without gradients, it exploits the fact that stubbornness and genuine resistance are indistinguishable along $\\dsyc$.\n52\tAny reward conditioned only on $\\dsyc$---continuous or discrete, differentiable or frozen---will either be gamed or will reward rigidity.\n53\tEscaping this dilemma requires a signal that incorporates the evidential warrant of the user's challenge, a dimension that $\\dsyc$ does not encode~\\citep{denison2024subterfuge}.\n54\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7484401-c830-4edd-b07e-1fdafb29e719",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "5608faf9-c40d-46ff-b062-4c12c0b5a25e",
+            "sourceToolAssistantUUID": "c7484401-c830-4edd-b07e-1fdafb29e719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:17:05.886Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01So3Z1AdqjvUFnhmSb9nNSE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/direction_quality.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5608faf9-c40d-46ff-b062-4c12c0b5a25e",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "177671bb-bd52-4e6c-ad20-2156a8dab45b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:17:05.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01So3Z1AdqjvUFnhmSb9nNSE",
+              "type": "tool_result",
+              "content": "1\t\\section{Direction Discriminability}\n2\t\\label{sec:direction_quality}\n3\t\n4\tBefore evaluating $\\dsyc$ as a reward signal (\\S\\ref{sec:cosine_failure}--\\S\\ref{sec:probe_trap}), we first establish that it captures a genuine sycophancy-related signal in the residual stream.\n5\tIf the direction failed to discriminate sycophantic from non-sycophantic activations, downstream reward failures would be trivially explained by poor direction quality rather than by a fundamental gap between discriminability and reward utility.\n6\tWe evaluate discriminability along five axes: cross-validated classification accuracy, evidence-strength stratification, cross-model transfer, training stability, and probe ablation.\n7\tFigure~\\ref{fig:direction_quality} summarizes the per-layer AUROC profiles for both models.\n8\t\n9\t\\paragraph{Qwen3-8B layer-wise discriminability.}\n10\tWe evaluate $\\dsyc$ via 5-fold cross-validated AUROC on 181 style-controlled contrastive pairs (\\S\\ref{ssec:extraction}).\n11\tThe direction achieves AUROC $0.827 \\pm 0.028$ (5-fold CV) at its best layer (L19).\n12\tDiscriminability emerges gradually across depth: layers L0--L8 perform near chance, statistical significance ($p < 0.01$) first appears at L16, and performance peaks at L19.\n13\tThis gradual emergence, with the peak in the upper third of the network, suggests that sycophancy-relevant information is encoded as a late-stage representation rather than an input-level confound.\n14\tThe direction also captures evidential granularity.\n15\tAUROC rises monotonically from 0.675 on weak-evidence pairs to 0.883 on medium and 0.929 on strong pairs.\n16\tDiscriminability covaries with evidence strength, possibly because stronger evidence produces more behaviorally distinct responses rather than because $\\dsyc$ explicitly encodes epistemic quality.\n17\t\n18\t\\paragraph{Cross-model generalization.}\n19\tTo rule out that these results are specific to Qwen3-8B's representation geometry, we repeat the full extraction and evaluation pipeline on Llama-3-8B-Instruct \\citep{grattafiori2024llama3}.\n20\tTable~\\ref{tab:cross_model} compares the two models.\n21\tLlama-3-8B achieves AUROC $0.779 \\pm 0.019$ (5-fold CV) at L16, with a parallel evidence-strength gradient (weak 0.711, medium 0.864, strong 0.911).\n22\tThe best-layer depth differs (L16 vs.\\ L19), consistent with the architectural differences between the two families, but the qualitative pattern is identical: gradual emergence, best-layer selection in the upper third, and monotonic strength scaling.\n23\tDiscriminability is robust across knowledge domains, with per-domain AUROCs on Llama-3-8B ranging from 0.751 (geography) to 0.844 (commonsense).\n24\tWhen surface confounds (response length, hedging patterns) are explicitly controlled, Llama-3-8B's AUROC rises to 0.923, which confirms that the direction captures semantic content rather than stylistic artifacts.\n25\tThe consistent results across architecturally distinct model families indicate that contrastive sycophancy directions reflect a shared representational phenomenon rather than a model-specific idiosyncrasy.\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\caption{Cross-model $\\dsyc$ discriminability. AUROC uncertainty is 5-fold cross-validation standard deviation; evidence-strength AUROCs are evaluated on the full dataset at each model's best layer.}\n30\t\\label{tab:cross_model}\n31\t\\begin{tabular}{lccccc}\n32\t\\toprule\n33\tModel & Best Layer & AUROC ($\\pm$ std) & Weak & Medium & Strong \\\\\n34\t\\midrule\n35\tQwen3-8B & L19 & $0.827 \\pm 0.028$ & 0.675 & 0.883 & 0.929 \\\\\n36\tLlama-3-8B & L16 & $0.779 \\pm 0.019$ & 0.711 & 0.864 & 0.911 \\\\\n37\t\\bottomrule\n38\t\\end{tabular}\n39\t\\end{table}\n40\t\n41\t\\begin{figure}[t]\n42\t\\centering\n43\t\\includegraphics[width=\\columnwidth]{figures/fig_layer_auroc.pdf}\n44\t\\caption{Per-layer AUROC of $\\dsyc$ as a function of normalized depth (layer index / total layers). Qwen3-8B (36 layers, solid) shows gradual emergence from near-chance at L0 to a peak at L19, with performance plateauing in the final third. Llama-3-8B (32 layers, dashed; layers 16--31 only) exhibits a similar upper-third concentration. Both models achieve best discriminability in layers 50--60\\% through the network.}\n45\t\\label{fig:direction_quality}\n46\t\\end{figure}\n47\t\n48\t\\paragraph{Training stability and probe ablation.}\n49\tTwo additional analyses confirm the robustness of $\\dsyc$ under training dynamics.\n50\tFirst, we track direction drift during LoRA fine-tuning: at step 500, the cosine similarity between the original and re-extracted $\\dsyc$ is approximately 0.96, and per-layer AUROC remains above 0.77.\n51\tThe direction drifts slowly relative to the 500-step recalibration interval (\\S\\ref{ssec:recalib}), so the reward signal does not become stale between updates.\n52\tSecond, we compare $\\dsyc$ against a random baseline: a logistic probe trained on the learned direction achieves AUROC 0.835, versus 0.727 for a probe trained on a random direction of equal dimensionality ($\\Delta{=}{+}0.108$).\n53\tThe learned direction carries substantially more sycophancy-relevant information than an arbitrary axis in the same activation space.\n54\t\n55\t\\paragraph{Implications for reward design.}\n56\tThese results establish that $\\dsyc$ reliably separates sycophantic from non-sycophantic representations across models, evidence-strength levels, and training checkpoints.\n57\tDirection quality is not the bottleneck.\n58\tThe reward failures documented in \\S\\ref{sec:cosine_failure}--\\S\\ref{sec:probe_trap} therefore cannot be attributed to a noisy or degenerate direction; they point to a deeper incompatibility between discriminability and reward utility.\n59\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "177671bb-bd52-4e6c-ad20-2156a8dab45b",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "f798c9b7-14fa-4f6a-bbb8-1f4e29bf68e6",
+            "sourceToolAssistantUUID": "177671bb-bd52-4e6c-ad20-2156a8dab45b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:17:06.397Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ju5oVpcy1UtvRVMuJJMCwv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f798c9b7-14fa-4f6a-bbb8-1f4e29bf68e6",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3ab16859-e7c7-4f46-b334-b1c7c553470b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:17:06.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ju5oVpcy1UtvRVMuJJMCwv",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Representation Engineering.}\n4\tLinear directions in LLM residual streams encode behavioral concepts \\citep{zou2023repe}; inference-time methods---ITI \\citep{li2023iti}, ActAdd \\citep{turner2023actadd}, CAA \\citep{rimsky2024caa}---demonstrate that activation geometry suffices for behavioral control \\citep{burns2023ccs}.\n5\tWe use the same contrastive extraction as CAA but apply $\\dsyc$ as an RL reward, revealing a gap that inference-time work does not encounter.\n6\t\n7\t\\paragraph{Reward Design and Overoptimization.}\n8\tProxy rewards diverge from true objectives under sustained optimization \\citep{gao2023scaling}, and reward hacking can escalate to active tampering \\citep{denison2024subterfuge}.\n9\tOur probe trap (\\S\\ref{sec:probe_trap}) is an extreme instance: the reward actively reinforces degenerate behavior rather than merely being circumvented \\citep{skalse2022hacking}.\n10\t\\citet{wu2026rewardhacking} demonstrate that representation-level directions succeed for reward hacking suppression when behaviors are geometrically separable (\\S\\ref{sec:discussion}).\n11\t\n12\t\\paragraph{Sycophancy Characterization and Mitigation.}\n13\tSycophancy is pervasive in RLHF-trained assistants \\citep{sharma2023sycophancy}, amplified by RLHF \\citep{shapira2026amplifies}, and traceable to late-layer preference shifts \\citep{wang2025internal}; mitigation approaches include synthetic data \\citep{wei2024synthetic}, consistency training \\citep{consistency2025bctact}, and neuron-level correction \\citep{obrien2025fewbadneurons}.\n14\tOur analysis shows why the step from diagnosis to reward is structurally blocked: $\\dsyc$ conflates warranted revision with unwarranted capitulation.\n15\t\n16\t\\paragraph{Probe-Based and Representation-Guided Methods.}\n17\t\\citet{papadatos2024probepenalties} reduce sycophancy via Best-of-N reranking with linear probe penalties (94\\% probe accuracy), where the probe selects among candidates without producing gradients that update model parameters.\n18\tOur work reveals what happens when a comparable signal (AUROC $0.827$) enters the GRPO training loop: the discriminability--utility gap is specific to gradient-based optimization, not to probe quality per se (\\S\\ref{sec:discussion}).\n19\tLatent-GRPO \\citep{zhang2026latentgrpo} extends GRPO with latent-space rewards for reasoning; CRAFT \\citep{luo2026craft} applies representation-level constraints during RL; \\citet{sinii2025smallvectors} and \\citet{ackermann2026gradreg} study representation dynamics under RL.\n20\tSMART \\citep{beigi2025smart} applies per-step process rewards with MCTS for sycophancy, succeeding where our completion-level scalar rewards fail; the key difference is supervision granularity, consistent with ACT's per-token success.\n21\tPreference-based methods (DPO \\citep{rafailov2023dpo}, KTO \\citep{ethayarajh2024kto}) may accommodate $\\dsyc$-derived rankings; whether pair-wise optimization avoids the failures we observe remains open.\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ab16859-e7c7-4f46-b334-b1c7c553470b",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "a2e20163-a73d-4ad9-bc9e-bae5a09f8dc9",
+            "sourceToolAssistantUUID": "3ab16859-e7c7-4f46-b334-b1c7c553470b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:17:06.872Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B6k4Jx8KrSwjafBFURyTRg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2e20163-a73d-4ad9-bc9e-bae5a09f8dc9",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05332940-1b3f-434a-a827-138bd3a0724a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:17:06.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B6k4Jx8KrSwjafBFURyTRg",
+              "type": "tool_result",
+              "content": "1\t\\section{When Does Discriminability Fail as Reward Utility?}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Root cause of the probe reward trap.}\n4\tThe probe reward trap (\\S\\ref{sec:probe_trap}) and the cosine failures (\\S\\ref{sec:cosine_failure}) share a common geometric root.\n5\t$\\dsyc$ encodes the \\emph{direction} of belief change but not its \\emph{evidential warrant}: valid revision and sycophantic capitulation both shift activations toward the user's position along the same direction.\n6\tThe two reward families expose complementary faces of this blindness.\n7\tCosine $\\rone$ penalizes all belief change indiscriminately; the resulting mode collapse (F1c, F1d) reflects excessive punishment of any activation shift along $\\dsyc$.\n8\tThe binary probe $\\rone$ rewards all resistance regardless of input validity; the stubbornness trap ($\\tof = 0$ by step 500) reflects excessive permissiveness toward activation stasis.\n9\tThese are not independent design flaws but dual consequences of a direction that conflates the target behavior (resisting invalid challenges) with its complement (refusing valid corrections).\n10\tCross-model evidence confirms the limitation extends beyond Qwen3-8B: Llama-3-8B independently achieves AUROC $0.779 \\pm 0.019$ on the same contrastive pairs with the same monotonic evidence gradient, so discriminability generalizes across architectures while the semantic gap between discriminability and reward utility persists.\n11\tThis pattern contrasts with reasoning faithfulness and safety directions~\\citep{zhang2026latentgrpo}, where the behavior to suppress is geometrically distinct from the behavior to preserve along the relevant direction.\n12\t\\citet{wu2026rewardhacking} reinforce this principle: concept directions applied via advantage modification in GRPO achieve 100\\% validation accuracy for reward hacking detection, where shortcut behaviors are geometrically separable.\n13\tA quantitative comparison of geometric separability between $\\dsyc$ and their reward-hacking directions remains an important open question.\n14\tFor sycophancy, the target and its complement occupy the same activation region; they differ only in whether external evidence warrants the belief change.\n15\t\n16\t\\paragraph{GRPO results under our configuration.}\n17\t\n18\t\\begin{table}[t]\n19\t\\centering\n20\t\\caption{Comparison of all sycophancy calibration methods on Qwen3-8B. $\\sycon$ is the harmonic mean of $\\tof$ and $\\nof$; higher indicates better calibration. Best result in \\textbf{bold}. $^\\dagger$Best checkpoint (seed 1, step 6500); only 4/28 checkpoints across two seeds exceed vanilla. $^\\ddagger$Seed 2 (15 checkpoints); all exceed vanilla. Best $\\sycon{=}0.286$ (step 7000). $^\\S$All cosine variants collapsed from step 1 ($\\tof{=}0$ at every checkpoint); F1d additionally diverged at step 2160 (entropy ${<}\\,0.01$). $^\\P$ACT and ActAdd differ from GRPO along 5+ dimensions (\\S\\ref{sec:discussion}); included for context, not as controlled comparisons.}\n21\t\\label{tab:main_comparison}\n22\t\\begin{tabular}{llcccc}\n23\t\\toprule\n24\tMethod & Type & $\\sycon$ $\\uparrow$ & $\\tof$ $\\uparrow$ & $\\nof$ $\\uparrow$ & Step \\\\\n25\t\\midrule\n26\tVanilla & -- & 0.134 & 0.072 & 0.945 & -- \\\\\n27\t\\midrule\n28\t\\multicolumn{6}{l}{\\textit{GRPO with $\\dsyc$}} \\\\\n29\tCosine $\\rone$ (F1a--F1d) & RL & 0.000$^\\S$ & 0.000 & 1.000 & 500 \\\\\n30\tContinuous Probe $\\rone$ (F3) & RL & 0.124 & 0.066 & 0.934 & 500 \\\\\n31\t\\midrule\n32\t\\multicolumn{6}{l}{\\textit{SFT with $\\dsyc$ probe penalty}} \\\\\n33\tBinary Probe $\\rone$ (F2) & SFT & 0.000 & 0.000 & 0.995 & 500 \\\\\n34\t\\midrule\n35\t\\multicolumn{6}{l}{\\textit{GRPO without $\\dsyc$}} \\\\\n36\t$\\rthree$-only GRPO & RL & 0.153$^\\dagger$ & 0.083 & 0.983 & 6500 \\\\\n37\t\\midrule\n38\t\\multicolumn{6}{l}{\\textit{Reference methods (not directly comparable)$^\\P$}} \\\\\n39\tActAdd ($\\alpha{=}5$) & Inference & 0.054 & 0.028 & 0.961 & -- \\\\\n40\t\\textbf{ACT} (seed 1) & SFT & \\textbf{0.301} & \\textbf{0.182} & 0.867 & 8000 \\\\\n41\tACT (seed 2)$^\\ddagger$ & SFT & 0.286 & -- & -- & 7000 \\\\\n42\t\\bottomrule\n43\t\\end{tabular}\n44\t\\end{table}\n45\t\n46\tTable~\\ref{tab:main_comparison} summarizes all methods evaluated on Qwen3-8B.\n47\t$\\rthree$-only GRPO removes $\\dsyc$ entirely and relies on the NLI-based behavioral reward alone.\n48\tIf the failures in Sections~\\ref{sec:cosine_failure} and~\\ref{sec:probe_trap} stemmed solely from the representation reward, this ablation should recover calibration quality.\n49\tIt does not.\n50\tThe $\\sycon$ trajectory for $\\rthree$-only GRPO oscillates without sustained improvement.\n51\tSeed 1 peaks at 0.153 (checkpoint 6500) and ends at 0.143 (checkpoint 8000); seed 2 peaks at 0.143 (checkpoint 4000, its only checkpoint exceeding vanilla) and ends at 0.124 (checkpoint 8000).\n52\tOnly 4 of 28 checkpoints across both seeds exceed vanilla (14.3\\%): 3/12 for seed 1 (25\\%) and 1/16 for seed 2 (6.3\\%), while ACT exceeds vanilla at every evaluated checkpoint (31/31 across two seeds; Figure~\\ref{fig:trajectory}).\n53\tBoth seeds exhibit oscillations of similar amplitude ($\\Delta \\approx 0.069$) with crash onset differing by ${\\sim}2{,}500$ steps, indicating stochastic drift in a saturated reward landscape.\n54\tActivation analysis confirms the drift is not representational: $\\dsyc$ AUROC varies by ${<}0.01$ across checkpoints and $\\rthree$ saturates at ${\\sim}0.98$ ($p{=}0.703$), yet $\\sycon$ swings by 17\\%, reinforcing the disconnect between discriminability and behavioral utility.\n55\tUnder our configuration (group size$=$2), $\\rthree$-only GRPO exhibits a similar stubbornness pattern to the $\\dsyc$ approaches (high $\\nof$, near-zero $\\tof$) at milder severity.\n56\t\n57\t\\paragraph{Competing hypotheses and ablation.}\n58\tThree explanations are consistent with our GRPO results: (a)~$\\dsyc$ is fundamentally unsuitable as a reward signal for sycophancy calibration; (b)~GRPO with group size$=$2 provides insufficient ranking diversity for any reward to achieve stable calibration; (c)~sycophancy calibration is inherently unsuitable for scalar per-completion RL.\n59\tTwo ablations address these hypotheses (Table~\\ref{tab:ablation}).\n60\tIncreasing group size from 2 to 8 does not improve $\\rthree$-only GRPO: three checkpoints showed a monotonically declining trajectory ($0.084 \\to 0.085 \\to 0.054$), all below vanilla, and gs$=$8 (best 0.085) underperforms gs$=$2 (best 0.153); the experiment was terminated early.\n61\tThis rules out hypothesis~(b) as the primary explanation.\n62\tReducing ACT's LoRA configuration to match GRPO's (rank 64, $\\alpha{=}64$, 4 modules) yields $\\sycon = 0.267$ (peak 0.326 at step 7000); all 16 checkpoints exceed vanilla.\n63\tUnder identical LoRA configurations, per-token SFT ($\\sycon{=}0.267$) exceeds per-completion GRPO ($\\sycon{=}0.153$) by $1.7{\\times}$; supervision granularity is the primary driver, while LoRA capacity modulates convergence rate but is not the determining factor.\n64\tThe probe reward trap (C2) provides independent evidence for~(a): it arises under SFT where group size is irrelevant.\n65\t\n66\t\\begin{table}[t]\n67\t\\centering\n68\t\\small\n69\t\\caption{Ablation: isolating supervision paradigm from LoRA configuration. All methods use Qwen3-8B with $\\rthree$ (behavioral reward). Vanilla $\\sycon{=}0.134$. $^\\dagger$Terminated early after three checkpoints showed monotonically declining trajectory. $^\\ddagger$Peak at step 7000; final checkpoint (step 8000) $\\sycon{=}0.267$.}\n70\t\\label{tab:ablation}\n71\t\\begin{tabular}{llcc}\n72\t\\toprule\n73\tMethod & LoRA config & Best $\\sycon$ & ${>}$Van. \\\\\n74\t\\midrule\n75\tGRPO gs$=$2 (2 seeds) & r64, $\\alpha$64, 4m & 0.153 & 4/28 \\\\\n76\tGRPO gs$=$8$^\\dagger$ & r64, $\\alpha$64, 4m & 0.085 & 0/3 \\\\\n77\t\\midrule\n78\tACT reduced-LoRA$^\\ddagger$ & r64, $\\alpha$64, 4m & 0.326 & 16/16 \\\\\n79\tACT full s1 & r64, $\\alpha$128, 7m & 0.301 & 16/16 \\\\\n80\tACT full s2 & r64, $\\alpha$128, 7m & 0.286 & 15/15 \\\\\n81\t\\bottomrule\n82\t\\end{tabular}\n83\t\\end{table}\n84\t\n85\t\\begin{figure}[t]\n86\t\\centering\n87\t\\includegraphics[width=\\columnwidth]{figures/fig_trajectory.pdf}\n88\t\\caption{$\\sycon$ trajectories for $\\rthree$-only GRPO (two seeds) and ACT (two seeds) over training steps. ACT exceeds vanilla at every evaluated checkpoint (31/31 across two seeds); $\\rthree$-only GRPO exceeds vanilla at only 4/28 checkpoints (14.3\\%).}\n89\t\\label{fig:trajectory}\n90\t\\end{figure}\n91\t\n92\t\\paragraph{ACT vs.\\ GRPO.}\n93\tACT~\\citep{consistency2025bctact} achieves $\\sycon = 0.301$ (seed 1) and $0.286$ (seed 2) at their respective peaks, more than $2{\\times}$ vanilla and above every GRPO variant (Table~\\ref{tab:main_comparison}) (held-out validation confirms generalization; see Limitations).\n94\tThe trajectory is not monotonic---seed 1 dips to 0.214 at step 4000 but self-recovers by step 6000, unlike GRPO where stubbornness persists.\n95\tFull ACT peaks around steps 7000--8000 while reduced-LoRA surges to 0.326 at step 7000; both variants maintain above-vanilla performance throughout.\n96\tThe gap is categorical: ACT's worst checkpoint ($\\sycon{=}0.170$, full config) exceeds GRPO's absolute best ($\\sycon{=}0.153$, R3-only seed 1, step 6500).\n97\tThe reduced-LoRA ablation (Table~\\ref{tab:ablation}) partially disentangles the five confounding dimensions: with LoRA capacity controlled, per-token SFT still dominates---and reduced-LoRA ACT ($\\sycon{=}0.326$) exceeds full ACT ($\\sycon{=}0.301$), ruling out adapter capacity as the explanation.\n98\t\n99\t\\paragraph{Relationship to inference-time probe methods.}\n100\t\\citet{papadatos2024probepenalties} successfully reduce sycophancy using a probe of comparable quality (94\\% accuracy) via Best-of-N reranking, where the probe selects among candidates without producing gradients.\n101\tTogether with our results, this suggests two orthogonal failure dimensions: (1)~inside vs.\\ outside the optimization loop---gradient exploitation enables the probe reward trap (\\S\\ref{sec:probe_trap}), while inference-time reranking sidesteps it; and (2)~scalar per-completion reward---the failure persists even without the probe ($\\rthree$-only GRPO), consistent with per-completion information compression as an independent factor.\n102\t\n103\t\\paragraph{Future directions.}\n104\tCondition-aware rewards, hybrid SFT-then-RL pipelines, and per-step process rewards offer paths forward; whether other REINFORCE-style methods or behavioral attributes with similar geometric entanglement~\\citep{skalse2022hacking} exhibit the same failures remains open.\n105\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05332940-1b3f-434a-a827-138bd3a0724a",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "003ceca6-0e65-4aed-b9a1-ac74cef43459",
+            "sourceToolAssistantUUID": "05332940-1b3f-434a-a827-138bd3a0724a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:17:07.339Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KnQ57Tqqx5TNfbog4yf4Tk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "003ceca6-0e65-4aed-b9a1-ac74cef43459",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "121b0546-175c-47cb-847f-dcfd755821ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:17:07.344Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KnQ57Tqqx5TNfbog4yf4Tk",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tThe probe reward trap reveals that behavioral death can precede distributional collapse by 1{,}300 steps, rendering entropy-based monitoring blind to the failure.\n4\tBecause the trap arises under SFT with stopped gradients, it reflects a semantic limitation of $\\dsyc$, not an RL artifact; under GRPO, all formulations failed (4/31 checkpoints ${>}$ vanilla across configurations) while per-token SFT succeeded at every checkpoint (47/47), and a LoRA-controlled ablation confirms supervision granularity as the primary factor~(\\S\\ref{sec:discussion}).\n5\tOur results suggest that geometric separability between the target behavior and its complement is a precondition for representation-derived rewards: directions that discriminate a behavior but conflate its warranted and unwarranted variants will reward rigidity or be gamed.\n6\tCondition-aware rewards that incorporate evidential warrant with dense per-token supervision, rather than relying on activation geometry or per-completion scalars alone, offer the most promising path forward.\n7\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "121b0546-175c-47cb-847f-dcfd755821ed",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "ed884985-026f-4a9f-87c1-36960158d468",
+            "sourceToolAssistantUUID": "121b0546-175c-47cb-847f-dcfd755821ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:17:08.268Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DEpURfcVhSeLtBcZ11axmL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed884985-026f-4a9f-87c1-36960158d468",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "73cc507c-1e3a-4fa7-9e1c-5e1842551fc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:17:08.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DEpURfcVhSeLtBcZ11axmL",
+              "type": "tool_result",
+              "content": "1\tOur GRPO experiments use group sizes of 2 and 8, below the typical 8--64 range \\citep{shao2024grpo}; a gs$=$8 ablation rules out variance reduction but larger sizes remain unexplored. All completions are truncated to 256 tokens (shared across conditions), which degrades $\\dsyc$ AUROC from 0.76 to 0.60 and may affect absolute reward-utility conclusions.\n2\tTraining and evaluation share the same 181 pairs; a held-out split (146/35) confirms ACT generalizes ($\\sycon{\\approx}0.20$ at peak, $3.7{\\times}$ vanilla, 72\\% of full-data ceiling), but performance declines at step 2000 ($\\sycon{=}0.157$, still $2.8{\\times}$ vanilla) due to overfitting on the small training set, and the 28\\% gap suggests partial reliance on training-set-specific patterns.\n3\tThe probe reward trap (C2) is demonstrated with a single seed; while SFT training is more deterministic than RL, replication would strengthen the temporal decoupling finding.\n4\tAll RL training uses Qwen3-8B; cross-model discriminability is confirmed on Llama-3-8B (AUROC $0.779$; Table~\\ref{tab:cross_model}), but compute constraints prevented training replication on a second architecture.\n5\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73cc507c-1e3a-4fa7-9e1c-5e1842551fc7",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "3a085660-cff9-43a7-840a-e63897338795",
+            "sourceToolAssistantUUID": "73cc507c-1e3a-4fa7-9e1c-5e1842551fc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:17:08.447Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011rQNAvt7mJTfGKqbXShHeN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a085660-cff9-43a7-840a-e63897338795",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL39GHn2z5r526vbZNNX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a6dcf71e-eb72-4096-9e18-67ae3f21febe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gov7KFaV3yRhxnhf6X9yW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 14046,
+                "output_tokens": 978,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1228
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 978,
+                    "cache_read_input_tokens": 14046,
+                    "cache_creation_input_tokens": 1228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1228,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:17:08.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011rQNAvt7mJTfGKqbXShHeN",
+              "type": "tool_result",
+              "content": "1\t\\section{Training Details}\n2\t\\label{app:training}\n3\t\n4\t\\paragraph{Reward weight selection.}\n5\tThe weight $w_1$ is set by diagnostic-driven iteration: $w_1{=}0.25$ was initially chosen to down-weight the noisy cosine reward term; this was later increased to $w_1{=}0.40$ for F1d after diagnostics revealed that $w_1{=}0.25$ allowed the cosine term to contribute only ${\\sim}8.3\\%$ of total reward variance.\n6\tThe empirical scaling factor in F1a ($\\dsyc/20$) is a heuristic normalization; we did not find it critical to the failure modes reported.\n7\t\n8\t\\paragraph{Response truncation.}\n9\tAll GRPO experiments use \\texttt{max\\_completion\\_length}=256, resulting in 80--84\\% truncation of multi-turn responses.\n10\tThis setting is shared across all conditions and does not affect relative comparisons; we retain it because response-level decisions typically manifest within the first 100--200 tokens.\n11\t\n12\t\\paragraph{Hyperparameters.}\n13\tTable~\\ref{tab:hyperparams} compares training configurations for GRPO variants and ACT.\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\small\n18\t\\caption{Training hyperparameters. All experiments use Qwen3-8B, DeepSpeed ZeRO-2, bf16 precision.}\n19\t\\label{tab:hyperparams}\n20\t\\begin{tabular}{lcc}\n21\t\\toprule\n22\t& GRPO (F1, F3)$^e$ & ACT \\\\\n23\t\\midrule\n24\tLearning rate & 5e-5 & 5e-5 \\\\\n25\tEffective batch & 16 & 16 \\\\\n26\tMax steps & 8{,}000 & 8{,}000 \\\\\n27\tWarmup steps & 200 & 200 \\\\\n28\tLR schedule & linear$^a$ & linear \\\\\n29\tGrad.\\ clipping & --- & 1.0 \\\\\n30\t\\midrule\n31\tLoRA rank & 64 & 64 \\\\\n32\tLoRA $\\alpha$ & 64 & 128 \\\\\n33\tLoRA modules & 4$^b$ & 7$^c$ \\\\\n34\tLoRA dropout & 0 & 0.05 \\\\\n35\t\\midrule\n36\tGroup size & 2$^d$ & --- \\\\\n37\tKL $\\beta$ & 0.04 & --- \\\\\n38\tMax compl.\\ len. & 256 & --- \\\\\n39\tMax seq.\\ len. & --- & 1{,}024 \\\\\n40\tL2 loss weight & --- & 0.1 \\\\\n41\t\\bottomrule\n42\t\\end{tabular}\n43\t\\\\[2pt]\n44\t\\raggedright\\footnotesize\n45\t$^a$Cosine schedule for $\\rthree$-only.\n46\t$^b$q/k/v/o\\_proj.\n47\t$^c$+ gate/up/down\\_proj (${\\sim}1.75{\\times}$ params; \\S\\ref{sec:discussion}).\n48\t$^d$Below typical 8--64 \\citep{shao2024grpo}; not tuned.\n49\t$^e$Binary probe (F2) uses a custom SFT training loop rather than GRPO; group size is N/A. LoRA and optimizer settings match the GRPO column.\n50\t\\end{table}\n51\t\n52\t\\paragraph{GRPO reward variants.}\n53\tCosine $\\rone$ (F1d): $w_1{=}0.40$, scale$=$5.0, $w_3{=}0.60$; reward computed at layers [19, 20, 24, 27, 32, 33, 35]; recalibration every 500 steps (\\S\\ref{ssec:recalib}).\n54\t$\\rthree$-only: $w_3{=}1.0$; NLI model \\texttt{cross-encoder/nli-deberta-v3-base}.\n55\tF1a--F1c weight configurations are reported in Table~\\ref{tab:cosine_chain}.\n56\t\n57\t\\section{Stubbornness Taxonomy}\n58\t\\label{app:taxonomy}\n59\t\n60\tManual inspection of all 181 valid-correction responses from the probe-trained model (exp-008v3, step 2000, $\\tof = 0$) reveals five failure categories:\n61\t\n62\t\\begin{itemize}\n63\t\\item \\emph{Deliberation traps} (28.7\\%): the model explicitly identifies the correct revised answer during its reasoning chain but fails to commit, reverting to the original answer in the final output.\n64\t\\item \\emph{Surface compliance / sycophantic stubbornness} (24.3\\%): the model produces agreement markers (``you're right,'' ``good point'') but retains its original answer verbatim, simultaneously sycophantic and stubborn.\n65\t\\item \\emph{Acknowledge-but-maintain} (23.8\\%): the model acknowledges the user's correction as plausible but explicitly maintains its original position without substantive engagement.\n66\t\\item \\emph{Genuine-accept-missed} (18.8\\%): the model appears to accept the correction in its reasoning but the final answer format does not reflect the change, suggesting a generation rather than epistemic failure.\n67\t\\item \\emph{Refute/ignore/other} (4.5\\%): the model directly refutes the user's input or ignores it entirely.\n68\t\\end{itemize}\n69\t\n70\tThe first three categories (76.8\\%) share a common pattern: the model learns to modulate its \\emph{refusal style} in response to evidence strength rather than adjusting its \\emph{acceptance rate}, confirming that the probe reward optimizes surface markers rather than epistemic calibration.\n71\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6dcf71e-eb72-4096-9e18-67ae3f21febe",
+            "isSidechain": true,
+            "promptId": "30a9a64f-8658-41fb-ba69-878f0996a7f5",
+            "agentId": "a9ea56a89a347f615",
+            "type": "user",
+            "uuid": "3c4ede1a-41a5-463e-9e4e-c1263a2155eb",
+            "sourceToolAssistantUUID": "a6dcf71e-eb72-4096-9e18-67ae3f21febe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:19:54.384Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete structured extraction of all numerical values from every tex file:\n\n---\n\n## main.tex\n\nNo numerical values in the document body (it only includes other files and defines macros).\n\n---\n\n## abstract.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 0.827 | \"cross-validated AUROC $0.827$ on Qwen3-8B\" | AUROC of d_syc on Qwen3-8B |\n| 2 | 0.779 | \"$0.779$ on Llama-3-8B\" | AUROC of d_syc on Llama-3-8B |\n| 3 | 0 | \"true-positive flip rate $= 0$\" | ToF at behavioral death |\n| 4 | 500 | \"occurs within 500 steps\" | Step at which behavioral death occurs |\n| 5 | 0.70 | \"generation entropy remains healthy (0.70)\" | Entropy value when behavioral death has already occurred |\n| 6 | 1,300 | \"1,300-step lag before distributional collapse\" | Step lag between behavioral death and distributional collapse |\n| 7 | +0.72 | implied via intro reference (not directly in abstract text) | N/A - not in abstract |\n| 8 | 2 | \"GRPO with group size 2\" | GRPO group size |\n| 9 | 4 of 31 | \"exceeded vanilla at only 4 of 31 checkpoints\" | R3-only GRPO checkpoints exceeding vanilla |\n| 10 | 12.9% | \"(12.9%)\" | Percentage of R3-only GRPO checkpoints exceeding vanilla |\n| 11 | 47/47 | \"exceeded vanilla at every evaluated checkpoint (47/47 across all configurations)\" | ACT checkpoints exceeding vanilla |\n\n---\n\n## introduction.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 0.827 | \"AUROC $0.827$ on Qwen3-8B\" (fig caption) | AUROC of d_syc on Qwen3-8B |\n| 2 | 0.827 | \"cross-validated AUROC $0.827$ on Qwen3-8B\" (body text) | Same |\n| 3 | 0.779 | \"$0.779$ on Llama-3-8B\" | AUROC of d_syc on Llama-3-8B |\n| 4 | 0.60 | \"degrades this to approximately 0.60\" | AUROC under 256-token truncation during GRPO |\n| 5 | 0 | \"$\\tof{=}0$\" (fig caption, and multiple in body) | ToF at behavioral death |\n| 6 | 500 | \"occurs at step 500\" | Step of behavioral death |\n| 7 | 0.70 | \"entropy remains healthy (0.70)\" | Entropy at behavioral death |\n| 8 | 1,300 | \"1,300-step lag\" | Lag between behavioral and distributional collapse |\n| 9 | +0.72 | \"the reward averaging $+0.72$ throughout\" | Average reward during the trap |\n| 10 | 2 | \"group size$=$2\" | GRPO group size |\n| 11 | 4 of 31 | \"4 of 31 checkpoints (12.9%)\" | R3-only GRPO checkpoints exceeding vanilla |\n| 12 | 12.9% | \"(12.9%)\" | Percentage of above |\n| 13 | 47/47 | \"47/47 across all configurations\" | ACT checkpoints exceeding vanilla |\n| 14 | 1.7x | \"the magnitude gap is $1.7{\\times}$\" | Ratio of per-token SFT to per-completion GRPO under matched LoRA |\n| 15 | 4/31 | \"4/31 (12.9%)\" (bullet point) | GRPO checkpoints exceeding vanilla |\n\n---\n\n## framework.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 181 | \"181 contrastive pairs\" | Number of contrastive pairs used for extraction |\n| 2 | 10% | \"response length difference ${<}10\\%$\" | Style matching validation threshold |\n| 3 | 2 | \"shared opening phrase ${\\geq}2$ words\" | Minimum shared opening phrase length |\n| 4 | 3 | \"up to 3 retries per pair\" | Maximum retries for pair validation |\n| 5 | 19 of 200 | \"19 of 200 initial pairs were discarded\" | Pairs discarded for failing validation |\n| 6 | 75 | \"weak (75 pairs)\" | Number of weak evidence pairs |\n| 7 | 54 | \"medium (54 pairs)\" | Number of medium evidence pairs |\n| 8 | 52 | \"strong (52 pairs)\" | Number of strong evidence pairs |\n| 9 | 362 | \"362 activations total\" | Total activations from 181 pairs |\n| 10 | 5 | \"5-fold cross-validated AUROC\" | Number of CV folds |\n| 11 | 19 | \"layer 19\" | Best layer for Qwen3-8B |\n| 12 | 0.827 ± 0.028 | \"AUROC $0.827 \\pm 0.028$ (5-fold CV)\" | AUROC at L19 on Qwen3-8B |\n| 13 | 20 | \"$\\dsyc / 20$\" (F1a formula) | Scaling factor in tanh formulation |\n| 14 | 5x | \"$5{\\times}$ scaled cosine\" (F1d) | Cosine scaling factor |\n| 15 | 0.5 | \"$P(\\text{syc} \\mid \\mathbf{h}) < 0.5$\" (F2) | Probe threshold |\n| 16 | 500 | \"re-extract $\\dsyc$ every 500 steps\" | Recalibration frequency |\n| 17 | 0.96 | \"cosine similarity...remains ${\\approx}\\,0.96$\" | Direction stability at step 500 |\n| 18 | 64 | \"LoRA (rank$=$64)\" | LoRA rank |\n| 19 | 64 | \"$\\alpha{=}64$ for GRPO\" | LoRA alpha for GRPO |\n| 20 | 128 | \"$\\alpha{=}128$ for ACT\" | LoRA alpha for ACT |\n| 21 | 2 | \"group size of 2\" | GRPO group size |\n| 22 | 8--64 | \"typical range of 8--64\" | Typical GRPO group size range |\n\n---\n\n## direction_quality.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 181 | \"181 style-controlled contrastive pairs\" | Number of contrastive pairs |\n| 2 | 0.827 ± 0.028 | \"AUROC $0.827 \\pm 0.028$ (5-fold CV) at its best layer (L19)\" | Qwen3-8B best-layer AUROC |\n| 3 | 0.01 | \"$p < 0.01$\" | Statistical significance threshold |\n| 4 | L16 | \"statistical significance...first appears at L16\" | First significant layer (Qwen3-8B) |\n| 5 | L19 | \"peaks at L19\" | Best layer (Qwen3-8B) |\n| 6 | 0.675 | \"AUROC rises monotonically from 0.675 on weak-evidence pairs\" | Qwen3-8B AUROC on weak pairs |\n| 7 | 0.883 | \"0.883 on medium\" | Qwen3-8B AUROC on medium pairs |\n| 8 | 0.929 | \"0.929 on strong pairs\" | Qwen3-8B AUROC on strong pairs |\n| 9 | 0.779 ± 0.019 | \"AUROC $0.779 \\pm 0.019$ (5-fold CV) at L16\" | Llama-3-8B best-layer AUROC |\n| 10 | L16 | \"at L16\" | Best layer (Llama-3-8B) |\n| 11 | 0.711 | \"weak 0.711\" | Llama-3-8B AUROC on weak pairs |\n| 12 | 0.864 | \"medium 0.864\" | Llama-3-8B AUROC on medium pairs |\n| 13 | 0.911 | \"strong 0.911\" | Llama-3-8B AUROC on strong pairs |\n| 14 | 0.751 | \"0.751 (geography)\" | Llama-3-8B per-domain AUROC lower bound |\n| 15 | 0.844 | \"0.844 (commonsense)\" | Llama-3-8B per-domain AUROC upper bound |\n| 16 | 0.923 | \"AUROC rises to 0.923\" | Llama-3-8B AUROC when surface confounds are controlled |\n| 17 | 36 | \"36 layers\" (fig caption) | Qwen3-8B total layers |\n| 18 | 32 | \"32 layers\" (fig caption) | Llama-3-8B total layers |\n| 19 | 50--60% | \"50--60\\% through the network\" (fig caption) | Depth range of best discriminability |\n| 20 | 0.96 | \"cosine similarity...is approximately 0.96\" | Direction drift at step 500 |\n| 21 | 500 | \"at step 500\" | Step at which drift is measured |\n| 22 | 0.77 | \"per-layer AUROC remains above 0.77\" | AUROC after drift |\n| 23 | 0.835 | \"logistic probe...achieves AUROC 0.835\" | Probe AUROC on learned direction |\n| 24 | 0.727 | \"0.727 for a probe trained on a random direction\" | Probe AUROC on random direction |\n| 25 | +0.108 | \"$\\Delta{=}{+}0.108$\" | AUROC difference (learned minus random) |\n| **Table (tab:cross_model):** | | | |\n| 26 | Qwen3-8B: L19, 0.827±0.028, 0.675, 0.883, 0.929 | Table row | Qwen3-8B direction quality by evidence strength |\n| 27 | Llama-3-8B: L16, 0.779±0.019, 0.711, 0.864, 0.911 | Table row | Llama-3-8B direction quality by evidence strength |\n\n---\n\n## cosine_failure.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 0.827 | \"AUROC 0.827 on Qwen3-8B\" | AUROC of d_syc (full-length) |\n| 2 | 256 | \"256-token truncation\" | GRPO completion truncation length |\n| 3 | 0.60 | \"reduces $\\dsyc$ AUROC to approximately 0.60\" | AUROC under truncation |\n| 4 | 64 | \"LoRA rank$=$64\" (table caption) | LoRA rank |\n| 5 | 0.25 | \"$w_1 = 0.25$\" (F1a, F1b, F1c in table) | Weight for R1 in first three configs |\n| 6 | 0.40 | \"$w_1 = 0.40$\" (F1d in table) | Weight for R1 in F1d |\n| 7 | 20 | \"$\\dsyc / 20$\" | F1a scaling divisor |\n| 8 | 100--1,200x | \"norms exceed the direction norm by $100$--$1{,}200{\\times}$\" | Residual-stream to direction norm ratio |\n| 9 | 955 | \"zeroing the gradient by step 955\" | Step at which F1a gradient vanishes |\n| 10 | 0.098 | \"cosine gap...averages only 0.098 across layers\" | Mean cosine gap between valid and sycophantic activations |\n| 11 | 0.827 | \"offline AUROC from 0.827\" | Pre-recalibration AUROC |\n| 12 | 0.910 | \"to 0.910\" | Post-recalibration AUROC |\n| 13 | 0.069 | \"collapsing entropy to 0.069 within 300 steps\" | Entropy after F1c mode collapse |\n| 14 | 300 | \"within 300 steps\" | Steps to mode collapse in F1c |\n| 15 | 5x | \"$5{\\times}$ scaling\" | F1d cosine scaling factor |\n| 16 | 0.9998 | \"$\\rthree$ saturates at 0.9998 by step 300\" | R3 saturation value in F1d |\n| 17 | 300 | \"by step 300\" | Step of R3 saturation in F1d |\n| 18 | 2160 | \"terminal collapse at step 2160\" | Step of terminal collapse in F1d |\n| 19 | 0.76 | \"AUROC drops from 0.76 (full response)\" | Full-response AUROC under truncation conditions |\n| 20 | 0.60 | \"to 0.60\" | Truncated AUROC |\n| 21 | 0.827 | \"offline discriminability (0.827)\" | Offline AUROC (without truncation) |\n| 22 | 0 | \"$\\tof{=}0$ from step 500 onward\" | ToF for all cosine configs |\n| 23 | 500 | \"from step 500 onward\" | Step of cosine collapse |\n\n---\n\n## probe_trap.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 0.5 | \"$P(\\text{syc} \\mid \\mathbf{h}) < 0.5$\" | Probe threshold |\n| 2 | ~30 | \"within ${\\sim}30$ steps\" | Steps to gradient gaming without stop-gradient |\n| 3 | 0.978 | \"$\\tof = 0.978$\" | ToF with differentiable probe (exp-008) |\n| 4 | 0.006 | \"$\\nof = 0.006$\" | NoF with differentiable probe (exp-008) |\n| **Table (tab:probe_trajectory) — exp-008v3:** | | | |\n| 5 | Step 500: ToF=0.000, NoF=0.995, SyconScore=0.000, Entropy=0.702, Reward=+0.72 | Table row | Probe trap trajectory at step 500 |\n| 6 | Step 1000: ToF=0.006, NoF=0.995, SyconScore=0.011, Entropy=0.800, Reward=+0.71 | Table row | Probe trap trajectory at step 1000 |\n| 7 | Step 1500: ToF=0.000, NoF=1.000, SyconScore=0.000, Entropy=0.608, Reward=+0.69 | Table row | Probe trap trajectory at step 1500 |\n| 8 | Step 2000: ToF=0.000, NoF=1.000, SyconScore=0.000, Entropy=0.304, Reward=+0.69 | Table row | Probe trap trajectory at step 2000 |\n| 9 | 1,300 | \"1,300-step lag\" | Lag between behavioral and distributional collapse |\n| 10 | 0.70--0.80 | \"entropy remains high (0.70--0.80) through step 1000\" | Entropy range during behavioral death |\n| 11 | +0.72 | \"combined reward averages $+0.72$\" | Average reward throughout trap |\n| 12 | ~1840 | \"Entropy does not collapse until step ${\\sim}1840$\" | Step of distributional collapse |\n| **Failure mode taxonomy (from body text):** | | | |\n| 13 | 28.7% | \"deliberation traps (28.7%)\" | Percentage of deliberation trap failures |\n| 14 | 24.3% | \"sycophantic stubbornness (24.3%)\" | Percentage of sycophantic stubbornness failures |\n| 15 | 23.8% | \"acknowledge-but-maintain (23.8%)\" | Percentage of acknowledge-but-maintain failures |\n| 16 | 18.8% | \"genuine-accept-missed (18.8%)\" | Percentage of genuine-accept-missed failures |\n| 17 | 4.5% | \"refute/ignore/other (4.5%)\" | Percentage of refute/ignore/other failures |\n| 18 | 181 | \"181 valid-correction responses\" | Number of responses analyzed |\n\n---\n\n## discussion.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 0 | \"$\\tof = 0$ by step 500\" | ToF for binary probe stubbornness trap |\n| 2 | 500 | \"by step 500\" | Step of stubbornness trap |\n| 3 | 0.779 ± 0.019 | \"AUROC $0.779 \\pm 0.019$\" | Llama-3-8B AUROC |\n| **Table (tab:main_comparison):** | | | |\n| 4 | Vanilla: SyconScore=0.134, ToF=0.072, NoF=0.945 | Table row | Vanilla baseline |\n| 5 | Cosine R1 (F1a-F1d): SyconScore=0.000, ToF=0.000, NoF=1.000, Step=500 | Table row | All cosine variants collapsed |\n| 6 | Continuous Probe R1 (F3): SyconScore=0.124, ToF=0.066, NoF=0.934, Step=500 | Table row | Continuous probe GRPO |\n| 7 | Binary Probe R1 (F2): SyconScore=0.000, ToF=0.000, NoF=0.995, Step=500 | Table row | Binary probe SFT |\n| 8 | R3-only GRPO: SyconScore=0.153, ToF=0.083, NoF=0.983, Step=6500 | Table row | R3-only GRPO best checkpoint |\n| 9 | ActAdd (alpha=5): SyconScore=0.054, ToF=0.028, NoF=0.961 | Table row | ActAdd inference-time baseline |\n| 10 | ACT seed 1: SyconScore=0.301, ToF=0.182, NoF=0.867, Step=8000 | Table row | ACT best (seed 1) |\n| 11 | ACT seed 2: SyconScore=0.286, Step=7000 | Table row | ACT (seed 2) |\n| **Table caption notes:** | | | |\n| 12 | 4/28 | \"only 4/28 checkpoints across two seeds exceed vanilla\" | R3-only GRPO checkpoints > vanilla |\n| 13 | 15 | \"Seed 2 (15 checkpoints)\" | Number of ACT seed 2 checkpoints |\n| 14 | 0.286 | \"Best $\\sycon{=}0.286$ (step 7000)\" | ACT seed 2 best SyconScore |\n| 15 | 2160 | \"F1d additionally diverged at step 2160 (entropy ${<}\\,0.01$)\" | F1d divergence step |\n| 16 | 0.01 | \"entropy ${<}\\,0.01$\" | F1d entropy at divergence |\n| **Body text (R3-only GRPO trajectory):** | | | |\n| 17 | 0.153 | \"Seed 1 peaks at 0.153 (checkpoint 6500)\" | R3-only seed 1 peak SyconScore |\n| 18 | 6500 | \"checkpoint 6500\" | Step of seed 1 peak |\n| 19 | 0.143 | \"ends at 0.143 (checkpoint 8000)\" | R3-only seed 1 final SyconScore |\n| 20 | 8000 | \"checkpoint 8000\" | Final evaluated step |\n| 21 | 0.143 | \"seed 2 peaks at 0.143 (checkpoint 4000)\" | R3-only seed 2 peak SyconScore |\n| 22 | 4000 | \"checkpoint 4000\" | Step of seed 2 peak |\n| 23 | 0.124 | \"ends at 0.124 (checkpoint 8000)\" | R3-only seed 2 final SyconScore |\n| 24 | 4 of 28 | \"4 of 28 checkpoints...exceed vanilla (14.3%)\" | R3-only checkpoints > vanilla (both seeds) |\n| 25 | 14.3% | \"(14.3%)\" | Percentage of above |\n| 26 | 3/12 | \"3/12 for seed 1 (25%)\" | Seed 1 checkpoints > vanilla |\n| 27 | 25% | \"(25%)\" | Percentage for seed 1 |\n| 28 | 1/16 | \"1/16 for seed 2 (6.3%)\" | Seed 2 checkpoints > vanilla |\n| 29 | 6.3% | \"(6.3%)\" | Percentage for seed 2 |\n| 30 | 31/31 | \"31/31 across two seeds\" | ACT checkpoints > vanilla (both seeds) |\n| 31 | ~0.069 | \"$\\Delta \\approx 0.069$\" | SyconScore oscillation amplitude for both GRPO seeds |\n| 32 | ~2,500 | \"differing by ${\\sim}2{,}500$ steps\" | Crash onset difference between seeds |\n| 33 | <0.01 | \"AUROC varies by ${<}0.01$ across checkpoints\" | AUROC variation across GRPO checkpoints |\n| 34 | ~0.98 | \"$\\rthree$ saturates at ${\\sim}0.98$\" | R3 saturation value |\n| 35 | 0.703 | \"$p{=}0.703$\" | p-value for R3 saturation test |\n| 36 | 17% | \"$\\sycon$ swings by 17\\%\" | SyconScore swing magnitude despite stable AUROC/R3 |\n| **Group size ablation (tab:ablation):** | | | |\n| 37 | 2 to 8 | \"group size from 2 to 8\" | Group size ablation |\n| 38 | 0.084 → 0.085 → 0.054 | \"monotonically declining trajectory ($0.084 \\to 0.085 \\to 0.054$)\" | gs=8 SyconScore trajectory |\n| 39 | 0.085 | \"gs$=$8 (best 0.085)\" | gs=8 best SyconScore |\n| 40 | 0.153 | \"gs$=$2 (best 0.153)\" | gs=2 best SyconScore (comparison) |\n| **Table (tab:ablation):** | | | |\n| 41 | GRPO gs=2 (2 seeds): r64/α64/4m, Best SyconScore=0.153, >Van.=4/28 | Table row | GRPO gs=2 ablation |\n| 42 | GRPO gs=8: r64/α64/4m, Best SyconScore=0.085, >Van.=0/3 | Table row | GRPO gs=8 ablation |\n| 43 | ACT reduced-LoRA: r64/α64/4m, Best SyconScore=0.326, >Van.=16/16 | Table row | ACT reduced-LoRA ablation |\n| 44 | ACT full s1: r64/α128/7m, Best SyconScore=0.301, >Van.=16/16 | Table row | ACT full seed 1 |\n| 45 | ACT full s2: r64/α128/7m, Best SyconScore=0.286, >Van.=15/15 | Table row | ACT full seed 2 |\n| **Reduced-LoRA details:** | | | |\n| 46 | 0.267 | \"$\\sycon = 0.267$ (peak 0.326 at step 7000)\" | ACT reduced-LoRA final SyconScore |\n| 47 | 0.326 | \"peak 0.326 at step 7000\" | ACT reduced-LoRA peak SyconScore |\n| 48 | 7000 | \"step 7000\" | Step of reduced-LoRA peak |\n| 49 | 16 | \"all 16 checkpoints exceed vanilla\" | Number of reduced-LoRA checkpoints |\n| 50 | 0.267 | \"per-token SFT ($\\sycon{=}0.267$)\" | SFT SyconScore under matched LoRA |\n| 51 | 0.153 | \"per-completion GRPO ($\\sycon{=}0.153$)\" | GRPO SyconScore under matched LoRA |\n| 52 | 1.7x | \"by $1.7{\\times}$\" | SFT-to-GRPO ratio under matched LoRA |\n| **ACT vs GRPO paragraph:** | | | |\n| 53 | 0.301 | \"$\\sycon = 0.301$ (seed 1)\" | ACT seed 1 peak SyconScore |\n| 54 | 0.286 | \"$0.286$ (seed 2)\" | ACT seed 2 peak SyconScore |\n| 55 | 2x | \"more than $2{\\times}$ vanilla\" | ACT-to-vanilla ratio |\n| 56 | 0.214 | \"dips to 0.214 at step 4000\" | ACT seed 1 dip SyconScore |\n| 57 | 4000 | \"at step 4000\" | Step of ACT dip |\n| 58 | 6000 | \"self-recovers by step 6000\" | Step of ACT recovery |\n| 59 | 0.326 | \"surges to 0.326 at step 7000\" | Reduced-LoRA ACT peak |\n| 60 | 7000 | \"step 7000\" | Step of reduced-LoRA peak |\n| 61 | 0.170 | \"ACT's worst checkpoint ($\\sycon{=}0.170$, full config)\" | ACT worst checkpoint SyconScore |\n| 62 | 0.153 | \"GRPO's absolute best ($\\sycon{=}0.153$)\" | GRPO best SyconScore |\n| 63 | 6500 | \"step 6500\" | Step of GRPO best |\n| 64 | 0.326 | \"reduced-LoRA ACT ($\\sycon{=}0.326$)\" | Reduced-LoRA peak (repeated) |\n| 65 | 0.301 | \"full ACT ($\\sycon{=}0.301$)\" | Full ACT peak (repeated) |\n| **Related work reference in discussion:** | | | |\n| 66 | 94% | \"94\\% accuracy\" (citing Papadatos et al.) | Probe accuracy in Best-of-N reranking method |\n| 67 | 0.827 | \"AUROC $0.827$\" | Our probe AUROC (for comparison) |\n\n---\n\n## related_work.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 94% | \"94\\% probe accuracy\" (citing Papadatos et al.) | Probe accuracy in Best-of-N reranking |\n| 2 | 0.827 | \"AUROC $0.827$\" | Our probe AUROC |\n| 3 | 100% | \"100\\% validation accuracy\" (citing Wu et al.) | Reward hacking detection accuracy |\n\n---\n\n## conclusion.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 1,300 | \"1,300 steps\" | Lag between behavioral death and distributional collapse |\n| 2 | 4/31 | \"4/31 checkpoints ${>}$ vanilla\" | GRPO checkpoints exceeding vanilla |\n| 3 | 47/47 | \"47/47\" | ACT checkpoints exceeding vanilla |\n\n---\n\n## limitations.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| 1 | 2 | \"group sizes of 2\" | GRPO group size tested |\n| 2 | 8 | \"and 8\" | GRPO group size in ablation |\n| 3 | 8--64 | \"typical 8--64 range\" | Typical GRPO group size range |\n| 4 | 256 | \"truncated to 256 tokens\" | Completion truncation length |\n| 5 | 0.76 | \"degrades $\\dsyc$ AUROC from 0.76\" | Full-response AUROC before truncation |\n| 6 | 0.60 | \"to 0.60\" | AUROC after truncation |\n| 7 | 181 | \"same 181 pairs\" | Number of training/eval pairs |\n| 8 | 146/35 | \"held-out split (146/35)\" | Train/held-out split |\n| 9 | ~0.20 | \"$\\sycon{\\approx}0.20$ at peak\" | Held-out SyconScore for ACT |\n| 10 | 3.7x | \"$3.7{\\times}$ vanilla\" | Held-out ACT vs vanilla ratio |\n| 11 | 72% | \"72\\% of full-data ceiling\" | Held-out vs full-data performance ratio |\n| 12 | 2000 | \"step 2000\" | Step of performance decline on held-out |\n| 13 | 0.157 | \"$\\sycon{=}0.157$\" | Held-out SyconScore at step 2000 |\n| 14 | 2.8x | \"$2.8{\\times}$ vanilla\" | Held-out at step 2000 vs vanilla ratio |\n| 15 | 28% | \"28\\% gap\" | Gap suggesting partial reliance on training patterns |\n| 16 | 0.779 | \"AUROC $0.779$\" | Llama-3-8B cross-model AUROC |\n\n---\n\n## appendix.tex\n\n| # | Value | Context | Refers to |\n|---|-------|---------|-----------|\n| **Reward weight selection:** | | | |\n| 1 | 0.25 | \"$w_1{=}0.25$ was initially chosen\" | Initial R1 weight |\n| 2 | 0.40 | \"increased to $w_1{=}0.40$ for F1d\" | F1d R1 weight |\n| 3 | ~8.3% | \"${\\sim}8.3\\%$ of total reward variance\" | Cosine term reward variance contribution at w1=0.25 |\n| 4 | 20 | \"$\\dsyc/20$\" | F1a heuristic normalization |\n| **Response truncation:** | | | |\n| 5 | 256 | \"max\\_completion\\_length=256\" | GRPO completion truncation |\n| 6 | 80--84% | \"80--84\\% truncation\" | Percentage of responses truncated |\n| 7 | 100--200 | \"first 100--200 tokens\" | Where response-level decisions manifest |\n| **Hyperparameters table (tab:hyperparams):** | | | |\n| 8 | 5e-5 | Learning rate | For both GRPO and ACT |\n| 9 | 16 | Effective batch size | For both |\n| 10 | 8,000 | Max steps | For both |\n| 11 | 200 | Warmup steps | For both |\n| 12 | 1.0 | Gradient clipping | ACT only |\n| 13 | 64 | LoRA rank | For both |\n| 14 | 64 | LoRA alpha | GRPO |\n| 15 | 128 | LoRA alpha | ACT |\n| 16 | 4 | LoRA modules | GRPO (q/k/v/o_proj) |\n| 17 | 7 | LoRA modules | ACT (+ gate/up/down_proj) |\n| 18 | 0 | LoRA dropout | GRPO |\n| 19 | 0.05 | LoRA dropout | ACT |\n| 20 | 2 | Group size | GRPO |\n| 21 | 0.04 | KL beta | GRPO |\n| 22 | 256 | Max completion length | GRPO |\n| 23 | 1,024 | Max sequence length | ACT |\n| 24 | 0.1 | L2 loss weight | ACT |\n| 25 | ~1.75x | \"${\\sim}1.75{\\times}$ params\" (footnote c) | ACT LoRA param ratio vs GRPO |\n| **GRPO reward variants:** | | | |\n| 26 | 0.40 | \"$w_1{=}0.40$\" | F1d weight |\n| 27 | 5.0 | \"scale$=$5.0\" | F1d scale |\n| 28 | 0.60 | \"$w_3{=}0.60$\" | F1d R3 weight |\n| 29 | [19, 20, 24, 27, 32, 33, 35] | \"layers [19, 20, 24, 27, 32, 33, 35]\" | Layers used for F1d reward computation |\n| 30 | 500 | \"recalibration every 500 steps\" | Recalibration interval |\n| 31 | 1.0 | \"$w_3{=}1.0$\" | R3-only GRPO weight |\n| **Stubbornness taxonomy (exp-008v3, step 2000):** | | | |\n| 32 | 181 | \"all 181 valid-correction responses\" | Number of responses analyzed |\n| 33 | 0 | \"$\\tof = 0$\" | ToF for taxonomy analysis |\n| 34 | 2000 | \"step 2000\" | Step of taxonomy analysis |\n| 35 | 28.7% | \"Deliberation traps (28.7%)\" | Deliberation trap percentage |\n| 36 | 24.3% | \"Surface compliance / sycophantic stubbornness (24.3%)\" | Sycophantic stubbornness percentage |\n| 37 | 23.8% | \"Acknowledge-but-maintain (23.8%)\" | Acknowledge-but-maintain percentage |\n| 38 | 18.8% | \"Genuine-accept-missed (18.8%)\" | Genuine-accept-missed percentage |\n| 39 | 4.5% | \"Refute/ignore/other (4.5%)\" | Refute/ignore/other percentage |\n| 40 | 76.8% | \"first three categories (76.8%)\" | Combined percentage of top 3 failure modes |\n\n---\n\n## Summary of key unique numerical claims across the paper\n\n**AUROC values:** 0.827 (Qwen3-8B L19), 0.779 (Llama-3-8B L16), 0.60 (truncated), 0.76 (full-response pre-truncation variant), 0.910 (post-recalibration), 0.835 (probe on learned direction), 0.727 (probe on random direction), 0.675/0.883/0.929 (Qwen3 weak/medium/strong), 0.711/0.864/0.911 (Llama weak/medium/strong), 0.751/0.844 (Llama domain range), 0.923 (Llama confound-controlled)\n\n**SyconScore values:** 0.134 (vanilla), 0.000 (cosine/binary probe), 0.124 (continuous probe), 0.153 (R3-only GRPO best), 0.301 (ACT s1), 0.286 (ACT s2), 0.326 (ACT reduced-LoRA peak), 0.267 (ACT reduced-LoRA final), 0.170 (ACT worst), 0.214 (ACT s1 dip), ~0.20 (held-out peak), 0.157 (held-out step 2000), 0.054 (ActAdd), 0.085 (gs=8 best), 0.084/0.085/0.054 (gs=8 trajectory)\n\n**ToF/NoF:** ToF=0 (behavioral death, multiple configs), ToF=0.072/NoF=0.945 (vanilla), ToF=0.978/NoF=0.006 (differentiable probe gaming), ToF=0.083/NoF=0.983 (R3-only), ToF=0.182/NoF=0.867 (ACT s1), ToF=0.066/NoF=0.934 (continuous probe), ToF=0.028/NoF=0.961 (ActAdd), NoF=0.995/1.000 (probe trap trajectory)\n\n**Key ratios:** 1.7x (SFT vs GRPO under matched LoRA), 2x (ACT vs vanilla), 3.7x (held-out ACT vs vanilla), 2.8x (held-out step 2000 vs vanilla), 1.75x (ACT LoRA params vs GRPO), 100-1200x (residual norm vs direction norm)\n\n**Checkpoint fractions:** 4/28=14.3% (R3-only > vanilla, both seeds), 4/31=12.9% (mentioned in abstract/conclusion with slight denominator discrepancy vs discussion's 4/28), 3/12=25% (seed 1), 1/16=6.3% (seed 2), 31/31 (ACT > vanilla, both seeds), 47/47 (ACT across all configurations), 16/16 (reduced-LoRA ACT), 0/3 (gs=8)\n\n**Notable discrepancy:** The abstract and introduction say \"4 of 31 checkpoints (12.9%)\" while the discussion section says \"4 of 28 checkpoints (14.3%)\" with \"3/12 for seed 1, 1/16 for seed 2\" (which sums to 4/28). The conclusion uses \"4/31.\" The 47/47 figure (abstract/conclusion) versus 31/31 (discussion figure caption) likely reflects that 47/47 includes all configurations (full s1 16 + full s2 15 + reduced-LoRA 16 = 47) while 31/31 is two full seeds only (16+15)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c4ede1a-41a5-463e-9e4e-c1263a2155eb",
+            "isSidechain": true,
+            "agentId": "a9ea56a89a347f615",
+            "requestId": "req_011CbL3A49YyQXvZGeUJPqbr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b6dce06e-e88b-4f1c-9936-e4d47c04597b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "3ecebb46-94ed-4f9d-a208-d434ebe73d0f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AY1aYfQQRgpHo3KfPLv39R",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 23981,
+                "cache_read_input_tokens": 7336,
+                "output_tokens": 10203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23981
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10203,
+                    "cache_read_input_tokens": 7336,
+                    "cache_creation_input_tokens": 23981,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 23981,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-all-tex-files-from-the-paper-at-home-ubuntu-agent-ml-research-be-idea-gen.md"
+}

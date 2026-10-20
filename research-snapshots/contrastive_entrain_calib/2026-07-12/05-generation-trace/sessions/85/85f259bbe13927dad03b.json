@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "85f259bbe13927dad03b",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> fig_teaser_b.pdf 宽高比 0.90:1 (portrait)。当前 fig_teaser_a.pdf 宽高比 1.79:1 (landscape)。LaTeX 中两张图都用 width=0.4",
+  "task_key": "bbeecb20-ab5c-4915-9165-d66d27da63db",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/bbeecb20-ab5c-4915-9165-d66d27da63db.jsonl",
+    "occurrence": 1,
+    "bytes": 718119,
+    "sha256": "f04dc7ce29b0648a8cd433c326aff0aa38ccd8c21a78dd2ca834b482c59852a8"
+  },
+  "statistics": {
+    "messages": 488,
+    "user_turns": 2,
+    "tool_calls": 160,
+    "roles": {
+      "record": 98,
+      "user": 2,
+      "assistant": 68,
+      "tool_call": 160,
+      "tool_result": 160
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "85f259bbe13927dad03b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 320,
+      "chunks": [
+        {
+          "path": "85f259bbe13927dad03b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "85f259bbe13927dad03b-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "85f259bbe13927dad03b-part-0002.json",
+          "message_count": 38
+        },
+        {
+          "path": "85f259bbe13927dad03b-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-fig-teaser-b-pdf-0-90-1-portrait-fig-teaser-a-pdf-1-79-1-landsca.md"
+}

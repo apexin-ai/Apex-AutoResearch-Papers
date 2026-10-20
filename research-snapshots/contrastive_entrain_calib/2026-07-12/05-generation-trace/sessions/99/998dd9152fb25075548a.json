@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "998dd9152fb25075548a",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: action_cond_info_bottleneck ## 运行环境 - 服务器名: westb-13953 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "8dfc9099-9ed4-44d5-b1ef-fd9ba02334db",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/8dfc9099-9ed4-44d5-b1ef-fd9ba02334db.jsonl",
+    "occurrence": 1,
+    "bytes": 2165727,
+    "sha256": "f3de150f0c7bdb54bbfec1d7141a963ff286fc8fee092bcdda7fd5c24a44f5c6"
+  },
+  "statistics": {
+    "messages": 1149,
+    "user_turns": 2,
+    "tool_calls": 356,
+    "roles": {
+      "record": 180,
+      "user": 2,
+      "assistant": 254,
+      "tool_call": 356,
+      "tool_result": 356,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "998dd9152fb25075548a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 674,
+      "chunks": [
+        {
+          "path": "998dd9152fb25075548a-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0004.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "998dd9152fb25075548a-part-0004.json",
+          "message_count": 44
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "998dd9152fb25075548a-part-0007.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-action-cond-info-bottleneck-westb-13953-ssh-root-ssh-execute-s-copy-141.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e326f461f8d171d27550",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - westd-28034 GPU 白名单: cuda:0,1,2,3（4× A10",
+  "task_key": "0ac04c86-f67f-4bf2-ae3c-4c66c0310156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/0ac04c86-f67f-4bf2-ae3c-4c66c0310156.jsonl",
+    "occurrence": 1,
+    "bytes": 653944,
+    "sha256": "72dc1d2425973b7cc844332addf59a188ed06e730694da158f56bf253e992b84"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 1,
+    "tool_calls": 82,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 55,
+      "tool_call": 82,
+      "tool_result": 82
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e326f461f8d171d27550-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "e326f461f8d171d27550-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "e326f461f8d171d27550-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-main-agent-loop-3-task-context-1-westd-28034-gpu-cuda-0-1-2-3-4-a10.md"
+}

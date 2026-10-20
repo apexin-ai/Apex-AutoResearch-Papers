@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "f4e906aebe25ec70d936",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "873bb52a-d816-4dbb-a067-2e611d358fd3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/873bb52a-d816-4dbb-a067-2e611d358fd3.jsonl",
+    "occurrence": 1,
+    "bytes": 1153401,
+    "sha256": "72f30b5ed65b2ab50cdfbb3d240ca3a497b8266f5d7ed268aa6ce2a3c44d9838"
+  },
+  "statistics": {
+    "messages": 678,
+    "user_turns": 1,
+    "tool_calls": 254,
+    "roles": {
+      "record": 102,
+      "user": 1,
+      "assistant": 67,
+      "tool_call": 254,
+      "tool_result": 254
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f4e906aebe25ec70d936-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 676,
+      "chunks": [
+        {
+          "path": "f4e906aebe25ec70d936-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f4e906aebe25ec70d936-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f4e906aebe25ec70d936-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f4e906aebe25ec70d936-part-0004.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-299.md"
+}

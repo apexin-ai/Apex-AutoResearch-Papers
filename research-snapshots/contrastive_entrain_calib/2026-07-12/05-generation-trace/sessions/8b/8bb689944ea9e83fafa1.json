@@ -1,0 +1,245 @@
+{
+  "schema_version": "1.0",
+  "id": "8bb689944ea9e83fafa1",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 白名单：westb-13953 的 cuda:0 ",
+  "task_key": "cebdcf85-5b3d-40c8-ac88-754c8ba304b7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/cebdcf85-5b3d-40c8-ac88-754c8ba304b7.jsonl",
+    "occurrence": 1,
+    "bytes": 928220,
+    "sha256": "bb15ed412bdf8264f0339670df0179c894e9357485a892bb4a7b4e0abc9b7187"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 18,
+    "tool_calls": 80,
+    "roles": {
+      "record": 88,
+      "user": 18,
+      "assistant": 88,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0001.json",
+          "message_count": 14
+        },
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 70,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "8bb689944ea9e83fafa1-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-8-task-context-1-gpu-westb-13953-cuda-0.md"
+}

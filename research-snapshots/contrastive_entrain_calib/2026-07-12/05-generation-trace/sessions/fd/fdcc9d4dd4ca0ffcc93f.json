@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "fdcc9d4dd4ca0ffcc93f",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "8c382a14-eeb7-4ad8-8497-253dab3a733a",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/8c382a14-eeb7-4ad8-8497-253dab3a733a.jsonl",
+    "occurrence": 1,
+    "bytes": 1405358,
+    "sha256": "71912f4a851213858a793fc4f0bd5300fa93ad567dca8bbc06b8c6759a1b5b74"
+  },
+  "statistics": {
+    "messages": 466,
+    "user_turns": 2,
+    "tool_calls": 136,
+    "roles": {
+      "record": 96,
+      "user": 2,
+      "assistant": 95,
+      "tool_call": 136,
+      "tool_result": 136,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fdcc9d4dd4ca0ffcc93f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "fdcc9d4dd4ca0ffcc93f-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "fdcc9d4dd4ca0ffcc93f-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "fdcc9d4dd4ca0ffcc93f-part-0002.json",
+          "message_count": 75
+        },
+        {
+          "path": "fdcc9d4dd4ca0ffcc93f-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-250.md"
+}

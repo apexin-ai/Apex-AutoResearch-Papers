@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "8b248e04377f0c792110",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "2bd06bc9-959e-4dc8-b1e1-09c6929e511e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/2bd06bc9-959e-4dc8-b1e1-09c6929e511e.jsonl",
+    "occurrence": 1,
+    "bytes": 1364904,
+    "sha256": "4467f08ca2ca711b0c8f450c8769f542dd3c96e12c9149541dd3d06a6d515c81"
+  },
+  "statistics": {
+    "messages": 895,
+    "user_turns": 2,
+    "tool_calls": 338,
+    "roles": {
+      "record": 128,
+      "user": 2,
+      "assistant": 88,
+      "tool_call": 338,
+      "tool_result": 338,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b248e04377f0c792110-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 879,
+      "chunks": [
+        {
+          "path": "8b248e04377f0c792110-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8b248e04377f0c792110-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b248e04377f0c792110-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b248e04377f0c792110-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b248e04377f0c792110-part-0005.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "8b248e04377f0c792110-part-0005.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-99.md"
+}
