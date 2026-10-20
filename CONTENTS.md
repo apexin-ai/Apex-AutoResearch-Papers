@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **22 projects with manuscript PDFs** and **13 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **23 projects with manuscript PDFs** and **13 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -19,6 +19,7 @@ This catalogue covers **22 projects with manuscript PDFs** and **13 additional p
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 161 | 423 | 434 | 75,488 |
 | [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) | 150 | 431 | 599 | 80,801 |
 | [event-gated-adaptive-horizon](paper-assets/event-gated-adaptive-horizon/README.md) | [PDF](paper-assets/event-gated-adaptive-horizon/01-manuscript/paper.pdf) | 649 | 1,727 | 3,085 | 193,802 |
+| [exec-sim-repair-verifier](paper-assets/exec-sim-repair-verifier/README.md) | [PDF](paper-assets/exec-sim-repair-verifier/01-manuscript/paper.pdf) | 667 | 1,826 | 3,511 | 250,687 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
