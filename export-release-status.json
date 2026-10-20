@@ -78,6 +78,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 342
+        },
+        "entrainment_gated_ft": {
+          "status": "uploaded",
+          "project": "entrainment_gated_ft",
+          "collection": "entrainment_gated_ft--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "66b1ccd0c1250989245c6dec1da57439d3ec0b953258ef74bb120747883748bf",
+          "indexed_members": 1543,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1538
         }
       },
       "status": "in_progress",

@@ -538,6 +538,19 @@
       }
     },
     {
+      "project": "entrainment_gated_ft--export-20260712",
+      "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)",
+      "catalog": "../research-snapshots/entrainment_gated_ft/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1538,
+        "messages": 207007,
+        "user_turns": 8355,
+        "tool_calls": 55695,
+        "unparsed_lines": 4,
+        "conversation": 1538
+      }
+    },
+    {
       "project": "error_diag_dpo_recovery",
       "title": "error diag dpo recovery",
       "catalog": "../paper-assets/error_diag_dpo_recovery/05-generation-trace/catalog.json",
