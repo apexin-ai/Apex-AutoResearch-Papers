@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d429c7db5f6189d786db",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> c5b_pilot 是 C5b claim 的 pilot 实验。paper_framing.md 中 C5b: \"Phase-aware mitigation recovers compound degra",
+  "task_key": "5cb74dec-0bcf-44e3-a094-a5af24215905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/5cb74dec-0bcf-44e3-a094-a5af24215905.jsonl",
+    "occurrence": 1,
+    "bytes": 633261,
+    "sha256": "576dc0cbad40fecba4c1dddc791a726e1ad262ecdb3fdf7e0fee6aa2dedb6b4c"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 1,
+    "tool_calls": 39,
+    "roles": {
+      "record": 36,
+      "user": 1,
+      "assistant": 27,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d429c7db5f6189d786db-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "d429c7db5f6189d786db-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "d429c7db5f6189d786db-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-c5b-pilot-c5b-claim-pilot-paper-framing-md-c5b-phase-aware-mitig.md"
+}

@@ -1,0 +1,1016 @@
+{
+  "schema_version": "1.0",
+  "id": "887218d5e48654d8c49f",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml for any ent",
+  "task_key": "agent-a4941de87e6eee409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a4941de87e6eee409.jsonl",
+    "occurrence": 1,
+    "bytes": 31976,
+    "sha256": "5667e35f04f25ff062714f00522c70e2092aebc2bdc21e79e46181d851cc183b"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T21:01:57.502Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml for any entries related to Llama scheduled sampling (SS) experiments. I need to find if there's any experiment that reports β=3 GAR = 0.173 for Llama. Search for \"llama_ss\", \"p1_llama_ss\", \"beta\", \"0.173\", and any steering-related Llama experiments. Report all matching experiment IDs and their metrics verbatim. Keep response under 300 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "c3e72eae-4d68-4fcf-98a5-e68ccd459d9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T21:01:59.130Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the registry file for Llama scheduled sampling experiments and related metrics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3e72eae-4d68-4fcf-98a5-e68ccd459d9d",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmUyCuo6MnpKuUyuY4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1d70b3cd-f927-40c9-96df-2b1343c8c654",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018c7armnTQys8bh8epUv3vZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21167,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21167,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T21:01:59.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016k2SqAGf48V3LwUskSCh58",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d70b3cd-f927-40c9-96df-2b1343c8c654",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmUyCuo6MnpKuUyuY4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a54a147e-69f9-4409-9497-28509f0f96c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018c7armnTQys8bh8epUv3vZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21167,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21167,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T21:01:59.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (42394 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_016k2SqAGf48V3LwUskSCh58"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a54a147e-69f9-4409-9497-28509f0f96c1",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "6700c1cd-842d-4c94-bb0f-50b62b974198",
+            "toolUseResult": "Error: File content (42394 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "a54a147e-69f9-4409-9497-28509f0f96c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T21:02:01.155Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll use Grep to search for the specific experiment IDs and metrics you're looking for."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6700c1cd-842d-4c94-bb0f-50b62b974198",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmcwgQNQEjH2NT1E2k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b2f84533-8590-45c0-acb5-7d106039e9f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BjTgXa1XRKbHNc6tSpEneH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 998,
+                "cache_read_input_tokens": 21167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T21:02:01.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jq7E3Dh9jYHwWQ8zqwgahx",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "llama_ss|p1_llama_ss",
+                "output_mode": "content",
+                "context": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2f84533-8590-45c0-acb5-7d106039e9f9",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmcwgQNQEjH2NT1E2k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "50328b9b-d430-4807-9bbd-024bc42edc66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BjTgXa1XRKbHNc6tSpEneH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 998,
+                "cache_read_input_tokens": 21167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T21:02:01.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jq7E3Dh9jYHwWQ8zqwgahx",
+              "type": "tool_result",
+              "content": "2351-      seed: 42\n2352-      checkpoint_path: results/p1_kl_perhead/\n2353-      log_path: logs/p1_kl_divergence_step2.log\n2354-    conclusion: success\n2355-    completed_at: '2026-05-24T07:18:06.521Z'\n2356:  p1_llama_ss_training:\n2357-    status: DONE\n2358-    retry_count: 0\n2359-    created_at: '2026-05-23T19:37:48.689Z'\n2360-    updated_at: '2026-05-24T15:53:21.654Z'\n2361-    hypothesis: SS is effective on Qwen (gap 8x to 1.4x). If SS also reduces the TF-AR\n2362-      gap on Llama-3.1-8B, it confirms SS as a model-general mitigation, strengthening\n2363-      C4 (mitigation) and C5 (cross-model) claims.\n2364-    spec:\n2365:      command: bash scripts/p1_llama_ss_train.sh\n2366-      server: westd-20861\n2367-      data_path: /root/turn-residual-gating/data/train_400.json\n2368-      data_count: 400\n2369-      model_name: meta-llama/Llama-3.1-8B-Instruct\n2370-      seed: 42\n2371:      checkpoint_path: runs/llama_ss_s42/\n2372:      log_path: logs/p1_llama_ss_training.log\n2373-      pid: 158507\n2374-      hyperparams:\n2375-        lr: 2e-4\n2376-        batch_size: 1\n2377-        grad_accum: 8\n--\n2438-      ar_beta3_gar: 0.605\n2439-      ar_beta3_ppl: 1.5868\n2440-      ar_beta5_gar: 0.7157\n2441-      ar_beta5_ppl: 1.8045\n2442-      n_convs_ar: 50\n2443:  p1_llama_ss_eval:\n2444-    status: DONE\n2445-    retry_count: 0\n2446-    created_at: '2026-05-24T15:53:29.650Z'\n2447-    updated_at: '2026-05-24T17:12:44.175Z'\n2448-    hypothesis: 'Llama SS (2-epoch) reduces the TF-AR GAR gap on Llama-3.1-8B, confirming\n2449-      SS as model-general mitigation (C4+C5). Eval: TF+AR N=50 β=0/3/5.'\n2450-    spec:\n2451:      command: bash scripts/p1_llama_ss_eval.sh\n2452-      server: westd-20861\n2453-      data_path: /root/turn-residual-gating/data/eval_50.json\n2454-      data_count: 50\n2455-      model_name: meta-llama/Llama-3.1-8B-Instruct\n2456-      seed: 42\n2457:      checkpoint_source: runs/p1_llama_ss_s42/epoch_1/\n2458:      log_path: runs/p1_llama_ss_eval.log\n2459-      pid: 178624\n2460:      checkpoint_path: results/llama_ss_eval/\n2461-    conclusion: success\n2462-    metrics:\n2463-      ss_tf_gar: 0.477\n2464-      ss_tf_ppl: 2.82\n2465-      ss_ar_b0_gar: 0.1662"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50328b9b-d430-4807-9bbd-024bc42edc66",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "b6482505-61cd-4db9-8d83-583ac1ef5426",
+            "sourceToolAssistantUUID": "50328b9b-d430-4807-9bbd-024bc42edc66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T21:02:02.426Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRphB6E3KSwB7b93ZrDXdv",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "0\\.173",
+                "output_mode": "content",
+                "context": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6482505-61cd-4db9-8d83-583ac1ef5426",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmcwgQNQEjH2NT1E2k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7da5c869-bb25-42db-bcfe-3fae4c1f0c23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BjTgXa1XRKbHNc6tSpEneH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 998,
+                "cache_read_input_tokens": 21167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T21:02:02.437Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRphB6E3KSwB7b93ZrDXdv",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7da5c869-bb25-42db-bcfe-3fae4c1f0c23",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "0a401fce-6e7c-46c5-b30d-99dc5068c448",
+            "sourceToolAssistantUUID": "7da5c869-bb25-42db-bcfe-3fae4c1f0c23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T21:02:02.824Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L39m7kjtTaB6mJ1UQ7xUsB",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "beta.*3|beta:.*3",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a401fce-6e7c-46c5-b30d-99dc5068c448",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmcwgQNQEjH2NT1E2k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "31e4bda9-7316-4c92-ada2-2140839f1597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BjTgXa1XRKbHNc6tSpEneH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 998,
+                "cache_read_input_tokens": 21167,
+                "output_tokens": 418,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 998
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 418,
+                    "cache_read_input_tokens": 21167,
+                    "cache_creation_input_tokens": 998,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 998,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T21:02:02.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L39m7kjtTaB6mJ1UQ7xUsB",
+              "type": "tool_result",
+              "content": "1008-      attention 的能力。与 N=5 gen 模式结果互补：tf 验证机制可控性，gen 验证因果闭环。\n1009-    parent: attention_steering_v7_tg_gen\n1010-    spec:\n1011:      command: 'python src/eval_attention_steering.py --mode tf --betas 0 2 3 4 5\n1012-        10 --output-name eval200_attention_steering.json (data: eval_200/eval_200.json,\n1013-        200 convs)'\n1014-      server: westd-20861\n--\n1027-      beta_2.0:\n1028-        mid_gar: 0.6112\n1029-        ppl: 2.69\n1030:      beta_3.0:\n1031-        mid_gar: 0.788\n1032-        ppl: 2.93\n1033-      beta_4.0:\n--\n1144-    spec:\n1145-      command: CUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py --checkpoint\n1146-        runs/phase2_tg_s42_v7 --mode gen --data-file data/eval_200/eval_200.json --max-convs\n1147:        50 --beta 0 2 3 4 5 10 --output-dir runs/attention_steering/ --output-name\n1148-        attention_steering_gen_n50\n1149-      server: westd-20861\n1150-      gpu:\n--\n1172-        ppl: 1.4822\n1173-        ppl_std: 0.1385\n1174-        n_valid: 39\n1175:      beta_3.0:\n1176-        mid_gar: 0.5558\n1177-        mid_gar_std: 0.0601\n1178-        ppl: 1.5605\n--\n1426-      letting them decay through successive transformer layers.\n1427-    spec:\n1428-      command: python src/eval_instruction_retention.py --checkpoint runs/phase2_tg_s42_v7\n1429:        --prompts data/instruction_retention_prompts.json --betas 0 3 --seed 42 --output\n1430-        results/instruction_retention.json\n1431-      server: westd-20861\n1432-      data_path: data/instruction_retention_prompts.json\n--\n1434-      model_name: Qwen2.5-7B-Instruct + v7 TG LoRA\n1435-      seed: 42\n1436-      checkpoint_source: phase2_tg_s42_v7\n1437:      eval_data: 18 instruction retention prompts, beta=[0,3], 5 turns each\n1438-    conclusion: success\n1439-    checkpoint_path: N/A (eval)\n1440-    log_path: /root/turn_residual_gating/results/instruction_retention.log\n1441-    metrics:\n1442-      late_turn_rate_beta0: 0.759\n1443:      late_turn_rate_beta3: 0.87\n1444-      late_turn_delta: 0.111\n1445-      mcnemar_chi2: 3.125\n1446-      mcnemar_p: 0.0771\n--\n1448-      gar_compliance_p: 0.007\n1449-      category_content_constraint:\n1450-        beta0: 0.619\n1451:        beta3: 0.857\n1452-        delta: 0.238\n1453-      category_count_constraint:\n1454-        beta0: 1\n1455:        beta3: 1\n1456-        delta: 0\n1457-      category_format_constraint:\n1458-        beta0: 1\n1459:        beta3: 1\n1460-        delta: 0\n1461-      category_position_constraint:\n1462-        beta0: 0.667\n1463:        beta3: 0.733\n1464-        delta: 0.067\n1465-    completed_at: '2026-05-21T03:59:31.835Z'\n1466-  llama_ar_matched_eval:\n--\n2150-        lo_gar: 0.037\n2151-        pcgrad_gar: 0.03\n2152-        ss_gar: 0.347\n2153:      beta3:\n2154-        base_gar: 0.531\n2155-        tg_gar: 0.556\n2156-        ss_gar: 0.593\n--\n2300-      tf_gar_ours: 0.5536\n2301-      tf_gar_dongre: 0.4106\n2302-      tf_ppl: 2.6123\n2303:      ar_beta0_gar: 0.4231\n2304-      ar_beta0_ppl: 1.4408\n2305:      ar_beta3_gar: 0.5903\n2306:      ar_beta3_ppl: 1.607\n2307-      ar_beta5_gar: 0.7174\n2308-      ar_beta5_ppl: 1.7852\n2309-      n_convs_tf: 200\n--\n2433-    metrics:\n2434-      tf_gar_ours_mid: 0.4964\n2435-      tf_gar_dongre_mid: 0.3862\n2436:      ar_beta0_gar: 0.4325\n2437:      ar_beta0_ppl: 1.4394\n2438:      ar_beta3_gar: 0.605\n2439:      ar_beta3_ppl: 1.5868\n2440-      ar_beta5_gar: 0.7157\n2441-      ar_beta5_ppl: 1.8045\n2442-      n_convs_ar: 50"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31e4bda9-7316-4c92-ada2-2140839f1597",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "1ed50c92-7c51-4ff7-aa52-e1c5195c4d66",
+            "sourceToolAssistantUUID": "31e4bda9-7316-4c92-ada2-2140839f1597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T21:02:04.833Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search more specifically for the 0.173 metric and any Llama steering experiments:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ed50c92-7c51-4ff7-aa52-e1c5195c4d66",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmsNqk5CyfGL6qd7vP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2ea567ab-7161-4958-a597-86a5008d9045",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XPb1ePpzdfLwJRabW85wJh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3012,
+                "cache_read_input_tokens": 22165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3012,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T21:02:06.099Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S4ugLAGJ7CeCoe4ELzUEui",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "ss_ar_b3_gar|0\\.1662|0\\.173",
+                "output_mode": "content",
+                "context": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ea567ab-7161-4958-a597-86a5008d9045",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmsNqk5CyfGL6qd7vP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e13a4d03-49ca-4f43-a50e-24fac0651a4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XPb1ePpzdfLwJRabW85wJh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3012,
+                "cache_read_input_tokens": 22165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3012,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T21:02:06.113Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S4ugLAGJ7CeCoe4ELzUEui",
+              "type": "tool_result",
+              "content": "2455-      model_name: meta-llama/Llama-3.1-8B-Instruct\n2456-      seed: 42\n2457-      checkpoint_source: runs/p1_llama_ss_s42/epoch_1/\n2458-      log_path: runs/p1_llama_ss_eval.log\n2459-      pid: 178624\n2460-      checkpoint_path: results/llama_ss_eval/\n2461-    conclusion: success\n2462-    metrics:\n2463-      ss_tf_gar: 0.477\n2464-      ss_tf_ppl: 2.82\n2465:      ss_ar_b0_gar: 0.1662\n2466-      ss_ar_b0_ppl: 1.37\n2467-      ss_ar_b5_gar: 0.7905\n2468-      ss_ar_b5_ppl: 1.81\n2469-      base_ar_gar: 0.0179\n2470-      base_ar_ppl: 1.22\n2471-      tf_ar_gap: 2.87\n2472-    completed_at: '2026-05-24T17:12:44.175Z'\n2473-  phase1a_multiseed_qwen:\n2474-    status: DONE\n2475-    retry_count: 0"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e13a4d03-49ca-4f43-a50e-24fac0651a4d",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "1b0cd913-7b31-4461-a75f-0074014059a1",
+            "sourceToolAssistantUUID": "e13a4d03-49ca-4f43-a50e-24fac0651a4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T21:02:06.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UPaTyZougZf5YYTgDuBrKw",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "llama.*steering|steering.*llama",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b0cd913-7b31-4461-a75f-0074014059a1",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxmsNqk5CyfGL6qd7vP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bf79c314-6d9c-4008-a697-6caee4310cbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XPb1ePpzdfLwJRabW85wJh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3012,
+                "cache_read_input_tokens": 22165,
+                "output_tokens": 292,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3012
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 292,
+                    "cache_read_input_tokens": 22165,
+                    "cache_creation_input_tokens": 3012,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3012,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T21:02:06.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UPaTyZougZf5YYTgDuBrKw",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf79c314-6d9c-4008-a697-6caee4310cbd",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "50d9adf1-81dd-4f2c-b88e-a67b9ab1c76f",
+            "sourceToolAssistantUUID": "bf79c314-6d9c-4008-a697-6caee4310cbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T21:02:08.535Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search more specifically for the missing β=3 metric in the Llama SS evaluation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50d9adf1-81dd-4f2c-b88e-a67b9ab1c76f",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxn9P1wwjEHmV5goy9L",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "474ff50d-35f2-467f-8302-dac8781cc438",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015TcuBLcbSSuoVvoSyYwvBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 703,
+                "cache_read_input_tokens": 25177,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 703,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T21:02:08.966Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LSpEVDFcX88rNHXfnhpbD3",
+              "name": "Grep",
+              "input": {
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/registry.yaml",
+                "pattern": "p1_llama_ss_eval|ss_ar_b3",
+                "output_mode": "content",
+                "context": 15
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "474ff50d-35f2-467f-8302-dac8781cc438",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxn9P1wwjEHmV5goy9L",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ec7aacdd-d058-4452-8245-2b9621be2318",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015TcuBLcbSSuoVvoSyYwvBB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 703,
+                "cache_read_input_tokens": 25177,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 703
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 25177,
+                    "cache_creation_input_tokens": 703,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 703,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T21:02:08.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LSpEVDFcX88rNHXfnhpbD3",
+              "type": "tool_result",
+              "content": "2428-      eval_data: /root/turn-residual-gating/data/eval_200/eval_200.json\n2429-      checkpoint_path: /root/turn-residual-gating/results/d048_final_ar/\n2430-      log_path: /root/turn-residual-gating/results/d048_final_ar/\n2431-    conclusion: success\n2432-    completed_at: '2026-05-24T01:19:43.693Z'\n2433-    metrics:\n2434-      tf_gar_ours_mid: 0.4964\n2435-      tf_gar_dongre_mid: 0.3862\n2436-      ar_beta0_gar: 0.4325\n2437-      ar_beta0_ppl: 1.4394\n2438-      ar_beta3_gar: 0.605\n2439-      ar_beta3_ppl: 1.5868\n2440-      ar_beta5_gar: 0.7157\n2441-      ar_beta5_ppl: 1.8045\n2442-      n_convs_ar: 50\n2443:  p1_llama_ss_eval:\n2444-    status: DONE\n2445-    retry_count: 0\n2446-    created_at: '2026-05-24T15:53:29.650Z'\n2447-    updated_at: '2026-05-24T17:12:44.175Z'\n2448-    hypothesis: 'Llama SS (2-epoch) reduces the TF-AR GAR gap on Llama-3.1-8B, confirming\n2449-      SS as model-general mitigation (C4+C5). Eval: TF+AR N=50 β=0/3/5.'\n2450-    spec:\n2451:      command: bash scripts/p1_llama_ss_eval.sh\n2452-      server: westd-20861\n2453-      data_path: /root/turn-residual-gating/data/eval_50.json\n2454-      data_count: 50\n2455-      model_name: meta-llama/Llama-3.1-8B-Instruct\n2456-      seed: 42\n2457-      checkpoint_source: runs/p1_llama_ss_s42/epoch_1/\n2458:      log_path: runs/p1_llama_ss_eval.log\n2459-      pid: 178624\n2460-      checkpoint_path: results/llama_ss_eval/\n2461-    conclusion: success\n2462-    metrics:\n2463-      ss_tf_gar: 0.477\n2464-      ss_tf_ppl: 2.82\n2465-      ss_ar_b0_gar: 0.1662\n2466-      ss_ar_b0_ppl: 1.37\n2467-      ss_ar_b5_gar: 0.7905\n2468-      ss_ar_b5_ppl: 1.81\n2469-      base_ar_gar: 0.0179\n2470-      base_ar_ppl: 1.22\n2471-      tf_ar_gap: 2.87\n2472-    completed_at: '2026-05-24T17:12:44.175Z'\n2473-  phase1a_multiseed_qwen:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec7aacdd-d058-4452-8245-2b9621be2318",
+            "isSidechain": true,
+            "promptId": "e3c95b44-8b46-46d6-8b69-1bd0c9182476",
+            "agentId": "a4941de87e6eee409",
+            "type": "user",
+            "uuid": "4a10db80-2ef5-4b73-a7ab-6138100ae975",
+            "sourceToolAssistantUUID": "ec7aacdd-d058-4452-8245-2b9621be2318",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T21:02:13.004Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Findings\n\nI found one Llama scheduled sampling (SS) experiment in the registry:\n\n**Experiment ID:** `p1_llama_ss_eval`\n- **Status:** DONE\n- **Model:** meta-llama/Llama-3.1-8B-Instruct\n- **Metrics reported:**\n  - `ss_tf_gar: 0.477`\n  - `ss_tf_ppl: 2.82`\n  - `ss_ar_b0_gar: 0.1662` (β=0)\n  - `ss_ar_b0_ppl: 1.37`\n  - `ss_ar_b5_gar: 0.7905` (β=5)\n  - `ss_ar_b5_ppl: 1.81`\n  - `base_ar_gar: 0.0179`\n  - `base_ar_ppl: 1.22`\n  - `tf_ar_gap: 2.87`\n\n**Critical Finding:** The hypothesis explicitly mentions evaluation with \"TF+AR N=50 β=0/3/5\", but the metrics dictionary is **missing the β=3 entry** (`ss_ar_b3_gar`). The 0.173 metric you're searching for does not appear in the registry. The closest value is `ss_ar_b0_gar: 0.1662` (β=0), but this is not the β=3 result you're looking for.\n\nThe registry also contains a related training experiment `p1_llama_ss_training` (the checkpoint source), but no other Llama SS or steering experiments matching your criteria were found."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a10db80-2ef5-4b73-a7ab-6138100ae975",
+            "isSidechain": true,
+            "agentId": "a4941de87e6eee409",
+            "requestId": "req_011CbPxnKZh5A5aqKXSj5rjP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c841037-e3e9-4ce2-a68f-61764b8ae042",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5d779602-0719-4d06-8bf9-fdd84990d5d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "melodic-wishing-whistle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JzuFHB8NRaTKUdaJ8b17zt",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1153,
+                "cache_read_input_tokens": 25880,
+                "output_tokens": 400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1153
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 400,
+                    "cache_read_input_tokens": 25880,
+                    "cache_creation_input_tokens": 1153,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1153,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-file-home-ubuntu-agent-ml-research-idea-gen-0509-11-projects-turn-r.md"
+}

@@ -1,0 +1,1036 @@
+{
+  "schema_version": "1.0",
+  "id": "cdaa5f2b8e719fd3f2ad",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following 10 files and report their content (just the raw LaTeX content, no analysis needed): 1. /home/ubuntu/.",
+  "task_key": "agent-abf810ba317d15f6d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-abf810ba317d15f6d.jsonl",
+    "occurrence": 1,
+    "bytes": 43044,
+    "sha256": "25022dfcab989ff0daef75a19a18f07256d0808d8854886972706d835345bde9"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T15:49:30.586Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following 10 files and report their content (just the raw LaTeX content, no analysis needed):\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perseed_ss.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perseed_tg.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perturn_qwen.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perturn_llama.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_dataset_stats.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_gar_robustness.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_mmlu_detail.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_qwen15b_results.tex\n9. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_statistical_tests.tex\n10. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_crossmodel_detail.tex\n\nReport each file's full content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "684d9a5a-5775-45de-9a46-19f911fd664a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T15:49:32.322Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all 10 files for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "684d9a5a-5775-45de-9a46-19f911fd664a",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "89d52011-4a56-4bca-878b-3cc0cf1fa66a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T15:49:32.756Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VVsjC5H1br5LfKojNHcJWh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perseed_ss.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89d52011-4a56-4bca-878b-3cc0cf1fa66a",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb00ac70-bd93-4608-93fa-b02e50b64f42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T15:49:32.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VVsjC5H1br5LfKojNHcJWh",
+              "type": "tool_result",
+              "content": "1\t% Per-seed detailed results for Scheduled Sampling (SS) — seeds 42, 123, 456\n2\t% TF eval: N=200, T=3 (teacher-forced on held-out eval_200 set)\n3\t% AR eval: N=50 gen-mode, beta=0/3/5 (from d048_final_ar)\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\caption{Per-seed results for Scheduled Sampling (SS) on Qwen2.5-7B-Instruct.\n7\tTF evaluation uses 200 held-out conversations; AR evaluation uses 50 model-generated conversations in free-form generation mode ($N_{\\text{valid}} \\approx 39$).}\n8\t\\label{tab:perseed-ss}\n9\t\\small\n10\t\\begin{tabular}{@{}l ccc c@{}}\n11\t\\toprule\n12\t\\textbf{Metric} & \\textbf{Seed 42} & \\textbf{Seed 123} & \\textbf{Seed 456} & \\textbf{Mean $\\pm$ Std} \\\\\n13\t\\midrule\n14\t\\multicolumn{5}{@{}l}{\\textit{Teacher-Forced (TF)}} \\\\\n15\t\\quad GAR-ours $\\uparrow$   & 0.502 & 0.554 & 0.496 & 0.517 $\\pm$ 0.032 \\\\\n16\t\\quad GAR-Dongre $\\uparrow$ & 0.389 & 0.411 & 0.386 & 0.395 $\\pm$ 0.014 \\\\\n17\t\\quad PPL $\\downarrow$       & 2.780 & 2.612 & 2.611 & 2.668 $\\pm$ 0.097 \\\\\n18\t\\midrule\n19\t\\multicolumn{5}{@{}l}{\\textit{Autoregressive (AR), $\\beta = 0$}} \\\\\n20\t\\quad GAR-ours $\\uparrow$   & 0.347 & 0.423 & 0.433 & 0.401 $\\pm$ 0.047 \\\\\n21\t\\quad PPL $\\downarrow$       & 1.442 & 1.441 & 1.439 & 1.441 $\\pm$ 0.002 \\\\\n22\t\\midrule\n23\t\\multicolumn{5}{@{}l}{\\textit{Autoregressive (AR), $\\beta = 3$}} \\\\\n24\t\\quad GAR-ours $\\uparrow$   & 0.593 & 0.590 & 0.605 & 0.596 $\\pm$ 0.008 \\\\\n25\t\\quad PPL $\\downarrow$       & 1.564 & 1.607 & 1.587 & 1.586 $\\pm$ 0.022 \\\\\n26\t\\midrule\n27\t\\multicolumn{5}{@{}l}{\\textit{Autoregressive (AR), $\\beta = 5$}} \\\\\n28\t\\quad GAR-ours $\\uparrow$   & 0.717 & 0.717 & 0.716 & 0.717 $\\pm$ 0.001 \\\\\n29\t\\quad PPL $\\downarrow$       & 1.779 & 1.785 & 1.804 & 1.789 $\\pm$ 0.013 \\\\\n30\t\\bottomrule\n31\t\\end{tabular}\n32\t\\end{table}\n33\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb00ac70-bd93-4608-93fa-b02e50b64f42",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "f8f1ed4f-924d-4b1d-8d1a-c182a217a1f1",
+            "sourceToolAssistantUUID": "cb00ac70-bd93-4608-93fa-b02e50b64f42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T15:49:32.999Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016knngc5cW4YDqGE7za5n4t",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perseed_tg.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8f1ed4f-924d-4b1d-8d1a-c182a217a1f1",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b36d2726-a3e2-4a11-ba00-e38307dda76f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T15:49:33.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016knngc5cW4YDqGE7za5n4t",
+              "type": "tool_result",
+              "content": "1\t% Per-seed detailed results for ThreadGate (TG) — seeds 42, 123\n2\t% TF eval: N=200 held-out conversations\n3\t% AR eval: N=5, T=10 model-generated conversations (original eval protocol)\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\caption{Per-seed results for ThreadGate (TG) on Qwen2.5-7B-Instruct.\n7\tTF evaluation uses 200 held-out conversations.\n8\tAR evaluation uses 5 model-generated conversations with 10 turns each.}\n9\t\\label{tab:perseed-tg}\n10\t\\small\n11\t\\begin{tabular}{@{}l cc c@{}}\n12\t\\toprule\n13\t\\textbf{Metric} & \\textbf{Seed 42} & \\textbf{Seed 123} & \\textbf{Mean $\\pm$ Std} \\\\\n14\t\\midrule\n15\t\\multicolumn{4}{@{}l}{\\textit{Teacher-Forced (TF)}} \\\\\n16\t\\quad GAR-ours $\\uparrow$   & 0.504 & 0.505 & 0.504 $\\pm$ 0.001 \\\\\n17\t\\quad GAR-Dongre $\\uparrow$ & 0.015 & 0.012 & 0.014 $\\pm$ 0.002 \\\\\n18\t\\quad PPL $\\downarrow$       & 2.784 & 2.780 & 2.782 $\\pm$ 0.003 \\\\\n19\t\\midrule\n20\t\\multicolumn{4}{@{}l}{\\textit{Autoregressive (AR), $\\beta = 0$}} \\\\\n21\t\\quad GAR-ours $\\uparrow$   & 0.016 & 0.017 & 0.016 $\\pm$ 0.001 \\\\\n22\t\\quad GAR-Dongre $\\uparrow$ & 0.019 & 0.018 & 0.019 $\\pm$ 0.001 \\\\\n23\t\\quad PPL $\\downarrow$       & 1.360 & 1.386 & 1.373 $\\pm$ 0.018 \\\\\n24\t\\midrule\n25\t\\multicolumn{4}{@{}l}{\\textit{Derived}} \\\\\n26\t\\quad Gap ratio (TF/AR GAR-ours) $\\downarrow$ & 32.1 & 30.6 & 31.4 $\\pm$ 1.1 \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\end{table}\n30\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b36d2726-a3e2-4a11-ba00-e38307dda76f",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "a2834e86-eeb8-46eb-822d-041095b4f588",
+            "sourceToolAssistantUUID": "b36d2726-a3e2-4a11-ba00-e38307dda76f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T15:49:33.223Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018t5TZtcQW7SQmhJhnw5UJv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perturn_qwen.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2834e86-eeb8-46eb-822d-041095b4f588",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e461da8f-e454-4a0f-8263-6ee1abaec229",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T15:49:33.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018t5TZtcQW7SQmhJhnw5UJv",
+              "type": "tool_result",
+              "content": "1\t% Per-turn AR GAR-ours for Qwen2.5-7B-Instruct, 6-way comparison\n2\t% Source: d048_final_ar, beta=0, N=50 gen-mode, n_valid~39\n3\t% Only turns 1--5 shown (later turns have survivor bias from variable-length generation)\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\caption{Per-turn autoregressive GAR-ours ($\\beta{=}0$) on Qwen2.5-7B-Instruct across six training configurations. Values represent average GAR over ${\\sim}39$ valid conversations in free-form generation mode.}\n7\t\\label{tab:perturn-qwen}\n8\t\\small\n9\t\\begin{tabular}{@{}l ccccc@{}}\n10\t\\toprule\n11\t\\textbf{Configuration} & \\textbf{Turn 1} & \\textbf{Turn 2} & \\textbf{Turn 3} & \\textbf{Turn 4} & \\textbf{Turn 5} \\\\\n12\t\\midrule\n13\tBase         & .085 & .032 & .021 & .013 & .004 \\\\\n14\tThreadGate   & .130 & .073 & .059 & .043 & .066 \\\\\n15\tPCGrad       & .090 & .038 & .028 & .029 & .027 \\\\\n16\tUG           & .113 & .056 & .033 & .020 & .016 \\\\\n17\tLoRA-only    & .107 & .059 & .030 & .049 & .040 \\\\\n18\tSS           & \\textbf{.458} & \\textbf{.381} & \\textbf{.344} & \\textbf{.370} & \\textbf{.365} \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\end{table}\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e461da8f-e454-4a0f-8263-6ee1abaec229",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "21f82628-d909-42c2-adcd-f71dbfe1da06",
+            "sourceToolAssistantUUID": "e461da8f-e454-4a0f-8263-6ee1abaec229",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T15:49:33.384Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NKDjQKjz2ZxuGUSzdb5u6x",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_perturn_llama.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21f82628-d909-42c2-adcd-f71dbfe1da06",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d07a0b29-a028-422d-a4ba-b2e37d3eb053",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T15:49:33.391Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NKDjQKjz2ZxuGUSzdb5u6x",
+              "type": "tool_result",
+              "content": "1\t% Per-turn AR GAR-ours for Llama-3.1-8B-Instruct\n2\t% Panel (a): N=20, T=4 (eval_llama_ar_n20) — reliable estimates\n3\t% Panel (b): Base only, N=5, T=10 (llama_phase1_gar_diag) — decay profile\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\caption{Per-turn autoregressive GAR-ours ($\\beta{=}0$) on Llama-3.1-8B-Instruct.\n7\t(a)~Three-way comparison using $N{=}20$ conversations ($T{=}4$ turns).\n8\t(b)~Base model decay profile ($N{=}5$, $T{=}10$).}\n9\t\\label{tab:perturn-llama}\n10\t\\small\n11\t\\begin{subtable}[t]{0.55\\columnwidth}\n12\t\\centering\n13\t\\caption{$N{=}20$, $T{=}4$}\n14\t\\begin{tabular}{@{}l cccc@{}}\n15\t\\toprule\n16\t\\textbf{Config.} & \\textbf{T1} & \\textbf{T2} & \\textbf{T3} & \\textbf{T4} \\\\\n17\t\\midrule\n18\tBase      & .028 & .013 & .009 & .008 \\\\\n19\tTG        & .041 & .042 & .049 & .038 \\\\\n20\tLoRA-only & .033 & .049 & .025 & .031 \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{subtable}\n24\t\\hfill\n25\t\\begin{subtable}[t]{0.42\\columnwidth}\n26\t\\centering\n27\t\\caption{Base decay ($N{=}5$, $T{=}10$)}\n28\t\\begin{tabular}{@{}cc@{}}\n29\t\\toprule\n30\t\\textbf{Turn} & \\textbf{GAR-ours} \\\\\n31\t\\midrule\n32\t1  & .026 \\\\\n33\t2  & .018 \\\\\n34\t3  & .009 \\\\\n35\t4  & .006 \\\\\n36\t5  & .006 \\\\\n37\t6  & .004 \\\\\n38\t7  & .004 \\\\\n39\t8  & .004 \\\\\n40\t9  & .005 \\\\\n41\t10 & .003 \\\\\n42\t\\bottomrule\n43\t\\end{tabular}\n44\t\\end{subtable}\n45\t\\end{table}\n46\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d07a0b29-a028-422d-a4ba-b2e37d3eb053",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "ba216be1-62b1-4943-a1a6-f63c4b6aaed2",
+            "sourceToolAssistantUUID": "d07a0b29-a028-422d-a4ba-b2e37d3eb053",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T15:49:34.080Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012zXqQbLForjLvQJsViBdmM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_dataset_stats.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba216be1-62b1-4943-a1a6-f63c4b6aaed2",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d0088d76-768c-4e67-8b2d-a48b749e4d6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T15:49:34.115Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VcarMxvVG8J5vvqudPWhyj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_gar_robustness.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0088d76-768c-4e67-8b2d-a48b749e4d6e",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "844395ac-74bd-41bd-8df4-0337b00ac4de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T15:49:34.121Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012zXqQbLForjLvQJsViBdmM",
+              "type": "tool_result",
+              "content": "1\t% Dataset statistics table\n2\t\\begin{table}[t]\n3\t\\centering\n4\t\\small\n5\t\\caption{Dataset statistics. Training and evaluation data are sampled from UltraChat-200K~\\citep{ding2023enhancing}. All conversations contain $\\geq 5$ assistant turns.}\n6\t\\label{tab:dataset_stats}\n7\t\\begin{tabular}{@{}lr@{}}\n8\t\\toprule\n9\t\\textbf{Statistic} & \\textbf{Value} \\\\\n10\t\\midrule\n11\t\\multicolumn{2}{@{}l}{\\textit{Source}} \\\\\n12\t\\quad Dataset & UltraChat-200K (\\texttt{train\\_sft}) \\\\\n13\t\\quad Total conversations & 207{,}865 \\\\\n14\t\\quad After filtering ($\\geq 5$ asst.\\ turns) & 17{,}302 \\\\\n15\t\\midrule\n16\t\\multicolumn{2}{@{}l}{\\textit{Splits}} \\\\\n17\t\\quad Training set & 8{,}000 \\\\\n18\t\\quad Held-out eval (OOD) & 50 \\\\\n19\t\\quad IID eval (GAR diagnostic) & 50 \\\\\n20\t\\quad Large eval (instruction retention) & 200 \\\\\n21\t\\midrule\n22\t\\multicolumn{2}{@{}l}{\\textit{Conversation structure}} \\\\\n23\t\\quad Avg.\\ assistant turns & 5.6 \\\\\n24\t\\quad Min / Max assistant turns & 5 / 7 \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\end{table}\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0088d76-768c-4e67-8b2d-a48b749e4d6e",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "b23dadb0-506f-432c-9f34-1cb808cdb698",
+            "sourceToolAssistantUUID": "d0088d76-768c-4e67-8b2d-a48b749e4d6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T15:49:34.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VcarMxvVG8J5vvqudPWhyj",
+              "type": "tool_result",
+              "content": "1\t% GAR definition robustness: 4 token selection strategies x 3 conditions\n2\t\\begin{table}[t]\n3\t\\centering\n4\t\\small\n5\t\\caption{GAR robustness across token selection strategies. We evaluate four ways to select the token position for gradient attribution: \\textbf{Last} (final token of each turn), \\textbf{All} (mean over all tokens), \\textbf{First} (first token), and \\textbf{Goal-only} (goal token as in \\citet{dongre2024multi}). Turn-1 and Mid-turn GAR are measured under autoregressive generation on 50 held-out conversations. Gap Ratio = Turn-1 / Mid-turn; lower indicates better gradient preservation across turns.}\n6\t\\label{tab:gar_robustness}\n7\t\\begin{tabular}{@{}ll ccc@{}}\n8\t\\toprule\n9\t\\textbf{Token Selection} & \\textbf{Condition} & \\textbf{Turn-1 GAR} & \\textbf{Mid-turn GAR} & \\textbf{Gap Ratio} $\\downarrow$ \\\\\n10\t\\midrule\n11\t\\multirow{3}{*}{Last (ours)}\n12\t  & Base      & 0.0858 & 0.0152 & 5.64$\\times$ \\\\\n13\t  & TG        & 0.3938 & 0.3254 & 1.21$\\times$ \\\\\n14\t  & SS        & 0.5274 & 0.4582 & 1.15$\\times$ \\\\\n15\t\\midrule\n16\t\\multirow{3}{*}{All tokens}\n17\t  & Base      & 0.1152 & 0.0152 & 7.57$\\times$ \\\\\n18\t  & TG        & 0.1275 & 0.0253 & 5.04$\\times$ \\\\\n19\t  & SS        & 0.5043 & 0.3658 & 1.38$\\times$ \\\\\n20\t\\midrule\n21\t\\multirow{3}{*}{First token}\n22\t  & Base      & 0.2987 & 0.0224 & 13.32$\\times$ \\\\\n23\t  & TG        & 0.3225 & 0.0392 & 8.24$\\times$ \\\\\n24\t  & SS        & 0.7549 & 0.4118 & 1.83$\\times$ \\\\\n25\t\\midrule\n26\t\\multirow{3}{*}{Goal-only}\n27\t  & Base      & 0.0110 & 0.0049 & 2.23$\\times$ \\\\\n28\t  & TG        & 0.3313 & 0.3103 & 1.07$\\times$ \\\\\n29\t  & SS        & 0.4528 & 0.4435 & 1.02$\\times$ \\\\\n30\t\\bottomrule\n31\t\\end{tabular}\n32\t\\end{table}\n33\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "844395ac-74bd-41bd-8df4-0337b00ac4de",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "a662c99b-7f88-40a8-9492-2d854389fcf2",
+            "sourceToolAssistantUUID": "844395ac-74bd-41bd-8df4-0337b00ac4de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T15:49:34.483Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014yqyruhZaiHcLQYKbP3UcQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_mmlu_detail.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a662c99b-7f88-40a8-9492-2d854389fcf2",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a0f9630-24b6-4b65-a665-696fe7429cbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T15:49:34.495Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014yqyruhZaiHcLQYKbP3UcQ",
+              "type": "tool_result",
+              "content": "1\t% MMLU per-category quality preservation table\n2\t\\begin{table}[t]\n3\t\\centering\n4\t\\small\n5\t\\caption{MMLU accuracy (\\%) by category across training conditions. All models are Qwen2.5-7B-Instruct with LoRA adapters evaluated on the full 57-subject MMLU benchmark (14{,}042 questions). $\\Delta$ denotes deviation from Base.}\n6\t\\label{tab:mmlu_detail}\n7\t\\begin{tabular}{@{}l cccccc@{}}\n8\t\\toprule\n9\t\\textbf{Category} & \\textbf{Base} & \\textbf{TG} & \\textbf{PCGrad} & \\textbf{SS} & \\textbf{LoRA-only} & \\textbf{UG} \\\\\n10\t\\midrule\n11\tSTEM           & 70.69 & 69.20 & 69.55 & 69.97 & 70.03 & 69.65 \\\\\n12\tSocial Sciences & 77.28 & 76.92 & 76.79 & 76.83 & 77.08 & 77.02 \\\\\n13\tHumanities     & 83.95 & 83.33 & 84.08 & 83.39 & 83.62 & 83.95 \\\\\n14\tOther          & 68.25 & 67.59 & 68.12 & 67.95 & 67.06 & 66.80 \\\\\n15\t\\midrule\n16\t\\textbf{Overall} & \\textbf{74.23} & 73.47 & 73.86 & 73.75 & 73.57 & 73.46 \\\\\n17\t$\\Delta$ & --- & $-$0.76 & $-$0.37 & $-$0.48 & $-$0.66 & $-$0.77 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\end{table}\n21\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a0f9630-24b6-4b65-a665-696fe7429cbd",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "5019531f-b61f-48e2-b768-2397eadeb9a0",
+            "sourceToolAssistantUUID": "9a0f9630-24b6-4b65-a665-696fe7429cbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T15:49:34.534Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019P56UBpQ5VLadDSdPvGBzK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_qwen15b_results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5019531f-b61f-48e2-b768-2397eadeb9a0",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "daae808a-691c-4853-ad96-b5bc587652ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T15:49:34.547Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019P56UBpQ5VLadDSdPvGBzK",
+              "type": "tool_result",
+              "content": "1\t% Qwen2.5-1.5B cross-scale results\n2\t\\begin{table}[t]\n3\t\\centering\n4\t\\small\n5\t\\caption{Cross-scale validation on Qwen2.5-1.5B-Instruct. Phase~1 confirms the GAR decay pattern at smaller scale (79.8\\% relative drop). Phase~2 shows TG improves AR at $\\beta=0$ (unamplified, $p{=}0.005$) and $\\beta=5$ (strong amplification, $p{<}0.001$), confirming the mechanism transfers across model sizes.}\n6\t\\label{tab:qwen15b_results}\n7\t\\begin{tabular}{@{}ll cc c@{}}\n8\t\\toprule\n9\t\\textbf{Phase} & \\textbf{Metric} & \\textbf{Base} & \\textbf{TG} & \\textbf{$p$-value} \\\\\n10\t\\midrule\n11\t\\multicolumn{5}{@{}l}{\\textit{Phase 1: GAR diagnostic}} \\\\\n12\t\\quad & Turn-1 GAR & 0.0336 & --- & --- \\\\\n13\t\\quad & Mid-turn GAR & 0.0068 & --- & --- \\\\\n14\t\\quad & Relative drop & 79.8\\% & --- & --- \\\\\n15\t\\midrule\n16\t\\multicolumn{5}{@{}l}{\\textit{Phase 2: TG training ($\\beta$-amplified AR)}} \\\\\n17\t\\quad & AR @ $\\beta{=}0$ & 0.0167 {\\scriptsize$\\pm$0.005} & \\textbf{0.0233} {\\scriptsize$\\pm$0.006} & 0.005$^{**}$ \\\\\n18\t\\quad & AR @ $\\beta{=}3$ & 0.1202 {\\scriptsize$\\pm$0.032} & 0.1143 {\\scriptsize$\\pm$0.019} & 0.815 \\\\\n19\t\\quad & AR @ $\\beta{=}5$ & 0.6571 {\\scriptsize$\\pm$0.020} & \\textbf{0.7150} {\\scriptsize$\\pm$0.017} & $<$0.001$^{***}$ \\\\\n20\t\\bottomrule\n21\t\\end{tabular}\n22\t\\vspace{1mm}\n23\t\\begin{flushleft}\n24\t\\scriptsize\n25\t$\\pm$ values are 95\\% CI half-widths. Significance via Wilcoxon signed-rank test ($N{=}39$ paired conversations). Effect sizes: $r{=}0.447$ ($\\beta{=}0$), $r{=}0.749$ ($\\beta{=}5$).\n26\t\\end{flushleft}\n27\t\\end{table}\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "daae808a-691c-4853-ad96-b5bc587652ce",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "fd6e2b40-c0ac-439f-a474-947e36359f8e",
+            "sourceToolAssistantUUID": "daae808a-691c-4853-ad96-b5bc587652ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T15:49:36.664Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ew9sbkg64JXePYDkehi17",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_statistical_tests.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd6e2b40-c0ac-439f-a474-947e36359f8e",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d59c5a1e-5ab1-4c5e-92a7-19cf8677d8c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T15:49:36.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ew9sbkg64JXePYDkehi17",
+              "type": "tool_result",
+              "content": "1\t% Item 9: Statistical tests summary table\n2\t% Wilcoxon signed-rank tests for per-dialogue GAR + McNemar for instruction retention\n3\t\\begin{table*}[t]\n4\t\\centering\n5\t\\caption{Summary of statistical significance tests.\n6\t  Wilcoxon signed-rank tests compare per-dialogue GAR across training configurations ($N\\!=\\!39$);\n7\t  McNemar's test assesses instruction-following retention under steering ($N\\!=\\!54$ paired instances).\n8\t  Bootstrap 95\\% CIs from 10{,}000 resamples.\n9\t  Significance: $^{***}\\!p<.001$, $^{**}\\!p<.01$, $^{*}\\!p<.05$.}\n10\t\\label{tab:statistical_tests}\n11\t\\small\n12\t\\setlength{\\tabcolsep}{4pt}\n13\t\\begin{tabular}{@{}llcrrccl@{}}\n14\t\\toprule\n15\t$\\beta$ & Comparison & Test & Stat. & $p$ & $r$ & $\\overline{\\mathrm{GAR}}$\\;[95\\% CI] & Sig. \\\\\n16\t\\midrule\n17\t\\multirow{4}{*}{0.0}\n18\t & TG vs Base    & Wilcoxon & $W\\!=\\!31$  & ${<}.001$ & .802 & .064\\,[.041,\\,.091]\\;vs\\;.019\\,[.014,\\,.024] & $^{***}$ \\\\\n19\t & TG vs LoRA    & Wilcoxon & $W\\!=\\!187$ & .004      & .454 & .064\\,[.041,\\,.091]\\;vs\\;.037\\,[.027,\\,.050] & $^{**}$  \\\\\n20\t & SS vs TG      & Wilcoxon & $W\\!=\\!1$   & ${<}.001$ & .869 & .347\\,[.327,\\,.366]\\;vs\\;.064\\,[.041,\\,.091] & $^{***}$ \\\\\n21\t & PCGrad vs TG  & Wilcoxon & $W\\!=\\!176$ & .002      & .478 & .030\\,[.023,\\,.038]\\;vs\\;.064\\,[.041,\\,.091] & $^{**}$  \\\\\n22\t\\midrule\n23\t\\multirow{4}{*}{3.0}\n24\t & TG vs Base    & Wilcoxon & $W\\!=\\!242$ & .039 & .331 & .556\\,[.538,\\,.575]\\;vs\\;.531\\,[.514,\\,.550] & $^{*}$  \\\\\n25\t & TG vs LoRA    & Wilcoxon & $W\\!=\\!376$ & .852 & .031 & .556\\,[.538,\\,.575]\\;vs\\;.560\\,[.541,\\,.581] & n.s.    \\\\\n26\t & SS vs TG      & Wilcoxon & $W\\!=\\!207$ & .010 & .409 & .593\\,[.574,\\,.613]\\;vs\\;.556\\,[.538,\\,.575] & $^{**}$ \\\\\n27\t & PCGrad vs TG  & Wilcoxon & $W\\!=\\!368$ & .767 & .049 & .559\\,[.543,\\,.576]\\;vs\\;.556\\,[.538,\\,.575] & n.s.    \\\\\n28\t\\midrule\n29\t\\multirow{4}{*}{5.0}\n30\t & TG vs Base    & Wilcoxon & $W\\!=\\!251$ & .084 & .281 & .727\\,[.708,\\,.747]\\;vs\\;.704\\,[.679,\\,.730] & n.s. \\\\\n31\t & TG vs LoRA    & Wilcoxon & $W\\!=\\!277$ & .180 & .220 & .727\\,[.708,\\,.747]\\;vs\\;.708\\,[.687,\\,.729] & n.s. \\\\\n32\t & SS vs TG      & Wilcoxon & $W\\!=\\!314$ & .421 & .133 & .717\\,[.696,\\,.738]\\;vs\\;.727\\,[.708,\\,.747] & n.s. \\\\\n33\t & PCGrad vs TG  & Wilcoxon & $W\\!=\\!266$ & .133 & .246 & .708\\,[.690,\\,.727]\\;vs\\;.727\\,[.708,\\,.747] & n.s. \\\\\n34\t\\midrule\n35\t\\multicolumn{8}{@{}l}{\\textit{Instruction-following retention} ($\\beta\\!=\\!0 \\to 3$, ThreadGate only)} \\\\[2pt]\n36\t & $\\beta\\!=\\!0$ vs $\\beta\\!=\\!3$ & McNemar & $\\chi^2\\!=\\!3.13$ & .077 & $.200^{\\dagger}$ & Rate: .759\\;vs\\;.870\\;($N\\!=\\!54$) & n.s.$^{\\ddagger}$ \\\\\n37\t\\bottomrule\n38\t\\end{tabular}\n39\t\\\\[4pt]\n40\t{\\footnotesize\n41\t$^{\\dagger}$\\,Point-biserial $r$; associated $p=.007$ (significant).\n42\t$^{\\ddagger}$\\,Marginal by McNemar ($p=.077$); significant by point-biserial correlation.\n43\t}\n44\t\\end{table*}\n45\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d59c5a1e-5ab1-4c5e-92a7-19cf8677d8c9",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "2eafb095-80dd-4bab-81ac-09f96caac011",
+            "sourceToolAssistantUUID": "d59c5a1e-5ab1-4c5e-92a7-19cf8677d8c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T15:49:36.956Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012pa5AbC7yWw2GyE7WynuCG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/appendix_expansion/tab_crossmodel_detail.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2eafb095-80dd-4bab-81ac-09f96caac011",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf8ePE3exmqyDeKR21E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "21d1866b-f1d7-4d51-ae75-acad60c1073c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q2nEbZL13SmufDz78JTnEz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 46910,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 46910,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T15:49:36.962Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012pa5AbC7yWw2GyE7WynuCG",
+              "type": "tool_result",
+              "content": "1\t% Cross-model detailed comparison: Qwen2.5-7B-Instruct vs Llama-3.1-8B-Instruct\n2\t% Conditions shared by both models: Base, ThreadGate, LoRA-only\n3\t% Qwen TF: N=200 held-out; Qwen AR: d048_final_ar N=50 gen beta=0\n4\t% Llama TF: N=50 held-out T=4; Llama AR: eval_llama_ar_n20 N=20 T=4\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\caption{Cross-model comparison of goal-adherence metrics on Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct.\n8\tGap ratio = TF GAR / AR GAR; lower is better (less exposure bias).\n9\tQwen AR uses $N{=}50$ gen-mode evaluation; Llama AR uses $N{=}20$, $T{=}4$.}\n10\t\\label{tab:crossmodel-detail}\n11\t\\small\n12\t\\begin{tabular}{@{}ll ccccc@{}}\n13\t\\toprule\n14\t\\textbf{Model} & \\textbf{Condition} & \\textbf{TF GAR}$\\uparrow$ & \\textbf{AR GAR}$\\uparrow$ & \\textbf{TF PPL}$\\downarrow$ & \\textbf{AR PPL}$\\downarrow$ & \\textbf{Gap}$\\downarrow$ \\\\\n15\t\\midrule\n16\t\\multirow{3}{*}{Qwen-7B}\n17\t  & Base      & 0.013 & 0.019 & 4.34 & 1.447 & 0.7$\\times$ \\\\\n18\t  & TG        & 0.504 & 0.064 & 2.78 & 1.432 & 7.9$\\times$ \\\\\n19\t  & LoRA-only & 0.498 & 0.037 & 2.78 & 1.431 & 13.5$\\times$ \\\\\n20\t\\midrule\n21\t\\multirow{3}{*}{Llama-8B}\n22\t  & Base      & 0.017 & 0.009 & 3.45 & 1.293 & 1.9$\\times$ \\\\\n23\t  & TG        & 0.484 & 0.043 & 2.57 & 1.437 & 11.2$\\times$ \\\\\n24\t  & LoRA-only & 0.481 & 0.028 & 2.60 & 1.419 & 17.2$\\times$ \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\end{table}\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21d1866b-f1d7-4d51-ae75-acad60c1073c",
+            "isSidechain": true,
+            "promptId": "8d54bc45-f36c-4cf2-8730-6151fd2264e8",
+            "agentId": "abf810ba317d15f6d",
+            "type": "user",
+            "uuid": "9ce9bccf-b472-4f7b-9d61-dadbc54d9e83",
+            "sourceToolAssistantUUID": "21d1866b-f1d7-4d51-ae75-acad60c1073c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T15:49:46.657Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## File Contents Report\n\n**File 1: tab_perseed_ss.tex**\nPer-seed results for Scheduled Sampling (SS) on Qwen2.5-7B-Instruct with metrics GAR-ours, GAR-Dongre, and PPL across three seeds (42, 123, 456) in both teacher-forced and autoregressive (AR with β=0,3,5) modes.\n\n**File 2: tab_perseed_tg.tex**\nPer-seed results for ThreadGate (TG) on Qwen2.5-7B-Instruct with two seeds (42, 123) showing GAR-ours, GAR-Dongre, PPL metrics in TF and AR modes, plus derived gap ratio metric.\n\n**File 3: tab_perturn_qwen.tex**\nPer-turn autoregressive GAR-ours (β=0) comparison across six training configurations (Base, ThreadGate, PCGrad, UG, LoRA-only, SS) on Qwen2.5-7B-Instruct for turns 1-5.\n\n**File 4: tab_perturn_llama.tex**\nPer-turn autoregressive GAR-ours (β=0) on Llama-3.1-8B-Instruct with two panels: (a) three-way comparison (Base, TG, LoRA-only) with N=20, T=4; (b) Base decay profile with N=5, T=10.\n\n**File 5: tab_dataset_stats.tex**\nDataset statistics table showing UltraChat-200K source data (207,865 total conversations, 17,302 after filtering for ≥5 assistant turns), training/eval splits, and conversation structure metrics.\n\n**File 6: tab_gar_robustness.tex**\nGAR robustness evaluation across four token selection strategies (Last, All, First, Goal-only) and three conditions (Base, TG, SS), showing Turn-1 GAR, Mid-turn GAR, and gap ratio metrics.\n\n**File 7: tab_mmlu_detail.tex**\nMMLU accuracy (%) by category (STEM, Social Sciences, Humanities, Other) across training conditions on Qwen2.5-7B-Instruct with baseline and delta from base model.\n\n**File 8: tab_qwen15b_results.tex**\nCross-scale validation on Qwen2.5-1.5B-Instruct with Phase 1 GAR diagnostic (79.8% relative drop) and Phase 2 TG training results at β=0, 3, 5 with p-values and 95% CI.\n\n**File 9: tab_statistical_tests.tex**\nSummary of statistical significance tests: Wilcoxon signed-rank tests for per-dialogue GAR comparisons (N=39) and McNemar's test for instruction-following retention (N=54), with effect sizes and 95% CIs.\n\n**File 10: tab_crossmodel_detail.tex**\nCross-model comparison of Qwen2.5-7B-Instruct vs Llama-3.1-8B-Instruct with TF/AR GAR, perplexity, and gap ratio metrics across Base, ThreadGate, and LoRA-only conditions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ce9bccf-b472-4f7b-9d61-dadbc54d9e83",
+            "isSidechain": true,
+            "agentId": "abf810ba317d15f6d",
+            "requestId": "req_011CbMf97yQnop89M1bSREKJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "30b3c572-03d8-4b5f-bb7f-8cbc25369315",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/paper_agent_d1ae4a98",
+            "sessionId": "34f38b66-6876-4bf8-b07e-de116eb64274",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "elegant-wobbling-wilkes",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XKWT7B91zfha94JY9N47fp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9575,
+                "cache_read_input_tokens": 46910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-10-files-and-report-their-content-just-the-raw-latex-conten.md"
+}

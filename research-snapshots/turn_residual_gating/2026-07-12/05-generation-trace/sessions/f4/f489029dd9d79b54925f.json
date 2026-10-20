@@ -1,0 +1,1871 @@
+{
+  "schema_version": "1.0",
+  "id": "f489029dd9d79b54925f",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the JSON file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-",
+  "task_key": "agent-ac5690c1fc6165809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ac5690c1fc6165809.jsonl",
+    "occurrence": 1,
+    "bytes": 121392,
+    "sha256": "f6acfc60ca1437ffb880686801eedf09f1607a6c5cdc7a89f9ab8a29753ee21f"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:17:49.446Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the JSON file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt\n\nThis is JSON with schema: {result: string}. The \"result\" field itself is a JSON string that needs to be parsed.\n\nExtract and report:\n1. Total number of experiments\n2. For each experiment: experiment_id, status, conclusion (first line only), and key metrics if available\n3. Group by status (SUCCESS, RUNNING, FAILED, KILLED, etc.)\n\nBe thorough — I need a complete picture of all experiments and their outcomes. Report verbatim experiment IDs and statuses."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "86311dc6-a014-4e1d-b121-b773837d9337",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:17:49.453Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "86311dc6-a014-4e1d-b121-b773837d9337",
+                "isSidechain": true,
+                "agentId": "ac5690c1fc6165809",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5de4462b-5864-4b12-bb15-767204bda6af",
+                "timestamp": "2026-05-14T05:17:49.453Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:17:52.065Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the file first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5de4462b-5864-4b12-bb15-767204bda6af",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tsddDugLRjSoUEQS6T",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb0c69d2-c0ee-4e5f-8e0e-2d2e456eff4b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Et6Z1BaMVkPVK6M63VYW3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14311,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14311,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:17:53.114Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNe7FA4jwaRFkg4fuRjEKf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb0c69d2-c0ee-4e5f-8e0e-2d2e456eff4b",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tsddDugLRjSoUEQS6T",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "110a03bd-9dd3-409c-b42c-b356e270f9e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Et6Z1BaMVkPVK6M63VYW3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14311,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14311
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14311,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14311,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:17:53.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01XNe7FA4jwaRFkg4fuRjEKf"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "110a03bd-9dd3-409c-b42c-b356e270f9e8",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "51514910-f2e7-4085-96b9-0dcfd65a3c1f",
+            "toolUseResult": "Error: File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "110a03bd-9dd3-409c-b42c-b356e270f9e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:17:55.641Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me read it in chunks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51514910-f2e7-4085-96b9-0dcfd65a3c1f",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tsvsJbgEr1AQD4oxRM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4215606b-c312-40c6-8608-dd837a33269b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLoiJVeY6ui7jBuk73v3rx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1057,
+                "cache_read_input_tokens": 14311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1057,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T05:17:56.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2vaV1c9ygcMhroU7VM5jG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt",
+                "limit": 500
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4215606b-c312-40c6-8608-dd837a33269b",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tsvsJbgEr1AQD4oxRM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3ff2c76a-36b7-4bb5-9e32-7ffe78c0aa62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLoiJVeY6ui7jBuk73v3rx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1057,
+                "cache_read_input_tokens": 14311,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1057
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 14311,
+                    "cache_creation_input_tokens": 1057,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1057,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:17:56.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01Q2vaV1c9ygcMhroU7VM5jG"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ff2c76a-36b7-4bb5-9e32-7ffe78c0aa62",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "8f9c18e5-12f2-4681-addc-0b184719ca03",
+            "toolUseResult": "Error: File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "3ff2c76a-36b7-4bb5-9e32-7ffe78c0aa62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T05:18:01.520Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBaRKxHAR8N2V5pju8WcgA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt",
+                "limit": 200,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f9c18e5-12f2-4681-addc-0b184719ca03",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1ttB1rZqBuv7rs85G1f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9dec2343-476f-45ed-9776-e27521ffcdf6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCDWyr1MxPTtzn2fxkAanz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 15368,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 237
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 15368,
+                    "cache_creation_input_tokens": 237,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 237,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:18:01.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01MBaRKxHAR8N2V5pju8WcgA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9dec2343-476f-45ed-9776-e27521ffcdf6",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "3a502c29-60cb-4ebd-bd51-48148262bdac",
+            "toolUseResult": "Error: File content (30685 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "9dec2343-476f-45ed-9776-e27521ffcdf6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T05:18:05.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0113iLeEM1eTjQNRqczyBFdv",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt",
+                "description": "Count lines in the file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a502c29-60cb-4ebd-bd51-48148262bdac",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1ttYLG2EihHoDjTwc42",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "79576e7c-f7e8-4b24-b320-559b6d597b25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZbTWNth6Ex5qfSrXHzJVi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 15605,
+                "output_tokens": 170,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 241
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 170,
+                    "cache_read_input_tokens": 15605,
+                    "cache_creation_input_tokens": 241,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 241,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T05:18:05.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0113iLeEM1eTjQNRqczyBFdv",
+              "type": "tool_result",
+              "content": "0 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79576e7c-f7e8-4b24-b320-559b6d597b25",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "b4af634c-e4f4-40fc-9e19-7e7720280a27",
+            "sourceToolAssistantUUID": "79576e7c-f7e8-4b24-b320-559b6d597b25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T05:18:08.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "It's a single line (JSON). Let me parse it with Python."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4af634c-e4f4-40fc-9e19-7e7720280a27",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1ttr38D446fPD8GEEbe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0461df04-f464-4dfd-bf1b-11598d29bfdf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V3wGdQyLdpUhVd2XQZ4Ta",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 15846,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 278,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:18:11.627Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U2ycHuVZwrZbEW7oUEfwgJ",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\n# Parse the nested result string\nresult = json.loads(data['result'])\n\n# Print top-level keys\nprint('Top-level keys:', list(result.keys()))\nprint('Type of result:', type(result))\nif isinstance(result, dict):\n    for k, v in result.items():\n        if isinstance(v, dict):\n            print(f'  {k}: dict with keys {list(v.keys())[:10]}')\n        elif isinstance(v, list):\n            print(f'  {k}: list with {len(v)} items')\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\"\n",
+                "description": "Parse and explore the JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0461df04-f464-4dfd-bf1b-11598d29bfdf",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1ttr38D446fPD8GEEbe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5544978f-7872-4ec2-8c5e-bfa06998a803",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V3wGdQyLdpUhVd2XQZ4Ta",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 15846,
+                "output_tokens": 378,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 278
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 378,
+                    "cache_read_input_tokens": 15846,
+                    "cache_creation_input_tokens": 278,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 278,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T05:18:11.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U2ycHuVZwrZbEW7oUEfwgJ",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType of result: <class 'dict'>\n  success: bool = True\n  data: dict with keys ['experiments', 'count', 'total', 'baseline']\n  error: NoneType = None\n  metadata: dict with keys ['elapsed_seconds']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5544978f-7872-4ec2-8c5e-bfa06998a803",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "3258dba9-75fd-4020-ad2c-0e7c9fd9f4fe",
+            "sourceToolAssistantUUID": "5544978f-7872-4ec2-8c5e-bfa06998a803",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T05:18:17.634Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SU9RZDcFhASoyKyV37yueh",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\n\nprint('count:', result['data']['count'])\nprint('total:', result['data']['total'])\nprint('baseline:', result['data'].get('baseline'))\nprint()\n\nexperiments = result['data']['experiments']\nprint(f'Number of experiment entries: {len(experiments)}')\nprint()\n\n# Print all experiment IDs and statuses\nfor exp in experiments:\n    print(f'ID: {exp.get(\\\"experiment_id\\\", \\\"N/A\\\")}')\n    print(f'  Status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    print(f'  Keys: {list(exp.keys())}')\n    print()\n\" 2>&1 | head -100\n",
+                "description": "Extract experiment count, IDs and statuses"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3258dba9-75fd-4020-ad2c-0e7c9fd9f4fe",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tuHFSDAPKTWisTNxRL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "45ab6a0e-aa60-40f2-aa28-25e19638d29e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011rD481TMWQ5NXxwwyxUEjE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 471,
+                "cache_read_input_tokens": 16124,
+                "output_tokens": 378,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 471
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 378,
+                    "cache_read_input_tokens": 16124,
+                    "cache_creation_input_tokens": 471,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 471,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:18:18.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SU9RZDcFhASoyKyV37yueh",
+              "type": "tool_result",
+              "content": "Traceback (most recent call last):\n  File \"<string>\", line 20, in <module>\n    print(f'ID: {exp.get(\"experiment_id\", \"N/A\")}')\n                 ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\ncount: 40\ntotal: 40\nbaseline: None\n\nNumber of experiment entries: 40",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45ab6a0e-aa60-40f2-aa28-25e19638d29e",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "cbf82431-b724-4f72-82be-d78b4f9dd82e",
+            "sourceToolAssistantUUID": "45ab6a0e-aa60-40f2-aa28-25e19638d29e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T05:18:22.415Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01StXAXSgWjYq3iQ9urqSPXe",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# experiments is a list of strings (experiment IDs), let's check\nprint('Type of first entry:', type(experiments[0]))\nprint('First entry:', experiments[0][:200])\nprint()\nprint('All entries:')\nfor i, exp in enumerate(experiments):\n    print(f'  [{i}]: {exp[:150]}')\n\" 2>&1\n",
+                "description": "Examine the experiment entries structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbf82431-b724-4f72-82be-d78b4f9dd82e",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tukhgWgUPgyTKFUN7K",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31c0a5da-14ca-4777-924f-a7e3aedc4e27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TSEa6neaA8BcpEc3UauKy6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 482,
+                "cache_read_input_tokens": 16595,
+                "output_tokens": 304,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 482
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 304,
+                    "cache_read_input_tokens": 16595,
+                    "cache_creation_input_tokens": 482,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 482,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:18:22.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n    print('Type of first entry:', type(experiments[0]))\n                                       ~~~~~~~~~~~^^^\nKeyError: 0",
+              "is_error": true,
+              "tool_use_id": "toolu_01StXAXSgWjYq3iQ9urqSPXe"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31c0a5da-14ca-4777-924f-a7e3aedc4e27",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "3e42b8fc-49e7-43ce-98ce-d51230f06cbc",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n    print('Type of first entry:', type(experiments[0]))\n                                       ~~~~~~~~~~~^^^\nKeyError: 0",
+            "sourceToolAssistantUUID": "31c0a5da-14ca-4777-924f-a7e3aedc4e27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T05:18:27.822Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TrJ7SbBXiv25PenqwQK9kL",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check if it's a dict\nprint('Type:', type(experiments))\nif isinstance(experiments, dict):\n    print('Keys:', list(experiments.keys())[:5])\n    first_key = list(experiments.keys())[0]\n    print('First key:', first_key)\n    print('First value type:', type(experiments[first_key]))\n    first_val = experiments[first_key]\n    if isinstance(first_val, str):\n        print('First value (truncated):', first_val[:300])\n    elif isinstance(first_val, dict):\n        print('First value keys:', list(first_val.keys()))\nelif isinstance(experiments, list):\n    print('Length:', len(experiments))\n    print('First type:', type(experiments[0]))\n\" 2>&1\n",
+                "description": "Determine experiments data structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e42b8fc-49e7-43ce-98ce-d51230f06cbc",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tv5s6nqxuNK5GLnaJE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "79f580df-b246-4e65-8c81-803fa7e2af69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PX6D91YXzaz6jKEtnkcnsY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 17077,
+                "output_tokens": 403,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 485
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 403,
+                    "cache_read_input_tokens": 17077,
+                    "cache_creation_input_tokens": 485,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 485,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T05:18:27.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TrJ7SbBXiv25PenqwQK9kL",
+              "type": "tool_result",
+              "content": "Type: <class 'dict'>\nKeys: ['v6_random_s030', 'v6_random_s025', 'v6_random_s020', 'v6_random_s015', 'qwen_importance_s025']\nFirst key: v6_random_s030\nFirst value type: <class 'dict'>\nFirst value keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'server', 'gpu', 'account', 'reproduce', 'spec', 'pid', 'log_path']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79f580df-b246-4e65-8c81-803fa7e2af69",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "92e71f90-a407-4e2b-9155-d6cccee79909",
+            "sourceToolAssistantUUID": "79f580df-b246-4e65-8c81-803fa7e2af69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:18:30.165Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I can see the structure. Let me extract all experiments comprehensively."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92e71f90-a407-4e2b-9155-d6cccee79909",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tvUAYLiPGTzFrhq6qr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e8763ef0-a279-46b6-88da-11bd9f7aa436",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdDjNcA3QJKAtwawCjRuBa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 17562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 557,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T05:18:34.043Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pijs7A8pBaTp9LdiSvW3fi",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Print all experiment IDs and full details\nfor exp_id, exp in experiments.items():\n    print(f\"=== {exp_id} ===\")\n    for k, v in exp.items():\n        if k == 'spec':\n            # spec can be large, just show keys\n            if isinstance(v, dict):\n                print(f\"  spec keys: {list(v.keys())}\")\n            else:\n                print(f\"  spec: {str(v)[:200]}\")\n        elif k == 'reproduce':\n            if isinstance(v, dict):\n                print(f\"  reproduce keys: {list(v.keys())}\")\n            else:\n                print(f\"  reproduce: {str(v)[:200]}\")\n        else:\n            print(f\"  {k}: {v}\")\n    print()\nPYEOF\n",
+                "description": "Extract all experiment details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8763ef0-a279-46b6-88da-11bd9f7aa436",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tvUAYLiPGTzFrhq6qr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "547c9bdf-f6ae-407d-9fe7-7205326fb6b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdDjNcA3QJKAtwawCjRuBa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 17562,
+                "output_tokens": 438,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 557
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 438,
+                    "cache_read_input_tokens": 17562,
+                    "cache_creation_input_tokens": 557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 557,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T05:18:34.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pijs7A8pBaTp9LdiSvW3fi",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (37.9KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/bjg573cj5.txt\n\nPreview (first 2KB):\n=== v6_random_s030 ===\n  status: RUNNING\n  retry_count: 0\n  created_at: 2026-05-14T05:12:49.055Z\n  updated_at: 2026-05-14T05:16:12.837Z\n  hypothesis: v6 代码 random masking s=0.30, cuda:2. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\n  server: westd-22162\n  gpu: cuda:2\n  account: root\n  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'code_commit']\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account']\n  pid: 74583\n  log_path: ~/runs/phase-gated-compound-sparse/v6_random_s030.log\n\n=== v6_random_s025 ===\n  status: RUNNING\n  retry_count: 0\n  created_at: 2026-05-14T05:11:50.836Z\n  updated_at: 2026-05-14T05:15:51.584Z\n  hypothesis: v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n\n=== v6_random_s020 ===\n  status: RUNNING\n  retry_count: 0\n  created_at: 2026-05-14T04:54:17.661Z\n  updated_at: 2026-05-14T05:10:20.736Z\n  hypothesis: v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n\n=== v6_random_s015 ===\n  status: RUNNING\n  retry_count: 0\n  created_at: 2026-05-14T04:54:17.188Z\n  updated_at: 2026-05-14T05:10:16.719Z\n  hypothesis: v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n\n=== qwen_importance_s025 ===\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "547c9bdf-f6ae-407d-9fe7-7205326fb6b4",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "604b8115-28a0-4ef2-a041-69c64afd8b4f",
+            "sourceToolAssistantUUID": "547c9bdf-f6ae-407d-9fe7-7205326fb6b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T05:18:36.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015uavuTcsn1FMLCSd2cE4E6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/bjg573cj5.txt",
+                "limit": 400,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "604b8115-28a0-4ef2-a041-69c64afd8b4f",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tvvdFs7fwTAPRUZeNp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "594ebe36-9019-4045-9cfe-42513b354f56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013MiH9WiTrHmhfM3aefVkMV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1442,
+                "cache_read_input_tokens": 18119,
+                "output_tokens": 168,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1442
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 168,
+                    "cache_read_input_tokens": 18119,
+                    "cache_creation_input_tokens": 1442,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1442,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T05:18:37.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015uavuTcsn1FMLCSd2cE4E6",
+              "type": "tool_result",
+              "content": "0\t=== v6_random_s030 ===\n1\t  status: RUNNING\n2\t  retry_count: 0\n3\t  created_at: 2026-05-14T05:12:49.055Z\n4\t  updated_at: 2026-05-14T05:16:12.837Z\n5\t  hypothesis: v6 代码 random masking s=0.30, cuda:2. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\n6\t  server: westd-22162\n7\t  gpu: cuda:2\n8\t  account: root\n9\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'code_commit']\n10\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account']\n11\t  pid: 74583\n12\t  log_path: ~/runs/phase-gated-compound-sparse/v6_random_s030.log\n13\t\n14\t=== v6_random_s025 ===\n15\t  status: RUNNING\n16\t  retry_count: 0\n17\t  created_at: 2026-05-14T05:11:50.836Z\n18\t  updated_at: 2026-05-14T05:15:51.584Z\n19\t  hypothesis: v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\n20\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n21\t\n22\t=== v6_random_s020 ===\n23\t  status: RUNNING\n24\t  retry_count: 0\n25\t  created_at: 2026-05-14T04:54:17.661Z\n26\t  updated_at: 2026-05-14T05:10:20.736Z\n27\t  hypothesis: v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\n28\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n29\t\n30\t=== v6_random_s015 ===\n31\t  status: RUNNING\n32\t  retry_count: 0\n33\t  created_at: 2026-05-14T04:54:17.188Z\n34\t  updated_at: 2026-05-14T05:10:16.719Z\n35\t  hypothesis: v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\n36\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed']\n37\t\n38\t=== qwen_importance_s025 ===\n39\t  status: QUEUED\n40\t  retry_count: 1\n41\t  created_at: 2026-05-14T04:50:43.235Z\n42\t  updated_at: 2026-05-14T05:09:37.950Z\n43\t  hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.25, cuda:3. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n44\t  completed_at: 2026-05-14T05:05:47.242Z\n45\t  extra: {'previous_failure': {'conclusion': 'killed'}}\n46\t\n47\t=== qwen_importance_s030 ===\n48\t  status: DONE\n49\t  retry_count: 0\n50\t  created_at: 2026-05-14T04:50:43.602Z\n51\t  updated_at: 2026-05-14T05:06:09.343Z\n52\t  hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.30, cuda:3. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n53\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n54\t  conclusion: killed\n55\t  completed_at: 2026-05-14T05:05:47.654Z\n56\t\n57\t=== qwen_importance_s020 ===\n58\t  status: DONE\n59\t  retry_count: 0\n60\t  created_at: 2026-05-14T04:50:42.892Z\n61\t  updated_at: 2026-05-14T05:06:07.837Z\n62\t  hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.20, cuda:1. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n63\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n64\t  conclusion: killed\n65\t  completed_at: 2026-05-14T05:05:46.800Z\n66\t\n67\t=== qwen_importance_s015 ===\n68\t  status: DONE\n69\t  retry_count: 0\n70\t  created_at: 2026-05-14T04:50:42.558Z\n71\t  updated_at: 2026-05-14T05:06:07.151Z\n72\t  hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.15, cuda:0. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n73\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n74\t  conclusion: killed\n75\t  completed_at: 2026-05-14T05:05:59.407Z\n76\t\n77\t=== v6_importance_s030 ===\n78\t  status: DONE\n79\t  retry_count: 0\n80\t  created_at: 2026-05-14T03:47:20.641Z\n81\t  updated_at: 2026-05-14T04:48:16.024Z\n82\t  hypothesis: v6 per-problem II 修复: importance masking s=0.30, cuda:3. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n83\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n84\t  conclusion: success\n85\t  completed_at: 2026-05-14T04:45:29.715Z\n86\t  metrics: {'ii_high_median': 0.8833, 'ii_mid_median': 7.2706, 'ii_low_median': 34.6937, 'ii_high_mean': 1.5151, 'ii_mid_mean': 78.8215, 'ii_low_mean': 1163.9677, 'per_problem_ii_count': 50, 'n_high': 40, 'n_mid': 22, 'n_low': 20, 'problems': 50, 'bootstrap_gradient_paired': 41.92, 'bootstrap_ci_paired': [19.14, 299.76], 'bootstrap_gradient_unpaired': 39.28, 'bootstrap_ci_unpaired': [21.87, 129.59], 'bootstrap_p': 0}\n87\t\n88\t=== v6_importance_s025 ===\n89\t  status: DONE\n90\t  retry_count: 0\n91\t  created_at: 2026-05-14T03:47:19.997Z\n92\t  updated_at: 2026-05-14T04:48:14.257Z\n93\t  hypothesis: v6 per-problem II 修复: importance masking s=0.25, cuda:2. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n94\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n95\t  conclusion: success\n96\t  completed_at: 2026-05-14T04:45:29.294Z\n97\t  metrics: {'ii_high_median': 0.6641, 'ii_mid_median': 5.3067, 'ii_low_median': 24.1619, 'ii_high_mean': 0.8842, 'ii_mid_mean': 10.057, 'ii_low_mean': 71.8854, 'per_problem_ii_count': 50, 'n_high': 42, 'n_mid': 23, 'n_low': 21, 'problems': 50, 'bootstrap_gradient_paired': 35.72, 'bootstrap_ci_paired': [9.52, 101.54], 'bootstrap_gradient_unpaired': 36.38, 'bootstrap_ci_unpaired': [13.19, 97.61], 'bootstrap_p': 0}\n98\t\n99\t=== v6_importance_s020 ===\n100\t  status: DONE\n101\t  retry_count: 0\n102\t  created_at: 2026-05-14T03:52:50.615Z\n103\t  updated_at: 2026-05-14T04:48:11.899Z\n104\t  hypothesis: v6 per-problem II 修复: importance masking s=0.20, cuda:1. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n105\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n106\t  conclusion: success\n107\t  completed_at: 2026-05-14T04:45:28.171Z\n108\t  metrics: {'ii_high_median': 0.3353, 'ii_mid_median': 1.6733, 'ii_low_median': 9.2538, 'ii_high_mean': 0.4936, 'ii_mid_mean': 4.9538, 'ii_low_mean': 25.8764, 'per_problem_ii_count': 50, 'n_high': 42, 'n_mid': 28, 'n_low': 21, 'problems': 50, 'bootstrap_gradient_paired': 11.05, 'bootstrap_ci_paired': [5.42, 69.27], 'bootstrap_gradient_unpaired': 27.6, 'bootstrap_ci_unpaired': [6.55, 75.16], 'bootstrap_p': 0}\n109\t\n110\t=== v6_importance_s015 ===\n111\t  status: DONE\n112\t  retry_count: 0\n113\t  created_at: 2026-05-14T03:52:50.334Z\n114\t  updated_at: 2026-05-14T04:48:09.482Z\n115\t  hypothesis: v6 per-problem II 修复: importance masking s=0.15, cuda:0. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n116\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n117\t  conclusion: success\n118\t  completed_at: 2026-05-14T04:45:27.320Z\n119\t  metrics: {'ii_high_median': 0.2266, 'ii_mid_median': 0.7432, 'ii_low_median': 2.8762, 'ii_high_mean': 0.2874, 'ii_mid_mean': 1.6858, 'ii_low_mean': 8.5161, 'per_problem_ii_count': 50, 'n_high': 43, 'n_mid': 32, 'n_low': 24, 'problems': 50, 'bootstrap_gradient_paired': 11.53, 'bootstrap_ci_paired': [3.49, 23.78], 'bootstrap_gradient_unpaired': 12.69, 'bootstrap_ci_unpaired': [4.96, 28.45], 'bootstrap_p': 0}\n120\t\n121\t=== mvp_v5_random_s020 ===\n122\t  status: DONE\n123\t  retry_count: 0\n124\t  created_at: 2026-05-14T03:01:33.304Z\n125\t  updated_at: 2026-05-14T04:00:15.079Z\n126\t  hypothesis: v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\n127\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n128\t  server: westd-22162\n129\t  gpu: cuda:0\n130\t  account: root\n131\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'code_commit', 'finished_at', 'training_hours']\n132\t  pid: 59323\n133\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log\n134\t  failure_reason: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n135\t  conclusion: success\n136\t  completed_at: 2026-05-14T03:55:03.880Z\n137\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-14T03:55:05.833184+00:00'}]}\n138\t  metrics: {'ii_high_median': 0.321331, 'ii_mid_median': 0.455663, 'ii_low_median': 0.591916, 'ii_high_mean': 0.855584, 'ii_mid_mean': 1.258123, 'ii_low_mean': 0.956933, 'ii_high_ci': [-0.124133, 1.616883], 'ii_mid_ci': [0.674852, 2.075565], 'ii_low_ci': [0.583856, 1.413355], 'kv_ppl_high': 4.2537, 'kv_ppl_mid': 4.3064, 'kv_ppl_low': 5.4048, 'both_ppl_high': 7.9749, 'both_ppl_mid': 6.8553, 'both_ppl_low': 22.5868, 'problems': 50}\n139\t  notes: 50/50 completed successfully. EXIT_CODE=137 is false alarm — process completed, saved results, then was killed during cleanup. Log confirms: Results saved to profiling_output_v5_random_s020/profiling_results.json. Cron on_failed hook fired due to non-zero exit code, but results are valid.\n140\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v5_random_s020/profiling_results.json\n141\t\n142\t=== mvp_v5_random_s030 ===\n143\t  status: DONE\n144\t  retry_count: 0\n145\t  created_at: 2026-05-14T03:01:34.781Z\n146\t  updated_at: 2026-05-14T04:00:14.269Z\n147\t  hypothesis: v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\n148\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n149\t  server: westd-22162\n150\t  gpu: cuda:1\n151\t  account: root\n152\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'code_commit', 'finished_at', 'training_hours']\n153\t  pid: 59611\n154\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_v5_random_s030.log\n155\t  failure_reason: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n156\t  conclusion: success\n157\t  completed_at: 2026-05-14T03:55:12.403Z\n158\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-14T03:55:15.813219+00:00'}]}\n159\t  metrics: {'ii_high_median': 5.377512, 'ii_mid_median': 5.886454, 'ii_low_median': 3.776818, 'ii_high_mean': 22.734534, 'ii_mid_mean': 10.943319, 'ii_low_mean': 11.840449, 'ii_high_ci': [10.352118, 42.551951], 'ii_mid_ci': [7.398611, 14.765315], 'ii_low_ci': [4.097309, 23.545273], 'kv_ppl_high': 8.1027, 'kv_ppl_mid': 8.5701, 'kv_ppl_low': 13.4922, 'both_ppl_high': 41.3452, 'both_ppl_mid': 24.1992, 'both_ppl_low': 68.5301, 'problems': 50}\n160\t  notes: 50/50 completed successfully. EXIT_CODE=137 is false alarm — process completed, saved results, then was killed during cleanup. Log confirms: Results saved to profiling_output_v5_random_s030/profiling_results.json. Cron on_failed hook fired due to non-zero exit code, but results are valid.\n161\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v5_random_s030/profiling_results.json\n162\t\n163\t=== mvp_v5_random_s025 ===\n164\t  status: DONE\n165\t  retry_count: 0\n166\t  created_at: 2026-05-14T02:19:32.243Z\n167\t  updated_at: 2026-05-14T03:04:45.157Z\n168\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n169\t  hypothesis: v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\n170\t  reproduce keys: ['finished_at']\n171\t  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-14T02:58:19.325558+00:00'}]}\n172\t  conclusion: success\n173\t  metrics: {'ii_high_median': 3.0024, 'ii_mid_median': 2.9846, 'ii_low_median': 2.9146, 'ii_high_mean': 3.9052, 'ii_mid_mean': 7.9491, 'ii_low_mean': 3.9114, 'ii_high_ci': [0.98, 6.34], 'ii_mid_ci': [4.67, 11.87], 'ii_low_ci': [2.71, 5.24], 'kv_ppl_high': 6.39, 'kv_ppl_mid': 6.11, 'kv_ppl_low': 9.07, 'both_ppl_high': 17.06, 'both_ppl_mid': 15.38, 'both_ppl_low': 29.32, 'problems': 50}\n174\t  completed_at: 2026-05-14T03:04:29.033Z\n175\t\n176\t=== mvp_v5_random_s015 ===\n177\t  status: DONE\n178\t  retry_count: 0\n179\t  created_at: 2026-05-14T02:19:30.549Z\n180\t  updated_at: 2026-05-14T03:04:44.225Z\n181\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n182\t  hypothesis: v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。\n183\t  reproduce keys: ['finished_at']\n184\t  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-14T02:58:14.836532+00:00'}]}\n185\t  conclusion: success\n186\t  metrics: {'ii_high_median': 0.1606, 'ii_mid_median': 0.252, 'ii_low_median': 0.1831, 'ii_high_mean': 0.4563, 'ii_mid_mean': 0.5134, 'ii_low_mean': 0.4775, 'ii_high_ci': [0.12, 0.77], 'ii_mid_ci': [0.34, 0.74], 'ii_low_ci': [0.28, 0.7], 'kv_ppl_high': 3.14, 'kv_ppl_mid': 2.91, 'kv_ppl_low': 3.61, 'both_ppl_high': 3.92, 'both_ppl_mid': 4.14, 'both_ppl_low': 4.71, 'problems': 50}\n187\t  completed_at: 2026-05-14T03:04:28.108Z\n188\t\n189\t=== mvp_v5_fixed_s030_r2 ===\n190\t  status: DONE\n191\t  retry_count: 0\n192\t  created_at: 2026-05-14T02:10:05.072Z\n193\t  updated_at: 2026-05-14T03:02:07.537Z\n194\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n195\t  hypothesis: v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。\n196\t  conclusion: negative\n197\t  completed_at: 2026-05-14T03:01:43.081Z\n198\t  metrics: {'ii_high_median': 0.5964, 'ii_mid_median': 7.4671, 'ii_low_median': 44.6324, 'ii_high_mean': 1.1832, 'ii_mid_mean': 168.53, 'ii_low_mean': 1926.23, 'ii_high_ci': [0.86, 1.6], 'ii_mid_ci': [36.91, 348.21], 'ii_low_ci': [179.17, 4062.57], 'kv_ppl_high': 1.4, 'kv_ppl_mid': 15.11, 'kv_ppl_low': 40.79, 'both_ppl_high': 5.71, 'both_ppl_mid': 137.61, 'both_ppl_low': 963.2, 'problems': 50}\n199\t\n200\t=== mvp_v5_fixed_s020_r2 ===\n201\t  status: DONE\n202\t  retry_count: 0\n203\t  created_at: 2026-05-14T02:10:03.689Z\n204\t  updated_at: 2026-05-14T03:02:03.793Z\n205\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n206\t  hypothesis: v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。\n207\t  conclusion: negative\n208\t  completed_at: 2026-05-14T03:01:41.598Z\n209\t  metrics: {'ii_high_median': 0.3333, 'ii_mid_median': 1.5479, 'ii_low_median': 9.5627, 'ii_high_mean': 0.5044, 'ii_mid_mean': 3.5155, 'ii_low_mean': 31.8937, 'ii_high_ci': [0.41, 0.62], 'ii_mid_ci': [2.29, 5.35], 'ii_low_ci': [18.74, 47.22], 'kv_ppl_high': 1.24, 'kv_ppl_mid': 3.65, 'kv_ppl_low': 14.11, 'both_ppl_high': 2.7, 'both_ppl_mid': 8.13, 'both_ppl_low': 42.64, 'problems': 50}\n210\t\n211\t=== mvp_v5_fixed_s030 ===\n212\t  status: DONE\n213\t  retry_count: 0\n214\t  created_at: 2026-05-14T01:26:05.204Z\n215\t  updated_at: 2026-05-14T02:36:08.288Z\n216\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'pid', 'gpu', 'hypothesis', 'notes', 'log_path', 'checkpoint_path']\n217\t  hypothesis: v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\n218\t  conclusion: killed\n219\t  completed_at: 2026-05-14T02:09:18.077Z\n220\t  metrics: {'ii_high': 1.18, 'ii_mid': 168.53, 'ii_low': 1926.23, 'ii_high_ci': [0.86, 1.6], 'ii_mid_ci': [36.91, 348.21], 'ii_low_ci': [179.17, 4062.57], 'ii_high_median': 0.6, 'ii_mid_median': 7.47, 'ii_low_median': 44.63, 'kv_ppl_high': 1.4, 'kv_ppl_mid': 15.11, 'kv_ppl_low': 40.79, 'both_ppl_high': 5.71, 'both_ppl_mid': 137.61, 'both_ppl_low': 963.2, 'problems': 50, '⚠️_WARNING': 'pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.'}\n221\t\n222\t=== mvp_v5_fixed_s020 ===\n223\t  status: DONE\n224\t  retry_count: 0\n225\t  created_at: 2026-05-14T01:26:04.454Z\n226\t  updated_at: 2026-05-14T02:36:04.306Z\n227\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'pid', 'gpu', 'hypothesis', 'notes', 'log_path', 'checkpoint_path']\n228\t  hypothesis: v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\n229\t  conclusion: killed\n230\t  completed_at: 2026-05-14T02:09:16.728Z\n231\t  metrics: {'ii_high': 0.5, 'ii_mid': 3.52, 'ii_low': 31.89, 'ii_high_ci': [0.41, 0.62], 'ii_mid_ci': [2.29, 5.35], 'ii_low_ci': [18.74, 47.22], 'ii_high_median': 0.33, 'ii_mid_median': 1.55, 'ii_low_median': 9.56, 'kv_ppl_high': 1.24, 'kv_ppl_mid': 3.65, 'kv_ppl_low': 14.11, 'both_ppl_high': 2.7, 'both_ppl_mid': 8.13, 'both_ppl_low': 42.64, 'problems': 50, '⚠️_WARNING': 'pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.'}\n232\t\n233\t=== mvp_v5_fixed_s025 ===\n234\t  status: DONE\n235\t  retry_count: 0\n236\t  created_at: 2026-05-14T01:31:10.384Z\n237\t  updated_at: 2026-05-14T02:15:34.177Z\n238\t  spec keys: ['hypothesis', 'server', 'gpu', 'command', 'data_path', 'data_count', 'model_name', 'seed', 'pid', 'checkpoint_path', 'log_path']\n239\t  metrics: {'ii_high': 0.851, 'ii_mid': 9.306, 'ii_low': 96.715, 'ii_high_ci': [0.703, 0.999], 'ii_mid_ci': [6.092, 13.303], 'ii_low_ci': [59.642, 143.188], 'ii_high_median': 0.584, 'ii_mid_median': 4.522, 'ii_low_median': 30.903, 'ii_high_winsorized': 0.802, 'ii_mid_winsorized': 8.156, 'ii_low_winsorized': 94.931, 'kv_ppl_high': 1.3108, 'kv_ppl_mid': 6.1778, 'kv_ppl_low': 23.8919, 'both_ppl_high': 3.4623, 'both_ppl_mid': 16.4148, 'both_ppl_low': 104.1749, 'problems': 50, 'segments': 1356}\n240\t  conclusion: negative\n241\t  completed_at: 2026-05-14T02:15:34.177Z\n242\t\n243\t=== mvp_v5_fixed_s015 ===\n244\t  status: DONE\n245\t  retry_count: 0\n246\t  created_at: 2026-05-14T01:31:09.055Z\n247\t  updated_at: 2026-05-14T02:15:33.221Z\n248\t  spec keys: ['hypothesis', 'server', 'gpu', 'command', 'data_path', 'data_count', 'model_name', 'seed', 'pid', 'checkpoint_path', 'log_path']\n249\t  metrics: {'ii_high': 0.306, 'ii_mid': 1.274, 'ii_low': 8.786, 'ii_high_ci': [0.256, 0.359], 'ii_mid_ci': [0.895, 1.749], 'ii_low_ci': [5.294, 12.684], 'ii_high_median': 0.205, 'ii_mid_median': 0.696, 'ii_low_median': 2.627, 'ii_high_winsorized': 0.289, 'ii_mid_winsorized': 1.139, 'ii_low_winsorized': 8.408, 'kv_ppl_high': 1.2147, 'kv_ppl_mid': 2.1276, 'kv_ppl_low': 6.7451, 'both_ppl_high': 2.2835, 'both_ppl_mid': 3.9408, 'both_ppl_low': 16.9987, 'problems': 50, 'segments': 1356}\n250\t  conclusion: negative\n251\t  completed_at: 2026-05-14T02:15:33.221Z\n252\t\n253\t=== mvp_v4_float32_s030 ===\n254\t  status: DONE\n255\t  retry_count: 0\n256\t  created_at: 2026-05-14T01:06:48.670Z\n257\t  updated_at: 2026-05-14T01:21:47.526Z\n258\t  hypothesis: Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。\n259\t  spec keys: ['server', 'gpu', 'model_name', 'data_path', 'data_count', 'seed']\n260\t  conclusion: killed\n261\t  completed_at: 2026-05-14T01:21:37.252Z\n262\t\n263\t=== mvp_ii_profiling_v4d ===\n264\t  status: DONE\n265\t  retry_count: 0\n266\t  created_at: 2026-05-13T22:56:47.723Z\n267\t  updated_at: 2026-05-14T01:21:23.011Z\n268\t  hypothesis: M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。\n269\t  parent: None\n270\t  spec keys: ['server', 'gpu', 'model_name', 'data_path', 'data_count', 'seed', 'command', 'pid']\n271\t  account: root\n272\t  conclusion: failed\n273\t  completed_at: 2026-05-14T01:20:54.693Z\n274\t  notes: 5/50 后静默崩溃，疑似长序列 + output_attentions OOM。importance 指标也有 NaN 中毒 + 位置偏差问题。\n275\t\n276\t=== mvp_v4_legacy_s035 ===\n277\t  status: DONE\n278\t  retry_count: 0\n279\t  created_at: 2026-05-14T00:12:54.211Z\n280\t  updated_at: 2026-05-14T01:21:21.671Z\n281\t  hypothesis: importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。\n282\t  spec keys: ['server', 'gpu', 'model_name', 'data_path', 'data_count', 'seed', 'command', 'pid']\n283\t  server: westd-22162\n284\t  account: root\n285\t  conclusion: failed\n286\t  completed_at: 2026-05-14T01:21:04.001Z\n287\t  notes: Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\n288\t\n289\t=== mvp_v4_legacy_s025 ===\n290\t  status: DONE\n291\t  retry_count: 0\n292\t  created_at: 2026-05-14T00:12:53.157Z\n293\t  updated_at: 2026-05-14T01:21:20.407Z\n294\t  hypothesis: importance(hardcoded) sparsity=0.25, crossover characterization: 填充 0.2→0.3 之间的 II 符号反转临界点。与 s02(0.2, II=+21.3) 和 s03(0.3, II=-224.5) 对比定位 crossover。\n295\t  spec keys: ['server', 'gpu', 'model_name', 'data_path', 'data_count', 'seed', 'command', 'pid']\n296\t  server: westd-22162\n297\t  account: root\n298\t  conclusion: failed\n299\t  completed_at: 2026-05-14T01:21:03.079Z\n300\t  notes: Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\n301\t\n302\t=== mvp_v4_random_r2 ===\n303\t  status: DONE\n304\t  retry_count: 0\n305\t  created_at: 2026-05-13T23:22:56.521Z\n306\t  updated_at: 2026-05-14T01:02:21.376Z\n307\t  hypothesis: v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3\n308\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n309\t  conclusion: success\n310\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json\n311\t  log_path: /tmp/mvp_v4_random_r2.log\n312\t  completed_at: 2026-05-14T01:02:21.376Z\n313\t\n314\t=== mvp_v4_legacy_s01 ===\n315\t  status: DONE\n316\t  retry_count: 0\n317\t  created_at: 2026-05-13T23:53:19.548Z\n318\t  updated_at: 2026-05-14T00:12:13.850Z\n319\t  hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。max_new_tokens=2048, min_phase_length=10。\n320\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n321\t  log_path: /root/autodl-tmp/pacs/profiling_output_v4a.log\n322\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v4a/profiling_results.json\n323\t  conclusion: negative\n324\t  completed_at: 2026-05-14T00:09:32.772Z\n325\t  notes: 50/50 completed. Verdict: FAIL. II[high_sparsity,0.1]=-0.11 CI=[-0.81,+0.41], II[mid_sparsity,0.1]=-15.97 CI=[-47.99,+1.29], II[low_sparsity,0.1]=0.00. Sparsity too low — II values near zero or negative, no meaningful signal separation. Output: profiling_output_v4a/profiling_results.json\n326\t  metrics: {'II_high_0.1': {'mean': -0.1097, 'ci_low': -0.8066, 'ci_high': 0.41}, 'II_mid_0.1': {'mean': -15.966, 'ci_low': -47.991, 'ci_high': 1.288}, 'II_low_0.1': {'mean': 0, 'ci_low': 0, 'ci_high': 0}, 'ppl_high_dense': 1.1462, 'ppl_high_both': 22.1302, 'ppl_mid_dense': 1.1226, 'ppl_mid_both': 47.5856, 'verdict': 'FAIL'}\n327\t\n328\t=== mvp_v4_legacy_s03 ===\n329\t  status: DONE\n330\t  retry_count: 0\n331\t  created_at: 2026-05-13T23:53:20.777Z\n332\t  updated_at: 2026-05-14T00:10:08.277Z\n333\t  hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。\n334\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n335\t  log_path: /root/autodl-tmp/pacs/profiling_output_v4c.log\n336\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v4c/\n337\t  conclusion: success\n338\t  completed_at: 2026-05-14T00:09:32.363Z\n339\t  metrics: {'ii_high_0.3': {'mean': -224.5, 'ci_crosses_zero': True}, 'verdict': 'FAIL_ci_crosses_zero'}\n340\t  notes: 50/50 completed. Importance masking @0.3: II[high]=-224.5 但 95% CI 跨零(不显著)。这是唯一出现负 II 的 level，但统计不显著。需与 random baseline 对比，以及等 s01(0.1) 结果确认趋势。\n341\t\n342\t=== mvp_v4_legacy_s02 ===\n343\t  status: DONE\n344\t  retry_count: 0\n345\t  created_at: 2026-05-13T23:53:20.036Z\n346\t  updated_at: 2026-05-14T00:10:07.730Z\n347\t  hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.2, cuda:1. 从 corrected-submit worker 启动。\n348\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n349\t  log_path: /root/autodl-tmp/pacs/profiling_output_v4b.log\n350\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v4b/\n351\t  conclusion: success\n352\t  completed_at: 2026-05-14T00:09:31.414Z\n353\t  notes: 50/50 completed. Importance masking @0.2: II 全正(super-additive)。high/mid phase CI non-overlapping with low。KV eviction 是 perplexity 退化主因(kv ppl 远高于 attn ppl)。注意：II 为正 ≠ 支持 pivot hypothesis（pivot 预期 importance → sub-additive/负 II），需与 random baseline 对比才能判断。\n354\t  metrics: {'ii_high_0.2': {'mean': 21.2856, 'ci': [0.0292, 63.163]}, 'ii_mid_0.2': {'mean': 21.8743, 'ci': [4.9863, 41.785]}, 'ii_low_0.2': {'mean': 0, 'ci': [0, 0]}, 'ppl_high': {'dense': 1.15, 'attn': 1.32, 'kv': 104.42, 'both': 63.41}, 'ppl_mid': {'dense': 1.12, 'attn': 1.29, 'kv': 324.16, 'both': 170.47}, 'ppl_low': {'dense': 1.11, 'attn': 1.3, 'kv': 1.11, 'both': 1.3}, 'problems_completed': 50, 'phase_tokens': {'high': 25862, 'mid': 27996, 'low': 32349}, 'mvp_verdict': 'PASS'}\n355\t\n356\t=== mvp_v4c_r2 ===\n357\t  status: DONE\n358\t  retry_count: 0\n359\t  created_at: 2026-05-13T23:22:56.138Z\n360\t  updated_at: 2026-05-13T23:52:54.261Z\n361\t  hypothesis: v4 retry: importance-based masking, sparsity 0.15,0.25, cuda:2\n362\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n363\t  reproduce keys: ['finished_at']\n364\t  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n365\t  conclusion: failed\n366\t  completed_at: 2026-05-13T23:42:12.833Z\n367\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:42:14.346396+00:00'}]}\n368\t  notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [4/50](algebra/841.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\n369\t\n370\t=== mvp_v4b_r2 ===\n371\t  status: DONE\n372\t  retry_count: 0\n373\t  created_at: 2026-05-13T23:22:55.162Z\n374\t  updated_at: 2026-05-13T23:52:53.632Z\n375\t  hypothesis: v4 retry: importance-based masking, sparsity 0.3,0.4,0.5, cuda:1\n376\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n377\t  reproduce keys: ['finished_at']\n378\t  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n379\t  conclusion: failed\n380\t  completed_at: 2026-05-13T23:42:07.966Z\n381\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:42:09.409561+00:00'}]}\n382\t  notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\n383\t\n384\t=== mvp_v4a_r2 ===\n385\t  status: DONE\n386\t  retry_count: 0\n387\t  created_at: 2026-05-13T23:22:54.240Z\n388\t  updated_at: 2026-05-13T23:52:52.705Z\n389\t  hypothesis: v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0\n390\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid']\n391\t  reproduce keys: ['finished_at']\n392\t  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n393\t  conclusion: failed\n394\t  completed_at: 2026-05-13T23:42:04.603Z\n395\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:42:05.417765+00:00'}]}\n396\t  notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\n397\t\n398\t=== mvp_ii_profiling_v4-random ===\n399\t  status: DONE"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "594ebe36-9019-4045-9cfe-42513b354f56",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "93ca2900-3548-46c9-83e4-2879ae4dd165",
+            "sourceToolAssistantUUID": "594ebe36-9019-4045-9cfe-42513b354f56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T05:18:44.005Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUCwhp3Z3KCYPKGEpRyD3z",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/bjg573cj5.txt",
+                "limit": 400,
+                "offset": 399
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93ca2900-3548-46c9-83e4-2879ae4dd165",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1twAmJjNzNrJFvzRkvN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "be01efb7-ea28-4a00-9c42-302456e46f51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mv98Rnqc6wugjK1bKrvaNL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14390,
+                "cache_read_input_tokens": 19561,
+                "output_tokens": 168,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14390
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 168,
+                    "cache_read_input_tokens": 19561,
+                    "cache_creation_input_tokens": 14390,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14390,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T05:18:44.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TUCwhp3Z3KCYPKGEpRyD3z",
+              "type": "tool_result",
+              "content": "399\t=== mvp_ii_profiling_v4-random ===\n400\t  status: DONE\n401\t  retry_count: 0\n402\t  created_at: 2026-05-13T23:18:41.495Z\n403\t  updated_at: 2026-05-13T23:21:46.080Z\n404\t  hypothesis: M1v4 random masking baseline (cuda:3, sparsity 0.1,0.15,0.2,0.25,0.3): 同 pipeline 同 50 题，masking_method=random。与 importance runs 直接对比验证 masking 策略对 II 的影响。\n405\t  parent: mvp_ii_profiling_v3\n406\t  server: westd-22162\n407\t  gpu: cuda:3\n408\t  account: root\n409\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n410\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n411\t  pid: 27401\n412\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\n413\t  failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n414\t  conclusion: failed\n415\t  completed_at: 2026-05-13T23:20:06.693Z\n416\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:20:08.229965+00:00'}]}\n417\t  notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments: --masking_method random | error_type: infrastructure | 同 mvp_ii_profiling_v4\n418\t\n419\t=== mvp_ii_profiling_v4c ===\n420\t  status: DONE\n421\t  retry_count: 0\n422\t  created_at: 2026-05-13T22:54:54.251Z\n423\t  updated_at: 2026-05-13T23:21:44.920Z\n424\t  hypothesis: M1v4 importance-based masking (cuda:2, sparsity 0.15,0.25): 填充 sparsity 梯度，定位 sign flip 临界点。\n425\t  parent: mvp_ii_profiling_v3\n426\t  server: westd-22162\n427\t  gpu: cuda:2\n428\t  account: root\n429\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n430\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n431\t  pid: 27251\n432\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\n433\t  failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n434\t  conclusion: failed\n435\t  completed_at: 2026-05-13T23:20:01.892Z\n436\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:20:03.414314+00:00'}]}\n437\t  notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\n438\t\n439\t=== mvp_ii_profiling_v4b ===\n440\t  status: DONE\n441\t  retry_count: 0\n442\t  created_at: 2026-05-13T22:54:53.810Z\n443\t  updated_at: 2026-05-13T23:21:43.971Z\n444\t  hypothesis: M1v4 importance-based masking (cuda:1, sparsity 0.3,0.4,0.5): 30% 是唯一有初步符号反转信号的 level。高 sparsity regime。\n445\t  parent: mvp_ii_profiling_v3\n446\t  server: westd-22162\n447\t  gpu: cuda:1\n448\t  account: root\n449\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n450\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n451\t  pid: 27099\n452\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\n453\t  failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n454\t  conclusion: failed\n455\t  completed_at: 2026-05-13T23:19:56.100Z\n456\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:19:57.514401+00:00'}]}\n457\t  notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\n458\t\n459\t=== mvp_ii_profiling_v4 ===\n460\t  status: DONE\n461\t  retry_count: 0\n462\t  created_at: 2026-05-13T22:50:59.554Z\n463\t  updated_at: 2026-05-13T23:21:42.200Z\n464\t  hypothesis: M1v4 importance-based masking (cuda:0, sparsity 0.1,0.2): head=Frobenius norm, KV=cumulative attention. 低 sparsity regime。\n465\t  parent: mvp_ii_profiling_v3\n466\t  server: westd-22162\n467\t  gpu: cuda:0\n468\t  account: root\n469\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n470\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n471\t  pid: 26947\n472\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\n473\t  failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n474\t  conclusion: failed\n475\t  completed_at: 2026-05-13T23:19:52.672Z\n476\t  extra: {'hook_events': [{'event': 'on_failed', 'action': 'agent', 'ts': '2026-05-13T23:19:53.495907+00:00'}]}\n477\t  notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 建议: 给 run_profiling.py 添加 --masking_method 参数后重跑\n478\t\n479\t=== mvp_ii_profiling_v3 ===\n480\t  status: DONE\n481\t  retry_count: 0\n482\t  created_at: 2026-05-13T21:28:01.393Z\n483\t  updated_at: 2026-05-13T22:42:34.790Z\n484\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n485\t  hypothesis: M1v3诊断: 降低sparsity至10%/20%(v2的30%/50%导致Inf退化) + quantile segmentation替代KDE(v2 90%样本fallback) + NaN guard。测试compound sparsity交互强度是否在sparsity regime间有显著差异。\n486\t  parent: mvp_ii_profiling_v2\n487\t  server: westd-22162\n488\t  gpu: cuda:0\n489\t  account: root\n490\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n491\t  pid: 16717\n492\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\n493\t  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-13T22:38:49.527620+00:00'}]}\n494\t  conclusion: negative\n495\t  metrics: {'mvp_verdict': 'FAIL', 'ci_nonoverlap': False, 'sign_reversal': False, 'phase_distribution_balanced': True, 'ii_high_0.1': {'mean': 0.2317, 'ci': [0.1338, 0.3418]}, 'ii_low_0.1': {'mean': 0.1711, 'ci': [0.0782, 0.2768]}, 'ii_mid_0.1': {'mean': 0.1607, 'ci': [0.0886, 0.2489]}, 'ii_high_0.2': {'mean': 2.1574, 'ci': [1.0605, 3.5491]}, 'ii_low_0.2': {'mean': 1.1294, 'ci': [0.4368, 1.9593]}, 'ii_mid_0.2': {'mean': 0.3049, 'ci': [-1.0635, 1.3044]}, 'total_tokens': 86207, 'no_nan_inf': True, 'segments': {'high': 511, 'low': 454, 'mid': 391}}\n496\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v3\n497\t  completed_at: 2026-05-13T22:42:34.177Z\n498\t\n499\t=== mvp_ii_profiling_v2 ===\n500\t  status: DONE\n501\t  retry_count: 0\n502\t  created_at: 2026-05-13T20:41:50.875Z\n503\t  updated_at: 2026-05-13T22:42:24.179Z\n504\t  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n505\t  hypothesis: P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning phases. KV eviction mask已修复为1D共享(原P0 bug导致指数级token丢失). 同时启用P1诊断dump验证phase segmentation.\n506\t  parent: mvp_interaction_index_profiling\n507\t  server: westd-22162\n508\t  gpu: cuda:0\n509\t  account: root\n510\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n511\t  pid: 11977\n512\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\n513\t  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-13T21:14:38.613199+00:00'}]}\n514\t  conclusion: negative\n515\t  metrics: {'mvp_verdict': 'PASS_technical_but_negative_hypothesis', 'ci_nonoverlap': True, 'sign_reversal': False, 'ii_reasoning_0.3': 17.79, 'ii_reasoning_0.3_ci': [4.09, 38.76], 'ii_transition_0.3': 3.06, 'ii_transition_0.3_ci': [0.01, 5.6], 'ii_reasoning_0.5': 468.9, 'ii_transition_0.5': 850.07, 'ii_execution_0.3': 'Inf', 'phase_distribution': {'execution': '1.2%_25seg', 'reasoning': '8.1%_96seg', 'transition': '90.7%_192seg'}, 'total_tokens': 86207, 'all_ii_superadditive': True, 'amplitude_ratio_reas_vs_trans_0.3': 5.81, 'gmm_best_k': 5, 'gmm_means': [0.438, 0.597, 0.719, 0.816, 0.892], 'gmm_weights': [0.062, 0.14, 0.208, 0.282, 0.309], 'sparsity_global': {'mean': 0.7653, 'std': 0.1364, 'median': 0.8004}, 'quantile_boundaries': [0.7337, 0.8482]}\n516\t  checkpoint_path: /root/autodl-tmp/pacs/profiling_output_v2\n517\t  completed_at: 2026-05-13T22:40:24.197Z\n518\t\n519\t=== mvp_interaction_index_profiling ===\n520\t  status: DONE\n521\t  retry_count: 0\n522\t  created_at: 2026-05-13T19:19:05.209Z\n523\t  updated_at: 2026-05-13T20:41:42.206Z\n524\t  hypothesis: Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different interaction patterns (super- vs sub-additive) across reasoning phases (execution/reasoning/transition), as measured by Interaction Index on DeepSeek-R1-Distill-Qwen-7B MATH-500 traces.\n525\t  server: westd-22162\n526\t  gpu: cuda:0\n527\t  account: root\n528\t  reproduce keys: ['server', 'gpu', 'started_at', 'command', 'finished_at', 'training_hours']\n529\t  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'pid', 'log_path', 'model_config', 'sparsity_levels', 'n_bootstrap', 'max_new_tokens', 'sampling']\n530\t  pid: 7436\n531\t  log_path: ~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\n532\t  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-13T19:55:18.584043+00:00'}]}\n533\t  conclusion: failed\n534\t  completed_at: 2026-05-13T20:41:42.206Z\n535\t\n536\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be01efb7-ea28-4a00-9c42-302456e46f51",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "2ab4dd40-dc51-4be3-b7e7-a0bd3baf9418",
+            "sourceToolAssistantUUID": "be01efb7-ea28-4a00-9c42-302456e46f51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T05:18:47.105Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the remaining experiments and create the comprehensive summary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ab4dd40-dc51-4be3-b7e7-a0bd3baf9418",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1twf2Ref8dwHBboWsh6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "129cf898-cb09-4055-93c7-2601f6288624",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4zXoZNgKUXJa81D1d4iTL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4296,
+                "cache_read_input_tokens": 33951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4296,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T05:18:54.053Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLt3AJnXzjycvf5mkRbKVG",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Group by status\nby_status = defaultdict(list)\nfor exp_id, exp in experiments.items():\n    by_status[exp.get('status', 'UNKNOWN')].append((exp_id, exp))\n\n# Also group by conclusion\nby_conclusion = defaultdict(list)\nfor exp_id, exp in experiments.items():\n    conclusion = exp.get('conclusion', 'N/A')\n    by_conclusion[conclusion].append(exp_id)\n\nprint(f\"TOTAL EXPERIMENTS: {len(experiments)}\")\nprint(f\"  count field: {result['data']['count']}\")\nprint(f\"  total field: {result['data']['total']}\")\nprint()\n\nprint(\"=== STATUS DISTRIBUTION ===\")\nfor status, exps in sorted(by_status.items()):\n    print(f\"  {status}: {len(exps)}\")\n\nprint()\nprint(\"=== CONCLUSION DISTRIBUTION ===\")\nfor conclusion, ids in sorted(by_conclusion.items(), key=lambda x: x[0]):\n    print(f\"  {conclusion}: {len(ids)} -> {ids}\")\n\nPYEOF\n",
+                "description": "Generate status and conclusion summary statistics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "129cf898-cb09-4055-93c7-2601f6288624",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1twf2Ref8dwHBboWsh6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9d9fefd4-c5c3-4a2b-a6d7-3acf3c42c187",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4zXoZNgKUXJa81D1d4iTL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4296,
+                "cache_read_input_tokens": 33951,
+                "output_tokens": 511,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4296
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 511,
+                    "cache_read_input_tokens": 33951,
+                    "cache_creation_input_tokens": 4296,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4296,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T05:18:54.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLt3AJnXzjycvf5mkRbKVG",
+              "type": "tool_result",
+              "content": "TOTAL EXPERIMENTS: 40\n  count field: 40\n  total field: 40\n\n=== STATUS DISTRIBUTION ===\n  DONE: 35\n  QUEUED: 1\n  RUNNING: 4\n\n=== CONCLUSION DISTRIBUTION ===\n  N/A: 5 -> ['v6_random_s030', 'v6_random_s025', 'v6_random_s020', 'v6_random_s015', 'qwen_importance_s025']\n  failed: 11 -> ['mvp_ii_profiling_v4d', 'mvp_v4_legacy_s035', 'mvp_v4_legacy_s025', 'mvp_v4c_r2', 'mvp_v4b_r2', 'mvp_v4a_r2', 'mvp_ii_profiling_v4-random', 'mvp_ii_profiling_v4c', 'mvp_ii_profiling_v4b', 'mvp_ii_profiling_v4', 'mvp_interaction_index_profiling']\n  killed: 6 -> ['qwen_importance_s030', 'qwen_importance_s020', 'qwen_importance_s015', 'mvp_v5_fixed_s030', 'mvp_v5_fixed_s020', 'mvp_v4_float32_s030']\n  negative: 7 -> ['mvp_v5_fixed_s030_r2', 'mvp_v5_fixed_s020_r2', 'mvp_v5_fixed_s025', 'mvp_v5_fixed_s015', 'mvp_v4_legacy_s01', 'mvp_ii_profiling_v3', 'mvp_ii_profiling_v2']\n  success: 11 -> ['v6_importance_s030', 'v6_importance_s025', 'v6_importance_s020', 'v6_importance_s015', 'mvp_v5_random_s020', 'mvp_v5_random_s030', 'mvp_v5_random_s025', 'mvp_v5_random_s015', 'mvp_v4_random_r2', 'mvp_v4_legacy_s03', 'mvp_v4_legacy_s02']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d9fefd4-c5c3-4a2b-a6d7-3acf3c42c187",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "80eb2f3d-1aff-46c4-8ab5-a1bbae132976",
+            "sourceToolAssistantUUID": "9d9fefd4-c5c3-4a2b-a6d7-3acf3c42c187",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T05:18:56.794Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me extract the concise per-experiment details with metrics for the full report."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80eb2f3d-1aff-46c4-8ab5-a1bbae132976",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1txQKfXQRtb4CyiR8Jd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a50e6ac2-337b-49f2-a590-9f5ec6f60969",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UPFXKzCDbSVGXr7iB6kmn6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1112,
+                "cache_read_input_tokens": 38247,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1112,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T05:19:09.397Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013MRkrPLxpRmAtbC4W9VA2t",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/360c1b65-5f02-4066-b099-3c31c3a4ff3c/tool-results/mcp-agent-ml-research-read_registry-1778735859376.txt', 'r') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\nby_status = defaultdict(list)\nfor exp_id, exp in experiments.items():\n    by_status[exp.get('status', 'UNKNOWN')].append((exp_id, exp))\n\n# Print full details grouped by status\nfor status in ['RUNNING', 'QUEUED', 'DONE']:\n    exps = by_status.get(status, [])\n    if not exps:\n        continue\n    \n    # For DONE, sub-group by conclusion\n    if status == 'DONE':\n        by_conclusion = defaultdict(list)\n        for eid, e in exps:\n            by_conclusion[e.get('conclusion', 'N/A')].append((eid, e))\n        \n        for conclusion in ['success', 'negative', 'killed', 'failed']:\n            sub_exps = by_conclusion.get(conclusion, [])\n            if not sub_exps:\n                continue\n            print(f\"\\n{'='*70}\")\n            print(f\"STATUS: DONE / CONCLUSION: {conclusion.upper()} ({len(sub_exps)} experiments)\")\n            print(f\"{'='*70}\")\n            for eid, e in sub_exps:\n                hyp = e.get('hypothesis', 'N/A')\n                # First line of hypothesis\n                hyp_first = hyp.split('\\n')[0] if hyp else 'N/A'\n                print(f\"\\n  [{eid}]\")\n                print(f\"    Hypothesis: {hyp_first[:150]}\")\n                if e.get('metrics'):\n                    m = e['metrics']\n                    # Print key metrics compactly\n                    key_metrics = {}\n                    for mk, mv in m.items():\n                        if isinstance(mv, (int, float)):\n                            key_metrics[mk] = mv\n                        elif isinstance(mv, dict) and 'mean' in mv:\n                            key_metrics[mk] = f\"mean={mv['mean']}\"\n                    if key_metrics:\n                        items = list(key_metrics.items())[:12]\n                        print(f\"    Metrics: {dict(items)}\")\n                if e.get('notes'):\n                    notes_first = e['notes'].split('\\n')[0][:200]\n                    print(f\"    Notes: {notes_first}\")\n                if e.get('failure_reason'):\n                    print(f\"    Failure: {e['failure_reason'][:150]}\")\n                if e.get('completed_at'):\n                    print(f\"    Completed: {e['completed_at']}\")\n    else:\n        print(f\"\\n{'='*70}\")\n        print(f\"STATUS: {status} ({len(exps)} experiments)\")\n        print(f\"{'='*70}\")\n        for eid, e in exps:\n            hyp = e.get('hypothesis', 'N/A')\n            hyp_first = hyp.split('\\n')[0] if hyp else 'N/A'\n            print(f\"\\n  [{eid}]\")\n            print(f\"    Hypothesis: {hyp_first[:150]}\")\n            print(f\"    Created: {e.get('created_at', 'N/A')}\")\n            print(f\"    Updated: {e.get('updated_at', 'N/A')}\")\n            if e.get('server'):\n                print(f\"    Server: {e['server']}, GPU: {e.get('gpu', 'N/A')}\")\n            if e.get('extra'):\n                print(f\"    Extra: {e['extra']}\")\n\nPYEOF\n",
+                "description": "Generate comprehensive grouped experiment report"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a50e6ac2-337b-49f2-a590-9f5ec6f60969",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1txQKfXQRtb4CyiR8Jd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c445b0e0-7c92-487c-8f27-bb908067ec49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UPFXKzCDbSVGXr7iB6kmn6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1112,
+                "cache_read_input_tokens": 38247,
+                "output_tokens": 1126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1112
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1126,
+                    "cache_read_input_tokens": 38247,
+                    "cache_creation_input_tokens": 1112,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1112,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T05:19:09.500Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013MRkrPLxpRmAtbC4W9VA2t",
+              "type": "tool_result",
+              "content": "======================================================================\nSTATUS: RUNNING (4 experiments)\n======================================================================\n\n  [v6_random_s030]\n    Hypothesis: v6 代码 random masking s=0.30, cuda:2. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\n    Created: 2026-05-14T05:12:49.055Z\n    Updated: 2026-05-14T05:16:12.837Z\n    Server: westd-22162, GPU: cuda:2\n\n  [v6_random_s025]\n    Hypothesis: v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\n    Created: 2026-05-14T05:11:50.836Z\n    Updated: 2026-05-14T05:15:51.584Z\n\n  [v6_random_s020]\n    Hypothesis: v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\n    Created: 2026-05-14T04:54:17.661Z\n    Updated: 2026-05-14T05:10:20.736Z\n\n  [v6_random_s015]\n    Hypothesis: v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\n    Created: 2026-05-14T04:54:17.188Z\n    Updated: 2026-05-14T05:10:16.719Z\n\n======================================================================\nSTATUS: QUEUED (1 experiments)\n======================================================================\n\n  [qwen_importance_s025]\n    Hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.25, cuda:3. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n    Created: 2026-05-14T04:50:43.235Z\n    Updated: 2026-05-14T05:09:37.950Z\n    Extra: {'previous_failure': {'conclusion': 'killed'}}\n\n======================================================================\nSTATUS: DONE / CONCLUSION: SUCCESS (11 experiments)\n======================================================================\n\n  [v6_importance_s030]\n    Hypothesis: v6 per-problem II 修复: importance masking s=0.30, cuda:3. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n    Metrics: {'ii_high_median': 0.8833, 'ii_mid_median': 7.2706, 'ii_low_median': 34.6937, 'ii_high_mean': 1.5151, 'ii_mid_mean': 78.8215, 'ii_low_mean': 1163.9677, 'per_problem_ii_count': 50, 'n_high': 40, 'n_mid': 22, 'n_low': 20, 'problems': 50, 'bootstrap_gradient_paired': 41.92}\n    Completed: 2026-05-14T04:45:29.715Z\n\n  [v6_importance_s025]\n    Hypothesis: v6 per-problem II 修复: importance masking s=0.25, cuda:2. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n    Metrics: {'ii_high_median': 0.6641, 'ii_mid_median': 5.3067, 'ii_low_median': 24.1619, 'ii_high_mean': 0.8842, 'ii_mid_mean': 10.057, 'ii_low_mean': 71.8854, 'per_problem_ii_count': 50, 'n_high': 42, 'n_mid': 23, 'n_low': 21, 'problems': 50, 'bootstrap_gradient_paired': 35.72}\n    Completed: 2026-05-14T04:45:29.294Z\n\n  [v6_importance_s020]\n    Hypothesis: v6 per-problem II 修复: importance masking s=0.20, cuda:1. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n    Metrics: {'ii_high_median': 0.3353, 'ii_mid_median': 1.6733, 'ii_low_median': 9.2538, 'ii_high_mean': 0.4936, 'ii_mid_mean': 4.9538, 'ii_low_mean': 25.8764, 'per_problem_ii_count': 50, 'n_high': 42, 'n_mid': 28, 'n_low': 21, 'problems': 50, 'bootstrap_gradient_paired': 11.05}\n    Completed: 2026-05-14T04:45:28.171Z\n\n  [v6_importance_s015]\n    Hypothesis: v6 per-problem II 修复: importance masking s=0.15, cuda:0. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.\n    Metrics: {'ii_high_median': 0.2266, 'ii_mid_median': 0.7432, 'ii_low_median': 2.8762, 'ii_high_mean': 0.2874, 'ii_mid_mean': 1.6858, 'ii_low_mean': 8.5161, 'per_problem_ii_count': 50, 'n_high': 43, 'n_mid': 32, 'n_low': 24, 'problems': 50, 'bootstrap_gradient_paired': 11.53}\n    Completed: 2026-05-14T04:45:27.320Z\n\n  [mvp_v5_random_s020]\n    Hypothesis: v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gr\n    Metrics: {'ii_high_median': 0.321331, 'ii_mid_median': 0.455663, 'ii_low_median': 0.591916, 'ii_high_mean': 0.855584, 'ii_mid_mean': 1.258123, 'ii_low_mean': 0.956933, 'kv_ppl_high': 4.2537, 'kv_ppl_mid': 4.3064, 'kv_ppl_low': 5.4048, 'both_ppl_high': 7.9749, 'both_ppl_mid': 6.8553, 'both_ppl_low': 22.5868}\n    Notes: 50/50 completed successfully. EXIT_CODE=137 is false alarm — process completed, saved results, then was killed during cleanup. Log confirms: Results saved to profiling_output_v5_random_s020/profiling_\n    Failure: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n    Completed: 2026-05-14T03:55:03.880Z\n\n  [mvp_v5_random_s030]\n    Hypothesis: v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gr\n    Metrics: {'ii_high_median': 5.377512, 'ii_mid_median': 5.886454, 'ii_low_median': 3.776818, 'ii_high_mean': 22.734534, 'ii_mid_mean': 10.943319, 'ii_low_mean': 11.840449, 'kv_ppl_high': 8.1027, 'kv_ppl_mid': 8.5701, 'kv_ppl_low': 13.4922, 'both_ppl_high': 41.3452, 'both_ppl_mid': 24.1992, 'both_ppl_low': 68.5301}\n    Notes: 50/50 completed successfully. EXIT_CODE=137 is false alarm — process completed, saved results, then was killed during cleanup. Log confirms: Results saved to profiling_output_v5_random_s030/profiling_\n    Failure: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n    Completed: 2026-05-14T03:55:12.403Z\n\n  [mvp_v5_random_s025]\n    Hypothesis: v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\n    Metrics: {'ii_high_median': 3.0024, 'ii_mid_median': 2.9846, 'ii_low_median': 2.9146, 'ii_high_mean': 3.9052, 'ii_mid_mean': 7.9491, 'ii_low_mean': 3.9114, 'kv_ppl_high': 6.39, 'kv_ppl_mid': 6.11, 'kv_ppl_low': 9.07, 'both_ppl_high': 17.06, 'both_ppl_mid': 15.38, 'both_ppl_low': 29.32}\n    Completed: 2026-05-14T03:04:29.033Z\n\n  [mvp_v5_random_s015]\n    Hypothesis: v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。\n    Metrics: {'ii_high_median': 0.1606, 'ii_mid_median': 0.252, 'ii_low_median': 0.1831, 'ii_high_mean': 0.4563, 'ii_mid_mean': 0.5134, 'ii_low_mean': 0.4775, 'kv_ppl_high': 3.14, 'kv_ppl_mid': 2.91, 'kv_ppl_low': 3.61, 'both_ppl_high': 3.92, 'both_ppl_mid': 4.14, 'both_ppl_low': 4.71}\n    Completed: 2026-05-14T03:04:28.108Z\n\n  [mvp_v4_random_r2]\n    Hypothesis: v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3\n    Completed: 2026-05-14T01:02:21.376Z\n\n  [mvp_v4_legacy_s03]\n    Hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。\n    Metrics: {'ii_high_0.3': 'mean=-224.5'}\n    Notes: 50/50 completed. Importance masking @0.3: II[high]=-224.5 但 95% CI 跨零(不显著)。这是唯一出现负 II 的 level，但统计不显著。需与 random baseline 对比，以及等 s01(0.1) 结果确认趋势。\n    Completed: 2026-05-14T00:09:32.363Z\n\n  [mvp_v4_legacy_s02]\n    Hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.2, cuda:1. 从 corrected-submit worker 启动。\n    Metrics: {'ii_high_0.2': 'mean=21.2856', 'ii_mid_0.2': 'mean=21.8743', 'ii_low_0.2': 'mean=0', 'problems_completed': 50}\n    Notes: 50/50 completed. Importance masking @0.2: II 全正(super-additive)。high/mid phase CI non-overlapping with low。KV eviction 是 perplexity 退化主因(kv ppl 远高于 attn ppl)。注意：II 为正 ≠ 支持 pivot hypothesis（pivot 预期 im\n    Completed: 2026-05-14T00:09:31.414Z\n\n======================================================================\nSTATUS: DONE / CONCLUSION: NEGATIVE (7 experiments)\n======================================================================\n\n  [mvp_v5_fixed_s030_r2]\n    Hypothesis: v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。\n    Metrics: {'ii_high_median': 0.5964, 'ii_mid_median': 7.4671, 'ii_low_median': 44.6324, 'ii_high_mean': 1.1832, 'ii_mid_mean': 168.53, 'ii_low_mean': 1926.23, 'kv_ppl_high': 1.4, 'kv_ppl_mid': 15.11, 'kv_ppl_low': 40.79, 'both_ppl_high': 5.71, 'both_ppl_mid': 137.61, 'both_ppl_low': 963.2}\n    Completed: 2026-05-14T03:01:43.081Z\n\n  [mvp_v5_fixed_s020_r2]\n    Hypothesis: v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。\n    Metrics: {'ii_high_median': 0.3333, 'ii_mid_median': 1.5479, 'ii_low_median': 9.5627, 'ii_high_mean': 0.5044, 'ii_mid_mean': 3.5155, 'ii_low_mean': 31.8937, 'kv_ppl_high': 1.24, 'kv_ppl_mid': 3.65, 'kv_ppl_low': 14.11, 'both_ppl_high': 2.7, 'both_ppl_mid': 8.13, 'both_ppl_low': 42.64}\n    Completed: 2026-05-14T03:01:41.598Z\n\n  [mvp_v5_fixed_s025]\n    Hypothesis: N/A\n    Metrics: {'ii_high': 0.851, 'ii_mid': 9.306, 'ii_low': 96.715, 'ii_high_median': 0.584, 'ii_mid_median': 4.522, 'ii_low_median': 30.903, 'ii_high_winsorized': 0.802, 'ii_mid_winsorized': 8.156, 'ii_low_winsorized': 94.931, 'kv_ppl_high': 1.3108, 'kv_ppl_mid': 6.1778, 'kv_ppl_low': 23.8919}\n    Completed: 2026-05-14T02:15:34.177Z\n\n  [mvp_v5_fixed_s015]\n    Hypothesis: N/A\n    Metrics: {'ii_high': 0.306, 'ii_mid': 1.274, 'ii_low': 8.786, 'ii_high_median': 0.205, 'ii_mid_median': 0.696, 'ii_low_median': 2.627, 'ii_high_winsorized': 0.289, 'ii_mid_winsorized': 1.139, 'ii_low_winsorized': 8.408, 'kv_ppl_high': 1.2147, 'kv_ppl_mid': 2.1276, 'kv_ppl_low': 6.7451}\n    Completed: 2026-05-14T02:15:33.221Z\n\n  [mvp_v4_legacy_s01]\n    Hypothesis: v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。ma\n    Metrics: {'II_high_0.1': 'mean=-0.1097', 'II_mid_0.1': 'mean=-15.966', 'II_low_0.1': 'mean=0', 'ppl_high_dense': 1.1462, 'ppl_high_both': 22.1302, 'ppl_mid_dense': 1.1226, 'ppl_mid_both': 47.5856}\n    Notes: 50/50 completed. Verdict: FAIL. II[high_sparsity,0.1]=-0.11 CI=[-0.81,+0.41], II[mid_sparsity,0.1]=-15.97 CI=[-47.99,+1.29], II[low_sparsity,0.1]=0.00. Sparsity too low — II values near zero or negati\n    Completed: 2026-05-14T00:09:32.772Z\n\n  [mvp_ii_profiling_v3]\n    Hypothesis: M1v3诊断: 降低sparsity至10%/20%(v2的30%/50%导致Inf退化) + quantile segmentation替代KDE(v2 90%样本fallback) + NaN guard。测试compound sparsity交互强度是否在sparsity regime间有显著\n    Metrics: {'ci_nonoverlap': False, 'sign_reversal': False, 'phase_distribution_balanced': True, 'ii_high_0.1': 'mean=0.2317', 'ii_low_0.1': 'mean=0.1711', 'ii_mid_0.1': 'mean=0.1607', 'ii_high_0.2': 'mean=2.1574', 'ii_low_0.2': 'mean=1.1294', 'ii_mid_0.2': 'mean=0.3049', 'total_tokens': 86207, 'no_nan_inf': True}\n    Completed: 2026-05-13T22:42:34.177Z\n\n  [mvp_ii_profiling_v2]\n    Hypothesis: P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning pha\n    Metrics: {'ci_nonoverlap': True, 'sign_reversal': False, 'ii_reasoning_0.3': 17.79, 'ii_transition_0.3': 3.06, 'ii_reasoning_0.5': 468.9, 'ii_transition_0.5': 850.07, 'total_tokens': 86207, 'all_ii_superadditive': True, 'amplitude_ratio_reas_vs_trans_0.3': 5.81, 'gmm_best_k': 5, 'sparsity_global': 'mean=0.7653'}\n    Completed: 2026-05-13T22:40:24.197Z\n\n======================================================================\nSTATUS: DONE / CONCLUSION: KILLED (6 experiments)\n======================================================================\n\n  [qwen_importance_s030]\n    Hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.30, cuda:3. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n    Completed: 2026-05-14T05:05:47.654Z\n\n  [qwen_importance_s020]\n    Hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.20, cuda:1. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n    Completed: 2026-05-14T05:05:46.800Z\n\n  [qwen_importance_s015]\n    Hypothesis: Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.15, cuda:0. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。\n    Completed: 2026-05-14T05:05:59.407Z\n\n  [mvp_v5_fixed_s030]\n    Hypothesis: v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\n    Metrics: {'ii_high': 1.18, 'ii_mid': 168.53, 'ii_low': 1926.23, 'ii_high_median': 0.6, 'ii_mid_median': 7.47, 'ii_low_median': 44.63, 'kv_ppl_high': 1.4, 'kv_ppl_mid': 15.11, 'kv_ppl_low': 40.79, 'both_ppl_high': 5.71, 'both_ppl_mid': 137.61, 'both_ppl_low': 963.2}\n    Completed: 2026-05-14T02:09:18.077Z\n\n  [mvp_v5_fixed_s020]\n    Hypothesis: v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\n    Metrics: {'ii_high': 0.5, 'ii_mid': 3.52, 'ii_low': 31.89, 'ii_high_median': 0.33, 'ii_mid_median': 1.55, 'ii_low_median': 9.56, 'kv_ppl_high': 1.24, 'kv_ppl_mid': 3.65, 'kv_ppl_low': 14.11, 'both_ppl_high': 2.7, 'both_ppl_mid': 8.13, 'both_ppl_low': 42.64}\n    Completed: 2026-05-14T02:09:16.728Z\n\n  [mvp_v4_float32_s030]\n    Hypothesis: Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。\n    Completed: 2026-05-14T01:21:37.252Z\n\n======================================================================\nSTATUS: DONE / CONCLUSION: FAILED (11 experiments)\n======================================================================\n\n  [mvp_ii_profiling_v4d]\n    Hypothesis: M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。\n    Notes: 5/50 后静默崩溃，疑似长序列 + output_attentions OOM。importance 指标也有 NaN 中毒 + 位置偏差问题。\n    Completed: 2026-05-14T01:20:54.693Z\n\n  [mvp_v4_legacy_s035]\n    Hypothesis: importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。\n    Notes: Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\n    Completed: 2026-05-14T01:21:04.001Z\n\n  [mvp_v4_legacy_s025]\n    Hypothesis: importance(hardcoded) sparsity=0.25, crossover characterization: 填充 0.2→0.3 之间的 II 符号反转临界点。与 s02(0.2, II=+21.3) 和 s03(0.3, II=-224.5) 对比定位 crossover。\n    Notes: Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\n    Completed: 2026-05-14T01:21:03.079Z\n\n  [mvp_v4c_r2]\n    Hypothesis: v4 retry: importance-based masking, sparsity 0.15,0.25, cuda:2\n    Notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [4/50](algebra/841.json)处被静默kill，无traceb\n    Failure: process dead 5× with no sentinel/W&B — auto-resolved as failed\n    Completed: 2026-05-13T23:42:12.833Z\n\n  [mvp_v4b_r2]\n    Hypothesis: v4 retry: importance-based masking, sparsity 0.3,0.4,0.5, cuda:1\n    Notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静\n    Failure: process dead 5× with no sentinel/W&B — auto-resolved as failed\n    Completed: 2026-05-13T23:42:07.966Z\n\n  [mvp_v4a_r2]\n    Hypothesis: v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0\n    Notes: 失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静\n    Failure: process dead 5× with no sentinel/W&B — auto-resolved as failed\n    Completed: 2026-05-13T23:42:04.603Z\n\n  [mvp_ii_profiling_v4-random]\n    Hypothesis: M1v4 random masking baseline (cuda:3, sparsity 0.1,0.15,0.2,0.25,0.3): 同 pipeline 同 50 题，masking_method=random。与 importance runs 直接对比验证 masking 策略对 II\n    Notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments: --masking_method random | error_type: infrastructure | 同 mvp_ii_profiling_v4\n    Failure: EXIT_CODE=2 (shell misuse / syntax)\n    Completed: 2026-05-13T23:20:06.693Z\n\n  [mvp_ii_profiling_v4c]\n    Hypothesis: M1v4 importance-based masking (cuda:2, sparsity 0.15,0.25): 填充 sparsity 梯度，定位 sign flip 临界点。\n    Notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\n    Failure: EXIT_CODE=2 (shell misuse / syntax)\n    Completed: 2026-05-13T23:20:01.892Z\n\n  [mvp_ii_profiling_v4b]\n    Hypothesis: M1v4 importance-based masking (cuda:1, sparsity 0.3,0.4,0.5): 30% 是唯一有初步符号反转信号的 level。高 sparsity regime。\n    Notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\n    Failure: EXIT_CODE=2 (shell misuse / syntax)\n    Completed: 2026-05-13T23:19:56.100Z\n\n  [mvp_ii_profiling_v4]\n    Hypothesis: M1v4 importance-based masking (cuda:0, sparsity 0.1,0.2): head=Frobenius norm, KV=cumulative attention. 低 sparsity regime。\n    Notes: 失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 建议: 给 run_profiling.py 添加 --masking_method 参数后重跑\n    Failure: EXIT_CODE=2 (shell misuse / syntax)\n    Completed: 2026-05-13T23:19:52.672Z\n\n  [mvp_interaction_index_profiling]\n    Hypothesis: Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different intera\n    Completed: 2026-05-13T20:41:42.206Z",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c445b0e0-7c92-487c-8f27-bb908067ec49",
+            "isSidechain": true,
+            "promptId": "cbf1fbe4-4d5c-4ec0-bd5f-42f82fdc391c",
+            "agentId": "ac5690c1fc6165809",
+            "type": "user",
+            "uuid": "fd90654a-5a97-497c-9157-19c9da4349a0",
+            "sourceToolAssistantUUID": "c445b0e0-7c92-487c-8f27-bb908067ec49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T05:19:49.508Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete experiment registry report.\n\n---\n\n## Summary\n\n**Total experiments: 40**\n\n### Status Distribution\n\n| Status | Count |\n|--------|-------|\n| RUNNING | 4 |\n| QUEUED | 1 |\n| DONE | 35 |\n\n### Conclusion Distribution (within DONE + QUEUED/RUNNING with no conclusion yet)\n\n| Conclusion | Count |\n|------------|-------|\n| success | 11 |\n| negative | 7 |\n| failed | 11 |\n| killed | 6 |\n| N/A (no conclusion yet) | 5 |\n\n---\n\n## RUNNING (4)\n\n| experiment_id | Hypothesis (first line) |\n|---|---|\n| `v6_random_s030` | v6 random masking s=0.30, cuda:2. Per_problem_ii for importance vs random permutation test. |\n| `v6_random_s025` | v6 random masking s=0.25, cuda:3. Same purpose as above. |\n| `v6_random_s020` | v6 random masking s=0.20, cuda:1. Same purpose. |\n| `v6_random_s015` | v6 random masking s=0.15, cuda:0. Same purpose. |\n\nAll four are v6 random masking baselines at sparsity 0.15/0.20/0.25/0.30, running on server `westd-22162`.\n\n## QUEUED (1)\n\n| experiment_id | Hypothesis |\n|---|---|\n| `qwen_importance_s025` | Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.25. Previous attempt was killed. retry_count=1. |\n\n---\n\n## DONE -- conclusion: SUCCESS (11)\n\n**v6 importance series (4 experiments)** -- the latest and best results with per-problem II and bootstrap CIs:\n\n| experiment_id | sparsity | ii_high_median | ii_mid_median | ii_low_median | bootstrap_gradient_paired | bootstrap_p |\n|---|---|---|---|---|---|---|\n| `v6_importance_s015` | 0.15 | 0.2266 | 0.7432 | 2.8762 | 11.53 | 0 |\n| `v6_importance_s020` | 0.20 | 0.3353 | 1.6733 | 9.2538 | 11.05 | 0 |\n| `v6_importance_s025` | 0.25 | 0.6641 | 5.3067 | 24.1619 | 35.72 | 0 |\n| `v6_importance_s030` | 0.30 | 0.8833 | 7.2706 | 34.6937 | 41.92 | 0 |\n\nAll 4 show II increasing from high to low phase (consistent gradient), all bootstrap_p = 0 (highly significant), 50 problems each.\n\n**v5 random baselines (4 experiments)** -- control group:\n\n| experiment_id | sparsity | ii_high_median | ii_mid_median | ii_low_median | problems |\n|---|---|---|---|---|---|\n| `mvp_v5_random_s015` | 0.15 | 0.1606 | 0.252 | 0.1831 | 50 |\n| `mvp_v5_random_s020` | 0.20 | 0.3213 | 0.4557 | 0.5919 | 50 |\n| `mvp_v5_random_s025` | 0.25 | 3.0024 | 2.9846 | 2.9146 | 50 |\n| `mvp_v5_random_s030` | 0.30 | 5.3775 | 5.8865 | 3.7768 | 50 |\n\nRandom baselines show flat or weak gradients across phases -- no systematic high-to-low pattern.\n\n**Legacy v4 experiments (3):**\n- `mvp_v4_random_r2` -- random baseline sparsity sweep, success, no detailed metrics in registry.\n- `mvp_v4_legacy_s03` -- importance s=0.3: II_high = -224.5 but CI crosses zero (not significant). Verdict: FAIL_ci_crosses_zero.\n- `mvp_v4_legacy_s02` -- importance s=0.2: II all positive (super-additive), 50 problems, verdict PASS.\n\n---\n\n## DONE -- conclusion: NEGATIVE (7)\n\nThese experiments completed but the hypothesis was not supported:\n\n| experiment_id | Key finding |\n|---|---|\n| `mvp_v5_fixed_s030_r2` | II all positive (super-additive), not sub-additive as hypothesized. ii_low_mean=1926.23. |\n| `mvp_v5_fixed_s020_r2` | Same -- II positive. ii_low_mean=31.89. |\n| `mvp_v5_fixed_s025` | II positive. ii_low=96.715. |\n| `mvp_v5_fixed_s015` | II positive but small. ii_low=8.786. |\n| `mvp_v4_legacy_s01` | Sparsity 0.1 too low -- II near zero, no signal. Verdict: FAIL. |\n| `mvp_ii_profiling_v3` | No CI non-overlap, no sign reversal. mvp_verdict=FAIL. |\n| `mvp_ii_profiling_v2` | CI non-overlap but no sign reversal. All II super-additive. PASS_technical_but_negative_hypothesis. |\n\n---\n\n## DONE -- conclusion: KILLED (6)\n\n| experiment_id | Details |\n|---|---|\n| `qwen_importance_s030` | Cross-model Qwen replication, killed. |\n| `qwen_importance_s020` | Cross-model Qwen replication, killed. |\n| `qwen_importance_s015` | Cross-model Qwen replication, killed. |\n| `mvp_v5_fixed_s030` | Had metrics but marked INVALIDATED (pre-fix code, wrong conda). |\n| `mvp_v5_fixed_s020` | Same -- invalidated pre-fix code. |\n| `mvp_v4_float32_s030` | Float32 fix verification, killed. No metrics. |\n\n---\n\n## DONE -- conclusion: FAILED (11)\n\n| experiment_id | Failure reason |\n|---|---|\n| `mvp_ii_profiling_v4d` | OOM crash at 5/50, NaN contamination. |\n| `mvp_v4_legacy_s035` | Invalidated: Layer 27 NaN + position bias. |\n| `mvp_v4_legacy_s025` | Invalidated: Layer 27 NaN + position bias. |\n| `mvp_v4c_r2` | GPU OOM -- output_attentions=True materialized all 28 layers. |\n| `mvp_v4b_r2` | GPU OOM -- same cause. |\n| `mvp_v4a_r2` | GPU OOM -- same cause. |\n| `mvp_ii_profiling_v4-random` | argparse error: --masking_method not defined in script. |\n| `mvp_ii_profiling_v4c` | argparse error: --masking_method not defined. |\n| `mvp_ii_profiling_v4b` | argparse error: --masking_method not defined. |\n| `mvp_ii_profiling_v4` | argparse error: --masking_method not defined. |\n| `mvp_interaction_index_profiling` | First experiment, failed (no details recorded). |\n\nThe 11 failures break down into 3 root causes: (1) argparse --masking_method not implemented (4 experiments), (2) GPU OOM from materializing all attention layers (4 experiments), (3) NaN contamination / invalidated results (2 experiments), (4) unspecified initial failure (1 experiment)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd90654a-5a97-497c-9157-19c9da4349a0",
+            "isSidechain": true,
+            "agentId": "ac5690c1fc6165809",
+            "requestId": "req_011Cb1tyY2YTjJ5tDwGsmPZg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b273d2f-9a70-4b1b-b4a5-ea16ea94906b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "360c1b65-5f02-4066-b099-3c31c3a4ff3c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y437rusqSw2mzbK7Psdq3S",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9323,
+                "cache_read_input_tokens": 39359,
+                "output_tokens": 2041,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9323
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2041,
+                    "cache_read_input_tokens": 39359,
+                    "cache_creation_input_tokens": 9323,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9323,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-json-file-at-home-ubuntu-claude-account-1-projects-home-ubuntu-agent.md"
+}

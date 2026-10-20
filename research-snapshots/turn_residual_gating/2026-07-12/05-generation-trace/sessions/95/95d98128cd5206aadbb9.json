@@ -1,0 +1,1769 @@
+{
+  "schema_version": "1.0",
+  "id": "95d98128cd5206aadbb9",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: The file `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml` has the wr",
+  "task_key": "agent-a0573ff6a31819b99",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a0573ff6a31819b99.jsonl",
+    "occurrence": 1,
+    "bytes": 103740,
+    "sha256": "858dcf5ee37096a9fc2caf1580263866871350fb8ba53e728b7e57f017c0b213"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T12:52:34.613Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml` has the wrong structure for the distill tool.\n\nCurrent structure (WRONG):\n```yaml\ncategories:\n  category_name:\n    description: ...\n    papers:\n      - title: ...\n        authors: ...\n        arxiv_id: ...\n```\n\nRequired structure (per `/home/ubuntu/agent-ml-research/core/tools/literature.py`):\n```yaml\nmeta:\n  last_updated: \"2026-05-22\"\n  total_papers: N\npapers:\n  bibtex_key_1:\n    title: \"...\"\n    authors: [\"Author1\", \"Author2\"]\n    year: 2026\n    venue: \"...\"\n    url: \"...\"\n    arxiv_id: \"...\"\n    category: \"category_name\"\n    role: \"foundation|direct-competitor|method-component|context|must-cite|theoretical-foundation\"\n    relevance: \"...\"\n    abstract: \"...\"\n    verified: false\n  bibtex_key_2:\n    ...\n```\n\nPlease:\n1. Read the current file fully\n2. Convert ALL papers from the nested `categories:` format to the flat `papers:` dict format\n3. Use existing bibtex-style keys (first_author_surname + year + first_content_word)\n4. Move the category name into each paper's `category` field\n5. Move the category description into the paper's metadata if needed, or drop it\n6. Preserve ALL fields (title, authors, year, venue, url, arxiv_id, role, relevance, abstract, notes)\n7. Add a `meta:` section with `last_updated` and `total_papers` count\n8. Write the restructured file back\n\nThe `authors` field should be a list of strings, not a single string. If currently a single string like \"Dongre, Hsieh, Lai...\", convert to [\"Dongre\", \"Hsieh\", \"Lai\", ...] (surname only is fine).\n\nValid roles from the code: foundation, direct-competitor, method-component, context, must-cite, theoretical-foundation.\n\nMake sure to preserve ALL 50 papers - do not drop any."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "d5fa6060-01a7-4f8f-b0e9-3e9d26025335",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T12:52:34.625Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d5fa6060-01a7-4f8f-b0e9-3e9d26025335",
+                "isSidechain": true,
+                "agentId": "a0573ff6a31819b99",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "93c51505-19aa-4ed3-95e4-a508fd9b8ae8",
+                "timestamp": "2026-05-22T12:52:34.625Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+                "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+                "version": "2.1.126",
+                "gitBranch": "master",
+                "slug": "curious-spinning-crown"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T12:52:37.976Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read the current file and the literature tool source to understand the exact requirements."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93c51505-19aa-4ed3-95e4-a508fd9b8ae8",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2GLdDPaQ61ri8P9rv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a4fe84be-04dd-4b01-b945-0164a9bfff29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JXmiQgAnQHsba5Mfdcz8cQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34002,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 34002,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T12:52:38.105Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FMGHZifSTLvejVM8mYrDAD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4fe84be-04dd-4b01-b945-0164a9bfff29",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2GLdDPaQ61ri8P9rv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "adadca78-2c85-43b3-8126-0438ba98ad8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JXmiQgAnQHsba5Mfdcz8cQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34002,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 34002
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 34002,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 34002,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T12:52:38.414Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMGHZifSTLvejVM8mYrDAD",
+              "type": "tool_result",
+              "content": "1\tcategories:\n2\t  layer_importance:\n3\t    description: Layer-wise importance analysis, redundancy, and pruning in transformers\n4\t    papers:\n5\t    - title: The Unreasonable Ineffectiveness of the Deeper Layers\n6\t      authors: Gromov et al.\n7\t      venue: ICLR 2025\n8\t      year: 2024\n9\t      url: https://arxiv.org/abs/2403.17887\n10\t      role: foundation\n11\t      relevance: 发现 LLM 深层高度冗余，可删除近半层而性能不降；浅层对知识存储至关重要\n12\t      abstract: Studies knowledge storage via layer pruning. Finds minimal performance degradation until up to half of layers\n13\t        are removed.\n14\t      arxiv_id: '2403.17887'\n15\t    - title: 'ShortGPT: Layers in Large Language Models are More Redundant Than You Expect'\n16\t      authors: Men et al.\n17\t      venue: arXiv 2024\n18\t      year: 2024\n19\t      url: https://arxiv.org/abs/2403.03853\n20\t      role: foundation\n21\t      relevance: 提出 Block Influence (BI) 度量各层重要性，发现许多层高度相似且功能冗余\n22\t      abstract: Defines Block Influence (BI) metric to gauge layer significance. Discovers many LLM layers exhibit high similarity.\n23\t      arxiv_id: '2403.03853'\n24\t    - title: The Curse of Depth in Large Language Models\n25\t      authors: Sun et al.\n26\t      venue: NeurIPS 2025\n27\t      year: 2025\n28\t      url: https://arxiv.org/abs/2502.05795\n29\t      role: foundation\n30\t      relevance: Pre-LN 导致深层梯度趋近恒等映射。解释 ThreadGate 中 late layers gate 接近 1.0\n31\t      abstract: Pre-Layer Normalization causes output variance to grow exponentially with depth.\n32\t      arxiv_id: '2502.05795'\n33\t    - title: 'Reassessing Layer Pruning in LLMs: New Insights and Methods'\n34\t      authors: Anonymous\n35\t      venue: arXiv 2024\n36\t      year: 2024\n37\t      url: https://arxiv.org/abs/2411.15558\n38\t      role: context\n39\t      relevance: 删除最后 25% 层 + 微调即可获得强性能，证实深层冗余\n40\t      abstract: Simply pruning the final 25% of layers followed by fine-tuning yields strong performance.\n41\t      arxiv_id: '2411.15558'\n42\t    - title: Reducing Transformer Depth on Demand with Structured Dropout (LayerDrop)\n43\t      authors: Fan et al.\n44\t      venue: ICLR 2020\n45\t      year: 2020\n46\t      url: https://arxiv.org/abs/1909.11556\n47\t      role: method-component\n48\t      relevance: ThreadGate 的 gating 可视为 LayerDrop 的 soft 版本\n49\t      abstract: Structured dropout on entire transformer layers during training.\n50\t      arxiv_id: '1909.11556'\n51\t  multi_turn_attention:\n52\t    description: Attention degradation and instruction following failure in multi-turn or long-context scenarios\n53\t    papers:\n54\t    - title: 'When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction'\n55\t      authors: Dongre, Hsieh, Lai, Yoon, Bui, Hakkani-Tur\n56\t      venue: arXiv 2026\n57\t      year: 2026\n58\t      url: https://arxiv.org/abs/2605.12922\n59\t      role: foundation\n60\t      relevance: 定义 GAR，诊断多轮 attention 通道关闭。纯诊断论文，未提出干预方案。ThreadGate 是首个基于其诊断的干预方法\n61\t      abstract: 'Channel-transition account: goal tokens become less accessible through attention while goal info persists\n62\t        in residual representations. Introduces GAR metric.'\n63\t      notes:\n64\t        gar_definition: GAR(τ) = (1/L·H·|ℛτ|) Σℓ Σh Σi∈ℛτ Σj∈𝒢 A_{i,j}. ALL layers, ALL heads averaged. Goal tokens = system\n65\t          prompt task-specifying tokens only\n66\t        models_tested: Mistral-7B, LLaMA-3.1-8B, Qwen-2.5 (3B/7B/14B/32B), Mixtral-8x7B + 6 additional\n67\t        gar_decline: 27-48% over 50 turns, monotonic (Mann-Kendall p<1e-7)\n68\t        residual_probes: 'LDA on PCA-reduced residuals (50 PCs). Peak AUC: LLaMA L2=0.99, Qwen L11=0.98, Mixtral L21=0.99,\n69\t          Mistral L27=0.87'\n70\t        qwen_layer_profile: Goal encoding rises steeply from L5. Our v3b L4 outlier may be the layer just before goal encoding\n71\t          begins\n72\t        intervention_tested: Periodic goal re-injection FAILED (Appendix H)\n73\t        no_solution: true\n74\t        sliding_window: Attention mask W=4096, Qwen crossover at turn 20. Linear W-vs-crossover (R2~1)\n75\t        framing_impact: GAR not our original metric. No intervention proposed -> ThreadGate is first solution. Residual persistence\n76\t          directly supports our theory\n77\t      arxiv_id: '2605.12922'\n78\t    - title: LLMs Get Lost In Multi-Turn Conversation\n79\t      authors: Levy et al.\n80\t      venue: arXiv 2025\n81\t      year: 2025\n82\t      url: https://arxiv.org/abs/2505.06120\n83\t      role: foundation\n84\t      relevance: 量化多轮对话性能衰减：平均下降 39%，不可靠性增加 112%\n85\t      abstract: All top LLMs exhibit significantly lower performance in multi-turn vs single-turn, averaging 39% drop.\n86\t      arxiv_id: '2505.06120'\n87\t    - title: Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conversation\n88\t      authors: Liu et al.\n89\t      venue: arXiv 2026\n90\t      year: 2026\n91\t      url: https://arxiv.org/abs/2602.07338\n92\t      role: context\n93\t      relevance: 多轮失败根因是 intent alignment gap，scaling 无法解决。支撑 ThreadGate 架构级方案动机\n94\t      abstract: Lost in Conversation stems from intent alignment gap, not capability deficits. Scaling cannot resolve.\n95\t      arxiv_id: '2602.07338'\n96\t    - title: 'Lost in the Middle: How Language Models Use Long Contexts'\n97\t      authors: Liu et al.\n98\t      venue: TACL 2024\n99\t      year: 2023\n100\t      url: https://arxiv.org/abs/2307.03172\n101\t      role: foundation\n102\t      relevance: U 型 attention 分布（首尾强、中间弱）。多轮场景是此现象在 turn boundary 上的扩展\n103\t      abstract: Performance highest at beginning/end of context, degrading for middle positions.\n104\t      arxiv_id: '2307.03172'\n105\t    - title: 'Style Amnesia: Investigating Speaking Style Degradation and Mitigation in Multi-Turn Spoken Language Models'\n106\t      authors: Anonymous\n107\t      venue: arXiv 2025\n108\t      year: 2025\n109\t      url: https://arxiv.org/abs/2512.23578\n110\t      role: context\n111\t      relevance: 多轮对话中 style instruction 遵循衰减，system message 比 user message 更严重\n112\t      abstract: Style instruction in system messages degrades more than in user messages across turns.\n113\t      arxiv_id: '2512.23578'\n114\t    - title: Measuring and Controlling Instruction (In)Stability in Language Model Dialogs\n115\t      authors: Li, Liu, Bashkansky, Bau, Viégas, Pfister, Wattenberg\n116\t      venue: COLM 2024\n117\t      year: 2024\n118\t      url: https://arxiv.org/abs/2402.10962\n119\t      role: direct-competitor\n120\t      relevance: 定量测量多轮对话中 instruction compliance 衰减（同 GAR decay），识别 transformer attention decay 为机制，提出 split-softmax 推理时修复。最直接的对比工作——同一问题（attention\n121\t        到 system prompt 随轮次衰减），但从推理端而非训练端干预\n122\t      abstract: Quantifies instruction drift in multi-turn LLM dialogs via self-chat benchmark. LLaMA2-70B and GPT-3.5 show\n123\t        significant instruction instability within 8 turns. Identifies attention decay as mechanism and proposes split-softmax,\n124\t        a training-free inference-time method that amplifies attention to system prompt tokens.\n125\t      arxiv_id: '2402.10962'\n126\t  residual_gating:\n127\t    description: Gating mechanisms for transformer residual connections and adaptive depth\n128\t    papers:\n129\t    - title: 'Mixture-of-Depths: Dynamically allocating compute in transformer-based language models'\n130\t      authors: Raposo et al.\n131\t      venue: arXiv 2024 (Google DeepMind)\n132\t      year: 2024\n133\t      url: https://arxiv.org/abs/2404.02258\n134\t      role: method-component\n135\t      relevance: top-k routing 动态分配计算。ThreadGate 可视为 MoD 在 turn boundary 上的特化\n136\t      abstract: Dynamically allocate FLOPs per layer via top-k routing. 1.5% loss improvement or 50% FLOP reduction.\n137\t      arxiv_id: '2404.02258'\n138\t    - title: Confident Adaptive Language Modeling (CALM)\n139\t      authors: Schuster et al.\n140\t      venue: NeurIPS 2022\n141\t      year: 2022\n142\t      url: https://arxiv.org/abs/2207.07061\n143\t      role: method-component\n144\t      relevance: 置信度 early exit。CALM 是 monotonic exit，ThreadGate 允许 selective layer gating\n145\t      abstract: Dynamically allocating compute per input based on confidence. Up to 3x speedup.\n146\t      arxiv_id: '2207.07061'\n147\t    - title: 'Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free'\n148\t      authors: Qiu et al.\n149\t      venue: NeurIPS 2025 (Oral)\n150\t      year: 2025\n151\t      url: https://arxiv.org/abs/2505.06708\n152\t      role: method-component\n153\t      relevance: SDPA 输出加 sigmoid gate 消除 attention sink。可参考 head-specific sigmoid gate 设计\n154\t      abstract: Head-specific sigmoid gate after SDPA. Eliminates attention sink (83% to 4%).\n155\t      arxiv_id: '2505.06708'\n156\t    - title: 'SkipNet: Learning Dynamic Routing in Convolutional Networks'\n157\t      authors: Wang et al.\n158\t      venue: ECCV 2018\n159\t      year: 2018\n160\t      url: https://arxiv.org/abs/1711.09485\n161\t      role: method-component\n162\t      relevance: 残差网络逐层 gating 先驱。ThreadGate per-layer gating 的前身\n163\t      abstract: Gating network to selectively skip convolutional blocks. RL+SL hybrid training.\n164\t      arxiv_id: '1711.09485'\n165\t    - title: Adaptive Layer-skipping in Pre-trained LLMs (FlexiDepth)\n166\t      authors: Luo et al.\n167\t      venue: arXiv 2025\n168\t      year: 2025\n169\t      url: https://arxiv.org/abs/2503.23798\n170\t      role: direct-competitor\n171\t      relevance: plug-in router+adapter on frozen LLM 自适应 layer skipping。与 ThreadGate 高度类似，直接竞品\n172\t      abstract: Dynamically adjusts layers via plug-in router and adapter. Llama-3-8B skips 8/32 layers maintaining performance.\n173\t      arxiv_id: '2503.23798'\n174\t    - title: Learning to Skip the Middle Layers of Transformers\n175\t      authors: Lawson et al.\n176\t      venue: arXiv 2025\n177\t      year: 2025\n178\t      url: https://arxiv.org/abs/2506.21103\n179\t      role: context\n180\t      relevance: middle-out layer skipping 负面结果参考\n181\t      abstract: Gating to skip middle blocks. Does not improve vs dense baselines at investigated scales.\n182\t      arxiv_id: '2506.21103'\n183\t  attention_manipulation:\n184\t    description: Methods that modify attention weights, positional encoding, or attention distributions to handle long-range\n185\t      dependencies\n186\t    papers:\n187\t    - title: 'Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation'\n188\t      authors: Press et al.\n189\t      venue: ICLR 2022\n190\t      year: 2022\n191\t      url: https://arxiv.org/abs/2108.12409\n192\t      role: foundation\n193\t      relevance: ALiBi 在注意力分数上施加距离线性惩罚实现长度外推，是注意力操纵路线的代表方法，与 ThreadGate 残差门控路线形成设计空间对比\n194\t      abstract: Replaces positional embeddings with linear bias on attention logits penalizing distance. 1.3B model trained\n195\t        on 1024 generalizes to 2048 without fine-tuning.\n196\t      arxiv_id: '2108.12409'\n197\t    - title: Extending Context Window of Large Language Models via Positional Interpolation\n198\t      authors: Chen et al.\n199\t      venue: arXiv 2023\n200\t      year: 2023\n201\t      url: https://arxiv.org/abs/2306.15595\n202\t      role: foundation\n203\t      relevance: 位置插值通过压缩 RoPE 索引扩展上下文至 32k，属于注意力机制内部解决长序列的路线，与 ThreadGate 在残差层解决多轮衰减形成对比\n204\t      abstract: Linearly down-scales RoPE position indices to extend context to 32768 tokens in 1000 fine-tuning steps.\n205\t      arxiv_id: '2306.15595'\n206\t    - title: 'YaRN: Efficient Context Window Extension of Large Language Models'\n207\t      authors: Peng et al.\n208\t      venue: ICLR 2024\n209\t      year: 2024\n210\t      url: https://arxiv.org/abs/2309.00071\n211\t      role: foundation\n212\t      relevance: YaRN 综合 NTK-aware 和分段插值改进 RoPE 外推，代表注意力位置编码修改应对长程衰减的成熟路线，与 ThreadGate 机制不同\n213\t      abstract: Combines NTK-aware interpolation with ramp function for different RoPE frequency components. Extends LLaMA-2\n214\t        to 128k context with 10x fewer tokens.\n215\t      arxiv_id: '2309.00071'\n216\t    - title: Efficient Streaming Language Models with Attention Sinks\n217\t      authors: Xiao et al.\n218\t      venue: ICLR 2024\n219\t      year: 2024\n220\t      url: https://arxiv.org/abs/2309.17453\n221\t      role: context\n222\t      relevance: 发现 attention sink 现象（初始 token 聚集高权重），说明多轮对话中早期轮次 token 天然受偏置，ThreadGate 从残差路径角度控制历史轮信息保留\n223\t      abstract: LLMs assign disproportionate attention to first few tokens regardless of semantics. Retaining sink tokens\n224\t        enables stable streaming inference over 4M tokens.\n225\t      arxiv_id: '2309.17453'\n226\t    - title: 'LM-Infinite: Zero-Shot Extreme Length Generalization for Large Language Models'\n227\t      authors: Han et al.\n228\t      venue: ACL 2024\n229\t      year: 2024\n230\t      url: https://arxiv.org/abs/2308.16137\n231\t      role: context\n232\t      relevance: 用 Λ 形注意力掩码加距离截断实现超长上下文推理，揭示调整注意力掩码和调整残差门控是两条平行路线\n233\t      abstract: Applies Λ-shaped attention mask plus distance limit on position encodings. Generalizes to 200M tokens with\n234\t        2.7x speedup, no parameter updates.\n235\t      arxiv_id: '2308.16137'\n236\t    - title: 'Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization'\n237\t      authors: Ko et al.\n238\t      venue: arXiv 2024\n239\t      year: 2024\n240\t      url: https://arxiv.org/abs/2406.16008\n241\t      role: direct-competitor\n242\t      relevance: 直接校准注意力位置偏置修复中段信息丢失，最接近 ThreadGate 问题定义的注意力方案，审稿人会以此质疑为何不直接修正注意力\n243\t      abstract: Identifies U-shaped positional attention bias causing lost-in-the-middle. Training-free calibration redistributes\n244\t        attention to middle positions, improving QA by 6-15pp.\n245\t      arxiv_id: '2406.16008'\n246\t  theoretical_foundations:\n247\t    description: Theoretical analysis of transformer residual streams, information flow, and attention dynamics\n248\t    papers:\n249\t    - title: A Mathematical Framework for Transformer Circuits\n250\t      authors: Elhage et al.\n251\t      venue: Transformer Circuits Thread 2021\n252\t      year: 2021\n253\t      url: https://transformer-circuits.pub/2021/framework/index.html\n254\t      role: foundation\n255\t      relevance: 提出残差流作为 transformer 各组件通信核心通道，直接为 ThreadGate 在残差连接处插入门控提供机制解释框架\n256\t      abstract: Linear algebraic decomposition of transformer computations. Attention heads and MLPs as read/write operations\n257\t        on shared residual stream. Formalizes induction heads and QK/OV circuits.\n258\t    - title: Toy Models of Superposition\n259\t      authors: Elhage et al.\n260\t      venue: arXiv 2022\n261\t      year: 2022\n262\t      url: https://arxiv.org/abs/2209.10652\n263\t      role: foundation\n264\t      relevance: 揭示残差流子空间叠加存储稀疏特征的机制，为 ThreadGate 按轮次条件化选择性激活残差通道提供理论依据\n265\t      abstract: Neural networks store more features than dimensions via superposition when features are sparse. Links polysemanticity\n266\t        to geometry of uniform polytopes.\n267\t      arxiv_id: '2209.10652'\n268\t    - title: Eliciting Latent Predictions from Transformers with the Tuned Lens\n269\t      authors: Belrose et al.\n270\t      venue: arXiv 2023\n271\t      year: 2023\n272\t      url: https://arxiv.org/abs/2303.08112\n273\t      role: foundation\n274\t      relevance: 逐层解码残差流隐状态揭示信息在深度方向渐进精化，支撑 ThreadGate 不同层门控强度差异化设计的动机\n275\t      abstract: Per-layer affine probes decode intermediate residual stream states into vocabulary distributions. Shows predictions\n276\t        iteratively refined across depth up to 20B parameters.\n277\t      arxiv_id: '2303.08112'\n278\t    - title: Exploring the Residual Stream of Transformers\n279\t      authors: Yu et al.\n280\t      venue: arXiv 2023\n281\t      year: 2023\n282\t      url: https://arxiv.org/abs/2312.12141\n283\t      role: foundation\n284\t      relevance: 分析残差连接对 logit 空间的加法效应，揭示知识参数跨层分布规律，为 ThreadGate 定位门控插入层提供实证参考\n285\t      abstract: Residual connections act as direct additive operations on pre-softmax logits. Identifies factual knowledge\n286\t        storage distribution across layers and modules.\n287\t      arxiv_id: '2312.12141'\n288\t    - title: 'Attention with Markov: A Framework for Principled Analysis of Transformers via Markov Chains'\n289\t      authors: Makkuva et al.\n290\t      venue: ICLR 2025\n291\t      year: 2025\n292\t      url: https://arxiv.org/abs/2402.04161\n293\t      role: foundation\n294\t      relevance: 用 Markov 链理论刻画注意力深度依赖性，解释为何单层 transformer 无法形成归纳头，支持 ThreadGate 在多层残差路径施加门控的必要性\n295\t      abstract: Theoretical framework via Markov chain properties. Two-layer transformers learn induction heads on first-order\n296\t        Markov data; single-layer models get trapped in unigram minima.\n297\t      arxiv_id: '2402.04161'\n298\t    - title: 'From Self-Attention to Markov Models: Unveiling the Dynamics of Generative Transformers'\n299\t      authors: Ildiz et al.\n300\t      venue: ICML 2024\n301\t      year: 2024\n302\t      url: https://arxiv.org/abs/2402.13512\n303\t      role: foundation\n304\t      relevance: 建立自注意力与上下文条件 Markov 链的精确映射，为分析多轮对话 token 分布随轮次漂移（GAR decay）提供随机过程理论基础\n305\t      abstract: Mathematical equivalence between self-attention and context-conditioned Markov chains. Output distribution\n306\t        sampled from context-weighted transition matrix.\n307\t      arxiv_id: '2402.13512'\n308\t  evaluation_benchmarks:\n309\t    description: Multi-turn dialogue and instruction-following evaluation benchmarks for LLMs\n310\t    papers:\n311\t    - title: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\n312\t      authors: Zheng et al.\n313\t      venue: NeurIPS 2023\n314\t      year: 2023\n315\t      url: https://arxiv.org/abs/2306.05685\n316\t      role: foundation\n317\t      relevance: MT-Bench 多轮对话评测框架，是 ThreadGate 验证多轮 GAR 衰减修复效果的核心 benchmark\n318\t      abstract: Introduces MT-Bench (80 multi-turn questions) and Chatbot Arena. GPT-4 achieves >80% agreement with human\n319\t        preferences as judge.\n320\t      arxiv_id: '2306.05685'\n321\t    - title: 'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference'\n322\t      authors: Chiang et al.\n323\t      venue: ICML 2024\n324\t      year: 2024\n325\t      url: https://arxiv.org/abs/2403.04132\n326\t      role: foundation\n327\t      relevance: 基于 ELO 排名的人类偏好评估体系，衡量多轮对话模型综合能力的权威 leaderboard\n328\t      abstract: Chatbot Arena with 240K+ votes from 90K+ users across 50+ models. Bradley-Terry and ELO ranking validated\n329\t        against expert raters.\n330\t      arxiv_id: '2403.04132'\n331\t    - title: 'Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators'\n332\t      authors: Dubois et al.\n333\t      venue: COLM 2024\n334\t      year: 2024\n335\t      url: https://arxiv.org/abs/2404.04475\n336\t      role: foundation\n337\t      relevance: 指令遵循自动评测标准，Length-Controlled 版本修正长度偏差，为 ThreadGate 单轮指令评测提供对比基线\n338\t      abstract: GLM-based length debiasing for AlpacaEval. Validated against 20K human annotations.\n339\t      arxiv_id: '2404.04475'\n340\t    - title: 'WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild'\n341\t      authors: Lin et al.\n342\t      venue: arXiv 2024\n343\t      year: 2024\n344\t      url: https://arxiv.org/abs/2406.04770\n345\t      role: foundation\n346\t      relevance: 真实用户多样化指令集，评估 wild 场景指令遵循能力，与 ThreadGate 关注的真实多轮对话性能高度相关\n347\t      abstract: 1,024 challenging tasks from 1M+ conversation logs. WB-Reward/WB-Score achieve 0.98 Pearson correlation with\n348\t        Chatbot Arena ELO on hard tasks.\n349\t      arxiv_id: '2406.04770'\n350\t    - title: 'MT-Bench-101: A Fine-Grained Benchmark for Evaluating Large Language Models in Multi-Turn Dialogues'\n351\t      authors: Bai et al.\n352\t      venue: ACL 2024\n353\t      year: 2024\n354\t      url: https://arxiv.org/abs/2402.14762\n355\t      role: direct-competitor\n356\t      relevance: 多轮对话细粒度评测体系，直接测量跨轮次能力退化，与 ThreadGate 研究的 GAR 衰减高度吻合\n357\t      abstract: Three-tier ability taxonomy, 4,208 turns across 1,388 dialogues in 13 tasks. Neither alignment nor chat-specific\n358\t        designs consistently improve multi-turn abilities.\n359\t      arxiv_id: '2402.14762'\n360\t    - title: 'MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs'\n361\t      authors: Sirdeshmukh et al.\n362\t      venue: arXiv 2025\n363\t      year: 2025\n364\t      url: https://arxiv.org/abs/2501.17399\n365\t      role: direct-competitor\n366\t      relevance: 前沿 LLM 多轮对话准确率不足 50%，直接测量 ThreadGate 旨在修复的跨轮指令保留和上下文一致性失败\n367\t      abstract: 'Four challenge categories: instruction retention, user inference memory, versioned editing, self-coherence.\n368\t        All frontier LLMs below 50%; Claude 3.5 Sonnet tops at 41.4%.'\n369\t      arxiv_id: '2501.17399'\n370\t  exposure_bias:\n371\t    description: Exposure bias, teacher forcing, scheduled sampling, and train-test distribution mismatch in sequence generation\n372\t    papers:\n373\t    - title: Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks\n374\t      authors: Bengio, Vinyals, Jaitly, Shazeer\n375\t      venue: NeurIPS 2015\n376\t      year: 2015\n377\t      url: https://arxiv.org/abs/1506.03099\n378\t      role: foundation\n379\t      relevance: Scheduled sampling 首次提出用 curriculum learning 缓解 teacher forcing 与推理时 autoregressive decoding 的分布不匹配（exposure\n380\t        bias），直接支撑论文对 auxiliary attention loss 训练-推理 gap 的根因分析\n381\t      abstract: Proposes a curriculum learning strategy to gently change training from fully guided (true previous token)\n382\t        to less guided (model-generated token). The discrepancy between teacher-forced training and autoregressive inference\n383\t        causes error accumulation. Experiments on sequence prediction tasks show significant improvements. Used in the winning\n384\t        MSCOCO image captioning challenge 2015 entry.\n385\t      arxiv_id: '1506.03099'\n386\t    - title: Sequence Level Training with Recurrent Neural Networks\n387\t      authors: Ranzato, Chopra, Auli, Zaremba\n388\t      venue: ICLR 2016\n389\t      year: 2016\n390\t      url: https://arxiv.org/abs/1511.06732\n391\t      role: foundation\n392\t      relevance: MIXER 算法直接优化测试时指标（BLEU/ROUGE）而非 token-level MLE，解决 teacher forcing 导致的 train-test discrepancy；论文中 auxiliary\n393\t        loss 同样面临 token-level 训练目标与 sequence-level 推理行为的错位\n394\t      abstract: Addresses the discrepancy between token-level MLE training and sequence-level generation at test time. Proposes\n395\t        sequence level training that directly optimizes test metrics (BLEU, ROUGE). Outperforms strong baselines for greedy\n396\t        generation on three tasks and is competitive with beam search while being several times faster.\n397\t      arxiv_id: '1511.06732'\n398\t    - title: 'Professor Forcing: A New Algorithm for Training Recurrent Networks'\n399\t      authors: Lamb, Goyal, Zhang, Zhang, Courville, Bengio\n400\t      venue: NeurIPS 2016\n401\t      year: 2016\n402\t      url: https://arxiv.org/abs/1610.09038\n403\t      role: foundation\n404\t      relevance: 用对抗训练对齐 teacher forcing 训练与 free-running 采样的 hidden state 动态分布，直接证明 train-test dynamics mismatch 可导致长序列采样质量崩溃——与论文中\n405\t        gating 机制推理时失效的现象高度对应\n406\t      abstract: Introduces Professor Forcing, which uses adversarial domain adaptation to encourage the dynamics of the recurrent\n407\t        network to be the same when training and when sampling over multiple time steps. Acts as a regularizer improving test\n408\t        likelihood on Penn Treebank and sequential MNIST. Qualitatively improves samples especially for long generation horizons.\n409\t        Discusses trade-offs with Scheduled Sampling.\n410\t      arxiv_id: '1610.09038'\n411\t    - title: 'SEARNN: Training RNNs with Global-Local Losses'\n412\t      authors: Leblond, Alayrac, Osokin, Lacoste-Julien\n413\t      venue: ICLR 2018\n414\t      year: 2018\n415\t      url: https://arxiv.org/abs/1706.04499\n416\t      role: context\n417\t      relevance: 基于 learning-to-search 理论统一分析 MLE 训练的两大缺陷：exposure bias 和结构化损失信息浪费。论文中 auxiliary attention loss 同时受这两个缺陷影响——token-level\n418\t        loss 无法反映 sequence-level attention pattern\n419\t      abstract: Proposes SEARNN inspired by learning-to-search (L2S) approach to structured prediction. MLE training fails\n420\t        to exploit structured losses and introduces train-test discrepancies (exposure bias). SEARNN leverages test-alike\n421\t        search space exploration for global-local losses closer to test error. Demonstrates improvements on OCR, spelling\n422\t        correction, and machine translation with a subsampling strategy for large vocabularies.\n423\t      arxiv_id: '1706.04499'\n424\t    - title: Quantifying Exposure Bias for Neural Language Generation\n425\t      authors: He, Zhang, Zhou, Glass\n426\t      venue: arXiv 2019\n427\t      year: 2019\n428\t      url: https://arxiv.org/abs/1905.10617\n429\t      role: foundation\n430\t      relevance: 首次定量度量 exposure bias 影响并发现 LM 的 self-recovery 能力——即模型能从错误前缀部分恢复。这为论文分析 gating 机制在推理时的行为提供关键对照：如果 exposure\n431\t        bias 可自恢复，auxiliary loss 崩溃可能源于更根本的分布偏移\n432\t      abstract: 'Proposes sequence-level (EB-bleu) and word-level (EB-C) metrics to quantify exposure bias impact on quality,\n433\t        diversity, and consistency. Key finding: contrary to popular belief, distortion from prefix discrepancy is limited\n434\t        and does not appear incremental. Reveals an interesting self-recovery ability of language models that counters harmful\n435\t        effects of exposure bias.'\n436\t      arxiv_id: '1905.10617'\n437\t    - title: Sequence-to-Sequence Learning as Beam-Search Optimization\n438\t      authors: Wiseman, Rush\n439\t      venue: EMNLP 2016\n440\t      year: 2016\n441\t      url: https://arxiv.org/abs/1606.02960\n442\t      role: foundation\n443\t      relevance: 提出 beam-aware 训练将训练目标与测试时解码统一，量化 teacher forcing 的 train-test discrepancy 对序列生成质量的影响。paper_framing SP1 明确引用为\n444\t        exposure bias 在 sequence generation 中的量化先例\n445\t      abstract: Proposes a model and beam-search training scheme that extends seq2seq to learn global sequence scores, avoiding\n446\t        local training biases and unifying training loss with test-time usage. Outperforms attention-based seq2seq on word\n447\t        ordering, parsing, and machine translation.\n448\t      arxiv_id: '1606.02960'\n449\t    - title: Bridging the Gap between Training and Inference for Neural Machine Translation\n450\t      authors: Zhang, Feng, Meng, You, Liu\n451\t      venue: ACL 2019\n452\t      year: 2019\n453\t      url: https://arxiv.org/abs/1906.02448\n454\t      role: method-component\n455\t      relevance: 在训练时混合 ground truth 和 model-generated tokens 作为上下文，用 sentence-level optimum 选择预测序列。直接对应论文 W8 中讨论的 exposure\n456\t        bias mitigation 实验方向——若应用于 auxiliary attention loss 可能缩小 30x gap\n457\t      abstract: Addresses exposure bias in NMT by sampling context words from both ground truth and model predictions during\n458\t        training, selecting predicted sequences with sentence-level optimum. Achieves significant improvements on Chinese-English\n459\t        and WMT14 English-German translation.\n460\t      arxiv_id: '1906.02448'\n461\t    - title: 'Why Exposure Bias Matters: An Imitation Learning Perspective of Error Accumulation in Language Generation'\n462\t      authors: Arora, El Asri, Bahuleyan, Cheung\n463\t      venue: ACL Findings 2022\n464\t      year: 2022\n465\t      url: https://arxiv.org/abs/2204.01171\n466\t      role: theoretical-foundation\n467\t      relevance: 用 imitation learning 框架证明 exposure bias 导致 compounding error accumulation，且 perplexity 无法捕捉此累积效应。直接支撑论文核心论证：auxiliary\n468\t        attention loss 的 PPL 正常但 GAR 崩溃，因为 perplexity 掩盖了分布偏移对 attention pattern 的破坏\n469\t      abstract: Shows that exposure bias leads to accumulation of errors in autoregressive generation. Analyzes why perplexity\n470\t        fails to capture this accumulation. Empirically demonstrates that compounding errors from train-test mismatch degrade\n471\t        generation quality even when perplexity appears normal.\n472\t      arxiv_id: '2204.01171'\n473\t    - title: Scheduled Sampling for Transformers\n474\t      authors: Mihaylova, Martins\n475\t      venue: ACL SRW 2019\n476\t      year: 2019\n477\t      url: https://arxiv.org/abs/1906.07651\n478\t      role: method-component\n479\t      relevance: 将 Bengio 2015 的 scheduled sampling 扩展到 transformer 架构，通过 two-pass decoding 策略解决 transformer 非自回归 decoder\n480\t        的适配问题。直接相关于论文 Discussion 中讨论的 scheduled sampling 应用于 auxiliary attention loss 的未来方向\n481\t      abstract: Extends scheduled sampling to Transformer architecture via two-pass decoding strategy. Proposes structural\n482\t        changes to allow mixing of teacher-forced embeddings and model predictions during transformer training for exposure\n483\t        bias mitigation.\n484\t      arxiv_id: '1906.07651'\n485\t  gradient_conflict_mtl:\n486\t    description: Multi-task gradient conflict resolution, gradient surgery, and loss balancing methods\n487\t    papers:\n488\t    - title: Gradient Surgery for Multi-Task Learning\n489\t      authors: Yu, Kumar, Gupta, Levine, Hausman, Finn\n490\t      venue: NeurIPS 2020\n491\t      year: 2020\n492\t      url: https://arxiv.org/abs/2001.06782\n493\t      role: must-cite\n494\t      relevance: 提出 PCGrad，通过投影消除任务间梯度冲突。论文直接使用 PCGrad 做因果排除实验，证明梯度冲突不是 auxiliary attention loss 泛化失败的根因\n495\t      abstract: 'Proposes PCGrad: when gradients between tasks conflict, project one onto the normal plane of the other to\n496\t        remove the conflicting component. Demonstrates consistent improvements on multi-task supervised learning and multi-task\n497\t        reinforcement learning benchmarks.'\n498\t      arxiv_id: '2001.06782'\n499\t    - title: 'GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks'\n500\t      authors: Chen, Badrinarayanan, Lee, Rabinovich\n501\t      venue: ICML 2018\n502\t      year: 2018\n503\t      url: https://arxiv.org/abs/1711.02257\n504\t      role: must-cite\n505\t      relevance: 首个自动平衡多任务梯度幅度的方法，通过动态调整各任务梯度范数使训练速率一致。为论文中 auxiliary loss 权重调优的 baseline 和梯度冲突缓解方法的早期代表\n506\t      abstract: Automatically balances training in deep multitask models by dynamically tuning gradient magnitudes. Introduces\n507\t        a loss-rate-based gradient normalization algorithm that adjusts gradients to ensure tasks train at similar rates.\n508\t        Shows improvements on NYUv2 and other benchmarks.\n509\t      arxiv_id: '1711.02257'\n510\t    - title: Conflict-Averse Gradient Descent for Multi-task Learning\n511\t      authors: Liu, Liu, Jin, Stone, Liu\n512\t      venue: NeurIPS 2021\n513\t      year: 2021\n514\t      url: https://arxiv.org/abs/2110.14048\n515\t      role: context\n516\t      relevance: 提出 CAGrad，在共享参数空间上寻找与所有任务梯度最小冲突的更新方向。作为 PCGrad 之后梯度冲突解决方法的演进，支撑论文对该路线充分覆盖后仍无法解决 attention degradation 的论证\n517\t      abstract: Proposes Conflict-Averse Gradient descent (CAGrad) that minimizes the average loss while explicitly constraining\n518\t        the worst-case task performance. Finds an update direction within a ball around the average gradient that maximizes\n519\t        the minimum improvement across tasks. Achieves state-of-the-art on multi-task learning benchmarks.\n520\t      arxiv_id: '2110.14048'\n521\t    - title: Multi-Task Learning as a Bargaining Game\n522\t      authors: Navon, Shamsian, Achituve, Maron, Kawaguchi, Chechik, Fetaya\n523\t      venue: ICML 2022\n524\t      year: 2022\n525\t      url: https://arxiv.org/abs/2202.01017\n526\t      role: context\n527\t      relevance: 将多任务梯度聚合建模为 Nash 博弈问题（Nash-MTL），理论证明 Nash 均衡解优于启发式梯度操作。作为梯度冲突解决的最新理论上界，强化论文\"即使最优梯度调和也无法修复 attention degradation\"的论证\n528\t      abstract: Frames multi-task gradient aggregation as a bargaining game and proposes Nash-MTL that finds the Nash bargaining\n529\t        solution. Provides theoretical guarantees showing the Nash solution is Pareto optimal. Achieves state-of-the-art on\n530\t        multiple MTL benchmarks including NYUv2, QM9, and CELEBA.\n531\t      arxiv_id: '2202.01017'\n532\t  residual_scaling:\n533\t    description: Residual connection scaling, initialization, and zero-init methods for deep transformers\n534\t    papers:\n535\t    - title: 'ReZero is All You Need: Fast Convergence at Large Depth'\n536\t      authors: Bachlechner, Majumder, Mao, Cottrell, McAuley\n537\t      venue: UAI 2021\n538\t      year: 2021\n539\t      url: https://arxiv.org/abs/2003.04887\n540\t      role: must-cite\n541\t      relevance: ThreadGate 的 per-layer sigmoid gate 直接源自 ReZero 的零初始化残差缩放思想：x_{l+1} = x_l + alpha_l * f_l(x_l)，alpha 初始化为\n542\t        0。ThreadGate 将标量 alpha 替换为 turn-conditioned sigmoid gate\n543\t      abstract: Initializes each residual connection with a learnable zero-initialized parameter, enabling training of extremely\n544\t        deep transformers (up to 10,000 layers) without warmup or normalization. Achieves significantly faster convergence\n545\t        by allowing the network to start as identity and gradually incorporate layer contributions.\n546\t      arxiv_id: '2003.04887'\n547\t    - title: 'Fixup Initialization: Residual Learning Without Normalization'\n548\t      authors: Zhang, Dauphin, Ma\n549\t      venue: ICLR 2019\n550\t      year: 2019\n551\t      url: https://arxiv.org/abs/1901.09321\n552\t      role: foundation\n553\t      relevance: 理论推导残差分支的初始化缩放如何控制梯度爆炸，为 ReZero 和 ThreadGate 的残差缩放设计提供数学基础。证明适当的残差缩放可完全替代 normalization layers\n554\t      abstract: Proposes a properly scaled initialization for residual networks that enables training very deep models without\n555\t        normalization layers. Theoretically shows that residual branch scaling by 1/sqrt(L) prevents gradient explosion. Matches\n556\t        BatchNorm performance on ImageNet and CIFAR with ResNets up to 110 layers.\n557\t      arxiv_id: '1901.09321'\n558\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adadca78-2c85-43b3-8126-0438ba98ad8f",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "a818ef46-2bff-49bb-a9c1-b61ff66414a1",
+            "sourceToolAssistantUUID": "adadca78-2c85-43b3-8126-0438ba98ad8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T12:52:41.848Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is 558 lines. Let me continue reading to see if there are more papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a818ef46-2bff-49bb-a9c1-b61ff66414a1",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2YUUjvkTvtK2kuLLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d8d14f9d-96d9-4432-b162-60e2f429e731",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4yDCdwXExPruJUkAyPRxL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12840,
+                "cache_read_input_tokens": 34002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12840,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T12:52:43.401Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EFWqXSCzw8Y14KW3FSbYXA",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "description": "Count total lines in literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8d14f9d-96d9-4432-b162-60e2f429e731",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2YUUjvkTvtK2kuLLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5e8e16d0-4318-40eb-8d81-6eb5674d0418",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4yDCdwXExPruJUkAyPRxL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12840,
+                "cache_read_input_tokens": 34002,
+                "output_tokens": 136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12840
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 136,
+                    "cache_read_input_tokens": 34002,
+                    "cache_creation_input_tokens": 12840,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12840,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T12:52:43.466Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EFWqXSCzw8Y14KW3FSbYXA",
+              "type": "tool_result",
+              "content": "557 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e8e16d0-4318-40eb-8d81-6eb5674d0418",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "07a7cf48-a617-4ad9-adf5-ae6a5d041531",
+            "sourceToolAssistantUUID": "5e8e16d0-4318-40eb-8d81-6eb5674d0418",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T12:52:47.211Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, the file is fully read (557 lines, I saw 558 with the trailing empty line marker). Now let me count the papers to make sure I capture all 50."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07a7cf48-a617-4ad9-adf5-ae6a5d041531",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2v4kmUoz6bFQBH6gu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c8a2f43f-1ab4-4487-809c-50a1c42c8090",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uud9VPRjnLf1wg8BusD5r7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 46842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 185,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T12:52:48.042Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AGSd4L6uS2NsqdcAXWNpHA",
+              "name": "Grep",
+              "input": {
+                "pattern": "^    - title:",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "output_mode": "count"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8a2f43f-1ab4-4487-809c-50a1c42c8090",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe2v4kmUoz6bFQBH6gu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6fe10790-7663-4ba3-a810-0b8c20a46c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uud9VPRjnLf1wg8BusD5r7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 46842,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 185
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 46842,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 185,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T12:52:48.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGSd4L6uS2NsqdcAXWNpHA",
+              "type": "tool_result",
+              "content": "50\n\nFound 0 total occurrences across 0 files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fe10790-7663-4ba3-a810-0b8c20a46c4f",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "d3392672-3ae2-45c4-8ba4-046d52c8431f",
+            "sourceToolAssistantUUID": "6fe10790-7663-4ba3-a810-0b8c20a46c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T12:52:50.450Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Wait, that shows 50 occurrences but 0 files? Let me use a different approach."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3392672-3ae2-45c4-8ba4-046d52c8431f",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3FeEALnuP6w3LNuJz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4dbd75c1-64ae-42f2-bc80-7e455144a9ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124cPSrKrF8ALKXiYp6aY2m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 47027,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 192,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T12:52:51.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017rhhh6oxuf7vJHsoBY8vHT",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c '^\\s*- title:' /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "description": "Count number of papers in literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dbd75c1-64ae-42f2-bc80-7e455144a9ef",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3FeEALnuP6w3LNuJz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "042ff4f8-abd6-4595-a50e-12cea8dd5d0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124cPSrKrF8ALKXiYp6aY2m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 47027,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 192
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 47027,
+                    "cache_creation_input_tokens": 192,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 192,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T12:52:51.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017rhhh6oxuf7vJHsoBY8vHT",
+              "type": "tool_result",
+              "content": "50",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "042ff4f8-abd6-4595-a50e-12cea8dd5d0f",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "cd3ac537-3e08-412d-919d-28344503e1b5",
+            "sourceToolAssistantUUID": "042ff4f8-abd6-4595-a50e-12cea8dd5d0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T12:52:54.434Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "50 papers confirmed. Now let me also check the literature tool source to make sure I understand the exact required format."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd3ac537-3e08-412d-919d-28344503e1b5",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3Ve6xfqHESQ9NMLmQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "74dd8720-d90e-46bb-a3fd-3ce85625a914",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ecgun77czChdBfurtoS2Un",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 47219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 160,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T12:52:55.938Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0171HKv4TME5VafC8FRuG4uH",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n 'papers\\|meta\\|category\\|role\\|verified\\|bibtex\\|last_updated\\|total_papers' /home/ubuntu/agent-ml-research/core/tools/literature.py | head -60",
+                "description": "Check literature.py for schema requirements"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74dd8720-d90e-46bb-a3fd-3ce85625a914",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3Ve6xfqHESQ9NMLmQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "80ca9440-c029-47af-8986-d15291506ec3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ecgun77czChdBfurtoS2Un",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 47219,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 160
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 47219,
+                    "cache_creation_input_tokens": 160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 160,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T12:52:55.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0171HKv4TME5VafC8FRuG4uH",
+              "type": "tool_result",
+              "content": "1:\"\"\"Literature map — persistent, cross-stage knowledge base of papers.\n3:The literature_map.yaml is the single source of truth for papers a project\n5:entry is verified (or marked unverified) and carries enough metadata to\n21:  - Read paths support modes (summary / category:X / competitors / unverified\n23:    grown to 40-60 papers.\n58:# (foundation papers anchor narratives; direct-competitor papers must be cited).\n65:    {\"summary\", \"competitors\", \"unverified\", \"bib\", \"full\"}\n70:    \"title\", \"year\", \"venue\", \"category\", \"role\", \"verified\", \"bibtex_key\",\n97:        \"meta\": {\"last_updated\": None, \"total_papers\": 0},\n99:        \"papers\": {},\n118:        data = {\"papers\": data, \"meta\": {}, \"categories\": []}\n122:    data.setdefault(\"meta\", {})\n123:    data[\"meta\"].setdefault(\"last_updated\", None)\n124:    data[\"meta\"].setdefault(\"total_papers\", 0)\n126:    data.setdefault(\"papers\", {})\n144:            data[\"meta\"][\"total_papers\"] = len(data.get(\"papers\", {}))\n145:            data[\"meta\"][\"last_updated\"] = _paths.now_iso()\n213:def _generate_bibtex_key(paper: dict) -> str:\n214:    \"\"\"Generate a bibtex key like ``vaswani2017attention``.\n217:    the title. Falls back to ``paper_{hash}`` if metadata is missing.\n248:def _find_existing_key(papers: dict, candidate: dict) -> str | None:\n249:    \"\"\"Find a matching paper key in ``papers`` for the candidate dict.\n254:    bibtex_key collisions are NOT treated as dedup signal — two different\n255:    papers can share a naive bibtex_key (e.g. same first author + year), and\n262:    for key, entry in papers.items():\n283:        if k == \"verified\":\n284:            merged[\"verified\"] = bool(existing.get(\"verified\")) or bool(v)\n305:                                category, role, verified, bibtex_key}\n306:          - \"category:<key>\" → full entries in the named category\n307:          - \"competitors\"    → full entries with role=direct-competitor\n308:          - \"unverified\"     → full entries with verified=False\n309:          - \"bib\"            → list of bibtex_key strings (for citation lookups)\n315:            \"papers\": {key: {...}, ...},\n316:            \"meta\": {\"last_updated\", \"total_papers\"},\n322:    papers: dict = data.get(\"papers\", {})\n325:    # Category-scoped read: \"category:<key>\"\n326:    if mode.startswith(\"category:\"):\n328:        filtered = {k: v for k, v in papers.items() if v.get(\"category\") == cat_key}\n331:            \"papers\": filtered,\n332:            \"meta\": data.get(\"meta\", {}),\n341:                \"or 'category:<key>'.\"\n348:            for k, v in papers.items()\n352:            \"papers\": compact,\n353:            \"meta\": data.get(\"meta\", {}),\n358:        filtered = {k: v for k, v in papers.items() if v.get(\"role\") == \"direct-competitor\"}\n361:            \"papers\": filtered,\n362:            \"meta\": data.get(\"meta\", {}),\n366:    if mode == \"unverified\":\n367:        filtered = {k: v for k, v in papers.items() if not v.get(\"verified\")}\n370:            \"papers\": filtered,\n371:            \"meta\": data.get(\"meta\", {}),\n376:        keys = [v.get(\"bibtex_key\") or k for k, v in papers.items()]\n378:            \"bibtex_keys\": keys,\n379:            \"meta\": data.get(\"meta\", {}),\n386:        \"papers\": papers,\n387:        \"meta\": data.get(\"meta\", {}),\n394:    papers: Iterable[dict] | None = None,\n397:    \"\"\"Add (or merge) one or more papers into the literature map.\n399:    Dedup: DOI exact (normalized) → normalized title → bibtex_key collision.\n404:        papers: Iterable of paper dicts. Recognized fields:",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80ca9440-c029-47af-8986-d15291506ec3",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "1889252a-e399-424d-a045-64617167f12c",
+            "sourceToolAssistantUUID": "80ca9440-c029-47af-8986-d15291506ec3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T12:52:58.980Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a clear picture. Let me write a Python script to do the conversion properly, ensuring all 50 papers are preserved."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1889252a-e399-424d-a045-64617167f12c",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3qecsjJNKUMqePj1M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "58e24c30-1309-4b85-82a4-91eea0099d32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kf2HBW9d2vCQtVV4MSqmqY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1338,
+                "cache_read_input_tokens": 47379,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1338,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T12:53:22.050Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MEXXbppV8vFbnCaKsMWHGJ",
+              "name": "Bash",
+              "input": {
+                "command": "cat << 'PYEOF' > /tmp/convert_litmap.py\nimport yaml\nimport re\nfrom datetime import date\n\nINPUT = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml\"\nOUTPUT = INPUT  # overwrite in place\n\nwith open(INPUT) as f:\n    data = yaml.safe_load(f)\n\ncategories = data.get(\"categories\", {})\n\ndef parse_authors(authors_str):\n    \"\"\"Convert 'Gromov et al.' or 'Dongre, Hsieh, Lai, ...' to list of surnames.\"\"\"\n    if isinstance(authors_str, list):\n        return authors_str\n    s = str(authors_str).strip()\n    # Remove 'et al.' suffix\n    s = re.sub(r'\\s+et\\s+al\\.?\\s*$', '', s)\n    # Split by comma or 'and'\n    parts = re.split(r'\\s*,\\s*|\\s+and\\s+', s)\n    # Each part may be a full name; extract surname (last word) or keep as-is if single word\n    result = []\n    for p in parts:\n        p = p.strip()\n        if not p:\n            continue\n        result.append(p)\n    return result\n\ndef make_bibtex_key(paper):\n    \"\"\"Generate bibtex key: first_author_surname + year + first_content_word_of_title.\"\"\"\n    authors = parse_authors(paper.get(\"authors\", \"unknown\"))\n    surname = authors[0].lower() if authors else \"unknown\"\n    # Clean surname\n    surname = re.sub(r'[^a-z]', '', surname)\n    \n    year = str(paper.get(\"year\", \"0000\"))\n    \n    title = paper.get(\"title\", \"\")\n    # Remove leading punctuation/quotes and common prefixes\n    title_clean = re.sub(r'^[\"\\']', '', title)\n    # Split and find first content word (skip common stop words)\n    stop_words = {\"a\", \"an\", \"the\", \"on\", \"in\", \"of\", \"for\", \"with\", \"from\", \"to\", \"and\", \"or\", \"is\", \"are\", \"how\", \"why\", \"when\", \"what\", \"do\"}\n    words = re.findall(r'[A-Za-z]+', title_clean)\n    content_word = \"\"\n    for w in words:\n        if w.lower() not in stop_words:\n            content_word = w.lower()\n            break\n    if not content_word and words:\n        content_word = words[0].lower()\n    \n    return f\"{surname}{year}{content_word}\"\n\nnew_papers = {}\nused_keys = set()\n\ntotal = 0\nfor cat_name, cat_data in categories.items():\n    cat_papers = cat_data.get(\"papers\", [])\n    for paper in cat_papers:\n        total += 1\n        key = make_bibtex_key(paper)\n        # Handle duplicates\n        if key in used_keys:\n            # append a suffix\n            for suffix_i in range(2, 100):\n                candidate = f\"{key}{suffix_i}\"\n                if candidate not in used_keys:\n                    key = candidate\n                    break\n        used_keys.add(key)\n        \n        entry = {}\n        entry[\"title\"] = paper.get(\"title\", \"\")\n        entry[\"authors\"] = parse_authors(paper.get(\"authors\", \"\"))\n        if paper.get(\"year\"):\n            entry[\"year\"] = paper[\"year\"]\n        if paper.get(\"venue\"):\n            entry[\"venue\"] = paper[\"venue\"]\n        if paper.get(\"url\"):\n            entry[\"url\"] = paper[\"url\"]\n        if paper.get(\"arxiv_id\"):\n            entry[\"arxiv_id\"] = str(paper[\"arxiv_id\"])\n        entry[\"category\"] = cat_name\n        entry[\"role\"] = paper.get(\"role\", \"context\")\n        if paper.get(\"relevance\"):\n            entry[\"relevance\"] = paper[\"relevance\"]\n        if paper.get(\"abstract\"):\n            entry[\"abstract\"] = paper[\"abstract\"]\n        if paper.get(\"notes\"):\n            entry[\"notes\"] = paper[\"notes\"]\n        entry[\"verified\"] = False\n        \n        new_papers[key] = entry\n\nprint(f\"Converted {total} papers across {len(categories)} categories\")\nprint(f\"Generated {len(new_papers)} unique keys\")\n\n# Verify no papers lost\nassert len(new_papers) == 50, f\"Expected 50 papers, got {len(new_papers)}\"\n\noutput = {\n    \"meta\": {\n        \"last_updated\": str(date.today()),\n        \"total_papers\": len(new_papers),\n    },\n    \"papers\": new_papers,\n}\n\n# Custom dumper to handle long strings nicely\nclass LiteralStr(str):\n    pass\n\ndef literal_str_representer(dumper, data):\n    if '\\n' in data:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')\n    return dumper.represent_scalar('tag:yaml.org,2002:str', data)\n\nyaml.add_representer(LiteralStr, literal_str_representer)\n\nwith open(OUTPUT, 'w') as f:\n    yaml.dump(output, f, default_flow_style=False, allow_unicode=True, width=120, sort_keys=False)\n\nprint(f\"Written to {OUTPUT}\")\n\n# Verify by re-reading\nwith open(OUTPUT) as f:\n    check = yaml.safe_load(f)\nprint(f\"Verification: {check['meta']['total_papers']} papers in meta, {len(check['papers'])} paper entries\")\nfor k, v in check['papers'].items():\n    assert 'title' in v, f\"Missing title in {k}\"\n    assert 'authors' in v, f\"Missing authors in {k}\"\n    assert isinstance(v['authors'], list), f\"Authors not a list in {k}: {v['authors']}\"\n    assert 'category' in v, f\"Missing category in {k}\"\n    assert 'role' in v, f\"Missing role in {k}\"\n    assert v['role'] in ('foundation', 'direct-competitor', 'method-component', 'context', 'must-cite', 'theoretical-foundation'), f\"Invalid role in {k}: {v['role']}\"\nprint(\"All validations passed!\")\n\n# Print all keys for review\nfor k in check['papers']:\n    print(f\"  {k}: {check['papers'][k]['title'][:60]}\")\nPYEOF\npython3 /tmp/convert_litmap.py",
+                "description": "Convert literature_map.yaml from nested categories to flat papers dict format"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58e24c30-1309-4b85-82a4-91eea0099d32",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe3qecsjJNKUMqePj1M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "619f66c4-2352-4f34-8b82-a0c6f8acbd72",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kf2HBW9d2vCQtVV4MSqmqY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1338,
+                "cache_read_input_tokens": 47379,
+                "output_tokens": 1750,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1338
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1750,
+                    "cache_read_input_tokens": 47379,
+                    "cache_creation_input_tokens": 1338,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1338,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T12:53:22.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MEXXbppV8vFbnCaKsMWHGJ",
+              "type": "tool_result",
+              "content": "Converted 50 papers across 9 categories\nGenerated 50 unique keys\nWritten to /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml\nVerification: 50 papers in meta, 50 paper entries\nAll validations passed!\n  gromov2024unreasonable: The Unreasonable Ineffectiveness of the Deeper Layers\n  men2024shortgpt: ShortGPT: Layers in Large Language Models are More Redundant\n  sun2025curse: The Curse of Depth in Large Language Models\n  anonymous2024reassessing: Reassessing Layer Pruning in LLMs: New Insights and Methods\n  fan2020reducing: Reducing Transformer Depth on Demand with Structured Dropout\n  dongre2026attention: When Attention Closes: How LLMs Lose the Thread in Multi-Tur\n  levy2025llms: LLMs Get Lost In Multi-Turn Conversation\n  liu2026intent: Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conver\n  liu2023lost: Lost in the Middle: How Language Models Use Long Contexts\n  anonymous2025style: Style Amnesia: Investigating Speaking Style Degradation and \n  li2024measuring: Measuring and Controlling Instruction (In)Stability in Langu\n  raposo2024mixture: Mixture-of-Depths: Dynamically allocating compute in transfo\n  schuster2022confident: Confident Adaptive Language Modeling (CALM)\n  qiu2025gated: Gated Attention for Large Language Models: Non-linearity, Sp\n  wang2018skipnet: SkipNet: Learning Dynamic Routing in Convolutional Networks\n  luo2025adaptive: Adaptive Layer-skipping in Pre-trained LLMs (FlexiDepth)\n  lawson2025learning: Learning to Skip the Middle Layers of Transformers\n  press2022train: Train Short, Test Long: Attention with Linear Biases Enables\n  chen2023extending: Extending Context Window of Large Language Models via Positi\n  peng2024yarn: YaRN: Efficient Context Window Extension of Large Language M\n  xiao2024efficient: Efficient Streaming Language Models with Attention Sinks\n  han2024lm: LM-Infinite: Zero-Shot Extreme Length Generalization for Lar\n  ko2024found: Found in the Middle: Calibrating Positional Attention Bias I\n  elhage2021mathematical: A Mathematical Framework for Transformer Circuits\n  elhage2022toy: Toy Models of Superposition\n  belrose2023eliciting: Eliciting Latent Predictions from Transformers with the Tune\n  yu2023exploring: Exploring the Residual Stream of Transformers\n  makkuva2025attention: Attention with Markov: A Framework for Principled Analysis o\n  ildiz2024self: From Self-Attention to Markov Models: Unveiling the Dynamics\n  zheng2023judging: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\n  chiang2024chatbot: Chatbot Arena: An Open Platform for Evaluating LLMs by Human\n  dubois2024length: Length-Controlled AlpacaEval: A Simple Way to Debias Automat\n  lin2024wildbench: WildBench: Benchmarking LLMs with Challenging Tasks from Rea\n  bai2024mt: MT-Bench-101: A Fine-Grained Benchmark for Evaluating Large \n  sirdeshmukh2025multichallenge: MultiChallenge: A Realistic Multi-Turn Conversation Evaluati\n  bengio2015scheduled: Scheduled Sampling for Sequence Prediction with Recurrent Ne\n  ranzato2016sequence: Sequence Level Training with Recurrent Neural Networks\n  lamb2016professor: Professor Forcing: A New Algorithm for Training Recurrent Ne\n  leblond2018searnn: SEARNN: Training RNNs with Global-Local Losses\n  he2019quantifying: Quantifying Exposure Bias for Neural Language Generation\n  wiseman2016sequence: Sequence-to-Sequence Learning as Beam-Search Optimization\n  zhang2019bridging: Bridging the Gap between Training and Inference for Neural M\n  arora2022exposure: Why Exposure Bias Matters: An Imitation Learning Perspective\n  mihaylova2019scheduled: Scheduled Sampling for Transformers\n  yu2020gradient: Gradient Surgery for Multi-Task Learning\n  chen2018gradnorm: GradNorm: Gradient Normalization for Adaptive Loss Balancing\n  liu2021conflict: Conflict-Averse Gradient Descent for Multi-task Learning\n  navon2022multi: Multi-Task Learning as a Bargaining Game\n  bachlechner2021rezero: ReZero is All You Need: Fast Convergence at Large Depth\n  zhang2019fixup: Fixup Initialization: Residual Learning Without Normalizatio",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "619f66c4-2352-4f34-8b82-a0c6f8acbd72",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "68c0371e-1f8c-457f-b0a8-cea4c66c9ad1",
+            "sourceToolAssistantUUID": "619f66c4-2352-4f34-8b82-a0c6f8acbd72",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T12:53:25.628Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 50 papers converted successfully with unique bibtex keys. Let me verify the output file looks correct."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c0371e-1f8c-457f-b0a8-cea4c66c9ad1",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe5n76yVnLawRLhh25x",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "08705d83-d94c-43b9-b02e-3911879bc5ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQoCcMar42wAfNe2AVCizQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 48717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2987,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T12:53:26.026Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rc1x39e8BaSXp8fZV4RCZ3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08705d83-d94c-43b9-b02e-3911879bc5ee",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe5n76yVnLawRLhh25x",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "446dfbc1-e838-4af7-b3b7-cb85ea6958fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQoCcMar42wAfNe2AVCizQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 48717,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2987
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 48717,
+                    "cache_creation_input_tokens": 2987,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2987,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T12:53:26.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rc1x39e8BaSXp8fZV4RCZ3",
+              "type": "tool_result",
+              "content": "1\tmeta:\n2\t  last_updated: '2026-05-22'\n3\t  total_papers: 50\n4\tpapers:\n5\t  gromov2024unreasonable:\n6\t    title: The Unreasonable Ineffectiveness of the Deeper Layers\n7\t    authors:\n8\t    - Gromov\n9\t    year: 2024\n10\t    venue: ICLR 2025\n11\t    url: https://arxiv.org/abs/2403.17887\n12\t    arxiv_id: '2403.17887'\n13\t    category: layer_importance\n14\t    role: foundation\n15\t    relevance: 发现 LLM 深层高度冗余，可删除近半层而性能不降；浅层对知识存储至关重要\n16\t    abstract: Studies knowledge storage via layer pruning. Finds minimal performance degradation until up to half of layers\n17\t      are removed.\n18\t    verified: false\n19\t  men2024shortgpt:\n20\t    title: 'ShortGPT: Layers in Large Language Models are More Redundant Than You Expect'\n21\t    authors:\n22\t    - Men\n23\t    year: 2024\n24\t    venue: arXiv 2024\n25\t    url: https://arxiv.org/abs/2403.03853\n26\t    arxiv_id: '2403.03853'\n27\t    category: layer_importance\n28\t    role: foundation\n29\t    relevance: 提出 Block Influence (BI) 度量各层重要性，发现许多层高度相似且功能冗余\n30\t    abstract: Defines Block Influence (BI) metric to gauge layer significance. Discovers many LLM layers exhibit high similarity.\n31\t    verified: false\n32\t  sun2025curse:\n33\t    title: The Curse of Depth in Large Language Models\n34\t    authors:\n35\t    - Sun\n36\t    year: 2025\n37\t    venue: NeurIPS 2025\n38\t    url: https://arxiv.org/abs/2502.05795\n39\t    arxiv_id: '2502.05795'\n40\t    category: layer_importance\n41\t    role: foundation\n42\t    relevance: Pre-LN 导致深层梯度趋近恒等映射。解释 ThreadGate 中 late layers gate 接近 1.0\n43\t    abstract: Pre-Layer Normalization causes output variance to grow exponentially with depth.\n44\t    verified: false\n45\t  anonymous2024reassessing:\n46\t    title: 'Reassessing Layer Pruning in LLMs: New Insights and Methods'\n47\t    authors:\n48\t    - Anonymous\n49\t    year: 2024\n50\t    venue: arXiv 2024\n51\t    url: https://arxiv.org/abs/2411.15558\n52\t    arxiv_id: '2411.15558'\n53\t    category: layer_importance\n54\t    role: context\n55\t    relevance: 删除最后 25% 层 + 微调即可获得强性能，证实深层冗余\n56\t    abstract: Simply pruning the final 25% of layers followed by fine-tuning yields strong performance.\n57\t    verified: false\n58\t  fan2020reducing:\n59\t    title: Reducing Transformer Depth on Demand with Structured Dropout (LayerDrop)\n60\t    authors:\n61\t    - Fan\n62\t    year: 2020\n63\t    venue: ICLR 2020\n64\t    url: https://arxiv.org/abs/1909.11556\n65\t    arxiv_id: '1909.11556'\n66\t    category: layer_importance\n67\t    role: method-component\n68\t    relevance: ThreadGate 的 gating 可视为 LayerDrop 的 soft 版本\n69\t    abstract: Structured dropout on entire transformer layers during training.\n70\t    verified: false\n71\t  dongre2026attention:\n72\t    title: 'When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction'\n73\t    authors:\n74\t    - Dongre\n75\t    - Hsieh\n76\t    - Lai\n77\t    - Yoon\n78\t    - Bui\n79\t    - Hakkani-Tur\n80\t    year: 2026"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "446dfbc1-e838-4af7-b3b7-cb85ea6958fa",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "2df8a8f4-129e-4914-87da-fe7afbc3b5e6",
+            "sourceToolAssistantUUID": "446dfbc1-e838-4af7-b3b7-cb85ea6958fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T12:53:29.459Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also verify the `notes` field on the Dongre paper was preserved, and check the end of the file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2df8a8f4-129e-4914-87da-fe7afbc3b5e6",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe644JYBrJFEoShkfLx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9b596824-d8d3-4518-92f7-a0d9ce3b6af6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXG5wbuvN4xURsoFdFEwju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1254,
+                "cache_read_input_tokens": 51704,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1254,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T12:53:29.985Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018yQbwXD2TqTHyChQfMKbFM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "offset": 80,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b596824-d8d3-4518-92f7-a0d9ce3b6af6",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe644JYBrJFEoShkfLx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31420d4b-86f5-490a-bf3e-9c7bc8ffd9eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXG5wbuvN4xURsoFdFEwju",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1254,
+                "cache_read_input_tokens": 51704,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1254
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 51704,
+                    "cache_creation_input_tokens": 1254,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1254,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T12:53:29.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018yQbwXD2TqTHyChQfMKbFM",
+              "type": "tool_result",
+              "content": "80\t    year: 2026\n81\t    venue: arXiv 2026\n82\t    url: https://arxiv.org/abs/2605.12922\n83\t    arxiv_id: '2605.12922'\n84\t    category: multi_turn_attention\n85\t    role: foundation\n86\t    relevance: 定义 GAR，诊断多轮 attention 通道关闭。纯诊断论文，未提出干预方案。ThreadGate 是首个基于其诊断的干预方法\n87\t    abstract: 'Channel-transition account: goal tokens become less accessible through attention while goal info persists in\n88\t      residual representations. Introduces GAR metric.'\n89\t    notes:\n90\t      gar_definition: GAR(τ) = (1/L·H·|ℛτ|) Σℓ Σh Σi∈ℛτ Σj∈𝒢 A_{i,j}. ALL layers, ALL heads averaged. Goal tokens = system\n91\t        prompt task-specifying tokens only\n92\t      models_tested: Mistral-7B, LLaMA-3.1-8B, Qwen-2.5 (3B/7B/14B/32B), Mixtral-8x7B + 6 additional\n93\t      gar_decline: 27-48% over 50 turns, monotonic (Mann-Kendall p<1e-7)\n94\t      residual_probes: 'LDA on PCA-reduced residuals (50 PCs). Peak AUC: LLaMA L2=0.99, Qwen L11=0.98, Mixtral L21=0.99, Mistral\n95\t        L27=0.87'\n96\t      qwen_layer_profile: Goal encoding rises steeply from L5. Our v3b L4 outlier may be the layer just before goal encoding\n97\t        begins\n98\t      intervention_tested: Periodic goal re-injection FAILED (Appendix H)\n99\t      no_solution: true\n100\t      sliding_window: Attention mask W=4096, Qwen crossover at turn 20. Linear W-vs-crossover (R2~1)\n101\t      framing_impact: GAR not our original metric. No intervention proposed -> ThreadGate is first solution. Residual persistence\n102\t        directly supports our theory\n103\t    verified: false\n104\t  levy2025llms:\n105\t    title: LLMs Get Lost In Multi-Turn Conversation\n106\t    authors:\n107\t    - Levy\n108\t    year: 2025\n109\t    venue: arXiv 2025\n110\t    url: https://arxiv.org/abs/2505.06120\n111\t    arxiv_id: '2505.06120'\n112\t    category: multi_turn_attention\n113\t    role: foundation\n114\t    relevance: 量化多轮对话性能衰减：平均下降 39%，不可靠性增加 112%\n115\t    abstract: All top LLMs exhibit significantly lower performance in multi-turn vs single-turn, averaging 39% drop.\n116\t    verified: false\n117\t  liu2026intent:\n118\t    title: Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conversation\n119\t    authors:\n120\t    - Liu\n121\t    year: 2026\n122\t    venue: arXiv 2026\n123\t    url: https://arxiv.org/abs/2602.07338\n124\t    arxiv_id: '2602.07338'\n125\t    category: multi_turn_attention\n126\t    role: context\n127\t    relevance: 多轮失败根因是 intent alignment gap，scaling 无法解决。支撑 ThreadGate 架构级方案动机\n128\t    abstract: Lost in Conversation stems from intent alignment gap, not capability deficits. Scaling cannot resolve.\n129\t    verified: false"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31420d4b-86f5-490a-bf3e-9c7bc8ffd9eb",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "278d0889-6549-40e2-b1e9-eb4751206a97",
+            "sourceToolAssistantUUID": "31420d4b-86f5-490a-bf3e-9c7bc8ffd9eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T12:53:33.542Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `notes` field is preserved. Let me check the last few entries to make sure the file is complete."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "278d0889-6549-40e2-b1e9-eb4751206a97",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe6MJdWWTtexfixVaQB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7cd8b098-9f1f-4cd5-856f-c18531571969",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCR5iACNfhaM9asDLFdMfU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1152,
+                "cache_read_input_tokens": 52958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1152,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T12:53:33.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RC23X3TFg9UZEv8k2KWnoU",
+              "name": "Bash",
+              "input": {
+                "command": "tail -30 /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml",
+                "description": "Check end of converted literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7cd8b098-9f1f-4cd5-856f-c18531571969",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe6MJdWWTtexfixVaQB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "16ccdd1a-1ba0-4854-b964-1856285cc036",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCR5iACNfhaM9asDLFdMfU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1152,
+                "cache_read_input_tokens": 52958,
+                "output_tokens": 139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1152
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 139,
+                    "cache_read_input_tokens": 52958,
+                    "cache_creation_input_tokens": 1152,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1152,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T12:53:33.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RC23X3TFg9UZEv8k2KWnoU",
+              "type": "tool_result",
+              "content": "    - McAuley\n    year: 2021\n    venue: UAI 2021\n    url: https://arxiv.org/abs/2003.04887\n    arxiv_id: '2003.04887'\n    category: residual_scaling\n    role: must-cite\n    relevance: ThreadGate 的 per-layer sigmoid gate 直接源自 ReZero 的零初始化残差缩放思想：x_{l+1} = x_l + alpha_l * f_l(x_l)，alpha 初始化为 0。ThreadGate\n      将标量 alpha 替换为 turn-conditioned sigmoid gate\n    abstract: Initializes each residual connection with a learnable zero-initialized parameter, enabling training of extremely\n      deep transformers (up to 10,000 layers) without warmup or normalization. Achieves significantly faster convergence by\n      allowing the network to start as identity and gradually incorporate layer contributions.\n    verified: false\n  zhang2019fixup:\n    title: 'Fixup Initialization: Residual Learning Without Normalization'\n    authors:\n    - Zhang\n    - Dauphin\n    - Ma\n    year: 2019\n    venue: ICLR 2019\n    url: https://arxiv.org/abs/1901.09321\n    arxiv_id: '1901.09321'\n    category: residual_scaling\n    role: foundation\n    relevance: 理论推导残差分支的初始化缩放如何控制梯度爆炸，为 ReZero 和 ThreadGate 的残差缩放设计提供数学基础。证明适当的残差缩放可完全替代 normalization layers\n    abstract: Proposes a properly scaled initialization for residual networks that enables training very deep models without\n      normalization layers. Theoretically shows that residual branch scaling by 1/sqrt(L) prevents gradient explosion. Matches\n      BatchNorm performance on ImageNet and CIFAR with ResNets up to 110 layers.\n    verified: false",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16ccdd1a-1ba0-4854-b964-1856285cc036",
+            "isSidechain": true,
+            "promptId": "15fa4839-f587-436d-ab17-12a7b3887c52",
+            "agentId": "a0573ff6a31819b99",
+            "type": "user",
+            "uuid": "01cfc571-4ac8-4f2e-adb6-6979ed1c39f4",
+            "sourceToolAssistantUUID": "16ccdd1a-1ba0-4854-b964-1856285cc036",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T12:53:42.644Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conversion is complete and verified. Here's a summary:\n\n**Converted `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/literature_map.yaml`** from the nested `categories:` format to the flat `papers:` dict format required by the distill tool.\n\nKey changes:\n- Added `meta:` section with `last_updated: '2026-05-22'` and `total_papers: 50`\n- Flattened all 50 papers from 9 categories (`layer_importance`, `multi_turn_attention`, `residual_gating`, `attention_manipulation`, `theoretical_foundations`, `evaluation_benchmarks`, `exposure_bias`, `gradient_conflict_mtl`, `residual_scaling`) into a single `papers:` dict\n- Each paper keyed by bibtex-style key (e.g., `gromov2024unreasonable`, `dongre2026attention`)\n- Category name moved into each paper's `category` field\n- `authors` converted from strings like `\"Gromov et al.\"` or `\"Dongre, Hsieh, Lai, Yoon, Bui, Hakkani-Tur\"` to lists of surname strings\n- All original fields preserved: `title`, `authors`, `year`, `venue`, `url`, `arxiv_id`, `role`, `relevance`, `abstract`, `notes`\n- Added `verified: false` to every entry\n- All `role` values validated against the 6 allowed values"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01cfc571-4ac8-4f2e-adb6-6979ed1c39f4",
+            "isSidechain": true,
+            "agentId": "a0573ff6a31819b99",
+            "requestId": "req_011CbHe6eHLnX6sJHfHx3TCC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d5307e64-3e2f-4ca6-abe8-bdfeb15fa551",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "c50cdc42-c2d2-4091-b0bc-78afe247a821",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curious-spinning-crown",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D446YYd1BArZvGANHX4rkQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 657,
+                "cache_read_input_tokens": 54110,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 657
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 54110,
+                    "cache_creation_input_tokens": 657,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 657,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-the-file-home-ubuntu-agent-ml-research-idea-gen-0509-11-projects-turn-residual.md"
+}

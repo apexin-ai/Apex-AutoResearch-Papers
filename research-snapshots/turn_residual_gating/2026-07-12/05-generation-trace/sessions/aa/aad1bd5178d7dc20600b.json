@@ -1,0 +1,2869 @@
+{
+  "schema_version": "1.0",
+  "id": "aad1bd5178d7dc20600b",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for academic papers about multi-objective optimization conflicts in LLM fine-tuning, specifically where N",
+  "task_key": "agent-a5cbec039395edb1d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a5cbec039395edb1d.jsonl",
+    "occurrence": 1,
+    "bytes": 139430,
+    "sha256": "bf24a9d5d496cf4499897e77208c5093a2e16aeedb2a58b8b7717259afacaea7"
+  },
+  "statistics": {
+    "messages": 54,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T02:59:51.585Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for academic papers about multi-objective optimization conflicts in LLM fine-tuning, specifically where NTP (next-token prediction / language modeling) loss dominates or drowns out auxiliary objectives. I need to find:\n\n1. RLHF/DPO papers reporting that the language modeling objective conflicts with alignment objectives\n2. Papers about \"catastrophic forgetting\" of auxiliary objectives during LLM fine-tuning\n3. Gradient conflict / gradient interference between different training objectives in LLMs\n4. Papers about Pareto optimization or multi-task learning in LLM fine-tuning where one task dominates\n\nUse WebSearch with queries like:\n- \"NTP loss dominates auxiliary objective LLM fine-tuning\"\n- \"multi-objective optimization conflict LLM training\"\n- \"gradient competition language model fine-tuning alignment\"\n- \"RLHF reward model vs language model loss conflict\"\n- \"DPO multi-objective optimization interference\"\n- \"auxiliary loss overwhelmed by language modeling\"\n- \"Pareto optimization LLM fine-tuning gradient conflict\"\n\nFor each paper, note: title, venue/year, what objectives conflict, whether they identify mechanisms similar to \"primary loss drowning auxiliary loss\", and any proposed solutions (like decoupled training)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "1eec93e7-bb77-4f7c-9d9d-a5843884ba53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T02:59:51.592Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1eec93e7-bb77-4f7c-9d9d-a5843884ba53",
+                "isSidechain": true,
+                "agentId": "a5cbec039395edb1d",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "650b0a7e-16b5-4045-a6c4-097024b62e8e",
+                "timestamp": "2026-05-19T02:59:51.592Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+                "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "starry-mapping-hearth"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T02:59:54.572Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for relevant papers across multiple queries in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "650b0a7e-16b5-4045-a6c4-097024b62e8e",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBQ1hWJD9Kf1q74Kxjs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9837a920-579b-49dc-b7c8-521fffc9500f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018SvPuUETETiPDAVHNtJ2vM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15870,
+                "cache_read_input_tokens": 8262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15870,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T02:59:54.727Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aj9dV3oaZ4kpLy5oHccpx8",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9837a920-579b-49dc-b7c8-521fffc9500f",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBQ1hWJD9Kf1q74Kxjs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "347386e8-2315-4e65-a9db-4e05d644f6a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018SvPuUETETiPDAVHNtJ2vM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15870,
+                "cache_read_input_tokens": 8262,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15870
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 8262,
+                    "cache_creation_input_tokens": 15870,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15870,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T02:59:54.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Aj9dV3oaZ4kpLy5oHccpx8",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "347386e8-2315-4e65-a9db-4e05d644f6a3",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "fe64e99a-cff2-41fa-b7df-3b03ed8c6db2",
+            "sourceToolAssistantUUID": "347386e8-2315-4e65-a9db-4e05d644f6a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T02:59:57.097Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run multiple searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe64e99a-cff2-41fa-b7df-3b03ed8c6db2",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBQF9dZUwztVH99QBSN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "92f9c3ab-c011-4357-a41e-c7ce726f733f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019DkVJuHfQcKYEqyVWj38a7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1453,
+                "cache_read_input_tokens": 24132,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1453,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T02:59:57.352Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011UXbaGZRDVsT8GVk272FBR",
+              "name": "WebSearch",
+              "input": {
+                "query": "NTP loss dominates auxiliary objective LLM fine-tuning multi-objective optimization"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92f9c3ab-c011-4357-a41e-c7ce726f733f",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBQF9dZUwztVH99QBSN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4dc4afca-5f22-4a54-adec-5bf1c745c244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019DkVJuHfQcKYEqyVWj38a7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1453,
+                "cache_read_input_tokens": 24132,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1453
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 24132,
+                    "cache_creation_input_tokens": 1453,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1453,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T03:00:02.612Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011UXbaGZRDVsT8GVk272FBR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NTP loss dominates auxiliary objective LLM fine-tuning multi-objective optimization\"\n\nLinks: [{\"title\":\"HyperDPO: Conditioned One-Shot Multi-Objective Fine-Tuning Framework\",\"url\":\"https://arxiv.org/html/2410.08316v2\"},{\"title\":\"Challenges of multi-task learning in LLM fine-tuning | Edison Smart\",\"url\":\"https://edisonsmart.com/challenges-of-multi-task-learning-in-llm-fine-tuning/\"},{\"title\":\"HyperDPO: Hypernetwork-based Multi-Objective Fine-Tuning Framework\",\"url\":\"https://arxiv.org/html/2410.08316v1\"},{\"title\":\"MORepair: Teaching LLMs to Repair Code via Multi-Objective Fine-tuning\",\"url\":\"https://arxiv.org/pdf/2404.12636\"},{\"title\":\"COS-DPO: Conditioned One-Shot Multi-Objective Fine-Tuning Framework\",\"url\":\"https://arxiv.org/pdf/2410.08316\"}]\n\nBased on the search results, I found relevant information about multi-objective fine-tuning in LLMs. Here are the key findings:\n\nRecent work addresses multi-objective fine-tuning (MOFT) in LLMs, with frameworks like HyperDPO and COS-DPO extending Direct Preference Optimization to accommodate multiple objectives simultaneously.\n\nIn multi-task learning settings, tasks with large datasets or simple objectives can dominate and cause the model to overfit, reducing its ability to generalize. Multi-task learning often encounters task interference, where different objectives clash during training because shared model parameters can affect different tasks, and improvements in one task can cause alterations to the model elsewhere.\n\nThe Weight-COS-DPO and Temperature-COS-DPO methods are designed to profile the Pareto front and enhance flexibility in post-training control over trade-offs between the main and auxiliary objectives.\n\nThe search results indicate that this is an active area of research in LLM fine-tuning, with recent papers (from October 2024 onwards) proposing solutions to handle the challenge of balancing multiple objectives during training.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dc4afca-5f22-4a54-adec-5bf1c745c244",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "1ea37747-7da2-48f9-b576-ba08d292c8fe",
+            "sourceToolAssistantUUID": "4dc4afca-5f22-4a54-adec-5bf1c745c244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T03:00:05.222Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CegTzDFTCAyscdbui5EojE",
+              "name": "WebSearch",
+              "input": {
+                "query": "gradient conflict interference multi-task learning language model fine-tuning 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ea37747-7da2-48f9-b576-ba08d292c8fe",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBQpmTMvDLbFP1i1QsJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "86ca0660-b617-4d0b-b2dd-9f039251dadf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017iBcNz2nzkTqqNTxLjAcTA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 626,
+                "cache_read_input_tokens": 25585,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 626
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 25585,
+                    "cache_creation_input_tokens": 626,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 626,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T03:00:13.988Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CegTzDFTCAyscdbui5EojE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"gradient conflict interference multi-task learning language model fine-tuning 2024 2025\"\n\nLinks: [{\"title\":\"Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projection\",\"url\":\"https://arxiv.org/pdf/2601.09684\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/html/2510.19178v1\"},{\"title\":\"Masked Zeroth-Order Optimization for Multi-Task Fine- ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.935.pdf\"},{\"title\":\"Proactive Gradient Conflict Mitigation in Multi-Task Learning: A Sparse Training Perspective\",\"url\":\"https://arxiv.org/html/2411.18615v1\"},{\"title\":\"Gradient Descent in Multi-Task Learning Stanford CS224N Default Project\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/DavidSaykinKfirShmuelDolev.pdf\"},{\"title\":\"Addressing task conflicts in LLMs multi-task fine-tuning with task-specific subnetwork refinement | Machine Learning | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10994-025-06885-z\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/pdf/2510.19178\"},{\"title\":\"Token Space Manipulation for Transformer-Based Multi-Task ...\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Resolving_Token-Space_Gradient_Conflicts_Token_Space_Manipulation_for_Transformer-Based_Multi-Task_ICCV_2025_paper.pdf\"}]\n\nBased on the web search results, here's what I found regarding gradient conflict interference in multi-task learning for language model fine-tuning in 2024-2025:\n\n## Key Research Findings\n\n**Gradient Conflict Problem:**\nIn multi-task learning practice, different tasks often compete for the limited capacity of the shared parameters, a phenomenon known as gradient conflict or negative transfer. Task conflicts occur because traditional training methods update all model parameters simultaneously for all tasks, causing gradients from one task to disrupt the specialized subnetworks of others.\n\n**LoRA-Specific Challenges:**\nUnlike full fine-tuning, where optimization occurs in a high-dimensional space with ample \"escape paths\" for conflicting objectives, LoRA constrains updates to a low-rank manifold.\n\n## Recent Solutions (2024-2025)\n\n1. **Ortho-LoRA (2025):** Ortho-LoRA dynamically projects conflicting task gradients onto the orthogonal complement of each other within the intrinsic LoRA subspace, effectively mitigating task interference and recovering 95% of the performance gap between multi-task and single-task baselines.\n\n2. **Sparse Training Approach (2024):** Sparse Training involves selecting a subset of parameters from the original model to learn multiple tasks simultaneously while keeping remaining parameters frozen, which restricts gradient updates to influence only a subset of parameters, effectively reducing potential interference between tasks.\n\n3. **Task-Specific Subnetwork Refinement (2025):** Task-Specific Subnetwork Refinement (TSSR) is a novel training framework that mitigates task conflicts by selectively refining the subnetworks associated with each task.\n\n4. **Gradient Imbalance in RL Post-Training:** Mixing gradients across tasks implicitly requires gradient magnitudes to be similar across tasks. When some tasks generate much larger gradients, the optimization becomes dominated by them.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86ca0660-b617-4d0b-b2dd-9f039251dadf",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "1729913d-d4ac-4d0b-9f5d-3d1e33fb1573",
+            "sourceToolAssistantUUID": "86ca0660-b617-4d0b-b2dd-9f039251dadf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T03:00:16.335Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KyZkndk9awAKa5hDpziKbw",
+              "name": "WebSearch",
+              "input": {
+                "query": "RLHF reward model vs language model loss conflict alignment tax catastrophic forgetting"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1729913d-d4ac-4d0b-9f5d-3d1e33fb1573",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBRfQRXmiah8eqfSHmq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "47b337f3-9871-49ec-9e17-7278dcdd98a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SoKo6Pf93TD7gDD8nrCVpq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1004,
+                "cache_read_input_tokens": 26211,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1004
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 26211,
+                    "cache_creation_input_tokens": 1004,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1004,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:00:23.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KyZkndk9awAKa5hDpziKbw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RLHF reward model vs language model loss conflict alignment tax catastrophic forgetting\"\n\nLinks: [{\"title\":\"Reinforcement learning from human feedback - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback\"},{\"title\":\"RLHF Reward Model Training. A popular technique to finetune large… | by Amit Khandelwal | Towards Generative AI | Medium\",\"url\":\"https://medium.com/towards-generative-ai/reward-model-training-2209d1befb5f\"},{\"title\":\"Reward-Robust RLHF in LLMs\",\"url\":\"https://arxiv.org/pdf/2409.15360\"},{\"title\":\"Reward Modeling | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/05-reward-models\"},{\"title\":\"Illustrating Reinforcement Learning from Human Feedback (RLHF)\",\"url\":\"https://huggingface.co/blog/rlhf\"},{\"title\":\"Complete guide to RLHF for LLMs: How human feedback shapes modern AI\",\"url\":\"https://toloka.ai/blog/what-is-rlhf/\"},{\"title\":\"Sequence to Sequence Reward Modeling: Improving RLHF by Language Feedback\",\"url\":\"https://arxiv.org/pdf/2409.00162\"},{\"title\":\"Towards Reliable Alignment: Uncertainty-aware RLHF\",\"url\":\"https://arxiv.org/pdf/2410.23726\"}]\n\nBased on the web search results, I can provide information about RLHF reward models and their relationship with language models:\n\n## RLHF Reward Models vs Language Model Training\n\nThe goal of a reward model is to evaluate the degree of alignment a model response has with human preferences. The key architectural move in RLHF is indirection—human judgment does not act directly on the language model but is first captured by a reward model, which serves as a proxy for preference and mediates all subsequent optimization.\n\n## Conflicts and Challenges\n\nThe research identifies several tensions in this approach:\n\n**Reward Model Reliability Issues**: The reliance on reward-model-based alignment methods introduces significant challenges due to the inherent instability and imperfections of Reward Models, which can lead to critical issues such as reward hacking and misalignment with human intentions.\n\n**Biased Local Optimization**: RLHF is prone to biased local optimization where the reward model fails to provide feedback that accurately aligns with human preference, causing LLMs to explore unexpected generalizations and failing to achieve alignment objectives.\n\n**Reward Model Uncertainty**: Reward models used in RLHF are typically learned from small datasets using stochastic optimization algorithms, making them prone to high variability. The fluctuation of reward models can be detrimental to the alignment problem because the derived policies are more overfitted to the reward model and hence are riskier if the reward model itself is uncertain.\n\nThe search results don't specifically address catastrophic forgetting or an explicit \"alignment tax\" concept in the context you mentioned, but the fundamental conflict appears to stem from the gap between what reward models learn from preference data and what aligns with true human values.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47b337f3-9871-49ec-9e17-7278dcdd98a0",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "af5c902b-2e01-49aa-8fa4-f046e8e02d4c",
+            "sourceToolAssistantUUID": "47b337f3-9871-49ec-9e17-7278dcdd98a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T03:00:26.332Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ZKUKUQ42rDV39dFuqSv4W",
+              "name": "WebSearch",
+              "input": {
+                "query": "DPO multi-objective optimization language modeling loss conflict auxiliary task interference 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af5c902b-2e01-49aa-8fa4-f046e8e02d4c",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBSPdApBSvj9sT5MAqi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e7d83356-8a3d-4024-8cb8-cd8ea69c4168",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019pb5m121piywnA7giRxyPn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 27215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 849,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T03:00:41.083Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ZKUKUQ42rDV39dFuqSv4W",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DPO multi-objective optimization language modeling loss conflict auxiliary task interference 2024\"\n\nLinks: [{\"title\":\"Dual-DPO: A Multi-Objective Preference Optimization Framework for Efficient Task-Oriented Dialogue in Train Ticket Booking | Proceedings of the 2025 8th International Conference on Computer Information Science and Artificial Intelligence\",\"url\":\"https://dl.acm.org/doi/full/10.1145/3773365.3773433\"},{\"title\":\"HyperDPO: Hypernetwork-based Multi-Objective Fine-Tuning Framework\",\"url\":\"https://arxiv.org/html/2410.08316v1\"},{\"title\":\"Direct Multi-Turn Preference Optimization for Language ...\",\"url\":\"https://aclanthology.org/2024.emnlp-main.138.pdf\"},{\"title\":\"COS-DPO: Conditioned One-Shot Multi-Objective Fine-Tuning Framework\",\"url\":\"https://arxiv.org/html/2410.08316v3\"},{\"title\":\"Direct Multi-Turn Preference Optimization for Language Agents\",\"url\":\"https://arxiv.org/pdf/2406.14868\"}]\n\nI found several relevant research papers from 2024 that address DPO and multi-objective optimization in language modeling:\n\n## Key Findings:\n\n**HyperDPO and COS-DPO Frameworks:**\nHyperDPO offers efficient one-shot training for profiling the Pareto front of auxiliary objectives and provides flexible post-training control over trade-offs. The Temperature-COS-DPO method augments the temperature parameter to enhance flexibility of post-training control over trade-offs between main and auxiliary objectives.\n\n**Multi-Objective Fine-Tuning Problem:**\nIn multi-objective scenarios, pre-existing models optimized for main objectives are aligned to auxiliary objectives without significantly detracting performance on the main objectives—a scenario termed the Multi-Objective Fine-Tuning (MOFT) problem.\n\n**Direct Multi-Turn Preference Optimization (DMPO):**\nDMPO replaces the policy constraint with state-action occupancy measure constraint and adds length normalization to the Bradley-Terry model, addressing challenges in multi-turn agent tasks.\n\n**Dual-DPO Framework:**\nCoefficients for balancing auxiliary losses were selected via grid search on the validation set to balance the primary preference objective with maintaining response diversity and model stability.\n\nThese papers collectively address loss conflicts and auxiliary task interference in DPO-based language model optimization for 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7d83356-8a3d-4024-8cb8-cd8ea69c4168",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "a60a4aad-e67d-4c10-8607-5a796b362499",
+            "sourceToolAssistantUUID": "e7d83356-8a3d-4024-8cb8-cd8ea69c4168",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T03:00:43.781Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0133G17Am8Rb7ravdTWZ6Efk",
+              "name": "WebSearch",
+              "input": {
+                "query": "Pareto optimization LLM training multiple objectives reward helpfulness safety trade-off 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a60a4aad-e67d-4c10-8607-5a796b362499",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBTfJXJxq7zDYDDGDty",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f76a00e3-3eb7-481a-ab79-d1ca33a766e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015NsumPKfwjrUrU688ZppXU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 28064,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 686
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 28064,
+                    "cache_creation_input_tokens": 686,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 686,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T03:00:51.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0133G17Am8Rb7ravdTWZ6Efk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Pareto optimization LLM training multiple objectives reward helpfulness safety trade-off 2024 2025\"\n\nLinks: [{\"title\":\"Alignment and Safety in Large Language Models: Safety\",\"url\":\"https://www.researchgate.net/publication/394080224_Alignment_and_Safety_in_Large_Language_Models_Safety_Mechanisms_Training_Paradigms_and_Emerging_Challenges/fulltext/68883ce896f3c0122ef4b3d1/Alignment-and-Safety-in-Large-Language-Models-Safety-Mechanisms-Training-Paradigms-and-Emerging-Challenges.pdf?origin=scientificContributions\"},{\"title\":\"Published at ICLR 2025 Workshop on Foundation Models in the Wild.\",\"url\":\"https://openreview.net/pdf?id=6cGFmr6Wgc\"},{\"title\":\"Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models\",\"url\":\"https://arxiv.org/html/2507.01915v1\"},{\"title\":\"Multidimensional Preference Optimization\",\"url\":\"https://www.emergentmind.com/topics/multidimensional-preference-optimization-mpo\"},{\"title\":\"Safety Training Persists Through Helpfulness Optimization in LLM Agents\",\"url\":\"https://arxiv.org/html/2603.02229\"},{\"title\":\"Safety Training Persists Through Helpfulness Optimization in LLM Agents\",\"url\":\"https://arxiv.org/pdf/2603.02229\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://arxiv.org/html/2602.02495\"},{\"title\":\"Learning Pareto-Optimal Rewards from Noisy Preferences: A Framework for Multi-Objective Inverse Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2505.11864v1\"}]\n\nBased on the search results, here's what recent research reveals about Pareto optimization in LLM training with multiple objectives:\n\n## Core Trade-offs in LLM Alignment\n\nLLM alignment objectives exhibit fundamental incompatibilities that manifest as Pareto-optimal trade-offs: maximizing utility for legitimate user requests may violate safety constraints (helpfulness-harmlessness trade-off), optimizing for user satisfaction may incentivize extrapolation beyond training distribution support (helpfulness-honesty trade-off), and complete information disclosure may compromise safety requirements (honesty-harmlessness trade-off).\n\n## Recent Algorithmic Approaches (2024-2025)\n\nSeveral recent methods have emerged to address these multi-objective challenges:\n\n- Mukherjee et al. (2024) developed an algorithm that finds a diverse set of Pareto-optimal solutions that maximize the hypervolume, given a set of objectives.\n\n- Zhou et al. (2024) proposed a reward-function free extension called Multi-Objective Direct Preference Optimization (MODPO), which can effectively find a Pareto-optimal frontier of fine-tuned models, trading off objectives like \"helpfulness\" and \"harmlessness\".\n\n- Research has empirically evaluated the effectiveness of gradient-based approaches in balancing trade-offs between multiple objectives, with helpfulness and harmlessness (safety) serving as common yet often conflicting requirements.\n\n## Policy Architecture Solutions\n\nAddressing multi-objective optimization challenges necessitates hierarchical policy architectures that implement lexicographic ordering of constraints, prioritizing safety verification, followed by factual consistency validation, and finally utility maximization within the admissible constraint set.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f76a00e3-3eb7-481a-ab79-d1ca33a766e4",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "bfc62481-d5db-417d-9485-683fa6681165",
+            "sourceToolAssistantUUID": "f76a00e3-3eb7-481a-ab79-d1ca33a766e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T03:00:57.364Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PoMv3BeocUbzxn1Jc27Cd3",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"auxiliary loss\" \"language modeling\" \"overwhelmed\" OR \"dominated\" OR \"drowning\" transformer training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfc62481-d5db-417d-9485-683fa6681165",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBUQ4mpp3uPdwpDHfeX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12659e14-32d7-439c-8890-34d323fb986c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SaL2xuWuqK82tMSbGTrfGz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 928,
+                "cache_read_input_tokens": 28750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T03:01:03.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PoMv3BeocUbzxn1Jc27Cd3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"auxiliary loss\" \"language modeling\" \"overwhelmed\" OR \"dominated\" OR \"drowning\" transformer training\"\n\nLinks: [{\"title\":\"[1808.04444] Character-Level Language Modeling with Deeper Self-Attention\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1808.04444\"},{\"title\":\"Auxiliary Loss Functions for MoE Load Balancing\",\"url\":\"https://apxml.com/courses/mixture-of-experts/chapter-3-moe-training-dynamics-optimization/auxiliary-loss-load-balancing\"},{\"title\":\"Guiding Attention for Self-Supervised Learning with Transformers\",\"url\":\"https://arxiv.org/pdf/2010.02399\"},{\"title\":\"Unleashing the Power of Pre-trained Language Models for Offline Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2310.20587v5\"},{\"title\":\"Character-Level Language Modeling with Deeper Self-Attention\",\"url\":\"https://arxiv.org/pdf/1808.04444\"},{\"title\":\"[2310.20587] Unleashing the Power of Pre-trained Language Models for Offline Reinforcement Learning\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2310.20587\"},{\"title\":\"On Losses for Modern Language Models\",\"url\":\"https://arxiv.org/pdf/2010.01694\"}]\n\nBased on the search results, I found relevant information about auxiliary losses in transformer language modeling:\n\n## Key Findings:\n\nIn Mixture of Experts models, routing mechanisms can lead to some experts being chronically underutilized while others are overwhelmed, and auxiliary loss functions provide a mechanism to counteract this by adding a penalty term to encourage more uniform expert utilization.\n\nFor deeper transformer networks in language modeling, auxiliary losses at intermediate layers and positions are critical for reaching good performance and allow training much deeper transformer networks. More specifically, training networks deeper than ten layers was initially challenging with slow convergence and poor accuracy, but auxiliary losses significantly sped up convergence.\n\nThese auxiliary losses require the model to predict upcoming characters at intermediate sequence positions, from intermediate hidden representations, and at target positions multiple steps in the future. These losses are hypothesized to not only speed up convergence but also serve as an additional regularizer.\n\nThe search results primarily discuss auxiliary losses helping to train deeper networks or balance expert utilization, rather than being \"overwhelmed\" or \"dominated\" by the main language modeling objective itself.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12659e14-32d7-439c-8890-34d323fb986c",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "72c886cc-3b24-4a7d-851a-f71e93160101",
+            "sourceToolAssistantUUID": "12659e14-32d7-439c-8890-34d323fb986c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T03:01:06.083Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPpnN8GjTUWo1BHj1VgMg8",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"alignment tax\" language model fine-tuning capability degradation RLHF PPO KL penalty"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72c886cc-3b24-4a7d-851a-f71e93160101",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBVK9sXQR6Y9r23WU9L",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3140f379-57f3-4922-a698-d1a9a0e71fff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PbPSztxABcehnBBaGPz9VE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 664,
+                "cache_read_input_tokens": 29678,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 664
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 29678,
+                    "cache_creation_input_tokens": 664,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 664,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T03:01:12.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WPpnN8GjTUWo1BHj1VgMg8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"alignment tax\" language model fine-tuning capability degradation RLHF PPO KL penalty\"\n\nLinks: [{\"title\":\"Mitigating the Alignment Tax of RLHF – Paper Detail · SwiftScholar - Review with AI\",\"url\":\"https://www.swiftscholar.net/paper/68ef57d8e77486f6f3192ec6\"},{\"title\":\"[2309.06256] Mitigating the Alignment Tax of RLHF - ar5iv\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2309.06256\"},{\"title\":\"Mitigating the Alignment Tax of RLHF\",\"url\":\"https://aclanthology.org/2024.emnlp-main.35.pdf\"},{\"title\":\"Mitigating the Alignment Tax of RLHF | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386186798_Mitigating_the_Alignment_Tax_of_RLHF\"},{\"title\":\"KL Divergence Penalty in RLHF: Theory & Implementation - Interactive | Michael Brenndoerfer | Michael Brenndoerfer\",\"url\":\"https://mbrenndoerfer.com/writing/kl-divergence-penalty-rlhf-training\"},{\"title\":\"[2307.04964] Secrets of RLHF in Large Language Models Part I: PPO\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2307.04964\"},{\"title\":\"Secrets of RLHF in Large Language Models Part I: PPO\",\"url\":\"https://openlmlab.github.io/MOSS-RLHF/paper/SecretsOfRLHFPart1.pdf\"},{\"title\":\"Mitigating the Alignment Tax of RLHF\",\"url\":\"https://arxiv.org/html/2309.06256v3\"},{\"title\":\"SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://arxiv.org/pdf/2411.01798\"}]\n\nI found comprehensive research on the alignment tax in language model fine-tuning. Here are the key findings:\n\n## What is the Alignment Tax?\n\nThe alignment tax is the negative side effect of RLHF, where optimizing heavily for the human preference reward signal causes the model's weights to shift in a way that can harm its performance on other, more general tasks learned during pre-training. RLHF introduces a reward-forgetting trade-off, and the lost base knowledge is dubbed the alignment tax.\n\n## Evidence of the Problem\n\nAs the alignment reward increases, performance on Reading Comprehension and Translation consistently drops. As the RLHF proceeds, the reward begins to increase while the translation and reading comprehension ability continues to drop.\n\n## Role of KL Penalty\n\nThe KL reward penalty is a standard term in PPO that penalizes divergence from the base policy. A crucial aspect of RLHF is the use of a reference model to compute the Kullback-Leibler (KL) divergence penalty, which prevents the fine-tuning process from deviating too far from the original model, ensuring that the policy remains close to the initial model and reducing the risk of generating nonsensical responses.\n\n## Mitigation Strategies\n\nApplying a KL-divergence penalty during RLHF fine-tuning can partially mitigate forgetting, but the best results came from model averaging (interpolating weights before vs. after fine-tuning) to recover a Pareto-optimal balance. To reduce alignment tax, pre-train language model loss can be added in policy optimization as in InstructGPT.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3140f379-57f3-4922-a698-d1a9a0e71fff",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "44f95ede-6dab-4f20-bec0-9e6f97b3364b",
+            "sourceToolAssistantUUID": "3140f379-57f3-4922-a698-d1a9a0e71fff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T03:01:15.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YTz2LPk765LaEsapfpJzRG",
+              "name": "WebSearch",
+              "input": {
+                "query": "gradient magnitude imbalance multi-objective LLM training task dominance GradNorm PCGrad 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44f95ede-6dab-4f20-bec0-9e6f97b3364b",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBVztoYmn7LdUyxWBkK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0c0f9cd0-56de-42b9-9fe4-f32b05e7bde6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SCB9T61TBP3QbKGp37oCfi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1078,
+                "cache_read_input_tokens": 30342,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1078
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 30342,
+                    "cache_creation_input_tokens": 1078,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1078,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T03:01:24.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YTz2LPk765LaEsapfpJzRG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"gradient magnitude imbalance multi-objective LLM training task dominance GradNorm PCGrad 2024\"\n\nLinks: [{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/pdf/2510.19178\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/html/2510.19178v1\"},{\"title\":\"RI-PCGrad: Optimizing multi-task learning with rescaling and impartial projecting conflict gradients | Applied Intelligence | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10489-024-05805-3\"},{\"title\":\"GradNorm--Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks · Papers I Read\",\"url\":\"https://shagunsodhani.com/papers-I-read/GradNorm-Gradient-Normalization-for-Adaptive-Loss-Balancing-in-Deep-Multitask-Networks\"},{\"title\":\"Dual-Balancing for Multi-Task Learning\",\"url\":\"https://arxiv.org/pdf/2308.12029\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf\"},{\"title\":\"GCond: Gradient Conflict Resolution via Accumulation-based Stabilization for Large-Scale Multi-Task Learning\",\"url\":\"https://arxiv.org/html/2509.07252v1\"}]\n\nBased on the search results, here are the key findings related to gradient magnitude imbalance in multi-objective LLM training:\n\n## Main Research Finding\n\nGradient imbalance arises prominently in the RL post-training of multi-task LLMs. When some tasks generate much larger gradients, the optimization becomes dominated by them. Importantly, large gradients do not necessarily imply larger learning gains—large-gradient tasks can achieve similar or even much lower learning gains than small-gradient ones.\n\n## Task Dominance Problem\n\nGradient imbalances cannot be explained by typical training statistics such as training rewards or advantages, suggesting that they arise from the inherent differences between tasks. The magnitude and direction of task gradients reflect the conflict and dominance among tasks, which can disrupt the training process and cause instability.\n\n## Existing Approaches\n\nThe search results discuss two main gradient-balancing methodologies:\n\n1. **GradNorm**: GradNorm is a gradient normalization algorithm that improves multi-task training by dynamically tuning the magnitude of gradients corresponding to different tasks.\n\n2. **PCGrad**: Prior works that only alter gradient magnitudes are less effective than PCGrad, which modifies both gradient directions and magnitudes to eliminate interference and achieve good multi-task learning results.\n\nThe most recent research (from October 2025) emphasizes that addressing gradient magnitude imbalance requires principled, task-aware approaches rather than naive dataset mixing strategies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c0f9cd0-56de-42b9-9fe4-f32b05e7bde6",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "73010568-373e-47d0-97d3-241bdae02aac",
+            "sourceToolAssistantUUID": "0c0f9cd0-56de-42b9-9fe4-f32b05e7bde6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T03:01:26.903Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017BaGUSczpA32ajg64pPekZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"catastrophic forgetting\" auxiliary objective fine-tuning pretrained language model multi-task 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73010568-373e-47d0-97d3-241bdae02aac",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBWr8V3dDfStzEHac3S",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4f800938-a355-42b2-9570-1672acb1592d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TcFFigMEUz9J3kNMaesQbi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 834,
+                "cache_read_input_tokens": 31420,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 834
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 31420,
+                    "cache_creation_input_tokens": 834,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 834,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T03:01:36.510Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017BaGUSczpA32ajg64pPekZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"catastrophic forgetting\" auxiliary objective fine-tuning pretrained language model multi-task 2024 2025\"\n\nLinks: [{\"title\":\"Recall and Learn: Fine-tuning Deep Pretrained Language Models with Less   Forgetting\",\"url\":\"https://arxiv.org/pdf/2004.12651\"},{\"title\":\"[2309.10105] Understanding Catastrophic Forgetting in Language Models via Implicit Inference\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2309.10105\"},{\"title\":\"Model Tailor: Mitigating Catastrophic Forgetting in Multi-modal Large   Language Models\",\"url\":\"https://arxiv.org/pdf/2402.12048\"},{\"title\":\"An Embarrassingly Simple Approach for Transfer Learning from Pretrained   Language Models\",\"url\":\"https://arxiv.org/pdf/1902.10547\"},{\"title\":\"Mitigating Catastrophic Forgetting in LLM Tuning\",\"url\":\"https://apxml.com/courses/fine-tuning-adapting-large-language-models/chapter-5-advanced-fine-tuning-strategies/mitigating-catastrophic-forgetting\"},{\"title\":\"[PDF] Investigating the Catastrophic Forgetting in Multimodal Large Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Investigating-the-Catastrophic-Forgetting-in-Large-Zhai-Tong/a281094d05e96b7cca044fdd87ff7c3c65649e20\"},{\"title\":\"Mechanistic Analysis of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning\",\"url\":\"https://arxiv.org/html/2601.18699v1\"}]\n\nI found relevant research on catastrophic forgetting in language models with auxiliary objectives and multi-task learning approaches. Here are the key findings:\n\n## Auxiliary Objective Fine-tuning Approaches\n\nUsing an auxiliary language modeling objective to prevent catastrophic forgetting has been explored in pretrained language models fine-tuning. A multi-task learning perspective via adding an auxiliary LM loss to transferred models can control the loss of pretrained and new task simultaneously, helping avoid catastrophic forgetting while allowing the model to retain useful features.\n\nOne approach proposes a \"recall and learn\" mechanism to cope with the forgetting problem of fine-tuning deep pretrained language models by adopting language model pretraining as an auxiliary learning task during fine-tuning.\n\n## Multi-task Learning for Catastrophic Forgetting\n\nMulti-task learning, which learns both pretraining and downstream tasks simultaneously, can inherently avoid the catastrophic forgetting problem. Elastic Weight Consolidation (EWC) was proposed to overcome catastrophic forgetting in continuous learning by regularizing new task training and constraining parameters important for previous tasks.\n\n## Recent Research (2024-2025)\n\nRecent findings suggest that the apparent catastrophic effects of fine-tuning may be explained as shifting implicit task inference. Additionally, temporal analysis in continual fine-tuning shows minimal degradation in early epochs but forgetting accelerates dramatically in later epochs as models converge on new tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f800938-a355-42b2-9570-1672acb1592d",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "8b79a6c5-c8ad-461a-a1a3-bb2dd48e0626",
+            "sourceToolAssistantUUID": "4f800938-a355-42b2-9570-1672acb1592d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T03:01:38.893Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PRFZJbnW4VfpVBrqZ9zJuu",
+              "name": "WebSearch",
+              "input": {
+                "query": "decoupled training separate optimization auxiliary reward language model loss multi-turn dialogue 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b79a6c5-c8ad-461a-a1a3-bb2dd48e0626",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBXkFJE8wJ2oyr5BN9Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "06319258-0dc6-4374-8b1b-69b89983069f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YM7HubGMRRArvzqdXyCPbw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 833,
+                "cache_read_input_tokens": 32254,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 833
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 32254,
+                    "cache_creation_input_tokens": 833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 833,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T03:01:46.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PRFZJbnW4VfpVBrqZ9zJuu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"decoupled training separate optimization auxiliary reward language model loss multi-turn dialogue 2024\"\n\nLinks: [{\"title\":\"Enhancing Personalized Multi-Turn Dialogue with Curiosity Reward\",\"url\":\"https://arxiv.org/html/2504.03206v1\"},{\"title\":\"A Survey on Multi-Turn Interaction Capabilities of Large Language Models\",\"url\":\"https://arxiv.org/html/2501.09959v1\"},{\"title\":\"Multi-turn Reinforcement Learning from Preference Human Feedback Lior Shani ∗1\",\"url\":\"https://openreview.net/pdf?id=rVSc3HIZS4\"},{\"title\":\"Decoupling Strategy and Execution in Task-Focused Dialogue via Goal-Oriented Preference Optimization\",\"url\":\"https://arxiv.org/pdf/2602.15854\"},{\"title\":\"Sparse Rewards Can Self-Train Dialogue Agents\",\"url\":\"https://arxiv.org/html/2409.04617v2\"},{\"title\":\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/file/a85b405ed65c6477a4fe8302b5e06ce7-Paper-Conference.pdf\"},{\"title\":\"ICPO: Illocution-Calibrated Policy Optimization for Multi-Turn Conversation\",\"url\":\"https://arxiv.org/pdf/2601.15330\"},{\"title\":\"Dialogue Action Tokens: Steering Language Models in Goal-Directed   Dialogue with a Multi-Turn Planner\",\"url\":\"https://arxiv.org/pdf/2406.11978\"}]\n\nBased on the search results, I found several relevant papers and research on training techniques for multi-turn dialogue systems with language models in 2024-2025:\n\n## Key Findings:\n\n**Decoupled Training Approaches:**\n\nOne approach involves decoupling behavior across two attempts in multi-turn dialogue, optimizing the accuracy of the latter attempt while constraining the distribution of the first attempt to match that of the base model.\n\n**Auxiliary Reward Methods:**\n\nStandard RLHF training has been augmented with auxiliary objectives where the model is tasked not only with maximizing human feedback reward, but also with predicting the student's latent profile (e.g., learning style or knowledge level) from the dialogue.\n\n**Multi-Turn Specific Optimization:**\n\nSome approaches employ a hierarchical dual-agent architecture with structured hard-constraint transmission, ensuring strategies are properly executed in complex multi-turn dialogues.\n\nOther frameworks like Illocution-Calibrated Policy Optimization (ICPO) augment training corpora with underspecified prompts and condition reward signals on the user's illocutionary intent.\n\n**Separate Training Components:**\n\nSome designs train a small planner model with frozen language model parameters, constraining the influence RL training can have over the LM while incorporating multi-turn planning.\n\nThese approaches address challenges in optimizing dialogue systems while maintaining language quality and handling the complexities of multi-turn interactions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06319258-0dc6-4374-8b1b-69b89983069f",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "871f038f-f46a-43f8-af6d-eaccab4edb27",
+            "sourceToolAssistantUUID": "06319258-0dc6-4374-8b1b-69b89983069f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T03:01:48.951Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vogw4yhJMiYoBwomkeLdSj",
+              "name": "WebSearch",
+              "input": {
+                "query": "InstructGPT mixing pretraining gradients PPO alignment NTP loss coefficient balance Ouyang 2022"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "871f038f-f46a-43f8-af6d-eaccab4edb27",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBYTgAi4U9e8WZx7dX2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d9780b12-1231-4970-8cf8-d040dc1a51cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PzqCv3Y7cxcvvMzUMPm1CE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 809,
+                "cache_read_input_tokens": 33087,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 809
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 33087,
+                    "cache_creation_input_tokens": 809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 809,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T03:01:56.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vogw4yhJMiYoBwomkeLdSj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"InstructGPT mixing pretraining gradients PPO alignment NTP loss coefficient balance Ouyang 2022\"\n\nLinks: [{\"title\":\"InstructGPT: Human-Aligned Language Model\",\"url\":\"https://www.emergentmind.com/topics/instructgpt\"},{\"title\":\"GitHub - natashamessier/instruct_gpt_presentation: A clear research-to-practice walkthrough of OpenAI’s InstructGPT paper (Ouyang et al., 2022, “Training language models to follow instructions with human feedback”), featuring annotated pseudocode, visuals, and critical analysis of how Reinforcement Learning from Human Feedback (RLHF) shaped modern aligned AI systems.\",\"url\":\"https://github.com/natashamessier/instruct_gpt_presentation\"},{\"title\":\"InstructGPT Explained: How OpenAI Trains AI to Follow Instructions | by YZhou | Medium\",\"url\":\"https://medium.com/@yzhou1988/instructgpt-explained-how-openai-trains-ai-to-follow-instructions-ce52772cccae\"},{\"title\":\"Paper Summary: Training language models to follow instructions with human feedback\",\"url\":\"https://queirozf.com/entries/paper-summary-training-language-models-to-follow-instructions-with-human-feedback\"},{\"title\":\"[Quick Review] Training language models to follow instructions with human feedback\",\"url\":\"https://liner.com/review/training-language-models-to-follow-instructions-with-human-feedback\"},{\"title\":\"A Review of Ouyang et al.’s 2022 Paper aka “InstructGPT” | Educational Technology and Change Journal\",\"url\":\"https://etcjournal.com/2025/07/29/a-review-of-ouyang-et-al-s-2022-paper-aka-instructgpt/\"},{\"title\":\"Reinforcement Learning from Human Feedback (RLHF) Explained | IntuitionLabs\",\"url\":\"https://intuitionlabs.ai/articles/reinforcement-learning-human-feedback\"},{\"title\":\"Training language models to follow instructions with human feedback\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf\"},{\"title\":\"arXiv:2203.02155v1 [cs.CL] 4 Mar 2022\",\"url\":\"https://arxiv.org/pdf/2203.02155\"},{\"title\":\"Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study\",\"url\":\"https://arxiv.org/pdf/2404.10719\"}]\n\nBased on the web search results, here's what I found about InstructGPT's mixing of pretraining gradients with PPO and alignment training:\n\n## PPO-ptx: Mixing Pretraining Gradients\n\nPPO-ptx is a variant of the PPO algorithm used in the paper, which includes a pretraining mix, meaning it combines reinforcement learning with continued training on the original language modeling objective.\n\n## The Loss Coefficient and Balance\n\nThe key technical detail for balancing these objectives is the loss coefficient γ (gamma). The total loss is computed as loss_total = loss_PPO + γ × loss_pretrain where γ = 27.8, meaning for every 1 unit of \"maximize reward model\" gradient, 27.8 units of \"predict next token\" gradient are added.\n\n## Why Such a High Coefficient?\n\nA strong signal is needed to prevent forgetting while learning alignment—without this, the model would become great at following instructions but terrible at basic language tasks.\n\n## Performance Results\n\nThe PPO-ptx variant of InstructGPT, which mixes pretraining gradients during fine-tuning, shows comparable labeler preference scores to the PPO model without this mix. This suggests that the benefits of mitigating performance regressions on public NLP datasets do not come at the cost of reduced human preference on the primary API prompt distribution. Additionally, with PPO-ptx, minimal performance drops (~1-3%) occur on NLP benchmarks like SQuAD, HellaSwag, DROP, and LAMBADA.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9780b12-1231-4970-8cf8-d040dc1a51cc",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "0210942a-652e-48d1-b5e3-90f4b039bdf9",
+            "sourceToolAssistantUUID": "d9780b12-1231-4970-8cf8-d040dc1a51cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T03:01:59.658Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LpHy9cbiYQxVuv2vn5H4E8",
+              "name": "WebSearch",
+              "input": {
+                "query": "multi-task gradient surgery PCGrad CAGrad Nash MTL conflicting gradients language model 2023 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0210942a-652e-48d1-b5e3-90f4b039bdf9",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBZFMXtY6H1rFALpSrC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e937002a-6805-4175-8908-131cf4f455be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CTeYrBEDWZqcWVTL3iGykz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1088,
+                "cache_read_input_tokens": 33896,
+                "output_tokens": 77,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1088
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 77,
+                    "cache_read_input_tokens": 33896,
+                    "cache_creation_input_tokens": 1088,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1088,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T03:02:16.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LpHy9cbiYQxVuv2vn5H4E8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"multi-task gradient surgery PCGrad CAGrad Nash MTL conflicting gradients language model 2023 2024\"\n\nLinks: [{\"title\":\"Gradient Similarity Surgery in Multi-Task Deep Learning\",\"url\":\"https://ecmlpkdd-storage.s3.eu-central-1.amazonaws.com/preprints/2025/research/preprint_ecml_pkdd_2025_research_1013.pdf\"},{\"title\":\"(PDF) Gradient Similarity Surgery in Multi-Task Deep Learning\",\"url\":\"https://www.researchgate.net/publication/392515402_Gradient_Similarity_Surgery_in_Multi-Task_Deep_Learning\"},{\"title\":\"PCGrad: Gradient Surgery for Multi-Task Learning\",\"url\":\"https://www.emergentmind.com/topics/pcgrad-optimization-technique\"},{\"title\":\"GitHub - tianheyu927/PCGrad: Code for \\\"Gradient Surgery for Multi-Task Learning\\\" · GitHub\",\"url\":\"https://github.com/tianheyu927/PCGrad\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf\"},{\"title\":\"GradAttention: Attention-Based Gradient Surgery for Multitask Fine-Tuning\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/AnilYildiz.pdf\"},{\"title\":\"Gradient Surgery for Multi-Task Learning · Papers I Read\",\"url\":\"https://shagunsodhani.com/papers-I-read/Gradient-Surgery-for-Multi-Task-Learning\"},{\"title\":\"Recon: Reducing Conflicting Gradients from the Root for Multi-Task   Learning\",\"url\":\"https://arxiv.org/pdf/2302.11289\"},{\"title\":\"Gradient Descent in Multi-Task Learning Stanford CS224N Default Project\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/DavidSaykinKfirShmuelDolev.pdf\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/pdf/2001.06782\"}]\n\nI've completed the web search for your query. Here's a summary of the results:\n\n## Key Findings\n\nThe search returned several relevant papers and resources on gradient surgery methods for multi-task learning:\n\n**Main Methods Discussed:**\n\n1. **PCGrad (Projecting Conflicting Gradients)**: PCGrad is a gradient modification technique that projects conflicting task gradients to reduce destructive interference in multi-task learning. It determines whether gradients conflict by computing the cosine similarity between vectors, where negative values indicate conflicting gradients.\n\n2. **CAGrad**: CAGrad seeks a conflict-averse gradient path to minimise task interference.\n\n3. **Nash-MTL**: Nash-MTL utilises game theory concepts, particularly the Nash Bargaining Solution, to equilibrate task gradients.\n\n4. **Other Methods**: The search also identified GradDrop, MGDA, IMTL, and Aligned-MTL as related approaches.\n\n**Recent Research (2023-2025):**\n\nThe most recent source appears to be a 2025 paper titled \"Gradient Similarity Surgery in Multi-Task Deep Learning\" that compares these various gradient surgery methods, including PCGrad, CAGrad, Nash-MTL, and others for multi-task optimization problems.\n\n**Application to Language Models:**\n\nThe search results reference applications to BERT and other language model fine-tuning scenarios, though the detailed results on language models specifically from 2023-2024 are limited in the returned documents.\n\nWould you like me to search for more specific information about any of these methods or their applications to language models?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e937002a-6805-4175-8908-131cf4f455be",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "85c69c1e-39bf-43b2-8e38-99fe6e9c6fee",
+            "sourceToolAssistantUUID": "e937002a-6805-4175-8908-131cf4f455be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T03:02:20.403Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DfPXnQEDjLrReeGXJ1mJgV",
+              "name": "WebSearch",
+              "input": {
+                "query": "Rewarded soups model merging multi-objective RLHF Pareto alignment 2023 Rame"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85c69c1e-39bf-43b2-8e38-99fe6e9c6fee",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBaiYgpxxiuz39gB9cJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a0ba21f5-333c-4cf6-affd-0afa7699183f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YbiCXyPDNU6VxebQeaYask",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1017,
+                "cache_read_input_tokens": 34984,
+                "output_tokens": 78,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1017
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 78,
+                    "cache_read_input_tokens": 34984,
+                    "cache_creation_input_tokens": 1017,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1017,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T03:02:26.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DfPXnQEDjLrReeGXJ1mJgV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Rewarded soups model merging multi-objective RLHF Pareto alignment 2023 Rame\"\n\nLinks: [{\"title\":\"Personalized Soups: Personalized Large Language Model Alignment via Post-hoc Parameter Merging\",\"url\":\"https://arxiv.org/html/2310.11564\"},{\"title\":\"[2306.04488] Rewarded soups: towards Pareto-optimal alignment by interpolating weights fine-tuned on diverse rewards\",\"url\":\"https://arxiv.org/abs/2306.04488\"},{\"title\":\"Rewards-in-Context: Multi-objective Alignment of Foundation Models with\",\"url\":\"https://arxiv.org/pdf/2402.10207\"},{\"title\":\"GitHub - alexrame/rewardedsoups: Rewarded soups official implementation\",\"url\":\"https://github.com/alexrame/rewardedsoups\"},{\"title\":\"NeurIPS Poster Rewarded soups: towards Pareto-optimal alignment by interpolating weights fine-tuned on diverse rewards\",\"url\":\"https://neurips.cc/virtual/2023/poster/70592\"},{\"title\":\"Rewarded soups: towards Pareto-optimal alignment by ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/file/e12a3b98b67e8395f639fde4c2b03168-Paper-Conference.pdf\"},{\"title\":\"Mol-MoE: Training Preference-Guided Routers for Molecule Generation\",\"url\":\"https://arxiv.org/html/2502.05633\"},{\"title\":\"Rewarded soups: towards Pareto-optimal alignment by interpolating weights\",\"url\":\"https://openreview.net/pdf?id=vXI5t4p9Ao\"}]\n\nBased on the search results, I found relevant information about the \"Rewarded soups\" paper you're looking for:\n\n## Rewarded Soups: Towards Pareto-Optimal Alignment\n\nThe paper \"Rewarded soups: towards Pareto-optimal alignment by interpolating weights fine-tuned on diverse rewards\" was authored by Alexandre Ramé, Guillaume Couairon, Mustafa Shukor, Corentin Dancette, Jean-Baptiste Gaya, Laure Soulier, and Matthieu Cord.\n\n### Key Concepts\n\nThe paper addresses how Reinforcement Learning from Human Feedback (RLHF) can align networks with intended usage, but notes that imperfections in proxy rewards and the diversity of objectives in real-world tasks and human opinions can lead to suboptimal results.\n\n### Main Approach\n\nThe paper proposes embracing the heterogeneity of diverse rewards by following a multi-policy strategy, aiming for Pareto-optimal generalization across the entire space of preferences.\n\n### Technical Implementation\n\nThe rewarded soup linearly interpolates between weights of different models; sliding the interpolation coefficient reveals the Pareto front of rewarded soups solutions.\n\n### Publication\n\nThe paper was published at NeurIPS in 2023, and an official implementation is available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0ba21f5-333c-4cf6-affd-0afa7699183f",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "88817eef-b6ab-4121-98a8-6c95397fea97",
+            "sourceToolAssistantUUID": "a0ba21f5-333c-4cf6-affd-0afa7699183f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T03:02:28.974Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KMBrVAqjbw9KGiekfWmE8i",
+              "name": "WebSearch",
+              "input": {
+                "query": "MODPO multi-objective direct preference optimization Pareto LLM helpfulness harmlessness Zhou 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88817eef-b6ab-4121-98a8-6c95397fea97",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBbR1GeiKVhsv7xw6hH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "04a99ac8-9231-405f-b946-f716191239a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsiTjWdHQBpA7PWXi8PQdK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 36001,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 829
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 36001,
+                    "cache_creation_input_tokens": 829,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 829,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T03:02:40.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KMBrVAqjbw9KGiekfWmE8i",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MODPO multi-objective direct preference optimization Pareto LLM helpfulness harmlessness Zhou 2024\"\n\nLinks: [{\"title\":\"Beyond One-Preference-Fits-All Alignment: Multi-Objective Direct Preference Optimization | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384213963_Beyond_One-Preference-Fits-All_Alignment_Multi-Objective_Direct_Preference_Optimization\"},{\"title\":\"Beyond One-Preference-Fits-All Alignment: Multi-Objective Direct Preference Optimization - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.findings-acl.630/\"},{\"title\":\"Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment\",\"url\":\"https://arxiv.org/html/2502.14354v2\"},{\"title\":\"Multi-Objective Direct Preference Optimization\",\"url\":\"https://www.emergentmind.com/topics/multi-objective-direct-preference-optimization-dpo\"},{\"title\":\"Robust Multi-Objective Preference Alignment with Online DPO\",\"url\":\"https://arxiv.org/html/2503.00295v1\"},{\"title\":\"Beyond One-Preference-Fits-All Alignment: Multi-Objective Direct   Preference Optimization\",\"url\":\"https://arxiv.org/pdf/2310.03708\"},{\"title\":\"Beyond One-Preference-for-All: Multi-Objective Direct Preference Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=2BfZMh9td4\"},{\"title\":\"Multidimensional Preference Optimization\",\"url\":\"https://www.emergentmind.com/topics/multidimensional-preference-optimization-mpo\"}]\n\nBased on the search results, here's what I found about MODPO:\n\n## Overview\n\nMulti-Objective Direct Preference Optimization (MODPO) is an RL-free method extending Direct Preference Optimization (DPO) for multiple alignment objectives with minimal overheads.\n\n## Key Approach\n\nMODPO trains different language models to implicitly represent different collective reward models that combine all objectives with specific weightings. MODPO trains DPO LLMs as proxy reward models for certain objectives and aggregates them at the loss level by interpolating the weighted reward differences as margins into the DPO loss function.\n\n## Performance and Benefits\n\nMODPO theoretically yields the same optimal solutions as MORLHF but is practically more stable and efficient, and empirical results in safety alignment and long-form question answering show that MODPO matches or outperforms existing methods, producing a Pareto front of language models catering to diverse preferences with three times less computational resources compared to MORLHF.\n\n## Authors and Publication\n\nThe work was authored by Zhanhui Zhou, Jie Liu, Jing Shao, Xiangyu Yue, Chao Yang, Wanli Ouyang, and Yu Qiao in 2024, published in Findings of the Association for Computational Linguistics: ACL 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04a99ac8-9231-405f-b946-f716191239a0",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "d7e67378-7beb-4972-bd16-47af7f3c0d10",
+            "sourceToolAssistantUUID": "04a99ac8-9231-405f-b946-f716191239a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T03:02:43.713Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Bkt6WXykZ3MmekCjyKZ3D",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"imbalanced gradients\" \"RL post-training\" \"multi-task LLMs\" 2025 gradient dominance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7e67378-7beb-4972-bd16-47af7f3c0d10",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBcVRCrbNEquaCCwQQu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1a1b556e-b990-4cbb-a9eb-19da53a3e616",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1vDmRY1gYWPtVW6heZGwJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 837,
+                "cache_read_input_tokens": 36830,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 837
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 36830,
+                    "cache_creation_input_tokens": 837,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 837,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T03:02:52.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Bkt6WXykZ3MmekCjyKZ3D",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"imbalanced gradients\" \"RL post-training\" \"multi-task LLMs\" 2025 gradient dominance\"\n\nLinks: [{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/html/2510.19178v1\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/pdf/2510.19178\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.19178v2\"},{\"title\":\"[2510.19178v2] Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://arxiv.org/abs/2510.19178v2\"},{\"title\":\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\",\"url\":\"https://aclanthology.org/2026.findings-eacl.164.pdf\"}]\n\nI found relevant research on this topic. Here are the key findings:\n\n## Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\n\nGradient imbalance arises prominently in the RL post-training of multi-task LLMs. A standard approach to multi-task post-training is to merge datasets from different tasks and train jointly, which effectively mixes gradients across tasks and implicitly requires similar gradient magnitudes, but when some tasks generate much larger gradients, the optimization becomes dominated by them.\n\n### Key Problems\n\nWhen certain tasks produce much larger gradients, the gradients aggregated from all tasks are dominated by them, which biases updates toward large-gradient tasks and reduces progress on the rest, and large-gradient tasks are effectively trained as if their learning rates were set to be larger than those of small-gradient tasks.\n\n### Critical Finding: Gradient Dominance Doesn't Correlate with Learning Gains\n\nA surprising discovery is that larger gradients do not necessarily imply larger learning gains on the tasks, and large-gradient tasks can achieve similar or even much lower learning gains than small-gradient ones. For example, in one experiment, Code dominates throughout training in terms of squared gradient norms, but Code achieves the lowest learning gains.\n\nThese gradient imbalances cannot be explained by typical training statistics such as training rewards or advantages, suggesting that they arise from the inherent differences between tasks.\n\nThis research was published in October 2025 by researchers at Meta AI and collaborators.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a1b556e-b990-4cbb-a9eb-19da53a3e616",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "1e1d48d0-9ed8-4231-b339-fe3f4c641271",
+            "sourceToolAssistantUUID": "1a1b556e-b990-4cbb-a9eb-19da53a3e616",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T03:02:55.073Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KZ5mksBJQmUS74bqgPwQYg",
+              "name": "WebSearch",
+              "input": {
+                "query": "Gradient-Adaptive Policy Optimization multi-objective alignment LLM GAPO 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e1d48d0-9ed8-4231-b339-fe3f4c641271",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBdKDZs2J9X1X9yj2mU",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dab5dbd1-c54f-4b8d-a0a4-a7ea7104e64b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WMn1AGrhWLUfs2sLjTZKMh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 37667,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 717
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 37667,
+                    "cache_creation_input_tokens": 717,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 717,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T03:03:02.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KZ5mksBJQmUS74bqgPwQYg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Gradient-Adaptive Policy Optimization multi-objective alignment LLM GAPO 2025\"\n\nLinks: [{\"title\":\"[2507.01915] Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models\",\"url\":\"https://arxiv.org/abs/2507.01915\"},{\"title\":\"[2507.01915v1] Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models\",\"url\":\"https://arxiv.org/abs/2507.01915v1\"},{\"title\":\"Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.549/\"},{\"title\":\"Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2507.01915v1\"},{\"title\":\"Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models\",\"url\":\"https://arxiv.org/html/2507.01915v1\"},{\"title\":\"arXiv:2507.01915v1 [cs.CL] 2 Jul 2025 Gradient-Adaptive Policy Optimization:\",\"url\":\"https://arxiv.org/pdf/2507.01915\"},{\"title\":\"[Literature Review] Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/gradient-adaptive-policy-optimization-towards-multi-objective-alignment-of-large-language-models\"},{\"title\":\"Gradient-Adaptive Policy Optimization: Towards Multi-Objective Alignment of Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/393333789_Gradient-Adaptive_Policy_Optimization_Towards_Multi-Objective_Alignment_of_Large_Language_Models\"}]\n\nI found detailed information about GAPO. Here's what the search results show:\n\n## Overview\n\nGradient-Adaptive Policy Optimization (GAPO) is a novel fine-tuning paradigm that employs multiple-gradient descent to align LLMs with diverse preference distributions.\n\n## The Problem It Addresses\n\nWhile RLHF is effective, effectively aligning LLMs with diverse human preferences remains a significant challenge, particularly when they are conflicting. GAPO frames human value alignment as a multi-objective optimization problem, aiming to maximize a set of potentially conflicting objectives.\n\n## Key Technical Approach\n\nGAPO adaptively rescales the gradients for each objective to determine an update direction that optimally balances the trade-offs between objectives. It leverages the Multiple-Gradient Descent Algorithm (MGDA), a gradient-based multi-objective optimization technique.\n\n## Variants and Features\n\nThe paper introduces P-GAPO, which incorporates user preferences across different objectives and achieves Pareto solutions that better align with the user's specific needs.\n\n## Theoretical Guarantees\n\nGAPO converges towards a Pareto optimal solution for multiple objectives.\n\n## Empirical Results\n\nThe experimental setting uses helpfulness and harmlessness (safety) as two common yet often conflicting requirements across many tasks. GAPO achieves the best balance between helpfulness and harmlessness, with quite high scores in both dimensions.\n\nThe paper was published at ACL 2025 (the 63rd Annual Meeting of the Association for Computational Linguistics).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dab5dbd1-c54f-4b8d-a0a4-a7ea7104e64b",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "006d6cd4-9b74-40c1-a023-1dbd8eb39b7d",
+            "sourceToolAssistantUUID": "dab5dbd1-c54f-4b8d-a0a4-a7ea7104e64b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T03:03:04.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JZaUfYiGS9w8WiX48geQDF",
+              "name": "WebSearch",
+              "input": {
+                "query": "reward-free alignment conflicting objectives LLM Pareto 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "006d6cd4-9b74-40c1-a023-1dbd8eb39b7d",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBe4YYX6uVVB2uM3i9t",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b573447b-132c-4659-9d2f-5d847416a3bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JE4ArVHe9wUkvFx9QE8kLH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 929,
+                "cache_read_input_tokens": 38384,
+                "output_tokens": 67,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 929
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 67,
+                    "cache_read_input_tokens": 38384,
+                    "cache_creation_input_tokens": 929,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 929,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T03:03:11.237Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JZaUfYiGS9w8WiX48geQDF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"reward-free alignment conflicting objectives LLM Pareto 2025\"\n\nLinks: [{\"title\":\"[2602.02495] Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://arxiv.org/abs/2602.02495\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://arxiv.org/html/2602.02495v1\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://arxiv.org/pdf/2602.02495\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2026arXiv260202495C/abstract\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives | Xi Chen\",\"url\":\"https://www.linkedin.com/posts/xi-chen-900b2710_reward-free-alignment-for-conflicting-objectives-activity-7428133492862902272-86cw\"},{\"title\":\"Paper page - Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://huggingface.co/papers/2602.02495\"},{\"title\":\"[2508.07768] Pareto Multi-Objective Alignment for Language Models\",\"url\":\"https://arxiv.org/abs/2508.07768\"}]\n\nBased on the search results, I found relevant research on this topic. Here are the key findings:\n\n## Main Result: RACO Framework\n\nThe primary work proposes a Reward-free Alignment framework for Conflicted Objectives (RACO) that directly leverages pairwise preference data and resolves gradient conflicts via a novel clipped variant of conflict-averse gradient descent.\n\n## The Problem\n\nMany real-world alignment problems involve multiple conflicting objectives, where naive aggregation of preferences can lead to unstable training and poor trade-offs. Weighted loss methods may fail to identify update directions that simultaneously improve all objectives, and existing multi-objective approaches often rely on explicit reward models, introducing additional complexity and distorting user-specified preferences.\n\n## Key Contributions\n\nThe method provides convergence guarantees to Pareto-critical points that respect user-specified objective weights, and shows that clipping can strictly improve convergence rate in two-objective cases.\n\n## Experimental Results\n\nQualitative and quantitative evaluations on multi-objective summarization and safety alignment tasks across multiple LLM families (Qwen 3, Llama 3, Gemma 3) show that the method consistently achieves better Pareto trade-offs compared to existing multi-objective alignment baselines.\n\nThis paper was published in February 2026 on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b573447b-132c-4659-9d2f-5d847416a3bb",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "ecb1c299-336b-4d1c-bdaa-d001b5bcb550",
+            "sourceToolAssistantUUID": "b573447b-132c-4659-9d2f-5d847416a3bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T03:03:13.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P1EU8ZWZkBMuH4pYvy7L2H",
+              "name": "WebSearch",
+              "input": {
+                "query": "self-improvement Pareto optimality mitigating preference conflicts multi-objective alignment 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecb1c299-336b-4d1c-bdaa-d001b5bcb550",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBejEUELtk1aovtQfss",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb1aa8b0-6815-468a-8050-ced17cfc5909",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EDbENLctyAg6edAq2XCQvt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 826,
+                "cache_read_input_tokens": 39313,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 826
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 39313,
+                    "cache_creation_input_tokens": 826,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 826,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T03:03:23.483Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P1EU8ZWZkBMuH4pYvy7L2H",
+              "type": "tool_result",
+              "content": "Web search results for query: \"self-improvement Pareto optimality mitigating preference conflicts multi-objective alignment 2025\"\n\nLinks: [{\"title\":\"Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.574/\"},{\"title\":\"[2502.14354] Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment\",\"url\":\"https://arxiv.org/abs/2502.14354\"},{\"title\":\"Mitigating Preference Conflicts in Multi-Objective Alignment\",\"url\":\"https://aclanthology.org/2025.findings-acl.574.pdf\"},{\"title\":\"Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment\",\"url\":\"https://arxiv.org/html/2502.14354v1\"},{\"title\":\"Self-Improvement Towards Pareto Optimality: Mitigating Preference\",\"url\":\"https://openreview.net/pdf?id=y7WJE3lno0\"},{\"title\":\"Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment. | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/search?q=Self-Improvement+Towards+Pareto+Optimality:+Mitigating+Preference+Conflicts+in+Multi-Objective+Alignment.\"},{\"title\":\"Reward-free Alignment for Conflicting Objectives\",\"url\":\"https://arxiv.org/pdf/2602.02495\"}]\n\nI found a highly relevant research paper on this topic. Here are the search results:\n\n## Main Finding\n\nA self-improving DPO framework enables LLMs to self-generate and select Pareto-optimal responses for self-supervised preference alignment. This research addresses a specific challenge in the field.\n\n## Research Overview\n\nMulti-Objective Alignment (MOA) aims to align LLMs' responses with multiple human preference objectives, with Direct Preference Optimization (DPO) emerging as a prominent approach.\n\n## The SIPO Framework\n\nThe paper proposes SIPO (Self-Improvement DPO towards Pareto Optimality). This novel framework guides the LLM to self-generate and select Pareto-optimal responses, thereby mitigating preference conflicts and enhancing the Pareto Front. \n\nAfter initial alignment, SIPO samples high-quality responses with a self-refinement strategy, which are then evaluated and filtered for Pareto-optimality over original responses. Finally, the Pareto-optimal responses are paired with original responses for non-conflicting DPO-based preference fine-tuning.\n\n## Publication Details\n\nThe paper \"Self-Improvement Towards Pareto Optimality: Mitigating Preference Conflicts in Multi-Objective Alignment\" was published in Findings of the Association for Computational Linguistics: ACL 2025, pages 11010–11031, Vienna, Austria. The work is authored by Moxin Li, Yuantao Zhang, Wenjie Wang, Wentao Shi, Zhuo Liu, Fuli Feng, and Tat-Seng Chua.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb1aa8b0-6815-468a-8050-ced17cfc5909",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "96b43bbd-e9b4-4c2c-99ec-703f506546f1",
+            "sourceToolAssistantUUID": "eb1aa8b0-6815-468a-8050-ced17cfc5909",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T03:03:26.204Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vz3P4C4pD8TUyfd85AgJkG",
+              "name": "WebSearch",
+              "input": {
+                "query": "Ortho-LoRA orthogonal gradient projection multi-task LoRA disentangling task conflicts 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96b43bbd-e9b4-4c2c-99ec-703f506546f1",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBfdftFzKcxcjk8Ny8R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e08ac48-c49a-4ff2-8aff-95d183f37169",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AedwAceecEQeathX3CLnh9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 886,
+                "cache_read_input_tokens": 40139,
+                "output_tokens": 78,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 886
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 78,
+                    "cache_read_input_tokens": 40139,
+                    "cache_creation_input_tokens": 886,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 886,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T03:03:36.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vz3P4C4pD8TUyfd85AgJkG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Ortho-LoRA orthogonal gradient projection multi-task LoRA disentangling task conflicts 2025\"\n\nLinks: [{\"title\":\"[2601.09684] Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projection\",\"url\":\"https://arxiv.org/abs/2601.09684\"},{\"title\":\"Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projection\",\"url\":\"https://arxiv.org/html/2601.09684v1\"},{\"title\":\"Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projection | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2601.09684\"},{\"title\":\"(PDF) Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projection\",\"url\":\"https://www.researchgate.net/publication/399777091_Disentangling_Task_Conflicts_in_Multi-Task_LoRA_via_Orthogonal_Gradient_Projection\"},{\"title\":\"Ortho-LoRA: Orthogonal Adaptation Techniques\",\"url\":\"https://www.emergentmind.com/topics/ortho-lora\"},{\"title\":\"Disentangling Task Conflicts in Multi-Task LoRA via ...\",\"url\":\"https://arxiv.org/pdf/2601.09684\"},{\"title\":\"arXiv:2505.15875v1 [cs.CV] 21 May 2025 Decouple and Orthogonalize:\",\"url\":\"https://arxiv.org/pdf/2505.15875\"},{\"title\":\"OPLoRA: Orthogonal Projection LoRA Prevents Catastrophic Forgetting during Parameter-Efficient Fine-Tuning\",\"url\":\"https://arxiv.org/pdf/2510.13003\"}]\n\nBased on the search results, I found comprehensive information about Ortho-LoRA:\n\n## Overview\n\nOrtho-LoRA is a gradient projection method specifically tailored for the bipartite structure of LoRA that dynamically projects conflicting task gradients onto the orthogonal complement of each other within the intrinsic LoRA subspace.\n\n## Problem It Addresses\n\nMulti-task learning with LoRA suffers from negative transfer, where conflicting gradient updates from distinct tasks degrade performance compared to single-task fine-tuning, a problem exacerbated by LoRA's low-rank constraint which limits the optimization landscape's capacity to accommodate diverse task requirements.\n\n## Key Innovation\n\nOrtho-LoRA is a specialized optimization strategy for Multi-Task LoRA that draws inspiration from Gradient Surgery and resolves conflicts by projecting gradients onto orthogonal planes. It maintains the structural simplicity of a single shared LoRA module while demonstrating that explicit gradient orthogonality can achieve comparable task disentanglement without the architectural overhead of MoE systems.\n\n## Performance Results\n\nExtensive experiments on the GLUE benchmark demonstrate that Ortho-LoRA effectively mitigates task interference, outperforming standard joint training and recovering 95% of the performance gap between multi-task and single-task baselines with negligible computational overhead.\n\nThe paper was published on arXiv on January 14, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e08ac48-c49a-4ff2-8aff-95d183f37169",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "036fcf3e-3eed-4023-a47a-02d98e88aeee",
+            "sourceToolAssistantUUID": "6e08ac48-c49a-4ff2-8aff-95d183f37169",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T03:03:42.082Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EucvUG7rPvFuRNxhEct8Aa",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"On Losses for Modern Language Models\" auxiliary objectives pretraining loss function 2020"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "036fcf3e-3eed-4023-a47a-02d98e88aeee",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBgdUkVQMGrfCm5GhuR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bf9e1c69-71a2-455b-85bf-15821dd320b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B5odZJVs7BBQ5Pu9iHvAq5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 893,
+                "cache_read_input_tokens": 41025,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 893
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 41025,
+                    "cache_creation_input_tokens": 893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 893,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T03:03:46.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EucvUG7rPvFuRNxhEct8Aa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"On Losses for Modern Language Models\" auxiliary objectives pretraining loss function 2020\"\n\nLinks: [{\"title\":\"[PDF] On Losses for Modern Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/On-Losses-for-Modern-Language-Models-Aroca-Ouellette-Rudzicz/9a5938af01b4d83793b6743c3f7560b36c6a212f\"},{\"title\":\"On Losses for Modern Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.emnlp-main.403/\"},{\"title\":\"EMNLP2020: On Losses for Modern Language Models\",\"url\":\"https://virtual.2020.emnlp.org/paper_main.2491.html\"},{\"title\":\"[2010.01694] On Losses for Modern Language Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2010.01694\"},{\"title\":\"On Losses for Modern Language Models\",\"url\":\"https://aclanthology.org/2020.emnlp-main.403.pdf\"},{\"title\":\"On Losses for Modern Language Models\",\"url\":\"https://arxiv.org/pdf/2010.01694\"},{\"title\":\"A Primer on Contrastive Pretraining in Language Processing: Methods, Lessons Learned, and Perspectives | ACM Computing Surveys\",\"url\":\"https://dl.acm.org/doi/10.1145/3561970\"},{\"title\":\"On Losses for Modern Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2020arXiv201001694A/abstract\"},{\"title\":\"On Losses for Modern Language Models | DeepAI\",\"url\":\"https://deepai.org/publication/on-losses-for-modern-language-models\"},{\"title\":\"What Language Model Architecture and Pretraining Objective Work Best for\",\"url\":\"https://proceedings.mlr.press/v162/wang22u/wang22u.pdf\"}]\n\nBased on the search results, I found the paper \"On Losses for Modern Language Models\" by Stéphane Aroca-Ouellette and Frank Rudzicz, published at EMNLP 2020.\n\n## Key Findings:\n\nThe paper explores fourteen possible auxiliary pre-training tasks, of which seven are novel to modern language models, and investigates different ways to include multiple tasks into pre-training.\n\nThe authors show that NSP (Next Sentence Prediction) is detrimental to training due to its context splitting and shallow semantic signal.\n\nThey identify six auxiliary pre-training tasks – sentence ordering, adjacent sentence prediction, TF prediction, TF-IDF prediction, a FastSent variant, and a Quick Thoughts variant – that outperform a pure MLM baseline.\n\nThe paper demonstrates that using multiple tasks in a multi-task pre-training framework provides better results than using any single auxiliary task.\n\nUsing these methods, they outperform BERTBase on the GLUE benchmark using fewer than a quarter of the training tokens.\n\nThe paper is published in the Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) and is available through the ACL Anthology and arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf9e1c69-71a2-455b-85bf-15821dd320b9",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "4f90fdf9-e386-4a28-bffe-88f887c6d5a3",
+            "sourceToolAssistantUUID": "bf9e1c69-71a2-455b-85bf-15821dd320b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T03:03:49.707Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RSfZ4a4wNQt9PHu7Z7McD5",
+              "name": "WebSearch",
+              "input": {
+                "query": "SALSA soup-based alignment learning RLHF model averaging forgetting 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f90fdf9-e386-4a28-bffe-88f887c6d5a3",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBhMvQGHxCt2Nfus8tw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c1b138f2-afcc-4923-b0d5-4f579184b7b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019mfvnhnJk5jMYKRhfcugTW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 41918,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 868
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 41918,
+                    "cache_creation_input_tokens": 868,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 868,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T03:03:56.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RSfZ4a4wNQt9PHu7Z7McD5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SALSA soup-based alignment learning RLHF model averaging forgetting 2024\"\n\nLinks: [{\"title\":\"[Quick Review] SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://liner.com/review/salsa-soupbased-alignment-learning-for-stronger-adaptation-in-rlhf\"},{\"title\":\"[2411.01798] SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://arxiv.org/abs/2411.01798\"},{\"title\":\"Paper page - SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://huggingface.co/papers/2411.01798\"},{\"title\":\"(PDF) SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://www.researchgate.net/publication/385529164_SALSA_Soup-based_Alignment_Learning_for_Stronger_Adaptation_in_RLHF\"},{\"title\":\"SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://arxiv.org/pdf/2411.01798\"},{\"title\":\"SALSA: Soup-based Alignment Learning for Stronger Adaptation in RLHF\",\"url\":\"https://arxiv.org/html/2411.01798v1\"},{\"title\":\"SALSA: Soup-Based Alignment Learning for Stronger Adaptation in RLHF - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/salsa-soup\"}]\n\nBased on the search results, here's what I found about SALSA:\n\nSALSA (Soup-based Alignment Learning for Stronger Adaptation) is a novel approach that creates a more flexible and better located reference model through weight-space averaging of two independent supervised fine-tuned (SFT) models.\n\n**Key Features:**\n\n- This model soup allows for larger deviation in KL divergence and exploring a promising region of the solution space without sacrificing stability\n- By leveraging this more robust reference model, SALSA fosters better exploration, achieving higher rewards and improving model robustness, out-of-distribution generalization, and performance\n\n**Problem It Addresses:**\n\nRLHF traditionally relies on KL divergence between the current policy and a frozen initial policy as a reference added as a penalty in algorithms like PPO, which limits exploration of the reward landscape and reduces the model's ability to discover higher-quality solutions.\n\n**Validation:**\n\nThe effectiveness of SALSA was validated through experiments on popular open models (Llama2-7B, Mistral-7B, and Gemma-2B) across various benchmarks (MT-Bench, Arena-Hard, UltraFeedback), where it consistently surpasses PPO.\n\nThis paper was accepted at the Fine-Tuning in Modern Machine Learning (FITML) Workshop at NeurIPS 2024, and was published on arXiv in November 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1b138f2-afcc-4923-b0d5-4f579184b7b1",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "3f01ac78-6432-4380-9768-c86386ba5b89",
+            "sourceToolAssistantUUID": "c1b138f2-afcc-4923-b0d5-4f579184b7b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T03:03:59.724Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get one more targeted search on the \"primary loss drowning auxiliary loss\" mechanism specifically in multi-turn or turn-level settings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f01ac78-6432-4380-9768-c86386ba5b89",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBi477V8hTxAPEMui3U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9baa725-b38d-4799-b489-e87859554bde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014s7Gp6dvvv4Bd6JjgmZpSf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 836,
+                "cache_read_input_tokens": 42786,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 836,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T03:04:00.521Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dzz4V6cmRsXhHNGDvWyQ9G",
+              "name": "WebSearch",
+              "input": {
+                "query": "turn-level reward signal overwhelmed by next-token prediction loss multi-turn LLM training gating mechanism"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9baa725-b38d-4799-b489-e87859554bde",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBi477V8hTxAPEMui3U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfbe3502-a823-47a1-8a2b-070ed1f0ba11",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014s7Gp6dvvv4Bd6JjgmZpSf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 836,
+                "cache_read_input_tokens": 42786,
+                "output_tokens": 105,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 836
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 105,
+                    "cache_read_input_tokens": 42786,
+                    "cache_creation_input_tokens": 836,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 836,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T03:04:08.363Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dzz4V6cmRsXhHNGDvWyQ9G",
+              "type": "tool_result",
+              "content": "Web search results for query: \"turn-level reward signal overwhelmed by next-token prediction loss multi-turn LLM training gating mechanism\"\n\nLinks: [{\"title\":\"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\",\"url\":\"https://arxiv.org/html/2505.11821v2\"},{\"title\":\"Your LLM Knows the Future: Uncovering Its Multi-Token Prediction Potential\",\"url\":\"https://arxiv.org/html/2507.11851v1\"},{\"title\":\"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\",\"url\":\"https://arxiv.org/pdf/2505.11821\"},{\"title\":\"Empowering Multi-Turn Tool-Integrated Reasoning with Group Turn Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2511.14846\"},{\"title\":\"Multi-token prediction technique triples LLM inference speed without auxiliary draft models | InfoWorld\",\"url\":\"https://www.infoworld.com/article/4136453/multi-token-prediction-technique-triples-llm-inference-speed-without-auxiliary-draft-models.html\"},{\"title\":\"Your LLM Knows the Future: Uncovering Its Multi-Token Prediction Potential | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/your-llm-knows-future-uncovering-its-multi\"},{\"title\":\"Multi-turn Reinforcement Learning\",\"url\":\"https://www.emergentmind.com/topics/multi-turn-reinforcement-learning-rl-afd40710-4211-48d0-94c5-a62ece3968d7\"},{\"title\":\"[2505.11821] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\",\"url\":\"https://arxiv.org/abs/2505.11821\"}]\n\nBased on the search results, I found relevant research on multi-turn LLM training and related mechanisms. Here are the key findings:\n\n## Multi-Turn Reward Design in LLM Training\n\nAlthough RL algorithms such as Group Relative Policy Optimization (GRPO) and Proximal Policy Optimization (PPO) have been widely applied to train multi-turn LLM agents, they typically rely only on sparse outcome rewards and lack dense intermediate signals across multiple decision steps, limiting their performance on complex reasoning tasks.\n\nTo address this gap, researchers present systematic studies of turn-level reward design for multi-turn RL algorithms, integrating turn-level rewards to extend GRPO and PPO to their respective multi-turn variants, enabling fine-grained credit assignment.\n\n## Gating Mechanisms for Multi-Task Learning\n\nThe search results also reveal relevant work on gating mechanisms in LLM training. In gated LoRA, a binary indicator function activates the LoRA adaptation only for MTP (multi-token prediction) tokens and disables it for NTP (next-token prediction) tokens. While both standard and gated LoRA training procedures achieve similar total loss convergence, standard LoRA exhibits increasing NTP loss trends indicating quality degradation, whereas gated LoRA maintains nearly constant NTP loss since gradients don't propagate through NTP tokens when gating is active.\n\nAdditionally, Gated Reward Accumulation (G-RA) is a mechanism where stepwise verification rewards are only accumulated when the long-term outcome reward exceeds a threshold, providing hierarchical gating to prevent reward hacking and ensure alignment between intermediate and final objectives.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfbe3502-a823-47a1-8a2b-070ed1f0ba11",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "a7544705-8ddb-4e6f-8084-9798319f21ef",
+            "sourceToolAssistantUUID": "cfbe3502-a823-47a1-8a2b-070ed1f0ba11",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T03:04:11.768Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NBmr51VT5aLnf6nL5ZgVmZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "residual stream gating transformer auxiliary training objective decoupled gradient flow 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7544705-8ddb-4e6f-8084-9798319f21ef",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBiwSYigLJ9We5MWWcq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e3ecb8f1-fd16-410d-897f-e968968b99e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PkQj5UCGesiQbuzXgAVXH3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 950,
+                "cache_read_input_tokens": 43622,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 950
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 43622,
+                    "cache_creation_input_tokens": 950,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 950,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T03:04:18.630Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NBmr51VT5aLnf6nL5ZgVmZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"residual stream gating transformer auxiliary training objective decoupled gradient flow 2024 2025\"\n\nLinks: [{\"title\":\"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science\",\"url\":\"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/\"},{\"title\":\"What Layers When: Learning to Skip Compute in LLMs with Residual Gates\",\"url\":\"https://arxiv.org/pdf/2510.13876\"},{\"title\":\"arXiv:2505.06708v1 [cs.CL] 10 May 2025 2025-06-11\",\"url\":\"https://arxiv.org/pdf/2505.06708\"},{\"title\":\"How Do Transformers Learn to Associate Tokens: Gradient ...\",\"url\":\"https://www.arxiv.org/pdf/2601.19208\"},{\"title\":\"Published as a conference paper at ICLR 2025 ADAPTIVE TRANSFORMER PROGRAMS:\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf\"},{\"title\":\"Residual Matrix Transformers: Scaling the Size of the Residual Stream\",\"url\":\"https://arxiv.org/pdf/2506.22696\"},{\"title\":\"Residual Stream Duality in Modern Transformer Architectures\",\"url\":\"https://arxiv.org/pdf/2603.16039\"}]\n\nBased on the search results, here's what I found related to your query:\n\n## Key Research Areas\n\n**Residual Stream Gating:**\nGateSkip is a lightweight residual stream gating mechanism for decoder-only transformers that avoids auxiliary heads and maintains pretrained hidden spaces by training gates to compress post-module outputs. Gating can effectively reduce massive activations and the attention sink, capping the influence that any single token can have on the Transformer's main information pathway, the residual stream.\n\n**Auxiliary Training Objectives:**\nThe GateSkip approach involves adding a gating mechanism to the residual stream and training it with an additional sparsity loss. This represents an auxiliary training objective distinct from the main language modeling task.\n\n**Recent Work (2024-2025):**\nThe search results include recent papers from 2024-2025 addressing transformer architecture improvements:\n- Router-based methods like Mixture-of-Depths introduce specialized routing components that decide which layers to run, though these rely on hard, discrete decisions that are often unstable\n- Recent work has emphasized that the residual pathway is part of the model's representational machinery, proposing a two-axis view of the Transformer\n\nThe search results show active research in 2024-2025 around transformer efficiency and residual stream management, though I didn't find a specific paper matching all those exact terms together.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3ecb8f1-fd16-410d-897f-e968968b99e2",
+            "isSidechain": true,
+            "promptId": "d62aafe3-d75b-460d-a9bb-1b0f23cd5965",
+            "agentId": "a5cbec039395edb1d",
+            "type": "user",
+            "uuid": "852b2fae-3152-4c53-9698-eb819a1db4ff",
+            "sourceToolAssistantUUID": "e3ecb8f1-fd16-410d-897f-e968968b99e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth"
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T03:05:11.248Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is a comprehensive summary of the findings, organized by the categories requested.\n\n---\n\n## 1. RLHF/DPO: Language Modeling vs. Alignment Objective Conflict\n\n**\"Mitigating the Alignment Tax of RLHF\"** (EMNLP 2024)\n- Objectives: RLHF reward vs. pretrained LM capability\n- Phenomenon: As alignment reward increases, performance on reading comprehension and translation consistently drops -- termed the \"alignment tax\"\n- Mechanism: RLHF causes weight shifts that harm general pre-training capabilities\n- Solution: Model averaging (interpolating weights before/after fine-tuning) achieves a Pareto-optimal balance; adding pre-train LM loss during PPO (as in InstructGPT) partially mitigates\n- [Paper](https://aclanthology.org/2024.emnlp-main.35.pdf)\n\n**InstructGPT (PPO-ptx)** (Ouyang et al., NeurIPS 2022)\n- Objectives: PPO alignment reward vs. NTP language modeling loss\n- Mechanism: The NTP loss is mixed into PPO training with coefficient gamma=27.8, meaning for every 1 unit of reward gradient, 27.8 units of NTP gradient are added -- explicitly acknowledging that alignment training drowns out LM capability\n- Solution: PPO-ptx mixes pretraining gradients to prevent forgetting, with minimal (<1-3%) drops on NLP benchmarks\n- [Paper](https://arxiv.org/pdf/2203.02155)\n\n**MODPO: Multi-Objective Direct Preference Optimization** (Zhou et al., ACL Findings 2024)\n- Objectives: Helpfulness vs. harmlessness in DPO\n- Mechanism: MODPO trains DPO LLMs as proxy reward models for different objectives and aggregates them at the loss level, interpolating weighted reward differences as margins\n- Solution: Achieves Pareto front with 3x less compute than MORLHF\n- [Paper](https://aclanthology.org/2024.findings-acl.630/)\n\n**HyperDPO / COS-DPO** (arXiv 2024)\n- Objectives: Main alignment objective vs. auxiliary alignment objectives\n- Mechanism: Profiles the Pareto front; uses temperature/weight conditioning for post-training trade-off control\n- [Paper](https://arxiv.org/html/2410.08316v3)\n\n**SALSA: Soup-based Alignment Learning** (NeurIPS 2024 Workshop)\n- Objectives: Reward maximization vs. KL divergence penalty (staying close to base model)\n- Mechanism: KL penalty limits exploration of reward landscape; creates a more flexible reference model through weight-space averaging of two SFT models\n- [Paper](https://arxiv.org/abs/2411.01798)\n\n---\n\n## 2. Catastrophic Forgetting of Auxiliary Objectives\n\n**\"Mechanistic Analysis of Catastrophic Forgetting in LLMs During Continual Fine-tuning\"** (arXiv 2025)\n- Finding: Minimal degradation in early epochs but forgetting accelerates dramatically in later epochs as models converge on new tasks\n\n**\"Understanding Catastrophic Forgetting via Implicit Inference\"** (arXiv 2023)\n- Finding: Apparent catastrophic effects may be explained as shifting implicit task inference rather than true weight destruction\n\n**\"Recall and Learn\"** (arXiv 2020)\n- Solution: Adds language model pretraining as auxiliary learning task during fine-tuning to prevent catastrophic forgetting -- directly relevant as it uses the LM objective as an auxiliary to protect against forgetting\n\n**\"Model Tailor: Mitigating Catastrophic Forgetting in Multi-modal LLMs\"** (2024)\n- Addresses forgetting in multimodal LLMs during fine-tuning\n\n---\n\n## 3. Gradient Conflict / Gradient Interference in LLMs\n\n**\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\"** (EACL Findings 2026, Meta AI)\n- **Most directly relevant paper.** Objectives: Multiple task objectives in RL post-training\n- Key finding: When tasks generate differently-sized gradients, large-gradient tasks dominate optimization. **Critical insight: large gradients do NOT imply larger learning gains** -- e.g., Code dominates gradient norms but achieves lowest learning gains\n- Gradient imbalances arise from inherent task differences, not from training statistics like rewards or advantages\n- [Paper](https://arxiv.org/abs/2510.19178v2)\n\n**GAPO: Gradient-Adaptive Policy Optimization** (ACL 2025)\n- Objectives: Helpfulness vs. harmlessness\n- Mechanism: Uses Multiple-Gradient Descent Algorithm (MGDA) to adaptively rescale gradients for each objective; converges to Pareto optimal solutions\n- [Paper](https://aclanthology.org/2025.acl-long.549/)\n\n**Ortho-LoRA** (arXiv 2026)\n- Objectives: Multiple tasks in shared LoRA fine-tuning\n- Mechanism: LoRA's low-rank constraint exacerbates gradient conflict; projects conflicting task gradients onto orthogonal complements within the LoRA subspace\n- Result: Recovers 95% of the performance gap between multi-task and single-task baselines\n- [Paper](https://arxiv.org/abs/2601.09684)\n\n**PCGrad: Gradient Surgery for Multi-Task Learning** (NeurIPS 2020)\n- Foundational method: Projects conflicting gradients (negative cosine similarity) to reduce destructive interference\n- [Paper](https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf)\n\n**RACO: Reward-free Alignment for Conflicting Objectives** (arXiv 2026)\n- Solution: Clipped variant of conflict-averse gradient descent for DPO-based multi-objective alignment; convergence guarantees to Pareto-critical points\n- [Paper](https://arxiv.org/abs/2602.02495)\n\n---\n\n## 4. Pareto Optimization / Task Dominance in LLM Fine-tuning\n\n**\"Rewarded Soups\"** (Rame et al., NeurIPS 2023)\n- Solution: Linearly interpolates weights of models fine-tuned on diverse rewards; sliding the interpolation coefficient reveals the Pareto front\n- Avoids gradient conflict entirely by training separate models and merging\n- [Paper](https://proceedings.neurips.cc/paper_files/paper/2023/file/e12a3b98b67e8395f639fde4c2b03168-Paper-Conference.pdf)\n\n**SIPO: Self-Improvement towards Pareto Optimality** (ACL Findings 2025)\n- Objectives: Multiple conflicting preference dimensions\n- Mechanism: LLM self-generates Pareto-optimal responses, filters by Pareto dominance, then does non-conflicting DPO fine-tuning\n- [Paper](https://aclanthology.org/2025.findings-acl.574/)\n\n**\"Reinforcing Multi-Turn Reasoning via Turn-Level Reward Design\"** (arXiv 2025)\n- Problem: Sparse outcome rewards lack dense intermediate signals across multi-turn steps\n- Solution: Turn-level rewards extending GRPO and PPO to multi-turn variants for fine-grained credit assignment\n- [Paper](https://arxiv.org/abs/2505.11821)\n\n---\n\n## Papers Most Directly Relevant to \"Primary Loss Drowning Auxiliary Loss\"\n\nThe strongest matches for the specific mechanism of NTP loss dominating/drowning auxiliary objectives:\n\n1. **InstructGPT PPO-ptx** -- Explicitly uses gamma=27.8 to counterbalance alignment gradients with NTP gradients, empirically demonstrating the dominance problem\n2. **\"Imbalanced Gradients in RL Post-Training of Multi-Task LLMs\"** -- Rigorous demonstration that gradient magnitude imbalance causes task dominance, and large gradients do not correlate with learning gains\n3. **\"Mitigating the Alignment Tax of RLHF\"** -- Documents the trade-off curve where alignment reward increases as LM capabilities drop\n4. **Ortho-LoRA** -- Shows the problem is exacerbated in parameter-efficient settings due to low-rank constraint\n5. **GAPO** -- Proposes adaptive gradient rescaling as the principled fix\n\nCommon proposed solutions across the literature:\n- **Gradient surgery/projection** (PCGrad, Ortho-LoRA, GAPO, RACO)\n- **Loss coefficient tuning** (InstructGPT gamma=27.8)\n- **Model merging/averaging** (Rewarded Soups, SALSA, Mitigating Alignment Tax)\n- **Separate training then merge** (Rewarded Soups)\n- **Pareto-aware data selection** (SIPO)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "852b2fae-3152-4c53-9698-eb819a1db4ff",
+            "isSidechain": true,
+            "agentId": "a5cbec039395edb1d",
+            "requestId": "req_011CbBBjhLkjkV3TK66bKVAZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "27575247-2bd1-4e04-87e8-a03325344171",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/reviewer_e7517921",
+            "sessionId": "5a74afe6-047b-48bc-9683-816dae74ac45",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "starry-mapping-hearth",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RChXkBMrqatpmFAmcUZuL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 44572,
+                "output_tokens": 2190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 795
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2190,
+                    "cache_read_input_tokens": 44572,
+                    "cache_creation_input_tokens": 795,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 795,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        }
+      ],
+      "message_count": 54
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-academic-papers-about-multi-objective-optimization-conflict.md"
+}

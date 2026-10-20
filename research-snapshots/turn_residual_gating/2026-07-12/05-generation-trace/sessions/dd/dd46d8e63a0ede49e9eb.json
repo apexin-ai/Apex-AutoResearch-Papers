@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "dd46d8e63a0ede49e9eb",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: phase-gated-compound-sparse ## 运行环境 - 服务器名: westd-22162 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "a037b6d4-4b6e-4897-bc8b-5f0072caf2c7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/a037b6d4-4b6e-4897-bc8b-5f0072caf2c7.jsonl",
+    "occurrence": 1,
+    "bytes": 623195,
+    "sha256": "af7d494093589b0be2e70f810e4fd9f050e5c421170fa645b6cb3f9eabc0a872"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 35,
+      "tool_call": 55,
+      "tool_result": 55
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "dd46d8e63a0ede49e9eb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "dd46d8e63a0ede49e9eb-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "dd46d8e63a0ede49e9eb-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-phase-gated-compound-sparse-westd-22162-ssh-root-ssh-execute-s-copy-224.md"
+}

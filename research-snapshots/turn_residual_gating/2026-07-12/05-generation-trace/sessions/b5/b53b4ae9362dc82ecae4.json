@@ -1,0 +1,651 @@
+{
+  "schema_version": "1.0",
+  "id": "b53b4ae9362dc82ecae4",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are helping review an academic paper. Read the following PDF page images and provide a detailed summary of the conte",
+  "task_key": "agent-ab89d0e2030cc79d8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ab89d0e2030cc79d8.jsonl",
+    "occurrence": 1,
+    "bytes": 29899,
+    "sha256": "0fb6285bd667b8695657abeeb5f64565aff4de2d11dead58af307497b6ce07b3"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:44:15.833Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are helping review an academic paper. Read the following PDF page images and provide a detailed summary of the content on each page. Report verbatim any key definitions, equations, claims, and numbers.\n\nRead these image files one by one:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p1.png\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p2.png\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p3.png\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p4.png\n\nFor each page, report:\n- Section headings\n- All equations with their equation numbers\n- Key claims and findings (quote the exact text)\n- All table/figure content\n- Sample sizes (n=?) mentioned\n- Any statistical values (p-values, confidence intervals, effect sizes)\n\nBe extremely thorough. Do not skip any content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6df1793b-25b1-46eb-8c31-ea8c9d86bd28",
+            "agentId": "ab89d0e2030cc79d8",
+            "type": "user",
+            "uuid": "78397405-5953-4777-b41e-2637c32eb112",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:44:15.841Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "78397405-5953-4777-b41e-2637c32eb112",
+                "isSidechain": true,
+                "agentId": "ab89d0e2030cc79d8",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__review_reviewer_post_to_director",
+                    "mcp__agent-ml-research__verify_references"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__review_reviewer_post_to_director",
+                    "mcp__agent-ml-research__verify_references"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "9fa2f60d-cd28-4f4a-934d-a8b924584da2",
+                "timestamp": "2026-05-15T13:44:15.841Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+                "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:44:18.467Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read all four page images to provide a detailed analysis."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fa2f60d-cd28-4f4a-934d-a8b924584da2",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TJTXC1BE3iApBbG6ai",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d44f8c5f-38f2-41ae-b2ea-48eebd51e184",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138LhyzC8LijH51kkuS9Xtd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15956,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:44:19.441Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W4irEoRWycxJkjFsSRHKVG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p1.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d44f8c5f-38f2-41ae-b2ea-48eebd51e184",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TJTXC1BE3iApBbG6ai",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8c20adf-33ed-4d8f-ab12-acaee3191d62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138LhyzC8LijH51kkuS9Xtd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15956,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:44:19.911Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QQdEGVpQqv2D6J4xDuVWgj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p2.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8c20adf-33ed-4d8f-ab12-acaee3191d62",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TJTXC1BE3iApBbG6ai",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7901a7bf-a2f3-4cb2-92b4-fab23a6a726d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138LhyzC8LijH51kkuS9Xtd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15956,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:44:20.775Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QtpLbYn6cJ6dURwbo3raf4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p3.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7901a7bf-a2f3-4cb2-92b4-fab23a6a726d",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TJTXC1BE3iApBbG6ai",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1f5acdbf-3026-4be9-9e79-29aba4b826b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138LhyzC8LijH51kkuS9Xtd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15956,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15956
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15956,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15956,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:44:20.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FYRHr4F7RdwT7gikoXyWUY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/main_p4.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f5acdbf-3026-4be9-9e79-29aba4b826b5",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TJTXC1BE3iApBbG6ai",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "60e12ea2-2f53-4b04-8ca0-bc974d2b16f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138LhyzC8LijH51kkuS9Xtd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15956,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15956
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15956,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15956,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:44:22.461Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W4irEoRWycxJkjFsSRHKVG",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8c20adf-33ed-4d8f-ab12-acaee3191d62",
+            "isSidechain": true,
+            "promptId": "6df1793b-25b1-46eb-8c31-ea8c9d86bd28",
+            "agentId": "ab89d0e2030cc79d8",
+            "type": "user",
+            "uuid": "fdf29214-7a20-4d89-897a-3a5b61b65274",
+            "sourceToolAssistantUUID": "f8c20adf-33ed-4d8f-ab12-acaee3191d62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:44:25.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QQdEGVpQqv2D6J4xDuVWgj",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7901a7bf-a2f3-4cb2-92b4-fab23a6a726d",
+            "isSidechain": true,
+            "promptId": "6df1793b-25b1-46eb-8c31-ea8c9d86bd28",
+            "agentId": "ab89d0e2030cc79d8",
+            "type": "user",
+            "uuid": "67bd7445-25b4-458e-94c0-e311ef3c837a",
+            "sourceToolAssistantUUID": "7901a7bf-a2f3-4cb2-92b4-fab23a6a726d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:44:25.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QtpLbYn6cJ6dURwbo3raf4",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f5acdbf-3026-4be9-9e79-29aba4b826b5",
+            "isSidechain": true,
+            "promptId": "6df1793b-25b1-46eb-8c31-ea8c9d86bd28",
+            "agentId": "ab89d0e2030cc79d8",
+            "type": "user",
+            "uuid": "2bab0fcf-462d-49dd-963d-1eb4244a2d84",
+            "sourceToolAssistantUUID": "1f5acdbf-3026-4be9-9e79-29aba4b826b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:44:26.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FYRHr4F7RdwT7gikoXyWUY",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60e12ea2-2f53-4b04-8ca0-bc974d2b16f0",
+            "isSidechain": true,
+            "promptId": "6df1793b-25b1-46eb-8c31-ea8c9d86bd28",
+            "agentId": "ab89d0e2030cc79d8",
+            "type": "user",
+            "uuid": "d0501f29-0cc5-4ac0-81d1-3ae5b6bfaf3d",
+            "sourceToolAssistantUUID": "60e12ea2-2f53-4b04-8ca0-bc974d2b16f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T13:46:22.396Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nHere is a detailed page-by-page summary of the paper.\n\n---\n\n## Page 1\n\n### Title\n**Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Mathematical Reasoning Models**\n\n**Anonymous ACL submission**\n\n### Section: Abstract\nKey claims and definitions (verbatim excerpts):\n\n- \"Compound sparsity—simultaneously pruning attention heads and evicting KV cache entries—is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.\"\n- \"We show that compound severity is not phase-invariant: it is an emergent phase–strategy interaction with amplification ratios (G) from 7.5× (cv=0.15, 99% CI [1.1, 14.0]) to 78× (cv=0.30, 99% CI [63.3, 96.3]) across reasoning phases in mathematical reasoning models.\"\n- \"On DeepSeek-R1-Distill-Qwen-7B (500 MATH-500 problems, n_obs = {0.11, 0.20, 0.25, 0.30}), importance-based eviction produces a monotonically increasing severity gradient from the high-sparsity phase to low-sparsity reasoning phase (median Δ = 0.39 → 8.46, all Bonferroni-corrected p < 10⁻⁴).\"\n- \"Random eviction develops a detectable phase gradient only above s ≥ 0.20 (non-significant at s ≤ 0.20, where significance: 2.3×, weaker), confirming importance-based eviction as the dominant driver.\"\n- \"A crossover converges at s ≈ 0.25: importance-based eviction outperforms random in high-sparsity phases yet underperforms in low-sparsity phases—a qualitative reversal in strategy ranking.\"\n- \"The pattern replicates on Qwen2.5-7B-Instruct (n_obs=473, Δ = 0.07 → 3.16, all p < 10⁻³), with preliminary cross-architecture evidence from a LlamaForCausalLM model suggesting the phenomenon may extend beyond Qwen2 family architectures.\"\n- \"We present downstream collateral—head pruning flattening cumulative importance scores—as a correlational diagnostic: both strategies exhibit near-identical Gini drops, yet severity diverges by 7–17×, implicating the structural specificity of importance-based pruning as the key differentiator.\"\n\n### Section: 1 Introduction\n\nKey claims:\n\n- \"Long-context language models place acute pressure on the key-value (KV) cache, which grows linearly with sequence length (Kwon et al., 2023; Pope et al., 2023).\"\n- \"Prior work treats compound interaction magnitude as roughly constant across generation (Liao et al., 2026; von Rad et al., 2026), despite evidence that pruning sensitivity depends on representational phase (Shi et al., 2026) and that no single sparse attention strategy dominates across generation stages (Nawrot et al., 2025).\"\n- \"This assumption is problematic for reasoning models, whose generations alternate between broadly distributed attention (exploratory reasoning) and sharply concentrated attention (structured computation) (Ramachandran et al., 2026).\"\n- \"On DeepSeek-R1-Distill-Qwen-7B (500 MATH-500 problems), the median phase difference rises from 0.39 at s=0.15 to 8.48 at s=0.30 (all Bonferroni-corrected p < 10⁻⁴); the Jonckheere-Terpstra z=33.7, p < 10⁻⁴).\"\n- \"The pattern replicates on Qwen2.5-7B-Instruct (Δ = 0.07 → 3.16; all p < 10⁻³); preliminary evidence from DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM) suggests the phenomenon may extend beyond Qwen2 but at ~1/40 the magnitude and with substantially weaker strategy contrast.\"\n- \"Random eviction develops a detectable but weak phase gradient only above s ≥ 0.20 (3.20× — smaller than importance-based), confirming that the dominant gradient is an emergent phase-strategy interaction.\"\n- \"We present preliminary correlational evidence for discrimination collapse—head pruning flattening cumulative importance scores—as a contributing factor, with the structural specificity of importance-based pruning (which selectively removes high-score heads) as a key differentiator from random pruning.\"\n\n---\n\n## Page 2\n\n### Section: 1 Introduction (continued)\n\n- \"Why can't existing single-axis findings predict our results? HIES (Choi et al., 2025) characterizes score collapse on a single compression axis; ThinkKV (Ramachandran et al., 2026) introduces phase-aware eviction without compound interaction; Nawrot et al. (2025) document strategy nondom­inance across generation stages.\"\n- \"A linear combination of these insights would predict that compound degradation either (i) uniformly amplifies, or (ii) follows the dominant single-axis pattern.\"\n- \"Instead, we observe a severity gradient spanning over an order of magnitude (G=7.5–79.8× for importance gradient vs. G ≈ 1 for random), an effect absent from any single-axis analysis.\"\n- \"In DeepSeek, this first manifests as a strategy ranking crossover at s=0.25; Qwen shows consistent importance dominance without crossover, indicating the crossover is model-dependent.\"\n- \"The compound interaction exceeds the multiplicative null by 2.7× in the low-sparsity phase while falling below it in the high-sparsity phase (Appendix B). This emergent coupling is not deducible from single-axis characteristics alone.\"\n\n**This work is a diagnostic study**: \"we characterize a previously unknown interaction effect rather than proposing a mitigation method.\"\n\nContributions:\n1. \"We identify a phase–strategy interaction: importance-based eviction exhibits a severity gradient across reasoning phases that is 3–30× larger than under random eviction (§5).\"\n2. \"We show this gradient increases monotonically with sparsity and replicates across two Qwen2-architecture models (DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct), with exploratory evidence from a LlamaForCausalLM model suggesting the phenomenon may extend beyond Qwen2 (§5).\"\n3. \"We provide a diagnostic analysis revealing that aggregate score collapse (Gini) is necessary but not sufficient for severity amplification, pointing to structural specificity of pruned heads as the key differentiator (§6).\"\n\n### Section: 2 Related Work\n\n**Compound compression**: \n- \"Combining multiple compression axes produces non-additive errors (Liao et al., 2026) report super-additive degradation when combining channel pruning with token eviction\"\n- \"(Morafati et al., 2025) formalize compound error for quantization and sparsity, (von Rad et al., 2026) evaluate compound compression across 40+ benchmarks, revealing that reasoning capabilities degrade disproportionately (Ma et al., 2026) characterize independent phase transition points per compression dimension, implying the joint safe region is the intersection of per-dimension safe zones.\"\n- \"GRASPrune (Wang et al., 2026) learns global budget-constrained gates for joint pruning but treats decisions as static across generation.\"\n- \"PM-KVQ (Liu et al., 2026b) demonstrates that progressive quantization—gradually reducing bit-width over the generation process—mitigates cumulative error in long-CoT reasoning, implicitly introducing a temporal dimension to compression severity that resonates with our finding that compound interaction is phase-dependent.\"\n\n---\n\n## Page 3\n\n### Section: 2 Related Work (continued)\n\n**KV cache eviction**: \n- \"Ada-KV (Feng et al., 2025) introduces per-head adaptive budgets; SnapKV (Li et al., 2024) compresses from a fixed observation window\"\n- \"(Feng et al., 2026) show worst-case loss 2.2–4.3× higher than expected under standard aggregation.\"\n- \"(Choi et al., 2025) independently show that importance-based discrimination collapses under heavy single-axis pruning. Our work extends this to the compound setting, revealing that collapse is amplified by the interaction of two compression axes and modulated by reasoning phase—a phenomenon absent in single-axis analysis.\"\n\n**Crossover effect (§5.3)**: \"is a prediction that single-axis frameworks cannot generate. RLKV (Xu et al., 2025) uses reinforcement learning to identify reasoning-critical heads and selectively preserve their KV caches, demonstrating that head-level importance varies significantly for reasoning tasks.\"\n\n**Phase-aware inference**: \"ThinkKV (Ramachandran et al., 2026) applies different KV strategies per phase but without compound interaction. (Shi et al., 2026) find pruning sensitivity depends on 'silent' vs. 'decisive' representation phases.\"\n\n### Section: 3 Background and Problem Setting\n\n**Compound sparsity**: \"Let s ∈ (0,1) denote a unified sparsity budget. Attention head pruning removes the bottom-s fraction of heads per layer by Frobenius-norm importance (Voita et al., 2019; Michel et al., 2019). KV cache eviction removes the bottom-s fraction of token positions from the cache. We compare two strategies: importance-based, which scores positions by position-normalized cumulative attention mass (Eq. 5 in Appendix A), and random, which evicts uniformly at random (Chen et al., 2024).\"\n\n\"Applying both simultaneously yields compound sparsity; the two axes interact because head pruning alters the importance ranking used for eviction (Liao et al., 2026).\"\n\n**Interaction Index**: \"For a text segment, let PPL_c denote perplexity under condition c ∈ {d, a, k, b} (dense, attention-only, KV-only, compound). Normalize by the dense baseline yields r_c = PPL_c / PPL_d, and:\"\n\n**Equation (1)**:\n$$\\text{II} = r_c - r_a - r_k + 1$$\n\n- \"II > 0 indicates super-additive degradation; II = 0 indicates additive independence.\"\n- \"We adopt the additive null because the two axes operate on disjoint dimensions; qualitative conclusions hold under the multiplicative null (Appendix B).\"\n- \"Because the II distribution is heavily right-skewed, we report medians throughout.\"\n\n**Severity gradient**: \"To capture phase variation, the per-problem amplification ratio is:\"\n\n**Equation (2)**:\n$$G^{(i)} = \\frac{\\text{II}_{low}^{(i)}}{\\text{II}_{high}^{(i)}}$$\n\n- \"where II^(i)_{low/high} is the interaction index in the low/high-sparsity phase for problem i.\"\n- \"We report G = G^(i)_0, the median across problems, with bootstrap CI.\"\n- \"We use the median of per-problem ratios (not the ratio of medians) to preserve per-problem pairing; see Appendix D for comparison. G >> 1 indicates phase-concentrated severity.\"\n\n**Phase segmentation**: \"Inspired by ThinkKV's phase-aware perspective on reasoning-time computation (Ramachandran et al., 2026), each generated sequence is partitioned into three phases (low-, mid-, high-sparsity) by tercile boundaries of per-position attention sparsity, using min_phase_length=10.\"\n- \"Low-sparsity phases correspond to broadly distributed attention (exploratory reasoning); high-sparsity phases to concentrated attention (structured computation).\"\n\n### Section: 4 Experimental Setup\n\n**Models**: \"We evaluate on two 7B-parameter models sharing the Qwen2 backbone (28 layers, 28 heads, 4-group GQA): DeepSeek-R1-Distill-Qwen-7B (DeepSeek-AI, 2025), distilled from DeepSeek-R1 with explicit chain-of-thought traces yielding pronounced phase structure; and Qwen2.5-7B-Instruct (Yang et al., 2024), with standard instruction tuning, providing a cross-model replica-tion target. Both are loaded in bf16 cast to f16 with eager attention.¹\"\n\n¹ footnote: \"An earlier f16at16 configuration produced sporadic NaN values; bf16at16 eliminated all occurrences.\"\n\n---\n\n## Page 4\n\n### Section: 4 Experimental Setup (continued)\n\n**Dataset**: \"We evaluate all 500 problems from MATH-500 (Hendrycks et al., 2021). Each problem is decoded greedily (max_new_tokens: 2048). Problems with degenerate phase assignments (null low or high phases) are excluded, yielding effective sample sizes of n = 496 for DeepSeek (4 excluded) and n = 475 for Qwen (25 excluded). Qwen\"\n\n\"exhibits a higher mid-phase null rate (45.2% vs. 10.2% for DeepSeek) due to lower temporal auto-correlation in its attention sparsity patterns (lag-1 r=0.718 vs. 0.891, p_diff < 1.6×; this does not affect the primary gradient metric Δ = II_low − II_high, which requires only low and high phases.\"\n\n\"Sensitivity analysis across min_phase_length ∈ {5, 10, 20} confirms robustness (Appendix M).\"\n\n**Sparsity configuration**: \"We apply symmetric compound sparsity at s ∈ {0.15, 0.20, 0.25, 0.30}, comparing perplexity under four conditions: dense, attention-only, KV-only, and compound. We compare importance-based eviction (position-normalized cumulative attention score, Eq. 5; BOS always retained) and random eviction (uniform). Heads are pruned per layer by Frobenius norm; under random eviction, both heads and positions are selected uniformly.\"\n\n**Phase segmentation and metrics**: \"Each sequence is segmented into three phases using the quantile-based method (§3), with min_phase_length=10. We compute segment-level perplexity, II (Eq. 1), and G (Eq. 2), reporting medians across problems to ensure robustness (deviation up to 43:1).\"\n\n\"Robustness to segmentation granularity (quartile, quintile; Appendix N) and minimum phase length (5, 10, 20 tokens; Appendix M) is verified.\"\n\n**Statistical analysis**: \"All reported confidence intervals use nonparametric bootstrap (B=10,000 iterations—note §4.2 (Efron and Tibshirani, 1993). Significance tests use Wilcoxon signed-rank (paired within-model) or Mann-Whitney U (cross-model), with Bonferroni correction at family-wise α = 1 (per model×strategy combination: 4 sparsity levels testing one dose-response hypothesis). Benjamini-Hochberg FDR correction across all 44 tests is reported as a robustness check in Appendix I; all Bonferroni-significant results remain significant under BH-FDR.\"\n\n\"Dose-response monotonicity is confirmed by the Jonckheere-Terpstra test (z=6.2–33.7, all p < 10⁻⁷), which uses per-problem values (n=496 per group) rather than aggregated medians.²\"\n\n\"Scaling from n=50 (profiling) to n=500 narrowed bootstrap CI width by 2.5×-5.9× across all 16 conditions, directly demonstrating precision gains. G\"\n\n²footnote: \"Spearman rank correlation on the four aggregate medians (rₛ= 1.0, exact permutation p = 0.042, one-tailed) is consistent but has limited power at n=4 levels; we rely on the JT test as primary evidence.\"\n\n### Additional statistical values visible:\n\n- **Sample sizes**: n=496 (DeepSeek, 4 excluded from 500), n=475 (Qwen, 25 excluded from 500)\n- **Bootstrap iterations**: B=10,000\n- **Models**: 7B-parameter, 28 layers, 28 heads, 4-group GQA\n- **Sparsity levels tested**: s ∈ {0.15, 0.20, 0.25, 0.30}\n- **Jonckheere-Terpstra**: z = 6.2–33.7, all p < 10⁻⁷\n- **Lag-1 autocorrelation**: r = 0.718 (Qwen) vs. 0.891 (DeepSeek), p_diff < 1.6×\n- **Mid-phase null rate**: 45.2% (Qwen) vs. 10.2% (DeepSeek)\n- **Bootstrap CI width reduction**: 2.5×–5.9× when scaling n=50 to n=500\n\n---\n\n**Summary of equations across all 4 pages:**\n\n| Eq. # | Definition |\n|-------|-----------|\n| (1) | II = r_c − r_a − r_k + 1 (Interaction Index) |\n| (2) | G^(i) = II_low^(i) / II_high^(i) (Per-problem amplification ratio) |\n\n**Key numerical claims across all pages:**\n\n- Amplification ratios G range from 7.5× (cv=0.15) to 78× (cv=0.30)\n- Median Δ = 0.39 → 8.46 across sparsity levels (DeepSeek)\n- Δ = 0.07 → 3.16 (Qwen replication)\n- All Bonferroni-corrected p < 10⁻⁴ (DeepSeek), p < 10⁻³ (Qwen)\n- Jonckheere-Terpstra z = 33.7, p < 10⁻⁴ (DeepSeek)\n- Crossover at s ≈ 0.25 (DeepSeek, model-dependent)\n- Compound interaction exceeds multiplicative null by 2.7× in low-sparsity phase\n- Random eviction phase gradient detectable only at s ≥ 0.20, magnitude 3.20× (vs. 7.5–78× for importance-based)\n- 99% CI for G at cv=0.15: [1.1, 14.0]; at cv=0.30: [63.3, 96.3]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0501f29-0cc5-4ac0-81d1-3ae5b6bfaf3d",
+            "isSidechain": true,
+            "agentId": "ab89d0e2030cc79d8",
+            "requestId": "req_011Cb4TKG6PLg63o5zGRkbK6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ad80a69e-ae0e-4357-831d-371b534af4dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_1_a349de4f",
+            "sessionId": "6800e980-8ff4-4c1b-b16a-22a299d19954",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6w7FnicQCKWrqv19jeMvV",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2738,
+                "cache_read_input_tokens": 15956,
+                "output_tokens": 4630,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2738
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4630,
+                    "cache_read_input_tokens": 15956,
+                    "cache_creation_input_tokens": 2738,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2738,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-helping-review-an-academic-paper-read-the-following-pdf-page-images-an-copy-3.md"
+}

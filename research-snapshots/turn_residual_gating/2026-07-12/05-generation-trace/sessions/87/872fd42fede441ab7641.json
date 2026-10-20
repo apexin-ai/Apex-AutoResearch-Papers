@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "872fd42fede441ab7641",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-22162 cuda:0~3（RTX PRO 600",
+  "task_key": "136e98f4-db6e-4820-ada6-3e9d1c3a3d68",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/136e98f4-db6e-4820-ada6-3e9d1c3a3d68.jsonl",
+    "occurrence": 1,
+    "bytes": 680246,
+    "sha256": "82c569dfa5a9c1a57b797025de6843861378204a27888ea7adb56a7534e46892"
+  },
+  "statistics": {
+    "messages": 105,
+    "user_turns": 1,
+    "tool_calls": 37,
+    "roles": {
+      "record": 19,
+      "user": 1,
+      "assistant": 16,
+      "tool_call": 37,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "872fd42fede441ab7641-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "872fd42fede441ab7641-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "872fd42fede441ab7641-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-main-agent-loop-4-task-context-1-gpu-westd-22162-cuda-0-3-rtx-pro-600.md"
+}

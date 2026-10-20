@@ -1,0 +1,992 @@
+{
+  "schema_version": "1.0",
+  "id": "c1b788b746b3c664fa15",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You have a large JSON file at: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-",
+  "task_key": "agent-af7df5872daacdb8f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-af7df5872daacdb8f.jsonl",
+    "occurrence": 1,
+    "bytes": 92420,
+    "sha256": "eb5740e260b0b3f5925aa2b50f7aad580a24b8de567d8d8593bafeac1181b10d"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:34:31.130Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You have a large JSON file at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt\n\nThe file has schema: {result: string} where result is a JSON string containing experiment registry data.\n\nI need you to extract metrics for these specific experiment IDs, grouped as follows:\n\n**Group E: GSM8K compound effect (C10)**\nExperiments: gsm8k_profiling_ds, gsm8k_profiling_qw, gsm8k_qw_rand_s025_v2, gsm8k_qw_rand_s030_v2\n\n**Group F: QW Accuracy dose curve**\nExperiments: any experiments with \"acc_qw\" in the ID (e.g., acc_qw_s020_n100, acc_qw_s025_n100, etc.)\n\n**Group G: DS 8k Accuracy dose curve**\nExperiments: acc_ds_dense_8k_v2, acc_ds_s015_8k_v2, acc_ds_s020_8k_v2, acc_ds_s025_8k_v2, acc_ds_s030_8k_v2\nAlso check for: acc_ds_dense_8k, acc_ds_s015_8k, acc_ds_s020_8k, acc_ds_s025_8k, acc_ds_s030_8k (non-v2 versions)\n\nFor each experiment, extract:\n- exp_id\n- status\n- conclusion (if any)\n- All metrics/results fields (especially: accuracy, median_diff, phase gradients, wilcoxon_p, any GSM8K-specific metrics like imp_gradient, rand_gradient, imp_rand_ratio)\n\nUse jq or python to parse the file. First probe structure with jq, then extract the specific experiments.\n\nReturn a clean formatted table for each group with the key metrics. Be thorough - include ALL numeric metrics you find."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "90cc3f7d-5c75-4a38-9a51-f57be5a2e859",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:34:31.135Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "90cc3f7d-5c75-4a38-9a51-f57be5a2e859",
+                "isSidechain": true,
+                "agentId": "af7df5872daacdb8f",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "55a31c53-52f0-4f30-ba0f-9ed8154325e6",
+                "timestamp": "2026-05-16T01:34:31.135Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:34:34.102Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll parse the registry file and extract the requested experiment data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55a31c53-52f0-4f30-ba0f-9ed8154325e6",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PTpACe3nMj3kSJPZHU",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7a916f9c-47d0-4def-8957-cb7b3f32e34c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01M22vDSwEqGvzHSzwCYdYgy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6380,
+                "cache_read_input_tokens": 8115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6380,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:34:35.014Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ADsgBfoUQAdsbzjhQjte1q",
+              "name": "Bash",
+              "input": {
+                "command": "wc -c /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt",
+                "description": "Check file size"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a916f9c-47d0-4def-8957-cb7b3f32e34c",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PTpACe3nMj3kSJPZHU",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6278fb8a-7feb-4ff7-98d3-b13e72986eb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01M22vDSwEqGvzHSzwCYdYgy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6380,
+                "cache_read_input_tokens": 8115,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6380
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 8115,
+                    "cache_creation_input_tokens": 6380,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6380,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:34:35.079Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ADsgBfoUQAdsbzjhQjte1q",
+              "type": "tool_result",
+              "content": "221466 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6278fb8a-7feb-4ff7-98d3-b13e72986eb6",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "78bce88f-aea8-47fa-b00f-e8cf4a192c22",
+            "sourceToolAssistantUUID": "6278fb8a-7feb-4ff7-98d3-b13e72986eb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:34:39.963Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZxDHaY6hu5sWXpKdssr94",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\nprint('Top-level keys:', list(registry.keys())[:10])\nprint('Type:', type(registry))\n\"\n",
+                "description": "Probe top-level structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78bce88f-aea8-47fa-b00f-e8cf4a192c22",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PU73D7QyN1ydiC8SPj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e431a58-9e55-44ef-9370-d6c19670e9c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_017jRATc1VmkZnvsSSZn2wEU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 14495,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1124
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 14495,
+                    "cache_creation_input_tokens": 1124,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1124,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:34:40.141Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FZxDHaY6hu5sWXpKdssr94",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType: <class 'dict'>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e431a58-9e55-44ef-9370-d6c19670e9c5",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "07869756-9978-4416-b014-f60714edc2be",
+            "sourceToolAssistantUUID": "6e431a58-9e55-44ef-9370-d6c19670e9c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:34:44.027Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1kbSyEMAuxVhGdhfHZnhq",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\ndata = registry['data']\nprint('data type:', type(data))\nif isinstance(data, dict):\n    print('data keys (first 20):', list(data.keys())[:20])\nelif isinstance(data, list):\n    print('data length:', len(data))\n    print('first item keys:', list(data[0].keys()) if data else 'empty')\n\"\n",
+                "description": "Probe data structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07869756-9978-4416-b014-f60714edc2be",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PUUjSGEkYn3udYDifa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d25c4f69-9eda-41d9-a377-684e03c4aa79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01UNtaEZdLRXC8cZ8MwiTg7h",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 15619,
+                "output_tokens": 299,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 280
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 299,
+                    "cache_read_input_tokens": 15619,
+                    "cache_creation_input_tokens": 280,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 280,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:34:44.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T1kbSyEMAuxVhGdhfHZnhq",
+              "type": "tool_result",
+              "content": "data type: <class 'dict'>\ndata keys (first 20): ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d25c4f69-9eda-41d9-a377-684e03c4aa79",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "16b3ca75-8c26-4d4a-a98a-4431a19edef4",
+            "sourceToolAssistantUUID": "d25c4f69-9eda-41d9-a377-684e03c4aa79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:34:50.099Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AWZJ8xaCoF7sZamYEqmB7b",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\ndata = registry['data']\nexperiments = data['experiments']\nprint('experiments type:', type(experiments))\nif isinstance(experiments, dict):\n    all_ids = list(experiments.keys())\n    print('Total experiments:', len(all_ids))\n    print('All IDs:')\n    for eid in sorted(all_ids):\n        print(' ', eid)\nelif isinstance(experiments, list):\n    print('list length:', len(experiments))\n    if experiments:\n        print('first item:', list(experiments[0].keys()))\n\"\n",
+                "description": "List all experiment IDs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16b3ca75-8c26-4d4a-a98a-4431a19edef4",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PUn3jZqtG8ufdNZHzL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb1898ac-c63b-4e03-95c7-bf9ae675f154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_012zLNFsi8z56qi6798vqSnX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 343,
+                "cache_read_input_tokens": 15899,
+                "output_tokens": 337,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 343
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 337,
+                    "cache_read_input_tokens": 15899,
+                    "cache_creation_input_tokens": 343,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 343,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:34:50.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AWZJ8xaCoF7sZamYEqmB7b",
+              "type": "tool_result",
+              "content": "experiments type: <class 'dict'>\nTotal experiments: 120\nAll IDs:\n  acc_ds_dense_8k\n  acc_ds_dense_8k_v2\n  acc_ds_s015_8k\n  acc_ds_s015_8k_v2\n  acc_ds_s020\n  acc_ds_s020_8k\n  acc_ds_s020_8k_v2\n  acc_ds_s025\n  acc_ds_s025_8k\n  acc_ds_s025_8k_v2\n  acc_ds_s030_8k\n  acc_qw_dense_b1_8k\n  acc_qw_dense_n100\n  acc_qw_s015_b1_8k\n  acc_qw_s015_n100\n  acc_qw_s020\n  acc_qw_s020_b1_8k\n  acc_qw_s020_n100\n  acc_qw_s020_n100_b2_fix\n  acc_qw_s025\n  acc_qw_s025_b1_8k\n  acc_qw_s025_n100\n  acc_qw_s025_n100_b2_fix\n  acc_qw_s030_b1_8k\n  acc_qw_s030_n100\n  bf16_ds_imp_s010\n  bf16_ds_imp_s015\n  bf16_ds_imp_s020\n  bf16_ds_imp_s025\n  bf16_ds_imp_s030\n  bf16_ds_imp_s035\n  bf16_ds_rand_s015\n  bf16_ds_rand_s020\n  bf16_ds_rand_s025\n  bf16_ds_rand_s030\n  bf16_importance_s015\n  bf16_importance_s020\n  bf16_importance_s025\n  bf16_importance_s030\n  bf16_qw_imp_s010\n  bf16_qw_imp_s015\n  bf16_qw_imp_s020\n  bf16_qw_imp_s025\n  bf16_qw_imp_s030\n  bf16_qw_imp_s035\n  bf16_qw_rand_s015\n  bf16_qw_rand_s020\n  bf16_qw_rand_s025\n  bf16_qw_rand_s030\n  bf16_qwen_importance_s015\n  bf16_qwen_importance_s020\n  bf16_qwen_importance_s025\n  bf16_qwen_importance_s030\n  bf16_random_s015\n  bf16_random_s020\n  bf16_random_s025\n  bf16_random_s030\n  c2_accuracy_eval\n  c2_ds_n500\n  c2_n500_deepseek\n  c2_qw_n500\n  c2_qw_n500_r3\n  c3_llama\n  c3_llama_arch\n  c4_entropy\n  c5b_pilot\n  gsm8k_profiling_ds\n  gsm8k_profiling_qw\n  gsm8k_qw_rand_s025\n  gsm8k_qw_rand_s025_v2\n  gsm8k_qw_rand_s030\n  gsm8k_qw_rand_s030_v2\n  mvp_ii_profiling_v2\n  mvp_ii_profiling_v3\n  mvp_ii_profiling_v4\n  mvp_ii_profiling_v4-random\n  mvp_ii_profiling_v4b\n  mvp_ii_profiling_v4c\n  mvp_ii_profiling_v4d\n  mvp_interaction_index_profiling\n  mvp_v4_float32_s030\n  mvp_v4_legacy_s01\n  mvp_v4_legacy_s02\n  mvp_v4_legacy_s025\n  mvp_v4_legacy_s03\n  mvp_v4_legacy_s035\n  mvp_v4_random_r2\n  mvp_v4a_r2\n  mvp_v4b_r2\n  mvp_v4c_r2\n  mvp_v5_fixed_s015\n  mvp_v5_fixed_s020\n  mvp_v5_fixed_s020_r2\n  mvp_v5_fixed_s025\n  mvp_v5_fixed_s030\n  mvp_v5_fixed_s030_r2\n  mvp_v5_random_s015\n  mvp_v5_random_s020\n  mvp_v5_random_s025\n  mvp_v5_random_s030\n  qwen_c4_entropy\n  qwen_importance_s015\n  qwen_importance_s020\n  qwen_importance_s025\n  qwen_importance_s030\n  r9c2-spike\n  r9c2-spike-v2\n  r9c2-spike-v3\n  sf5_asymmetric_spot\n  think_phase_validation\n  v6_importance_s015\n  v6_importance_s020\n  v6_importance_s025\n  v6_importance_s030\n  v6_random_s015\n  v6_random_s020\n  v6_random_s025\n  v6_random_s030\n  v6_random_s030_r2\n  v6_random_s030_r3",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb1898ac-c63b-4e03-95c7-bf9ae675f154",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "83859fc3-e3fc-4419-939c-33a93e8c274c",
+            "sourceToolAssistantUUID": "eb1898ac-c63b-4e03-95c7-bf9ae675f154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:35:00.267Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016TBaFcTjceqsCA9tMiCZ4G",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Group E targets\ngroup_e_ids = ['gsm8k_profiling_ds', 'gsm8k_profiling_qw', 'gsm8k_qw_rand_s025_v2', 'gsm8k_qw_rand_s030_v2']\n\nprint('=== GROUP E: GSM8K compound effect (C10) ===')\nfor eid in group_e_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n    else:\n        print(f'\\n--- {eid} --- NOT FOUND')\n\"\n",
+                "description": "Extract Group E experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83859fc3-e3fc-4419-939c-33a93e8c274c",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PVE9sF9g8PWbweXdW1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "030a2b7c-0245-45e8-a9d1-718cb99a4373",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01ACzpwUxZTDE5eEtQGdz9f5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1726,
+                "cache_read_input_tokens": 16242,
+                "output_tokens": 390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1726
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 390,
+                    "cache_read_input_tokens": 16242,
+                    "cache_creation_input_tokens": 1726,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1726,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:35:00.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016TBaFcTjceqsCA9tMiCZ4G",
+              "type": "tool_result",
+              "content": "=== GROUP E: GSM8K compound effect (C10) ===\n\n--- gsm8k_profiling_ds ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T14:09:41.908Z\",\n  \"updated_at\": \"2026-05-15T18:33:52.432Z\",\n  \"hypothesis\": \"GSM8K profiling \\u9a8c\\u8bc1 compound sparsity severity \\u7684\\u53ef\\u8fc1\\u79fb\\u6027\\uff1aDeepSeek \\u5728 GSM8K n=50 \\u4e0a\\u662f\\u5426\\u590d\\u73b0 MATH-500 \\u7684 phase-gated II pattern\\uff08importance > random, \\u5355\\u8c03\\u9012\\u589e\\uff09\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-15T14:12:03.382Z\",\n    \"finished_at\": \"2026-05-15T16:36:34.184Z\",\n    \"training_hours\": 2.41\n  },\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0,1 python run_profiling_gsm8k.py --model_path checkpoints/DeepSeek-R1-Distill-Qwen-7B --masking_method importance/random --data_path data/gsm8k_test.json --max_problems 50 --seed 42 --min_phase_length 10 --save_generations --sparsity_levels 0.15 0.20 0.25 0.30\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/gsm8k_test.json\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"gpu\": \"cuda:0 (importance), cuda:1 (random)\",\n    \"pid\": \"245311,245312\"\n  },\n  \"failure_reason\": \"process dead 5\\u00d7 with no sentinel/W&B \\u2014 auto-resolved as failed\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-15T16:36:35.964Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T16:36:38.842679+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"version\": \"v3_median\",\n    \"n_problems\": 50,\n    \"method\": \"median + Wilcoxon + bootstrap_median(B=10000)\",\n    \"importance\": {\n      \"s015\": {\n        \"median_gradient\": 0.241,\n        \"ci_low\": 0.077,\n        \"ci_high\": 0.478,\n        \"wilcoxon_p\": 0.0003\n      },\n      \"s020\": {\n        \"median_gradient\": 0.74,\n        \"ci_low\": 0.314,\n        \"ci_high\": 1.119,\n        \"wilcoxon_p\": 0.0001\n      },\n      \"s025\": {\n        \"median_gradient\": 1.992,\n        \"ci_low\": 0.933,\n        \"ci_high\": 2.82,\n        \"wilcoxon_p\": 0.0001\n      },\n      \"s030\": {\n        \"median_gradient\": 4.682,\n        \"ci_low\": 2.121,\n        \"ci_high\": 10.557,\n        \"wilcoxon_p\": 0.0001\n      }\n    },\n    \"imp_rand_ratio\": {\n      \"s015\": 2.3,\n      \"s020\": 2.5,\n      \"s025\": 3.8,\n      \"s030\": 2.8\n    },\n    \"dose_response_monotonic\": true\n  }\n}\n\n--- gsm8k_profiling_qw ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T14:09:43.081Z\",\n  \"updated_at\": \"2026-05-15T18:33:54.305Z\",\n  \"hypothesis\": \"GSM8K profiling \\u9a8c\\u8bc1 compound sparsity severity \\u7684\\u53ef\\u8fc1\\u79fb\\u6027\\uff1aQwen \\u5728 GSM8K n=50 \\u4e0a\\u662f\\u5426\\u590d\\u73b0 MATH-500 \\u7684 phase-gated II pattern\\uff08importance > random, \\u5355\\u8c03\\u9012\\u589e\\uff09\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T14:12:04.466Z\",\n    \"finished_at\": \"2026-05-15T17:10:55.383Z\",\n    \"training_hours\": 2.98\n  },\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=2,3 python run_profiling_gsm8k.py --model_path checkpoints/Qwen2.5-7B-Instruct --masking_method importance/random --data_path data/gsm8k_test.json --max_problems 50 --seed 42 --min_phase_length 10 --save_generations --sparsity_levels 0.15 0.20 0.25 0.30\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/gsm8k_test.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"gpu\": \"cuda:2 (importance), cuda:3 (random)\",\n    \"pid\": \"245313,245314\"\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/gsm8k/\",\n  \"failure_reason\": \"process dead 5\\u00d7 with no sentinel/W&B \\u2014 auto-resolved as failed\",\n  \"completed_at\": \"2026-05-15T17:10:55.866Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T17:11:00.127072+00:00\"\n      }\n    ]\n  },\n  \"notes\": \"All QW outputs truncated at max_new_tokens=2047 (50/50 problems). Does not affect directional conclusions. rand_s030 per-sparsity data missing, merged data has aggregation bug.\",\n  \"metrics\": {\n    \"version\": \"v3_median\",\n    \"n_problems\": 50,\n    \"method\": \"median + Wilcoxon + bootstrap_median(B=10000)\",\n    \"importance\": {\n      \"s015\": {\n        \"median_gradient\": 0.039\n      },\n      \"s020\": {\n        \"median_gradient\": 0.158\n      },\n      \"s025\": {\n        \"median_gradient\": 1.1\n      },\n      \"s030\": {\n        \"median_gradient\": 2.092\n      }\n    },\n    \"qw_rand_s030\": \"INVALID\"\n  }\n}\n\n--- gsm8k_qw_rand_s025_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:30:14.407Z\",\n  \"updated_at\": \"2026-05-15T23:44:43.451Z\",\n  \"spec\": {\n    \"data_path\": \"data/gsm8k.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"masking_method\": \"random\",\n    \"sparsity\": 0.25,\n    \"output_dir\": \"/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s025_v2\",\n    \"bootstrap_fix\": \"D029 median CI\"\n  },\n  \"hypothesis\": \"C10 \\u91cd\\u8dd1\\uff1aQW random masking s=0.25 GSM8K compound interaction\\uff08\\u4fee\\u590d bootstrap bug \\u540e\\uff09\",\n  \"parent\": \"gsm8k_qw_rand_s025\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T23:23:26.824Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path data/gsm8k.json --output_dir ./profiling_output_gsm8k_qw_rand_s025_v2 --sparsity_levels 0.25 --masking_method random --save_generations\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-15T23:41:06.084Z\",\n    \"training_hours\": 0.29\n  },\n  \"pid\": \"288196\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s025_v2.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:41:09.749498+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"verdict\": \"PASS\",\n    \"n_problems\": 50,\n    \"n_bootstrap\": 1000,\n    \"seed\": 42,\n    \"high_sparsity\": {\n      \"n_segments\": 216,\n      \"n_tokens\": 9326,\n      \"ppl_dense\": 1.0695,\n      \"ppl_attn\": 5.9362,\n      \"ppl_kv\": 3.4316,\n      \"ppl_both\": 15.7484,\n      \"ii_mean\": 6.5954,\n      \"ii_ci\": [\n        1.1114,\n        11.3791\n      ],\n      \"ii_median\": 0.7176,\n      \"ii_median_ci\": [\n        0.5959,\n        0.9347\n      ],\n      \"winsorized_mean\": 6.5046,\n      \"skewness\": -4.6807,\n      \"outlier_count\": 3\n    },\n    \"low_sparsity\": {\n      \"n_segments\": 252,\n      \"n_tokens\": 29224,\n      \"ppl_dense\": 1.1972,\n      \"ppl_attn\": 11.5347,\n      \"ppl_kv\": 5.6038,\n      \"ppl_both\": 21.6874,\n      \"ii_mean\": 2.3883,\n      \"ii_ci\": [\n        -8.4602,\n        11.029\n      ],\n      \"ii_median\": 1.4587,\n      \"ii_median_ci\": [\n        1.1121,\n        2.0451\n      ],\n      \"winsorized_mean\": 5.8911,\n      \"skewness\": -7.6074,\n      \"outlier_count\": 4\n    },\n    \"mid_sparsity\": {\n      \"n_segments\": 51,\n      \"n_tokens\": 5954,\n      \"ppl_dense\": 1.2601,\n      \"ppl_attn\": 13.4132,\n      \"ppl_kv\": 6.4841,\n      \"ppl_both\": 20.8714,\n      \"ii_mean\": 4.5407,\n      \"ii_ci\": [\n        -4.8854,\n        12.4605\n      ],\n      \"ii_median\": 1.1272,\n      \"ii_median_ci\": [\n        0.637,\n        3.3729\n      ],\n      \"winsorized_mean\": 6.3284,\n      \"skewness\": -3.4048,\n      \"outlier_count\": 1\n    }\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s025_v2\",\n  \"completed_at\": \"2026-05-15T23:44:43.451Z\"\n}\n\n--- gsm8k_qw_rand_s030_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:30:15.959Z\",\n  \"updated_at\": \"2026-05-15T23:28:35.411Z\",\n  \"spec\": {\n    \"data_path\": \"data/gsm8k.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"masking_method\": \"random\",\n    \"sparsity\": 0.3,\n    \"output_dir\": \"/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s030_v2\",\n    \"bootstrap_fix\": \"D029 median CI\"\n  },\n  \"hypothesis\": \"C10 \\u91cd\\u8dd1\\uff1aQW random masking s=0.30 GSM8K compound interaction\\uff08\\u4fee\\u590d bootstrap bug \\u540e\\uff09\",\n  \"parent\": \"gsm8k_qw_rand_s030\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T23:05:02.114Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path data/gsm8k.json --output_dir ./profiling_output_gsm8k_qw_rand_s030_v2 --sparsity_levels 0.30 --masking_method random --save_generations\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-15T23:21:14.567Z\",\n    \"training_hours\": 0.27\n  },\n  \"pid\": \"286781\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s030_v2.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:21:20.903508+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"verdict\": \"PASS\",\n    \"n_problems\": 50,\n    \"n_bootstrap\": 1000,\n    \"seed\": 42,\n    \"high_sparsity\": {\n      \"n_segments\": 216,\n      \"n_tokens\": 9326,\n      \"null_ratio\": \"2/50\",\n      \"ppl_dense\": 1.0695,\n      \"ppl_attn\": 6.5613,\n      \"ppl_kv\": 4.481,\n      \"ppl_both\": 23.7486,\n      \"ii_mean\": 11.83,\n      \"ii_median\": 2.31,\n      \"ii_ci\": [\n        6.17,\n        17.04\n      ],\n      \"ii_median_ci\": [\n        1.64,\n        2.81\n      ],\n      \"winsorized_mean\": 10.55,\n      \"skewness\": -2.29,\n      \"outlier_count\": 7\n    },\n    \"low_sparsity\": {\n      \"n_segments\": 252,\n      \"n_tokens\": 29224,\n      \"null_ratio\": \"5/50\",\n      \"ppl_dense\": 1.1972,\n      \"ppl_attn\": 6.3283,\n      \"ppl_kv\": 8.5374,\n      \"ppl_both\": 56.2304,\n      \"ii_mean\": 31.26,\n      \"ii_median\": 5.2,\n      \"ii_ci\": [\n        17.84,\n        47.86\n      ],\n      \"ii_median_ci\": [\n        3.95,\n        7.24\n      ],\n      \"winsorized_mean\": 16.35,\n      \"skewness\": 7.57,\n      \"outlier_count\": 4\n    },\n    \"mid_sparsity\": {\n      \"n_segments\": 51,\n      \"n_tokens\": 5954,\n      \"null_ratio\": \"17/50\",\n      \"ppl_dense\": 1.2601,\n      \"ppl_attn\": 18.6162,\n      \"ppl_kv\": 11.6625,\n      \"ppl_both\": 47.9019,\n      \"ii_mean\": 18.02,\n      \"ii_median\": 2.7,\n      \"ii_ci\": [\n        0.09,\n        36.69\n      ],\n      \"ii_median_ci\": [\n        1.46,\n        8.77\n      ],\n      \"winsorized_mean\": 18.22,\n      \"skewness\": 0.43,\n      \"outlier_count\": 2\n    }\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s030_v2/profiling_results.json\",\n  \"completed_at\": \"2026-05-15T23:23:24.379Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "030a2b7c-0245-45e8-a9d1-718cb99a4373",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "e3281da9-37b6-482f-8aa3-b355ae594854",
+            "sourceToolAssistantUUID": "030a2b7c-0245-45e8-a9d1-718cb99a4373",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:35:08.803Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJhHsiCpkNmiU41UcGaiaT",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Group F: acc_qw experiments\ngroup_f_ids = [eid for eid in experiments.keys() if 'acc_qw' in eid]\ngroup_f_ids.sort()\nprint('Group F IDs found:', group_f_ids)\n\nprint()\nfor eid in group_f_ids:\n    exp = experiments[eid]\n    print(f'\\n--- {eid} ---')\n    print(json.dumps(exp, indent=2))\n\"\n",
+                "description": "Extract Group F acc_qw experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3281da9-37b6-482f-8aa3-b355ae594854",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PVy62shKaWmteQvR6q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "781488ca-14d9-41d9-891c-fb1d71fdbfa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01NWMd3AJ3KbtZTUFut3eQck",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5460,
+                "cache_read_input_tokens": 17968,
+                "output_tokens": 339,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5460
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 339,
+                    "cache_read_input_tokens": 17968,
+                    "cache_creation_input_tokens": 5460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5460,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:35:08.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJhHsiCpkNmiU41UcGaiaT",
+              "type": "tool_result",
+              "content": "Group F IDs found: ['acc_qw_dense_b1_8k', 'acc_qw_dense_n100', 'acc_qw_s015_b1_8k', 'acc_qw_s015_n100', 'acc_qw_s020', 'acc_qw_s020_b1_8k', 'acc_qw_s020_n100', 'acc_qw_s020_n100_b2_fix', 'acc_qw_s025', 'acc_qw_s025_b1_8k', 'acc_qw_s025_n100', 'acc_qw_s025_n100_b2_fix', 'acc_qw_s030_b1_8k', 'acc_qw_s030_n100']\n\n\n--- acc_qw_dense_b1_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T00:55:16.337Z\",\n  \"updated_at\": \"2026-05-16T01:11:19.181Z\",\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW dense batch1 (problems 1-50) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch1 \\u4f7f\\u7528 2048 \\u7684 token \\u9884\\u7b97\\u4e0d\\u5339\\u914d\\u95ee\\u9898\\u3002\",\n  \"spec\": {\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"max_new_tokens\": 8192,\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions dense --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_dense_b1_8k.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"294412\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T01:07:56.611Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T01:08:00.062501+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.44,\n    \"correct\": 22,\n    \"n_problems\": 50,\n    \"truncation_rate\": 0.02,\n    \"truncated_count\": 1,\n    \"avg_tokens\": 759.7,\n    \"max_tokens_generated\": 8192,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 681.8,\n    \"null_count\": 0,\n    \"batch\": \"b1_v2 (problems 1-50, 8k tokens)\",\n    \"old_batch1_acc\": 0.32,\n    \"old_batch1_correct\": 16,\n    \"new_combined_n100_acc\": 0.46,\n    \"new_combined_n100_correct\": 46,\n    \"batch2_acc\": 0.48,\n    \"batch2_correct\": 24\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_dense_b1_8k.json\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_dense_b1_8k.log\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-16T01:10:34.324Z\"\n}\n\n--- acc_qw_dense_n100 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:34:35.557Z\",\n  \"updated_at\": \"2026-05-15T21:54:45.453Z\",\n  \"hypothesis\": \"\\u8865\\u8dd1 QW dense problems 51-100\\uff0c\\u6269\\u5c55\\u5230 n=100 \\u4ee5\\u964d\\u4f4e\\u566a\\u58f0\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions dense --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_dense_n51_100.json\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:2\"\n    ],\n    \"pid\": \"279068\",\n    \"log_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_dense_n51_100.json\",\n    \"submitted_at\": \"2026-05-15T21:35:05.456Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 51-100\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"wall_clock_seconds\": 1176.6,\n    \"gpu_hours\": 0.33\n  },\n  \"metrics\": {\n    \"batch1_correct\": 16,\n    \"batch1_total\": 50,\n    \"batch1_acc\": 0.32,\n    \"batch2_correct\": 24,\n    \"batch2_total\": 50,\n    \"batch2_acc\": 0.48,\n    \"combined_correct\": 40,\n    \"combined_total\": 100,\n    \"combined_acc\": 0.4\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-15T21:54:42.068Z\"\n}\n\n--- acc_qw_s015_b1_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T00:55:17.275Z\",\n  \"updated_at\": \"2026-05-16T01:31:00.641Z\",\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW importance_s015 batch1 (problems 1-50) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch1 \\u4f7f\\u7528 2048 \\u7684 token \\u9884\\u7b97\\u4e0d\\u5339\\u914d\\u95ee\\u9898\\u3002\",\n  \"spec\": {\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s015_b1_8k.json\",\n    \"max_new_tokens\": 8192,\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s015 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s015_b1_8k.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"294491\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T01:10:46.096Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T01:10:50.746663+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"accuracy\": 0.46,\n    \"correct\": 23,\n    \"total\": 50,\n    \"truncation_rate_8k\": 0.02,\n    \"gen_over_2k\": 3,\n    \"gen_over_2k_all_wrong\": true,\n    \"max_gen_length\": 8192,\n    \"mean_gen_length\": 776\n  },\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s015_b1_8k.log\",\n  \"completed_at\": \"2026-05-16T01:31:00.641Z\"\n}\n\n--- acc_qw_s015_n100 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:34:38.959Z\",\n  \"updated_at\": \"2026-05-15T21:50:13.043Z\",\n  \"hypothesis\": \"\\u8865\\u8dd1 QW importance_s015 problems 51-100\\uff0c\\u6269\\u5c55\\u5230 n=100 \\u4ee5\\u964d\\u4f4e\\u566a\\u58f0\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s015 --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s015_n51_100.json\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"279145\",\n    \"log_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s015_n51_100.json\",\n    \"submitted_at\": \"2026-05-15T21:35:07.387Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 51-100\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\"\n  },\n  \"metrics\": {\n    \"batch1_acc\": 0.34,\n    \"batch1_correct\": 17,\n    \"batch1_total\": 50,\n    \"batch2_acc\": 0.38,\n    \"batch2_correct\": 19,\n    \"batch2_total\": 50,\n    \"combined_acc\": 0.36,\n    \"combined_correct\": 36,\n    \"combined_total\": 100\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"N/A (eval only)\",\n  \"log_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s015_n51_100.json\",\n  \"completed_at\": \"2026-05-15T21:47:46.664Z\"\n}\n\n--- acc_qw_s020 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T20:49:27.167Z\",\n  \"updated_at\": \"2026-05-15T21:17:22.146Z\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:2\"\n    ],\n    \"pid\": \"274623\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s020.log\",\n    \"submitted_at\": \"2026-05-15T20:50:03.654Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"type\": \"eval\",\n    \"checkpoint_source\": \"checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH-500 n=50\",\n    \"wall_clock_seconds\": 878.3,\n    \"gpu_hours\": 0.24\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-15T21:00:49.632Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T21:00:52.877256+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"qw_s020_acc\": 0.26,\n    \"qw_s020_correct\": 13,\n    \"qw_s020_total\": 50,\n    \"qw_s020_delta_vs_dense\": -0.06,\n    \"null_count\": 2,\n    \"null_rate\": 0.04,\n    \"output_truncated_count\": 2,\n    \"output_truncated_rate\": 0.04,\n    \"extraction_failure_count\": 0,\n    \"extraction_failure_rate\": 0,\n    \"wrong_count\": 35,\n    \"wrong_rate\": 0.7,\n    \"heads_pruned\": 140,\n    \"total_time_s\": 598,\n    \"note\": \"v2 rescored with fixed radical+degree matcher\"\n  },\n  \"conclusion\": \"negative\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s020.json\",\n  \"completed_at\": \"2026-05-15T21:04:41.944Z\"\n}\n\n--- acc_qw_s020_b1_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T00:55:18.700Z\",\n  \"updated_at\": \"2026-05-16T01:11:21.524Z\",\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW importance_s020 batch1 (problems 1-50) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch1 \\u4f7f\\u7528 2048 \\u7684 token \\u9884\\u7b97\\u4e0d\\u5339\\u914d\\u95ee\\u9898\\u3002\",\n  \"spec\": {\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"max_new_tokens\": 8192,\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s020_b1_8k.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"294635\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T01:08:07.916Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T01:08:11.337940+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.26,\n    \"correct\": 13,\n    \"n_problems\": 50,\n    \"truncation_rate\": 0.02,\n    \"truncated_count\": 1,\n    \"avg_tokens\": 722.1,\n    \"max_tokens_generated\": 8192,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 729.1,\n    \"null_count\": 0,\n    \"batch\": \"b1_v2 (problems 1-50, 8k tokens)\",\n    \"old_batch1_acc\": 0.26,\n    \"old_batch1_correct\": 13,\n    \"new_combined_n100_acc\": 0.36,\n    \"new_combined_n100_correct\": 36,\n    \"batch2_acc\": 0.46,\n    \"batch2_correct\": 23\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s020_b1_8k.json\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s020_b1_8k.log\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-16T01:10:35.813Z\"\n}\n\n--- acc_qw_s020_n100 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:09:34.155Z\",\n  \"updated_at\": \"2026-05-15T21:34:46.864Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=2 python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s020_n51_100.json\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"MATH-500\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"description\": \"QW importance_s020 accuracy eval problems 51-100\",\n    \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH-500 problems 51-100\",\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"log_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s020_n51_100.json\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"batch1_acc\": 0.26,\n    \"batch1_correct\": 13,\n    \"batch1_total\": 50,\n    \"batch2_acc\": 0.44,\n    \"batch2_correct\": 22,\n    \"batch2_total\": 50,\n    \"combined_acc\": 0.35,\n    \"combined_correct\": 35,\n    \"combined_total\": 100\n  },\n  \"completed_at\": \"2026-05-15T21:30:07.934Z\"\n}\n\n--- acc_qw_s020_n100_b2_fix ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:22:55.755Z\",\n  \"updated_at\": \"2026-05-15T22:48:39.196Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s020_b2_fix.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"283051\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s020_n100_b2_fix.log\",\n    \"submitted_at\": \"2026-05-15T22:25:18.472Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 1400.7,\n    \"gpu_hours\": 0.39\n  },\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW s020 batch2 (problems 51-100) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch2 \\u4f7f\\u7528 2048 \\u7684\\u4e0d\\u4e00\\u81f4\\u95ee\\u9898\\u3002\",\n  \"parent\": \"acc_qw_s020_n100\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T22:25:15.841Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s020_b2_fix.json\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-15T22:40:53.877Z\",\n    \"training_hours\": 0.26\n  },\n  \"pid\": \"283051\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s020_n100_b2_fix.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T22:40:57.414634+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"batch2_correct\": 23,\n    \"batch2_total\": 50,\n    \"batch2_acc\": 0.46,\n    \"batch1_correct_v2\": 13,\n    \"batch1_total\": 50,\n    \"batch1_acc_v2\": 0.26,\n    \"combined_correct\": 36,\n    \"combined_total\": 100,\n    \"combined_acc\": 0.36,\n    \"null_count\": 2,\n    \"truncated_count\": 1,\n    \"total_time_seconds\": 884.3,\n    \"max_new_tokens\": 8192,\n    \"original_batch2_correct\": 22,\n    \"original_batch2_acc\": 0.44,\n    \"delta_vs_original\": \"+1 correct (+0.02 acc)\"\n  },\n  \"checkpoint_path\": \"N/A (eval only)\",\n  \"completed_at\": \"2026-05-15T22:48:39.196Z\"\n}\n\n--- acc_qw_s025 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T20:49:29.416Z\",\n  \"updated_at\": \"2026-05-15T21:17:24.568Z\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"274766\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s025.log\",\n    \"submitted_at\": \"2026-05-15T20:50:05.362Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"type\": \"eval\",\n    \"checkpoint_source\": \"checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH-500 n=50\",\n    \"wall_clock_seconds\": 875.0,\n    \"gpu_hours\": 0.24\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-15T21:00:56.427Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T21:01:01.626822+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"qw_s025_acc\": 0.32,\n    \"qw_s025_correct\": 16,\n    \"qw_s025_total\": 50,\n    \"qw_s025_delta_vs_dense\": 0,\n    \"null_count\": 8,\n    \"null_rate\": 0.16,\n    \"output_truncated_count\": 2,\n    \"output_truncated_rate\": 0.04,\n    \"extraction_failure_count\": 6,\n    \"extraction_failure_rate\": 0.12,\n    \"wrong_count\": 26,\n    \"wrong_rate\": 0.52,\n    \"heads_pruned\": 196,\n    \"total_time_s\": 559,\n    \"note\": \"v2 rescored with fixed radical+degree matcher; 3 problems flipped (sqrt+degree)\"\n  },\n  \"conclusion\": \"negative\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json\",\n  \"completed_at\": \"2026-05-15T21:04:40.391Z\"\n}\n\n--- acc_qw_s025_b1_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T00:55:20.024Z\",\n  \"updated_at\": \"2026-05-16T01:32:32.193Z\",\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW importance_s025 batch1 (problems 1-50) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch1 \\u4f7f\\u7528 2048 \\u7684 token \\u9884\\u7b97\\u4e0d\\u5339\\u914d\\u95ee\\u9898\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-16T01:11:33.797Z\",\n    \"finished_at\": \"2026-05-16T01:27:36.423Z\",\n    \"training_hours\": 0.27\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b1_8k.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"296241\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s025_b1_8k.log\",\n    \"submitted_at\": \"2026-05-16T01:12:31.120Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"wall_clock_seconds\": 1201.1,\n    \"gpu_hours\": 0.33\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T01:27:42.760298+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.32,\n    \"correct\": 16,\n    \"n_problems\": 50,\n    \"truncation_rate\": 0.04,\n    \"truncated_count\": 2,\n    \"avg_tokens\": 797.3,\n    \"total_time_seconds\": 831.6\n  },\n  \"conclusion\": \"negative\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b1_8k.json\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s025_b1_8k.log\",\n  \"completed_at\": \"2026-05-16T01:32:32.193Z\"\n}\n\n--- acc_qw_s025_n100 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:09:36.278Z\",\n  \"updated_at\": \"2026-05-15T21:34:48.072Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=3 python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_n51_100.json\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"MATH-500\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"description\": \"QW importance_s025 accuracy eval problems 51-100\",\n    \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH-500 problems 51-100\",\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"log_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_n51_100.json\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"batch1_acc\": 0.32,\n    \"batch1_correct\": 16,\n    \"batch1_total\": 50,\n    \"batch2_acc\": 0.34,\n    \"batch2_correct\": 17,\n    \"batch2_total\": 50,\n    \"combined_acc\": 0.33,\n    \"combined_correct\": 33,\n    \"combined_total\": 100\n  },\n  \"completed_at\": \"2026-05-15T21:30:09.145Z\"\n}\n\n--- acc_qw_s025_n100_b2_fix ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:22:57.057Z\",\n  \"updated_at\": \"2026-05-15T23:28:18.012Z\",\n  \"spec\": {\n    \"data_path\": \"MATH-500\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\",\n    \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH-500 problems 51-100\",\n    \"checkpoint_path\": \"N/A (eval only)\"\n  },\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW s025 batch2 (problems 51-100) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch2 \\u4f7f\\u7528 2048 \\u7684\\u4e0d\\u4e00\\u81f4\\u95ee\\u9898\\u3002\",\n  \"parent\": \"acc_qw_s025_n100\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T22:43:13.237Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-15T23:02:06.320Z\",\n    \"training_hours\": 0.31\n  },\n  \"pid\": \"285337\",\n  \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:02:09.471595+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.34,\n    \"correct\": 17,\n    \"n_problems\": 50,\n    \"truncation_rate\": 0.06,\n    \"truncated_count\": 3,\n    \"avg_tokens\": 1044,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 1099,\n    \"batch\": \"b2 (problems 51-100)\",\n    \"merged_n100_accuracy\": 0.33,\n    \"merged_n100_correct\": 33,\n    \"merged_n100_note\": \"batch1 used max_new_tokens=2048, batch2_fix used 8192 \\u2014 mismatch\"\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-15T23:28:18.012Z\"\n}\n\n--- acc_qw_s030_b1_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T00:55:21.056Z\",\n  \"updated_at\": \"2026-05-16T01:32:35.412Z\",\n  \"hypothesis\": \"\\u91cd\\u8dd1 QW importance_s030 batch1 (problems 1-50) with max_new_tokens=8192\\uff0c\\u4fee\\u590d\\u539f batch1 \\u4f7f\\u7528 2048 \\u7684 token \\u9884\\u7b97\\u4e0d\\u5339\\u914d\\u95ee\\u9898\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:3\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:3\",\n    \"started_at\": \"2026-05-16T01:11:35.867Z\",\n    \"finished_at\": \"2026-05-16T01:27:44.402Z\",\n    \"training_hours\": 0.27\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s030 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s030_b1_8k.json\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"296321\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s030_b1_8k.log\",\n    \"submitted_at\": \"2026-05-16T01:12:33.335Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"wall_clock_seconds\": 1202.1,\n    \"gpu_hours\": 0.33\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T01:27:48.311891+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.14,\n    \"correct\": 7,\n    \"total\": 50,\n    \"truncation_rate\": 0.02,\n    \"truncated_count\": 1,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 886.7,\n    \"batch\": \"b1_v2 (problems 1-50, 8k tokens)\",\n    \"old_batch1_acc\": 0.14,\n    \"old_batch1_correct\": 7,\n    \"batch2_acc\": 0.24,\n    \"batch2_correct\": 12,\n    \"new_combined_n100_acc\": 0.19,\n    \"new_combined_n100_correct\": 19\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s030_b1_8k.json\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s030_b1_8k.log\",\n  \"conclusion\": \"negative\",\n  \"completed_at\": \"2026-05-16T01:32:35.412Z\"\n}\n\n--- acc_qw_s030_n100 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:34:40.948Z\",\n  \"updated_at\": \"2026-05-15T22:21:11.181Z\",\n  \"hypothesis\": \"\\u8865\\u8dd1 QW importance_s030 problems 51-100\\uff0c\\u6269\\u5c55\\u5230 n=100 \\u4ee5\\u964d\\u4f4e\\u566a\\u58f0\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s030 --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s030_n51_100.json\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"280094\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s030_n100.log\",\n    \"submitted_at\": \"2026-05-15T21:47:49.602Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 51-100\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"checkpoints/Qwen2.5-7B-Instruct\",\n    \"eval_data\": \"MATH problems 51-100\",\n    \"wall_clock_seconds\": 2001.6,\n    \"gpu_hours\": 0.56\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"batch1_correct\": 7,\n    \"batch1_total\": 50,\n    \"batch1_acc\": 0.14,\n    \"batch2_correct\": 12,\n    \"batch2_total\": 50,\n    \"batch2_acc\": 0.24,\n    \"combined_correct\": 19,\n    \"combined_total\": 100,\n    \"combined_acc\": 0.19\n  },\n  \"checkpoint_path\": \"N/A (eval only)\",\n  \"completed_at\": \"2026-05-15T22:21:11.181Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "781488ca-14d9-41d9-891c-fb1d71fdbfa2",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "9fba4abe-9fa4-45b2-a728-0f8f66f6c68c",
+            "sourceToolAssistantUUID": "781488ca-14d9-41d9-891c-fb1d71fdbfa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:35:19.314Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012oN197o3JPM7ZQWRXnC8k6",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/0508642d-7dc6-42de-9699-ceb42a8dd2da/tool-results/mcp-agent-ml-research-read_registry-1778895236047.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Group G: DS 8k accuracy\ngroup_g_ids = [\n    'acc_ds_dense_8k_v2', 'acc_ds_s015_8k_v2', 'acc_ds_s020_8k_v2', 'acc_ds_s025_8k_v2', 'acc_ds_s030_8k_v2',\n    'acc_ds_dense_8k', 'acc_ds_s015_8k', 'acc_ds_s020_8k', 'acc_ds_s025_8k', 'acc_ds_s030_8k',\n]\n\nprint('=== GROUP G: DS 8k Accuracy dose curve ===')\nfor eid in group_g_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n    else:\n        print(f'\\n--- {eid} --- NOT FOUND')\n\"\n",
+                "description": "Extract Group G DS 8k experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fba4abe-9fa4-45b2-a728-0f8f66f6c68c",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PWbjRpS2eZhLCa6ZnG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "54b345d0-ca6d-4b9b-ad13-2bef25792193",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01EEXGTRPzHbUL7T5i6fEUs6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11892,
+                "cache_read_input_tokens": 23428,
+                "output_tokens": 475,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11892
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 475,
+                    "cache_read_input_tokens": 23428,
+                    "cache_creation_input_tokens": 11892,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11892,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:35:19.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012oN197o3JPM7ZQWRXnC8k6",
+              "type": "tool_result",
+              "content": "=== GROUP G: DS 8k Accuracy dose curve ===\n\n--- acc_ds_dense_8k_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:00.640Z\",\n  \"updated_at\": \"2026-05-15T23:28:12.650Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"283843\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\",\n    \"submitted_at\": \"2026-05-15T22:28:53.194Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 3559.5,\n    \"gpu_hours\": 0.99\n  },\n  \"hypothesis\": \"DS dense 8k \\u91cd\\u8dd1\\uff1a\\u539f acc_ds_dense_8k \\u8fdb\\u7a0b\\u88ab kill \\u540e\\u8f93\\u51fa\\u4e22\\u5931\\uff0c\\u9700\\u91cd\\u8dd1\\u83b7\\u53d6\\u5b8c\\u6574 dense baseline accuracy (max_new_tokens=8192)\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-15T22:28:10.491Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-15T23:17:23.198Z\",\n    \"training_hours\": 0.82\n  },\n  \"pid\": \"283843\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:17:26.372428+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"accuracy\": 0.74,\n    \"correct\": 37,\n    \"n_problems\": 50,\n    \"truncation_rate\": 0.16,\n    \"truncated_count\": 8,\n    \"avg_tokens\": 3126,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 2882\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-15T23:28:12.650Z\"\n}\n\n--- acc_ds_s015_8k_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:34:57.489Z\",\n  \"updated_at\": \"2026-05-16T00:32:31.715Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s015 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s015_8k_v2.json --gpu cuda:0\\\"\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"287691\"\n  },\n  \"hypothesis\": \"DS s015 accuracy eval with max_new_tokens=8192\\uff0c\\u9a8c\\u8bc1 dense\\u2192s015 \\u662f\\u5426\\u5b58\\u5728\\u65ad\\u5d16\\u5f0f\\u4e0b\\u964d\\uff08v1 \\u6697\\u793a 0.74\\u2192~0.36\\uff09\\u3002\",\n  \"gpu\": \"cuda:0\",\n  \"server\": \"westd-22162\",\n  \"metrics\": {\n    \"accuracy\": 0.48,\n    \"correct\": 24,\n    \"total\": 50,\n    \"truncation_rate\": 0.32,\n    \"truncated_count\": 16,\n    \"non_truncated_accuracy\": 0.706,\n    \"non_truncated_correct\": 24,\n    \"non_truncated_total\": 34,\n    \"wall_time_s\": 3967,\n    \"max_new_tokens\": 8192\n  },\n  \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_ds_s015_8k_v2.log\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_ds_s015_8k_v2.json\",\n  \"conclusion\": \"success\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T00:26:59.796Z\"\n  },\n  \"completed_at\": \"2026-05-16T00:27:04.594Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T00:27:17.840483+00:00\"\n      }\n    ]\n  }\n}\n\n--- acc_ds_s020_8k_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:34:59.657Z\",\n  \"updated_at\": \"2026-05-16T01:30:53.536Z\",\n  \"hypothesis\": \"DS s020 accuracy eval with max_new_tokens=8192\\uff0c\\u8865\\u5168 5-point dose curve\\u30024096 \\u7248\\u622a\\u65ad\\u7387 64%\\uff0c8k \\u76ee\\u6807 <20%\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:2\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:2\",\n    \"started_at\": \"2026-05-15T21:52:57.528Z\",\n    \"finished_at\": \"2026-05-15T23:28:21.999Z\",\n    \"training_hours\": 1.59\n  },\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s020 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s020_8k_v2.json --gpu cuda:0\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:2\"\n    ],\n    \"pid\": \"280638\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_s020_8k_v2.log\",\n    \"submitted_at\": \"2026-05-15T21:55:00Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"MATH problems 1-50\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A (eval only)\",\n    \"wall_clock_seconds\": 5673.3,\n    \"gpu_hours\": 1.58\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:28:28.680643+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"accuracy\": 0.3,\n    \"correct\": 15,\n    \"total\": 50,\n    \"truncated_count\": 28,\n    \"truncated_rate\": 0.56,\n    \"extraction_failures\": 1,\n    \"non_truncated_accuracy\": 0.682,\n    \"non_truncated_correct\": 15,\n    \"non_truncated_total\": 22,\n    \"total_time_seconds\": 5549,\n    \"max_new_tokens\": 8192\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_ds_s020_8k_v2.json\",\n  \"completed_at\": \"2026-05-15T23:29:33.331Z\"\n}\n\n--- acc_ds_s025_8k_v2 ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:35:01.085Z\",\n  \"updated_at\": \"2026-05-16T00:20:39.536Z\",\n  \"hypothesis\": \"DS s025 accuracy eval with max_new_tokens=8192\\uff0c\\u8865\\u5168 5-point dose curve\\u30024096 \\u7248\\u622a\\u65ad\\u7387 76%\\uff0c8k \\u76ee\\u6807 <20%\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:3\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:3\",\n    \"started_at\": \"2026-05-15T22:21:32.499Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s025 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s025_8k_v2.json --gpu cuda:0\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-16T00:16:55.637Z\",\n    \"training_hours\": 1.92\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s025 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s025_8k_v2.json --gpu cuda:0\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"282534\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_s025_8k_v2.log\",\n    \"submitted_at\": \"2026-05-15T22:21:35.167Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 7144.4,\n    \"gpu_hours\": 1.98\n  },\n  \"pid\": \"282534\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_s025_8k_v2.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T00:16:59.245439+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"accuracy\": 0.08,\n    \"correct\": 4,\n    \"total\": 50,\n    \"truncated_count\": 38,\n    \"truncated_rate\": 0.76,\n    \"avg_tokens\": 6343.8,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 6827.8,\n    \"null_count\": 36\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_ds_s025_8k_v2.json\",\n  \"completed_at\": \"2026-05-16T00:20:39.536Z\"\n}\n\n--- acc_ds_s030_8k_v2 --- NOT FOUND\n\n--- acc_ds_dense_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:22:44.546Z\",\n  \"updated_at\": \"2026-05-15T21:28:57.693Z\",\n  \"hypothesis\": \"8192 token budget \\u4e0b DS dense baseline \\u622a\\u65ad\\u7387\\u5e94\\u964d\\u81f3 <20%\\uff0caccuracy \\u5e94\\u9ad8\\u4e8e 4096 \\u7248\\u672c\\u7684 0.52\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k.json --gpu cuda:0\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"277990\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k.log\",\n    \"submitted_at\": \"2026-05-15T21:26:48.000Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 129.7,\n    \"gpu_hours\": 0.04\n  },\n  \"conclusion\": \"killed\",\n  \"completed_at\": \"2026-05-15T21:28:57.693Z\"\n}\n\n--- acc_ds_s015_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:22:48.736Z\",\n  \"updated_at\": \"2026-05-15T21:28:48.029Z\",\n  \"hypothesis\": \"8192 token budget \\u4e0b DS s015 \\u622a\\u65ad\\u7387\\u5e94\\u964d\\u81f3 <20%\\uff0caccuracy \\u5e94\\u9ad8\\u4e8e 4096 \\u7248\\u672c\\u7684 0.36\",\n  \"conclusion\": \"killed\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s015 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s015_8k.json --gpu cuda:0\\\"\",\n    \"server\": \"westd-22162\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"278390\",\n    \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_s015_8k.log\",\n    \"submitted_at\": \"2026-05-15T21:27:14.900Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 93.1,\n    \"gpu_hours\": 0.03\n  },\n  \"completed_at\": \"2026-05-15T21:28:48.029Z\"\n}\n\n--- acc_ds_s020_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:22:51.129Z\",\n  \"updated_at\": \"2026-05-15T21:29:16.495Z\",\n  \"hypothesis\": \"8192 token budget \\u4e0b DS s020 \\u622a\\u65ad\\u7387\\u5e94\\u4ece 64% \\u964d\\u81f3 <20%\\uff0caccuracy \\u5e94\\u9ad8\\u4e8e 4096 \\u7248\\u672c\\u7684 0.26\",\n  \"conclusion\": \"killed\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s020 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s020_8k.json --gpu cuda:0\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"planned_gpu\": \"cuda:0\"\n  },\n  \"completed_at\": \"2026-05-15T21:29:16.495Z\"\n}\n\n--- acc_ds_s025_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:22:52.297Z\",\n  \"updated_at\": \"2026-05-15T21:29:17.817Z\",\n  \"hypothesis\": \"8192 token budget \\u4e0b DS s025 \\u622a\\u65ad\\u7387\\u5e94\\u4ece 76% \\u964d\\u81f3 <20%\\uff0caccuracy \\u5e94\\u9ad8\\u4e8e 4096 \\u7248\\u672c\\u7684 0.08\",\n  \"conclusion\": \"killed\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s025 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s025_8k.json --gpu cuda:0\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"planned_gpu\": \"cuda:1\"\n  },\n  \"completed_at\": \"2026-05-15T21:29:17.817Z\"\n}\n\n--- acc_ds_s030_8k ---\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:22:53.748Z\",\n  \"updated_at\": \"2026-05-15T21:29:19.105Z\",\n  \"hypothesis\": \"8192 token budget \\u4e0b DS s030 \\u622a\\u65ad\\u7387\\u5e94\\u4ece\\u9ad8\\u622a\\u65ad\\u7387\\u964d\\u81f3 <20%\\uff0caccuracy \\u5e94\\u9ad8\\u4e8e 4096 \\u7248\\u672c\\u7684 0.10\",\n  \"conclusion\": \"killed\",\n  \"spec\": {\n    \"command\": \"python run_accuracy_eval.py --model /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s030 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s030_8k.json --gpu cuda:0\",\n    \"server\": \"westd-22162\",\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"seed\": 42,\n    \"planned_gpu\": \"cuda:0\"\n  },\n  \"completed_at\": \"2026-05-15T21:29:19.105Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54b345d0-ca6d-4b9b-ad13-2bef25792193",
+            "isSidechain": true,
+            "promptId": "0cdde43a-570b-47a6-89ed-38d7c45e1d23",
+            "agentId": "af7df5872daacdb8f",
+            "type": "user",
+            "uuid": "fcfc609a-8130-4e7d-95f0-2f530bc5e544",
+            "sourceToolAssistantUUID": "54b345d0-ca6d-4b9b-ad13-2bef25792193",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:36:09.055Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data extracted. Here are the formatted tables:\n\n---\n\n## Group E: GSM8K Compound Effect (C10)\n\n### E1. gsm8k_profiling_ds — DeepSeek, n=50, importance vs random, s=0.15–0.30\n\n**Status:** DONE | **Conclusion:** success | **Method:** median + Wilcoxon + bootstrap_median (B=10000)\n\n**Importance masking — median_gradient (phase II severity)**\n\n| Sparsity | median_gradient | CI_low | CI_high | wilcoxon_p |\n|----------|----------------|--------|---------|------------|\n| s015     | 0.241          | 0.077  | 0.478   | 0.0003     |\n| s020     | 0.740          | 0.314  | 1.119   | 0.0001     |\n| s025     | 1.992          | 0.933  | 2.820   | 0.0001     |\n| s030     | 4.682          | 2.121  | 10.557  | 0.0001     |\n\n**imp_rand_ratio (importance gradient / random gradient)**\n\n| s015 | s020 | s025 | s030 |\n|------|------|------|------|\n| 2.3× | 2.5× | 3.8× | 2.8× |\n\ndose_response_monotonic: **true**\n\n---\n\n### E2. gsm8k_profiling_qw — Qwen2.5-7B, n=50, importance, s=0.15–0.30\n\n**Status:** DONE | **Conclusion:** success | **Note:** All outputs truncated at 2047 tokens (50/50 problems); qw_rand_s030 = INVALID\n\n**Importance masking — median_gradient**\n\n| Sparsity | median_gradient |\n|----------|----------------|\n| s015     | 0.039          |\n| s020     | 0.158          |\n| s025     | 1.100          |\n| s030     | 2.092          |\n\n---\n\n### E3. gsm8k_qw_rand_s025_v2 — Qwen2.5-7B, random s=0.25, n=50 (bootstrap bug fix)\n\n**Status:** DONE | **Conclusion:** success | **Verdict:** PASS | n_bootstrap=1000\n\nInteraction Index (ii) by reasoning phase:\n\n| Phase        | n_segments | n_tokens | ppl_dense | ppl_attn  | ppl_kv   | ppl_both  | ii_mean | ii_median | ii_median_ci        | winsorized_mean | skewness | outlier_count |\n|--------------|------------|----------|-----------|-----------|----------|-----------|---------|-----------|---------------------|-----------------|----------|---------------|\n| high_sparsity | 216       | 9326     | 1.0695    | 5.9362    | 3.4316   | 15.7484   | 6.5954  | 0.7176    | [0.5959, 0.9347]    | 6.5046          | -4.6807  | 3             |\n| low_sparsity  | 252       | 29224    | 1.1972    | 11.5347   | 5.6038   | 21.6874   | 2.3883  | 1.4587    | [1.1121, 2.0451]    | 5.8911          | -7.6074  | 4             |\n| mid_sparsity  | 51        | 5954     | 1.2601    | 13.4132   | 6.4841   | 20.8714   | 4.5407  | 1.1272    | [0.6370, 3.3729]    | 6.3284          | -3.4048  | 1             |\n\n---\n\n### E4. gsm8k_qw_rand_s030_v2 — Qwen2.5-7B, random s=0.30, n=50 (bootstrap bug fix)\n\n**Status:** DONE | **Conclusion:** success | **Verdict:** PASS | n_bootstrap=1000\n\n| Phase        | n_segments | n_tokens | null_ratio | ppl_dense | ppl_attn  | ppl_kv   | ppl_both  | ii_mean | ii_median | ii_median_ci    | winsorized_mean | skewness | outlier_count |\n|--------------|------------|----------|------------|-----------|-----------|----------|-----------|---------|-----------|-----------------|-----------------|----------|---------------|\n| high_sparsity | 216       | 9326     | 2/50       | 1.0695    | 6.5613    | 4.4810   | 23.7486   | 11.83   | 2.31      | [1.64, 2.81]    | 10.55           | -2.29    | 7             |\n| low_sparsity  | 252       | 29224    | 5/50       | 1.1972    | 6.3283    | 8.5374   | 56.2304   | 31.26   | 5.20      | [3.95, 7.24]    | 16.35           | 7.57     | 4             |\n| mid_sparsity  | 51        | 5954     | 17/50      | 1.2601    | 18.6162   | 11.6625  | 47.9019   | 18.02   | 2.70      | [1.46, 8.77]    | 18.22           | 0.43     | 2             |\n\n---\n\n## Group F: QW Accuracy Dose Curve\n\nModel: Qwen2.5-7B-Instruct, dataset: MATH-500\n\n### Best/canonical accuracy per sparsity level\n\nThe registry has overlapping runs (n=50 batch1, n=100 combined, 8k reruns). The most reliable combined n=100 figures at 8k tokens:\n\n| exp_id                  | Sparsity | Status | Conclusion | Batch1 acc (8k) | Batch2 acc   | Combined acc (n=100) | Notes |\n|-------------------------|----------|--------|------------|-----------------|--------------|----------------------|-------|\n| acc_qw_dense_b1_8k      | dense    | DONE   | success    | 0.44 (22/50)    | 0.48 (24/50) | **0.46** (46/100)    | Corrected from old 0.32 |\n| acc_qw_dense_n100       | dense    | DONE   | success    | 0.32 (16/50)    | 0.48 (24/50) | 0.40 (40/100)        | Old 2k-token batch1 |\n| acc_qw_s015_b1_8k       | s015     | DONE   | success    | 0.46 (23/50)    | 0.38 (19/50) | **0.36** via n100    | batch1 8k confirmed |\n| acc_qw_s015_n100        | s015     | DONE   | success    | 0.34 (17/50)    | 0.38 (19/50) | 0.36 (36/100)        | |\n| acc_qw_s020_b1_8k       | s020     | DONE   | success    | 0.26 (13/50)    | 0.46 (23/50) | **0.36** (36/100)    | batch1 unchanged vs old |\n| acc_qw_s020_n100_b2_fix | s020     | DONE   | success    | 0.26 (13/50)    | 0.46 (23/50) | 0.36 (36/100)        | max_new_tokens=8192 fix |\n| acc_qw_s025_b1_8k       | s025     | DONE   | negative   | 0.32 (16/50)    | 0.34 (17/50) | **0.33** (33/100)    | |\n| acc_qw_s025_n100_b2_fix | s025     | DONE   | success    | 0.32 (16/50)    | 0.34 (17/50) | 0.33 (33/100)        | Note: batch1 still used 2k |\n| acc_qw_s030_b1_8k       | s030     | DONE   | negative   | 0.14 (7/50)     | 0.24 (12/50) | **0.19** (19/100)    | |\n| acc_qw_s030_n100        | s030     | DONE   | success    | 0.14 (7/50)     | 0.24 (12/50) | 0.19 (19/100)        | |\n\n**Early-run single-batch (n=50, 2k tokens, superseded):**\n\n| exp_id       | Sparsity | acc   | delta_vs_dense | null_rate | truncated_rate | heads_pruned |\n|--------------|----------|-------|----------------|-----------|----------------|--------------|\n| acc_qw_s020  | s020     | 0.26  | −0.06          | 0.04      | 0.04           | 140          |\n| acc_qw_s025  | s025     | 0.32  | 0.00           | 0.16      | 0.04           | 196          |\n\n**Dose curve summary (canonical combined n=100, 8k tokens):**\n\n| Sparsity | Combined acc | Delta vs dense |\n|----------|-------------|----------------|\n| dense    | 0.46        | —              |\n| s015     | 0.36        | −0.10          |\n| s020     | 0.36        | −0.10          |\n| s025     | 0.33        | −0.13          |\n| s030     | 0.19        | −0.27          |\n\n---\n\n## Group G: DS 8k Accuracy Dose Curve\n\nModel: DeepSeek-R1-Distill-Qwen-7B, n=50, MATH-500\n\n**Non-v2 versions (acc_ds_*_8k without _v2):** All killed immediately — no metrics.\n\n**V2 runs (valid data):**\n\n| exp_id              | Sparsity | Status | Conclusion | accuracy | correct/50 | truncation_rate | truncated_count | non_trunc_acc | avg_tokens | max_new_tokens | wall_time_s |\n|---------------------|----------|--------|------------|----------|------------|-----------------|-----------------|---------------|------------|----------------|-------------|\n| acc_ds_dense_8k_v2  | dense    | DONE   | success    | **0.74** | 37         | 0.16            | 8               | —             | 3126       | 8192           | 2882        |\n| acc_ds_s015_8k_v2   | s015     | DONE   | success    | **0.48** | 24         | 0.32            | 16              | 0.706 (24/34) | —          | 8192           | 3967        |\n| acc_ds_s020_8k_v2   | s020     | DONE   | success    | **0.30** | 15         | 0.56            | 28              | 0.682 (15/22) | —          | 8192           | 5549        |\n| acc_ds_s025_8k_v2   | s025     | DONE   | negative   | **0.08** | 4          | 0.76            | 38              | —             | 6343.8     | 8192           | 6827.8      |\n| acc_ds_s030_8k_v2   | s030     | —      | NOT FOUND  | —        | —          | —               | —               | —             | —          | —              | —           |\n\nAdditional s025 details: null_count=36, avg_tokens=6343.8 (model mostly hits 8k ceiling and fails to answer).\n\n**Dose curve summary:**\n\n| Sparsity | Accuracy | Delta vs dense | Truncation rate |\n|----------|----------|----------------|-----------------|\n| dense    | 0.74     | —              | 0.16            |\n| s015     | 0.48     | −0.26          | 0.32            |\n| s020     | 0.30     | −0.44          | 0.56            |\n| s025     | 0.08     | −0.66          | 0.76            |\n| s030     | missing  | —              | —               |\n\n**acc_ds_s030_8k_v2 does not exist in the registry.** The non-v2 acc_ds_s030_8k was killed with no metrics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcfc609a-8130-4e7d-95f0-2f530bc5e544",
+            "isSidechain": true,
+            "agentId": "af7df5872daacdb8f",
+            "requestId": "req_011Cb5PXNbvcADob635nHQz7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "59ebbe22-74f3-439d-ae27-d197d9962a1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "0508642d-7dc6-42de-9699-ceb42a8dd2da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01NAjxnnFHdmNmCaNkF8pbrL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6561,
+                "cache_read_input_tokens": 35320,
+                "output_tokens": 3270,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6561
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3270,
+                    "cache_read_input_tokens": 35320,
+                    "cache_creation_input_tokens": 6561,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6561,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-have-a-large-json-file-at-home-ubuntu-claude-account-3-projects-home-ubunt-copy-4.md"
+}

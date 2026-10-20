@@ -1,0 +1,1893 @@
+{
+  "schema_version": "1.0",
+  "session_id": "cb4bbefe539ead526ef5",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-14T22:52:47.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016TPBPwWJmiapUh8Tg1j56v",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        return \\\\\\\"medium\\\\\\\"\\\\n    return \\\\\\\"large\\\\\\\"\\\\n\\\\n\\\\n# ── Per-condition analysis ───────────────────────────────────────────\\\\n\\\\ndef analyze_condition(problems: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Median II per phase + phase gradient, all with bootstrap CI.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = {}\\\\n\\\\n    # Per-phase median II + CI\\\\n    for phase in PHASES:\\\\n        vals, _ = extract_phase_values(problems, phase)\\\\n        if len(vals) < 10:\\\\n            result[f\\\\\\\"phase_{phase}\\\\\\\"] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few ({len(vals)})\\\\\\\"}\\\\n            continue\\\\n        med = float(np.median(vals))\\\\n        ci_lo, ci_hi = bootstrap_ci_median(vals)\\\\n        result[f\\\\\\\"phase_{phase}\\\\\\\"] = {\\\\n            \\\\\\\"n\\\\\\\": len(vals),\\\\n            \\\\\\\"median_II\\\\\\\": med,\\\\n            \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n            \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n            \\\\\\\"mean_II\\\\\\\": float(np.mean(vals)),\\\\n            \\\\\\\"skewness\\\\\\\": float(stats.skew(vals)),\\\\n        }\\\\n\\\\n    # Phase gradient D = ii_low - ii_high\\\\n    diffs, pids = compute_phase_gradient(problems)\\\\n    n = len(diffs)\\\\n    if n < 10:\\\\n        result[\\\\\\\"gradient\\\\\\\"] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few ({n})\\\\\\\"}\\\\n        return result\\\\n\\\\n    med = float(np.median(diffs))\\\\n    ci_lo, ci_hi = bootstrap_ci_median(diffs)\\\\n    w_stat, w_p = wilcoxon_test(diffs)\\\\n\\\\n    result[\\\\\\\"gradient\\\\\\\"] = {\\\\n        \\\\\\\"n_valid\\\\\\\": n,\\\\n        \\\\\\\"median_D\\\\\\\": med,\\\\n        \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n        \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n        \\\\\\\"ci_width\\\\\\\": ci_hi - ci_lo,\\\\n        \\\\\\\"ci_crosses_zero\\\\\\\": ci_lo <= 0 <= ci_hi,\\\\n        \\\\\\\"mean_D\\\\\\\": float(np.mean(diffs)),\\\\n        \\\\\\\"std_D\\\\\\\": float(np.std(diffs, ddof=1)),\\\\n        \\\\\\\"skewness\\\\\\\": float(stats.skew(diffs)),\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": w_stat,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": w_p,\\\\n    }\\\\n\\\\n    return result\\\\n\\\\n\\\\n# ── Within-importance paired comparisons ─────────────────────────────\\\\n\\\\ndef within_importance_comparisons(all_data: dict, model_short: str,\\\\n                                  masking: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"d_z for all sparsity pairs within one (model, masking) family.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Build per-problem gradient maps\\\\n    gradient_map = {}  # sl -> {pid: D_value}\\\\n    for sl in SPARSITY_LABELS:\\\\n        key = f\\\\\\\"{model_short}_{masking}_{sl}\\\\\\\"\\\\n        if key not in all_data:\\\\n            continue\\\\n        problems = get_problems(all_data[key])\\\\n        if not problems:\\\\n            continue\\\\n        diffs, pids = compute_phase_gradient(problems)\\\\n        gradient_map[sl] = dict(zip(pids, diffs))\\\\n\\\\n    pairs = list(combinations(SPARSITY_LABELS, 2))\\\\n    results = {}\\\\n\\\\n    for sl_a, sl_b in pairs:\\\\n        pair_key = f\\\\\\\"{sl_a}_vs_{sl_b}\\\\\\\"\\\\n        if sl_a not in gradient_map or sl_b not in gradient_map:\\\\n            results[pair_key] = {\\\\\\\"error\\\\\\\": \\\\\\\"missing data\\\\\\\"}\\\\n            continue\\\\n\\\\n        map_a, map_b = gradient_map[sl_a], gradient_map[sl_b]\\\\n        common = sorted(set(map_a.keys()) & set(map_b.keys()))\\\\n\\\\n        if len(common) < 10:\\\\n            results[pair_key] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few paired ({len(common)})\\\\\\\"}\\\\n            continue\\\\n\\\\n        paired_diffs = np.array([map_a[pid] - map_b[pid] for pid in common])\\\\n        d_z = paired_cohens_dz(paired_diffs)\\\\n        w_stat, w_p = wilcoxon_test(paired_diffs)\\\\n        bonf_p = min(w_p * N_WITHIN_PAIRS, 1.0) if not np.isnan(w_p) else float(\\\\\\\"nan\\\\\\\")\\\\n        med = float(np.median(paired_diffs))\\\\n        ci_lo, ci_hi = bootstrap_ci_median(paired_diffs)\\\\n\\\\n        results[pair_key] = {\\\\n            \\\\\\\"n_paired\\\\\\\": len(common),\\\\n            \\\\\\\"d_z\\\\\\\": d_z,\\\\n            \\\\\\\"d_z_interpretation\\\\\\\": interpret_d(d_z),\\\\n            \\\\\\\"median_diff\\\\\\\": med,\\\\n            \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n            \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n            \\\\\\\"wilcoxon_stat\\\\\\\": w_stat,\\\\n            \\\\\\\"wilcoxon_p\\\\\\\": w_p,\\\\n            \\\\\\\"bonferroni_p\\\\\\\": bonf_p,\\\\n            \\\\\\\"bonferroni_significant\\\\\\\": bool(bonf_p < ALPHA) if not np.isnan(bonf_p) else False,\\\\n            \\\\\\\"bonferroni_n\\\\\\\": N_WITHIN_PAIRS,\\\\n            \\\\\\\"sparsity_a\\\\\\\": SPARSITY_VALUES[sl_a],\\\\n            \\\\\\\"sparsity_b\\\\\\\": SPARSITY_VALUES[sl_b],\\\\n        }\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ── Report formatting ────────────���───────────────────────────────────\\\\n\\\\ndef format_report(all_results: dict, within_imp: dict, metadata: dict) -> str:\\\\n    lines = []\\\\n    lines.append(\\\\\\\"# n=500 Analysis Report\\\\\\\")\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 5682 字符] ...\\\\n\\\\n{}\\\\n    missing = []\\\\n    for model_name, model_short in models.items():\\\\n        for masking in MASKING_TYPES:\\\\n            for sl in SPARSITY_LABELS:\\\\n                key = f\\\\\\\"{model_short}_{masking}_{sl}\\\\\\\"\\\\n                dirpath = result_dir(base, model_short, masking, sl, n500=n500)\\\\n                data = load_condition(dirpath)\\\\n                if data:\\\\n                    problems = get_problems(data)\\\\n                    n = len(problems) if problems else 0\\\\n                    all_data[key] = data\\\\n                    status = \\\\\\\"OK\\\\\\\" if n == expected_n else f\\\\\\\"n={n} (expected {expected_n})\\\\\\\"\\\\n                    print(f\\\\\\\"  {key}: {n} problems [{status}]\\\\\\\")\\\\n                else:\\\\n                    missing.append(key)\\\\n                    print(f\\\\\\\"  {key}: MISSING ({dirpath})\\\\\\\")\\\\n\\\\n    n_expected = len(models) * len(MASKING_TYPES) * len(SPARSITY_LABELS)\\\\n    print(f\\\\\\\"\\\\\\\\nLoaded {len(all_data)}/{n_expected} conditions\\\\\\\")\\\\n    if not all_data:\\\\n        print(\\\\\\\"ERROR: No data. Exiting.\\\\\\\")\\\\n        sys.exit(1)\\\\n    print()\\\\n\\\\n    # 2. Per-condition analysis\\\\n    all_results = {}\\\\n    for key, data in all_data.items():\\\\n        problems = get_problems(data)\\\\n        if problems:\\\\n            all_results[key] = analyze_condition(problems)\\\\n        else:\\\\n            all_results[key] = {\\\\\\\"error\\\\\\\": \\\\\\\"no per_problem_ii\\\\\\\"}\\\\n\\\\n    # Print per-condition summary\\\\n    print(\\\\\\\"Per-condition median gradient D = ii_low − ii_high:\\\\\\\")\\\\n    for key, r in all_results.items():\\\\n        g = r.get(\\\\\\\"gradient\\\\\\\", {})\\\\n        if \\\\\\\"error\\\\\\\" in g:\\\\n            print(f\\\\\\\"  {key}: {g['error']}\\\\\\\")\\\\n        else:\\\\n            zero_flag = \\\\\\\" [CI crosses 0]\\\\\\\" if g[\\\\\\\"ci_crosses_zero\\\\\\\"] else \\\\\\\"\\\\\\\"\\\\n            print(f\\\\\\\"  {key}: median={g['median_D']:+.4f} \\\\\\\"\\\\n                  f\\\\\\\"CI=[{g['ci_low']:.4f}, {g['ci_high']:.4f}]{zero_flag}\\\\\\\")\\\\n    print()\\\\n\\\\n    # 3. Within-importance paired comparisons\\\\n    within_imp = {}\\\\n    for model_name, model_short in models.items():\\\\n        for masking in MASKING_TYPES:\\\\n            fam = f\\\\\\\"{model_name}_{masking}\\\\\\\"\\\\n            within_imp[fam] = within_importance_comparisons(\\\\n                all_data, model_short, masking\\\\n            )\\\\n\\\\n    # Print within-importance summary\\\\n    print(\\\\\\\"Within-importance d_z (Bonferroni-corrected, n_pairs=6):\\\\\\\")\\\\n    for fam, comps in within_imp.items():\\\\n        for pair, c in comps.items():\\\\n            if \\\\\\\"error\\\\\\\" in c:\\\\n                print(f\\\\\\\"  {fam} {pair}: {c['error']}\\\\\\\")\\\\n            else:\\\\n                sig = \\\\\\\"*\\\\\\\" if c[\\\\\\\"bonferroni_significant\\\\\\\"] else \\\\\\\"ns\\\\\\\"\\\\n                print(f\\\\\\\"  {fam} {pair}: d_z={c['d_z']:+.3f} \\\\\\\"\\\\n                      f\\\\\\\"({c['d_z_interpretation']}), \\\\\\\"\\\\n                      f\\\\\\\"Bonf_p={c['bonferroni_p']:.4e} [{sig}]\\\\\\\")\\\\n    print()\\\\n\\\\n    # 4. Save outputs\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    suffix = \\\\\\\"_dryrun\\\\\\\" if args.n50_only else \\\\\\\"\\\\\\\"\\\\n    if args.model:\\\\n        suffix = f\\\\\\\"_{args.model}{suffix}\\\\\\\"\\\\n\\\\n    metadata = {\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"n500_phase_gated_compound_sparsity\\\\\\\",\\\\n        \\\\\\\"data_source\\\\\\\": data_tag,\\\\n        \\\\\\\"expected_n\\\\\\\": expected_n,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": B_BOOTSTRAP,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"alpha\\\\\\\": ALPHA,\\\\n        \\\\\\\"primary_metric\\\\\\\": \\\\\\\"median phase gradient D = ii_low - ii_high\\\\\\\",\\\\n        \\\\\\\"ii_formula\\\\\\\": \\\\\\\"II = compound - (single1 + single2 - dense)\\\\\\\",\\\\n        \\\\\\\"d_z_scope\\\\\\\": \\\\\\\"within-importance only (same masking, different sparsity)\\\\\\\",\\\\n        \\\\\\\"bonferroni_n_per_family\\\\\\\": N_WITHIN_PAIRS,\\\\n        \\\\\\\"missing_conditions\\\\\\\": missing,\\\\n        \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"metadata\\\\\\\": metadata,\\\\n        \\\\\\\"conditions\\\\\\\": _sanitize(all_results),\\\\n        \\\\\\\"within_importance_dz\\\\\\\": _sanitize(within_imp),\\\\n    }\\\\n\\\\n    results_path = out_dir / f\\\\\\\"n500_analysis{suffix}.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"Saved: {results_path}\\\\\\\")\\\\n\\\\n    report = format_report(all_results, within_imp, metadata)\\\\n    report_path = out_dir / f\\\\\\\"n500_report{suffix}.md\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report)\\\\n    print(f\\\\\\\"Saved: {report_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "baf05b33-35f3-47d8-a539-37ded5066c05",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "9d9290ab-5682-40f1-9246-3c11628facc9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        return \\\\\\\"medium\\\\\\\"\\\\n    return \\\\\\\"large\\\\\\\"\\\\n\\\\n\\\\n# ── Per-condition analysis ───────────────────────────────────────────\\\\n\\\\ndef analyze_condition(problems: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Median II per phase + phase gradient, all with bootstrap CI.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = {}\\\\n\\\\n    # Per-phase median II + CI\\\\n    for phase in PHASES:\\\\n        vals, _ = extract_phase_values(problems, phase)\\\\n        if len(vals) < 10:\\\\n            result[f\\\\\\\"phase_{phase}\\\\\\\"] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few ({len(vals)})\\\\\\\"}\\\\n            continue\\\\n        med = float(np.median(vals))\\\\n        ci_lo, ci_hi = bootstrap_ci_median(vals)\\\\n        result[f\\\\\\\"phase_{phase}\\\\\\\"] = {\\\\n            \\\\\\\"n\\\\\\\": len(vals),\\\\n            \\\\\\\"median_II\\\\\\\": med,\\\\n            \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n            \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n            \\\\\\\"mean_II\\\\\\\": float(np.mean(vals)),\\\\n            \\\\\\\"skewness\\\\\\\": float(stats.skew(vals)),\\\\n        }\\\\n\\\\n    # Phase gradient D = ii_low - ii_high\\\\n    diffs, pids = compute_phase_gradient(problems)\\\\n    n = len(diffs)\\\\n    if n < 10:\\\\n        result[\\\\\\\"gradient\\\\\\\"] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few ({n})\\\\\\\"}\\\\n        return result\\\\n\\\\n    med = float(np.median(diffs))\\\\n    ci_lo, ci_hi = bootstrap_ci_median(diffs)\\\\n    w_stat, w_p = wilcoxon_test(diffs)\\\\n\\\\n    result[\\\\\\\"gradient\\\\\\\"] = {\\\\n        \\\\\\\"n_valid\\\\\\\": n,\\\\n        \\\\\\\"median_D\\\\\\\": med,\\\\n        \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n        \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n        \\\\\\\"ci_width\\\\\\\": ci_hi - ci_lo,\\\\n        \\\\\\\"ci_crosses_zero\\\\\\\": ci_lo <= 0 <= ci_hi,\\\\n        \\\\\\\"mean_D\\\\\\\": float(np.mean(diffs)),\\\\n        \\\\\\\"std_D\\\\\\\": float(np.std(diffs, ddof=1)),\\\\n        \\\\\\\"skewness\\\\\\\": float(stats.skew(diffs)),\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": w_stat,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": w_p,\\\\n    }\\\\n\\\\n    return result\\\\n\\\\n\\\\n# ── Within-importance paired comparisons ─────────────────────────────\\\\n\\\\ndef within_importance_comparisons(all_data: dict, model_short: str,\\\\n                                  masking: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"d_z for all sparsity pairs within one (model, masking) family.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Build per-problem gradient maps\\\\n    gradient_map = {}  # sl -> {pid: D_value}\\\\n    for sl in SPARSITY_LABELS:\\\\n        key = f\\\\\\\"{model_short}_{masking}_{sl}\\\\\\\"\\\\n        if key not in all_data:\\\\n            continue\\\\n        problems = get_problems(all_data[key])\\\\n        if not problems:\\\\n            continue\\\\n        diffs, pids = compute_phase_gradient(problems)\\\\n        gradient_map[sl] = dict(zip(pids, diffs))\\\\n\\\\n    pairs = list(combinations(SPARSITY_LABELS, 2))\\\\n    results = {}\\\\n\\\\n    for sl_a, sl_b in pairs:\\\\n        pair_key = f\\\\\\\"{sl_a}_vs_{sl_b}\\\\\\\"\\\\n        if sl_a not in gradient_map or sl_b not in gradient_map:\\\\n            results[pair_key] = {\\\\\\\"error\\\\\\\": \\\\\\\"missing data\\\\\\\"}\\\\n            continue\\\\n\\\\n        map_a, map_b = gradient_map[sl_a], gradient_map[sl_b]\\\\n        common = sorted(set(map_a.keys()) & set(map_b.keys()))\\\\n\\\\n        if len(common) < 10:\\\\n            results[pair_key] = {\\\\\\\"error\\\\\\\": f\\\\\\\"too few paired ({len(common)})\\\\\\\"}\\\\n            continue\\\\n\\\\n        paired_diffs = np.array([map_a[pid] - map_b[pid] for pid in common])\\\\n        d_z = paired_cohens_dz(paired_diffs)\\\\n        w_stat, w_p = wilcoxon_test(paired_diffs)\\\\n        bonf_p = min(w_p * N_WITHIN_PAIRS, 1.0) if not np.isnan(w_p) else float(\\\\\\\"nan\\\\\\\")\\\\n        med = float(np.median(paired_diffs))\\\\n        ci_lo, ci_hi = bootstrap_ci_median(paired_diffs)\\\\n\\\\n        results[pair_key] = {\\\\n            \\\\\\\"n_paired\\\\\\\": len(common),\\\\n            \\\\\\\"d_z\\\\\\\": d_z,\\\\n            \\\\\\\"d_z_interpretation\\\\\\\": interpret_d(d_z),\\\\n            \\\\\\\"median_diff\\\\\\\": med,\\\\n            \\\\\\\"ci_low\\\\\\\": ci_lo,\\\\n            \\\\\\\"ci_high\\\\\\\": ci_hi,\\\\n            \\\\\\\"wilcoxon_stat\\\\\\\": w_stat,\\\\n            \\\\\\\"wilcoxon_p\\\\\\\": w_p,\\\\n            \\\\\\\"bonferroni_p\\\\\\\": bonf_p,\\\\n            \\\\\\\"bonferroni_significant\\\\\\\": bool(bonf_p < ALPHA) if not np.isnan(bonf_p) else False,\\\\n            \\\\\\\"bonferroni_n\\\\\\\": N_WITHIN_PAIRS,\\\\n            \\\\\\\"sparsity_a\\\\\\\": SPARSITY_VALUES[sl_a],\\\\n            \\\\\\\"sparsity_b\\\\\\\": SPARSITY_VALUES[sl_b],\\\\n        }\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ── Report formatting ────────────���───────────────────────────────────\\\\n\\\\ndef format_report(all_results: dict, within_imp: dict, metadata: dict) -> str:\\\\n    lines = []\\\\n    lines.append(\\\\\\\"# n=500 Analysis Report\\\\\\\")\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 5682 字符] ...\\\\n\\\\n{}\\\\n    missing = []\\\\n    for model_name, model_short in models.items():\\\\n        for masking in MASKING_TYPES:\\\\n            for sl in SPARSITY_LABELS:\\\\n                key = f\\\\\\\"{model_short}_{masking}_{sl}\\\\\\\"\\\\n                dirpath = result_dir(base, model_short, masking, sl, n500=n500)\\\\n                data = load_condition(dirpath)\\\\n                if data:\\\\n                    problems = get_problems(data)\\\\n                    n = len(problems) if problems else 0\\\\n                    all_data[key] = data\\\\n                    status = \\\\\\\"OK\\\\\\\" if n == expected_n else f\\\\\\\"n={n} (expected {expected_n})\\\\\\\"\\\\n                    print(f\\\\\\\"  {key}: {n} problems [{status}]\\\\\\\")\\\\n                else:\\\\n                    missing.append(key)\\\\n                    print(f\\\\\\\"  {key}: MISSING ({dirpath})\\\\\\\")\\\\n\\\\n    n_expected = len(models) * len(MASKING_TYPES) * len(SPARSITY_LABELS)\\\\n    print(f\\\\\\\"\\\\\\\\nLoaded {len(all_data)}/{n_expected} conditions\\\\\\\")\\\\n    if not all_data:\\\\n        print(\\\\\\\"ERROR: No data. Exiting.\\\\\\\")\\\\n        sys.exit(1)\\\\n    print()\\\\n\\\\n    # 2. Per-condition analysis\\\\n    all_results = {}\\\\n    for key, data in all_data.items():\\\\n        problems = get_problems(data)\\\\n        if problems:\\\\n            all_results[key] = analyze_condition(problems)\\\\n        else:\\\\n            all_results[key] = {\\\\\\\"error\\\\\\\": \\\\\\\"no per_problem_ii\\\\\\\"}\\\\n\\\\n    # Print per-condition summary\\\\n    print(\\\\\\\"Per-condition median gradient D = ii_low − ii_high:\\\\\\\")\\\\n    for key, r in all_results.items():\\\\n        g = r.get(\\\\\\\"gradient\\\\\\\", {})\\\\n        if \\\\\\\"error\\\\\\\" in g:\\\\n            print(f\\\\\\\"  {key}: {g['error']}\\\\\\\")\\\\n        else:\\\\n            zero_flag = \\\\\\\" [CI crosses 0]\\\\\\\" if g[\\\\\\\"ci_crosses_zero\\\\\\\"] else \\\\\\\"\\\\\\\"\\\\n            print(f\\\\\\\"  {key}: median={g['median_D']:+.4f} \\\\\\\"\\\\n                  f\\\\\\\"CI=[{g['ci_low']:.4f}, {g['ci_high']:.4f}]{zero_flag}\\\\\\\")\\\\n    print()\\\\n\\\\n    # 3. Within-importance paired comparisons\\\\n    within_imp = {}\\\\n    for model_name, model_short in models.items():\\\\n        for masking in MASKING_TYPES:\\\\n            fam = f\\\\\\\"{model_name}_{masking}\\\\\\\"\\\\n            within_imp[fam] = within_importance_comparisons(\\\\n                all_data, model_short, masking\\\\n            )\\\\n\\\\n    # Print within-importance summary\\\\n    print(\\\\\\\"Within-importance d_z (Bonferroni-corrected, n_pairs=6):\\\\\\\")\\\\n    for fam, comps in within_imp.items():\\\\n        for pair, c in comps.items():\\\\n            if \\\\\\\"error\\\\\\\" in c:\\\\n                print(f\\\\\\\"  {fam} {pair}: {c['error']}\\\\\\\")\\\\n            else:\\\\n                sig = \\\\\\\"*\\\\\\\" if c[\\\\\\\"bonferroni_significant\\\\\\\"] else \\\\\\\"ns\\\\\\\"\\\\n                print(f\\\\\\\"  {fam} {pair}: d_z={c['d_z']:+.3f} \\\\\\\"\\\\n                      f\\\\\\\"({c['d_z_interpretation']}), \\\\\\\"\\\\n                      f\\\\\\\"Bonf_p={c['bonferroni_p']:.4e} [{sig}]\\\\\\\")\\\\n    print()\\\\n\\\\n    # 4. Save outputs\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    suffix = \\\\\\\"_dryrun\\\\\\\" if args.n50_only else \\\\\\\"\\\\\\\"\\\\n    if args.model:\\\\n        suffix = f\\\\\\\"_{args.model}{suffix}\\\\\\\"\\\\n\\\\n    metadata = {\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"n500_phase_gated_compound_sparsity\\\\\\\",\\\\n        \\\\\\\"data_source\\\\\\\": data_tag,\\\\n        \\\\\\\"expected_n\\\\\\\": expected_n,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": B_BOOTSTRAP,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"alpha\\\\\\\": ALPHA,\\\\n        \\\\\\\"primary_metric\\\\\\\": \\\\\\\"median phase gradient D = ii_low - ii_high\\\\\\\",\\\\n        \\\\\\\"ii_formula\\\\\\\": \\\\\\\"II = compound - (single1 + single2 - dense)\\\\\\\",\\\\n        \\\\\\\"d_z_scope\\\\\\\": \\\\\\\"within-importance only (same masking, different sparsity)\\\\\\\",\\\\n        \\\\\\\"bonferroni_n_per_family\\\\\\\": N_WITHIN_PAIRS,\\\\n        \\\\\\\"missing_conditions\\\\\\\": missing,\\\\n        \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"metadata\\\\\\\": metadata,\\\\n        \\\\\\\"conditions\\\\\\\": _sanitize(all_results),\\\\n        \\\\\\\"within_importance_dz\\\\\\\": _sanitize(within_imp),\\\\n    }\\\\n\\\\n    results_path = out_dir / f\\\\\\\"n500_analysis{suffix}.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"Saved: {results_path}\\\\\\\")\\\\n\\\\n    report = format_report(all_results, within_imp, metadata)\\\\n    report_path = out_dir / f\\\\\\\"n500_report{suffix}.md\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report)\\\\n    print(f\\\\\\\"Saved: {report_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"        return \\\"medium\\\"\\n    return \\\"large\\\"\\n\\n\\n# ── Per-condition analysis ───────────────────────────────────────────\\n\\ndef analyze_condition(problems: List[dict]) -> dict:\\n    \\\"\\\"\\\"Median II per phase + phase gradient, all with bootstrap CI.\\\"\\\"\\\"\\n    result = {}\\n\\n    # Per-phase median II + CI\\n    for phase in PHASES:\\n        vals, _ = extract_phase_values(problems, phase)\\n        if len(vals) < 10:\\n            result[f\\\"phase_{phase}\\\"] = {\\\"error\\\": f\\\"too few ({len(vals)})\\\"}\\n            continue\\n        med = float(np.median(vals))\\n        ci_lo, ci_hi = bootstrap_ci_median(vals)\\n        result[f\\\"phase_{phase}\\\"] = {\\n            \\\"n\\\": len(vals),\\n            \\\"median_II\\\": med,\\n            \\\"ci_low\\\": ci_lo,\\n            \\\"ci_high\\\": ci_hi,\\n            \\\"mean_II\\\": float(np.mean(vals)),\\n            \\\"skewness\\\": float(stats.skew(vals)),\\n        }\\n\\n    # Phase gradient D = ii_low - ii_high\\n    diffs, pids = compute_phase_gradient(problems)\\n    n = len(diffs)\\n    if n < 10:\\n        result[\\\"gradient\\\"] = {\\\"error\\\": f\\\"too few ({n})\\\"}\\n        return result\\n\\n    med = float(np.median(diffs))\\n    ci_lo, ci_hi = bootstrap_ci_median(diffs)\\n    w_stat, w_p = wilcoxon_test(diffs)\\n\\n    result[\\\"gradient\\\"] = {\\n        \\\"n_valid\\\": n,\\n        \\\"median_D\\\": med,\\n        \\\"ci_low\\\": ci_lo,\\n        \\\"ci_high\\\": ci_hi,\\n        \\\"ci_width\\\": ci_hi - ci_lo,\\n        \\\"ci_crosses_zero\\\": ci_lo <= 0 <= ci_hi,\\n        \\\"mean_D\\\": float(np.mean(diffs)),\\n        \\\"std_D\\\": float(np.std(diffs, ddof=1)),\\n        \\\"skewness\\\": float(stats.skew(diffs)),\\n        \\\"wilcoxon_stat\\\": w_stat,\\n        \\\"wilcoxon_p\\\": w_p,\\n    }\\n\\n    return result\\n\\n\\n# ── Within-importance paired comparisons ─────────────────────────────\\n\\ndef within_importance_comparisons(all_data: dict, model_short: str,\\n                                  masking: str) -> dict:\\n    \\\"\\\"\\\"d_z for all sparsity pairs within one (model, masking) family.\\\"\\\"\\\"\\n    # Build per-problem gradient maps\\n    gradient_map = {}  # sl -> {pid: D_value}\\n    for sl in SPARSITY_LABELS:\\n        key = f\\\"{model_short}_{masking}_{sl}\\\"\\n        if key not in all_data:\\n            continue\\n        problems = get_problems(all_data[key])\\n        if not problems:\\n            continue\\n        diffs, pids = compute_phase_gradient(problems)\\n        gradient_map[sl] = dict(zip(pids, diffs))\\n\\n    pairs = list(combinations(SPARSITY_LABELS, 2))\\n    results = {}\\n\\n    for sl_a, sl_b in pairs:\\n        pair_key = f\\\"{sl_a}_vs_{sl_b}\\\"\\n        if sl_a not in gradient_map or sl_b not in gradient_map:\\n            results[pair_key] = {\\\"error\\\": \\\"missing data\\\"}\\n            continue\\n\\n        map_a, map_b = gradient_map[sl_a], gradient_map[sl_b]\\n        common = sorted(set(map_a.keys()) & set(map_b.keys()))\\n\\n        if len(common) < 10:\\n            results[pair_key] = {\\\"error\\\": f\\\"too few paired ({len(common)})\\\"}\\n            continue\\n\\n        paired_diffs = np.array([map_a[pid] - map_b[pid] for pid in common])\\n        d_z = paired_cohens_dz(paired_diffs)\\n        w_stat, w_p = wilcoxon_test(paired_diffs)\\n        bonf_p = min(w_p * N_WITHIN_PAIRS, 1.0) if not np.isnan(w_p) else float(\\\"nan\\\")\\n        med = float(np.median(paired_diffs))\\n        ci_lo, ci_hi = bootstrap_ci_median(paired_diffs)\\n\\n        results[pair_key] = {\\n            \\\"n_paired\\\": len(common),\\n            \\\"d_z\\\": d_z,\\n            \\\"d_z_interpretation\\\": interpret_d(d_z),\\n            \\\"median_diff\\\": med,\\n            \\\"ci_low\\\": ci_lo,\\n            \\\"ci_high\\\": ci_hi,\\n            \\\"wilcoxon_stat\\\": w_stat,\\n            \\\"wilcoxon_p\\\": w_p,\\n            \\\"bonferroni_p\\\": bonf_p,\\n            \\\"bonferroni_significant\\\": bool(bonf_p < ALPHA) if not np.isnan(bonf_p) else False,\\n            \\\"bonferroni_n\\\": N_WITHIN_PAIRS,\\n            \\\"sparsity_a\\\": SPARSITY_VALUES[sl_a],\\n            \\\"sparsity_b\\\": SPARSITY_VALUES[sl_b],\\n        }\\n\\n    return results\\n\\n\\n# ── Report formatting ────────────���───────────────────────────────────\\n\\ndef format_report(all_results: dict, within_imp: dict, metadata: dict) -> str:\\n    lines = []\\n    lines.append(\\\"# n=500 Analysis Report\\\")\\n   \\n\\n... [截断: 输出过长，省略 5682 字符] ...\\n\\n{}\\n    missing = []\\n    for model_name, model_short in models.items():\\n        for masking in MASKING_TYPES:\\n            for sl in SPARSITY_LABELS:\\n                key = f\\\"{model_short}_{masking}_{sl}\\\"\\n                dirpath = result_dir(base, model_short, masking, sl, n500=n500)\\n                data = load_condition(dirpath)\\n                if data:\\n                    problems = get_problems(data)\\n                    n = len(problems) if problems else 0\\n                    all_data[key] = data\\n                    status = \\\"OK\\\" if n == expected_n else f\\\"n={n} (expected {expected_n})\\\"\\n                    print(f\\\"  {key}: {n} problems [{status}]\\\")\\n                else:\\n                    missing.append(key)\\n                    print(f\\\"  {key}: MISSING ({dirpath})\\\")\\n\\n    n_expected = len(models) * len(MASKING_TYPES) * len(SPARSITY_LABELS)\\n    print(f\\\"\\\\nLoaded {len(all_data)}/{n_expected} conditions\\\")\\n    if not all_data:\\n        print(\\\"ERROR: No data. Exiting.\\\")\\n        sys.exit(1)\\n    print()\\n\\n    # 2. Per-condition analysis\\n    all_results = {}\\n    for key, data in all_data.items():\\n        problems = get_problems(data)\\n        if problems:\\n            all_results[key] = analyze_condition(problems)\\n        else:\\n            all_results[key] = {\\\"error\\\": \\\"no per_problem_ii\\\"}\\n\\n    # Print per-condition summary\\n    print(\\\"Per-condition median gradient D = ii_low − ii_high:\\\")\\n    for key, r in all_results.items():\\n        g = r.get(\\\"gradient\\\", {})\\n        if \\\"error\\\" in g:\\n            print(f\\\"  {key}: {g['error']}\\\")\\n        else:\\n            zero_flag = \\\" [CI crosses 0]\\\" if g[\\\"ci_crosses_zero\\\"] else \\\"\\\"\\n            print(f\\\"  {key}: median={g['median_D']:+.4f} \\\"\\n                  f\\\"CI=[{g['ci_low']:.4f}, {g['ci_high']:.4f}]{zero_flag}\\\")\\n    print()\\n\\n    # 3. Within-importance paired comparisons\\n    within_imp = {}\\n    for model_name, model_short in models.items():\\n        for masking in MASKING_TYPES:\\n            fam = f\\\"{model_name}_{masking}\\\"\\n            within_imp[fam] = within_importance_comparisons(\\n                all_data, model_short, masking\\n            )\\n\\n    # Print within-importance summary\\n    print(\\\"Within-importance d_z (Bonferroni-corrected, n_pairs=6):\\\")\\n    for fam, comps in within_imp.items():\\n        for pair, c in comps.items():\\n            if \\\"error\\\" in c:\\n                print(f\\\"  {fam} {pair}: {c['error']}\\\")\\n            else:\\n                sig = \\\"*\\\" if c[\\\"bonferroni_significant\\\"] else \\\"ns\\\"\\n                print(f\\\"  {fam} {pair}: d_z={c['d_z']:+.3f} \\\"\\n                      f\\\"({c['d_z_interpretation']}), \\\"\\n                      f\\\"Bonf_p={c['bonferroni_p']:.4e} [{sig}]\\\")\\n    print()\\n\\n    # 4. Save outputs\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    suffix = \\\"_dryrun\\\" if args.n50_only else \\\"\\\"\\n    if args.model:\\n        suffix = f\\\"_{args.model}{suffix}\\\"\\n\\n    metadata = {\\n        \\\"analysis\\\": \\\"n500_phase_gated_compound_sparsity\\\",\\n        \\\"data_source\\\": data_tag,\\n        \\\"expected_n\\\": expected_n,\\n        \\\"n_bootstrap\\\": B_BOOTSTRAP,\\n        \\\"seed\\\": SEED,\\n        \\\"alpha\\\": ALPHA,\\n        \\\"primary_metric\\\": \\\"median phase gradient D = ii_low - ii_high\\\",\\n        \\\"ii_formula\\\": \\\"II = compound - (single1 + single2 - dense)\\\",\\n        \\\"d_z_scope\\\": \\\"within-importance only (same masking, different sparsity)\\\",\\n        \\\"bonferroni_n_per_family\\\": N_WITHIN_PAIRS,\\n        \\\"missing_conditions\\\": missing,\\n        \\\"timestamp\\\": datetime.now().isoformat(),\\n    }\\n\\n    output = {\\n        \\\"metadata\\\": metadata,\\n        \\\"conditions\\\": _sanitize(all_results),\\n        \\\"within_importance_dz\\\": _sanitize(within_imp),\\n    }\\n\\n    results_path = out_dir / f\\\"n500_analysis{suffix}.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"Saved: {results_path}\\\")\\n\\n    report = format_report(all_results, within_imp, metadata)\\n    report_path = out_dir / f\\\"n500_report{suffix}.md\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved: {report_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "baf05b33-35f3-47d8-a539-37ded5066c05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9d9290ab-5682-40f1-9246-3c11628facc9",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit n=500 analysis pipeline code readiness",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T22:52:56.948Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to apply multiple fixes to `analyze_n500.py`:\n\n1. Add `midphase_null_rate` function (after `interpret_d` at line ~133)\n2. Integrate it into `analyze_condition` \n3. Fix D059: change the loop at line 424 to only compute d_z for importance, and use Wilcoxon-only for random\n\nLet me also re-read the current exact line numbers to get the right sed commands.\n\nI'll use `ssh_execute` with Python to make the edits since they're complex.\n\n\nWriting the patch script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d9290ab-5682-40f1-9246-3c11628facc9",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HKbrr9ZNB48N3mp71B",
+            "type": "assistant",
+            "uuid": "72f49097-a9bb-4f49-abd1-fd5381c13daa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013QMJyvaiXvjYcxiWCHHqhb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3583,
+                "cache_read_input_tokens": 85712,
+                "output_tokens": 1372,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3583,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1372,
+                    "cache_read_input_tokens": 85712,
+                    "cache_creation_input_tokens": 3583,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3583
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T22:53:10.050Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NsDzrGv6CHtpw6A6hnndNy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && python3 -c \"\nimport re\n\nwith open('analyze_n500.py', 'r') as f:\n    content = f.read()\n\n# Fix 2: Add midphase_null_rate function after interpret_d\nold_marker = '''    return \\\"large\\\"\n\n\n# ── Per-condition analysis'''\n\nnew_marker = '''    return \\\"large\\\"\n\n\ndef midphase_null_rate(problems):\n    \\\"\\\"\\\"Per-phase effective sample size (W5).\\\"\\\"\\\"\n    total = len(problems)\n    result = {\\\"n_total\\\": total}\n    for phase in PHASES:\n        null_count = sum(1 for p in problems if p.get(f\\\"ii_{phase}\\\") is None)\n        effective = total - null_count\n        result[f\\\"null_{phase}\\\"] = null_count\n        result[f\\\"null_{phase}_rate\\\"] = round(null_count / total, 4) if total > 0 else None\n        result[f\\\"effective_n_{phase}\\\"] = effective\n    return result\n\n\n# ── Per-condition analysis'''\n\ncontent = content.replace(old_marker, new_marker)\n\n# Fix 2b: Add null_rate call into analyze_condition, before gradient section\nold_gradient = '''    # Phase gradient D = ii_low - ii_high\n    diffs, pids = compute_phase_gradient(problems)'''\n\nnew_gradient = '''    # Per-phase null rates (W5)\n    result[\\\"midphase_null\\\"] = midphase_null_rate(problems)\n\n    # Phase gradient D = ii_low - ii_high\n    diffs, pids = compute_phase_gradient(problems)'''\n\ncontent = content.replace(old_gradient, new_gradient)\n\n# Fix 3: D059 - change the within-importance loop to only run for imp\nold_loop = '''    # 3. Within-importance paired comparisons\n    within_imp = {}\n    for model_name, model_short in models.items():\n        for masking in MASKING_TYPES:\n            fam = f\\\"{model_name}_{masking}\\\"\n            within_imp[fam] = within_importance_comparisons(\n                all_data, model_short, masking\n            )\n\n    # Print within-importance summary\n    print(\\\"Within-importance d_z (Bonferroni-corrected, n_pairs=6):\\\")\n    for fam, comps in within_imp.items():\n        for pair, c in comps.items():\n            if \\\"error\\\" in c:\n                print(f\\\"  {fam} {pair}: {c['error']}\\\")\n            else:\n                sig = \\\"*\\\" if c[\\\"bonferroni_significant\\\"] else \\\"ns\\\"\n                print(f\\\"  {fam} {pair}: d_z={c['d_z']:+.3f} \\\"\n                      f\\\"({c['d_z_interpretation']}), \\\"\n                      f\\\"Bonf_p={c['bonferroni_p']:.4e} [{sig}]\\\")\n    print()'''\n\nnew_loop = '''    # 3. Within-importance paired comparisons (D059: d_z for imp only)\n    within_imp = {}\n    for model_name, model_short in models.items():\n        fam = f\\\"{model_name}_imp\\\"\n        within_imp[fam] = within_importance_comparisons(\n            all_data, model_short, \\\"imp\\\"\n        )\n\n    # Print within-importance summary\n    print(\\\"Within-importance d_z (D059, Bonferroni-corrected, n_pairs=6):\\\")\n    for fam, comps in within_imp.items():\n        for pair, c in comps.items():\n            if \\\"error\\\" in c:\n                print(f\\\"  {fam} {pair}: {c['error']}\\\")\n            else:\n                sig = \\\"*\\\" if c[\\\"bonferroni_significant\\\"] else \\\"ns\\\"\n                print(f\\\"  {fam} {pair}: d_z={c['d_z']:+.3f} \\\"\n                      f\\\"({c['d_z_interpretation']}), \\\"\n                      f\\\"Bonf_p={c['bonferroni_p']:.4e} [{sig}]\\\")\n    print()'''\n\ncontent = content.replace(old_loop, new_loop)\n\nwith open('analyze_n500.py', 'w') as f:\n    f.write(content)\n\nprint('OK: analyze_n500.py patched')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72f49097-a9bb-4f49-abd1-fd5381c13daa",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HKbrr9ZNB48N3mp71B",
+            "type": "assistant",
+            "uuid": "f3611a51-7b27-4c37-b61a-65bbe9b3be45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013QMJyvaiXvjYcxiWCHHqhb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3583,
+                "cache_read_input_tokens": 85712,
+                "output_tokens": 1372,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3583,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1372,
+                    "cache_read_input_tokens": 85712,
+                    "cache_creation_input_tokens": 3583,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3583
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T22:53:10.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NsDzrGv6CHtpw6A6hnndNy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: analyze_n500.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3611a51-7b27-4c37-b61a-65bbe9b3be45",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "ee6ea7c9-d5f2-4c1a-b3f5-ef02d35f06a0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: analyze_n500.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: analyze_n500.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f3611a51-7b27-4c37-b61a-65bbe9b3be45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-14T22:53:16.070Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix 2+3 done. Now fix 4: update `midphase_null_rate` in `analyze_n500_unified.py` to report all per-phase null rates."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee6ea7c9-d5f2-4c1a-b3f5-ef02d35f06a0",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HMJMCcA8fFF5WKJmfW",
+            "type": "assistant",
+            "uuid": "c09aaed3-4336-4f26-bab5-4284ac572e05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3G4NyiSkp3YYNk9E6W1Cn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1456,
+                "cache_read_input_tokens": 89295,
+                "output_tokens": 767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1456,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 767,
+                    "cache_read_input_tokens": 89295,
+                    "cache_creation_input_tokens": 1456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1456
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-14T22:53:22.246Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017oeJEUoLdFgn71QvBitf1S",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && python3 -c \"\nwith open('analyze_n500_unified.py', 'r') as f:\n    content = f.read()\n\nold_fn = '''def midphase_null_rate(problems: List[dict]) -> Dict[str, Any]:\n    total = len(problems)\n    null_mid = sum(1 for p in problems if p.get(\\\"ii_mid\\\") is None)\n    null_low = sum(1 for p in problems if p.get(\\\"ii_low\\\") is None)\n    null_high = sum(1 for p in problems if p.get(\\\"ii_high\\\") is None)\n    return {\n        \\\"n_total\\\": total,\n        \\\"null_mid\\\": null_mid,\n        \\\"null_mid_rate\\\": round(null_mid / total, 4) if total > 0 else None,\n        \\\"null_low\\\": null_low,\n        \\\"null_high\\\": null_high,\n    }'''\n\nnew_fn = '''def midphase_null_rate(problems: List[dict]) -> Dict[str, Any]:\n    total = len(problems)\n    null_mid = sum(1 for p in problems if p.get(\\\"ii_mid\\\") is None)\n    null_low = sum(1 for p in problems if p.get(\\\"ii_low\\\") is None)\n    null_high = sum(1 for p in problems if p.get(\\\"ii_high\\\") is None)\n    return {\n        \\\"n_total\\\": total,\n        \\\"null_high\\\": null_high,\n        \\\"null_high_rate\\\": round(null_high / total, 4) if total > 0 else None,\n        \\\"effective_n_high\\\": total - null_high,\n        \\\"null_mid\\\": null_mid,\n        \\\"null_mid_rate\\\": round(null_mid / total, 4) if total > 0 else None,\n        \\\"effective_n_mid\\\": total - null_mid,\n        \\\"null_low\\\": null_low,\n        \\\"null_low_rate\\\": round(null_low / total, 4) if total > 0 else None,\n        \\\"effective_n_low\\\": total - null_low,\n    }'''\n\ncontent = content.replace(old_fn, new_fn)\n\nwith open('analyze_n500_unified.py', 'w') as f:\n    f.write(content)\n\nprint('OK: analyze_n500_unified.py patched')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c09aaed3-4336-4f26-bab5-4284ac572e05",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HMJMCcA8fFF5WKJmfW",
+            "type": "assistant",
+            "uuid": "9eb83be3-2598-474e-80c9-c8ddabf925cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3G4NyiSkp3YYNk9E6W1Cn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1456,
+                "cache_read_input_tokens": 89295,
+                "output_tokens": 767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1456,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 767,
+                    "cache_read_input_tokens": 89295,
+                    "cache_creation_input_tokens": 1456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1456
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-14T22:53:22.693Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017oeJEUoLdFgn71QvBitf1S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: analyze_n500_unified.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eb83be3-2598-474e-80c9-c8ddabf925cf",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "fa81d988-8ad7-4bdb-9b6a-0d972780d5e4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: analyze_n500_unified.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: analyze_n500_unified.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "9eb83be3-2598-474e-80c9-c8ddabf925cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-14T22:53:25.450Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix 4 done. Now fix 5: update `cross_model_analysis.py` to support n=500 paths."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa81d988-8ad7-4bdb-9b6a-0d972780d5e4",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HNCMZtqX7Sb6paGP91",
+            "type": "assistant",
+            "uuid": "08f8e958-0159-473e-ace7-4fe48226aa07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N3uAsu7SSg2vNf3zCAAu6d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 854,
+                "cache_read_input_tokens": 90751,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 854,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 90751,
+                    "cache_creation_input_tokens": 854,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 854
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-14T22:53:26.225Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SJub1vn6uxzUC5W8jX21Ww",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "head -30 /root/autodl-tmp/pacs/analysis/cross_model_analysis.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08f8e958-0159-473e-ace7-4fe48226aa07",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HNCMZtqX7Sb6paGP91",
+            "type": "assistant",
+            "uuid": "d2c397c1-bd07-427b-879b-eda049bea71f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N3uAsu7SSg2vNf3zCAAu6d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 854,
+                "cache_read_input_tokens": 90751,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 854,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 90751,
+                    "cache_creation_input_tokens": 854,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 854
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-14T22:53:26.687Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SJub1vn6uxzUC5W8jX21Ww",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom pathlib import Path\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\nOUTPUT_DIR = BASE / \\\\\\\"analysis_output\\\\\\\"\\\\nB = 10000\\\\nSEED = 42\\\\n\\\\nSPARSITY_LEVELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_VALUES = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\n\\\\nDEEPSEEK_IMP = {s: BASE / f\\\\\\\"profiling_output_bf16_ds_imp_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nDEEPSEEK_RAND = {s: BASE / f\\\\\\\"profiling_output_bf16_ds_rand_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nQWEN_IMP = {s: BASE / f\\\\\\\"profiling_output_bf16_qw_imp_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nQWEN_RAND = {s: BASE / f\\\\\\\"profiling_output_bf16_qw_rand_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\n\\\\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \\\\\\\"cohens_d_bf16.json\\\\\\\").read_text())\\\\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \\\\\\\"cohens_d_bf16_qwen.json\\\\\\\").read_text())\\\\n\\\\n\\\\ndef load_per_problem_diffs(path, sp_key):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    ppi = data[\\\\\\\"per_problem_ii\\\\\\\"][sp_key]\\\\n    diffs = []\\\\n    for p in ppi:\\\\n        h, l = p.get(\\\\\\\"ii_high\\\\\\\"), p.get(\\\\\\\"ii_low\\\\\\\")\\\\n        if h is not None and l is not None:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2c397c1-bd07-427b-879b-eda049bea71f",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "48941977-c8ae-4c13-8fed-0ca99a61e4dc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom pathlib import Path\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\nOUTPUT_DIR = BASE / \\\\\\\"analysis_output\\\\\\\"\\\\nB = 10000\\\\nSEED = 42\\\\n\\\\nSPARSITY_LEVELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_VALUES = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\n\\\\nDEEPSEEK_IMP = {s: BASE / f\\\\\\\"profiling_output_bf16_ds_imp_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nDEEPSEEK_RAND = {s: BASE / f\\\\\\\"profiling_output_bf16_ds_rand_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nQWEN_IMP = {s: BASE / f\\\\\\\"profiling_output_bf16_qw_imp_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\nQWEN_RAND = {s: BASE / f\\\\\\\"profiling_output_bf16_qw_rand_{s}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\" for s in SPARSITY_LEVELS}\\\\n\\\\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \\\\\\\"cohens_d_bf16.json\\\\\\\").read_text())\\\\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \\\\\\\"cohens_d_bf16_qwen.json\\\\\\\").read_text())\\\\n\\\\n\\\\ndef load_per_problem_diffs(path, sp_key):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    ppi = data[\\\\\\\"per_problem_ii\\\\\\\"][sp_key]\\\\n    diffs = []\\\\n    for p in ppi:\\\\n        h, l = p.get(\\\\\\\"ii_high\\\\\\\"), p.get(\\\\\\\"ii_low\\\\\\\")\\\\n        if h is not None and l is not None:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nfrom scipy import stats\\nfrom pathlib import Path\\n\\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\\nOUTPUT_DIR = BASE / \\\"analysis_output\\\"\\nB = 10000\\nSEED = 42\\n\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_VALUES = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n\\nDEEPSEEK_IMP = {s: BASE / f\\\"profiling_output_bf16_ds_imp_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\\nDEEPSEEK_RAND = {s: BASE / f\\\"profiling_output_bf16_ds_rand_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\\nQWEN_IMP = {s: BASE / f\\\"profiling_output_bf16_qw_imp_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\\nQWEN_RAND = {s: BASE / f\\\"profiling_output_bf16_qw_rand_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\\n\\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \\\"cohens_d_bf16.json\\\").read_text())\\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \\\"cohens_d_bf16_qwen.json\\\").read_text())\\n\\n\\ndef load_per_problem_diffs(path, sp_key):\\n    with open(path) as f:\\n        data = json.load(f)\\n    ppi = data[\\\"per_problem_ii\\\"][sp_key]\\n    diffs = []\\n    for p in ppi:\\n        h, l = p.get(\\\"ii_high\\\"), p.get(\\\"ii_low\\\")\\n        if h is not None and l is not None:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d2c397c1-bd07-427b-879b-eda049bea71f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-14T22:53:41.618Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The cross_model_analysis.py has hardcoded paths to n=50 data. I need to update it to support n=500 data. The key differences:\n- n=50 paths: `profiling_output_bf16_ds_imp_s015`\n- n=500 paths: `profiling_output_n500_bf16_ds_imp_s015`\n- n=50 Cohen's d files: `cohens_d_bf16.json`, `cohens_d_bf16_qwen.json`\n\n\n- n=500 Cohen's d files: `cohens_d_n500.json` (from analyze_c2_n500.py)\n\nI could add a CLI argument to switch between them, but it's probably better to make n=500 the default. The tricky part is that the script loads Cohen's d data at module level, so I need to handle the case where those files might not exist for n=500 and load the right ones instead.\n\nRather than heavily modifying the existing script, I should extend the unified analysis to include cross-model comparison, or update `cross_model_analysis.py` to accept an `--n500` flag that adjusts the file paths accordingly. Looking at what the script actually does — loading per-problem diffs from profiling results and combining them with pre-computed Cohen's d values — I can add argument parsing to make it work for both dataset sizes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48941977-c8ae-4c13-8fed-0ca99a61e4dc",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HNVWSXvs8gCoTqnB3T",
+            "type": "assistant",
+            "uuid": "0a3688ca-d93a-4581-99d7-427aa9ca535c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011P5RQtWoKK61ycDtpR3Vm2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 91605,
+                "output_tokens": 4139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 884,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4139,
+                    "cache_read_input_tokens": 91605,
+                    "cache_creation_input_tokens": 884,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 884
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-14T22:54:16.613Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B1UfHJPMeSSmbPQweAo3ct",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && python3 -c \"\nwith open('analysis/cross_model_analysis.py', 'r') as f:\n    content = f.read()\n\n# Replace hardcoded paths with argparse-driven paths\nold_header = '''import json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\nOUTPUT_DIR = BASE / \\\"analysis_output\\\"\nB = 10000\nSEED = 42\n\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\nSPARSITY_VALUES = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\n\nDEEPSEEK_IMP = {s: BASE / f\\\"profiling_output_bf16_ds_imp_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\nDEEPSEEK_RAND = {s: BASE / f\\\"profiling_output_bf16_ds_rand_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\nQWEN_IMP = {s: BASE / f\\\"profiling_output_bf16_qw_imp_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\nQWEN_RAND = {s: BASE / f\\\"profiling_output_bf16_qw_rand_{s}\\\" / \\\"profiling_results.json\\\" for s in SPARSITY_LEVELS}\n\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \\\"cohens_d_bf16.json\\\").read_text())\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \\\"cohens_d_bf16_qwen.json\\\").read_text())'''\n\nnew_header = '''import argparse\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\nOUTPUT_DIR = BASE / \\\"analysis_output\\\"\nB = 10000\nSEED = 42\n\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\nSPARSITY_VALUES = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\n\n\ndef build_paths(n500=False):\n    prefix = \\\"n500_bf16\\\" if n500 else \\\"bf16\\\"\n    paths = {}\n    for model, ms in [(\\\"deepseek\\\", \\\"ds\\\"), (\\\"qwen\\\", \\\"qw\\\")]:\n        for method in [\\\"imp\\\", \\\"rand\\\"]:\n            key = f\\\"{model}_{method}\\\"\n            paths[key] = {\n                s: BASE / f\\\"profiling_output_{prefix}_{ms}_{method}_{s}\\\" / \\\"profiling_results.json\\\"\n                for s in SPARSITY_LEVELS\n            }\n    return paths\n\n\ndef compute_per_condition_dz(path, sp_key):\n    \\\"\\\"\\\"Compute paired d_z = mean(D)/SD(D) for one condition.\\\"\\\"\\\"\n    with open(path) as f:\n        data = json.load(f)\n    ppi = data[\\\"per_problem_ii\\\"][sp_key]\n    diffs = []\n    for p in ppi:\n        h, l = p.get(\\\"ii_high\\\"), p.get(\\\"ii_low\\\")\n        if h is not None and l is not None:\n            diffs.append(l - h)\n    arr = np.array(diffs)\n    if len(arr) < 2:\n        return float(\\\"nan\\\")\n    s = np.std(arr, ddof=1)\n    return float(np.mean(arr) / s) if s > 0 else float(\\\"nan\\\")'''\n\ncontent = content.replace(old_header, new_header)\n\n# Replace main() function's path usage\nold_main_start = '''def main():\n    results = {}\n\n    # 1. Median diffs per sparsity level\n    ds_imp_median_diffs = []\n    qw_imp_median_diffs = []\n    ds_rand_median_diffs = []\n    qw_rand_median_diffs = []\n\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_imp_median_diffs.append(compute_median_diff(DEEPSEEK_IMP[s], sp_key))\n        qw_imp_median_diffs.append(compute_median_diff(QWEN_IMP[s], sp_key))\n\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_rand_median_diffs.append(compute_median_diff(DEEPSEEK_RAND[s], sp_key))\n        qw_rand_median_diffs.append(compute_median_diff(QWEN_RAND[s], sp_key))'''\n\nnew_main_start = '''def main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\\\"--n500\\\", action=\\\"store_true\\\", help=\\\"Use n=500 data (default: n=50)\\\")\n    args = parser.parse_args()\n\n    paths = build_paths(n500=args.n500)\n    data_tag = \\\"n=500\\\" if args.n500 else \\\"n=50\\\"\n    print(f\\\"Cross-model analysis ({data_tag})\\\")\n\n    results = {\\\"data_source\\\": data_tag}\n\n    # 1. Median diffs per sparsity level\n    ds_imp_median_diffs = []\n    qw_imp_median_diffs = []\n    ds_rand_median_diffs = []\n    qw_rand_median_diffs = []\n\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_imp_median_diffs.append(compute_median_diff(paths[\\\"deepseek_imp\\\"][s], sp_key))\n        qw_imp_median_diffs.append(compute_median_diff(paths[\\\"qwen_imp\\\"][s], sp_key))\n\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_rand_median_diffs.append(compute_median_diff(paths[\\\"deepseek_rand\\\"][s], sp_key))\n        qw_rand_median_diffs.append(compute_median_diff(paths[\\\"qwen_rand\\\"][s], sp_key))'''\n\ncontent = content.replace(old_main_start, new_main_start)\n\n# Replace Cohen's d section that uses hardcoded files\nold_cohens = '''    # 2. Cohen's d trends\n    ds_cohens = [COHENS_D_DS[s][\\\"d\\\"] for s in SPARSITY_LEVELS]\n    qw_cohens = [COHENS_D_QW[s][\\\"d\\\"] for s in SPARSITY_LEVELS]\n    \n    results[\\\"cohens_d_trend\\\"] = {\n        \\\"deepseek\\\": {s: COHENS_D_DS[s][\\\"d\\\"] for s in SPARSITY_LEVELS},\n        \\\"qwen\\\": {s: COHENS_D_QW[s][\\\"d\\\"] for s in SPARSITY_LEVELS},'''\n\nnew_cohens = '''    # 2. Cohen's d trends (computed on the fly)\n    ds_cohens = [compute_per_condition_dz(paths[\\\"deepseek_imp\\\"][s], SPARSITY_VALUES[s]) for s in SPARSITY_LEVELS]\n    qw_cohens = [compute_per_condition_dz(paths[\\\"qwen_imp\\\"][s], SPARSITY_VALUES[s]) for s in SPARSITY_LEVELS]\n\n    results[\\\"cohens_d_trend\\\"] = {\n        \\\"deepseek\\\": {s: d for s, d in zip(SPARSITY_LEVELS, ds_cohens)},\n        \\\"qwen\\\": {s: d for s, d in zip(SPARSITY_LEVELS, qw_cohens)},'''\n\ncontent = content.replace(old_cohens, new_cohens)\n\n# Replace per-problem concordance data loading\nold_concordance = '''    # 5. Per-problem cross-model concordance test\n    ds_diffs_by_sp = {}\n    qw_diffs_by_sp = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_diffs_by_sp[s] = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_diffs_by_sp[s] = load_per_problem_diffs(QWEN_IMP[s], sp_key)'''\n\nnew_concordance = '''    # 5. Per-problem cross-model concordance test\n    ds_diffs_by_sp = {}\n    qw_diffs_by_sp = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_diffs_by_sp[s] = load_per_problem_diffs(paths[\\\"deepseek_imp\\\"][s], sp_key)\n        qw_diffs_by_sp[s] = load_per_problem_diffs(paths[\\\"qwen_imp\\\"][s], sp_key)'''\n\ncontent = content.replace(old_concordance, new_concordance)\n\n# Replace Wilcoxon loading\nold_wilcoxon = '''    # 6. Per-sparsity Wilcoxon signed-rank: importance diff > 0 for both models\n    wilcoxon_results = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_d = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_d = load_per_problem_diffs(QWEN_IMP[s], sp_key)'''\n\nnew_wilcoxon = '''    # 6. Per-sparsity Wilcoxon signed-rank: importance diff > 0 for both models\n    wilcoxon_results = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_d = load_per_problem_diffs(paths[\\\"deepseek_imp\\\"][s], sp_key)\n        qw_d = load_per_problem_diffs(paths[\\\"qwen_imp\\\"][s], sp_key)'''\n\ncontent = content.replace(old_wilcoxon, new_wilcoxon)\n\n# Replace effect scaling section\nold_scaling = '''    # 7. Effect size scaling ratio\n    results[\\\"effect_scaling\\\"] = {\n        \\\"description\\\": \\\"Ratio of effect sizes at consecutive sparsity levels\\\",\n        \\\"deepseek_cohens_d_ratios\\\": {\n            f\\\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\\\": round(ds_cohens[i+1] / ds_cohens[i], 4) if ds_cohens[i] != 0 else None\n            for i in range(3)\n        },\n        \\\"qwen_cohens_d_ratios\\\": {\n            f\\\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\\\": round(qw_cohens[i+1] / qw_cohens[i], 4) if qw_cohens[i] != 0 else None\n            for i in range(3)\n        },\n    }'''\n\nnew_scaling = '''    # 7. Effect size scaling ratio\n    results[\\\"effect_scaling\\\"] = {\n        \\\"description\\\": \\\"Ratio of effect sizes at consecutive sparsity levels\\\",\n        \\\"deepseek_cohens_d_ratios\\\": {\n            f\\\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\\\": round(ds_cohens[i+1] / ds_cohens[i], 4) if ds_cohens[i] != 0 and not np.isnan(ds_cohens[i]) else None\n            for i in range(3)\n        },\n        \\\"qwen_cohens_d_ratios\\\": {\n            f\\\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\\\": round(qw_cohens[i+1] / qw_cohens[i], 4) if qw_cohens[i] != 0 and not np.isnan(qw_cohens[i]) else None\n            for i in range(3)\n        },\n    }'''\n\ncontent = content.replace(old_scaling, new_scaling)\n\n# Update output filename\nold_save = '''    out_path = OUTPUT_DIR / \\\"cross_model_analysis.json\\\"'''\nnew_save = '''    suffix = \\\"_n500\\\" if args.n500 else \\\"\\\"\n    out_path = OUTPUT_DIR / f\\\"cross_model_analysis{suffix}.json\\\"'''\ncontent = content.replace(old_save, new_save)\n\nwith open('analysis/cross_model_analysis.py', 'w') as f:\n    f.write(content)\n\nprint('OK: cross_model_analysis.py patched')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a3688ca-d93a-4581-99d7-427aa9ca535c",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HNVWSXvs8gCoTqnB3T",
+            "type": "assistant",
+            "uuid": "b85704c1-9c30-4b2d-8db6-2766e515b807",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011P5RQtWoKK61ycDtpR3Vm2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 91605,
+                "output_tokens": 4139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 884,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4139,
+                    "cache_read_input_tokens": 91605,
+                    "cache_creation_input_tokens": 884,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 884
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b85704c1-9c30-4b2d-8db6-2766e515b807",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit n=500 analysis pipeline code readiness",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-14T22:54:17.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B1UfHJPMeSSmbPQweAo3ct",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: cross_model_analysis.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b85704c1-9c30-4b2d-8db6-2766e515b807",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "1b7779d7-3c35-4bdd-97d8-f677fc3c21f9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: cross_model_analysis.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: cross_model_analysis.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b85704c1-9c30-4b2d-8db6-2766e515b807",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-14T22:54:21.816Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 fixes applied. Now verify the patched files parse correctly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b7779d7-3c35-4bdd-97d8-f677fc3c21f9",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HSDcLV3xRDBMR5DcmR",
+            "type": "assistant",
+            "uuid": "8d066fc9-36e1-4285-9ad9-88ee9a2c20ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScCZENy2m82nAANaqqiLMA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4224,
+                "cache_read_input_tokens": 92489,
+                "output_tokens": 272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4224,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 272,
+                    "cache_read_input_tokens": 92489,
+                    "cache_creation_input_tokens": 4224,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4224
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-14T22:54:24.274Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CbEQQXmyq8gXbwyRQ8Fpwt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import ast; ast.parse(open('analyze_n500.py').read()); print('analyze_n500.py: OK')\" && python3 -c \"import ast; ast.parse(open('analyze_n500_unified.py').read()); print('analyze_n500_unified.py: OK')\" && python3 -c \"import ast; ast.parse(open('analysis/cross_model_analysis.py').read()); print('cross_model_analysis.py: OK')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d066fc9-36e1-4285-9ad9-88ee9a2c20ac",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HSDcLV3xRDBMR5DcmR",
+            "type": "assistant",
+            "uuid": "43767d79-a1e7-40a2-9449-ab87cabaf1aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScCZENy2m82nAANaqqiLMA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4224,
+                "cache_read_input_tokens": 92489,
+                "output_tokens": 272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4224,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 272,
+                    "cache_read_input_tokens": 92489,
+                    "cache_creation_input_tokens": 4224,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4224
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-14T22:54:24.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CbEQQXmyq8gXbwyRQ8Fpwt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_n500.py: OK\\\\nanalyze_n500_unified.py: OK\\\\ncross_model_analysis.py: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43767d79-a1e7-40a2-9449-ab87cabaf1aa",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "08adda97-689b-4997-a3bb-9f0860bf3188",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_n500.py: OK\\\\nanalyze_n500_unified.py: OK\\\\ncross_model_analysis.py: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"analyze_n500.py: OK\\nanalyze_n500_unified.py: OK\\ncross_model_analysis.py: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+              }
+            },
+            "sourceToolAssistantUUID": "43767d79-a1e7-40a2-9449-ab87cabaf1aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-14T22:54:24.861Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "08adda97-689b-4997-a3bb-9f0860bf3188",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "0d878af6-d923-4b0c-a689-1c8a3801afb1",
+                "timestamp": "2026-05-14T22:54:24.861Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-14T22:54:31.105Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files parse cleanly. Now let me do a dry-run sanity check of the unified script with n=50 data to confirm it works end-to-end."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d878af6-d923-4b0c-a689-1c8a3801afb1",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HSnDeJxVg4X2JtwrAv",
+            "type": "assistant",
+            "uuid": "a03c6e63-29f7-4bad-88d1-2ce50847c151",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ThoyXnuMwDvaWTaHfZev46",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 97196,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 97196,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-14T22:54:31.924Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011VAgRVtwjGhM9tNb8MDTF4",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analyze_n500_unified.py --dry-run 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a03c6e63-29f7-4bad-88d1-2ce50847c151",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HSnDeJxVg4X2JtwrAv",
+            "type": "assistant",
+            "uuid": "ec209cbf-b90c-4433-9300-db1d08add6a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ThoyXnuMwDvaWTaHfZev46",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 97196,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 97196,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-14T22:54:36.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011VAgRVtwjGhM9tNb8MDTF4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\n  DEEPSEEK\\\\n======================================================================\\\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=9.6030 perm_p=0.0848\\\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=1.0459 perm_p=0.0848\\\\n\\\\n======================================================================\\\\n  QWEN\\\\n======================================================================\\\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.5313 perm_p=0.0848\\\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.4355 perm_p=0.0416\\\\n\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec209cbf-b90c-4433-9300-db1d08add6a4",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "04dab8d2-915a-4de8-9614-06c30fc4b51d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\n  DEEPSEEK\\\\n======================================================================\\\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=9.6030 perm_p=0.0848\\\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=1.0459 perm_p=0.0848\\\\n\\\\n======================================================================\\\\n  QWEN\\\\n======================================================================\\\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.5313 perm_p=0.0848\\\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.4355 perm_p=0.0416\\\\n\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.26}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\n  DEEPSEEK\\n======================================================================\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\n\\n  Dose-response:\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=9.6030 perm_p=0.0848\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=1.0459 perm_p=0.0848\\n\\n======================================================================\\n  QWEN\\n======================================================================\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\n\\n  Dose-response:\\n    importance: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.5313 perm_p=0.0848\\n    random: monotonic=True rho=1.000 (p=0.0000) gradient_sum=2.4355 perm_p=0.0416\\n\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.26}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ec209cbf-b90c-4433-9300-db1d08add6a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-14T22:54:43.295Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The unified script runs correctly with n=50 data. I can see:\n1. Median + bootstrap CI as primary metric ✓\n2. Within-imp d_z only for importance conditions ✓\n3. Imp-vs-rand uses Wilcoxon + median_diff only, no d_z ✓\n4. Per-phase null rates reported (mid_null column) ✓\n5. B=10000 ✓\n\nBut I notice the `mid_null` output only shows the mid-phase null rate (0.2 for deepseek, 0.58 for qwen). \n\nLet me check if the full per-phase data is in the JSON output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04dab8d2-915a-4de8-9614-06c30fc4b51d",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HTcbyEyuJxPmYAFoJD",
+            "type": "assistant",
+            "uuid": "d458cff7-2978-43a1-aacd-6bc9ae5bf8fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HfTZr3WbatDy5hh5Mgb83b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1739,
+                "cache_read_input_tokens": 97196,
+                "output_tokens": 545,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 545,
+                    "cache_read_input_tokens": 97196,
+                    "cache_creation_input_tokens": 1739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-14T22:54:44.206Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Unified script works correctly with n=50 dry-run. Let me verify the per-phase null rate data is in the JSON output."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d458cff7-2978-43a1-aacd-6bc9ae5bf8fb",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HTcbyEyuJxPmYAFoJD",
+            "type": "assistant",
+            "uuid": "3a0aebe0-fc35-4de8-ab68-4014eb8f130f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HfTZr3WbatDy5hh5Mgb83b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1739,
+                "cache_read_input_tokens": 97196,
+                "output_tokens": 545,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 545,
+                    "cache_read_input_tokens": 97196,
+                    "cache_creation_input_tokens": 1739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-14T22:54:48.019Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XEYYPckeuWLe1sDhz8HxJX",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\ndata = json.load(open('analysis_output/n500_unified_dryrun.json'))\n# Check one condition for per-phase null rate\nqw_imp_s015 = data['models']['qwen']['conditions']['imp_s015']\nprint('midphase_null keys:', list(qw_imp_s015.get('midphase_null', {}).keys()))\nprint('midphase_null:', json.dumps(qw_imp_s015.get('midphase_null', {}), indent=2))\nprint()\nprint('per_phase_median keys:', list(qw_imp_s015.get('per_phase_median', {}).keys()))\nprint('per_phase_median:', json.dumps(qw_imp_s015.get('per_phase_median', {}), indent=2))\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a0aebe0-fc35-4de8-ab68-4014eb8f130f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HTcbyEyuJxPmYAFoJD",
+            "type": "assistant",
+            "uuid": "94e9f5c9-7586-4188-9756-b2bbc9b50be7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HfTZr3WbatDy5hh5Mgb83b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1739,
+                "cache_read_input_tokens": 97196,
+                "output_tokens": 545,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 545,
+                    "cache_read_input_tokens": 97196,
+                    "cache_creation_input_tokens": 1739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-14T22:54:48.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XEYYPckeuWLe1sDhz8HxJX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"midphase_null keys: ['n_total', 'null_high', 'null_high_rate', 'effective_n_high', 'null_mid', 'null_mid_rate', 'effective_n_mid', 'null_low', 'null_low_rate', 'effective_n_low']\\\\nmidphase_null: {\\\\n  \\\\\\\"n_total\\\\\\\": 50,\\\\n  \\\\\\\"null_high\\\\\\\": 1,\\\\n  \\\\\\\"null_high_rate\\\\\\\": 0.02,\\\\n  \\\\\\\"effective_n_high\\\\\\\": 49,\\\\n  \\\\\\\"null_mid\\\\\\\": 29,\\\\n  \\\\\\\"null_mid_rate\\\\\\\": 0.58,\\\\n  \\\\\\\"effective_n_mid\\\\\\\": 21,\\\\n  \\\\\\\"null_low\\\\\\\": 3,\\\\n  \\\\\\\"null_low_rate\\\\\\\": 0.06,\\\\n  \\\\\\\"effective_n_low\\\\\\\": 47\\\\n}\\\\n\\\\nper_phase_median keys: ['high', 'mid', 'low']\\\\nper_phase_median: {\\\\n  \\\\\\\"high\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 49,\\\\n    \\\\\\\"median\\\\\\\": -0.005284634090049867,\\\\n    \\\\\\\"iqr\\\\\\\": 0.07379689192459649\\\\n  },\\\\n  \\\\\\\"mid\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 21,\\\\n    \\\\\\\"median\\\\\\\": -0.003767824251404539,\\\\n    \\\\\\\"iqr\\\\\\\": 0.1167493294665587\\\\n  },\\\\n  \\\\\\\"low\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 47,\\\\n    \\\\\\\"median\\\\\\\": 0.04405629575127523,\\\\n    \\\\\\\"iqr\\\\\\\": 0.31608644333305397\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94e9f5c9-7586-4188-9756-b2bbc9b50be7",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "f79b654b-aa72-4c46-898d-8e5f413479c5",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"midphase_null keys: ['n_total', 'null_high', 'null_high_rate', 'effective_n_high', 'null_mid', 'null_mid_rate', 'effective_n_mid', 'null_low', 'null_low_rate', 'effective_n_low']\\\\nmidphase_null: {\\\\n  \\\\\\\"n_total\\\\\\\": 50,\\\\n  \\\\\\\"null_high\\\\\\\": 1,\\\\n  \\\\\\\"null_high_rate\\\\\\\": 0.02,\\\\n  \\\\\\\"effective_n_high\\\\\\\": 49,\\\\n  \\\\\\\"null_mid\\\\\\\": 29,\\\\n  \\\\\\\"null_mid_rate\\\\\\\": 0.58,\\\\n  \\\\\\\"effective_n_mid\\\\\\\": 21,\\\\n  \\\\\\\"null_low\\\\\\\": 3,\\\\n  \\\\\\\"null_low_rate\\\\\\\": 0.06,\\\\n  \\\\\\\"effective_n_low\\\\\\\": 47\\\\n}\\\\n\\\\nper_phase_median keys: ['high', 'mid', 'low']\\\\nper_phase_median: {\\\\n  \\\\\\\"high\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 49,\\\\n    \\\\\\\"median\\\\\\\": -0.005284634090049867,\\\\n    \\\\\\\"iqr\\\\\\\": 0.07379689192459649\\\\n  },\\\\n  \\\\\\\"mid\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 21,\\\\n    \\\\\\\"median\\\\\\\": -0.003767824251404539,\\\\n    \\\\\\\"iqr\\\\\\\": 0.1167493294665587\\\\n  },\\\\n  \\\\\\\"low\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 47,\\\\n    \\\\\\\"median\\\\\\\": 0.04405629575127523,\\\\n    \\\\\\\"iqr\\\\\\\": 0.31608644333305397\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"midphase_null keys: ['n_total', 'null_high', 'null_high_rate', 'effective_n_high', 'null_mid', 'null_mid_rate', 'effective_n_mid', 'null_low', 'null_low_rate', 'effective_n_low']\\nmidphase_null: {\\n  \\\"n_total\\\": 50,\\n  \\\"null_high\\\": 1,\\n  \\\"null_high_rate\\\": 0.02,\\n  \\\"effective_n_high\\\": 49,\\n  \\\"null_mid\\\": 29,\\n  \\\"null_mid_rate\\\": 0.58,\\n  \\\"effective_n_mid\\\": 21,\\n  \\\"null_low\\\": 3,\\n  \\\"null_low_rate\\\": 0.06,\\n  \\\"effective_n_low\\\": 47\\n}\\n\\nper_phase_median keys: ['high', 'mid', 'low']\\nper_phase_median: {\\n  \\\"high\\\": {\\n    \\\"n\\\": 49,\\n    \\\"median\\\": -0.005284634090049867,\\n    \\\"iqr\\\": 0.07379689192459649\\n  },\\n  \\\"mid\\\": {\\n    \\\"n\\\": 21,\\n    \\\"median\\\": -0.003767824251404539,\\n    \\\"iqr\\\": 0.1167493294665587\\n  },\\n  \\\"low\\\": {\\n    \\\"n\\\": 47,\\n    \\\"median\\\": 0.04405629575127523,\\n    \\\"iqr\\\": 0.31608644333305397\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            },
+            "sourceToolAssistantUUID": "94e9f5c9-7586-4188-9756-b2bbc9b50be7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-14T22:54:52.824Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Per-phase effective n is now fully reported: `n_total=50`, `effective_n_high=49`, `effective_n_mid=21` (58% null rate), `effective_n_low=47`. Now verify `analyze_n500.py` dry-run."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f79b654b-aa72-4c46-898d-8e5f413479c5",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HUXUBfStSbuacMaZ6J",
+            "type": "assistant",
+            "uuid": "b83d6159-8bd1-4637-885b-62014571a5d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VoBb4XXmL1wfgftR7hvWtr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1117,
+                "cache_read_input_tokens": 98935,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 98935,
+                    "cache_creation_input_tokens": 1117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-14T22:54:53.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017p9mZpD8L915xRnVAHXDwK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analyze_n500.py --n50-only 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b83d6159-8bd1-4637-885b-62014571a5d4",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HUXUBfStSbuacMaZ6J",
+            "type": "assistant",
+            "uuid": "cf1b85db-6fca-43ed-83c0-3df894831643",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VoBb4XXmL1wfgftR7hvWtr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1117,
+                "cache_read_input_tokens": 98935,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 98935,
+                    "cache_creation_input_tokens": 1117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "cf1b85db-6fca-43ed-83c0-3df894831643",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit n=500 analysis pipeline code readiness",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-14T22:55:03.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017p9mZpD8L915xRnVAHXDwK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== n=500 Analysis Pipeline (D054/D059) ===\\\\nData: n=50 (dry-run) | Bootstrap: 10000 | Seed: 42\\\\n\\\\n  ds_imp_s015: 50 problems [OK]\\\\n  ds_imp_s020: 50 problems [OK]\\\\n  ds_imp_s025: 50 problems [OK]\\\\n  ds_imp_s030: 50 problems [OK]\\\\n  ds_rand_s015: 50 problems [OK]\\\\n  ds_rand_s020: 50 problems [OK]\\\\n  ds_rand_s025: 50 problems [OK]\\\\n  ds_rand_s030: 50 problems [OK]\\\\n  qw_imp_s015: 50 problems [OK]\\\\n  qw_imp_s020: 50 problems [OK]\\\\n  qw_imp_s025: 50 problems [OK]\\\\n  qw_imp_s030: 50 problems [OK]\\\\n  qw_rand_s015: 50 problems [OK]\\\\n  qw_rand_s020: 50 problems [OK]\\\\n  qw_rand_s025: 50 problems [OK]\\\\n  qw_rand_s030: 50 problems [OK]\\\\n\\\\nLoaded 16/16 conditions\\\\n\\\\nPer-condition median gradient D = ii_low − ii_high:\\\\n  ds_imp_s015: median=+0.3508 CI=[0.2490, 0.4443]\\\\n  ds_imp_s020: median=+1.1363 CI=[0.7408, 1.2544]\\\\n  ds_imp_s025: median=+4.0174 CI=[3.0049, 5.3896]\\\\n  ds_imp_s030: median=+9.9538 CI=[8.4241, 16.7013]\\\\n  ds_rand_s015: median=+0.0110 CI=[-0.1002, 0.1044] [CI crosses 0]\\\\n  ds_rand_s020: median=+0.0434 CI=[-0.0989, 0.2835] [CI crosses 0]\\\\n  ds_rand_s025: median=+0.3032 CI=[-0.0810, 0.6550] [CI crosses 0]\\\\n  ds_rand_s030: median=+1.0569 CI=[0.1977, 1.8848]\\\\n  qw_imp_s015: median=+0.0623 CI=[0.0100, 0.1226]\\\\n  qw_imp_s020: median=+0.2860 CI=[0.0953, 0.4780]\\\\n  qw_imp_s025: median=+1.1545 CI=[0.7260, 1.4716]\\\\n  qw_imp_s030: median=+2.5936 CI=[1.7190, 3.8969]\\\\n  qw_rand_s015: median=-0.0172 CI=[-0.1774, 0.1264] [CI crosses 0]\\\\n  qw_rand_s020: median=+0.0576 CI=[-0.1386, 0.2147] [CI crosses 0]\\\\n  qw_rand_s025: median=+0.6276 CI=[-0.2821, 1.3399] [CI crosses 0]\\\\n  qw_rand_s030: median=+2.4183 CI=[0.2419, 3.4878]\\\\n\\\\nWithin-importance d_z (D059, Bonferroni-corrected, n_pairs=6):\\\\n  deepseek_imp s015_vs_s020: d_z=-0.520 (medium), Bonf_p=7.5633e-08 [*]\\\\n  deepseek_imp s015_vs_s025: d_z=-0.674 (medium), Bonf_p=3.1612e-11 [*]\\\\n  deepseek_imp s015_vs_s030: d_z=-0.798 (medium), Bonf_p=1.3642e-11 [*]\\\\n  deepseek_imp s020_vs_s025: d_z=-0.620 (medium), Bonf_p=7.8314e-09 [*]\\\\n  deepseek_imp s020_vs_s030: d_z=-0.770 (medium), Bonf_p=1.2231e-10 [*]\\\\n  deepseek_imp s025_vs_s030: d_z=-0.770 (medium), Bonf_p=3.5933e-10 [*]\\\\n  qwen_imp s015_vs_s020: d_z=-0.394 (small), Bonf_p=5.5678e-03 [*]\\\\n  qwen_imp s015_vs_s025: d_z=-0.841 (large), Bonf_p=4.2049e-09 [*]\\\\n  qwen_imp s015_vs_s030: d_z=-0.999 (large), Bonf_p=5.6275e-12 [*]\\\\n  qwen_imp s020_vs_s025: d_z=-0.838 (large), Bonf_p=7.3499e-10 [*]\\\\n  qwen_imp s020_vs_s030: d_z=-1.002 (large), Bonf_p=2.3874e-12 [*]\\\\n  qwen_imp s025_vs_s030: d_z=-0.802 (large), Bonf_p=2.2157e-09 [*]\\\\n\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_analysis_dryrun.json\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_report_dryrun.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf1b85db-6fca-43ed-83c0-3df894831643",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "a2629fa4-674a-4bf8-8552-c5bacd90f643",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== n=500 Analysis Pipeline (D054/D059) ===\\\\nData: n=50 (dry-run) | Bootstrap: 10000 | Seed: 42\\\\n\\\\n  ds_imp_s015: 50 problems [OK]\\\\n  ds_imp_s020: 50 problems [OK]\\\\n  ds_imp_s025: 50 problems [OK]\\\\n  ds_imp_s030: 50 problems [OK]\\\\n  ds_rand_s015: 50 problems [OK]\\\\n  ds_rand_s020: 50 problems [OK]\\\\n  ds_rand_s025: 50 problems [OK]\\\\n  ds_rand_s030: 50 problems [OK]\\\\n  qw_imp_s015: 50 problems [OK]\\\\n  qw_imp_s020: 50 problems [OK]\\\\n  qw_imp_s025: 50 problems [OK]\\\\n  qw_imp_s030: 50 problems [OK]\\\\n  qw_rand_s015: 50 problems [OK]\\\\n  qw_rand_s020: 50 problems [OK]\\\\n  qw_rand_s025: 50 problems [OK]\\\\n  qw_rand_s030: 50 problems [OK]\\\\n\\\\nLoaded 16/16 conditions\\\\n\\\\nPer-condition median gradient D = ii_low − ii_high:\\\\n  ds_imp_s015: median=+0.3508 CI=[0.2490, 0.4443]\\\\n  ds_imp_s020: median=+1.1363 CI=[0.7408, 1.2544]\\\\n  ds_imp_s025: median=+4.0174 CI=[3.0049, 5.3896]\\\\n  ds_imp_s030: median=+9.9538 CI=[8.4241, 16.7013]\\\\n  ds_rand_s015: median=+0.0110 CI=[-0.1002, 0.1044] [CI crosses 0]\\\\n  ds_rand_s020: median=+0.0434 CI=[-0.0989, 0.2835] [CI crosses 0]\\\\n  ds_rand_s025: median=+0.3032 CI=[-0.0810, 0.6550] [CI crosses 0]\\\\n  ds_rand_s030: median=+1.0569 CI=[0.1977, 1.8848]\\\\n  qw_imp_s015: median=+0.0623 CI=[0.0100, 0.1226]\\\\n  qw_imp_s020: median=+0.2860 CI=[0.0953, 0.4780]\\\\n  qw_imp_s025: median=+1.1545 CI=[0.7260, 1.4716]\\\\n  qw_imp_s030: median=+2.5936 CI=[1.7190, 3.8969]\\\\n  qw_rand_s015: median=-0.0172 CI=[-0.1774, 0.1264] [CI crosses 0]\\\\n  qw_rand_s020: median=+0.0576 CI=[-0.1386, 0.2147] [CI crosses 0]\\\\n  qw_rand_s025: median=+0.6276 CI=[-0.2821, 1.3399] [CI crosses 0]\\\\n  qw_rand_s030: median=+2.4183 CI=[0.2419, 3.4878]\\\\n\\\\nWithin-importance d_z (D059, Bonferroni-corrected, n_pairs=6):\\\\n  deepseek_imp s015_vs_s020: d_z=-0.520 (medium), Bonf_p=7.5633e-08 [*]\\\\n  deepseek_imp s015_vs_s025: d_z=-0.674 (medium), Bonf_p=3.1612e-11 [*]\\\\n  deepseek_imp s015_vs_s030: d_z=-0.798 (medium), Bonf_p=1.3642e-11 [*]\\\\n  deepseek_imp s020_vs_s025: d_z=-0.620 (medium), Bonf_p=7.8314e-09 [*]\\\\n  deepseek_imp s020_vs_s030: d_z=-0.770 (medium), Bonf_p=1.2231e-10 [*]\\\\n  deepseek_imp s025_vs_s030: d_z=-0.770 (medium), Bonf_p=3.5933e-10 [*]\\\\n  qwen_imp s015_vs_s020: d_z=-0.394 (small), Bonf_p=5.5678e-03 [*]\\\\n  qwen_imp s015_vs_s025: d_z=-0.841 (large), Bonf_p=4.2049e-09 [*]\\\\n  qwen_imp s015_vs_s030: d_z=-0.999 (large), Bonf_p=5.6275e-12 [*]\\\\n  qwen_imp s020_vs_s025: d_z=-0.838 (large), Bonf_p=7.3499e-10 [*]\\\\n  qwen_imp s020_vs_s030: d_z=-1.002 (large), Bonf_p=2.3874e-12 [*]\\\\n  qwen_imp s025_vs_s030: d_z=-0.802 (large), Bonf_p=2.2157e-09 [*]\\\\n\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_analysis_dryrun.json\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_report_dryrun.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.34}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== n=500 Analysis Pipeline (D054/D059) ===\\nData: n=50 (dry-run) | Bootstrap: 10000 | Seed: 42\\n\\n  ds_imp_s015: 50 problems [OK]\\n  ds_imp_s020: 50 problems [OK]\\n  ds_imp_s025: 50 problems [OK]\\n  ds_imp_s030: 50 problems [OK]\\n  ds_rand_s015: 50 problems [OK]\\n  ds_rand_s020: 50 problems [OK]\\n  ds_rand_s025: 50 problems [OK]\\n  ds_rand_s030: 50 problems [OK]\\n  qw_imp_s015: 50 problems [OK]\\n  qw_imp_s020: 50 problems [OK]\\n  qw_imp_s025: 50 problems [OK]\\n  qw_imp_s030: 50 problems [OK]\\n  qw_rand_s015: 50 problems [OK]\\n  qw_rand_s020: 50 problems [OK]\\n  qw_rand_s025: 50 problems [OK]\\n  qw_rand_s030: 50 problems [OK]\\n\\nLoaded 16/16 conditions\\n\\nPer-condition median gradient D = ii_low − ii_high:\\n  ds_imp_s015: median=+0.3508 CI=[0.2490, 0.4443]\\n  ds_imp_s020: median=+1.1363 CI=[0.7408, 1.2544]\\n  ds_imp_s025: median=+4.0174 CI=[3.0049, 5.3896]\\n  ds_imp_s030: median=+9.9538 CI=[8.4241, 16.7013]\\n  ds_rand_s015: median=+0.0110 CI=[-0.1002, 0.1044] [CI crosses 0]\\n  ds_rand_s020: median=+0.0434 CI=[-0.0989, 0.2835] [CI crosses 0]\\n  ds_rand_s025: median=+0.3032 CI=[-0.0810, 0.6550] [CI crosses 0]\\n  ds_rand_s030: median=+1.0569 CI=[0.1977, 1.8848]\\n  qw_imp_s015: median=+0.0623 CI=[0.0100, 0.1226]\\n  qw_imp_s020: median=+0.2860 CI=[0.0953, 0.4780]\\n  qw_imp_s025: median=+1.1545 CI=[0.7260, 1.4716]\\n  qw_imp_s030: median=+2.5936 CI=[1.7190, 3.8969]\\n  qw_rand_s015: median=-0.0172 CI=[-0.1774, 0.1264] [CI crosses 0]\\n  qw_rand_s020: median=+0.0576 CI=[-0.1386, 0.2147] [CI crosses 0]\\n  qw_rand_s025: median=+0.6276 CI=[-0.2821, 1.3399] [CI crosses 0]\\n  qw_rand_s030: median=+2.4183 CI=[0.2419, 3.4878]\\n\\nWithin-importance d_z (D059, Bonferroni-corrected, n_pairs=6):\\n  deepseek_imp s015_vs_s020: d_z=-0.520 (medium), Bonf_p=7.5633e-08 [*]\\n  deepseek_imp s015_vs_s025: d_z=-0.674 (medium), Bonf_p=3.1612e-11 [*]\\n  deepseek_imp s015_vs_s030: d_z=-0.798 (medium), Bonf_p=1.3642e-11 [*]\\n  deepseek_imp s020_vs_s025: d_z=-0.620 (medium), Bonf_p=7.8314e-09 [*]\\n  deepseek_imp s020_vs_s030: d_z=-0.770 (medium), Bonf_p=1.2231e-10 [*]\\n  deepseek_imp s025_vs_s030: d_z=-0.770 (medium), Bonf_p=3.5933e-10 [*]\\n  qwen_imp s015_vs_s020: d_z=-0.394 (small), Bonf_p=5.5678e-03 [*]\\n  qwen_imp s015_vs_s025: d_z=-0.841 (large), Bonf_p=4.2049e-09 [*]\\n  qwen_imp s015_vs_s030: d_z=-0.999 (large), Bonf_p=5.6275e-12 [*]\\n  qwen_imp s020_vs_s025: d_z=-0.838 (large), Bonf_p=7.3499e-10 [*]\\n  qwen_imp s020_vs_s030: d_z=-1.002 (large), Bonf_p=2.3874e-12 [*]\\n  qwen_imp s025_vs_s030: d_z=-0.802 (large), Bonf_p=2.2157e-09 [*]\\n\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_analysis_dryrun.json\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_report_dryrun.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.34}}"
+              }
+            },
+            "sourceToolAssistantUUID": "cf1b85db-6fca-43ed-83c0-3df894831643",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-14T22:55:10.050Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `analyze_n500.py` now runs correctly with:\n1. B_BOOTSTRAP = 10000 ✓ (confirmed in output \"Bootstrap: 10000\")\n2. D059: d_z only computed for `deepseek_imp` and `qwen_imp`, NOT for rand ✓\n3. Per-phase null rate now included ✓ (let me verify in the JSON output)\n\nLet me verify the midphase_null field is in the JSON output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2629fa4-674a-4bf8-8552-c5bacd90f643",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HVfE2vGS5jvVrN78Mv",
+            "type": "assistant",
+            "uuid": "435ea2e2-01cd-4046-964f-b4380c9b85b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014niaQwfQxQHVLXyPf9CkRe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1807,
+                "cache_read_input_tokens": 100052,
+                "output_tokens": 410,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1807,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 410,
+                    "cache_read_input_tokens": 100052,
+                    "cache_creation_input_tokens": 1807,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1807
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-14T22:55:13.527Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Wxhhs13j2Ct5CyEGXs6wy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\ndata = json.load(open('analysis_output/n500_analysis_dryrun.json'))\ncond = data['conditions']['qw_imp_s015']\nprint('midphase_null:', json.dumps(cond.get('midphase_null', 'MISSING'), indent=2))\nprint()\nprint('B_BOOTSTRAP:', data['metadata']['n_bootstrap'])\nprint('d_z_scope:', data['metadata']['d_z_scope'])\nprint()\nprint('within_dz keys:', list(data['within_importance_dz'].keys()))\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "435ea2e2-01cd-4046-964f-b4380c9b85b8",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HVfE2vGS5jvVrN78Mv",
+            "type": "assistant",
+            "uuid": "8a9d3b15-73a5-4d06-895e-86fa1c334b2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014niaQwfQxQHVLXyPf9CkRe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1807,
+                "cache_read_input_tokens": 100052,
+                "output_tokens": 410,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1807,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 410,
+                    "cache_read_input_tokens": 100052,
+                    "cache_creation_input_tokens": 1807,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1807
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-14T22:55:14.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017Wxhhs13j2Ct5CyEGXs6wy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"midphase_null: {\\\\n  \\\\\\\"n_total\\\\\\\": 50,\\\\n  \\\\\\\"null_high\\\\\\\": 1,\\\\n  \\\\\\\"null_high_rate\\\\\\\": 0.02,\\\\n  \\\\\\\"effective_n_high\\\\\\\": 49,\\\\n  \\\\\\\"null_mid\\\\\\\": 29,\\\\n  \\\\\\\"null_mid_rate\\\\\\\": 0.58,\\\\n  \\\\\\\"effective_n_mid\\\\\\\": 21,\\\\n  \\\\\\\"null_low\\\\\\\": 3,\\\\n  \\\\\\\"null_low_rate\\\\\\\": 0.06,\\\\n  \\\\\\\"effective_n_low\\\\\\\": 47\\\\n}\\\\n\\\\nB_BOOTSTRAP: 10000\\\\nd_z_scope: within-importance only (same masking, different sparsity)\\\\n\\\\nwithin_dz keys: ['deepseek_imp', 'qwen_imp']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a9d3b15-73a5-4d06-895e-86fa1c334b2e",
+            "isSidechain": false,
+            "promptId": "6ac5d4bc-4e19-4aa9-a88d-071a114c5da3",
+            "type": "user",
+            "uuid": "74c399f5-379c-4c15-bcab-087d63fb8d61",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"midphase_null: {\\\\n  \\\\\\\"n_total\\\\\\\": 50,\\\\n  \\\\\\\"null_high\\\\\\\": 1,\\\\n  \\\\\\\"null_high_rate\\\\\\\": 0.02,\\\\n  \\\\\\\"effective_n_high\\\\\\\": 49,\\\\n  \\\\\\\"null_mid\\\\\\\": 29,\\\\n  \\\\\\\"null_mid_rate\\\\\\\": 0.58,\\\\n  \\\\\\\"effective_n_mid\\\\\\\": 21,\\\\n  \\\\\\\"null_low\\\\\\\": 3,\\\\n  \\\\\\\"null_low_rate\\\\\\\": 0.06,\\\\n  \\\\\\\"effective_n_low\\\\\\\": 47\\\\n}\\\\n\\\\nB_BOOTSTRAP: 10000\\\\nd_z_scope: within-importance only (same masking, different sparsity)\\\\n\\\\nwithin_dz keys: ['deepseek_imp', 'qwen_imp']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"midphase_null: {\\n  \\\"n_total\\\": 50,\\n  \\\"null_high\\\": 1,\\n  \\\"null_high_rate\\\": 0.02,\\n  \\\"effective_n_high\\\": 49,\\n  \\\"null_mid\\\": 29,\\n  \\\"null_mid_rate\\\": 0.58,\\n  \\\"effective_n_mid\\\": 21,\\n  \\\"null_low\\\": 3,\\n  \\\"null_low_rate\\\": 0.06,\\n  \\\"effective_n_low\\\": 47\\n}\\n\\nB_BOOTSTRAP: 10000\\nd_z_scope: within-importance only (same masking, different sparsity)\\n\\nwithin_dz keys: ['deepseek_imp', 'qwen_imp']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8a9d3b15-73a5-4d06-895e-86fa1c334b2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-14T22:55:31.176Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes verified. Final summary:\n\n---\n\n## Audit Results\n\n### Issues found and fixed:\n\n| # | File | Issue | Fix |\n|---|------|-------|-----|\n| 1 | `analyze_n500.py:39` | `B_BOOTSTRAP = 1000` | Changed to `10000` |\n| 2 | `analyze_n500.py` | No per-phase null rate (W5 missing) | Added `midphase_null_rate()` function + integrated into `analyze_condition()` |\n| 3 | `analyze_n500.py:424` | d_z computed for both imp AND rand (D059 violation) | Loop now only runs for `\"imp\"` masking |\n| 4 | `analyze_n500_unified.py:131` | `midphase_null_rate` only computed rate for mid phase | Added `null_high_rate`, `null_low_rate`, `effective_n_*` for all 3 phases |\n| 5 | `analysis/cross_model_analysis.py` | Hardcoded n=50 paths, won't work for n=500 | Added `--n500` flag, compute d_z on the fly instead of loading pre-computed files |\n\n### No issues found (PASS):\n\n| Requirement | Status | Details |\n|---|---|---|\n| D054 (Median-only) | **PASS** | `analyze_n500_unified.py` and `analyze_n500.py` use median + bootstrap CI as primary. `analyze_c2_n500.py` includes mean as reference only. |\n| B=10,000 (W4) | **PASS** (after fix #1) | All scripts now use B=10,000. n=500 × 8 conditions × B=10,000 ≈ 10s — acceptable. |\n| Per-phase effective n (W5) | **PASS** (after fix #2,#4) | All phases report `effective_n_*` and `null_*_rate` |\n| D059 (d_z within-imp only) | **PASS** (after fix #3) | `analyze_n500_unified.py` was already compliant. `analyze_n500.py` fixed. |\n| Aggregation script | **PASS** | `analyze_n500_unified.py` is the main one-click script, outputs all required data. `cross_model_analysis.py --n500` handles cross-model. |\n\n### Pipeline readiness: **PASS**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74c399f5-379c-4c15-bcab-087d63fb8d61",
+            "isSidechain": false,
+            "requestId": "req_011Cb3HWQYGRqLY8b3Tf59K9",
+            "type": "assistant",
+            "uuid": "46c7a977-b9fe-427e-bae4-173130dfe353",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019xnDEHoxvvgP2qKGHREjCp",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 101859,
+                "output_tokens": 604,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 720,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 604,
+                    "cache_read_input_tokens": 101859,
+                    "cache_creation_input_tokens": 720,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 720
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "46c7a977-b9fe-427e-bae4-173130dfe353",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit n=500 analysis pipeline code readiness",
+                "sessionId": "04376f91-ff33-4ca7-ace3-21bc8ba42429"
+              }
+            }
+          ],
+          "id": "event-000198"
+        }
+      ]
+    }
+  ]
+}
