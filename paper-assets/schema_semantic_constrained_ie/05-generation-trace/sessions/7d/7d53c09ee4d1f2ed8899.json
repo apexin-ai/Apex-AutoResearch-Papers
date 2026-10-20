@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d53c09ee4d1f2ed8899",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis cross model comparison prep",
+  "task_key": "worker_analysis_cross_model_comparison_prep_20260514T135349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_comparison_prep_20260514T135349_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "8693b0e3ccb973ba0c867b1770c278beb45e75b668bf4e27db7a192def3b010d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件 `artifacts/cross_model_analysis_framework.md`（已注册 `art_20260514_47fb0c`），核心要点：\n\n**表格**：单表双模型，主列 DR/RV/ET + ΔDR 相对降幅，F1 靠右作为 control variable。用相对百分比（↓94%）而非绝对 pp 差，解决 baseline 不可比问题。\n\n**叙事**：三层论证——(a) violation reduction 与模型无关（同约束编译、零代码修改），(b) F1 差异是 zero-shot 能力差异、与约束有效性无关，(c) 不同 violation profile 反而增强 evidence 的多样性。\n\n**Checklist**：Llama full_s1 到达后重点看 ΔDR% 是否 >80%、RV/ET 是否归零、R-F1 是否在 ±1pp 内、CF 是否也升高（强化系统性副作用论证）。统计检验用 McNemar 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-model-comparison-prep.md"
+}

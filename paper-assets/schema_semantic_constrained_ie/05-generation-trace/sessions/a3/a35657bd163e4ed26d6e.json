@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a35657bd163e4ed26d6e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix kill dup scierc setup monitor",
+  "task_key": "worker_fix_kill_dup_scierc_setup_monitor_20260522T040116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_dup_scierc_setup_monitor_20260522T040116_result.json",
+    "occurrence": 1,
+    "bytes": 258,
+    "sha256": "ed1edf550f24a7cfa8c4d1b0617448cc926469404b594fa77e4fe5e481eac049"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成：\n\n- **PID 878492**: 已杀，确认 KILLED\n- **tmux scierc_monitor**: 已启动，当前读到 356/551 行，PID 880000 运行中。脚本每 5 分钟轮询，unconstrained 完成后自动启动 S1 constrained 推理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-dup-scierc-setup-monitor.md"
+}

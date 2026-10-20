@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dbbc4e8e56296c911bb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp s2 dryrun verify",
+  "task_key": "worker_exp_s2_dryrun_verify_20260513T222242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_s2_dryrun_verify_20260513T222242_result.json",
+    "occurrence": 1,
+    "bytes": 121,
+    "sha256": "b7cab80d81c85c6fa03c71f0dad551686b3ac486c922418aae1bca8c5520007d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有后台任务已完成。S2 dry-run 10 samples 验证结果不变：D/R violation rate = 0%，PASS。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-s2-dryrun-verify.md"
+}

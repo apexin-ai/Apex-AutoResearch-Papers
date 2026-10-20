@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "cfdbb3539291e665e5e7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "research pair based impl plan 20260515T141200 retry2",
+  "task_key": "worker_research_pair_based_impl_plan_20260515T141200_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pair_based_impl_plan_20260515T141200_retry2.log",
+    "occurrence": 1,
+    "bytes": 745526,
+    "sha256": "bb893633fb04dc083d95b54bca87aacbc6cdbf93cd417cc58a508dae49f35cfb"
+  },
+  "statistics": {
+    "messages": 118,
+    "user_turns": 0,
+    "tool_calls": 43,
+    "roles": {
+      "system": 1,
+      "record": 2,
+      "assistant": 28,
+      "tool_call": 43,
+      "tool_result": 43,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 118,
+      "chunks": [
+        {
+          "path": "cfdbb3539291e665e5e7-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "cfdbb3539291e665e5e7-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-pair-based-impl-plan-20260515t141200-retry2.md"
+}

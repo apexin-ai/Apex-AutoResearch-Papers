@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83a578b4ac1c348ce7ac",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d066 beam sweep start",
+  "task_key": "worker_ssh_d066_beam_sweep_start_20260519T232152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d066_beam_sweep_start_20260519T232152_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "c5c395126bcddd948509c779012e1171570503cf67f4db96e8860099f1a9668b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d066 SciERC beam sweep 已在 westd-21461 GPU1 启动：\n\n- **PID**: 132459 / 132469 (python)\n- **GPU1**: Qwen3-8B, 19GB/98GB, 87% util\n- **任务**: 8 runs (beam k=1,2,4,8 × unconstrained/constrained)\n- **预计完成**: ~08:30-09:00 CST\n\n注意：GPU0 上的 d064 已完成（0MiB），GPU0 的 Llama beam sweep 可单独启动。报告已写入 `d066_start.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d066-beam-sweep-start.md"
+}

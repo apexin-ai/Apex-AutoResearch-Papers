@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a854d7bd721fc588908",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code fix llama grammar only dataset",
+  "task_key": "worker_code_fix_llama_grammar_only_dataset_20260518T040929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_llama_grammar_only_dataset_20260518T040929_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "c4cccfd0e646f0361cf7ec12920521d010b8fa851e9a8797521832731bd656d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复并确认运行正常。\n\n**总结：**\n- **问题**：`test.jsonl` 只有 20 docs，完整的 246 docs test 集在 `all.jsonl`\n- **修复**：杀掉旧进程，用 `--data_path data/wikievents/all.jsonl` 重启\n- **确认**：日志显示 `Samples: 246`，GPU 1 正在使用（87%, 16GB），Llama grammar_only 正在跑完整 246 docs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-llama-grammar-only-dataset.md"
+}

@@ -1,0 +1,853 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d19d03ec0ed77f1f9978",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MvaFGUeHsCe2swmpyNs3Db",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-21461",
+                "command": "python3 -c \"\nimport json\nwith open('/tmp/r14_qwen_perdoc.json') as f:\n    data = json.load(f)\nj = json.dumps(data, separators=(',', ':'), ensure_ascii=False)\ns = len(j) // 3\nprint('---PART3---')\nprint(j[s*2:])\nprint('---END3---')\n\"",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "b39127bf-7475-43b9-b419-753df7f906e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jvk94oyCtdtM3Td5raRg4T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4716,
+                "cache_read_input_tokens": 113051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4716
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-20T20:29:25.016Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MvaFGUeHsCe2swmpyNs3Db",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---PART3---\\\\nied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0408},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0617},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.125},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0941},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.1961},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0513},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.093},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0571},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0784},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.2857},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"rov\\\\\\\":{\\\\\\\"mean\\\\\\\":0.0,\\\\\\\"std\\\\\\\":0.0,\\\\\\\"median\\\\\\\":0.0,\\\\\\\"iqr\\\\\\\":[0.0,0.0],\\\\\\\"min\\\\\\\":0.0,\\\\\\\"max\\\\\\\":0.0,\\\\\\\"n\\\\\\\":19,\\\\\\\"ci_95\\\\\\\":[0.0,0.0],\\\\\\\"point_micro\\\\\\\":0.0,\\\\\\\"per_doc\\\\\\\":[{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_1_news_8\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_68\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"53_VOA_EN_NW_2015.06.24.2835606\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_0_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_10\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"backpack_ied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"ac\\\\\\\":{\\\\\\\"mean\\\\\\\":0.0,\\\\\\\"std\\\\\\\":0.0,\\\\\\\"median\\\\\\\":0.0,\\\\\\\"iqr\\\\\\\":[0.0,0.0],\\\\\\\"min\\\\\\\":0.0,\\\\\\\"max\\\\\\\":0.0,\\\\\\\"n\\\\\\\":19,\\\\\\\"ci_95\\\\\\\":[0.0,0.0],\\\\\\\"point_micro\\\\\\\":0.0,\\\\\\\"per_doc\\\\\\\":[{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_1_news_8\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_68\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"53_VOA_EN_NW_2015.06.24.2835606\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_0_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_10\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"backpack_ied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"parse_rate\\\\\\\":0.95,\\\\\\\"n_docs_total\\\\\\\":20,\\\\\\\"n_docs_parsed\\\\\\\":19}}}\\\\n---END3---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "3c6165bf-5694-4306-8bab-7ae9cb9334ea",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---PART3---\\\\nied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0408},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0617},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.125},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0941},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.1961},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0513},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.093},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0571},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0784},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.2857},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"rov\\\\\\\":{\\\\\\\"mean\\\\\\\":0.0,\\\\\\\"std\\\\\\\":0.0,\\\\\\\"median\\\\\\\":0.0,\\\\\\\"iqr\\\\\\\":[0.0,0.0],\\\\\\\"min\\\\\\\":0.0,\\\\\\\"max\\\\\\\":0.0,\\\\\\\"n\\\\\\\":19,\\\\\\\"ci_95\\\\\\\":[0.0,0.0],\\\\\\\"point_micro\\\\\\\":0.0,\\\\\\\"per_doc\\\\\\\":[{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_1_news_8\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_68\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"53_VOA_EN_NW_2015.06.24.2835606\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_0_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_10\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"backpack_ied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"ac\\\\\\\":{\\\\\\\"mean\\\\\\\":0.0,\\\\\\\"std\\\\\\\":0.0,\\\\\\\"median\\\\\\\":0.0,\\\\\\\"iqr\\\\\\\":[0.0,0.0],\\\\\\\"min\\\\\\\":0.0,\\\\\\\"max\\\\\\\":0.0,\\\\\\\"n\\\\\\\":19,\\\\\\\"ci_95\\\\\\\":[0.0,0.0],\\\\\\\"point_micro\\\\\\\":0.0,\\\\\\\"per_doc\\\\\\\":[{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_1_news_8\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_68\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"53_VOA_EN_NW_2015.06.24.2835606\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_0_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_10\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"backpack_ied_20\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"20_VOA_EN_NW_2016.11.17.3601570\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_30\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"38_VOA_EN_NW_2013.04.24.1647602\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"JC002YBW0\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_16\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"suicide_ied_100\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"23_VOA_EN_NW_2015.11.24.3071320\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"K0C041O37\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_7_news_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_mass_car_bombings_0_news_9\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_ied_bombings_5_news_3\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"wiki_drone_strikes_1_news_1\\\\\\\",\\\\\\\"value\\\\\\\":0.0},{\\\\\\\"doc_id\\\\\\\":\\\\\\\"scenario_en_kairos_2\\\\\\\",\\\\\\\"value\\\\\\\":0.0}]},\\\\\\\"parse_rate\\\\\\\":0.95,\\\\\\\"n_docs_total\\\\\\\":20,\\\\\\\"n_docs_parsed\\\\\\\":19}}}\\\\n---END3---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"---PART3---\\nied_20\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"20_VOA_EN_NW_2016.11.17.3601570\\\",\\\"value\\\":0.0408},{\\\"doc_id\\\":\\\"scenario_en_kairos_30\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"38_VOA_EN_NW_2013.04.24.1647602\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"JC002YBW0\\\",\\\"value\\\":0.0617},{\\\"doc_id\\\":\\\"scenario_en_kairos_16\\\",\\\"value\\\":0.125},{\\\"doc_id\\\":\\\"suicide_ied_100\\\",\\\"value\\\":0.0941},{\\\"doc_id\\\":\\\"23_VOA_EN_NW_2015.11.24.3071320\\\",\\\"value\\\":0.1961},{\\\"doc_id\\\":\\\"K0C041O37\\\",\\\"value\\\":0.0513},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_7_news_2\\\",\\\"value\\\":0.093},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_0_news_9\\\",\\\"value\\\":0.0571},{\\\"doc_id\\\":\\\"wiki_ied_bombings_5_news_3\\\",\\\"value\\\":0.0784},{\\\"doc_id\\\":\\\"wiki_drone_strikes_1_news_1\\\",\\\"value\\\":0.2857},{\\\"doc_id\\\":\\\"scenario_en_kairos_2\\\",\\\"value\\\":0.0}]},\\\"rov\\\":{\\\"mean\\\":0.0,\\\"std\\\":0.0,\\\"median\\\":0.0,\\\"iqr\\\":[0.0,0.0],\\\"min\\\":0.0,\\\"max\\\":0.0,\\\"n\\\":19,\\\"ci_95\\\":[0.0,0.0],\\\"point_micro\\\":0.0,\\\"per_doc\\\":[{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_1_news_8\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_68\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"53_VOA_EN_NW_2015.06.24.2835606\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_drone_strikes_0_news_1\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_ied_bombings_10\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"backpack_ied_20\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"20_VOA_EN_NW_2016.11.17.3601570\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_30\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"38_VOA_EN_NW_2013.04.24.1647602\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"JC002YBW0\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_16\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"suicide_ied_100\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"23_VOA_EN_NW_2015.11.24.3071320\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"K0C041O37\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_7_news_2\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_0_news_9\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_ied_bombings_5_news_3\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_drone_strikes_1_news_1\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_2\\\",\\\"value\\\":0.0}]},\\\"ac\\\":{\\\"mean\\\":0.0,\\\"std\\\":0.0,\\\"median\\\":0.0,\\\"iqr\\\":[0.0,0.0],\\\"min\\\":0.0,\\\"max\\\":0.0,\\\"n\\\":19,\\\"ci_95\\\":[0.0,0.0],\\\"point_micro\\\":0.0,\\\"per_doc\\\":[{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_1_news_8\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_68\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"53_VOA_EN_NW_2015.06.24.2835606\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_drone_strikes_0_news_1\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_ied_bombings_10\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"backpack_ied_20\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"20_VOA_EN_NW_2016.11.17.3601570\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_30\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"38_VOA_EN_NW_2013.04.24.1647602\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"JC002YBW0\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_16\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"suicide_ied_100\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"23_VOA_EN_NW_2015.11.24.3071320\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"K0C041O37\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_7_news_2\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_mass_car_bombings_0_news_9\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_ied_bombings_5_news_3\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"wiki_drone_strikes_1_news_1\\\",\\\"value\\\":0.0},{\\\"doc_id\\\":\\\"scenario_en_kairos_2\\\",\\\"value\\\":0.0}]},\\\"parse_rate\\\":0.95,\\\"n_docs_total\\\":20,\\\"n_docs_parsed\\\":19}}}\\n---END3---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all 3 parts:\n\nPART1 (ends at `0.62`): \n```\n{\"qwen_ft\":{\"unconstrained\":{\"trigger_f1\":{\"mean\":0.2669,\"std\":0.1453,...},...,\"rov\":{\"mean\":0.2157,...,\"per_doc\":[...{\"doc_id\":\"K0C041O37\",\"value\":0.62\n```\n\nPART2 (starts at `5}`, ends at `backpack_`):\n\n\n```\n5},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.4211},...,\"constrained\":{\"trigger_f1\":{...},\"argument_f1\":{...,\"per_doc\":[...{\"doc_id\":\"backpack_\n```\n\nPART3 (starts at `ied_20\"`):\n```\nied_20\",\"value\":0.0},...,\"parse_rate\":0.95,\"n_docs_total\":20,\"n_docs_parsed\":19}}}\n```\n\nSo the full JSON is PART1 + PART2 + PART3. Now I'm assembling the complete metrics structure...\n\nWriting the output to westd-16980...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "18eb9ca9-6b0f-4df3-905d-51f8632b7b99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VG3SRJvaMtAYtnrU7nPZ8f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4553,
+                "cache_read_input_tokens": 117767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4553
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all 3 parts. Now I'll write them to westd-16980 and merge with the Llama data."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "22c3564b-5948-4221-829e-51bf5012df85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VG3SRJvaMtAYtnrU7nPZ8f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4553,
+                "cache_read_input_tokens": 117767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4553
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199k3BWL7bvHhmNPv9imbn9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "python3 << 'PYEOF'\nimport json\n\n# Part 1 of Qwen data\np1 = '{\"qwen_ft\":{\"unconstrained\":{\"trigger_f1\":{\"mean\":0.2669,\"std\":0.1453,\"median\":0.2857,\"iqr\":[0.2222,0.3529],\"min\":0.0,\"max\":0.4571,\"n\":17,\"ci_95\":[0.2529,0.3723],\"point_micro\":0.3208,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.2609},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.3529},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.2857},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.3333},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.4407},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.3273},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.4444},{\"doc_id\":\"suicide_ied_100\",\"value\":0.4571},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.375},{\"doc_id\":\"K0C041O37\",\"value\":0.2222},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.3529},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.1765},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.2222},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.2857}]},\"argument_f1\":{\"mean\":0.0748,\"std\":0.0837,\"median\":0.0488,\"iqr\":[0.0,0.125],\"min\":0.0,\"max\":0.2857,\"n\":17,\"ci_95\":[0.0485,0.1127],\"point_micro\":0.0785,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0488},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.1515},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.1034},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.0405},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.125},{\"doc_id\":\"suicide_ied_100\",\"value\":0.087},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.1961},{\"doc_id\":\"K0C041O37\",\"value\":0.0},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.1714},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.0625},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.2857},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"rov\":{\"mean\":0.2157,\"std\":0.2238,\"median\":0.25,\"iqr\":[0.0,0.4211],\"min\":0.0,\"max\":0.625,\"n\":17,\"ci_95\":[0.2538,0.4667],\"point_micro\":0.3831,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.2857},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.5},{\"doc_id\":\"backpack_ied_20\",\"value\":0.5},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.5213},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.25},{\"doc_id\":\"suicide_ied_100\",\"value\":0.2727},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.0},{\"doc_id\":\"K0C041O37\",\"value\":0.62'\n\n# Part 2\np2 = '5},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.4211},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.2903},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"ac\":{\"mean\":0.0291,\"std\":0.0511,\"median\":0.0,\"iqr\":[0.0,0.0303],\"min\":0.0,\"max\":0.1579,\"n\":17,\"ci_95\":[0.0164,0.0735],\"point_micro\":0.0345,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.0357},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.0},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.0213},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.125},{\"doc_id\":\"suicide_ied_100\",\"value\":0.0303},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.0},{\"doc_id\":\"K0C041O37\",\"value\":0.125},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.1579},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.0},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"parse_rate\":0.85,\"n_docs_total\":20,\"n_docs_parsed\":17},\"constrained\":{\"trigger_f1\":{\"mean\":0.2354,\"std\":0.1402,\"median\":0.2609,\"iqr\":[0.1739,0.3583],\"min\":0.0,\"max\":0.4444,\"n\":19,\"ci_95\":[0.2084,0.3286],\"point_micro\":0.2672,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.2609},{\"doc_id\":\"scenario_en_kairos_68\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.375},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.2857},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.1739},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.3529},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.3636},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.4444},{\"doc_id\":\"suicide_ied_100\",\"value\":0.3721},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.375},{\"doc_id\":\"K0C041O37\",\"value\":0.3158},{\"doc_id\":\"wiki_mass_car_bombings_7_news_2\",\"value\":0.1739},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.25},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.2222},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.2222},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.2857}]},\"argument_f1\":{\"mean\":0.0725,\"std\":0.0779,\"median\":0.0513,\"iqr\":[0.0,0.0936],\"min\":0.0,\"max\":0.2857,\"n\":19,\"ci_95\":[0.0546,0.1109],\"point_micro\":0.0818,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0488},{\"doc_id\":\"scenario_en_kairos_68\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.2},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.0444},{\"doc_id\":\"backpack_'\n\n# Part 3\np3 = 'ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0408},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.0617},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.125},{\"doc_id\":\"suicide_ied_100\",\"value\":0.0941},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.1961},{\"doc_id\":\"K0C041O37\",\"value\":0.0513},{\"doc_id\":\"wiki_mass_car_bombings_7_news_2\",\"value\":0.093},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.0571},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.0784},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.2857},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"rov\":{\"mean\":0.0,\"std\":0.0,\"median\":0.0,\"iqr\":[0.0,0.0],\"min\":0.0,\"max\":0.0,\"n\":19,\"ci_95\":[0.0,0.0],\"point_micro\":0.0,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_68\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.0},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.0},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.0},{\"doc_id\":\"suicide_ied_100\",\"value\":0.0},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.0},{\"doc_id\":\"K0C041O37\",\"value\":0.0},{\"doc_id\":\"wiki_mass_car_bombings_7_news_2\",\"value\":0.0},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.0},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"ac\":{\"mean\":0.0,\"std\":0.0,\"median\":0.0,\"iqr\":[0.0,0.0],\"min\":0.0,\"max\":0.0,\"n\":19,\"ci_95\":[0.0,0.0],\"point_micro\":0.0,\"per_doc\":[{\"doc_id\":\"wiki_mass_car_bombings_1_news_8\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_68\",\"value\":0.0},{\"doc_id\":\"53_VOA_EN_NW_2015.06.24.2835606\",\"value\":0.0},{\"doc_id\":\"wiki_drone_strikes_0_news_1\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_10\",\"value\":0.0},{\"doc_id\":\"backpack_ied_20\",\"value\":0.0},{\"doc_id\":\"20_VOA_EN_NW_2016.11.17.3601570\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_30\",\"value\":0.0},{\"doc_id\":\"38_VOA_EN_NW_2013.04.24.1647602\",\"value\":0.0},{\"doc_id\":\"JC002YBW0\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_16\",\"value\":0.0},{\"doc_id\":\"suicide_ied_100\",\"value\":0.0},{\"doc_id\":\"23_VOA_EN_NW_2015.11.24.3071320\",\"value\":0.0},{\"doc_id\":\"K0C041O37\",\"value\":0.0},{\"doc_id\":\"wiki_mass_car_bombings_7_news_2\",\"value\":0.0},{\"doc_id\":\"wiki_mass_car_bombings_0_news_9\",\"value\":0.0},{\"doc_id\":\"wiki_ied_bombings_5_news_3\",\"value\":0.0},{\"doc_id\":\"wiki_drone_strikes_1_news_1\",\"value\":0.0},{\"doc_id\":\"scenario_en_kairos_2\",\"value\":0.0}]},\"parse_rate\":0.95,\"n_docs_total\":20,\"n_docs_parsed\":19}}}'\n\nqwen_json = p1 + p2 + p3\nqwen_data = json.loads(qwen_json)\n\n# Read Llama data\nwith open(\"/root/autodl-tmp/schema_outputs/r14_llama_perdoc.json\") as f:\n    llama_data = json.load(f)\n\n# Merge\nresult = {\n    \"qwen_ft\": qwen_data[\"qwen_ft\"],\n    \"llama_ft\": llama_data[\"llama_ft\"],\n    \"metadata\": {\n        \"n_bootstrap\": 1000,\n        \"seed\": 42,\n        \"ci_method\": \"percentile\",\n        \"ci_level\": 0.95,\n        \"resampling\": \"document-level with replacement\",\n        \"note\": \"per-document variance + bootstrap CI. parse failures skipped. Matches eval_event_extraction.py behavior.\",\n        \"qwen_ft_source\": \"westd-21461: ee_qwen_ft_wikievents_{unconstrained_r5,full_s1_r5}.jsonl\",\n        \"llama_ft_source\": \"westd-16980: ee_llama_ft_wikievents_{unconstrained_r2,full_s1_r2}.jsonl\",\n        \"generated\": \"2026-05-20\"\n    }\n}\n\nout_path = \"/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2, ensure_ascii=False)\nprint(f\"Saved to {out_path}\")\n\n# Verify\nwith open(out_path) as f:\n    v = json.load(f)\nprint(f\"Keys: {list(v.keys())}\")\nprint(f\"qwen_ft modes: {list(v['qwen_ft'].keys())}\")\nprint(f\"llama_ft modes: {list(v['llama_ft'].keys())}\")\nPYEOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "13f3438d-dd3c-4bdf-8580-9ffc61424cb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VG3SRJvaMtAYtnrU7nPZ8f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4553,
+                "cache_read_input_tokens": 117767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4553
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-20T20:30:25.086Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199k3BWL7bvHhmNPv9imbn9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\\nKeys: ['qwen_ft', 'llama_ft', 'metadata']\\\\nqwen_ft modes: ['unconstrained', 'constrained']\\\\nllama_ft modes: ['unconstrained', 'constrained']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "4c63e516-1202-4bab-ab5e-4836f40f82af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\\nKeys: ['qwen_ft', 'llama_ft', 'metadata']\\\\nqwen_ft modes: ['unconstrained', 'constrained']\\\\nllama_ft modes: ['unconstrained', 'constrained']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\nKeys: ['qwen_ft', 'llama_ft', 'metadata']\\nqwen_ft modes: ['unconstrained', 'constrained']\\nllama_ft modes: ['unconstrained', 'constrained']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File saved. Let me verify the data integrity and print a summary."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "65e6b12e-2000-46ec-bc97-88aef2b2ae10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hjhy133KCykSQcE32RVfnQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5409,
+                "cache_read_input_tokens": 122320,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5409
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DAgGoSrqSjgEEeR8Vpf4DF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\") as f:\n    d = json.load(f)\n\nprint(\"=\" * 80)\nprint(\"R14 WikiEvents Per-Document Variance Summary\")\nprint(\"=\" * 80)\n\nfor model in [\"qwen_ft\", \"llama_ft\"]:\n    for mode in [\"unconstrained\", \"constrained\"]:\n        data = d[model][mode]\n        print(f\"\\n--- {model} / {mode} ({data['n_docs_parsed']}/{data['n_docs_total']} docs parsed) ---\")\n        for metric in [\"trigger_f1\", \"argument_f1\", \"rov\", \"ac\"]:\n            m = data[metric]\n            print(f\"  {metric}:\")\n            print(f\"    micro-avg (point): {m['point_micro']:.4f}\")\n            print(f\"    per-doc mean±std:  {m['mean']:.4f} ± {m['std']:.4f}\")\n            print(f\"    median [IQR]:      {m['median']:.4f} [{m['iqr'][0]:.4f}, {m['iqr'][1]:.4f}]\")\n            print(f\"    min/max:           {m['min']:.4f} / {m['max']:.4f}\")\n            print(f\"    95% bootstrap CI:  [{m['ci_95'][0]:.4f}, {m['ci_95'][1]:.4f}]\")\n            vals = [x[\"value\"] for x in m[\"per_doc\"]]\n            n_zero = sum(1 for v in vals if v == 0.0)\n            print(f\"    #zero-doc:         {n_zero}/{len(vals)}\")\nPYEOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "8ced81c8-0464-4162-aeaa-07fd895b8fe2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hjhy133KCykSQcE32RVfnQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5409,
+                "cache_read_input_tokens": 122320,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5409
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-20T20:30:40.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DAgGoSrqSjgEEeR8Vpf4DF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nR14 WikiEvents Per-Document Variance Summary\\\\n================================================================================\\\\n\\\\n--- qwen_ft / unconstrained (17/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.3208\\\\n    per-doc mean±std:  0.2669 ± 0.1453\\\\n    median [IQR]:      0.2857 [0.2222, 0.3529]\\\\n    min/max:           0.0000 / 0.4571\\\\n    95% bootstrap CI:  [0.2529, 0.3723]\\\\n    #zero-doc:         3/17\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0785\\\\n    per-doc mean±std:  0.0748 ± 0.0837\\\\n    median [IQR]:      0.0488 [0.0000, 0.1250]\\\\n    min/max:           0.0000 / 0.2857\\\\n    95% bootstrap CI:  [0.0485, 0.1127]\\\\n    #zero-doc:         7/17\\\\n  rov:\\\\n    micro-avg (point): 0.3831\\\\n    per-doc mean±std:  0.2157 ± 0.2238\\\\n    median [IQR]:      0.2500 [0.0000, 0.4211]\\\\n    min/max:           0.0000 / 0.6250\\\\n    95% bootstrap CI:  [0.2538, 0.4667]\\\\n    #zero-doc:         8/17\\\\n  ac:\\\\n    micro-avg (point): 0.0345\\\\n    per-doc mean±std:  0.0291 ± 0.0511\\\\n    median [IQR]:      0.0000 [0.0000, 0.0303]\\\\n    min/max:           0.0000 / 0.1579\\\\n    95% bootstrap CI:  [0.0164, 0.0735]\\\\n    #zero-doc:         11/17\\\\n\\\\n--- qwen_ft / constrained (19/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2672\\\\n    per-doc mean±std:  0.2354 ± 0.1402\\\\n    median [IQR]:      0.2609 [0.1739, 0.3583]\\\\n    min/max:           0.0000 / 0.4444\\\\n    95% bootstrap CI:  [0.2084, 0.3286]\\\\n    #zero-doc:         4/19\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0818\\\\n    per-doc mean±std:  0.0725 ± 0.0779\\\\n    median [IQR]:      0.0513 [0.0000, 0.0936]\\\\n    min/max:           0.0000 / 0.2857\\\\n    95% bootstrap CI:  [0.0546, 0.1109]\\\\n    #zero-doc:         6/19\\\\n  rov:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         19/19\\\\n  ac:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         19/19\\\\n\\\\n--- llama_ft / unconstrained (20/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2752\\\\n    per-doc mean±std:  0.2761 ± 0.1607\\\\n    median [IQR]:      0.2581 [0.1818, 0.3604]\\\\n    min/max:           0.0000 / 0.6000\\\\n    95% bootstrap CI:  [0.2302, 0.3230]\\\\n    #zero-doc:         2/20\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0998\\\\n    per-doc mean±std:  0.0790 ± 0.0913\\\\n    median [IQR]:      0.0506 [0.0000, 0.1400]\\\\n    min/max:           0.0000 / 0.3636\\\\n    95% bootstrap CI:  [0.0659, 0.1247]\\\\n    #zero-doc:         8/20\\\\n  rov:\\\\n    micro-avg (point): 0.1107\\\\n    per-doc mean±std:  0.0604 ± 0.1303\\\\n    median [IQR]:      0.0000 [0.0000, 0.0491]\\\\n    min/max:           0.0000 / 0.5556\\\\n    95% bootstrap CI:  [0.0376, 0.1817]\\\\n    #zero-doc:         13/20\\\\n  ac:\\\\n    micro-avg (point): 0.0503\\\\n    per-doc mean±std:  0.0185 ± 0.0421\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.1667\\\\n    95% bootstrap CI:  [0.0172, 0.0728]\\\\n    #zero-doc:         16/20\\\\n\\\\n--- llama_ft / constrained (20/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2691\\\\n    per-doc mean±std:  0.2531 ± 0.1750\\\\n    median [IQR]:      0.2540 [0.1444, 0.3895]\\\\n    min/max:           0.0000 / 0.5714\\\\n    95% bootstrap CI:  [0.2057, 0.3260]\\\\n    #zero-doc:         4/20\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0891\\\\n    per-doc mean±std:  0.0982 ± 0.1048\\\\n    median [IQR]:      0.0662 [0.0000, 0.1551]\\\\n    min/max:           0.0000 / 0.3636\\\\n    95% bootstrap CI:  [0.0576, 0.1218]\\\\n    #zero-doc:         6/20\\\\n  rov:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         20/20\\\\n  ac:\\\\n    micro-avg (point): 0.0078\\\\n    per-doc mean±std:  0.0033 ± 0.0098\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0333\\\\n    95% bootstrap CI:  [0.0000, 0.0172]\\\\n    #zero-doc:         18/20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "749bfac2-db40-4df3-bc24-206b4f4afe4b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nR14 WikiEvents Per-Document Variance Summary\\\\n================================================================================\\\\n\\\\n--- qwen_ft / unconstrained (17/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.3208\\\\n    per-doc mean±std:  0.2669 ± 0.1453\\\\n    median [IQR]:      0.2857 [0.2222, 0.3529]\\\\n    min/max:           0.0000 / 0.4571\\\\n    95% bootstrap CI:  [0.2529, 0.3723]\\\\n    #zero-doc:         3/17\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0785\\\\n    per-doc mean±std:  0.0748 ± 0.0837\\\\n    median [IQR]:      0.0488 [0.0000, 0.1250]\\\\n    min/max:           0.0000 / 0.2857\\\\n    95% bootstrap CI:  [0.0485, 0.1127]\\\\n    #zero-doc:         7/17\\\\n  rov:\\\\n    micro-avg (point): 0.3831\\\\n    per-doc mean±std:  0.2157 ± 0.2238\\\\n    median [IQR]:      0.2500 [0.0000, 0.4211]\\\\n    min/max:           0.0000 / 0.6250\\\\n    95% bootstrap CI:  [0.2538, 0.4667]\\\\n    #zero-doc:         8/17\\\\n  ac:\\\\n    micro-avg (point): 0.0345\\\\n    per-doc mean±std:  0.0291 ± 0.0511\\\\n    median [IQR]:      0.0000 [0.0000, 0.0303]\\\\n    min/max:           0.0000 / 0.1579\\\\n    95% bootstrap CI:  [0.0164, 0.0735]\\\\n    #zero-doc:         11/17\\\\n\\\\n--- qwen_ft / constrained (19/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2672\\\\n    per-doc mean±std:  0.2354 ± 0.1402\\\\n    median [IQR]:      0.2609 [0.1739, 0.3583]\\\\n    min/max:           0.0000 / 0.4444\\\\n    95% bootstrap CI:  [0.2084, 0.3286]\\\\n    #zero-doc:         4/19\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0818\\\\n    per-doc mean±std:  0.0725 ± 0.0779\\\\n    median [IQR]:      0.0513 [0.0000, 0.0936]\\\\n    min/max:           0.0000 / 0.2857\\\\n    95% bootstrap CI:  [0.0546, 0.1109]\\\\n    #zero-doc:         6/19\\\\n  rov:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         19/19\\\\n  ac:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         19/19\\\\n\\\\n--- llama_ft / unconstrained (20/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2752\\\\n    per-doc mean±std:  0.2761 ± 0.1607\\\\n    median [IQR]:      0.2581 [0.1818, 0.3604]\\\\n    min/max:           0.0000 / 0.6000\\\\n    95% bootstrap CI:  [0.2302, 0.3230]\\\\n    #zero-doc:         2/20\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0998\\\\n    per-doc mean±std:  0.0790 ± 0.0913\\\\n    median [IQR]:      0.0506 [0.0000, 0.1400]\\\\n    min/max:           0.0000 / 0.3636\\\\n    95% bootstrap CI:  [0.0659, 0.1247]\\\\n    #zero-doc:         8/20\\\\n  rov:\\\\n    micro-avg (point): 0.1107\\\\n    per-doc mean±std:  0.0604 ± 0.1303\\\\n    median [IQR]:      0.0000 [0.0000, 0.0491]\\\\n    min/max:           0.0000 / 0.5556\\\\n    95% bootstrap CI:  [0.0376, 0.1817]\\\\n    #zero-doc:         13/20\\\\n  ac:\\\\n    micro-avg (point): 0.0503\\\\n    per-doc mean±std:  0.0185 ± 0.0421\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.1667\\\\n    95% bootstrap CI:  [0.0172, 0.0728]\\\\n    #zero-doc:         16/20\\\\n\\\\n--- llama_ft / constrained (20/20 docs parsed) ---\\\\n  trigger_f1:\\\\n    micro-avg (point): 0.2691\\\\n    per-doc mean±std:  0.2531 ± 0.1750\\\\n    median [IQR]:      0.2540 [0.1444, 0.3895]\\\\n    min/max:           0.0000 / 0.5714\\\\n    95% bootstrap CI:  [0.2057, 0.3260]\\\\n    #zero-doc:         4/20\\\\n  argument_f1:\\\\n    micro-avg (point): 0.0891\\\\n    per-doc mean±std:  0.0982 ± 0.1048\\\\n    median [IQR]:      0.0662 [0.0000, 0.1551]\\\\n    min/max:           0.0000 / 0.3636\\\\n    95% bootstrap CI:  [0.0576, 0.1218]\\\\n    #zero-doc:         6/20\\\\n  rov:\\\\n    micro-avg (point): 0.0000\\\\n    per-doc mean±std:  0.0000 ± 0.0000\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0000\\\\n    95% bootstrap CI:  [0.0000, 0.0000]\\\\n    #zero-doc:         20/20\\\\n  ac:\\\\n    micro-avg (point): 0.0078\\\\n    per-doc mean±std:  0.0033 ± 0.0098\\\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\\\n    min/max:           0.0000 / 0.0333\\\\n    95% bootstrap CI:  [0.0000, 0.0172]\\\\n    #zero-doc:         18/20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nR14 WikiEvents Per-Document Variance Summary\\n================================================================================\\n\\n--- qwen_ft / unconstrained (17/20 docs parsed) ---\\n  trigger_f1:\\n    micro-avg (point): 0.3208\\n    per-doc mean±std:  0.2669 ± 0.1453\\n    median [IQR]:      0.2857 [0.2222, 0.3529]\\n    min/max:           0.0000 / 0.4571\\n    95% bootstrap CI:  [0.2529, 0.3723]\\n    #zero-doc:         3/17\\n  argument_f1:\\n    micro-avg (point): 0.0785\\n    per-doc mean±std:  0.0748 ± 0.0837\\n    median [IQR]:      0.0488 [0.0000, 0.1250]\\n    min/max:           0.0000 / 0.2857\\n    95% bootstrap CI:  [0.0485, 0.1127]\\n    #zero-doc:         7/17\\n  rov:\\n    micro-avg (point): 0.3831\\n    per-doc mean±std:  0.2157 ± 0.2238\\n    median [IQR]:      0.2500 [0.0000, 0.4211]\\n    min/max:           0.0000 / 0.6250\\n    95% bootstrap CI:  [0.2538, 0.4667]\\n    #zero-doc:         8/17\\n  ac:\\n    micro-avg (point): 0.0345\\n    per-doc mean±std:  0.0291 ± 0.0511\\n    median [IQR]:      0.0000 [0.0000, 0.0303]\\n    min/max:           0.0000 / 0.1579\\n    95% bootstrap CI:  [0.0164, 0.0735]\\n    #zero-doc:         11/17\\n\\n--- qwen_ft / constrained (19/20 docs parsed) ---\\n  trigger_f1:\\n    micro-avg (point): 0.2672\\n    per-doc mean±std:  0.2354 ± 0.1402\\n    median [IQR]:      0.2609 [0.1739, 0.3583]\\n    min/max:           0.0000 / 0.4444\\n    95% bootstrap CI:  [0.2084, 0.3286]\\n    #zero-doc:         4/19\\n  argument_f1:\\n    micro-avg (point): 0.0818\\n    per-doc mean±std:  0.0725 ± 0.0779\\n    median [IQR]:      0.0513 [0.0000, 0.0936]\\n    min/max:           0.0000 / 0.2857\\n    95% bootstrap CI:  [0.0546, 0.1109]\\n    #zero-doc:         6/19\\n  rov:\\n    micro-avg (point): 0.0000\\n    per-doc mean±std:  0.0000 ± 0.0000\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\n    min/max:           0.0000 / 0.0000\\n    95% bootstrap CI:  [0.0000, 0.0000]\\n    #zero-doc:         19/19\\n  ac:\\n    micro-avg (point): 0.0000\\n    per-doc mean±std:  0.0000 ± 0.0000\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\n    min/max:           0.0000 / 0.0000\\n    95% bootstrap CI:  [0.0000, 0.0000]\\n    #zero-doc:         19/19\\n\\n--- llama_ft / unconstrained (20/20 docs parsed) ---\\n  trigger_f1:\\n    micro-avg (point): 0.2752\\n    per-doc mean±std:  0.2761 ± 0.1607\\n    median [IQR]:      0.2581 [0.1818, 0.3604]\\n    min/max:           0.0000 / 0.6000\\n    95% bootstrap CI:  [0.2302, 0.3230]\\n    #zero-doc:         2/20\\n  argument_f1:\\n    micro-avg (point): 0.0998\\n    per-doc mean±std:  0.0790 ± 0.0913\\n    median [IQR]:      0.0506 [0.0000, 0.1400]\\n    min/max:           0.0000 / 0.3636\\n    95% bootstrap CI:  [0.0659, 0.1247]\\n    #zero-doc:         8/20\\n  rov:\\n    micro-avg (point): 0.1107\\n    per-doc mean±std:  0.0604 ± 0.1303\\n    median [IQR]:      0.0000 [0.0000, 0.0491]\\n    min/max:           0.0000 / 0.5556\\n    95% bootstrap CI:  [0.0376, 0.1817]\\n    #zero-doc:         13/20\\n  ac:\\n    micro-avg (point): 0.0503\\n    per-doc mean±std:  0.0185 ± 0.0421\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\n    min/max:           0.0000 / 0.1667\\n    95% bootstrap CI:  [0.0172, 0.0728]\\n    #zero-doc:         16/20\\n\\n--- llama_ft / constrained (20/20 docs parsed) ---\\n  trigger_f1:\\n    micro-avg (point): 0.2691\\n    per-doc mean±std:  0.2531 ± 0.1750\\n    median [IQR]:      0.2540 [0.1444, 0.3895]\\n    min/max:           0.0000 / 0.5714\\n    95% bootstrap CI:  [0.2057, 0.3260]\\n    #zero-doc:         4/20\\n  argument_f1:\\n    micro-avg (point): 0.0891\\n    per-doc mean±std:  0.0982 ± 0.1048\\n    median [IQR]:      0.0662 [0.0000, 0.1551]\\n    min/max:           0.0000 / 0.3636\\n    95% bootstrap CI:  [0.0576, 0.1218]\\n    #zero-doc:         6/20\\n  rov:\\n    micro-avg (point): 0.0000\\n    per-doc mean±std:  0.0000 ± 0.0000\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\n    min/max:           0.0000 / 0.0000\\n    95% bootstrap CI:  [0.0000, 0.0000]\\n    #zero-doc:         20/20\\n  ac:\\n    micro-avg (point): 0.0078\\n    per-doc mean±std:  0.0033 ± 0.0098\\n    median [IQR]:      0.0000 [0.0000, 0.0000]\\n    min/max:           0.0000 / 0.0333\\n    95% bootstrap CI:  [0.0000, 0.0172]\\n    #zero-doc:         18/20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015kL6fCkKdoJ1m5GgNvabgR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "7ee5dc8e-db5e-46bd-b0c9-2b1c64ffdba2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AP2RjFmNFHbr8zmZDSMVeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2703,
+                "cache_read_input_tokens": 127729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2703
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-20T20:30:45.259Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015kL6fCkKdoJ1m5GgNvabgR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "4c568667-2b86-466f-bfc7-d8b53462b41e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TYjzQ7jE9yQE2dPpBS5XPg",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "R14 WikiEvents Per-Document Variance",
+                "type": "data",
+                "description": "Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama, unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown + bootstrap CI (B=1000).",
+                "project": "schema_semantic_constrained_ie",
+                "source_path": "/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json",
+                "tags": [
+                  "r14",
+                  "wikievents",
+                  "per-doc-variance",
+                  "bootstrap-ci",
+                  "statistical-power"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "55689707-e318-44e8-bdca-d60fc8a9b2dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011e6JEh1CDMFB5sigrRxDaf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 130432,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 814
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-20T20:30:55.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TYjzQ7jE9yQE2dPpBS5XPg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "168f490c-6e9d-47b1-ae0d-1ae2e5838d72",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0121YPeSzaAyjGhZnSRjf8ry",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "wc -c /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "6669c375-84c3-4484-a7fb-86100d461ba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TGTKJFthsUBM6EnUuXpjCD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 131246,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-20T20:31:00.156Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0121YPeSzaAyjGhZnSRjf8ry",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36972 /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "d27a5329-b8fc-487b-b758-5d7b3770da86",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36972 /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"36972 /root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The register_artifact tool looks for the source_path locally (on the control machine), not on the remote server. I need to use the `content` parameter instead. But the content is 37KB which might be too large to embed.\n\nLet me use `content` with a compact representation, or just register it with a description pointing to the remote path.\n\nActually, looking at the register_artifact parameters, I can use `content` with `content_filename`. Let me get the compact JSON from the server and pass it as content.\n\nOr I can just note the remote path in the description. Let me try with content_filename.\n\n\nI'll try compressing the JSON to reduce its size.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "e3d49bde-14c3-41d8-bb2b-3a1d92801d54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AZ6qEzwKnFDaqmtZ3tapyg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 131600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014F1GjmyhssAJmxuvfskGSD",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "R14 WikiEvents Per-Document Variance",
+                "type": "data",
+                "description": "Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama, unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown + bootstrap CI (B=1000). File on westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json",
+                "project": "schema_semantic_constrained_ie",
+                "content": "See westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json (37KB full JSON with per-doc breakdowns)",
+                "content_filename": "r14_wikievents_perdoc_variance_pointer.txt",
+                "tags": [
+                  "r14",
+                  "wikievents",
+                  "per-doc-variance",
+                  "bootstrap-ci",
+                  "statistical-power"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "50712acc-6941-41ce-b58f-3c9619d673fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AZ6qEzwKnFDaqmtZ3tapyg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 131600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-20T20:31:10.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014F1GjmyhssAJmxuvfskGSD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_75ffbc\\\", \\\"name\\\": \\\"R14 WikiEvents Per-Document Variance\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama, unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown + bootstrap CI (B=1000). File on westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_wikievents_perdoc_variance_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T20:31:10.352330+00:00\\\", \\\"tags\\\": [\\\"r14\\\", \\\"wikievents\\\", \\\"per-doc-variance\\\", \\\"bootstrap-ci\\\", \\\"statistical-power\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "d7167d68-09c5-499f-a777-9a4228061516",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_75ffbc\\\", \\\"name\\\": \\\"R14 WikiEvents Per-Document Variance\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama, unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown + bootstrap CI (B=1000). File on westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_wikievents_perdoc_variance_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T20:31:10.352330+00:00\\\", \\\"tags\\\": [\\\"r14\\\", \\\"wikievents\\\", \\\"per-doc-variance\\\", \\\"bootstrap-ci\\\", \\\"statistical-power\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_75ffbc\", \"name\": \"R14 WikiEvents Per-Document Variance\", \"type\": \"data\", \"description\": \"Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama, unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown + bootstrap CI (B=1000). File on westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_wikievents_perdoc_variance_pointer.txt\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T20:31:10.352330+00:00\", \"tags\": [\"r14\", \"wikievents\", \"per-doc-variance\", \"bootstrap-ci\", \"statistical-power\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存在 `westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json`。\n\n**关键发现：**\n\n| Model | Mode | Metric | Micro-avg | Per-doc Mean±Std | 95% CI | #Zero docs |\n|-------|------|--------|-----------|-----------------|--------|------------|\n| **Qwen FT** | uncon | Trig-F1 | 0.3208 | 0.267±0.145 | [0.253, 0.372] | 3/17 |\n| | uncon | Arg-F1 | 0.0785 | 0.075±0.084 | [0.049, 0.113] | 7/17 |\n| | uncon | RoV | 0.3831 | 0.216±0.224 | [0.254, 0.467] | 8/17 |\n| | con | Trig-F1 | 0.2672 | 0.235±0.140 | [0.208, 0.329] | 4/19 |\n| | con | Arg-F1 | 0.0818 | 0.073±0.078 | [0.055, 0.111] | 6/19 |\n| **Llama FT** | uncon | Trig-F1 | 0.2752 | 0.276±0.161 | [0.230, 0.323] | 2/20 |\n| | uncon | Arg-F1 | 0.0998 | 0.079±0.091 | [0.066, 0.125] | 8/20 |\n| | uncon | RoV | 0.1107 | 0.060±0.130 | [0.038, 0.182] | 13/20 |\n| | con | Trig-F1 | 0.2691 | 0.253±0.175 | [0.206, 0.326] | 4/20 |\n| | con | Arg-F1 | 0.0891 | 0.098±0.105 | [0.058, 0.122] | 6/20 |\n\n**统计功效问题确认：**\n- Per-doc std 普遍 ≥ mean 的 50%（如 Llama uncon Trig-F1 std=0.161 vs mean=0.276），variance 极大\n- Argument F1 有 ~35-47% 的文档为零，被少数高分文档拉高\n- 20-doc 测试集下 95% CI 宽度通常 ≥ 0.06-0.12，微小差异无法区分\n- RoV 的 per-doc mean (0.216) 远低于 micro-avg (0.383)——少数高 violation 文档的 argument 数量多，拉高了 micro 指标"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "uuid": "1c9c42ee-d41f-4e2e-be2d-f30ebdb4c0fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MN8waB9nSuMpMKMxbPMnpc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 898,
+                "cache_read_input_tokens": 131816,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 898
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存在 `westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json`。\n\n**关键发现：**\n\n| Model | Mode | Metric | Micro-avg | Per-doc Mean±Std | 95% CI | #Zero docs |\n|-------|------|--------|-----------|-----------------|--------|------------|\n| **Qwen FT** | uncon | Trig-F1 | 0.3208 | 0.267±0.145 | [0.253, 0.372] | 3/17 |\n| | uncon | Arg-F1 | 0.0785 | 0.075±0.084 | [0.049, 0.113] | 7/17 |\n| | uncon | RoV | 0.3831 | 0.216±0.224 | [0.254, 0.467] | 8/17 |\n| | con | Trig-F1 | 0.2672 | 0.235±0.140 | [0.208, 0.329] | 4/19 |\n| | con | Arg-F1 | 0.0818 | 0.073±0.078 | [0.055, 0.111] | 6/19 |\n| **Llama FT** | uncon | Trig-F1 | 0.2752 | 0.276±0.161 | [0.230, 0.323] | 2/20 |\n| | uncon | Arg-F1 | 0.0998 | 0.079±0.091 | [0.066, 0.125] | 8/20 |\n| | uncon | RoV | 0.1107 | 0.060±0.130 | [0.038, 0.182] | 13/20 |\n| | con | Trig-F1 | 0.2691 | 0.253±0.175 | [0.206, 0.326] | 4/20 |\n| | con | Arg-F1 | 0.0891 | 0.098±0.105 | [0.058, 0.122] | 6/20 |\n\n**统计功效问题确认：**\n- Per-doc std 普遍 ≥ mean 的 50%（如 Llama uncon Trig-F1 std=0.161 vs mean=0.276），variance 极大\n- Argument F1 有 ~35-47% 的文档为零，被少数高分文档拉高\n- 20-doc 测试集下 95% CI 宽度通常 ≥ 0.06-0.12，微小差异无法区分\n- RoV 的 per-doc mean (0.216) 远低于 micro-avg (0.383)——少数高 violation 文档的 argument 数量多，拉高了 micro 指标"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 860429,
+            "duration_api_ms": 847724,
+            "num_turns": 45,
+            "stop_reason": "end_turn",
+            "session_id": "89b10c68-9301-41d7-a3cd-c81a6c1d5ea7",
+            "total_cost_usd": 3.2807357500000007,
+            "usage": {
+              "input_tokens": 44,
+              "cache_creation_input_tokens": 121267,
+              "cache_read_input_tokens": 2823620,
+              "output_tokens": 44369,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 121267,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 773,
+                  "cache_read_input_tokens": 131816,
+                  "cache_creation_input_tokens": 898,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 898
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1477,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001562,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 44,
+                "outputTokens": 44369,
+                "cacheReadInputTokens": 2823620,
+                "cacheCreationInputTokens": 121267,
+                "webSearchRequests": 0,
+                "costUSD": 3.279173750000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d3d48474-9773-412b-b19a-8dd042a94a48"
+          },
+          "id": "event-000137"
+        }
+      ]
+    }
+  ]
+}

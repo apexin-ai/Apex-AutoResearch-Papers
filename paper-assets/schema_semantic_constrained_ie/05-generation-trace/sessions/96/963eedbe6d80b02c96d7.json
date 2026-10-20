@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "963eedbe6d80b02c96d7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check constrained eval completion",
+  "task_key": "worker_ops_check_constrained_eval_completion_20260516T041655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_constrained_eval_completion_20260516T041655_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "95cc38fc525302ec2d1026825a058d3ea54d08d52f5f2a43ccb2b424a94ea345"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都还在运行中：\n\n| 实验 | 进度 | 运行时间 | ETA |\n|------|------|----------|-----|\n| **Llama** constrained eval | 885/998 (88.7%) | 3h50m | ~15s/sample × 113 remaining ≈ **28min** |\n| **Qwen** constrained eval | 385/998 (38.6%) | 2h22m | ~20s/sample × 613 remaining ≈ **3.4h** |\n\nLlama 预计约 30 分钟内完成，Qwen 还需约 3.5 小时。稍后再来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-constrained-eval-completion.md"
+}

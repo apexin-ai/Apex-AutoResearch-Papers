@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7543989b40564fb03fa",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 beam ablation k2 collect",
+  "task_key": "worker_code_w10_beam_ablation_k2_collect_20260517T092650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_beam_ablation_k2_collect_20260517T092650_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "89c08ffc37f0b979d154df144108c0c69fc2a9648002263d7929f6baadfd82ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除。\n\n---\n\n## w10_beam_ablation_k2 实验结果\n\n| 指标 | beam k=2 | greedy | beam k=4 |\n|------|----------|--------|----------|\n| DR violation rate | **0.35%** | 0.93% | 0% |\n| CF violations | 71 | 9.90% | 0.53% |\n| Entity F1 | **31.54** | 30.98 | 32.00 |\n| Relation F1 | **8.75** | 8.36 | 8.56 |\n\n### 完整 violation metrics\n- JSON failures: 0/551 (0.0%)\n- Entity type violations: 0/2473 (0.0%)\n- Relation vocab violations: 0/1724 (0.0%)\n- Domain/Range violations: 6/1724 (0.4%)\n- Cross-field consistency violations: 71\n- Go/No-go DR rate: 0.0035\n\n### 对比分析\n\n**vs greedy**: beam k=2 在所有指标上均有提升。DR 从 0.93% 降到 0.35%，E_F1 +0.56，R_F1 +0.39。\n\n**vs beam k=4**: k=2 的 DR 略高（0.35% vs 0%），E_F1 略低（31.54 vs 32.00），R_F1 略高（8.75 vs 8.56）。k=4 在约束满足上更好（DR=0），但 k=2 的关系抽取 F1 稍强。\n\n**结论**: beam search 相对 greedy 有明确增益。k=2 和 k=4 差异较小，k=4 在约束满足上更优（DR=0），k=2 在 R_F1 上微优。整体趋势：beam width 越大约束违反越少，F1 差异不大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-beam-ablation-k2-collect.md"
+}

@@ -1,0 +1,2032 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "abstract_d3264e.tex:15"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "abstract_fd4b26.tex:15"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "appendix_discussion.tex:237"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible TBD marker",
+          "location": "main.tex:22"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "section7_conclusion_550cbf_DEPRECATED.tex:20"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "\\textcolor{red}{} — draft highlight",
+          "location": "main.tex:22"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:18"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:36"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:58"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:81"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:104"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:123"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:tightness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:scierc-per-relation-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:dual-factor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:ontology} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:problem} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tcr-scierc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:output-schema} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:docred-phase0} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-scierc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:fuzzy-matching} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-cf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:power-analysis} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cf-dr-tradeoff} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-reduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:quantization} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:downstream-impact} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-docred} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:enabling-confound} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:kappa-case-study} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cross-dataset} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:composition-interaction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:gcd} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:schema-ambiguity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:semantic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:composition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-rv-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-scale} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:s2} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:full-ft} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:trie-baseline} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:sampling-robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:position-detection} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tcr-docred} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:lucky-violations-detail} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:19"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:106"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:164"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:53"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:85"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:124"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:50"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:171"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:347"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:405"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:481"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:552"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:597"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:631"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:706"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:28"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:50"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_high_kappa_analysis.tex:15"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_high_kappa_analysis.tex:51"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_llama_per_relation.tex:12"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_prompt_sensitivity.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_quantization.tex:9"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_reproducibility.tex:32"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_sampling_table.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_scalability.tex:4"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tcr.tex:15"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tcr.tex:46"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_wikievents_pilot.tex:17"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_zs_crossmodel.tex:9"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "paper_tables_draft.tex:10"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_scierc_draft.tex:25"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_scierc_draft.tex:118"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "12 critical, 74 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "abstract_d3264e.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "abstract_fd4b26.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_70b_ablation.tex",
+          "role": "other",
+          "num_numbers": 88,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ai_assistants.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_beam_search.tex",
+          "role": "other",
+          "num_numbers": 177,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_case_studies.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_discussion.tex",
+          "role": "other",
+          "num_numbers": 471,
+          "num_cites": 6
+        },
+        {
+          "file": "appendix_doc_length.tex",
+          "role": "other",
+          "num_numbers": 34,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_downstream_analysis.tex",
+          "role": "other",
+          "num_numbers": 11,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_full_ft.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_gollie_comparison.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_high_kappa_analysis.tex",
+          "role": "other",
+          "num_numbers": 72,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_kappa_case_study.tex",
+          "role": "other",
+          "num_numbers": 16,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_llama_per_relation.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_order_invariance.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_power_analysis.tex",
+          "role": "other",
+          "num_numbers": 23,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_power_analysis_523cc9.tex",
+          "role": "other",
+          "num_numbers": 23,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_prompt_sensitivity.tex",
+          "role": "other",
+          "num_numbers": 79,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_prompts.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_pumping_lemma.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_quantization.tex",
+          "role": "other",
+          "num_numbers": 39,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_related_work.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 35
+        },
+        {
+          "file": "appendix_reproducibility.tex",
+          "role": "other",
+          "num_numbers": 50,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_sampling_table.tex",
+          "role": "other",
+          "num_numbers": 19,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_scalability.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_tcr.tex",
+          "role": "other",
+          "num_numbers": 62,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_wikievents_pilot.tex",
+          "role": "other",
+          "num_numbers": 44,
+          "num_cites": 2
+        },
+        {
+          "file": "appendix_zs_crossmodel.tex",
+          "role": "other",
+          "num_numbers": 62,
+          "num_cites": 0
+        },
+        {
+          "file": "case_study_kappa_dr.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 1
+        },
+        {
+          "file": "discussion_paragraphs.tex",
+          "role": "other",
+          "num_numbers": 31,
+          "num_cites": 2
+        },
+        {
+          "file": "discussion_paragraphs_cf83d1.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 2
+        },
+        {
+          "file": "fig1_framework.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "p3_case_studies.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "p3_case_studies_861a0d.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "paper_tables_draft.tex",
+          "role": "other",
+          "num_numbers": 80,
+          "num_cites": 0
+        },
+        {
+          "file": "section1_introduction_draft.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 8
+        },
+        {
+          "file": "section2_background.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 3
+        },
+        {
+          "file": "section3_method_draft.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 1
+        },
+        {
+          "file": "section3_violation_landscape.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 6
+        },
+        {
+          "file": "section4_composition_draft.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 1
+        },
+        {
+          "file": "section5_crossmodel_draft.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_docred_draft.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_docred_draft_9b84f1.tex",
+          "role": "other",
+          "num_numbers": 59,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_runtime.tex",
+          "role": "other",
+          "num_numbers": 16,
+          "num_cites": 4
+        },
+        {
+          "file": "section5_scierc_draft.tex",
+          "role": "other",
+          "num_numbers": 79,
+          "num_cites": 2
+        },
+        {
+          "file": "section5_scierc_draft_4796e8.tex",
+          "role": "other",
+          "num_numbers": 56,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_wikievents_draft.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "section6_related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 32
+        },
+        {
+          "file": "section6_relwork_additions.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 5
+        },
+        {
+          "file": "section6_relwork_outline.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 30
+        },
+        {
+          "file": "section7_conclusion_550cbf_DEPRECATED.tex",
+          "role": "other",
+          "num_numbers": 13,
+          "num_cites": 0
+        },
+        {
+          "file": "section7_conclusion_DEPRECATED.tex",
+          "role": "other",
+          "num_numbers": 35,
+          "num_cites": 0
+        },
+        {
+          "file": "section7_conclusion_compressed.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 0
+        }
+      ],
+      "critical": [
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 0.21 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 0.3 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 1.5 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{adakgc_emnlp2023} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{anderson2017guided} used in section5_runtime but no matching entry in new_citations.bib.",
+          "location": "section5_runtime"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{banerjee2025crane} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{beurer-kellner2023lmql} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{beurer-kellner2024domino} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{boostcd2025} used in appendix_discussion, section5_runtime, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,section5_runtime,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{cabot2021rebel} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{decao2021genre} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{dong2025xgrammar} used in appendix_related_work, section1_introduction_draft, section2_background, section3_method_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section2_background,section3_method_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{eberts2020spert} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ekaw2024_ontology_beam} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{fei2022lasuie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{geng2023gcd} used in appendix_discussion, appendix_related_work, section5_runtime, section5_scierc_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,appendix_related_work,section5_runtime,section5_scierc_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{guidex2025} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{josifoski2022genie} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{jsonschemabench2025} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{khorshidi2025odke} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{knowcoder_acl2024} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{kwon2023vllm} used in appendix_discussion, section5_runtime, section5_scierc_draft but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,section5_runtime,section5_scierc_draft"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{li2021document} used in appendix_discussion, appendix_wikievents_pilot, checklist but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,appendix_wikievents_pilot,checklist"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{li2023codeie} used in appendix_related_work, section1_introduction_draft, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2021neurologic} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2021text2event} used in appendix_wikievents_pilot but no matching entry in new_citations.bib.",
+          "location": "appendix_wikievents_pilot"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2022uie} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{luan2018scierc} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{luo2025kgtrie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{mgd_neurips2023} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{olasunkanmi2025relate} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ontologx_2025} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{paolini2021tanl} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{park2024grammar} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{pldi2025_type_constrained_codegen} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{qi2024adelie} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{qwen2025qwen3} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{regino2025kgcurator} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{riedel2010modeling} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{roth_yih_2004} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{sainz2024gollie} used in appendix_gollie_comparison, appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_gollie_comparison,appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{schall2025hiddencost} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{scholak2021picard} used in appendix_related_work, section6_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{spires_2024} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{synchromesh_iclr2022} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{tam2024letmespeak} used in appendix_related_work, section4_composition_draft, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section4_composition_draft,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ugare2024syncode} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ugare2025itergen} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{upadhyay2023openie} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{vukovic2024dialogue} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wadhwa2023revisiting} used in section3_violation_landscape, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wang2023instructuie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wei2023zeroshot} used in section1_introduction_draft but no matching entry in new_citations.bib.",
+          "location": "section1_introduction_draft"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{willard2023outlines} used in appendix_related_work, section1_introduction_draft, section2_background, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section2_background,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{yan2021pfn} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{yao2019docred} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ye2022packed} used in appendix_discussion, discussion_paragraphs, discussion_paragraphs_cf83d1, section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,discussion_paragraphs,discussion_paragraphs_cf83d1,section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zaratiana2024enrico} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zheng2024sglang} used in section2_background, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section2_background,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhong2021frustratingly} used in appendix_discussion, discussion_paragraphs, discussion_paragraphs_cf83d1, section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,discussion_paragraphs,discussion_paragraphs_cf83d1,section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2024universalner} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2026ontologytools} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2026snowballing} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        }
+      ],
+      "warning": [],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "abstract_d3264e": [
+              "\\downarrow"
+            ],
+            "abstract_fd4b26": [
+              "\\downarrow"
+            ],
+            "appendix_70b_ablation": [
+              "\\Delta",
+              "\\bar",
+              "\\dagger",
+              "\\downarrow",
+              "\\kappa",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_beam_search": [
+              "\\bar",
+              "\\cap",
+              "\\downarrow",
+              "\\emptyset",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\pm",
+              "\\propto",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_case_studies": [
+              "\\leftrightarrow",
+              "\\leq",
+              "\\to"
+            ],
+            "appendix_discussion": [
+              "\\Delta",
+              "\\S",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\cap",
+              "\\dagger",
+              "\\ddagger",
+              "\\downarrow",
+              "\\emptyset",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\neq",
+              "\\operatorname",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_doc_length": [
+              "\\leq",
+              "\\to"
+            ],
+            "appendix_downstream_analysis": [
+              "\\langle",
+              "\\rangle",
+              "\\tau"
+            ],
+            "appendix_full_ft": [
+              "\\leftrightarrow",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_high_kappa_analysis": [
+              "\\alpha",
+              "\\geq",
+              "\\times"
+            ],
+            "appendix_kappa_case_study": [
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\to"
+            ],
+            "appendix_power_analysis": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\rho"
+            ],
+            "appendix_power_analysis_523cc9": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\rho"
+            ],
+            "appendix_prompt_sensitivity": [
+              "\\Delta"
+            ],
+            "appendix_pumping_lemma": [
+              "\\bigcap",
+              "\\geq",
+              "\\in",
+              "\\ldots",
+              "\\leq",
+              "\\neq",
+              "\\notin",
+              "\\operatorname",
+              "\\sigma",
+              "\\tau",
+              "\\to"
+            ],
+            "appendix_quantization": [
+              "\\Delta",
+              "\\downarrow",
+              "\\times",
+              "\\uparrow"
+            ],
+            "appendix_related_work": [
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_reproducibility": [
+              "\\alpha",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\times"
+            ],
+            "appendix_sampling_table": [
+              "\\dagger",
+              "\\sim"
+            ],
+            "appendix_scalability": [
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_tcr": [
+              "\\Delta",
+              "\\bar",
+              "\\kappa",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_wikievents_pilot": [
+              "\\approx",
+              "\\downarrow",
+              "\\leq",
+              "\\pm",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_zs_crossmodel": [
+              "\\dagger",
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "case_study_kappa_dr": [
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\to"
+            ],
+            "discussion_paragraphs": [
+              "\\leftrightarrow"
+            ],
+            "discussion_paragraphs_cf83d1": [
+              "\\leftrightarrow"
+            ],
+            "fig1_framework": [
+              "\\cap",
+              "\\emptyset"
+            ],
+            "p3_case_studies": [
+              "\\to"
+            ],
+            "p3_case_studies_861a0d": [
+              "\\to"
+            ],
+            "paper_tables_draft": [
+              "\\Delta",
+              "\\downarrow",
+              "\\uparrow"
+            ],
+            "section1_introduction_draft": [
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "section2_background": [
+              "\\cdot",
+              "\\in",
+              "\\kappa",
+              "\\sigma",
+              "\\textsc",
+              "\\times",
+              "\\to"
+            ],
+            "section3_method_draft": [
+              "\\approx",
+              "\\bigl",
+              "\\bigr",
+              "\\cap",
+              "\\displaystyle",
+              "\\exists",
+              "\\in",
+              "\\infty",
+              "\\operatorname",
+              "\\sigma",
+              "\\subseteq",
+              "\\tau",
+              "\\textrm",
+              "\\texttt",
+              "\\times",
+              "\\to"
+            ],
+            "section3_violation_landscape": [
+              "\\alpha",
+              "\\bar",
+              "\\kappa",
+              "\\leq",
+              "\\notin",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "section4_composition_draft": [
+              "\\bar",
+              "\\cap",
+              "\\emptyset",
+              "\\kappa",
+              "\\leq",
+              "\\sigma",
+              "\\subseteq",
+              "\\times",
+              "\\wedge"
+            ],
+            "section5_crossmodel_draft": [
+              "\\leq"
+            ],
+            "section5_docred_draft": [
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "section5_docred_draft_9b84f1": [
+              "\\Delta",
+              "\\downarrow",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section5_runtime": [
+              "\\bar",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "section5_scierc_draft": [
+              "\\Delta",
+              "\\bar",
+              "\\dagger",
+              "\\downarrow",
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\sim",
+              "\\subseteq",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section5_scierc_draft_4796e8": [
+              "\\Delta",
+              "\\downarrow",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section6_relwork_outline": [
+              "\\downarrow",
+              "\\times",
+              "\\to"
+            ],
+            "section7_conclusion_550cbf_DEPRECATED": [
+              "\\to"
+            ],
+            "section7_conclusion_DEPRECATED": [
+              "\\bar",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "section7_conclusion_compressed": [
+              "\\leq",
+              "\\pm",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 63,
+        "warning": 0,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/_audit_compile_zqu_6lxa",
+        "main_tex": "main.tex",
+        "log_tail": "LaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n) (./appendix_order_invariance.tex [35]) (./appendix_pumping_lemma.tex [36])\n(./appendix_wikievents_pilot.tex [37]) (./appendix_zs_crossmodel.tex\nUnderfull \\hbox (badness 1546) in paragraph at lines 63--3\n\\T1/ptm/m/n/10.95 (+20) n$[]$20. CF re-mains low (0.77--1.18%); per-\n []\n\n\nUnderfull \\hbox (badness 1389) in paragraph at lines 63--3\n\\T1/ptm/m/n/10.95 (+20) document vari-ance is high (Arg-F1 std/mean\n []\n\n) (./appendix_quantization.tex [38]\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3\n1.\n\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n))\n(./appendix_gollie_comparison.tex\nUnderfull \\hbox (badness 4193) in paragraph at lines 10--11\n\\T1/ptm/m/n/10.95 (+20) model pa-ram-e-ters via annotation-guideline-\n []\n\n\nUnderfull \\hbox (badness 1701) in paragraph at lines 10--11\n\\T1/ptm/m/n/10.95 (+20) aware train-ing. This achieves com-pli-ance\n []\n\n) (./appendix_ai_assistants.tex\nUnderfull \\hbox (badness 1092) in paragraph at lines 7--9\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [39] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: F5B028F939500AC5BB5EFC1BD104E5CF;7156.\n ) \nHere is how much of TeX's memory you used:\n 28910 strings out of 469438\n 529791 string characters out of 5468411\n 1004137 words of memory out of 5000000\n 55996 multiletter control sequences out of 15000+600000\n 748998 words of font info for 570 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,16n,94p,1001b,723s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr\n8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (39 pages, 934403 bytes).\nPDF statistics:\n 1810 PDF objects out of 2073 (max. 8388607)\n 1358 compressed objects within 14 object streams\n 307 named destinations out of 1000 (max. 500000)\n 97133 words of extra memory for PDF output out of 106986 (max. 10000000)\n",
+        "error": "",
+        "pages": 39,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 39,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 8--8",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 8--8",
+        "Underfull \\hbox (badness 1960) in paragraph at lines 7--11",
+        "Underfull \\hbox (badness 6173) in paragraph at lines 13--15",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 7907) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 2762) in paragraph at lines 20--26",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 20--26",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 4303) in paragraph at lines 83--84",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 83--84",
+        "Underfull \\hbox (badness 1038) in paragraph at lines 47--50",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 1430) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 1320) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 1221) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 3417) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 1314) in paragraph at lines 86--92",
+        "Underfull \\hbox (badness 3449) in paragraph at lines 111--115",
+        "Underfull \\hbox (badness 3838) in paragraph at lines 111--115",
+        "Underfull \\hbox (badness 1354) in paragraph at lines 12--16",
+        "Underfull \\hbox (badness 3635) in paragraph at lines 3--66",
+        "Underfull \\hbox (badness 2418) in paragraph at lines 25--31",
+        "Underfull \\hbox (badness 2772) in paragraph at lines 144--150",
+        "Underfull \\hbox (badness 1817) in paragraph at lines 273--278",
+        "Underfull \\hbox (badness 1681) in paragraph at lines 407--413",
+        "Underfull \\hbox (badness 2334) in paragraph at lines 488--493",
+        "Underfull \\hbox (badness 1742) in paragraph at lines 505--510",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 17--17",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 19--19",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 22--22",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 34--34",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 36--36",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 39--40",
+        "Overfull \\hbox (1.44084pt too wide) in paragraph at lines 22--34",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 1895) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 2318) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 1472) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 1509) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 3635) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 3471) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 1264) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 6876) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 4805) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 54--66",
+        "Underfull \\hbox (badness 2326) in paragraph at lines 71--86",
+        "Underfull \\hbox (badness 1102) in paragraph at lines 71--86",
+        "Underfull \\hbox (badness 2478) in paragraph at lines 91--101",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1975) in paragraph at lines 26--32",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 47--49",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 69--73",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 69--73",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 69--73",
+        "Underfull \\hbox (badness 1436) in paragraph at lines 79--85",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 109--109",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 109--109",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 109--109",
+        "Underfull \\hbox (badness 2189) in paragraph at lines 113--118",
+        "Underfull \\hbox (badness 2158) in paragraph at lines 196--196",
+        "Underfull \\hbox (badness 6188) in paragraph at lines 218--227",
+        "Underfull \\vbox (badness 4660) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 239--241",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 239--241",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 239--241",
+        "Underfull \\hbox (badness 1067) in paragraph at lines 239--241",
+        "Underfull \\hbox (badness 4752) in paragraph at lines 310--314",
+        "Underfull \\hbox (badness 3907) in paragraph at lines 345--346",
+        "Underfull \\hbox (badness 6268) in paragraph at lines 462--463",
+        "Underfull \\hbox (badness 3746) in paragraph at lines 522--525",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 537--543",
+        "Underfull \\hbox (badness 1199) in paragraph at lines 537--543",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 582--586",
+        "Underfull \\hbox (badness 1325) in paragraph at lines 582--586",
+        "Underfull \\hbox (badness 3158) in paragraph at lines 582--586",
+        "Underfull \\hbox (badness 1132) in paragraph at lines 582--586",
+        "Underfull \\hbox (badness 5475) in paragraph at lines 626--630",
+        "Overfull \\hbox (20.65558pt too wide) in paragraph at lines 677--695",
+        "Overfull \\hbox (1.46478pt too wide) in paragraph at lines 724--5",
+        "Overfull \\hbox (10.41483pt too wide) in paragraph at lines 52--69",
+        "Underfull \\hbox (badness 3058) in paragraph at lines 73--79",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 73--79",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 73--79",
+        "Underfull \\hbox (badness 2293) in paragraph at lines 73--79",
+        "Underfull \\hbox (badness 1715) in paragraph at lines 73--79",
+        "Underfull \\hbox (badness 2556) in paragraph at lines 85--86",
+        "Underfull \\hbox (badness 1715) in paragraph at lines 108--3",
+        "Overfull \\hbox (1.29395pt too wide) in paragraph at lines 108--3",
+        "Underfull \\vbox (badness 2469) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 3118) in paragraph at lines 9--15",
+        "Underfull \\hbox (badness 1337) in paragraph at lines 9--15",
+        "Underfull \\hbox (badness 1953) in paragraph at lines 9--15",
+        "Underfull \\hbox (badness 1946) in paragraph at lines 9--15",
+        "Underfull \\hbox (badness 1789) in paragraph at lines 9--15",
+        "Underfull \\hbox (badness 1097) in paragraph at lines 59--64",
+        "Underfull \\hbox (badness 1072) in paragraph at lines 65--69",
+        "Underfull \\hbox (badness 5954) in paragraph at lines 96--98",
+        "Underfull \\vbox (badness 2495) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2653) in paragraph at lines 142--144",
+        "Overfull \\hbox (11.11229pt too wide) in paragraph at lines 151--159",
+        "Underfull \\hbox (badness 1466) in paragraph at lines 220--1",
+        "Underfull \\hbox (badness 1960) in paragraph at lines 29--1",
+        "Underfull \\vbox (badness 1540) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 32--32",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 33--33",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 34--34",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 39--39",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 40--40",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 41--41",
+        "Underfull \\vbox (badness 1231) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 5331) in paragraph at lines 122--123",
+        "Underfull \\hbox (badness 1838) in paragraph at lines 122--123",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 153--156",
+        "Underfull \\hbox (badness 1661) in paragraph at lines 173--175",
+        "Overfull \\hbox (27.1078pt too wide) in paragraph at lines 10--20",
+        "Underfull \\hbox (badness 1147) in paragraph at lines 74--80",
+        "Underfull \\hbox (badness 1264) in paragraph at lines 7--8",
+        "Underfull \\hbox (badness 1546) in paragraph at lines 63--3",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 63--3",
+        "Underfull \\hbox (badness 4193) in paragraph at lines 10--11",
+        "Underfull \\hbox (badness 1701) in paragraph at lines 10--11",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 7--9"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "section5_runtime.tex:13 + section7_conclusion_compressed.tex:5 — \"beam k=4 eliminates all violation types at 8B\" 在 Intro/Conclusion/§5 均出现，但 appendix_beam_search.tex Table beam-docred-lora 显示 Qwen3-8B DocRED LoRA beam-4 仍有 CF=0.01%（非零）。Claim 对 Llama 成立，但对全部 8B 模型不成立。应改为 \"eliminates all violation types for calibrated models at 8B\" 或明确标注 \"near-zero CF\" for Qwen DocRED。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "section7_conclusion_compressed.tex — Discussion and Conclusion 仅 3 句话（~50 words），几乎只是重复 Abstract 的数字。缺少高层解读：(1) 为什么非加性交互出现？(2) DR→CF 转换对下游 KG 质量意味着什么？(3) 方法的理论/实践意义。正文已有 Appendix B Extended Discussion，但正文 Discussion 本身不应只是数字复述。审稿人会认为缺乏 intellectual depth。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract → Intro → Method → Experiments → Conclusion 的核心故事线（DR violations + two-layer composition + 94% reduction）全文一致，无漂移。三条 Contribution 均有对应 section/table 支撑。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答了四个必答问题（问题: DR violations；方法: two-layer constrained decoding；结果: 94% DR reduction, ≤0.21% with FT；意义: makes generative IE schema-compliant），~131 words，符合 200-word 限制。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 遵循五段结构（背景→问题→gap→方法→贡献列表），贡献列表 3 条，每条有 section/table 指引。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题归纳（constrained decoding / schema-aware IE / constraint enforcement in IE），非堆砌式。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Intro Contribution 1（two-layer framework）→ §3 Method + §4 Composition + Table 1 ablation + Proposition 1 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Intro Contribution 2（non-additive interaction）→ Table 1 + Figure 3 (composition interaction) ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Intro Contribution 3（supporting validation: 70B, beam, WikiEvents）→ §5.5 70B, §5.6 beam, §5.4 WikiEvents ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Title \"Type-Constrained IE via Compiled Schema Constraints\" 与内容范围匹配；Abstract \"three model families and two RE datasets\" 与实验覆盖匹配。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "section5_runtime.tex:13 \"beam search eliminates all four violation types at 8B on both SciERC and DocRED\" — DocRED Qwen LoRA beam-4 仍有 CF=0.01%。应加 \"near-\" 或限定为 \"for Llama-3.1-8B\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"significantly\" 仅在 case study 引文中出现一次（appendix_case_studies.tex:153），正文所有统计声明都附有 p-value 和 bootstrap CI。Claim 强度匹配良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "dual-factor scatter R²=0.886 (n=4, p=0.058) 正确标注为 \"descriptive only\"，未 overclaim 因果关系。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"state-of-the-art\" 仅用于描述其他方法（PICARD, ADELIE, PL-Marker），未自称 SOTA。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "主结果表无 error bars，但通过 Bootstrap CI (10K iterations) 补充（Appendix Table bootstrap-effect-sizes），附 Cohen's d 效应量和 Bonferroni 校正。对于 greedy decoding，三 seed 验证证明确定性（σ≤0.43pp）。合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "Baseline 覆盖近期论文：GCD (2023), BoostCD (2025), GoLLIE (2024), KnowCoder (2024), vLLM guided_json, post-hoc filtering。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "Ablation 行数与 Method 组件匹配：5-way ablation（unconstrained / grammar / GCD-equiv / semantic / S1/S2），加上 fine-tuning composability 4-way ablation。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现",
+      "message": "LoRA 超参完整披露（rank=16, α=32, dropout 0.05, lr=2e-4, batch=16, epochs=3, seed=42）。Hardware (RTX PRO 6000 Blackwell, 98GB VRAM)、software 版本 (PyTorch 2.10, Transformers 4.57 等) 已报告。训练时间已报告。Prompt templates 在 Appendix。代码匿名链接已提供。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致",
+      "message": "DR, CF, RV, ET 四类 violation 在 §5 Setup 定义后全文一致使用。κ(r) 在 §4 定义后一致使用。O = (E, R, σ) 在 §2 Background 定义后一致使用。未发现符号漂移。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "逻辑流",
+      "message": "§6 Experiments → §7 Discussion and Conclusion 之间缺少过渡。Experiments 以 GCD comparison 结束，直接跳到 Discussion 的数字复述，没有桥接句引入总结性讨论。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "Limitations",
+      "message": "main.tex:69-71 — Limitations section 仅约 30 words、2 个点（CF trade-off 和 evaluation coverage）。用户规则要求 \"覆盖 3 个点左右\"。缺少第 3 个 distinct limitation。建议补充：(1) 约束来自训练数据经验 type pairs 而非正式本体规范，99%+ 覆盖率但非 100%；(2) first-seen entity type semantics 使结果依赖于 generation order；或 (3) beam search 非确定性（单次运行结果）。当前 Limitations 过于单薄，审稿人可能认为回避问题。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "abstract.tex:2 — explanatory em-dash: \"triples---entity types that violate...\"。应改为逗号或括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section1_introduction_draft.tex:8 — 双 em-dash: \"pervasive---15--18\\%...fine-tuning---and correlate\"。应拆分为独立句子或用括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section1_introduction_draft.tex:22 — em-dash: \"inconsistencies...---a severity downgrade\"。应用逗号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section1_introduction_draft.tex:29 — em-dash: \"94\\%---grammar-enforced vocabulary\"。应用句号拆分。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section6_related_work.tex:9 — em-dash: \"semantics---the entity types\"。应用冒号或逗号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section6_related_work.tex:13 — em-dash: \"guarantees---violations persist\"。应用句号拆分。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section3_method_draft.tex:21 — paired em-dashes: \"constraints---structural validity...---but\"。应用括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section3_method_draft.tex:22 — em-dash: \"$10^{14}$---well beyond\"。应用逗号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section3_method_draft.tex:23 — em-dash: \"constraints---where entity types\"。应用逗号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section4_composition_draft.tex:48 — em-dash: \"greedily---an instance of\"。应用括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section5_scierc_draft.tex:87 — em-dash: \"94\\%---the empirical enabling\"。应用句号拆分。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section5_scierc_draft.tex:90 — em-dash: \"CF---individually valid triples\"。应用括号定义。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "section7_conclusion_compressed.tex:3 — em-dash: \"94\\%---an enabling dependency\"。应用句号拆分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "正文共约 16 处解释性 em-dash (---)。按 paper-writing-norms 规范应\"全部删除\"，替换为逗号、括号或拆句。表格中 `---` 表示 \"N/A\" 的用法属例外，可保留。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix_70b_ablation.tex:38 — \"Notably, S2 increases CF...\"。删除 \"Notably\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix_related_work.tex:64 — \"Importantly, training-based and decoding-time approaches are complementary...\"。删除 \"Importantly\"，直接陈述。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 delve/leverage/utilize/myriad/plethora 用词。段落长度适当，无过度分段。-ing 分词短语主要在 appendix 中出现，正文控制较好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "appendix_discussion.tex:526 — LaTeX 注释 `% exp_id: p8c_ft_scierc_latency — Reviewer Report #23 verified` 包含 \"Reviewer Report #23\" 内部流程引用。虽然 LaTeX 注释不会渲染到 PDF，但如果源码被分享（如 anonymous submission），可能泄露内部审查流程。建议清理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "全文 LaTeX 注释中有大量 `% exp_ids: ...` 标注，均不会渲染到 PDF。这是良好的 traceability 实践，不影响投稿。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ~131 words ≤ 200 words ✓"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "Limitations section 仅覆盖 2 个点，用户规则要求 \"覆盖 3 个点左右\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations section 位于正文 §7 之后、Bibliography 之前，appendix 中无 Limitations section ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "ARR Responsible NLP Checklist 未包含在 main.tex 中（checklist.tex 为独立参考文件），符合 \"在 OpenReview submission form 里面填写\" 规则 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "正文编译 39 页（含 appendix），正文部分需单独验证 ≤8 页（Phase 1 应已检查页数）。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-3",
+      "message": "前 3 页为纯文本，无任何 display item。第一个视觉锚点 Figure 1（架构图）直到第 4 页才出现。审稿人在 Abstract + 首图形成锚定印象，3 页纯文字延迟了视觉认知建立。建议将 Figure 1 提前到第 2-3 页（如在 Introduction 末尾插入缩略版架构图或 teaser figure）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title / Author / Abstract 排版整洁，标准 ACL 双栏格式，匿名信息正确（\"Anonymous ACL submission\"）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 1 架构图信息传达清晰——三面板布局（Schema Compilation → Runtime Constrained Decoding → Token Masking and Fallback）能有效传达核心 method，caption 自包含"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 1-3",
+      "message": "连续 3 页纯文本（Introduction + Related Work + Background/Problem Statement），无 figure/table/equation 穿插打断。虽然内容性质决定了文字为主，但视觉节奏单调"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4-8",
+      "message": "从第 4 页起节奏良好：每页至少 1 个 display item，text-figure-table 交替出现"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "单页包含 3 个 display items（Figure 5 + Figure 6 + Table 1），密度高但排版紧凑，未溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "最后一页主文内容（Limitations）约占左栏 1/4，右栏起始 References。因 Limitations 本身简短且后接 References，属正常排版"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "主文 8 页共 9 个 display items（7 figures + 2 tables），密度 1.125/页，对实证为主的论文来说密度合适（参考值 5-8 个/9 页）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12-39",
+      "message": "Appendix 含 ~49 个 tables + 1 个 figure（Figure 8），支撑材料非常充分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 1 架构图内部文字（如 \"Ontology Parser\"、\"Semantic Rule Compiler\"）字号偏小，约为正文字号的 60-65%。建议稍微放大以改善打印可读性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3（scatter plot）和 Figure 4（bar chart）的 axis labels 和 tick labels 字号偏小，在 150dpi 渲染下仍可读但偏紧。建议 axis label ≥ 8pt"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2 使用蓝色柱状图 + 百分比标注（\"94%\"、\"3%\"、\"24%\"），信息传达清晰。Caption 可考虑加 \"higher is better\" 方向提示"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7-8",
+      "message": "Figure 5/6/7 颜色方案（蓝/橙/绿）可区分，基本色盲友好。全文颜色语义一致"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 31-32",
+      "message": "Table 35-38（Case Study）使用绿色/红色文字标注修正，可能对红绿色盲读者不友好且灰度打印不可区分。建议辅以加粗/删除线等非颜色手段"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 1 使用 booktabs 风格（无竖线），最优值加粗，精度统一（小数位一致）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 2 同样 booktabs 风格，bold 标注一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Table 3（Prompt Templates）monospace 文字较小，打印时可能难以阅读。建议使用 \\small 或 \\footnotesize 而非更小字号"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格（主文+Appendix）均使用 booktabs 风格，无竖线，格式一致性好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 1 出现在 Section 4 Method 开始处（首次引用附近），位置合理"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5-8",
+      "message": "Figures 2-7 和 Tables 1-2 均出现在首次引用的同页或下一页，无明显 float 漂移"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 1 使用 figure*（全宽），适合其三面板布局"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "主文无异常大面积空白，双栏间距均匀"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 28",
+      "message": "Figure 8 + Table 28 下方有约 1/6 页空白，可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 39",
+      "message": "末页（Appendix 最后一页）内容填充约 70-75%，底部有少量空白，可接受（GoLLIE Comparison + AI Assistants 声明）"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "无 margin 溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，未见 LaTeX 错误残留或乱码"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未发现 section heading 孤悬页底"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未发现 [?] 未解析引用"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-11",
+      "message": "References 格式统一，ACL 标准 bibliography style，编号连续"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 14-16",
+      "message": "Appendix 中 Extended Discussion（Appendix C）连续约 3 页纯文本，无任何 display item 或 equation 穿插。对于 appendix 不是严格问题，但如果 reviewer 阅读此部分会感觉单调"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] Abstract 约 180-200 words，接近 200-word 上限。建议精确计数确认不超标"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] Limitations 章节（page 9）简短，覆盖 3 个点（DR→CF trade-off、数据集范围有限、小模型和非英语泛化），符合 \"一小段、3 个点左右\" 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] 全文仅一个 Limitations section（page 9，正文内），Appendix 无 Limitations section，符合要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] PDF 中未包含 ARR Responsible NLP Checklist，符合 \"在 OpenReview form 手动填写\" 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "[EMNLP 2026] 主文（Sections 1-7）恰好 8 页（pages 1-8），Limitations 在 page 9，References 从 page 9 起。符合 8-page main text 限制"
+    }
+  ],
+  "counts": {
+    "critical": 77,
+    "warning": 239,
+    "info": 55
+  },
+  "error": "",
+  "timestamp": "2026-05-25T14:44:01.280724+00:00"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e22db35a91cdd36b6968",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents full rsync and redryrun",
+  "task_key": "worker_code_wikievents_full_rsync_and_redryrun_20260517T190702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_full_rsync_and_redryrun_20260517T190702.log",
+    "occurrence": 1,
+    "bytes": 722194,
+    "sha256": "38dfb27115d2efa8a67a83d6ed34e656f5910be74bb844c3d5383361df7a8f35"
+  },
+  "statistics": {
+    "messages": 339,
+    "user_turns": 1,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 112,
+      "tool_result": 112,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "e22db35a91cdd36b6968-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e22db35a91cdd36b6968-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 118,
+      "chunks": [
+        {
+          "path": "e22db35a91cdd36b6968-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-full-rsync-and-redryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94eb4b712e41cf4d16f4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research paper number preaudit",
+  "task_key": "worker_research_paper-number-preaudit_20260516T023810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-number-preaudit_20260516T023810_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "d52ff08231f6bd9a36a0c0bdee0813262312d06a59a1e81751c8154c20933426"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。**53 个数字全部与 registry 一致，零不匹配。**\n\n分布：\n- **Table 5**: 32/32 cells (2 models × 4 rows × 4 metrics)\n- **Body text**: 13/13 claims (F1 lift、DR reduction、delta pp 等)\n- **Limitations**: 8/8 claims (DocRED CF/E-F1 delta、parse fail rate 等)\n\n两点备注：\n1. `llama_scierc_unconstrained` 的 CF 只存了原始计数 (6) 没存 rate，需手算 6/2451≈0.24% 才能对上论文值\n2. 任务指定的 3 个实验名与 registry 实际名称不同（`phase1_scierc` → `phase2_scierc_unconstrained` 等），已在报告中列出映射表\n\n结论：**可以安全地在此基础上添加 DocRED FT composability 数据。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-number-preaudit.md"
+}

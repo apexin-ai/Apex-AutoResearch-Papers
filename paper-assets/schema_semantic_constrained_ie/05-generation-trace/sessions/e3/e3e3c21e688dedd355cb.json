@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3e3c21e688dedd355cb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper fig4 beam pareto redraw",
+  "task_key": "worker_paper_fig4-beam-pareto-redraw_20260524T133502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig4-beam-pareto-redraw_20260524T133502_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "85ce4d73e21fd3713621fa8d0e5649af8057e07302f2eba0ea2fef909b52b673"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**完成。** 汇报如下：\n\n**改了什么：**\n- 移除所有逐点 `k=X` 标签（x 轴已标注 beam width）\n- \"Zero violation\" 圆环和 \"Pareto-optimal\" 星标从顶部共享图例移入各子图 legend\n- 右子图标题从 \"DocRED (Llama-3.1-8B LoRA, 200 docs)\" 简化为 \"DocRED (200 docs)\"\n- 配色对齐 Figure 1 v6：constrained 用松石绿 #1A7A6D，unconstrained 用深蓝 #34495E，Llama con 用暖红 #B85450，Pareto 星用柔金 #D4A574，zero-violation 环用松石绿\n- 去除 top/right spines，网格极淡 #F0F0F0，线条更细\n- 星标加白色光晕确保可见性\n- 左面板 legend 改 3 列布局避免拥挤\n\n**迭代：** 3 轮（布局 → 星标/bubble 可见性 → 白色光晕精细调整）\n\n**编译：** 零错误，主文 8 页，符合 EMNLP 2026 限制\n\n**产出：** `figures/beam_pareto.pdf` 和 `.png` 已覆盖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig4-beam-pareto-redraw.md"
+}

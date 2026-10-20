@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1ee22bfd5dd11043402",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r5 ft bootstrap ci",
+  "task_key": "worker_code_r5_ft_bootstrap_ci_20260517T135402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r5_ft_bootstrap_ci_20260517T135402_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "e5686484ffd88dc00e60b7c22b74edd007da4355952b0d4794857c4a3e7d862d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**R-F1 Bootstrap 结果 (constrained − unconstrained)：**\n\n| Setting | ΔR-F1 | 95% CI | p-value | 显著性 |\n|---------|-------|--------|---------|--------|\n| Qwen-LoRA-SciERC | −0.10pp | [−0.30, +0.00] | 0.726 | n.s. |\n| Qwen-LoRA-DocRED | −0.37pp | [−0.76, −0.05] | 0.014 | * |\n| Llama-LoRA-SciERC | +0.02pp | [+0.00, +0.07] | 0.736 | n.s. |\n| Llama-LoRA-DocRED | +0.02pp | [−0.15, +0.22] | 0.851 | n.s. |\n\n**核心结论：** 3/4 settings 无显著差异（p>0.7），Qwen-DocRED 有微弱负效应（−0.37pp, p=0.014）。Fine-tuning 后模型已内化 schema 遵从，constrained decoding 基本无额外收益。\n\n论文建议表述：\n> In the fine-tuning regime, the effect of constrained decoding is negligible: across four LoRA settings, three show no significant R-F1 difference ($p{>}0.70$), while one (Qwen-DocRED) exhibits a small negative effect ($-0.37$\\,pp, $p{=}0.014$, 95\\% CI [$-0.76$, $-0.05$]).\n\n产出已注册至 `artifacts/_project/report/r5_ft_bootstrap_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r5-ft-bootstrap-ci.md"
+}

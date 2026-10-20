@@ -1,0 +1,3524 @@
+{
+  "schema_version": "1.0",
+  "session_id": "db909c862dc63bc838b7",
+  "rounds": [
+    {
+      "number": 110,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-22T18:28:47.715774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+              "offset": "115",
+              "limit": "50"
+            }
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-22T18:28:47.766414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "115\t% === Appendix ===\n116\t\\appendix\n117\t\n118\t\\input{appendix_prompts}\n119\t\\input{appendix_related_work}\n120\t\\input{appendix_discussion}\n121\t\\input{appendix_llama_per_relation}\n122\t\\input{appendix_sampling_table}\n123\t\\input{appendix_beam_search}\n124\t\\input{appendix_reproducibility}\n125\t\\input{appendix_power_analysis}\n126\t\\input{appendix_doc_length}\n127\t\\input{appendix_prompt_sensitivity}\n128\t\\input{appendix_case_studies}\n129\t\\input{appendix_downstream_analysis}\n130\t\\input{appendix_scalability}\n131\t\\input{appendix_full_ft}\n132\t\\input{appendix_tcr}\n133\t\\input{appendix_kappa_case_study}\n134\t\\input{appendix_high_kappa_analysis}\n135\t\\input{appendix_order_invariance}\n136\t\\input{appendix_pumping_lemma}\n137\t\n138\t\\end{document}\n139\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-22T18:28:52.133774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_order_invariance.tex"
+            }
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-22T18:28:52.234943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Order Invariance of Compiled Constraints\n2\t\n3\t\\paragraph{Order invariance.}\n4\t\\label{app:order-invariance}\n5\tTo verify that OntoCoDec's outputs are independent of schema enumeration order, we randomly shuffle the entity and relation type lists in the compiled constraint file (\\texttt{ontology\\_constraints.json}) and re-run greedy S1 decoding on all 551 SciERC documents.\n6\tThe raw model outputs and parsed triples are byte-identical to the canonical-order run across all documents.\n7\tThis holds because the grammar layer accepts the same token set at each type-bearing position regardless of the order in which types are listed in the schema, and greedy decoding is deterministic given identical logit masks.\n8\tThe result confirms that OntoCoDec introduces no spurious order dependence from schema compilation.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-22T18:28:58.662867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-22T18:29:00.169889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"510 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1507
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-22T18:29:03.783207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_pumping_lemma.tex"
+            }
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-22T18:29:05.290686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Full Proof of Proposition 1\n2\t% Level 2 (prefix-decidable with state) constraints are not context-free.\n3\t\n4\t\\section{Full Proof of Proposition 1}\n5\t\\label{app:pumping-lemma}\n6\t\n7\tWe prove that domain/range type constraints for IE with unbounded entity sets cannot be expressed by any context-free grammar, using the pumping lemma for context-free languages.\n8\t\n9\t\\begin{proof}\n10\tDefine the language $L$ of valid IE outputs over ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$ with $\\mathcal{E} = \\{\\tau_A, \\tau_B\\}$, $\\mathcal{R} = \\{r\\}$, and $\\sigma(r) = \\{(\\tau_A, \\tau_A)\\}$ (i.e., $r$ requires both head and tail to be type $\\tau_A$).\n11\t\n12\tAn output string has the form:\n13\t\\[\n14\tw = e_1\\, e_2\\, \\cdots\\, e_n\\;\\; \\texttt{REL}(h{=}e_k,\\, r,\\, \\tau^h)\n15\t\\]\n16\twhere each $e_i$ is an entity with type $\\tau_{a_i} \\in \\{\\tau_A, \\tau_B\\}$, and $\\tau^h$ is the head type field of a relation triple referencing entity $e_k$ ($1 \\leq k \\leq n$).\n17\t\n18\tThe type-validity constraint requires $\\tau^h = \\tau_{a_k}$ (the head type must match the referenced entity's type) \\emph{and} $\\tau^h \\in \\operatorname{dom}(r) = \\{\\tau_A\\}$.\n19\tCombined: a string $w \\in L$ if and only if $\\tau_{a_k} = \\tau_A$.\n20\t\n21\tNow consider strings of the specific form:\n22\t\\[\n23\tw_n = \\underbrace{\\tau_B\\; \\tau_B\\; \\cdots\\; \\tau_B}_{n-1}\\; \\tau_A\\;\\; \\texttt{REL}(h{=}e_n,\\, r,\\, \\tau_A)\n24\t\\]\n25\twhere the first $n{-}1$ entities have type $\\tau_B$ and only entity $e_n$ has type $\\tau_A$.\n26\tThe relation references $e_n$, so $\\tau^h = \\tau_A = \\tau_{a_n}$, satisfying both the registry consistency and domain constraint.\n27\tThus $w_n \\in L$ for all $n$.\n28\t\n29\tAssume for contradiction that $L$ is context-free.\n30\tBy the pumping lemma, there exists a pumping length $p$ such that any $w \\in L$ with $|w| \\geq p$ can be written as $w = uvxyz$ where:\n31\t\\begin{enumerate}[label=(\\roman*)]\n32\t    \\item $|vy| \\geq 1$,\n33\t    \\item $|vxy| \\leq p$,\n34\t    \\item $uv^i xy^i z \\in L$ for all $i \\g\n…[truncated 4106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1507
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-22T18:29:11.831298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-22T18:29:12.283382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"515 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-22T18:29:19.614918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-22T18:29:20.028021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"516 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 413
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-22T18:29:24.857905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-22T18:29:25.302318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"518 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 444
+          },
+          "id": "event-001454"
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "messages": [
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-22T18:29:29.847121+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你上一条回复没有用 <handoff>...</handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 <handoff>...</handoff> 包裹的正文,禁止任何标签外的寒暄或说明。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-22T18:29:59.947255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-22T18:30:01.354122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"520 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-22T18:30:01.404748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_docred_200_beam4_s1.jsonl"
+            }
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-22T18:30:02.308879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/schema_semantic_constrained_ie/outputs/70b_lora_docred_200_beam4_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-22T18:30:02.309250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_semantic_only.jsonl /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_full_s2.jsonl"
+            }
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-22T18:30:03.865711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   136 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_semantic_only.jsonl\\\\n   149 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_full_s2.jsonl\\\\n   285 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1556
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-22T18:30:16.366743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-22T18:30:16.818832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"521 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-22T18:30:23.747596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-22T18:30:24.199596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"522 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-22T18:30:29.535555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-22T18:30:29.987854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"523 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-22T18:30:33.853962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-22T18:30:35.410711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"523 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1556
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-22T18:30:38.523464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-22T18:30:38.975625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"524 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-22T18:30:42.965122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-22T18:30:43.417404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"524 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-22T18:30:47.082358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-22T18:30:47.534567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"524 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-22T18:30:51.552047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /proc/70175/status"
+            }
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-22T18:30:52.004292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 23 01:13 /proc/70175/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-22T18:30:54.564813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-22T18:30:55.167702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 82 %, 39597 MiB\\\\n1, 89 %, 46963 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-22T18:31:00.119638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-22T18:31:01.676380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"525 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1556
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-22T18:31:05.141091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-22T18:31:05.593144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"526 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-22T18:31:09.058248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-22T18:31:09.510404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"527 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-22T18:31:18.747611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-22T18:31:19.199738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"527 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-22T18:31:25.023947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-22T18:31:25.426891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"528 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-22T18:31:29.978559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-22T18:31:30.430822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"528 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-22T18:31:32.740461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-22T18:31:33.192948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"529 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-22T18:31:38.865286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-22T18:31:39.317466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"530 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001495"
+        },
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-22T18:31:41.889477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-22T18:31:42.350879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"530 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 461
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-22T18:31:44.861172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-22T18:31:45.313233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"530 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-22T18:31:48.124805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-22T18:31:48.577226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"530 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001501"
+        },
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-22T18:31:54.450906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-22T18:31:54.903070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"531 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-22T18:31:57.203252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-22T18:31:57.655766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"531 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-22T18:32:04.533985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-22T18:32:04.936190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"532 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-22T18:32:07.697501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-22T18:32:08.149762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"533 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-22T18:32:11.664278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001510"
+        },
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-22T18:32:12.116577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"535 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-22T18:32:14.727005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-22T18:32:15.178986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"535 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001513"
+        },
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-22T18:32:18.541835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001514"
+        },
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-22T18:32:18.993979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"536 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-22T18:32:22.256900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-22T18:32:22.709882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"536 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001517"
+        },
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-22T18:32:25.873109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-22T18:32:26.275886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"536 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-22T18:32:31.413650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001520"
+        },
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-22T18:32:31.865892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"537 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001521"
+        },
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-22T18:32:34.878071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001522"
+        },
+        {
+          "source_line": 1523,
+          "timestamp": "2026-05-22T18:32:35.330255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"537 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001523"
+        },
+        {
+          "source_line": 1524,
+          "timestamp": "2026-05-22T18:32:38.994845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001524"
+        },
+        {
+          "source_line": 1525,
+          "timestamp": "2026-05-22T18:32:39.447089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"537 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001525"
+        },
+        {
+          "source_line": 1526,
+          "timestamp": "2026-05-22T18:32:43.154762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001526"
+        },
+        {
+          "source_line": 1527,
+          "timestamp": "2026-05-22T18:32:43.606875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"539 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001527"
+        },
+        {
+          "source_line": 1528,
+          "timestamp": "2026-05-22T18:32:46.619385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001528"
+        },
+        {
+          "source_line": 1529,
+          "timestamp": "2026-05-22T18:32:47.071555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"539 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001529"
+        },
+        {
+          "source_line": 1530,
+          "timestamp": "2026-05-22T18:32:50.334915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001530"
+        },
+        {
+          "source_line": 1531,
+          "timestamp": "2026-05-22T18:32:50.786981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"540 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001531"
+        },
+        {
+          "source_line": 1532,
+          "timestamp": "2026-05-22T18:32:53.247194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001532"
+        },
+        {
+          "source_line": 1533,
+          "timestamp": "2026-05-22T18:32:53.699340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"540 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001533"
+        },
+        {
+          "source_line": 1534,
+          "timestamp": "2026-05-22T18:32:56.711533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001534"
+        },
+        {
+          "source_line": 1535,
+          "timestamp": "2026-05-22T18:32:57.178625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"540 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 467
+          },
+          "id": "event-001535"
+        },
+        {
+          "source_line": 1536,
+          "timestamp": "2026-05-22T18:33:02.463002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001536"
+        },
+        {
+          "source_line": 1537,
+          "timestamp": "2026-05-22T18:33:02.865058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"541 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001537"
+        },
+        {
+          "source_line": 1538,
+          "timestamp": "2026-05-22T18:33:05.475619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001538"
+        },
+        {
+          "source_line": 1539,
+          "timestamp": "2026-05-22T18:33:05.877555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"541 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001539"
+        },
+        {
+          "source_line": 1540,
+          "timestamp": "2026-05-22T18:33:10.449517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001540"
+        },
+        {
+          "source_line": 1541,
+          "timestamp": "2026-05-22T18:33:10.851573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"542 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001541"
+        },
+        {
+          "source_line": 1542,
+          "timestamp": "2026-05-22T18:33:15.268608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001542"
+        },
+        {
+          "source_line": 1543,
+          "timestamp": "2026-05-22T18:33:15.720791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"542 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001543"
+        },
+        {
+          "source_line": 1544,
+          "timestamp": "2026-05-22T18:33:19.436074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001544"
+        },
+        {
+          "source_line": 1545,
+          "timestamp": "2026-05-22T18:33:19.888908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"542 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001545"
+        },
+        {
+          "source_line": 1546,
+          "timestamp": "2026-05-22T18:33:22.848800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001546"
+        },
+        {
+          "source_line": 1547,
+          "timestamp": "2026-05-22T18:33:23.250690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"542 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001547"
+        },
+        {
+          "source_line": 1548,
+          "timestamp": "2026-05-22T18:33:30.838158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001548"
+        },
+        {
+          "source_line": 1549,
+          "timestamp": "2026-05-22T18:33:31.290203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"543 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001549"
+        },
+        {
+          "source_line": 1550,
+          "timestamp": "2026-05-22T18:33:34.653969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001550"
+        },
+        {
+          "source_line": 1551,
+          "timestamp": "2026-05-22T18:33:35.106146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"543 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001551"
+        },
+        {
+          "source_line": 1552,
+          "timestamp": "2026-05-22T18:33:45.089103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001552"
+        },
+        {
+          "source_line": 1553,
+          "timestamp": "2026-05-22T18:33:45.541406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"544 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001553"
+        },
+        {
+          "source_line": 1554,
+          "timestamp": "2026-05-22T18:33:48.704331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001554"
+        },
+        {
+          "source_line": 1555,
+          "timestamp": "2026-05-22T18:33:49.106176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"544 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001555"
+        },
+        {
+          "source_line": 1556,
+          "timestamp": "2026-05-22T18:33:51.715974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001556"
+        },
+        {
+          "source_line": 1557,
+          "timestamp": "2026-05-22T18:33:52.167854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"544 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001557"
+        },
+        {
+          "source_line": 1558,
+          "timestamp": "2026-05-22T18:33:54.426976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001558"
+        },
+        {
+          "source_line": 1559,
+          "timestamp": "2026-05-22T18:33:54.879059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"544 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001559"
+        },
+        {
+          "source_line": 1560,
+          "timestamp": "2026-05-22T18:33:59.218644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001560"
+        },
+        {
+          "source_line": 1561,
+          "timestamp": "2026-05-22T18:33:59.670846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"544 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001561"
+        },
+        {
+          "source_line": 1562,
+          "timestamp": "2026-05-22T18:34:02.030648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001562"
+        },
+        {
+          "source_line": 1563,
+          "timestamp": "2026-05-22T18:34:02.482906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"545 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001563"
+        },
+        {
+          "source_line": 1564,
+          "timestamp": "2026-05-22T18:34:06.901470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001564"
+        },
+        {
+          "source_line": 1565,
+          "timestamp": "2026-05-22T18:34:07.353611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"545 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001565"
+        },
+        {
+          "source_line": 1566,
+          "timestamp": "2026-05-22T18:34:11.374820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001566"
+        },
+        {
+          "source_line": 1567,
+          "timestamp": "2026-05-22T18:34:11.826968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"546 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001567"
+        },
+        {
+          "source_line": 1568,
+          "timestamp": "2026-05-22T18:34:20.561870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001568"
+        },
+        {
+          "source_line": 1569,
+          "timestamp": "2026-05-22T18:34:21.013977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"548 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001569"
+        },
+        {
+          "source_line": 1570,
+          "timestamp": "2026-05-22T18:34:24.678579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001570"
+        },
+        {
+          "source_line": 1571,
+          "timestamp": "2026-05-22T18:34:25.130638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"548 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001571"
+        },
+        {
+          "source_line": 1572,
+          "timestamp": "2026-05-22T18:34:28.157416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001572"
+        },
+        {
+          "source_line": 1573,
+          "timestamp": "2026-05-22T18:34:28.609561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"548 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001573"
+        },
+        {
+          "source_line": 1574,
+          "timestamp": "2026-05-22T18:34:31.220045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001574"
+        },
+        {
+          "source_line": 1575,
+          "timestamp": "2026-05-22T18:34:31.672062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"548 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001575"
+        },
+        {
+          "source_line": 1576,
+          "timestamp": "2026-05-22T18:34:34.282228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001576"
+        },
+        {
+          "source_line": 1577,
+          "timestamp": "2026-05-22T18:34:34.734315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"549 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001577"
+        },
+        {
+          "source_line": 1578,
+          "timestamp": "2026-05-22T18:34:38.951593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001578"
+        },
+        {
+          "source_line": 1579,
+          "timestamp": "2026-05-22T18:34:39.403756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"549 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001579"
+        },
+        {
+          "source_line": 1580,
+          "timestamp": "2026-05-22T18:34:42.566580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001580"
+        },
+        {
+          "source_line": 1581,
+          "timestamp": "2026-05-22T18:34:43.018844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"549 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001581"
+        },
+        {
+          "source_line": 1582,
+          "timestamp": "2026-05-22T18:36:48.738818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__fetch_wandb_metrics",
+              "max_results": "4"
+            }
+          },
+          "id": "event-001582"
+        },
+        {
+          "source_line": 1583,
+          "timestamp": "2026-05-22T18:36:48.739279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001583"
+        },
+        {
+          "source_line": 1584,
+          "timestamp": "2026-05-22T18:36:55.666629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_grammar_only/predictions.jsonl"
+            }
+          },
+          "id": "event-001584"
+        },
+        {
+          "source_line": 1585,
+          "timestamp": "2026-05-22T18:36:56.620457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_grammar_only/predictions.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001585"
+        },
+        {
+          "source_line": 1586,
+          "timestamp": "2026-05-22T18:36:56.671080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_grammar_only/"
+            }
+          },
+          "id": "event-001586"
+        },
+        {
+          "source_line": 1587,
+          "timestamp": "2026-05-22T18:36:57.575022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_grammar_only/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-001587"
+        },
+        {
+          "source_line": 1588,
+          "timestamp": "2026-05-22T18:36:57.726040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_semantic_only/predictions.jsonl"
+            }
+          },
+          "id": "event-001588"
+        },
+        {
+          "source_line": 1589,
+          "timestamp": "2026-05-22T18:36:58.546291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_semantic_only/predictions.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 820
+          },
+          "id": "event-001589"
+        },
+        {
+          "source_line": 1590,
+          "timestamp": "2026-05-22T18:36:58.546645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_full_s2/predictions.jsonl"
+            }
+          },
+          "id": "event-001590"
+        },
+        {
+          "source_line": 1591,
+          "timestamp": "2026-05-22T18:36:59.350435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_scierc_full_s2/predictions.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-001591"
+        },
+        {
+          "source_line": 1592,
+          "timestamp": "2026-05-22T18:36:59.350907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_docred_200_beam4_s1/predictions.jsonl"
+            }
+          },
+          "id": "event-001592"
+        },
+        {
+          "source_line": 1593,
+          "timestamp": "2026-05-22T18:36:59.802934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/schema_semantic_constrained_ie/outputs/eval_70b_lora_docred_200_beam4_s1/predictions.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001593"
+        },
+        {
+          "source_line": 1594,
+          "timestamp": "2026-05-22T18:37:04.974186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+            }
+          },
+          "id": "event-001594"
+        },
+        {
+          "source_line": 1595,
+          "timestamp": "2026-05-22T18:37:05.476513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"70b_lora_docred_200_beam4_s1.jsonl\\\\n70b_lora_scierc_grammar_only.jsonl\\\\n70b_zs_scierc_grammar_only.jsonl\\\\n70b_zs_scierc_semantic_only.jsonl\\\\nbootstrap_ci_ee_ft_qwen.json\\\\nconstrained_dryrun.log\\\\nconstrained_dryrun_v2.log\\\\nd067_seed_variance\\\\nd068_guided_beam\\\\ndocred_semantic_only.jsonl\\\\nee_llama_wikievents_constrained_v3_full.jsonl\\\\nee_llama_wikievents_constrained_v3_posthoc.jsonl\\\\nee_mistral_wikievents_constrained_v2_full.jsonl\\\\nee_mistral_wikievents_constrained_v2_full.jsonl.bak_before16k\\\\nee_mistral_wikievents_constrained_v3_full.jsonl\\\\nee_mistral_wikievents_constrained_v3_posthoc.jsonl\\\\nee_mistral_wikievents_unconstrained_posthoc.jsonl\\\\nee_qwen_ft_wikievents_full_s1.jsonl\\\\nee_qwen_ft_wikievents_full_s1_r5.jsonl\\\\nee_qwen_ft_wikievents_unconstrained.jsonl\\\\nee_qwen_ft_wikievents_unconstrained_r5.jsonl\\\\nee_qwen_wikievents_grammar_only.jsonl\\\\neval_report_full_s1.json\\\\neval_report_full_s1_r5.json\\\\neval_report_unconstrained.json\\\\neval_report_unconstrained_r5.json\\\\nmistral_constrained_fix_dryrun.jsonl\\\\nmistral_constrained_full.jsonl\\\\nmistral_docred_greedy_matched50.jsonl\\\\nqwen_constrained_regression_test.jsonl\\\\nre_qwen_full_ft_scierc_full_s1.jsonl\\\\nre_qwen_full_ft_scierc_unconstrained.jsonl\\\\nscierc_mistral_beam_551.jsonl\\\\nviolation_report.json\\\\nviolation_report_70b_zs_grammar_only.json\\\\nviolation_report_70b_zs_semantic_only.json\\\\nviolation_report_constrained_v2.json\\\\nviolation_report_docred.json\\\\nviolation_report_ee.json\\\\nviolation_report_ft_full_s1.json\\\\nviolation_report_ft_full_s1_r5.json\\\\nviolation_report_ft_unconstrained.json\\\\nviolation_report_ft_unconstrained_r5.json\\\\nviolation_report_mistral_greedy_matched50.json\\\\nviolation_report_mistral_v2_partial.json\\\\nviolation_report_qwen_full_ft_full_s1.json\\\\nviolation_report_qwen_full_ft_unconstrained.json\\\\nviolation_report_w6_mistral_docred_constrained.json\\\\nw6_mistral_docred_constrained.jsonl\\\\nw6_mistral_docred_unconst\n…[truncated 669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001595"
+        },
+        {
+          "source_line": 1596,
+          "timestamp": "2026-05-22T18:37:05.477006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+            }
+          },
+          "id": "event-001596"
+        },
+        {
+          "source_line": 1597,
+          "timestamp": "2026-05-22T18:37:06.381003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"70b_lora_scierc_beam4_s1.jsonl\\\\n70b_lora_scierc_full_s2.jsonl\\\\n70b_lora_scierc_semantic_only.jsonl\\\\nanalysis_llama_docred_70b_constrained_v2.json\\\\nanalysis_llama_docred_ft_grammar_only.json\\\\nanalysis_llama_docred_full_s1_mt6144_v2.json\\\\nanalysis_llama_docred_full_s1_v2.json\\\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\\\nanalysis_llama_docred_unconstrained_v2.json\\\\nanalysis_w5_llama_docred_lora_constrained_v2.json\\\\nbeam4_tcr_llama_scierc.jsonl\\\\nbeam4_tcr_qwen_scierc.jsonl\\\\nbeam_search_50.jsonl\\\\nbeam_search_dryrun_10.jsonl\\\\nbeam_search_full_551.log\\\\nbeam_search_scierc_full_551.jsonl\\\\nbootstrap_ci_ee_ft_llama.json\\\\nbootstrap_ci_ft_composability.json\\\\nbootstrap_ci_results.json\\\\nbootstrap_ci_results_llama.json\\\\nbootstrap_ci_results_v2.json\\\\ncf_analysis\\\\ncf_analysis_w1_pilot\\\\ncf_correction_report_llama_docred_ft.json\\\\ncf_correction_report_llama_docred_zs.json\\\\ncf_correction_report_llama_scierc_ft.json\\\\ncf_correction_report_llama_scierc_zs.json\\\\ncf_correction_report_qwen_docred_ft.json\\\\ncf_correction_report_qwen_docred_zs.json\\\\ncf_correction_report_qwen_scierc_ft.json\\\\ncf_correction_report_qwen_scierc_zs.json\\\\ncf_violation_analysis.json\\\\ncomparison_minimal_vs_schema_informed.json\\\\nd066_docred_zs_grammar.json\\\\nd066_docred_zs_s1.json\\\\nd066_docred_zs_semantic.json\\\\nd066_docred_zs_unc.json\\\\nd066_llama_docred_lora_s1.json\\\\nd066_llama_docred_lora_unc.json\\\\nd066_llama_scierc_lora_s1.json\\\\nd066_llama_scierc_lora_unc.json\\\\nd066_qwen_docred_lora_s1.json\\\\nd066_qwen_docred_lora_unc.json\\\\nd066_qwen_scierc_lora_s1.json\\\\nd066_qwen_scierc_lora_unc.json\\\\nd066_scierc_zs_grammar.json\\\\nd066_scierc_zs_s1.json\\\\nd066_scierc_zs_semantic.json\\\\nd066_scierc_zs_unc.json\\\\nd068_guided_beam\\\\ndebug_final.log\\\\ndebug_semantic.log\\\\ndebug_semantic2.log\\\\ndoc_length_breakdown.json\\\\ndocred_full_s1.jsonl\\\\ndocred_full_s1_cf_corrected.jsonl\\\\ndocred_full_s1_consensus_50.jsonl\\\\ndocred_full_s1_dryrun\n…[truncated 6650 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-001597"
+        },
+        {
+          "source_line": 1598,
+          "timestamp": "2026-05-22T18:37:06.381370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001598"
+        },
+        {
+          "source_line": 1599,
+          "timestamp": "2026-05-22T18:37:07.335278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n1, 84 %, 47203 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001599"
+        },
+        {
+          "source_line": 1600,
+          "timestamp": "2026-05-22T18:37:07.335720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001600"
+        },
+        {
+          "source_line": 1601,
+          "timestamp": "2026-05-22T18:37:07.737575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001601"
+        },
+        {
+          "source_line": 1602,
+          "timestamp": "2026-05-22T18:37:07.888876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 75 %, 39597 MiB, 97887 MiB\\\\n1, 81 %, 39597 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001602"
+        },
+        {
+          "source_line": 1603,
+          "timestamp": "2026-05-22T18:37:08.341262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_70b_lora_scierc_full_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T18:04:58.305Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:07:28.427Z\\\", \\\"hypothesis\\\": \\\"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_s1_constrained\\\"}, \\\"eval_70b_lora_scierc_semantic_only\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T18:04:55.672Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:07:25.150Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_unconstrained\\\"}, \\\"eval_70b_lora_docred_200_beam4_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T17:15:28.977Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:15:59.306Z\\\", \\\"hypothesis\\\": \\\"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\\\", \\\"parent\\\": \\\"eval_70b_lora_docred_200_s1_constrained\\\"}, \\\"eval_70b_lora_scierc_grammar_only\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T17:13:55.324Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:14:34.467Z\\\", \\\"hypothesis\\\": \\\"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_unconstrained\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4406}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 603
+          },
+          "id": "event-001603"
+        },
+        {
+          "source_line": 1604,
+          "timestamp": "2026-05-22T18:37:21.441113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001604"
+        },
+        {
+          "source_line": 1605,
+          "timestamp": "2026-05-22T18:37:21.943399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001605"
+        },
+        {
+          "source_line": 1606,
+          "timestamp": "2026-05-22T18:37:22.445832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_docred_200_beam4_s1.jsonl"
+            }
+          },
+          "id": "event-001606"
+        },
+        {
+          "source_line": 1607,
+          "timestamp": "2026-05-22T18:37:22.948053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"69 /root/schema_semantic_constrained_ie/outputs/70b_lora_docred_200_beam4_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001607"
+        },
+        {
+          "source_line": 1608,
+          "timestamp": "2026-05-22T18:37:23.400114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_semantic_only.jsonl"
+            }
+          },
+          "id": "event-001608"
+        },
+        {
+          "source_line": 1609,
+          "timestamp": "2026-05-22T18:37:23.852409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"173 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_semantic_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001609"
+        },
+        {
+          "source_line": 1610,
+          "timestamp": "2026-05-22T18:37:23.953249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_full_s2.jsonl"
+            }
+          },
+          "id": "event-001610"
+        },
+        {
+          "source_line": 1611,
+          "timestamp": "2026-05-22T18:37:25.007668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"196 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_full_s2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-001611"
+        },
+        {
+          "source_line": 1612,
+          "timestamp": "2026-05-22T18:37:25.008132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie/outputs/ -name \"*70b_lora*\" -newer /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001612"
+        },
+        {
+          "source_line": 1613,
+          "timestamp": "2026-05-22T18:37:25.460936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/70b_lora_docred_200_beam4_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001613"
+        },
+        {
+          "source_line": 1614,
+          "timestamp": "2026-05-22T18:37:34.404566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie/outputs/ -name \"*70b_lora*grammar*\" -type f"
+            }
+          },
+          "id": "event-001614"
+        },
+        {
+          "source_line": 1615,
+          "timestamp": "2026-05-22T18:37:35.358778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-001615"
+        },
+        {
+          "source_line": 1616,
+          "timestamp": "2026-05-22T18:37:35.559858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie/outputs/ -name \"*violation*70b_lora*\" -type f"
+            }
+          },
+          "id": "event-001616"
+        },
+        {
+          "source_line": 1617,
+          "timestamp": "2026-05-22T18:37:35.660741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -1 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_grammar_only.jsonl"
+            }
+          },
+          "id": "event-001617"
+        },
+        {
+          "source_line": 1618,
+          "timestamp": "2026-05-22T18:37:36.012408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001618"
+        },
+        {
+          "source_line": 1619,
+          "timestamp": "2026-05-22T18:37:36.514978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"NIPS_2016_80_abs_sent3\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"We rigorously establish the correctness of the methodology and show by experimentation using LSH that it is competitive in practice with available alternatives .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"LSH\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Method\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"it\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"alternatives\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"it\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"alternatives\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Compare\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Generic\\\\\\\"}], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"methodology\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Generic\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"it\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Generic\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"alternatives\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Generic\\\\\\\\\\\\\\\"}], \\\\\\\\\\\\\\\"relations\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"it\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"alternatives\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Compare\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Generic\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Generic\\\\\\\\\\\\\\\"}]}\\\\\\\", \\\\\\\"parsed_output\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"methodology\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"it\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"alternatives\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"it\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"alternatives\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Compare\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Generic\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Generic\\\\\\\"}]}, \\\\\\\"inference_time_seconds\\\\\\\": 5.076, \\\\\\\"mode\\\\\\\": \\\\\\\"grammar_only\\\\\\\", \\\\\\\"decoding_strategy\\\\\\\": \\\\\\\"greedy\\\\\\\", \\\\\\\"num_beams\\\\\\\": 1}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\n…[truncated 2 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 854
+          },
+          "id": "event-001619"
+        },
+        {
+          "source_line": 1620,
+          "timestamp": "2026-05-22T18:37:46.254413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ps aux --no-header -w -w"
+            }
+          },
+          "id": "event-001620"
+        }
+      ]
+    }
+  ]
+}

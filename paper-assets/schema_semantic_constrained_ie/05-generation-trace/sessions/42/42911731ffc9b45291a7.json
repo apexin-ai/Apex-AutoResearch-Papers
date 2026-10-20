@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42911731ffc9b45291a7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related_work_survey_20260516T131804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_survey_20260516T131804_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "2470a899c474189d77d004d8a67845fe659938c41b33909e9a5c0a0662feaf9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。已更新 `artifacts/related_work_survey.md`，新增三篇审稿人指定论文的完整条目：\n\n**新增内容：**\n- **SynCode** (Ugare+ TMLR'25) — §1 Grammar-Constrained Decoding 首条，含 DFA mask store 技术细节\n- **IterGen** (Ugare+ ICLR'25) — §1 第二条，含回溯机制 + KV cache 复用 + 语义检查器细节\n- **BoostCD/BoostIE** (Šakota & West, EMNLP'25) — §3 Structural Constraints for IE 中，含两阶段 boosting + DPO 细节\n- §6 新增 **审稿人指定论文对比表**（4 行 × 6 维度）和更新的差异化分析（5 个维度明确对标三篇论文）\n\n**关键定位论点：**\n1. vs. SynCode/IterGen: 约束来源自动化（ontology 编译 vs 手写 CFG/检查器）\n2. vs. IterGen: 前向预防 vs 回溯修复\n3. vs. BoostCD: training-free + model-agnostic vs 需训练 boosted model\n4. vs. all: 语法+语义双层约束的唯一 IE 专用方案"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey.md"
+}

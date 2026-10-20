@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d61ecda98de87391a2b9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops p0 21461 final rerun",
+  "task_key": "worker_ops_p0_21461_final_rerun_20260520T095139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_21461_final_rerun_20260520T095139_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "31bd38b0b53423a95ffe92f1aa44fd5e077f8bcf4a129ec9d82628ba23d37f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总如下：\n\n## 执行结果\n\n| # | 项目 | 结果 |\n|---|------|------|\n| 1 | Kill 174618 | 已不存在（之前已死） |\n| 2 | Kill 残留进程 | 194290/194295 已 kill ✓ |\n| 3 | GPU 释放 | 双 GPU 归零 ✓ |\n| 4 | 损坏文件删除 | 3 个文件已删 ✓ |\n| 5 | 原始 con 命令 | `--mode full_s1 --dataset docred --decoding_strategy greedy --max_new_tokens 4096 --skip_on_error` |\n| 6 | 重跑命令 | 与原始一致，`--output_path` 改为 `_rerun.jsonl`，`CUDA_VISIBLE_DEVICES=0` |\n| 7 | 新进程 PID | **194615**（wrapper 194610） |\n| 8 | GPU0 占用 | 85%, 18919 MiB ✓ |\n| 9 | 输出文件行数 | **4 行**（正在增长） |\n| 10 | Qwen unc 文件 | **998 行**（完整 ✓） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-21461-final-rerun.md"
+}

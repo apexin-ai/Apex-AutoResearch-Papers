@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d0b9cbfcf12a7b8b74f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval d066 sweep 16980 gpu1",
+  "task_key": "worker_eval_d066_sweep_16980_gpu1_20260520T112330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d066_sweep_16980_gpu1_20260520T112330_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "eba5631db1256473e1855c1511c24ac618af8f9ffc27a82b02f21b8ae945ce0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（spec 中 checkpoint_path 和 log_path 已有值）。\n\n**d066_sweep_16980_gpu1 (Llama beam2 unconstrained) Metrics：**\n\n| Metric | Value |\n|--------|-------|\n| E_F1 | 85.34 |\n| R_F1 | 51.31 |\n| DR_pct | 0.11% |\n| CF_pct | 0.05% |\n| ET_pct | 0.00% |\n| RV_pct | 0.07% |\n| Parse Fail | 1.0% |\n| avg_time | 15.26s |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d066-sweep-16980-gpu1.md"
+}

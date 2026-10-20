@@ -1,0 +1,482 @@
+{
+  "schema_version": "1.0",
+  "id": "dc5e26036ddb7f89356f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "status 21461 progress",
+  "task_key": "worker_status_21461_progress_20260520T010644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_status_21461_progress_20260520T010644.jsonl",
+    "occurrence": 1,
+    "bytes": 16427,
+    "sha256": "fe71b93835f923111f499bfb589ae49b61af9b4937980c57c2e58a3dace424f6"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T01:08:33.760107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T01:08:33.760737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T01:08:33.761221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T01:08:33.763967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/d066_*"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T01:08:33.764272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/d067_*"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T01:08:33.764485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 77 %, 18999 MiB, 97887 MiB\\\\n1, 80 %, 19011 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T01:08:33.764688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ps aux --sort=-start_time"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T01:08:33.764913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 103465 May 20 09:01 /root/autodl-tmp/schema_outputs/d066_beam_sweep_scierc_gpu1.log\\\\n\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep:\\\\ntotal 4056\\\\ndrwxr-xr-x 3 root root    4096 May 20 08:41 .\\\\ndrwxr-xr-x 3 root root    4096 May 20 07:45 ..\\\\n-rw-r--r-- 1 root root      41 May 19 23:18 d066_summary.json\\\\n-rw-r--r-- 1 root root 1024154 May 20 08:13 qwen_scierc_beam1_full_s1.jsonl\\\\n-rw-r--r-- 1 root root 1027328 May 20 07:46 qwen_scierc_beam1_unconstrained.jsonl\\\\n-rw-r--r-- 1 root root  843347 May 20 09:07 qwen_scierc_beam2_full_s1.jsonl\\\\n-rw-r--r-- 1 root root 1035059 May 20 08:40 qwen_scierc_beam2_unconstrained.jsonl\\\\ndrwxr-xr-x 2 root root      10 May 19 23:18 violations\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T01:08:33.765160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 113502 May 20 09:06 /root/autodl-tmp/schema_outputs/d067_seed_variance.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T01:08:33.765458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     143490  0.0  0.0   7064  1628 ?        Rs   09:07   0:00 ps aux --sort=-start_time\\\\nsshd     143485  1.0  0.0  15444  5568 ?        S    09:07   0:00 sshd: unknown [net]\\\\nroot     143484  1.0  0.0  16432 10100 ?        Ss   09:07   0:00 sshd: unknown [priv]\\\\nsshd     143483  1.0  0.0  15444  5540 ?        S    09:07   0:00 sshd: unknown [net]\\\\nroot     143482  0.0  0.0  16432  9984 ?        Ss   09:07   0:00 sshd: unknown [priv]\\\\nsshd     143469  0.0  0.0  15444  5748 ?        S    09:07   0:00 sshd: unknown [net]\\\\nroot     143468  0.0  0.0  16432 10000 ?        Ss   09:07   0:00 sshd: unknown [priv]\\\\nroot     143466  2.5  0.0  16692 10680 ?        Ss   09:07   0:00 sshd: root@notty\\\\nroot     139345  100  0.2 44903504 2145388 ?    Rl   08:40  26:13 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_full_s1.jsonl --device cuda:0 --max_new_tokens 2048 --seed 42 --decoding_strategy beam --num_beams 2 --skip_on_error\\\\nroot     139020  100  0.1 44584884 1906404 ?    Rl   08:39  27:32 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/d067_seed_variance/qwen_scierc_seed456_full_s1.jsonl --device cuda:0 --batch_size 1 --seed 456 --max_new_tokens 2048 --decoding_strategy greedy --temperature 0.0\\\\nroot     135226  0.0  0.0   4364  3192 ?        S    08:15   0:00 bash scripts/d067_seed_variance.sh 0 qwen_scierc 456\\\\nroot     132654  0.0  0.0   4364  3128 ?        S    07:24   0:00 b\n…[truncated 3715 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T01:08:33.765972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T01:08:33.766228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/autodl-tmp/schema_outputs/d066_beam_sweep/*.jsonl"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T01:08:33.766485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4048\\\\ndrwxr-xr-x 2 root root    4096 May 20 09:07 .\\\\ndrwxr-xr-x 4 root root    4096 May 20 07:24 ..\\\\n-rw-r--r-- 1 root root 1025263 May 20 08:15 qwen_scierc_seed123_full_s1.jsonl\\\\n-rw-r--r-- 1 root root    2647 May 20 08:15 qwen_scierc_seed123_full_s1_violations.json\\\\n-rw-r--r-- 1 root root 1028457 May 20 07:47 qwen_scierc_seed123_unconstrained.jsonl\\\\n-rw-r--r-- 1 root root    3539 May 20 07:47 qwen_scierc_seed123_unconstrained_violations.json\\\\n-rw-r--r-- 1 root root 1025264 May 20 09:07 qwen_scierc_seed456_full_s1.jsonl\\\\n-rw-r--r-- 1 root root    2647 May 20 09:07 qwen_scierc_seed456_full_s1_violations.json\\\\n-rw-r--r-- 1 root root 1028444 May 20 08:39 qwen_scierc_seed456_unconstrained.jsonl\\\\n-rw-r--r-- 1 root root    3539 May 20 08:39 qwen_scierc_seed456_unconstrained_violations.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T01:08:33.766750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_full_s1.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_unconstrained.jsonl\\\\n    465 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_full_s1.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_unconstrained.jsonl\\\\n   2118 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T01:08:33.766968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d066_beam_sweep_scierc_gpu1.log"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T01:08:33.767155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[351/551] C90-3063_sent2: OK E=4 R=4 6.8s\\\\n[352/551] C90-3063_sent3: OK E=2 R=1 1.8s\\\\n[353/551] C90-3063_sent4: OK E=2 R=0 1.2s\\\\n[354/551] C90-3063_sent5: OK E=3 R=2 3.2s\\\\n[355/551] J05-4003_sent0: OK E=3 R=2 3.1s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T01:08:33.767330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d067_seed_variance.log"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T01:08:33.767526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Samples: 551\\\\nEntity types: ['Task', 'Method', 'Material', 'Metric', 'OtherScientificTerm', 'Generic']\\\\nRelation types: 7\\\\nLoading model...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T01:08:33.769888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/*.jsonl"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T01:08:33.770259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -15 /root/autodl-tmp/schema_outputs/d067_seed_variance.log"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T01:08:33.770533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      5 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed123_unconstrained.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed123_full_s1.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed123_unconstrained.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed456_full_s1.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed456_unconstrained.jsonl\\\\n   2209 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T01:08:33.770911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\\nDevice: cuda:0\\\\nSamples: 551\\\\nEntity types: ['Task', 'Method', 'Material', 'Metric', 'OtherScientificTerm', 'Generic']\\\\nRelation types: 7\\\\nLoading model...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<04:45,  1.01it/s]\\\\rLoading weights:   1%|          | 2/291 [00:02<04:53,  1.02s/it]\\\\rLoading weights:   1%|▏         | 4/291 [00:02<02:08,  2.23it/s]\\\\rLoading weights:   2%|▏         | 6/291 [00:02<01:14,  3.82it/s]\\\\rLoading weights:   4%|▍         | 13/291 [00:02<00:27, 10.19it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:02<00:28,  9.56it/s]\\\\rLoading weights:   7%|▋         | 21/291 [00:02<00:16, 16.09it/s]\\\\rLoading weights:   8%|▊         | 24/291 [00:03<00:20, 12.87it/s]\\\\rLoading weights:  10%|▉         | 29/291 [00:03<00:14, 17.94it/s]\\\\rLoading weights:  11%|█▏        | 33/291 [00:03<00:16, 15.48it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:03<00:12, 20.45it/s]\\\\rLoading weights:  15%|█▍        | 43/291 [00:04<00:13, 17.76it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:04<00:11, 21.04it/s]\\\\rLoading weights:  18%|█▊        | 52/291 [00:04<00:13, 17.70it/s]\\\\rLoading weights:  20%|█▉        | 58/291 [00:04<00:10, 21.65it/s]\\\\rLoading weights:  21%|██        | 61/291 [00:05<00:12, 18.55it/s]\\\\rLoading weights:  22%|██▏       | 65/291 [00:05<00:10, 21.63it/s]\\\\rLoading weights:  23%|██▎       | 68/291 [00:05<00:11, 18.82it/s]\\\\rLoading weights:  24%|██▍       | 71/291 [00:05<00:11, 19.50it/s]\\\\rLoading weights:  26%|██▌       | 76/291 [00:05<00:09, 21.59it/s]\\\\rLoading weights:  27%|██▋       | 79/291 [00:05<00:12, 17.47it/s]\\\\rLoading weights:  29%|██▉       | 85/291 [00:06<00:09, 21.98it/s]\\\\rLoading weights:  30%|███       | 88/291 [00:06<00:10, 19.24it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:06<00:08, 23.25it/s]\\\\rLoading weights:  33%|███▎   \n…[truncated 4575 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T01:08:33.771296+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇报\n\n### d066 beam sweep (GPU 1)\n**3/8 configs 完成，当前跑 beam2_full_s1 (465/551 samples)**\n\n| Config | 状态 | 行数 |\n|--------|------|------|\n| beam1_unconstrained | ✅ | 551/551 |\n| beam1_full_s1 | ✅ | 551/551 |\n| beam2_unconstrained | ✅ | 551/551 |\n| beam2_full_s1 | 🔄 运行中 | 465/551 (84%) |\n| beam4_unconstrained | ⏳ | - |\n| beam4_full_s1 | ⏳ | - |\n| beam8_unconstrained | ⏳ | - |\n| beam8_full_s1 | ⏳ | - |\n\n当前 config 约 5 分钟内完成。beam4/beam8 每 sample 推理时间会随 beam width 增长，剩余 4 configs 预计 **3-5 小时**。\n\n### d067 seed variance (GPU 0)\n**4/12 configs 完成，当前跑 llama_scierc_seed123_unconstrained (5/551 samples)**\n\n| Config | 状态 | 行数 |\n|--------|------|------|\n| qwen_scierc seed123 unc | ✅ | 551/551 |\n| qwen_scierc seed123 con | ✅ | 551/551 |\n| qwen_scierc seed456 unc | ✅ | 551/551 |\n| qwen_scierc seed456 con | ✅ | 551/551 |\n| llama_scierc seed123 unc | 🔄 刚启动 | 5/551 |\n| llama_scierc seed123 con | ⏳ | - |\n| llama_scierc seed456 unc | ⏳ | - |\n| llama_scierc seed456 con | ⏳ | - |\n| qwen_docred seed123 unc | ⏳ | - |\n| qwen_docred seed123 con | ⏳ | - |\n| qwen_docred seed456 unc | ⏳ | - |\n| qwen_docred seed456 con | ⏳ | - |\n\n刚加载完 llama 模型开始推理。每 config ~30 min，剩余 8 configs 预计 **~4 小时**。\n\n### GPU 利用率\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 (d067) | 77% | 19.0 / 95.6 GB |\n| GPU 1 (d066) | 80% | 19.0 / 95.6 GB |\n\n两块 GPU 都在正常工作，显存占用约 20%。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_progress_20260520T010644"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/status-21461-progress.md"
+}

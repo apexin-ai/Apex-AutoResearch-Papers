@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f27bc28429ae57f11a8c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code restart qwen docred beam 50",
+  "task_key": "worker_code_restart_qwen_docred_beam_50_20260517T041907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_restart_qwen_docred_beam_50_20260517T041907_result.json",
+    "occurrence": 1,
+    "bytes": 300,
+    "sha256": "3d01b266e825ece6b43864d95b95e42d4c90c24c261d6063d92d8109a669bbee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认推理开始，jsonl 已写入 2 行。\n\n**汇报：**\n- 旧进程 409855 已 kill，确认无残留\n- 损坏文件已删除\n- 新进程 **PID 412229**，tmux session **qwen_beam_r2**，单进程运行\n- 输出文件已开始写入（当前 2 行），推理正常进行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-restart-qwen-docred-beam-50.md"
+}

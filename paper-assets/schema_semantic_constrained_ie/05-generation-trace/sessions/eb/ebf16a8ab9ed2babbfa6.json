@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebf16a8ab9ed2babbfa6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama beam8 unc check relay",
+  "task_key": "worker_ops_d066_llama_beam8_unc_check_relay_20260520T132000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_beam8_unc_check_relay_20260520T132000_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "91aafd5201dbfdbad4ec3cb6a0a6f15c77a7bdb83a90f5d59efe76a0e6f6785c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常启动，模型已加载到 GPU1。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **Llama beam8 unc** | 完成 — 200行 JSONL, 199成功/1失败 |\n| **新启动配置** | `llama_docred_200_beam4_unconstrained` — PID 761033, GPU1 |\n| **GPU0** | PID 756540 (beam8 s1), 64570 MiB |\n| **GPU1** | PID 761033 (beam4 unc), 18270 MiB（模型加载中） |\n| **磁盘** | `/root/autodl-tmp` 250G 用 171G, 余 80G (69%) |\n\n注：首次用了 `--output_file`（不存在），已修正为 `--output_path` 重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-beam8-unc-check-relay.md"
+}

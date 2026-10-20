@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f2701f2cc4c3976b39d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis mt6144 unconstrained",
+  "task_key": "worker_analysis_mt6144_unconstrained_20260515T140655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mt6144_unconstrained_20260515T140655_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "bced9f6992d717ec8ce9d73ad4aae20da185d4efd679613943c30653b31b2b01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（metrics 已写入，conclusion/notes/checkpoint_path 此前已设置）。\n\n## 结果汇总\n\n### Violation Report (mt6144)\n\n| 指标 | 值 |\n|------|-----|\n| Parse failures | 67/998 |\n| Unique entities | 11,534 |\n| Total triples | 16,584 |\n| ET | 0.13% (15/11534) |\n| RV | 15.89% (2635/16584) |\n| DR | 26.18% (4341/16584) |\n| CF | 0.17% (20/11534) |\n| E-F1 | 55.67% |\n| R-F1 | 5.95% |\n\n### mt6144 vs mt4096 对比\n\n| 指标 | mt4096 | mt6144 | Delta |\n|------|--------|--------|-------|\n| Parse failures | 68 | 67 | -1 |\n| ET | 0.13% | 0.13% | 0 |\n| RV | 16.03% | 15.89% | -0.14pp |\n| DR | 26.07% | 26.18% | +0.11pp |\n| CF | 0.17% | 0.17% | 0 |\n| E-F1 | 55.65% | 55.67% | +0.02pp |\n| R-F1 | 5.98% | 5.95% | -0.03pp |\n\n**结论**: max_new_tokens 从 4096 提升到 6144 对 unconstrained 生成几乎无影响。Parse failures 仅减少 1 个，F1 和 violation 率变化在噪声范围内。67 个失败样本的 inference time ~96s，表明它们是模型陷入重复循环撞到 token 上限，而非文档过长导致截断。增加 max_new_tokens 无法修复此类失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mt6144-unconstrained.md"
+}

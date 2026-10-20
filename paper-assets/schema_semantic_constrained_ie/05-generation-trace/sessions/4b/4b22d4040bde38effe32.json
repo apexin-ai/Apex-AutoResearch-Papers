@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b22d4040bde38effe32",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops inventory westd 21461",
+  "task_key": "worker_ops_inventory-westd-21461_20260523T201133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_inventory-westd-21461_20260523T201133_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "f75bd1d2b325a088edf0a0e17a25ae4136bf04d6153063844b735fbe640bf6e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-21461 数据盘点报告\n\n| 项目 | 大小 |\n|------|------|\n| 项目目录 `/root/schema_semantic_constrained_ie/` | **2.6G**（其中 checkpoints 2.4G） |\n| `/root/autodl-tmp/` | **177G**（models 72G, checkpoints 93G, schema_outputs 145M） |\n| `/root/.cache/` | **16G** |\n\n**Checkpoints**：项目目录下有 2 组 LoRA adapter —— `qwen3_8b_lora_wikievents`（3 个 checkpoint）和 `llama_lora_docred`（3 个 checkpoint）。autodl-tmp 下还有 93G checkpoints。\n\n**运行中进程**：无训练/评估进程。仅系统服务（supervisord、tensorboard、jupyter、sshd）。\n\n**判断：无不可替代数据，可安全释放。** 代码在匿名仓库，LoRA adapter 可重训，models 是公开预训练权重，schema_outputs 是推理结果可重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-inventory-westd-21461.md"
+}

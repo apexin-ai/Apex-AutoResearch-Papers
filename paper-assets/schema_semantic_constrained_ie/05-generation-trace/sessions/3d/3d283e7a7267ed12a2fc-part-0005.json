@@ -1,0 +1,1626 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3d283e7a7267ed12a2fc",
+  "rounds": [
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-17T19:35:44.181365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-17T19:35:44.635975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-17T19:35:45.188934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:44.386Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9984}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1007
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-17T19:35:46.193092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:45.411Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9678}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1557
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-17T19:35:49.305367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-17T19:35:49.810035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-17T19:35:50.313038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:49.522Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9698}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1007
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-17T19:35:51.319326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:50.516Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.003}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1509
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-17T19:35:58.156652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_unconstrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'Qwen/Qwen3-8B', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-17T19:35:59.562601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:58.410Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0206}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1405
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-17T19:35:59.613286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_unconstrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'meta-llama/Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-17T19:36:00.668355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:35:59.860Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0328}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1055
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-17T19:36:07.395193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "conclusion",
+              "value": "success",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'outputs/wikievents_qwen_unconstrained_full.jsonl'}"
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-17T19:36:08.098582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:07.632Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_qwen_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.417}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 703
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-17T19:36:08.099061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "conclusion",
+              "value": "success",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'outputs/wikievents_llama_unconstrained_full.jsonl'}"
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-17T19:36:08.550549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:08.351Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_llama_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4339}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-17T19:36:14.624567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "status",
+              "value": "DONE",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-17T19:36:15.126848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "status",
+              "value": "DONE",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-17T19:36:15.681126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:14.859Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_qwen_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T19:36:14.859Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.998}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1056
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-17T19:36:16.634893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:15.874Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_llama_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T19:36:15.874Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9655}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1508
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-17T19:36:21.560640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_unconstrained",
+              "field": "metrics",
+              "value": "{'parse_success': '218/246 (88.6%)', 'ET': 0, 'EV': 24, 'RoV': 74.9, 'AC': 0.3, 'CF': 0, 'trigger_f1': 0.1184, 'argument_f1': 0.0009, 'entity_f1': 0}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-17T19:36:22.113392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:34.282Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:21.800Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_qwen_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T19:36:14.859Z\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"218/246 (88.6%)\\\", \\\"ET\\\": 0, \\\"EV\\\": 24, \\\"RoV\\\": 74.9, \\\"AC\\\": 0.3, \\\"CF\\\": 0, \\\"trigger_f1\\\": 0.1184, \\\"argument_f1\\\": 0.0009, \\\"entity_f1\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4271}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-17T19:36:23.268226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_unconstrained",
+              "field": "metrics",
+              "value": "{'parse_success': '226/246 (91.9%)', 'ET': 0, 'EV': 10.5, 'RoV': 88.8, 'AC': 0.1, 'CF': 0, 'trigger_f1': 0.0572, 'argument_f1': 0, 'entity_f1': 0}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-17T19:36:23.799503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:35:35.416Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:36:23.547Z\\\", \\\"hypothesis\\\": \\\"WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode unconstrained --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_unconstrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"outputs/wikievents_llama_unconstrained_full.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T19:36:15.874Z\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"226/246 (91.9%)\\\", \\\"ET\\\": 0, \\\"EV\\\": 10.5, \\\"RoV\\\": 88.8, \\\"AC\\\": 0.1, \\\"CF\\\": 0, \\\"trigger_f1\\\": 0.0572, \\\"argument_f1\\\": 0, \\\"entity_f1\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.513}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 531
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-17T19:36:43.174859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:wikievents_constrained_qwen_llama_full",
+              "project": "schema_semantic_constrained_ie",
+              "task_prompt": "## 任务：在 westd-16980 上启动 Qwen + Llama constrained 全量实验\n\n两个 unconstrained baseline 已完成，westd-16980 的 cuda:0 和 cuda:1 都空闲了。立即启动 constrained 全量。\n\n### 前置确认\n\nSSH 到 **westd-16980**，快速确认代码状态：\n```bash\ncd /root/schema_semantic_constrained_ie\n# 确认 continuation masking v2 存在\ngrep \"_apply_role_continuation_mask\" compiler/type_mask_processor.py\n# 确认 parsed type guard 存在\ngrep \"isinstance(parsed, list)\" run_constrained_extraction.py\n# 确认 nvidia-smi 两张卡都空闲\nnvidia-smi --query-gpu=index,memory.used --format=csv\n```\n\n### 启动两个 constrained 实验\n\n**Qwen3-8B on cuda:0:**\n```bash\ntmux new-session -d -s qwen_constrained_full \"cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\n  --model_name Qwen/Qwen3-8B \\\n  --dataset wikievents \\\n  --data_path data/wikievents/all.jsonl \\\n  --constraint_mode full_s1 \\\n  --ontology_path data/wikievents/ontology_constraints_wikievents.json \\\n  --output_file outputs/wikievents_qwen_constrained_full.jsonl \\\n  --max_new_tokens 4096 2>&1 | tee outputs/qwen_constrained_full.log\"\n```\n\n**Llama-3.1-8B on cuda:1:**\n```bash\ntmux new-session -d -s llama_constrained_full \"cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py \\\n  --model_name meta-llama/Llama-3.1-8B-Instruct \\\n  --dataset wikievents \\\n  --data_path data/wikievents/all.jsonl \\\n  --constraint_mode full_s1 \\\n  --ontology_path data/wikievents/ontology_constraints_wikievents.json \\\n  --output_file outputs/wikievents_llama_constrained_full.jsonl \\\n  --max_new_tokens 4096 2>&1 | tee outputs/llama_constrained_full.log\"\n```\n\n注意：\n- 如果 `run_constrained_extraction.py` 支持 `--skip_on_error` 参数，在命令中加上。先检查 `python run_constrained_extraction.py --help` 看是否有这个参数。如果没有，去掉它（parsed type guard 已经提供了保护）。\n- 使用 `full_s1` 模式（grammar + semantic 双层约束，含 continuation masking v2）\n- 数据是全量 all.jsonl (246 docs)\n\n### 验证\n\n等 3-5 分钟后：\n```bash\n# 确认两个 tmux session 都在跑\ntmux ls\n# 确认 GPU 使用\nnvidia-smi\n# 确认输出文件在增长\nwc -l outputs/wikievents_qwen_constrained_full.jsonl\nwc -l outputs/wikievents_llama_constrained_full.jsonl\n# 查看 log 头几行确认 constraint mode 正确加载\nhead -30 outputs/qwen_constrained_full.log\nhead -30 outputs/llama_constrained_full.log\n```\n\n确认两个实验都正常推理（输出文件有行数增长），报告 GPU 使用率和 VRAM 占用。\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-17T19:36:50.157758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_constrained_qwen_llama_full_20260517T193643\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_wikievents_constrained_qwen_llama_full_20260517T193643.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_wikievents_constrained_qwen_llama_full_20260517T193643 started. Use get_worker_status('worker_code_wikievents_constrained_qwen_llama_full_20260517T193643') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6982
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-17T19:37:11.791862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "text": "[资源] GPU 4/4 | Worker 2 (GPU 1 / CPU 1) | 磁盘: 未检查\n\n## Qwen & Llama Unconstrained Baseline 结果（246 docs 全量）\n\n| Metric | Qwen3-8B | Llama-3.1-8B |\n|--------|:--------:|:------------:|\n| Parse Success | 218/246 (88.6%) | 226/246 (91.9%) |\n| **ET** | 0.0% | 0.0% |\n| **EV** | **24.0%** | **10.5%** |\n| **RoV** | **74.9%** | **88.8%** |\n| **AC** | 0.3% | 0.1% |\n| **CF** | 0.0% | 0.0% |\n| Trigger F1 | 0.1184 | 0.0572 |\n| Argument F1 | 0.0009 | 0.0000 |\n| Entity F1 | 0.0000 | 0.0000 |\n\n**关键发现：**\n- RoV 是压倒性主要违规（75-89%）——模型生成自由文本 role 名（Llama 生成了 251 个 unique role，ontology 定义 59 个）\n- EV 显著（10-24%）——event type 幻觉\n- Entity F1 = 0 因为 prompt 没有引导 entity 提取（zero-shot 预期行为）\n- Trigger F1 极低（6-12%）——zero-shot 预期\n\n**对论文的意义：**\nWikiEvents 的 violation landscape 与 SciERC/DocRED 模式一致但更极端（RoV 75-89% vs RE 的 RV 1-12%），完美展示跨任务泛化需求。Constrained decoding 应将 EV→0%, RoV 大幅下降。\n\n## 行动\n\n1. ✅ Qwen + Llama constrained 全量已 spawn（westd-16980 cuda:0 + cuda:1）\n2. ✅ Registry 已注册 ee_qwen/llama_wikievents_unconstrained（hypothesis + spec + metrics + conclusion=success）\n3. ⏳ rsync + constrained dry-run v2 Worker 运行中（westd-21461:cuda:1）\n4. ⏳ Mistral unconstrained 重启中（96/246, westd-21461:cuda:0, ETA ~2h）\n5. Mistral 完成后立即启动 Mistral constrained\n\n## 待 Mistral 完成后\n3 模型 unconstrained 全部到齐后做完整汇报表。"
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-17T19:37:12.847891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1056
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-17T19:37:14.626206+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报 Director — Qwen/Llama unconstrained 结果 + constrained 已启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000749"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-17T19:37:37.233357+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 紧急] westd-21461 文件损坏 + westd-16980 立即启动 constrained\n\n**1. westd-21461 type_mask_processor.py 被清空为 0 bytes**\n上次同步操作把文件截断了。立即修复：\n```bash\n# 在 westd-16980 上执行\nscp /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py westd-21461:/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n```\n同步后在 westd-21461 验证：`wc -l compiler/type_mask_processor.py` 应为 796 行，`grep -c \"_apply_role_continuation_mask\" compiler/type_mask_processor.py` 应为 2。\n\n**2. westd-16980 两卡空闲 — 立即启动 constrained 全量**\nQwen 和 Llama baselines 已完成。不要等 westd-21461 修复。立即在 westd-16980 上启动：\n- cuda:0: Qwen3-8B constrained full_s1 × 246 docs × continuation v2 × `--skip_on_error`\n- cuda:1: Llama-3.1-8B constrained full_s1 × 246 docs × continuation v2 × `--skip_on_error`\n\n两个实验并行启动，用 tmux。\n\n**3. Baseline 结果汇报**\n处理完当前 worker 回调后，立即汇报 Qwen 和 Llama unconstrained baseline 的：\n- 5 类 violation rates (ET/EV/RoV/AC/CF)\n- Trigger F1 / Argument F1 / Entity F1\n- 文档数 + parse failure 数"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "director"
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-17T19:37:52.392340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_wikievents_constrained_qwen_llama_full_20260517T193643",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-17T19:37:52.952408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_constrained_qwen_llama_full_20260517T193643\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:wikievents_constrained_qwen_llama_full\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-17T19:36:43.804954+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"等 3 分钟后验证实验状态。\\\", \\\"turn_count\\\": 14}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 560
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-17T19:37:53.003317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_wikievents_full_rsync_and_redryrun_20260517T190702",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-17T19:37:53.206638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_full_rsync_and_redryrun_20260517T190702\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:wikievents_full_rsync_and_redryrun\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-17T19:07:02.400110+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"Bash\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"继续写入 chunks 08-10（最后 3 块）。\\\", \\\"turn_count\\\": 17}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 203
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-17T19:38:16.136902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:wikievents_fix_21461_type_mask",
+              "project": "schema_semantic_constrained_ie",
+              "task_prompt": "## 紧急：修复 westd-21461 的 type_mask_processor.py（被截断为 0 bytes）\n\n### 步骤\n\n1. SSH 到 **westd-16980**，确认源文件完整：\n```bash\nwc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n# 应为 ~796 行\ngrep -c \"_apply_role_continuation_mask\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n# 应为 2\n```\n\n2. 从 westd-16980 拷贝到 westd-21461：\n```bash\nscp /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py westd-21461:/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n```\n\n如果 scp 不通，则：\n- SSH 到 westd-16980，`cat /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py | base64` \n- 复制 base64 内容\n- SSH 到 westd-21461，`echo \"BASE64_CONTENT\" | base64 -d > /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py`\n\n如果 base64 太长，分段传输。\n\n3. 在 westd-21461 验证：\n```bash\nwc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n# 应为 796 行\ngrep -c \"_apply_role_continuation_mask\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\n# 应为 2\n```\n\n4. 确认其他关键文件也完整：\n```bash\nwc -l /root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\nwc -l /root/schema_semantic_constrained_ie/run_constrained_extraction.py\nwc -l /root/schema_semantic_constrained_ie/violation_checker_wikievents.py\n```\n如果任何文件为 0 或异常小，同样从 westd-16980 拷贝修复。\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-17T19:38:22.114272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_fix_21461_type_mask_20260517T193816\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_wikievents_fix_21461_type_mask_20260517T193816.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_wikievents_fix_21461_type_mask_20260517T193816 started. Use get_worker_status('worker_code_wikievents_fix_21461_type_mask_20260517T193816') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5977
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-17T19:38:37.523906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "text": "[资源] GPU 4/4 | Worker 3 (GPU 1 / CPU 2) | 磁盘: 未检查\n\n## 执行状态\n\n### #1 westd-21461 type_mask_processor.py 修复 — Worker 已 spawn\n专用 `fix_21461_type_mask` worker 正在 scp 修复。同时 rsync worker 也在用 chunk 写入（chunks 8-10/10）。验证标准：796 行 + grep 匹配 2 处 `_apply_role_continuation_mask`。\n\n### #2 westd-16980 constrained 全量 — Worker 正在启动\n`constrained_qwen_llama_full` worker 已在 turn 14，正在验证实验启动状态（Qwen cuda:0 + Llama cuda:1，both full_s1 × 246 docs）。\n\n### #3 Baseline 结果 — 已在上条汇报中发送\n重复关键数据：\n\n| | Qwen3-8B | Llama-3.1-8B |\n|---|:---:|:---:|\n| Parse | 88.6% | 91.9% |\n| ET | 0% | 0% |\n| EV | **24.0%** | **10.5%** |\n| RoV | **74.9%** | **88.8%** |\n| AC | 0.3% | 0.1% |\n| CF | 0% | 0% |\n| Trigger F1 | 0.118 | 0.057 |\n| Arg F1 | 0.001 | 0.000 |\n\nMistral unconstrained 仍在跑（~96/246, ETA ~2h）。"
+            }
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-17T19:38:38.630634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1106
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-17T19:38:40.259778+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 workers running: constrained 启动 (westd-16980) + rsync 补全 (westd-21461) + 文件修复 (westd-21461)。汇报 Director 确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000759"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-17T19:47:27.695069+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_wikievents_full_rsync_and_redryrun_20260517T190702 已完成（status=done）。用 `get_worker_status('worker_code_wikievents_full_rsync_and_redryrun_20260517T190702')` 读取结果，然后处理。\n\n- worker_id: worker_code_wikievents_full_rsync_and_redryrun_20260517T190702\n- project: schema_semantic_constrained_ie\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "worker:done"
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-17T19:47:33.923095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_wikievents_full_rsync_and_redryrun_20260517T190702"
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-17T19:47:33.973966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_full_rsync_and_redryrun_20260517T190702\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:wikievents_full_rsync_and_redryrun\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-17T19:07:02.400110+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:47:26.045919+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"全部完成。总结：\\\\n\\\\n**所有 4 步已完成：**\\\\n\\\\n| Step | 状态 |\\\\n|------|------|\\\\n| 1. rsync 源码 | ✓ type_mask_processor.py 已同步（MD5: `9983b405...`） |\\\\n| 2. 验证关键符号 | ✓ Import 成功，其他文件 MD5 均匹配 |\\\\n| 3. Kill 旧 session + 启动 v2 | ✓ `constrained_dryrun_v2` 运行中 |\\\\n| 4. 验证 dry-run | ✓ GPU1 82% util, 18.9GB VRAM, 已输出 3 条结果 |\\\\n\\\\n**注意事项：**\\\\n- 传了 `HF_HUB_OFFLINE=1` + 本地模型路径（直传 HF hub ID 会卡在网络连接上）\\\\n- 备份在 `/tmp/type_mask_processor.py.bak`，防止文件再次被意外清零\\\\n- `Device: cuda:0` 是进程内部看到的设备编号（因为 `CUDA_VISIBLE_DEVICES=1` 把物理 GPU1 映射为逻辑 cuda:0）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-17T19:47:42.344211+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "rsync worker 完成：type_mask_processor.py 已修复（MD5 验证），constrained dry-run v2 在 westd-21461:cuda:1 上运行（3 条结果）。fix worker 可能已冗余但让它自行验证完。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000763"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-17T19:48:57.869408+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_wikievents_constrained_qwen_llama_full_20260517T193643 已完成（status=done）。用 `get_worker_status('worker_code_wikievents_constrained_qwen_llama_full_20260517T193643')` 读取结果，然后处理。\n\n- worker_id: worker_code_wikievents_constrained_qwen_llama_full_20260517T193643\n- project: schema_semantic_constrained_ie\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "worker:done"
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-17T19:49:05.751624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_wikievents_constrained_qwen_llama_full_20260517T193643"
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-17T19:49:05.852693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_constrained_qwen_llama_full_20260517T193643\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:wikievents_constrained_qwen_llama_full\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-17T19:36:43.804954+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:48:56.302903+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个 constrained 实验均已正常启动并在推理中：\\\\n\\\\n| 实验 | GPU | VRAM | 利用率 | 已完成 | 模式 |\\\\n|------|-----|------|--------|--------|------|\\\\n| Qwen3-8B constrained | cuda:0 | 17585 MiB | 84% | 5/246 docs | full_s1 |\\\\n| Llama-3.1-8B constrained | cuda:1 | 16619 MiB | 88% | 11/246 docs | full_s1 |\\\\n\\\\n两个 log 均确认 `Mode: full_s1`，246 samples，56 event types + 80 argument roles 正确加载。Llama 跑得更快（constrained decoding 对 Qwen3 的 thinking mode 可能有额外开销）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-17T19:49:18.604873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "hypothesis",
+              "value": "WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-17T19:49:19.913346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4835}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1308
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-17T19:49:19.964856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "hypothesis",
+              "value": "WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-17T19:49:20.419993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:20.228Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4622}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-17T19:49:26.514242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'Qwen/Qwen3-8B', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-17T19:49:27.018264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2586}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-17T19:49:28.374827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'meta-llama/Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-17T19:49:28.677007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2523}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-17T19:49:31.438006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "status",
+              "value": "PENDING",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-17T19:49:31.842598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "status",
+              "value": "PENDING",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-17T19:49:32.496634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:31.653Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0539}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1058
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-17T19:49:33.450127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:32.720Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9556}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1607
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-17T19:49:39.734885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'Qwen/Qwen3-8B', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-17T19:49:40.189272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2721}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-17T19:49:41.695862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'meta-llama/Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-17T19:49:41.948198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2511}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-17T19:49:45.065889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-17T19:49:45.517796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-17T19:49:46.120338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:45.316Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0241}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-17T19:49:47.075517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:46.335Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9342}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1557
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-17T19:49:54.683325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_qwen_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'Qwen/Qwen3-8B', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-17T19:49:55.940751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_qwen_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:54.936Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name Qwen/Qwen3-8B --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_qwen_constrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1257
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-17T19:49:56.906655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ee_llama_wikievents_constrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_constrained_full.jsonl --max_new_tokens 4096', 'server': 'westd-16980', 'data_path': 'data/wikievents/all.jsonl', 'data_count': 246, 'model_name': 'meta-llama/Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-17T19:49:57.860536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ee_llama_wikievents_constrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:49:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:49:57.132Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_constrained_full.jsonl --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9541}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 953
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-17T19:50:00.512032+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。四个实验全部注册：2 个 unconstrained (DONE) + 2 个 constrained (RUNNING)。四卡全满运行中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000791"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-17T20:10:02.109165+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_wikievents_fix_21461_type_mask_20260517T193816 已完成（status=done）。用 `get_worker_status('worker_code_wikievents_fix_21461_type_mask_20260517T193816')` 读取结果，然后处理。\n\n- worker_id: worker_code_wikievents_fix_21461_type_mask_20260517T193816\n- project: schema_semantic_constrained_ie\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "worker:done"
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-17T20:10:09.745691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_wikievents_fix_21461_type_mask_20260517T193816"
+            }
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-17T20:10:09.847869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_fix_21461_type_mask_20260517T193816\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:wikievents_fix_21461_type_mask\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-17T19:38:16.825010+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T20:10:00.438047+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"修复完成。最终状态汇总：\\\\n\\\\n| 文件 | westd-16980 | westd-21461 修复后 |\\\\n|---|---|---|\\\\n| `compiler/type_mask_processor.py` | 796 行 | 796 行 ✓ |\\\\n| `compiler/ontology_compiler.py` | 485 行 | 485 行 ✓ |\\\\n| `run_constrained_extraction.py` | 1008 行 | 1008 行 ✓ |\\\\n| `violation_checker_wikievents.py` | 396 行 | 396 行 ✓ |\\\\n\\\\n`type_mask_processor.py`（原 0 字节）和 `violation_checker_wikievents.py`（差 2 行）已从 westd-16980 通过 SCP 修复到 westd-21461，其余文件一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-17T20:10:29.333346+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-21461 文件修复完成：type_mask_processor.py 从 0 bytes 恢复到 796 行，所有 4 个关键文件与 westd-16980 一致。\n\n当前状态：\n- westd-16980: Qwen constrained (cuda:0) + Llama constrained (cuda:1) — 全量 246 docs 运行中\n- westd-21461: Mistral unconstrained (cuda:0, ~96→/246) + constrained dry-run v2 (cuda:1, 3→/20)\n- 4/4 GPU 在用，0 workers running"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000795"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-17T20:26:30.095766+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 紧急状态检查 + 填满空闲 GPU。按顺序执行：\n\n**Step 1: 两台服务器进程检查（并行）**\n- westd-16980: `nvidia-smi` 确认 cuda:0 (Qwen constrained) 和 cuda:1 (Llama constrained) 是否还在跑。如果已完成，找到输出文件汇报结果。\n- westd-21461: `nvidia-smi` 确认 cuda:0 和 cuda:1 状态。上一轮 Mistral unconstrained 应在 cuda:0 跑，检查是否完成。同时验证代码修复：`wc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py` 必须 = 796 行。\n\n**Step 2: 根据 Step 1 结果**\n\n情况 A — Mistral unconstrained 已完成：\n- 汇报完整结果（violation rates: ET/EV/RoV/AC/CF + Arg F1）\n- 确认 type_mask_processor.py = 796 行后，立即在 westd-21461 启动 Mistral constrained full_s1 246 docs\n- 命令必须包含 `--skip_on_error`，使用 continuation masking v2 配置\n\n情况 B — Mistral unconstrained 还在跑：\n- 汇报进度（已处理多少 docs）\n- 确认 type_mask_processor.py 修复状态\n\n情况 C — westd-21461 代码未修复（wc -l != 796）：\n- 从 westd-16980 rsync **整个** `/root/schema_semantic_constrained_ie/` 目录到 westd-21461\n- rsync 完成后再次验证 wc -l = 796\n- 然后按情况 A/B 继续\n\n**Step 3: Qwen/Llama constrained 如果已完成**\n- 汇报两个模型的完整 violation rates (ET/EV/RoV/AC/CF) + Arg F1\n- 与 unconstrained baseline 对比（Qwen: RoV 74.9%, EV 24.0%; Llama: RoV 88.8%, EV 10.5%）\n- 10-doc pilot 中 RoV 降到 0%，全量是否保持？argument count 对比？\n\n**硬约束提醒**：\n- GPU 白名单：westd-16980 cuda:0,1 + westd-21461 cuda:0,1\n- westd-21461 启动任何实验前必须先验证 type_mask_processor.py = 796 行\n- 所有 constrained 命令必须包含 `--skip_on_error`"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "director"
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-17T20:26:58.696613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:wikievents_full_status_check_and_launch",
+              "project": "schema_semantic_constrained_ie",
+              "task_prompt": "## 任务：全面状态检查 + 收集结果 + 启动缺失实验\n\n### Step 1: 两台服务器并行检查\n\n**westd-16980:**\n```bash\nnvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv\ntmux ls\ncd /root/schema_semantic_constrained_ie\nwc -l outputs/wikievents_qwen_constrained_full.jsonl 2>/dev/null || echo \"不存在\"\nwc -l outputs/wikievents_llama_constrained_full.jsonl 2>/dev/null || echo \"不存在\"\n```\n\n**westd-21461:**\n```bash\nnvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv\ntmux ls\nwc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\ncd /root/schema_semantic_constrained_ie\nwc -l outputs/wikievents_mistral_unconstrained_full.jsonl 2>/dev/null || echo \"不存在\"\n```\n\n### Step 2: 根据结果处理\n\n#### 如果 Qwen/Llama constrained 已完成（246 行或 tmux session 结束）\n运行 violation checker + eval：\n```bash\ncd /root/schema_semantic_constrained_ie\n\n# Qwen constrained\npython violation_checker_wikievents.py \\\n  --predictions outputs/wikievents_qwen_constrained_full.jsonl \\\n  --ontology data/wikievents/ontology_constraints_wikievents.json\n\npython eval_event_extraction.py \\\n  --predictions outputs/wikievents_qwen_constrained_full.jsonl \\\n  --gold data/wikievents/all.jsonl\n\n# Llama constrained\npython violation_checker_wikievents.py \\\n  --predictions outputs/wikievents_llama_constrained_full.jsonl \\\n  --ontology data/wikievents/ontology_constraints_wikievents.json\n\npython eval_event_extraction.py \\\n  --predictions outputs/wikievents_llama_constrained_full.jsonl \\\n  --gold data/wikievents/all.jsonl\n```\n\n如果脚本参数名不对，先 `python violation_checker_wikievents.py --help` 查看。\n\n#### 如果 Mistral unconstrained 已完成（246 行或 tmux session 结束）\n```bash\n# Violation check\npython violation_checker_wikievents.py \\\n  --predictions outputs/wikievents_mistral_unconstrained_full.jsonl \\\n  --ontology data/wikievents/ontology_constraints_wikievents.json\n\n# Eval\npython eval_event_extraction.py \\\n  --predictions outputs/wikievents_mistral_unconstrained_full.jsonl \\\n  --gold data/wikievents/all.jsonl\n```\n\n然后**立即启动 Mistral constrained**（前提：type_mask_processor.py = 796 行）：\n```bash\n# 在 westd-21461 上\ncd /root/schema_semantic_constrained_ie\n\n# 检查是否支持 --skip_on_error\npython run_constrained_extraction.py --help 2>&1 | grep skip_on_error\n\n# 启动 Mistral constrained（根据 --help 结果决定是否加 --skip_on_error）\ntmux new-session -d -s mistral_constrained_full \"cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\n  --model_name mistralai/Mistral-7B-Instruct-v0.3 \\\n  --dataset wikievents \\\n  --data_path data/wikievents/all.jsonl \\\n  --constraint_mode full_s1 \\\n  --ontology_path data/wikievents/ontology_constraints_wikievents.json \\\n  --output_file outputs/wikievents_mistral_constrained_full.jsonl \\\n  --max_new_tokens 4096 2>&1 | tee outputs/mistral_constrained_full.log\"\n```\n\n如果 type_mask_processor.py != 796 行，先从 westd-16980 rsync 整个目录：\n```bash\n# 从 westd-16980 执行\nrsync -avz --exclude='outputs/' --exclude='*.jsonl' --exclude='__pycache__/' --exclude='.git/' --exclude='models/' /root/schema_semantic_constrained_ie/ westd-21461:/root/schema_semantic_constrained_ie/\n```\n如果 rsync 不通，用 scp 逐文件同步关键 .py 文件，然后验证。\n\n#### 如果 Mistral unconstrained 还在跑\n报告进度（当前行数/246）。\n\n### Step 3: 检查 constrained dry-run v2（westd-21461:cuda:1）\n```bash\n# westd-21461\nwc -l outputs/wikievents_qwen_constrained_dryrun_v2.jsonl 2>/dev/null\n```\n如果完成（20 行），运行 violation checker 汇报结果。\n\n### 输出格式\n\n对每个完成的实验：\n```\nModel: {name} ({mode})\nServer: {server}:{gpu}\nDocs: {completed}/246\nParse Success: {n}/{completed}\n\nViolation Rates:\n  ET: {x}%\n  EV: {x}%\n  RoV: {x}%\n  AC: {x}%\n  CF: {x}%\n\nF1 Scores:\n  Trigger F1: {x}\n  Argument F1: {x}\n  Entity F1: {x}\n```\n\n对未完成的：当前进度和 ETA。\n\n最后汇总 GPU 使用状态表。\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-17T20:27:04.553537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_wikievents_full_status_check_and_launch_20260517T202659\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_wikievents_full_status_check_and_launch_20260517T202659.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_wikievents_full_status_check_and_launch_20260517T202659 started. Use get_worker_status('worker_code_wikievents_full_status_check_and_launch_20260517T202659') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5856
+          },
+          "id": "event-000798"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "messages": [
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-17T20:27:32.342528+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-17T20:28:24.994956+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0,1 + westd-21461 cuda:0,1。其他 GPU 禁用\n- westd-21461 启动任何实验前必须先验证 `wc -l compiler/type_mask_processor.py` = 796 行（此文件曾被截断为 0 bytes）\n- 跨服务器代码同步必须 rsync 整个目录，禁止逐文件 scp（D044 硬规则，已有截断事故）\n- 所有 constrained 实验命令必须包含 `--skip_on_error`（parsed 可能返回 list 而非 dict）\n- WikiEvents 只做 unconstrained vs full_s1，不做 EE ablation（D043）\n- Continuation masking v2 是所有 WikiEvents constrained 实验的默认配置（D042）\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 `/root/schema_semantic_constrained_ie/`，Python 系统默认，HF cache 已有 Qwen3-8B + Llama-3.1-8B-Instruct\n- **westd-21461**: 同路径，HF cache 有 Mistral-7B-Instruct-v0.3 + Qwen3-8B（通过 hf-mirror.com 下载，需 `HF_HUB_OFFLINE=1` + 本地路径启动）\n- 数据集：`data/wikievents/all.jsonl` (246 docs), `test.jsonl` (20 docs)\n- Ontology：`data/wikievents/ontology_constraints_wikievents.json` (56 event types, 27 entity types, 80 roles, 245 constraints)\n- 活跃 tmux sessions（最后已知状态，需 SSH 确认）：\n  - westd-16980: `qwen_constrained_full` (cuda:0), `llama_constrained_full` (cuda:1) — 启动时 5/246 和 11/246\n  - westd-21461: `mistral_restart` (cuda:0, unconstrained ~96/246), `constrained_dryrun_v2` (cuda:1, Qwen dry-run)\n- Worker 运行中：`worker_code_wikievents_full_status_check_and_launch_20260517T202659` — 正在检查所有实验状态、收集已完成结果、启动 Mistral constrained\n\n### 3. 📊 当前状态\n**刚做完：** Qwen + Llama unconstrained baseline 全量完成并注册 registry（ee_qwen/llama_wikievents_unconstrained, DONE）。Qwen + Llama constrained 全量已在 westd-16980 启动。westd-21461 type_mask_processor.py 修复完成（796 行确认）。\n\n**Registry RUNNING：**\n- `ee_qwen_wikievents_constrained` — Qwen3-8B full_s1 × 246 docs, westd-16980:cuda:0\n- `ee_llama_wikievents_constrained` — Llama-3.1-8B full_s1 × 246 docs, westd-16980:cuda:1\n- Mistral unconstrained 未注册 registry（在 tmux 中跑，~96/246 重启后）\n\n**等待中：**\n- Worker `full_status_check_and_launch` 回调 — 会带回所有实验进度 + 已完成的 violation rates + F1，以及可能已启动的 Mistral constrained\n- Constrained dry-run v2 结果（westd-21461:cuda:1，验证 continuation masking v2 在修复后代码上的效果）\n\n**Unconstrained baseline 结果（已有）：**\n\n| | Qwen | Llama | Mistral |\n|---|---|---|---|\n| Parse | 88.6% | 91.9% | 待完成 |\n| EV | 24.0% | 10.5% | 待完成 |\n| RoV | 74.9% | 88.8% | 待完成 |\n| Trigger F1 | 0.118 | 0.057 | 待完成 |\n\n### 4. 📋 待办（条件触发式）\n- `full_status_check_and_launch` worker 回调 → 读取结果，注册 Mistral unconstrained 到 registry，汇报 Director 完整三模型表\n- Qwen/Llama constrained 完成 → 运行 violation_checker + eval，注册 registry (conclusion+metrics)，对比 unconstrained（EV→0%? RoV→0%?），汇报 Director\n- Mistral unconstrained 完成 → 收集 violation rates，注册 registry，启动 Mistral constrained on westd-21461:cuda:0\n- Mistral constrained 完成 → 收集结果，完整 3×2 对比表（unconstrained vs constrained × 3 models），汇报 Director\n- 全部 6 个实验完成 → 更新 report.md，spawn Worker 写论文 §5.4 Event Extraction section\n- Constrained dry-run v2 (20 docs) 完成 → 验证 continuation masking v2 有效性（RoV 应近 0%），如果无效需要 debug\n\n### 5. 🎯 战略上下文\n- **目标**：EMNLP 2026 ARR May 25 提交。WikiEvents EE 扩展是 conference main 升级的关键（从 short paper → main paper）\n- **核心 story**：OntoCoDec 跨任务泛化 — 同一框架 zero-code 从 RE 切换到 EE，自动编译 KAIROS ontology 为 token-level constraints\n- **WikiEvents 特殊性**：tightness=0.33%（348 valid triples / 106K 理论空间），比 SciERC/DocRED 紧得多。RoV 是压倒性主要违规（75-89%），而 RE 中 RV 只有 1-12%。这完美展示 semantic layer 在更复杂 schema 上的价值\n- **Continuation masking v2**：解决 EE 中 80 个 role 有 25 个 first-token collision 的问题。10-doc pilot 证明 RoV 从 28.6%→0%。全量是否保持是关键验证点\n- **易错点**：\n  - westd-21461 的 HF 模型需要 `HF_HUB_OFFLINE=1` + 本地路径（网络不通 HF hub）\n  - `parsed` 可能是 list（模型输出 JSON array），必须有 isinstance 守卫\n  - Entity F1=0 是 prompt 设计问题（zero-shot 不引导 entity extraction），不是 bug\n  - Constrained decoding 比 unconstrained 慢 ~3-5x（每 doc 30-60s vs 5-15s）\n- **决策链**：D040(升级main) → D041(WikiEvents替代ACE05) → D042(continuation v2为默认) → D043(不做EE ablation) → D044(rsync整目录)\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
+          },
+          "id": "event-000800"
+        }
+      ]
+    }
+  ]
+}

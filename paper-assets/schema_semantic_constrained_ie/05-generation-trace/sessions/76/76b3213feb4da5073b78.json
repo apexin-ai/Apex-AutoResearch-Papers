@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "76b3213feb4da5073b78",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis latency profiling",
+  "task_key": "worker_analysis_latency_profiling_20260516T085245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latency_profiling_20260516T085245.log",
+    "occurrence": 1,
+    "bytes": 879603,
+    "sha256": "e22ec5b9f85aa167e47279b7daf1e7562bd12b1182952f2a7770982bfc194062"
+  },
+  "statistics": {
+    "messages": 676,
+    "user_turns": 0,
+    "tool_calls": 308,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 55,
+      "tool_call": 308,
+      "tool_result": 308,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 676,
+      "chunks": [
+        {
+          "path": "76b3213feb4da5073b78-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "76b3213feb4da5073b78-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "76b3213feb4da5073b78-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "76b3213feb4da5073b78-part-0004.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-latency-profiling.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6e9e9ac4da0515891c8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778766717.md",
+  "task_key": "loop_3_1778766717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778766717.md",
+    "occurrence": 1,
+    "bytes": 4212,
+    "sha256": "ae7b3a33a19e9c1a71243dea377dfca7f93dc0bd5f5528f23a2897f29b2cff39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-14T13:47:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 的 cuda:0 和 cuda:1，不可用其他设备\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- DocRED F1 方法论：`all_set` vs `recognized_set` 争议已提交 Reviewer 验证，**在确认前不得将任何 DocRED F1 数字写入论文**\n- 论文措辞：不可说 \"hard guarantees\" / \"guaranteed\"，统一用 \"near-complete elimination\"\n- 论文数字必须来自 registry，不可凭记忆引用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，工作目录 `/root/schema_semantic_constrained_ie`\n- Python：conda base，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Qwen 模型：`/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- Llama 模型：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- DocRED 数据：`data/docred/dev.json` (998 docs)，约束：`data/docred/ontology_constraints_docred.json`\n- SciERC 数据：`data/processed_data/test.json` (551 sentences)，约束：`ontology_constraints.json`\n- 活跃进程：\n  - llama_scierc_unconstrained: PID 188367, tmux=llama_scierc_unconstrained, cuda:0, cron active\n  - phase2_docred_semantic_only: PID 172859, tmux=phase2_docred_semantic_only, cuda:1, cron active\n- Llama 提交命令已就绪：`artifacts/llama_submit_commands.md`\n\n### 3. 📊 当前状态\n刚解决 DocRED unconstrained R-F1 数值冲突（两种评估方法 all_set vs recognized_set），已提交 Reviewer 验证，registry 已更新为 all_set 数值。\n\nRegistry RUNNING:\n- `llama_scierc_unconstrained` — Llama-3.1-8B SciERC 无约束 baseline, cuda:0, ~30min total (551 samples, ~2.9s/sample)\n- `phase2_docred_semantic_only` — Qwen3-8B DocRED semantic-only, cuda:1, 820/998 at last check, ~1.5h remaining\n\nRegistry QUEUED (4 Llama):\n- `llama_scierc_full_s1` — GPU 排期: cuda:0, llama_scierc_unconstrained 完成后\n- `llama_docred_unconstrained` — GPU 排期: cuda:1, semantic_only 完成后\n- `llama_docred_full_s1` — GPU 排期: cuda:1, llama_docred_unconstrained 完成后\n\n等待中：Reviewer 对 all_set vs recognized_set 的验证结论\n\n### 4. 📋 待办\n- llama_scierc_unconstrained cron 回调 → 分析 metrics + violation rates → 立即 allocate_and_submit `llama_scierc_full_s1` on cuda:0\n- phase2_docred_semantic_only cron 回调 → doc_id 去重检查(registry notes 有标记) → violation checker + F1(用 all_set) → 立即 allocate_and_submit `llama_docred_unconstrained` on cuda:1\n- llama_scierc_full_s1 完成 → 对比 Llama unconstrained vs full_s1 → 如有空 GPU 接 llama_docred_full_s1\n- Reviewer 确认 F1 方法 → 更新 memory.md §5 备忘 → 可开始写 §5 DocRED subsection\n- DocRED 4-way ablation 全部完成 → 填 Abstract/Conclusion 的 DocRED placeholder → 写 §5 DocRED subsection + Table 4\n- Llama 4 实验全部完成 → 写 §5 Cross-model subsection\n\n### 5. 🎯 战略上下文\n- 投稿目标：EMNLP 2026 ARR May 25，内部稿 DDL May 19（距今 5 天）\n- 核心结论：OntoCoDec grammar+semantic 双层约束在 SciERC 上 DR↓94% F1 无损；DocRED DR↓44.8% F1 无损（待确认 F1 方法）\n- DR scaling gap 是 contribution 不是 weakness：effectiveness scales inversely with constraint tightness（DocRED avg tightness=0.842 vs SciERC=0.333），首个 constraint scaling 实证\n- Grammar-only DR 上升 (18.46→26.17%) 是审稿必问点：grammar 消除 RV 后暴露更多 DR，恰好证明 semantic 层必要性\n- 易错点：\n  1. DocRED semantic_only 输出 JSONL 行数可能 > 日志计数（前次残留），完成后必须先查 doc_id 去重\n  2. 不要混用 recognized_set 和 all_set F1——SciERC 无此问题（RV violations 仅 1.4%），DocRED 差异巨大（29.66% RV）\n  3. Llama allocate_and_submit 前确认 registry 状态是 QUEUED 还是 ALLOCATED（之前踩过 ALLOCATED 不能再 allocate_and_submit 的坑，需用 submit_on_allocated）\n  4. GPU 编号始终 `--device cuda:0`，框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778766717.md"
+}

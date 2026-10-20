@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42359582c0abaaf32e76",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis error taxonomy",
+  "task_key": "worker_analysis_error_taxonomy_20260519T151303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error_taxonomy_20260519T151303_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "ff7fcba7929660ab15569416009bc9bcaadad1a8196df0a8849be33733e8b8e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/error_taxonomy_analysis.md`。\n\n核心发现：\n\n- **Tokenizer collision = 0%**（所有配置）：S1 constrained decoding 完全消除了 token 级别的约束违规\n- **SciERC 以 Non-local CF 为主**（63–88%）：宽松 schema 下 DR 违规少，主要问题是跨 triple 类型不一致（TCR 可解决）\n- **DocRED Qwen 以 Semantic Confusion 为主**（64%）：模型选了合法类型但 (head_type, tail_type) pair 不满足 DR 约束\n- **DocRED Llama 以 Fundamental Schema Conflict 为主**（63%）：entity 参与的多个 relation 的 DR 约束互相矛盾，无任何单一类型可满足——这是不可消除的理论上限\n- SC 可通过增强 S1（加入 DR pair 约束）消除；NL-CF 已被 TCR 消除；FSC 是 schema 固有限制，不可消除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-taxonomy.md"
+}

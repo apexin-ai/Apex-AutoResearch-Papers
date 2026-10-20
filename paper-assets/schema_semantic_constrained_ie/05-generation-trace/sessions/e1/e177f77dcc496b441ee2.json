@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e177f77dcc496b441ee2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "knowledge invariant paper notes",
+  "task_key": "worker_knowledge_invariant_paper_notes_20260514T043434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_invariant_paper_notes_20260514T043434_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "352ecdd7afc6d336dc55010e04ba15d998eb62c5c4d94d9a74fbcac0ec65be23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "笔记已写入 `artifacts/method_invariant_notes.md`。`register_artifact` 工具不在当前可用 MCP 工具列表中，无法执行注册。如果需要注册，请确认该工具是否已配置，或手动在 `manifest.yaml` 中添加条目。\n\n内容覆盖了三部分：\n- **A**: 双层交互模型形式化（$M_{\\text{final}} = M_{\\text{grammar}} \\wedge M_{\\text{semantic}}$）、Grammar-First Invariant 定义、空交集 resolution protocol\n- **B**: 与 Claim 3 的关联——bug 作为 enabling dependency 的反面证据，SciERC→DocRED 跨数据集泛化验证，推荐 Method Section 措辞\n- **C**: CF violation 消融归因（100% semantic 层）、主要冲突模式、severity distinction、future work（cross-relation entity type consensus）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-invariant-paper-notes.md"
+}

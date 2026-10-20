@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9432ab6496bfeac63700",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 prompt sensitivity",
+  "task_key": "worker_code_r4_prompt_sensitivity_20260517T122157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_prompt_sensitivity_20260517T122157_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "036f55a0af5647502df2eae2ab63bb29c58d877094d45ad73666721c59fb5ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中：\n\n- **GPU 0**: `minimal` unconstrained → `minimal` full_s1（串行）\n- **GPU 1**: `detailed` unconstrained → `detailed` full_s1（串行）\n- **基线**: 已有 `default` 的两组结果\n\n3 个 prompt 变体设计：\n1. **default** — 原始 prompt（有\"expert\"角色、标准格式描述）\n2. **minimal** — 极简指令（无角色 framing、紧凑格式描述）\n3. **detailed** — 详细指令（每个 entity/relation type 带定义和示例、额外规则说明）\n\n预计 ~2.5h 后全部完成，之后运行 violation checker + F1 分析并汇总。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-prompt-sensitivity.md"
+}

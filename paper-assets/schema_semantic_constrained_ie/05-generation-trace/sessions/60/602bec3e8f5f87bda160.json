@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "602bec3e8f5f87bda160",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section1 introduction",
+  "task_key": "worker_paper_section1_introduction_20260514T054035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section1_introduction_20260514T054035_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "f48c1d47ef5e1a72aa43199b751a9cda9d9adff2ea14a6e5b7516ee9445586a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section1_introduction_draft.tex` 并注册到 manifest。\n\n结构：\n- **P1** (8句): 问题定义 + SciERC 15.4%/DocRED 18.7% violation 数据 + 非均匀分布（Compare 42.4% vs Used-for 0.8%）+ constraint tightness 驱动\n- **P2** (6句): Schema-informed prompting ↓62% 但 per-relation 不可靠（Evaluate-for +5.8pp）；grammar-constrained decoding 无 semantic；post-hoc 浪费 14-15% 算力；training-based 需数据且 soft\n- **P3** (6句): OntoCoDec 双层架构（grammar + semantic）+ bitwise AND 组合 + enabling dependency + training-free + DR 15.37%→0.93% F1-neutral\n- **P4** (4 contributions): violation landscape → OntoCoDec 框架 → decidability taxonomy → 实证验证\n\n所有数字与 registry 一致，用 \"near-complete\"/\"designed to be model-agnostic\" 等 calibrated 措辞，引用 key 与已有 sections 保持统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section1-introduction.md"
+}

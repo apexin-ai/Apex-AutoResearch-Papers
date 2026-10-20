@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "db745cb1997e7ef73b53",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code 70b autostart",
+  "task_key": "worker_code_70b_autostart_20260518T105841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_70b_autostart_20260518T105841.log",
+    "occurrence": 1,
+    "bytes": 509788,
+    "sha256": "962dd8c6329b87188463d8a225511b42171eda501210db5ea76e1eb9a904eb44"
+  },
+  "statistics": {
+    "messages": 353,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 133,
+      "tool_result": 133
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 353,
+      "chunks": [
+        {
+          "path": "db745cb1997e7ef73b53-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "db745cb1997e7ef73b53-part-0002.json",
+          "message_count": 173
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-70b-autostart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe3f18cdd848d523176",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778959447.md",
+  "task_key": "loop_14_1778959447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778959447.md",
+    "occurrence": 1,
+    "bytes": 4300,
+    "sha256": "6034518ebfbc53d293d7b3bb0941e462d25b560162fe21a047ca154188da0316"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T17:20:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 [cuda:0, cuda:1] + westd-21461 [cuda:0, cuda:1]，共 4 卡，不得用其他\n- westd-21461 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- submit_training_job 命令必须自带环境激活（conda activate），GPU 编号始终从 0 开始\n- w6_mistral_docred_unconstrained 已失败 2 次（SIGHUP）后第 3 次成功——不要再重试这个实验，它已 DONE/success\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 /root/schema_semantic_constrained_ie，Python /root/miniconda3/bin/python3，2x GPU\n  - 模型：/root/autodl-tmp/checkpoints/llama_lora_docred_merged, qwen_lora_docred_merged, llama_lora_scierc_merged, qwen3_8b_lora_scierc_merged\n  - 活跃：w8_llama_docred_ft_semantic_only (PID 361202, cuda:1, cron 监控中)\n  - 空闲：cuda:0（等 latency benchmark）\n- **westd-21461**: 同结构，2x RTX PRO 6000 Blackwell 98GB，conda base env\n  - 模型：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3，/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\n  - 活跃：w8_qwen_docred_ft_grammar_only (PID 18555, cuda:0), w8_qwen_docred_ft_semantic_only (PID 20035, cuda:1)\n- 数据：SciERC data/processed_data/test.json (551), DocRED data/docred/dev.json (998)\n- 约束文件：ontology_constraints.json (SciERC), data/docred/ontology_constraints_docred.json (DocRED, 96 relations)\n\n### 3. 📊 当前状态\nSession-start 已完成：registry 同步、cron reconcile（3 job alive）、Director 已汇报。\n\n**RUNNING (3 GPU)**:\n- w8_llama_docred_ft_semantic_only (westd-16980 cuda:1) — FT Llama DocRED semantic_only ablation\n- w8_qwen_docred_ft_grammar_only (westd-21461 cuda:0) — FT Qwen DocRED grammar_only ablation\n- w8_qwen_docred_ft_semantic_only (westd-21461 cuda:1) — FT Qwen DocRED semantic_only ablation\n\n**Worker 池 (2)**:\n- worker_ops_latency_docred_artifact_20260516_20260516T131452 (running, turn 11) — 从服务器读取 inference log 分析 latency\n- worker_research_related_work_survey_20260516T131804 (just spawned) — SynCode/IterGen/BoostCD 文献调研\n\n**已完成本轮**：修正 w8_llama_docred_ft_semantic_only registry ALLOCATED→RUNNING（之前状态未同步）\n\n### 4. 📋 待办（条件触发式）\n- w8_qwen_docred_ft_grammar_only cron 回调 → on-experiment-done，预期 DR≈0.76%（grammar 不降 DR），更新 report + 汇报 Director\n- w8_qwen_docred_ft_semantic_only cron 回调 → on-experiment-done，预期 DR 降至 ~0.3-0.5%（semantic 层降 DR），与 Llama 对比\n- w8_llama_docred_ft_semantic_only cron 回调 → on-experiment-done，预期 DR 降至 ~0.2-0.3%，完成 DocRED 2×2 ablation\n- latency worker 完成 → 检查产出，如需 GPU benchmark 则提交到 westd-16980 cuda:0\n- related work worker 完成 → 整合到论文 related work section，标记 Dream 审稿 issue #1 已修\n- 3 个 ablation 全部完成 → 汇报 Director 全矩阵 done，建议进入论文写作阶段\n- Director 回复 cuda:0 分配 → 按指令提交\n\n### 5. 🎯 战略上下文\n- **核心方向**: OntoCoDec 两层约束解码，目标 EMNLP 2026 ARR May 25\n- **ablation 核心结论（SciERC 已证实，DocRED 正在验证）**: grammar 层消除 RV/ET，semantic 层消除 DR，两层互补缺一不可。full_s1 DR≈0% 证明联合约束完全消除 violations\n- **w8_llama_docred_ft_grammar_only 刚完成**: DR=0.51%≈unconstrained 0.49%，确认 DocRED 与 SciERC 模式一致\n- **post-hoc baseline 关键发现（D032/D033）**: ZS 下 post-hoc R_F1 ≥ constrained R_F1（5/6 组），论文应强调\"generation-time hard guarantee + composability\"而非\"F1 保留\"。例外：Mistral DocRED（73.7% rejection 导致 net F1 loss）\n- **Mistral DocRED constrained DR=33.2%**: ZS regime 下残余高，因为 semantic constraint 覆盖不完整——这是 ZS vs FT 的 gap，论文可讨论\n- **易错点**:\n  - report.md 是自动生成的（不能直接 save_project_file 写）\n  - experiment_plan.yaml 为空——所有实验已分派到 registry\n  - w6_mistral_docred_unconstrained 已成功完成（之前 2 次 SIGHUP 已解决），不要误以为还需重试\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778959447.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57cb23a6c379118fad63",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 violation check batch1",
+  "task_key": "worker_ssh_d064_violation_check_batch1_20260519T234318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_violation_check_batch1_20260519T234318_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "a17170acb2273d5c9fee850419c3d79c288330aae30e6c7733c9509d93d61a4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/d064_violation_batch1.md`。\n\n## 结果总结\n\n| Model | Decoding | Mode | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|-------|----------|------|-----|-----|-----|-----|------|------|\n| Qwen  | beam-4   | unc  | 0.00 | 0.14 | 0.54 | 0.04 | 83.73 | 44.40 |\n| Qwen  | beam-4   | con  | 0.00 | 0.00 | 0.00 | 0.01 | 84.00 | 44.46 |\n| Llama | beam-4   | unc  | 0.00 | 0.04 | 0.10 | 0.06 | 85.16 | 47.17 |\n| Llama | beam-4   | con  | 0.00 | 0.00 | 0.00 | 0.00 | 85.23 | 47.17 |\n\n要点：\n- **约束解码消除全部 violation**，Llama constrained 达到 4 项全 0.00%\n- **F1 不降反微升**：Qwen E-F1 +0.27, Llama E-F1 +0.07；R-F1 持平或微升\n- **Llama 全面优于 Qwen**：E-F1 高 ~1.2，R-F1 高 ~2.7\n- **Qwen greedy 998-doc baseline 不存在**，两台服务器均未找到"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-violation-check-batch1.md"
+}

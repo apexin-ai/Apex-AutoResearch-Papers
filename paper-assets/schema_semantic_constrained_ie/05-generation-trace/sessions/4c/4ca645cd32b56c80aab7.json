@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ca645cd32b56c80aab7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w3 runtime extraction",
+  "task_key": "worker_analysis_w3_runtime_extraction_20260515T085658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w3_runtime_extraction_20260515T085658_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "ccceab867f393de99c128296f61281e1d40227ecd5e18ec849406b42a47ed612"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md`.\n\n**Key numbers (avg inference time vs. unconstrained baseline):**\n\n| Model | Dataset | grammar_only | full_s1 |\n|-------|---------|-------------:|--------:|\n| Qwen  | SciERC  | +1.4 %       | **−22.2 %** |\n| Qwen  | DocRED  | +4.2 %       | +3.2 %  |\n| Llama | SciERC  | —            | **+53.8 %** (+1.5 s/doc abs) |\n| Llama | DocRED  | —            | +13.0 % |\n\n- All 10 JSONLs contain `inference_time_seconds`; no re-runs needed.\n- Qwen DocRED grammar_only mean is inflated by one 186 s outlier — median overhead is ~+2.6 %.\n- Qwen SciERC full_s1 is *faster* than unconstrained (constraints shorten outputs).\n- Post-hoc filtering reported as negligible (O(n) scan).\n- Llama SciERC full_s1 has N=550 (1 doc missing vs. 551 baseline); noted in the report.\n- Detailed JSON summaries saved server-side at `outputs/runtime_summary{,_detailed}.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w3-runtime-extraction.md"
+}

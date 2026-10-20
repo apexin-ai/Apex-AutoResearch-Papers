@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ddc66bc443abb89eaf4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis latency profiling",
+  "task_key": "worker_analysis_latency_profiling_20260516T085245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latency_profiling_20260516T085245_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "c57f112e39d18d57ee134328f1808c8b52e1dd7a311f6f7fc21fffbc7cdf2a32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Latency Profiling 结果\n\n受控 benchmark（100 SciERC samples，同一模型/GPU/进程，CUDA sync 精确计时）：\n\n| Mode | N | Mean (s) | P50 (s) | P95 (s) | P99 (s) | Overhead | tok/s |\n|------|---|----------|---------|---------|---------|----------|-------|\n| unconstrained | 100 | 2.594 | 2.359 | 5.985 | 8.194 | — | 57.7 |\n| grammar_only | 100 | 2.637 | 2.397 | 6.099 | 8.346 | **+1.7%** | 56.7 |\n| semantic_only | 100 | 2.625 | 2.379 | 6.080 | 8.335 | **+1.2%** | 57.0 |\n| full_s1 | 100 | 2.655 | 2.416 | 6.162 | 8.449 | **+2.3%** | 56.4 |\n\n所有差异均统计显著 (p < 0.0001, paired t-test)。\n\n**论文可用结论**: Constrained decoding (grammar + semantic) adds only **2.3% latency overhead** (61ms/sample), which is statistically significant but practically negligible. 每个约束层单独贡献 ~1-2%，组合开销低于线性叠加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-latency-profiling.md"
+}

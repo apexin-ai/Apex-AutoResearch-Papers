@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd279231304c89670ad",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen docred beam 50 pid",
+  "task_key": "worker_code_qwen_docred_beam_50_pid_20260517T035200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_docred_beam_50_pid_20260517T035200_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "5ea02627d9afc07e7e9311a0348dae097f3adfcae91bffd751d73e66ea43b763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID: 409855**（主进程，另有一个重复实例 PID 410078）\n\n**进度: 11/50 docs**\n\n参数确认：`--dataset docred --decoding_strategy beam --num_beams 4 --max_samples 50`，输出到 `outputs/w9_qwen_docred_beam_50.jsonl`。\n\n注意：有两个相同的 beam search 进程在跑（409855 和 410078），可能会写同一个输出文件产生冲突。需要 kill 其中一个吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-docred-beam-50-pid.md"
+}

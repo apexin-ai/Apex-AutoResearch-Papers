@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "855bc55e120173a63de0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis eval full s2 and status",
+  "task_key": "worker_analysis_eval_full_s2_and_status_20260514T020024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_full_s2_and_status_20260514T020024_result.json",
+    "occurrence": 1,
+    "bytes": 1918,
+    "sha256": "b7c41b658eccaf2668ace87269773c4dc6241de629a8144d4b85e95db5b923f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 1. full_s2: 551/551 完成 ✅\n\n| 指标 | 值 |\n|------|-----|\n| JSON 解析率 | 100% |\n| Entity Type (ET%) | 0% |\n| Relation Vocab (RV%) | 0% |\n| **Domain/Range (DR%)** | **0.97%** (16/1644) |\n| Cross-field (CF%) | 8.03% (179) |\n| Entity F1 | P=0.2797, R=0.3712, **F1=0.3190** |\n| Relation F1 | P=0.0640, R=0.1078, **F1=0.0803** |\n\n**Per-relation DR violations:**\n\n| Relation | Total | Violations | Rate |\n|----------|-------|------------|------|\n| Used-for | 855 | 1 | 0.12% |\n| Feature-of | 328 | 4 | 1.22% |\n| Evaluate-for | 118 | 6 | **5.08%** |\n| Hyponym-of | 97 | 0 | 0% |\n| Compare | 87 | 4 | 4.60% |\n| Part-of | 80 | 1 | 1.25% |\n| Conjunction | 79 | 0 | 0% |\n\n## 2. S1 vs S2 对比表\n\n| Mode | DR% | RV% | ET% | CF% | R-F1 | E-F1 |\n|------|-----|-----|-----|-----|------|------|\n| unconstrained | 15.37% | 1.39% | 0.4% | 0.08% | 0.0823 | 0.3101 |\n| grammar_only | 14.84% | 0% | 0% | — | 0.0823 | 0.3098 |\n| semantic_only | 11.65% | 1.51% | 0.4% | — | 0.0815 | 0.3101 |\n| **full_s1** | **0.93%** | 0% | 0% | — | **0.0836** | 0.3098 |\n| **full_s2** | **0.97%** | 0% | 0% | 8.03% | **0.0803** | **0.3190** |\n\n**关键发现:**\n- S2 的 DR% (0.97%) 与 S1 (0.93%) 基本持平，两种架构在约束违反率上效果相当\n- S2 的 E-F1 (0.319) 比 S1 (0.3098) **高了 +0.92pp**，实体抽取质量提升\n- S2 的 R-F1 (0.0803) 比 S1 (0.0836) **低了 -0.33pp**，关系抽取略有下降\n- S2 的 CF% 较高 (8.03%)，说明两通道分离导致跨字段一致性下降\n- Evaluate-for 和 Compare 是 DR violation 的重灾区（5.08% 和 4.60%）\n\n## 3. DocRED grammar_only: 19/998 行\n\nPID 150766 运行中，GPU 0 占用 16.7GB / 85% 利用率。进度约 1.9%，刚启动不久。按 SciERC full_s2 的速度估算（~551 样本/~1h），DocRED 998 样本预计还需约 1.5-2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-full-s2-and-status.md"
+}

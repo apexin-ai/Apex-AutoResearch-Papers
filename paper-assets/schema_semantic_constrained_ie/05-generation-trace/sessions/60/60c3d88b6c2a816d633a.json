@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c3d88b6c2a816d633a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama experiment prep",
+  "task_key": "worker_code_llama_experiment_prep_20260514T132205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_experiment_prep_20260514T132205_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "657dbc28d8f25150c4a78e12cfa3431e5f3240744c32d52aed2ba9a1d446228d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Llama-3.1-8B Dry-Run 验证结果\n\n**状态**: GPU 0 上已有完整 unconstrained 全量实验在跑（PID 188372），60/551 样本已完成，0 解析失败。无需额外 dry-run，直接从运行中的实验提取验证数据。\n\n### 关键指标（基于 53 样本统计）\n\n| 指标 | 值 |\n|------|-----|\n| 平均推理时间 | **~2.9s/样本** |\n| 最短 | 0.44s |\n| 最长 | 6.19s |\n| VRAM 占用 | **~16GB / 94GB** |\n| 解析失败 | **0 / 60** |\n| 估算全量 551 docs | **~26.6 min** |\n\n### 验证通过项\n\n- Llama-3.1-8B-Instruct 模型加载正常，16GB VRAM\n- `run_constrained_extraction.py` unconstrained 模式正常运行\n- 输出 JSONL 格式与 Qwen 一致：`doc_id`, `gold_entities`, `gold_relations`, `raw_output`, `parsed_output`, `inference_time_seconds`, `mode`\n- 所有 60 个样本均成功解析（`parsed_output` 非 null），包含合理的 entities 和 relations\n\n### 未验证\n\n- **full_s1 模式**：GPU 0 被全量 unconstrained 占用，无法启动。需等当前实验完成后再测试。当前实验预计还需 ~24 分钟。\n\n### 建议\n\n全量 unconstrained 实验已在跑，无需干预。unconstrained 完成后可立即启动 full_s1 dry-run（3 样本）验证约束解码是否与 Llama 兼容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-experiment-prep.md"
+}

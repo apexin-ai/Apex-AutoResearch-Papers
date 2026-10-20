@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50617b80024e107cf79e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "emergency fix llama duplicate process",
+  "task_key": "worker_emergency_fix_llama_duplicate_process_20260514T141041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_fix_llama_duplicate_process_20260514T141041_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "0a2c36972a77f9db9bed955e24068168fa8d72443a258d16a8f4404618638c12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n- **190653 已杀掉** ✓\n- **数据检查**：251 条有效记录，0 条重复 doc_id，1 个空/损坏行（并发写入导致）\n- **GPU 进程**：cuda:0 上只剩 190246（目标进程），cuda:1 上 172864 是另一个任务，不受影响\n\n**结论：数据完整，190246 继续运行。** 那 1 个损坏行需要注意——如果后续处理对空行不容错，建议跑完后清理掉。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-fix-llama-duplicate-process.md"
+}

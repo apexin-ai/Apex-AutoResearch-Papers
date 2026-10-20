@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a82693eb19437f00796",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra cleanup and verify",
+  "task_key": "worker_infra_cleanup_and_verify_20260513T180057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup_and_verify_20260513T180057_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "cdb2a1e873d3fbb9b49228325f7488933a4ed435714459de0e98521ec6abae8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n| # | 检查项 | 状态 |\n|---|--------|------|\n| 1 | Qwen3-8B 模型 | **READY** — `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`（5 safetensors, 16G），软链接 `/root/autodl-tmp/models/Qwen3-8B-link` 已创建 |\n| 2 | SciERC train.json | **READY** |\n| 3 | SciERC test.json | **READY** |\n| 4 | SciERC ontology_constraints.json | **READY** |\n| 5 | DocRED dev.json | **READY** |\n| 6 | DocRED ontology_constraints_docred.json | **READY** |\n| 7 | run_extraction.py | **READY** |\n| 8 | run_extraction_docred.py | **READY** |\n| 9 | violation_checker.py | **READY** |\n| 10 | violation_checker_docred.py | **READY** |\n| 11 | 被 kill 的进程 | PID 102092（重复 Qwen3-8B 下载）+ PID 102087（其父 bash） |\n| 12 | 剩余下载进程 | **无** — 模型已完整，无需继续下载 |\n\n所有实验前置条件已就绪，可以开始实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-and-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d9b7d4178a24a4bf52e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd 21461 status",
+  "task_key": "worker_check_westd_21461_status_20260521T045549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_21461_status_20260521T045549_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "190c19bf93ff8b222346bbf5d01f7f55bb3b98bc23be42c0f44e929d73968093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Trie Baseline (PID 241846) — 已完成\n\n4 个 config 全部跑完，各 551 行。Trie 约束消除了 ET% 和 RV%（均 0%），但 DR% 仍然很高：\n\n| Config | E-F1 | R-F1 | parse_fail% | ET% | RV% | DR% | CF |\n|--------|------|------|-------------|-----|-----|-----|----|\n| **Qwen FT** | 0.6673 | 0.4257 | 9.1% | 0% | 0% | **95.5%** | 1 |\n| **Qwen ZS** | 0.3097 | 0.0864 | 0% | 0% | 0% | 29.3% | 0 |\n| **Llama FT** | 0.6537 | 0.4142 | **50.8%** | 0% | 0% | 15.2% | 0 |\n| **Llama ZS** | 0.2323 | 0.0290 | 0% | 0% | 0% | **84.4%** | 4 |\n\n要点：\n- Trie 约束成功将 ET%/RV% 压到 0%，但 **DR% 完全无法控制**（trie 只约束词汇不约束组合）\n- Llama FT 有 50.8% parse failure，严重影响有效样本量\n- FT 模型的 F1 远高于 ZS（符合预期）\n\n### 2. Qwen Beam 998 (PID 226609) — 仍在运行\n\n- 已跑 8h36m，进度 929/998（**93.1%**）\n- 预计还需 ~40 分钟完成\n\n结果已写入 `artifacts/r16_verification/westd21461_check.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-21461-status.md"
+}

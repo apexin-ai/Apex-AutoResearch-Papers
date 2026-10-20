@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6376072eda523ba44a5b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest llama int4 docred final",
+  "task_key": "worker_check_harvest-llama-int4-docred-final_20260523T071020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-llama-int4-docred-final_20260523T071020_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "92b57b372b569d9775859704ac98f48434ddbf3e277442b0621c2bce00af6b84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总报告：\n\n---\n\n## 实验状态汇总\n\n### 1. sf2_llama_int4_docred_s1 — ✅ DONE\n\n| 指标 | 值 |\n|------|-----|\n| DR% | **0.00** |\n| CF% | 0.22 (8 violations) |\n| ET% | 0.00 |\n| RV% | 0.00 |\n| R-F1 | **48.04** (P=44.79, R=51.80) |\n| E-F1 | **84.18** (P=85.50, R=82.90) |\n| #pred | 3669 entities, 2997 relations |\n| Parse Fail | 5/200 (2.5%) |\n\nRegistry 已更新到 DONE (conclusion=success)。\n\n### 2. sf2_qwen_int4_docred_s1 — 🔄 Running\n\n- 进度：**123/200** docs (61.5%)\n- 服务器：westd-16980, cuda:0\n- 运行时间：~1h17m\n- 模型刚加载完成（log 显示 AWQ Marlin kernel 加载），正在推理中\n\n### 3. eval_70b_lora_docred_200_full_s2 — 🔄 Running\n\n- 进度：**178/200** docs (89%)\n- 服务器：westd-21461, cuda:1\n- 运行时间：~6h30m\n- 预计剩余：~50min（按当前速度）\n\n### 4. sf2_70b_prompt_sensitivity — 🔄 Running\n\n- 结构：2 prompt variants (minimal, detailed) × 2 modes (constrained, unconstrained) = **4 runs**，每 run 551 SciERC samples\n- 当前：第 1/4 run (minimal_constrained) **544/551** (98.7%)\n- 服务器：westd-21461, cuda:0\n- 运行时间：~1h29m\n- 预计总时间：~6h（4 runs × ~1.5h each）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-llama-int4-docred-final.md"
+}

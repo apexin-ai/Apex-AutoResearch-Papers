@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba651549b2b812d06e64",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval beam sweep missing violations",
+  "task_key": "worker_eval_beam_sweep_missing_violations_20260522T040538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_beam_sweep_missing_violations_20260522T040538_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "dfbbe7c3f9fa97124c924c2277051f240b824e497536a3d185d5d28a09eef38c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。**beam1 unconstrained 文件不存在**，无法评估 `d066_sweep_llama_docred_beam1_unc`。\n\n## 评估结果汇总\n\n| Metric | beam2_full_s1 (constrained) | beam8_unconstrained |\n|--------|---------------------------|---------------------|\n| **E-F1** | 85.60 | 85.77 |\n| E-P | 85.29 | 85.70 |\n| E-R | 85.92 | 85.84 |\n| **R-F1** | 51.17 | 51.97 |\n| R-P | 48.51 | 49.76 |\n| R-R | 54.14 | 54.38 |\n| DR% | **0.00** | **0.00** |\n| CF% | 0.00 | 0.05 |\n| ET% | 0.00 | 0.00 |\n| RV% | 0.00 | 0.07 |\n| Parse Fail% | 0.5 | 0.5 |\n| Entities pred | 3814 | 3788 |\n| Relations pred | 2839 | 2779 |\n\n**缺失**: `llama_docred_200_beam1_unconstrained.jsonl` 在 `/root/autodl-tmp/schema_outputs/d066_beam_sweep/` 下不存在，整个 `schema_outputs/` 目录也没有任何 beam1 文件。需要先生成该推理输出才能评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-beam-sweep-missing-violations.md"
+}

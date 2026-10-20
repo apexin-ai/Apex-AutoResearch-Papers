@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "68e95c783002bdde6c63",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "check harvest all docred 70b",
+  "task_key": "worker_check_harvest-all-docred-70b_20260523T003418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-all-docred-70b_20260523T003418.log",
+    "occurrence": 1,
+    "bytes": 576333,
+    "sha256": "ac94065bfbe5553d9e4acb28e2333e54a70773afa34c48dd6c1e4ae56384bb31"
+  },
+  "statistics": {
+    "messages": 200,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "68e95c783002bdde6c63-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68e95c783002bdde6c63-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-harvest-all-docred-70b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4706216dd528cb30ba1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w8 llama grammar exit check",
+  "task_key": "worker_ops_w8_llama_grammar_exit_check_20260516T122843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w8_llama_grammar_exit_check_20260516T122843_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "c6429198a3d2c6b82b997931e16b3b418f791d703b2e3f5e3f641be9b75177ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job（可能在之前的 session 中已清除或未在本 session 创建）。Registry 已更新完毕。\n\n## 总结\n\n**w8_llama_docred_ft_grammar_only** — 成功完成，998/998 样本。\n\n| 指标 | 值 |\n|------|-----|\n| E-F1 | 84.04% |\n| R-F1 | 43.77% |\n| ET% | **0.00%** |\n| RV% | **0.00%** |\n| DR% | 0.51% |\n| CF% | 0.12% |\n| parse_fail | 2.3% (23/998) |\n\n**结论**：Grammar 层在 FT 模型上完全消除了 ET 和 RV 违规（从 unconstrained 的非零降到 0%），但 DR 残留 0.51% 未被 grammar 层解决（符合预期——domain-range 属于 semantic 层约束）。CF 0.12% 也未被 grammar 层处理。这说明在 FT regime 下，grammar 层仍有价值（消除残余 ET/RV），而 semantic 层对 DR 仍是必要的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w8-llama-grammar-exit-check.md"
+}

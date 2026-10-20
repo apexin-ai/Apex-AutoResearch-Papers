@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a560b8d9bf5d0a013d76",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778764650.md",
+  "task_key": "loop_4_1778764650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778764650.md",
+    "occurrence": 1,
+    "bytes": 4505,
+    "sha256": "ca949b018a2e905c9fbc40eaa24f78c7ef8373140d07e05f3f50f9346830efc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:44:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: 只能用 westd-16980 的 cuda:0 和 cuda:1，gpu_ids=[0,1]\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 重提交实验前必须先单独清理旧 tmux session（不要在 allocate_and_submit 命令内放 tmux kill-session，会自杀）\n- `_apply_type_mask` 有安全检查（semantic∩grammar=∅ 时 fallback grammar-only），DocRED 上触发过，**不要删**\n- Cron PID 追踪不可靠（已导致 4 次假失败+误杀），长期实验用 `wc -l` 输出文件行数判断完成\n- DocRED 实验命令必须加 `--max_new_tokens 4096`（文档级输出比句子级长）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), Python 3.12.3, torch 2.10.0+cu128, transformers 4.57.6\n- **Qwen3-8B**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- **Llama-3.1-8B**: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`（已验证兼容，零代码修改）\n- **SciERC 数据**: `data/processed_data/test.json` (551 samples), **DocRED 数据**: `data/docred/dev.json` (998 docs)\n- **活跃进程**: phase2_docred_unconstrained (PID 170502, tmux=phase2_docred_unconstrained, cuda:0) + phase2_docred_semantic_only (PID 172859, tmux=phase2_docred_semantic_only, cuda:1)\n- **Cron**: 2 个活跃，分别监控上述两个 RUNNING 实验\n\n### 3. 📊 当前状态\nDocRED 4 实验消融的最后 2 个正在跑：**phase2_docred_unconstrained** (cuda:0) 和 **phase2_docred_semantic_only** (cuda:1)。DocRED grammar_only 和 full_s1 已完成（均 success）。SciERC Phase 2 全部 5 个模式已完成。\n\n**Registry 摘要**:\n- RUNNING(2): phase2_docred_unconstrained, phase2_docred_semantic_only\n- QUEUED(4): llama_scierc_full_s1, llama_scierc_unconstrained, llama_docred_full_s1, llama_docred_unconstrained（D009 cross-model，等 GPU 释放）\n- DONE(13): 全部 success（含 1 个 killed 的 r2 恢复实验）\n\n**等待**: 2 个 RUNNING 实验的 cron 完成回调。完成后 GPU 释放给 Llama 实验。\n\n**论文写作进度**: §1-§4, §6-§7, Abstract, .bib 全部完成。§5 DocRED subsection 和 §5 Cross-model 等实验结果填 placeholder。内部初稿 DDL **May 19**（距今 5 天），EMNLP ARR **May 25**。\n\n### 4. 📋 待办（条件触发式）\n- phase2_docred_unconstrained + phase2_docred_semantic_only cron 回调 → 分析结果 + update_registry + 刷 report.md + 汇报 Director（DocRED 全消融完成，附完整对比表）\n- DocRED 4 实验全部 DONE → 派 Worker 写 §5 DocRED subsection（填 placeholder）+ 更新 Abstract/Conclusion 中的 DocRED 数字\n- DocRED 完成后 GPU 释放 → 立即提交 4 个 QUEUED Llama 实验（2 SciERC + 2 DocRED，cuda:0/cuda:1 各跑一对）\n- Llama 实验完成 → 写 §5 Cross-model subsection\n- 所有实验 DONE → 全文校对 + 一致性检查 → May 19 内部稿\n\n### 5. 🎯 战略上下文\n**项目核心**: OntoCoDec = 编译 IE ontology domain/range 约束为解码时 logits masking，首个将 type-constrained generation 引入 IE 的工作。\n\n**核心结论链**:\n- D001: 投 EMNLP 2026 ARR May 25\n- D003: MVP GO (DR>5%)\n- D006: SciERC S1 = 主推策略 (DR↓94%, F1 无损)\n- D007: S2 降级为 ablation\n- D008: DocRED 全消融验证跨数据集泛化\n- D009: Llama cross-model 升级为 should-have\n\n**最容易判断错的事**:\n1. DocRED DR 只降了 45.5%（vs SciERC 94%），**不是方法失效**——是 constraint tightness scaling（DocRED avg 5.68 valid pairs vs SciERC 26.1）。论文 framing 是 \"effectiveness scales inversely with constraint tightness\"，这是 **contribution**（首个 constraint scaling 实证）\n2. CF violation 在 S1 模式下从 0.08% 升到 9.9%（SciERC），这是 per-relation 独立 type enforcement 的固有副作用，论文写 limitation + future work\n3. 4 个 QUEUED Llama 实验的 spec 里 server/data_path 已填但 command 未填——提交时需要组装完整命令（参考已有 Qwen 实验的命令格式，把 model_path 换成 Llama 路径）\n4. grammar_only 的 DocRED DR=26.17% **高于** unconstrained 18.7%，不是 bug——grammar 强制合法 relation name 改变了 triple 分布\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778764650.md"
+}

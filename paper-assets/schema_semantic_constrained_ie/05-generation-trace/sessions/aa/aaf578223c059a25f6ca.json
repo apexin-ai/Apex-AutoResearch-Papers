@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf578223c059a25f6ca",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval 70b lora scierc inference",
+  "task_key": "worker_eval_70b_lora_scierc_inference_20260522T021201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_70b_lora_scierc_inference_20260522T021201_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "d9a2f3baa1514e7274df4c140e5775b1917d12749c12ae6018b04bc863f11646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6/551 样本完成，推理正常进行中。\n\n当前状态总结：\n\n1. **已完成**：修复了 PEFT AWQ LoRA dispatch 兼容性问题（`peft/tuners/lora/awq.py` 中 `AwqGEMMQuantLinear` 改为 `AWQuantLinear` 以匹配 AwqMarlinLinear kernel），并给 `run_constrained_extraction.py` 添加了 `--lora_path` 参数\n\n2. **正在运行**：unconstrained 推理 (PID 879994, cuda:0)\n   - 551 samples × ~17s/sample ≈ 2.6 小时\n   - 输出：`/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_unconstrained.jsonl`\n\n3. **待执行**：unconstrained 完成后，需要启动 constrained S1 推理（同样路径，`--mode full_s1`），然后用 `check_violations.py` 提取指标\n\n需要我定期检查进度还是等 unconstrained 完成后再通知你启动 S1？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-70b-lora-scierc-inference.md"
+}

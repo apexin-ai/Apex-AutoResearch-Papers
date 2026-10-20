@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca3513c3fd1dace9d4b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research scierc constrained code version check",
+  "task_key": "worker_research_scierc_constrained_code_version_check_20260520T141740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scierc_constrained_code_version_check_20260520T141740_result.json",
+    "occurrence": 1,
+    "bytes": 1926,
+    "sha256": "1d1fe5f24618e7eef6cc0fa4a03a857c148f29bb6cfd1eb5ba70e87912c0dd84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n## 结论\n\n### 1. SciERC constrained 数据的代码版本\n\nTable 2 中的 SciERC constrained 数据全部来自 **May 15-16**（旧代码，May 18 grammar fix 之前）：\n\n| 实验 | 原始文件 | 时间戳 | Registry |\n|------|---------|--------|----------|\n| Qwen con | `w5_lora_scierc_full_s1_eval.jsonl` | May 16 00:21 | `w5_lora_scierc_constrained_eval`, completed May 15 16:25 UTC |\n| Llama con | `w5_llama_lora_scierc_constrained.jsonl` | May 16 01:58 | `w5_llama_lora_scierc_constrained_eval`, completed May 15 18:12 UTC |\n\n### 2. 是否有 May 18+ 后新代码跑过的 SciERC constrained 数据？\n\n**没有。** Post-fix 只有：\n- `d062_full_ft_scierc`（May 19）— 全量 fine-tune，非 LoRA，不是 Table 2 的模型\n- `d066_sweep_llama_scierc_beam1_unc`（May 20）— unconstrained + INVALIDATED（用了 dev set）\n\n### 3. 新代码对 SciERC DR 的影响\n\n**几乎为零。** 旧代码下 SciERC constrained DR 已经极低：\n\n| 模型 | DR (旧代码) | DR 违规数 | 总 relations |\n|------|------------|----------|-------------|\n| Qwen con | **0.00%** | 0 | 1128 |\n| Llama con | **0.09%** | 1 | 1081 |\n\n对比 DocRED（DR 0.21% → 0%），SciERC 的 schema 只有 7 个 relation types（vs DocRED 96 个），旧代码对 SciERC 的 domain-range 约束已经几乎完美执行。新代码最多消除 Llama 的那 1 个 DR 违规。\n\n### 4. 是否需要重跑？\n\n**不需要。** 理由：\n- Qwen DR 已经是 0.00%，新代码不会改变任何输出\n- Llama DR=0.09%（1 个违规），新代码最多修正这 1 个 doc 的输出，对 F1 影响可忽略（< 0.1pp）\n- 与 DocRED 不同（DR 从 0.21% 降到 0%，且 DocRED 规模大得多），SciERC 的变化完全在噪声范围内\n\n如果追求绝对一致性（论文所有数据都用同一版代码），可以重跑，但结果不会有实质性变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scierc-constrained-code-version-check.md"
+}

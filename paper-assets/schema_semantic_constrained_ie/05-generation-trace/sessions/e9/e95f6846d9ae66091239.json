@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e95f6846d9ae66091239",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "exp 70b beam ablation",
+  "task_key": "worker_exp_70b-beam-ablation_20260522T143155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_70b-beam-ablation_20260522T143155.log",
+    "occurrence": 1,
+    "bytes": 511511,
+    "sha256": "5f334115ed87c87c65dc0eb1e4da7d074538fde647176c22b28ec73cdc5b65e2"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "e95f6846d9ae66091239-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e95f6846d9ae66091239-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-70b-beam-ablation.md"
+}

@@ -1,0 +1,712 @@
+{
+  "schema_version": "1.0",
+  "id": "60658d7378f6f5fb943a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "audit main tables verification",
+  "task_key": "worker_audit_main-tables-verification_20260523T102235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_main-tables-verification_20260523T102235.jsonl",
+    "occurrence": 1,
+    "bytes": 43588,
+    "sha256": "5173c653fdaadc5ea9adb3c39e0a1c54b2c916b0de7b9248c31a6e0cf15eebcf"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T10:30:22.447562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T10:30:22.447966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex\nabstract_d3264e.tex\nabstract_fd4b26.tex\nacl.sty\nacl_natbib.bst\nappendix_70b_ablation.tex\nappendix_beam_search.tex\nappendix_case_studies.tex\nappendix_discussion.tex\nappendix_doc_length.tex\nappendix_downstream_analysis.tex\nappendix_full_ft.tex\nappendix_gollie_comparison.tex\nappendix_high_kappa_analysis.tex\nappendix_kappa_case_study.tex\nappendix_llama_per_relation.tex\nappendix_order_invariance.tex\nappendix_power_analysis.tex\nappendix_power_analysis_523cc9.tex\nappendix_prompt_sensitivity.tex\nappendix_prompts.tex\nappendix_pumping_lemma.tex\nappendix_quantization.tex\nappendix_related_work.tex\nappendix_reproducibility.tex\nappendix_sampling_table.tex\nappendix_scalability.tex\nappendix_tcr.tex\nappendix_type_consensus.tex.archived\nappendix_wikievents_pilot.tex\nappendix_zs_crossmodel.tex\ncase_study_kappa_dr.tex\nchecklist.tex\ndiscussion_paragraphs.tex\ndiscussion_paragraphs_cf83d1.tex\nerror_analysis_cases.json\nfig1_framework.tex\nfigures\nmain.aux\nmain.bbl\nmain.blg\nmain.fdb_latexmk\nmain.fls\nmain.log\nmain.out\nmain.pdf\nmain.tex\nnew_citations.bib\nontocodec_paper_r10_final.pdf\nontocodec_paper_r9_final.pdf\np3_case_studies.tex\np3_case_studies_861a0d.tex\npaper_tables_draft.tex\nr12_fallback_cascade_text.txt\nrelwork_new_entries.bib\nsection1_introduction_draft.tex\nsection2_background.tex\nsection3_method_draft.tex\nsection3_violation_landscape.tex\nsection4_composition_draft.tex\nsection5_crossmodel_draft.tex\nsection5_docred_draft.tex\nsection5_docred_draft_9b84f1.tex\nsection5_runtime.tex\nsection5_scierc_draft.tex\nsection5_scierc_draft_4796e8.tex\nsection5_wikievents_draft.tex\nsection6_related_work.tex\nsection6_relwork_additions.tex\nsection6_relwork_outline.tex\nsection7_conclusion_550cbf_DEPRECATED.tex\nsection7_conclusion_DEPRECATED.tex\nsection7_conclusion_compressed.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T10:30:22.448162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T10:30:22.448372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{amsthm}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{pifont}\n19\t\\usepackage{soul}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}\n22\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n23\t\n24\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n25\t\n26\t\\author{Anonymous ACL submission}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\input{abstract}\n33\t\n34\t% === §1 Introduction ===\n35\t\\input{section1_introduction_draft}\n36\t\n37\t% === §2 Background ===\n38\t\\input{section2_background}\n39\t\n40\t% === §3 Method ===\n41\t\\input{section3_method_draft}\n42\t\n43\t% === §4 Constraint Composition ===\n44\t\\section{Constraint Composition}\n45\t\\label{sec:composition}\n46\t\\input{section4_composition_draft}\n47\t\n48\t% === §5 Experiments ===\n49\t\\section{Experiments}\n50\t\\label{sec:experiments}\n51\t\n52\t\\input{section3_violation_landscape}\n53\t\n54\t\\input{section5_scierc_draft}\n55\t\\input{section5_wikievents_draft}\n56\t\\input{section5_runtime}\n57\t\n58\t% === §6 Related Work ===\n59\t\\input{section6_related_work}\n60\t\n61\t% === §7 Discussion and Conclusion ===\n62\t\\section{Discussion and Conclusion}\n63\t\\label{sec:discussion}\n64\t\\input{section7_conclusion_compressed}\n65\t\n66\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n67\t\\clearpage\n68\t\\section*{Limitations}\n69\t\n70\t\\paragraph{Constraint scope.}\n71\tCF is an architectural consequence of per-triple independent enforcement: CF$\\leftrightarrow$DR represents a fundamental trade-off (eliminating CF re-routes violations to DR; Appendix~\\ref{app:cf-dr-tradeoff}), and its impa\n…[truncated 4686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T10:30:22.448572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T10:30:22.448839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — SciERC Results (Draft)\n2\t% Data source: Phase 2 SciERC registry experiments\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\n4\t%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\n5\t% All numbers verified against registry 2026-05-14.\n6\t\n7\t\\subsection{Ablation and Composability with Fine-Tuning}\n8\t\\label{sec:scierc-results}\n9\t\n10\tTable~\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC (Qwen3-8B, zero-shot, 551 documents); only the active constraint layers differ across rows.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: SciERC five-way ablation\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.6pt}\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{@{}l rrrrrr rr@{}}\n21\t\\toprule\n22\t& \\multicolumn{6}{c}{\\textbf{Violation Rates (\\%)}}\n23\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n24\t\\cmidrule(lr){2-7} \\cmidrule(l){8-9}\n25\t\\textbf{Mode}\n26\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n27\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF & Tot.\\,$\\downarrow$\n28\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n29\t\\midrule\n30\tUnconstrained\n31\t  & 15.37 & ---\n32\t  & 1.39  & 0.40\n33\t  & 0.08  & 15.45\n34\t  & 8.23  & 31.01 \\\\\n35\tGrammar\n36\t  & 14.84 & $\\downarrow$3\\%\n37\t  & \\textbf{0} & \\textbf{0}\n38\t  & 0.08  & 14.92\n39\t  & 8.23  & 30.98 \\\\\n40\tGCD-equiv.$^\\dagger$\n41\t  & 15.26 & $\\downarrow$1\\%\n42\t  & \\textbf{0} & \\textbf{0}\n43\t  & 0.04  & 15.30\n44\t  & 8.75  & 30.91 \\\\\n45\tSemantic\n46\t  & 11.65 & $\\downarrow$24\\%\n47\t  & 1.51  & 0.40\n48\t  & 2.71  & 14.36\n49\t  & 8.15  & 31.01 \\\\\n50\tS1\n51\t  & \\textbf{0.93} & $\\downarrow$\\textbf{94\\%}\n52\t  & \\textbf{0} & \\textbf{0}\n53\t  & 9.90  & \\textbf{10.83}\n54\t  & \\textbf{8.36} & 30.98 \\\\\n55\tS2\n56\t  & 0.97  & $\\downarrow$94\\%\n57\t  & \\textbf{0} & \\textbf{0}\n58\t  & 8.03  & \\textbf{9.00}\n59\t  & 8.03  & \\textbf{31.90} \\\\\n60\t\\bottomrule\n61\t\\end{tabular}}%\n62\t\\caption{Five-way ablation on SciERC (551 docs\n…[truncated 7290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T10:30:22.449057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T10:30:22.449251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\twhere $\\wedge$ denotes element-wise AND over the vocabulary $V$; a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the scale-dependent layer interaction (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property enforced only by the grammar layer.\n12\tThis dependency is scale-sensitive: 70B semantic-only achieves 84\\% DR reduction (vs.\\ 24\\% on 8B), though grammar remains necessary for RV elimination (\\S\\ref{sec:70b-results}).\n13\t\n14\t\\paragraph{Grammar-First Fallback.}\n15\tWhen $S(t) \\cap G(t) = \\emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n16\tWe enforce a \\emph{grammar-first fallback}: semantic masking is skipped and the grammar layer alone controls selection.\n17\tStructural integrity is a hard constraint; type violations are soft errors detectable by downstream validation, with DR (ontologically invalid type pair) more severe than CF (individually valid triples with cross-triple type inconsistency).\n18\tExtraction tasks are robust to format-level constraints~\\cite{tam2024letmespeak}, supporting this asymmetric treatment.\n19\t\n20\t\\paragraph{Constraint Tightness.}\n21\t\\label{eq:tightness}\n22\tPer-relation constraint tightness $\\kappa(r) = 1 - |\\sigma(r)|/|\\mathcal{E}|^2$, with schema mean $\\bar{\\kappa}$.\n23\tAcross WikiEvents ($\\bar{\\kappa}{=}0.029$), SciERC\n…[truncated 1621 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T10:30:22.449409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T10:30:22.449554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — DocRED Results (compressed; full ablation in Appendix)\n2\t% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n3\t%          phase2_docred_semantic_only, phase2_docred_full_s1\n4\t\n5\t\\subsection{Cross-Dataset Validation on DocRED}\n6\t\\label{sec:docred-results}\n7\t\n8\tDocRED (96 relations, 14$\\times$ SciERC scale) validates the pattern under a larger, more restrictive ontology (Table~\\ref{tab:docred-ablation}).\n9\tS1 reduces DR from 18.46\\% to 10.21\\% ($\\downarrow$45\\%), eliminates RV (29.66\\%\\,$\\to$\\,0.03\\%) and ET, with R-F1 $+$0.50\\,pp ($p < 0.001$).\n10\tThe lower DR reduction (45\\% vs.\\ 94\\% on SciERC) reflects DocRED's tighter constraints, which trigger more grammar-first fallback (\\S\\ref{sec:greedy-limitation}).\n11\tGrammar-only \\emph{increases} DR (18.46\\%\\,$\\to$\\,26.17\\%) via \\textit{latent violation surfacing}: grammar forces OOV$\\to$valid relation mapping, exposing type violations previously masked by vocabulary errors---a distinct cross-dataset confirmation of the empirical enabling dependency.\n12\tFine-tuning resolves residual DR entirely (Table~\\ref{tab:composability}; residual decomposition in Appendix~\\ref{app:residual-dr-analysis}).\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T10:30:22.449768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T10:30:22.449919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T10:30:22.450066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "0",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T10:30:22.450567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (72,312 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T10:30:22.450791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'phase2_scierc_unconstrained'}",
+              "fields": "['exp_id', 'metrics', 'status']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T10:30:22.450956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5254}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T10:30:22.451085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'phase2_scierc_grammar_only'}",
+              "fields": "['exp_id', 'metrics', 'status']"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T10:30:22.451214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4833}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T10:30:22.451334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'phase2_scierc_semantic_only'}",
+              "fields": "['exp_id', 'metrics', 'status']"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T10:30:22.451530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.455}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T10:30:22.451725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'phase2_scierc_full_s1'}",
+              "fields": "['exp_id', 'metrics', 'status']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T10:30:22.451951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'phase2_scierc_full_s2'}",
+              "fields": "['exp_id', 'metrics', 'status']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T10:30:22.452152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4664}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T10:30:22.452361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5173}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T10:30:22.452577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\nfor eid in exps:\n    print(eid)\n\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T10:30:22.452841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_70b_lora_docred_200_full_s2\nsf2_qwen_int4_docred_s1\nsf2_llama_int4_docred_s1\nsf2_70b_prompt_sensitivity\nsf2_llama_int4_scierc_s1\nsf2_qwen_int4_scierc_s1\nsf2_gollie_scierc_violation\neval_70b_zs_docred_200_full_s1\neval_70b_lora_docred_200_grammar_only\neval_70b_lora_docred_200_semantic_only\neval_70b_zs_docred_200_unconstrained\neval_70b_zs_docred_200_grammar_only\neval_70b_zs_docred_200_semantic_only\neval_70b_lora_docred_200_beam4_s1\neval_70b_lora_scierc_grammar_only\neval_70b_zs_scierc_unconstrained\neval_70b_lora_scierc_full_s2\neval_70b_lora_scierc_semantic_only\nentity_order_ablation_qwen_scierc\neval_70b_zs_scierc_semantic_only\neval_70b_zs_scierc_grammar_only\neval_70b_lora_scierc_beam4_s1\ntcr_beam4_llama_scierc\ntcr_beam4_qwen_scierc\nvllm_guided_json_scierc_zs\neval_70b_lora_docred_200_s1_constrained\nd066_beam_sweep\nw8_llama_docred_ft_grammar_only\nw8_llama_docred_ft_semantic_only\nw8_qwen_docred_ft_semantic_only\nr16_trie_qwen_ft_scierc\nr16_trie_llama_ft_scierc\neval_70b_lora_docred_200_unconstrained\neval_70b_lora_scierc_s1_constrained\neval_70b_lora_scierc_unconstrained\nr16_70b_docred_zs_s1\nd066_sweep_llama_beam8_unc\nd066_sweep_llama_beam2_s1\nd066_sweep_llama_docred_beam4_s1\nr16_70b_lora_scierc_eval\nr16_70b_lora_docred\nr16_70b_lora_scierc\nr16_70b_scierc_zs_s1\nr14_qwen_docred_beam4_998\nr16_trie_llama_zs_scierc\nr16_trie_qwen_zs_scierc\nr14_llama_docred_beam4_998\nd066_sweep_llama_scierc_beam8_s1_551\nd066_sweep_llama_scierc_beam4_s1_551\nd066_sweep_llama_docred_beam4_unc\nd066_sweep_llama_docred_beam1_s1\nd066_sweep_llama_beam8_s1\nd065_qwen_greedy_4096_r2\nd066_sweep_llama_scierc_beam2_s1_551\nd066_sweep_llama_scierc_beam1_unc\nd066_sweep_llama_docred_beam1_unc\nd066_sweep_21461_gpu1\nw5_llama_docred_lora_constrained_eval\nd066_sweep_16980_gpu1\nd065_qwen_greedy_4096\nd066_docred_beam_sweep\nd067_seed_variance\nd068_constraint_guided_beam_pilot\nd064_docred_full_beam\nd065_tcr_full\nd065_tcr_pilot\nd063_gollie_violation_rate\nd062_full_ft_scierc\nd062_beam_latency\nd062_ontology_scalability\nd062\n…[truncated 2602 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T10:30:22.453117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n\n# Table 1 experiments\ntable1_ids = [\n    'phase2_scierc_unconstrained',\n    'phase2_scierc_grammar_only', \n    'phase2_scierc_semantic_only',\n    'phase2_scierc_full_s1',\n    'phase2_scierc_full_s2',\n    'vllm_guided_json_scierc_zs',\n]\n\n# Table 2 experiments  \ntable2_ids = [\n    'w5_lora_scierc_unconstrained_eval',\n    'w5_lora_scierc_constrained_eval',\n    'w5_qwen_docred_lora_unconstrained_eval',\n    'w5_qwen_docred_lora_constrained_eval',\n    'w5_llama_lora_scierc_unconstrained_eval',\n    'w5_llama_lora_scierc_constrained_eval',\n    'w5_llama_docred_lora_unconstrained_eval',\n    'w5_llama_docred_lora_constrained_eval',\n]\n\nprint('=== TABLE 1 EXPERIMENTS ===')\nfor eid in table1_ids:\n    if eid in exps:\n        e = exps[eid]\n        print(f'\\n--- {eid} ---')\n        print(f'  status: {e.get(\\\"status\\\", \\\"N/A\\\")}')\n        print(f'  metrics: {json.dumps(e.get(\\\"metrics\\\", {}), indent=4)}')\n        print(f'  conclusion: {e.get(\\\"conclusion\\\", \\\"N/A\\\")[:200]}')\n    else:\n        print(f'\\n--- {eid} --- NOT FOUND')\n\nprint('\\n\\n=== TABLE 2 EXPERIMENTS ===')\nfor eid in table2_ids:\n    if eid in exps:\n        e = exps[eid]\n        print(f'\\n--- {eid} ---')\n        print(f'  status: {e.get(\\\"status\\\", \\\"N/A\\\")}')\n        print(f'  metrics: {json.dumps(e.get(\\\"metrics\\\", {}), indent=4)}')\n        print(f'  conclusion: {e.get(\\\"conclusion\\\", \\\"N/A\\\")[:200]}')\n    else:\n        print(f'\\n--- {eid} --- NOT FOUND')\n\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T10:30:22.453376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== TABLE 1 EXPERIMENTS ===\n\n--- phase2_scierc_unconstrained ---\n  status: DONE\n  metrics: {\n    \"json_parse_rate\": 1,\n    \"entity_f1\": 0.3101,\n    \"entity_precision\": 0.2605,\n    \"entity_recall\": 0.3831,\n    \"relation_f1\": 0.0823,\n    \"relation_precision\": 0.0644,\n    \"relation_recall\": 0.114,\n    \"entity_type_violation_rate\": 0.004,\n    \"relation_vocabulary_violation_rate\": 0.0139,\n    \"domain_range_violation_rate\": 0.1537,\n    \"cross_field_consistency_violation_rate\": 0.0008,\n    \"total_triples\": 1724,\n    \"total_entities\": 2474,\n    \"total_samples\": 551,\n    \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"\n}\n  conclusion: success\n\n--- phase2_scierc_grammar_only ---\n  status: DONE\n  metrics: {\n    \"total_samples\": 551,\n    \"total_triples\": 1725,\n    \"total_entities\": 2474,\n    \"json_parse_rate\": 1,\n    \"entity_type_violation_rate\": 0,\n    \"relation_vocabulary_violation_rate\": 0,\n    \"domain_range_violation_rate\": 0.1484,\n    \"cross_field_consistency_violation_rate\": 0.0008,\n    \"entity_f1\": 0.3098,\n    \"entity_precision\": 0.2598,\n    \"entity_recall\": 0.3837,\n    \"relation_f1\": 0.0823,\n    \"relation_precision\": 0.0643,\n    \"relation_recall\": 0.114,\n    \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"\n}\n  conclusion: success\n\n--- phase2_scierc_semantic_only ---\n  status: DONE\n  metrics: {\n    \"total_samples\": 551,\n    \"total_triples\": 1726,\n    \"total_entities\": 2474,\n    \"json_parse_rate\": 1,\n    \"entity_type_violation_rate\": 0.004,\n    \"relation_vocabulary_violation_rate\": 0.0151,\n    \"domain_range_violation_rate\": 0.1165,\n    \"cross_field_consistency_violation_rate\": 0.0271,\n    \"entity_f1\": 0.3101,\n    \"entity_precision\": 0.2605,\n    \"entity_recall\": 0.3831,\n    \"relation_f1\": 0.0815,\n    \"relation_precision\": 0.0637,\n    \"relation_recall\": 0.1129,\n    \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"\n}\n  conclusion: success\n\n--- phase2_scierc_full_s1 ---\n  status: DONE\n  metrics: {\n    \"total_samples\": 551,\n\n…[truncated 6861 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T10:30:22.453609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n\n# Look for any DocRED FT experiments\nfor eid in sorted(exps.keys()):\n    if 'docred' in eid.lower() and ('lora' in eid.lower() or 'ft' in eid.lower() or 'w5' in eid.lower() or 'w8' in eid.lower()):\n        e = exps[eid]\n        print(f'--- {eid} ---')\n        print(f'  status: {e.get(\\\"status\\\", \\\"N/A\\\")}')\n        m = e.get('metrics', {})\n        # Print all metric keys\n        for k in sorted(m.keys()):\n            print(f'  {k}: {m[k]}')\n        print()\n\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T10:30:22.453842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- eval_70b_lora_docred_200_beam4_s1 ---\n  status: DONE\n  CF%: 0\n  DR%: 0\n  E-F1: 85.57\n  E-P: 85.45\n  E-R: 85.68\n  ET%: 0\n  R-F1: 48.14\n  R-P: 44.24\n  R-R: 52.79\n  RV%: 0\n  entities_pred: 3790\n  parse_fail: 1/200 (0.5%)\n  relations_pred: 3030\n\n--- eval_70b_lora_docred_200_full_s2 ---\n  status: DONE\n  CF_count: 13\n  CF_pct: 0.34\n  DR_pct: 0\n  ET_pct: 0\n  E_F1: 84.96\n  E_P: 84.6\n  E_R: 85.34\n  RV_pct: 0\n  R_F1: 36.45\n  R_P: 31.25\n  R_R: 43.72\n  entity_fn: 553\n  entity_fp: 586\n  entity_tp: 3218\n  parse_fail_pct: 0\n  pred_entities: 3819\n  pred_relations: 3546\n  relation_fn: 1421\n  relation_fp: 2429\n  relation_tp: 1104\n\n--- eval_70b_lora_docred_200_grammar_only ---\n  status: DONE\n  CF_pct: 0.06\n  DR_pct: 0.38\n  ET_pct: 0\n  E_F1: 80.13\n  E_P: 85.16\n  E_R: 75.66\n  RV_pct: 0\n  R_F1: 43.96\n  R_P: 39.78\n  R_R: 49.11\n  entities_pred: 3362\n  parse_fail_pct: 10.5\n  relations_pred: 3154\n  samples: 200\n\n--- eval_70b_lora_docred_200_s1_constrained ---\n  status: DONE\n  CF_pct: 0.18\n  DR_pct: 0\n  ET_pct: 0\n  E_F1: 79.38\n  E_P: 85.24\n  E_R: 74.28\n  RV_pct: 0\n  R_F1: 43.95\n  R_P: 40.48\n  R_R: 48.08\n  parse_fail_pct: 12.5\n  samples: 200\n\n--- eval_70b_lora_docred_200_semantic_only ---\n  status: DONE\n  CF_pct: 0.21\n  DR_pct: 0\n  ET_pct: 0\n  E_F1: 80.06\n  E_P: 85.21\n  E_R: 75.5\n  RV_pct: 0.51\n  R_F1: 43.61\n  R_P: 39.44\n  R_R: 48.75\n  entities_pred: 3351\n  parse_fail_pct: 11\n  relations_pred: 3148\n  samples: 200\n\n--- eval_70b_lora_docred_200_unconstrained ---\n  status: DONE\n  CF_count: 2\n  CF_pct: 0.06\n  DR_count: 7\n  DR_pct: 0.22\n  ET_pct: 0\n  E_F1: 80.34\n  E_P: 85.13\n  E_R: 76.05\n  RV_count: 18\n  RV_pct: 0.57\n  R_F1: 43.8\n  R_P: 39.6\n  R_R: 48.99\n  parse_fail_pct: 10\n  relations: 3159\n  samples: 200\n\n--- r16_70b_lora_docred ---\n  status: DONE\n  epochs: 3\n  eval_loss: 0.0635\n  steps_completed: 1146\n  token_acc: 97.94\n  train_loss_end: 0.056\n  train_loss_start: 0.147\n\n--- w5_docred_sft_data_gen ---\n  status: DONE\n  dev_entities: 19528\n  dev_relations: 12275\n  dev_samples: 998\n  train_enti\n…[truncated 4075 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T10:30:22.454153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n\n# Check for correction notes, CORRECTED tags\nfor eid in sorted(exps.keys()):\n    e = exps[eid]\n    m = e.get('metrics', {})\n    c = e.get('conclusion', '')\n    # Look for CORRECTED, provenance, note, bug mentions\n    for k, v in m.items():\n        sv = str(v)\n        if any(w in sv.lower() for w in ['corrected', 'bug', 'old registry', 'provenance', 'updated']):\n            print(f'{eid}.metrics.{k}: {v}')\n    if 'note' in m:\n        print(f'{eid}.metrics.note: {m[\\\"note\\\"]}')\n    if 'provenance' in m:\n        print(f'{eid}.metrics.provenance: {m[\\\"provenance\\\"]}')\n\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T10:30:22.454423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d066_sweep_21461_gpu1.metrics.note: Actually ran on SciERC 551 docs (not DocRED 200 as originally recorded in hypothesis)\nd066_sweep_llama_scierc_beam1_unc.metrics.note: INVALIDATED: Used dev set (275 docs) instead of test set (551 docs). Not comparable with other beam sweep results. Llama SciERC beam sweep deprioritized — must use scripts/d066_beam_sweep_scierc.sh with --data_path data/processed_data/test.json if rerun.\nd066_sweep_llama_scierc_beam2_s1_551.metrics.note: ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\nd066_sweep_llama_scierc_beam2_s1_551.metrics.note: ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\nd066_sweep_llama_scierc_beam4_s1_551.metrics.note: ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\nd066_sweep_llama_scierc_beam4_s1_551.metrics.note: ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\nd066_sweep_llama_scierc_beam8_s1_551.metrics.note: Reconcile false positive corrected. Eval with --dataset scierc confirmed.\nd066_sweep_llama_scierc_beam8_s1_551.metrics.note: Reconcile false positive corrected. Eval with --dataset scierc confirmed.\nee_llama_wikievents_constrained.metrics.note: after retry with max_new_tokens=8192\nee_mistral_wikievents_constrained.metrics.note: grammar_only baseline (old code without semantic mask fix)\nee_qwen_wikievents_constrained.metrics.note: after retry with max_new_tokens=8192\nentity_order_ablation_qwen_scierc.metrics.note: CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\nentity_order_ablation_qwen_scierc.metrics.note: CORREC\n…[truncated 3421 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T10:30:22.454657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bed18bf9-b23b-41a9-845b-decdb9931508/tool-results/mcp-agent-ml-research-read_registry-1779531807189.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n\n# Look for w8_ft_posthoc_baseline and any posthoc_filtering experiments\nfor eid in ['w8_ft_posthoc_baseline', 'posthoc_filtering_baseline']:\n    if eid in exps:\n        e = exps[eid]\n        print(f'--- {eid} ---')\n        m = e.get('metrics', {})\n        for k in sorted(m.keys()):\n            print(f'  {k}: {m[k]}')\n        print()\n\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T10:30:22.454916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- w8_ft_posthoc_baseline ---\n  ft_regime: {'qwen_scierc': {'R_F1_before': 43.86, 'R_F1_posthoc': 43.94, 'R_F1_constrained': 43.77, 'reject_rate_pct': 1.95, 'TP_lost': 4}, 'llama_scierc': {'R_F1_before': 45.45, 'R_F1_posthoc': 45.23, 'R_F1_constrained': 45.47, 'reject_rate_pct': 1.11, 'TP_lost': 5}, 'qwen_docred': {'R_F1_before': 40.91, 'R_F1_posthoc': 41.11, 'R_F1_constrained': 'TBD', 'reject_rate_pct': 1.03, 'TP_lost': 1}, 'llama_docred': {'R_F1_before': 43.77, 'R_F1_posthoc': 43.92, 'R_F1_constrained': 44.23, 'reject_rate_pct': 0.64, 'TP_lost': 1}}\n  key_finding: ZS: post-hoc R_F1 >= constrained R_F1 in 5/6 groups. Exception: Mistral DocRED where extreme rejection rate (73.7%) causes net F1 loss. Constrained decoding value is in structural guarantee (0% violations) and composability, not F1 preservation.\n  zs_regime: {'mistral_scierc': {'triples': 1584, 'reject_pct': 20.27, 'R_F1_before': 0.0376, 'R_F1_posthoc': 0.0394, 'R_F1_constrained': 0.0367, 'TP_before': 48, 'TP_after': 44, 'TP_lost': 4}, 'qwen_scierc': {'triples': 1724, 'reject_pct': 16.76, 'R_F1_before': 0.0823, 'R_F1_posthoc': 0.0863, 'R_F1_constrained': 0.0836, 'TP_before': 111, 'TP_after': 104, 'TP_lost': 7}, 'llama_scierc': {'triples': 1274, 'reject_pct': 13.89, 'R_F1_before': 0.0268, 'R_F1_posthoc': 0.0271, 'R_F1_constrained': 0.0254, 'TP_before': 30, 'TP_after': 28, 'TP_lost': 2}, 'qwen_docred': {'triples': 17497, 'reject_pct': 48.12, 'R_F1_before': 0.0774, 'R_F1_posthoc': 0.0961, 'R_F1_constrained': 0.0823, 'TP_before': 1137, 'TP_after': 1010, 'TP_lost': 127}, 'llama_docred': {'triples': 16437, 'reject_pct': 42.18, 'R_F1_before': 0.0598, 'R_F1_posthoc': 0.0744, 'R_F1_constrained': 0.0627, 'TP_before': 850, 'TP_after': 802, 'TP_lost': 48}, 'mistral_docred': {'triples': 11836, 'reject_pct': 73.73, 'R_F1_before': 0.0434, 'R_F1_posthoc': 0.0385, 'R_F1_constrained': 0.0552, 'TP_before': 518, 'TP_after': 292, 'TP_lost': 226, 'removed_RV': 4172, 'removed_ET': 3382, 'removed_DR': 1173, 'note': 'Only ZS ca\n…[truncated 593 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T10:30:22.455296+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Here is the complete audit report.\n\n---\n\n## Table 1 审计报告 (`tab:scierc-ablation`)\n**SciERC 551 docs, Qwen3-8B, zero-shot**\n\nRegistry metrics use decimal (e.g., 0.1537 = 15.37%); vLLM experiment uses percent directly.\n\n### Row: Unconstrained — `phase2_scierc_unconstrained`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 15.37 | 0.1537 → 15.37% | ✅ |\n| ΔDR | --- | --- | ✅ |\n| RV | 1.39 | 0.0139 → 1.39% | ✅ |\n| ET | 0.40 | 0.004 → 0.40% | ✅ |\n| CF | 0.08 | 0.0008 → 0.08% | ✅ |\n| Tot. | 15.45 | 15.37+0.08=15.45 | ✅ |\n| Rel. F1 | 8.23 | 0.0823 → 8.23% | ✅ |\n| Ent. F1 | 31.01 | 0.3101 → 31.01% | ✅ |\n\n### Row: Grammar — `phase2_scierc_grammar_only`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 14.84 | 0.1484 → 14.84% | ✅ |\n| ΔDR | ↓3% | (15.37-14.84)/15.37=3.4%≈3% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 0.08 | 0.0008 → 0.08% | ✅ |\n| Tot. | 14.92 | 14.84+0.08=14.92 | ✅ |\n| Rel. F1 | 8.23 | 0.0823 → 8.23% | ✅ |\n| Ent. F1 | 30.98 | 0.3098 → 30.98% | ✅ |\n\n### Row: GCD-equiv.† — `vllm_guided_json_scierc_zs`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 15.26 | 15.26% | ✅ |\n| ΔDR | ↓1% | (15.37-15.26)/15.37=0.7%≈1% | ✅ |\n| RV | 0 | 0% | ✅ |\n| ET | 0 | 0% | ✅ |\n| CF | 0.04 | 0.04% | ✅ |\n| Tot. | 15.30 | 15.26+0.04=15.30 | ✅ |\n| Rel. F1 | 8.75 | 8.75% | ✅ |\n| Ent. F1 | 30.91 | 30.91% | ✅ |\n\n### Row: Semantic — `phase2_scierc_semantic_only`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 11.65 | 0.1165 → 11.65% | ✅ |\n| ΔDR | ↓24% | (15.37-11.65)/15.37=24.2%≈24% | ✅ |\n| RV | 1.51 | 0.0151 → 1.51% | ✅ |\n| ET | 0.40 | 0.004 → 0.40% | ✅ |\n| CF | 2.71 | 0.0271 → 2.71% | ✅ |\n| Tot. | 14.36 | 11.65+2.71=14.36 | ✅ |\n| Rel. F1 | 8.15 | 0.0815 → 8.15% | ✅ |\n| Ent. F1 | 31.01 | 0.3101 → 31.01% | ✅ |\n\n### Row: S1 — `phase2_scierc_full_s1`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 0.93 | 0.0093 → 0.93% | ✅ |\n| ΔDR | ↓94% | (15.37-0.93)/15.37=93.9%≈94% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 9.90 | 0.099 → 9.90% | ✅ |\n| Tot. | 10.83 | 0.93+9.90=10.83 | ✅ |\n| Rel. F1 | 8.36 | 0.0836 → 8.36% | ✅ |\n| Ent. F1 | 30.98 | 0.3098 → 30.98% | ✅ |\n\n### Row: S2 — `phase2_scierc_full_s2`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 0.97 | 0.0097 → 0.97% | ✅ |\n| ΔDR | ↓94% | (15.37-0.97)/15.37=93.7%≈94% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 8.03 | 0.0803 → 8.03% | ✅ |\n| Tot. | 9.00 | 0.97+8.03=9.00 | ✅ |\n| Rel. F1 | 8.03 | 0.0803 → 8.03% | ✅ |\n| Ent. F1 | 31.90 | 0.319 → 31.90% | ✅ |\n\n**Table 1 结论: 48/48 cells 全部通过 ✅**\n\n---\n\n## Table 2 审计报告 (`tab:composability`)\n**Fine-tuning composability: LoRA × unconstrained vs. S1**\n\n### Qwen3-8B × SciERC — `w5_lora_scierc_*_eval`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| Unconstr. DR | 1.95 | 0.0195 → 1.95% | ✅ |\n| Unconstr. CF | 0 | 0 | ✅ |\n| Unconstr. R-F1 | 43.86 | 0.4386 → 43.86% | ✅ |\n| Unconstr. E-F1 | 67.05 | 0.6705 → 67.05% | ✅ |\n| S1 DR | **0** | 0 | ✅ |\n| S1 CF | 1.18 | 0.0118 → 1.18% | ✅ |\n| S1 R-F1 | 43.77 | 0.4377 → 43.77% | ✅ |\n| S1 E-F1 | 67.05 | 0.6705 → 67.05% | ✅ |\n| S1 ΔDR | ↓100% | (1.95→0)/1.95=100% | ✅ |\n\n**Qwen SciERC: 9/9 ✅**\n\n### Llama 3.1-8B × SciERC — `w5_llama_lora_scierc_*_eval`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| Unconstr. DR | 1.11 | 0.0111 → 1.11% | ✅ |\n| Unconstr. CF | 0 | 0 | ✅ |\n| Unconstr. R-F1 | 45.45 | 0.4545 → 45.45% | ✅ |\n| Unconstr. E-F1 | 67.76 | 0.6776 → 67.76% | ✅ |\n| S1 DR | 0.09 | 0.0009 → 0.09% | ✅ |\n| S1 CF | 0.46 | 0.0046 → 0.46% | ✅ |\n| S1 R-F1 | 45.47 | 0.4547 → 45.47% | ✅ |\n| S1 E-F1 | 67.76 | 0.6776 → 67.76% | ✅ |\n| S1 ΔDR | ↓92% | (1.11-0.09)/1.11=91.9%≈92% | ✅ |\n\n**Llama SciERC: 9/9 ✅**\n\n### Qwen3-8B × DocRED — `w5_qwen_docred_lora_*_eval`\n\n| Cell | Paper | Registry (corrected) | Verified |\n|------|-------|---------------------|----------|\n| Unconstr. DR | 0.56 | DR_pct=**0.76** | ❌ (diff=0.20) |\n| Unconstr. CF | 0.08 | CF_pct=**0.12** | ❌ (diff=0.04) |\n| Unconstr. R-F1 | 40.89 | R_F1=**40.86** | ❌ (diff=0.03) |\n| Unconstr. E-F1 | 82.35 | E_F1=**82.15** | ❌ (diff=0.20) |\n| S1 DR | 0.00 | DR_pct=**0.01** | ❌ (diff=0.01) |\n| S1 CF | 0.22 | CF_pct=**0.41** | ❌ (diff=0.19) |\n| S1 R-F1 | 40.79 | R_F1=**40.56** | ❌ (diff=0.23) |\n| S1 E-F1 | 81.87 | E_F1=**81.43** | ❌ (diff=0.44) |\n| S1 ΔDR | ↓100% | (0.76→0.01)=**↓98.7%** | ❌ |\n\n**Qwen DocRED: 0/9 — 全部不一致 ❌**\n\n### Llama 3.1-8B × DocRED — `w5_llama_docred_lora_*_eval`\n\n| Cell | Paper | Registry (corrected) | Verified |\n|------|-------|---------------------|----------|\n| Unconstr. DR | 0.49 | DR_pct=**0.49** | ✅ |\n| Unconstr. CF | 0.08 | **无 CF 字段** | ⚠️ 无法核实 |\n| Unconstr. R-F1 | 44.55 | R_F1=**43.72** | ❌ (diff=0.83) |\n| Unconstr. E-F1 | 84.77 | E_F1=**83.93** | ❌ (diff=0.84) |\n| S1 DR | 0.00 | dr_violation_rate=**0.21** | ❌ (diff=0.21) |\n| S1 CF | 0.26 | CF_pct=**0.21** | ❌ (diff=0.05) |\n| S1 R-F1 | 44.70 | relation_f1_all_set=**43.78** | ❌ (diff=0.92) |\n| S1 E-F1 | 84.71 | entity_f1=**83.94** | ❌ (diff=0.77) |\n| S1 ΔDR | ↓100% | (0.49→0.21)=**↓57%** | ❌ |\n\n**Llama DocRED: 1/9 通过, 1 无法核实, 7 不一致 ❌**\n\n---\n\n## 根因分析\n\nRegistry 有多条修正记录表明 `violation_checker.py` 和 `unified_f1_eval.py` 存在 **parse-failure bug**，已于 2026-05-20/22 用 `eval_d064.py` 修正：\n\n- `w8_qwen_docred_ft_semantic_only`: \"Old registry value 40.89 was from unified_f1_eval.py (had same parse-failure bug)\"\n- `w5_llama_docred_lora_constrained_eval`: \"P/R corrected 2026-05-20 per Director\"\n- `r16_trie_*_ft_scierc`: \"CORRECTED: violation_checker.py parse-failure bug fixed. Old R-F1 was inflated (gold dropped for parse failures)\"\n\n**论文 Table 2 的 DocRED 四行使用了修正前的旧值**。SciERC 行不受影响（parse fail rate = 0%）。\n\n## 不一致汇总\n\n| 位置 | 论文值 | 正确值 (registry) | 严重程度 |\n|------|--------|-------------------|----------|\n| Qwen DocRED Unc. DR | 0.56 | **0.76** | 高 |\n| Qwen DocRED Unc. CF | 0.08 | **0.12** | 中 |\n| Qwen DocRED Unc. R-F1 | 40.89 | **40.86** | 低 |\n| Qwen DocRED Unc. E-F1 | 82.35 | **82.15** | 中 |\n| Qwen DocRED S1 DR | 0.00 | **0.01** | 低 |\n| Qwen DocRED S1 CF | 0.22 | **0.41** | 高 |\n| Qwen DocRED S1 R-F1 | 40.79 | **40.56** | 中 |\n| Qwen DocRED S1 E-F1 | 81.87 | **81.43** | 中 |\n| Qwen DocRED S1 ΔDR | ↓100% | **↓98.7%** | 中 |\n| Llama DocRED Unc. R-F1 | 44.55 | **43.72** | 高 |\n| Llama DocRED Unc. E-F1 | 84.77 | **83.93** | 高 |\n| Llama DocRED S1 DR | 0.00 | **0.21** | 高 |\n| Llama DocRED S1 CF | 0.26 | **0.21** | 低 |\n| Llama DocRED S1 R-F1 | 44.70 | **43.78** | 高 |\n| Llama DocRED S1 E-F1 | 84.71 | **83.94** | 高 |\n| Llama DocRED S1 ΔDR | ↓100% | **↓57%** | 极高 |\n| Llama DocRED Unc. CF | 0.08 | **缺失** | ⚠️ |\n\n最严重问题：Llama DocRED S1 ΔDR 从 ↓100% 降为 ↓57%，且 DR 从 0.00 变为 0.21%。这会影响论文 \"fine-tuning practically eliminates DR\" 的核心结论强度。\n\nTable 2 的 DocRED 四行全部需要用 `eval_d064.py` 的修正值重写。同时需检查正文中引用这些数字的段落（至少 `\\paragraph{Composability with fine-tuning.}` 中的 \"DR≤0.09%\" 等表述）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_main-tables-verification_20260523T102235"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/audit-main-tables-verification.md"
+}

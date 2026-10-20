@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4db02fd9d6c0a52ec0a9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval d066 beam sweep results",
+  "task_key": "worker_eval_d066_beam_sweep_results_20260520T022051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d066_beam_sweep_results_20260520T022051_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "78e7a7b9adbc1b3309e2bf948cd4d2ba8ed8c1e437fa2bb3b2793f67abe7f286"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成（6/8 configs）。核心发现：\n\n| k | Mode | DR% | CF% | E-F1 | R-F1 | Avg Time |\n|---|------|-----|-----|------|------|----------|\n| 1 | unc | 2.11 | 0.00 | 66.88 | 42.95 | 2.49s |\n| 1 | con | 0.00 | 0.50 | 66.88 | 42.95 | 2.93s |\n| 2 | unc | 1.54 | 0.00 | **67.79** | **44.75** | 2.95s |\n| 2 | con | 0.00 | 0.11 | 67.71 | 44.60 | 3.46s |\n| 4 | unc | 1.89 | 0.00 | 67.49 | 43.72 | 3.49s |\n| 4 | con | 0.00 | 0.00 | 67.22 | 43.60 | 4.07s |\n\nET% = 0, RV% = 0, PF% = 0 across all configs（省略）。\n\n**关键结论**：\n- Fine-tuned Qwen 在 SciERC 上完全内化了 entity type 和 relation type schema，只剩 domain-range 违约（1.5-2.1%）\n- Constrained decoding 将 DR% 降至 0%，F1 损失 ≤0.15pp\n- **k=2 是拐点**：k=1→2 有明显提升，k=2→4 反而下降（precision 掉得比 recall 涨得快）\n- DR% 在 unconstrained 下不是单调递减的（k=4 > k=2），否定了\"beam 越宽 violations 越少\"的假设\n- **Pareto 最优**: k=2 constrained（近零违约 + 最佳 F1 区间 + 可控延迟）\n\nbeam8（unc+con）仍在运行中，预计 ~1.5h 后完成。报告已写入 `artifacts/_project/report/d066_beam_sweep_eval.md`，registry 已更新为 ANALYZING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d066-beam-sweep-results.md"
+}

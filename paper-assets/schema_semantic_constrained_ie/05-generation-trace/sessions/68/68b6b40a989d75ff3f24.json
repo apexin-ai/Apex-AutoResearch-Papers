@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68b6b40a989d75ff3f24",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check mistral scierc constrained completion",
+  "task_key": "worker_ops_check_mistral_scierc_constrained_completion_20260516T054238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_mistral_scierc_constrained_completion_20260516T054238_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "a7e07616baabf54009ebdb6b8a188c998d48520ef65d31e7acdf4056b80d5bf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**w6_mistral_scierc_constrained 仍在运行中。**\n\n- PID 334612: 存活\n- 进度: **195/551** (35.4%)\n- 日志正常输出 padding token 信息，无报错\n\n还有约 356 条样本待处理。按比例估算剩余时间约 35-40 分钟。完成后再来提取 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral-scierc-constrained-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b3deebe0744820dad9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis entity count stats",
+  "task_key": "worker_analysis_entity-count-stats_20260523T095059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_entity-count-stats_20260523T095059_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "deafc01fc20b8720ffd9746324ad09301a745f051bb0682e5d9c192a13b048d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| Dataset | Docs | Mean | Median | P25 | P75 | Max |\n|---------|------|------|--------|-----|-----|-----|\n| SciERC  | 100  | 16.9 | 16.5   | 12.0 | 20.0 | 36 |\n| DocRED  | 998  | 19.6 | 19.0   | 15.0 | 24.0 | 42 |\n\nDocRED 每文档 unique entity 数略高于 SciERC（均值 19.6 vs 16.9），但两者量级接近，分布也较相似。DocRED 的上限更高（42 vs 36），下限差异更大（2 vs 5）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entity-count-stats.md"
+}

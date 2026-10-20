@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "40ccd0b25bb998e4ef7e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft scierc",
+  "task_key": "worker_ssh_d062_full_ft_scierc_20260519T031647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_scierc_20260519T031647_result.json",
+    "occurrence": 1,
+    "bytes": 2389678,
+    "sha256": "fa0dea3e225cb7a13981774e4de032d2294e517ce20f65a1c1f117454f7aff2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2389698,
+                "serialized_sha256": "cf1a0fb62a568a08e18819e012338f96813e7243f7ab2fb3f8f56f1daeee5577",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-scierc.md"
+}

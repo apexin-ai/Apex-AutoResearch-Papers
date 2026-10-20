@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2a29b0d7b06cccc8650",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "launch 70b lora scierc",
+  "task_key": "worker_launch_70b_lora_scierc_20260521T115419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_70b_lora_scierc_20260521T115419_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "05e0c01c2b9b74e8a9317f733aba9f3cb021690f539e30272593b3c273f9bc0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并在正常运行。\n\n**实验 r16_70b_lora_scierc 状态:**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 836206 |\n| 进度 | 2/663 steps (~0.3%) |\n| 速度 | ~15.2s/step |\n| 预计总时间 | ~2.8 小时 |\n| VRAM | GPU0: 43GB, GPU1: 50GB (device_map auto 分布到两卡) |\n| 日志 | `/root/autodl-tmp/checkpoints/70b_lora_scierc/train.log` |\n| Checkpoint | `/root/autodl-tmp/checkpoints/70b_lora_scierc/` |\n| Cron 监控 | 每 5 分钟自动检查 (job a5e943ca) |\n\n注意：`device_map=\"auto\"` 把模型分布到了两张卡上（GPU0 + GPU1）。如果需要保留 GPU1 给其他任务，需要改成 `CUDA_VISIBLE_DEVICES=0` 并用自定义 device_map 限制单卡。目前两卡都不紧张，先继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-70b-lora-scierc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d36374451a2a4ce38a7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778897354.md",
+  "task_key": "loop_11_1778897354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778897354.md",
+    "occurrence": 1,
+    "bytes": 4666,
+    "sha256": "b22c9c4df0b22692fe64e996960059b8078a2abc98e2a046026aa45d6f2adc94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:09:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-16980 cuda:0 + cuda:1，不可用其他设备\n- `spec.command` 中**禁止**硬编码 `CUDA_VISIBLE_DEVICES`——由 `submit_training_job` 的 `gpu` 参数统一注入（级联故障教训，见 memory.md）\n- SciERC 数据路径是 `data/processed_data/test.json`，**不是** `data/scierc/test.json`；SciERC constraints 在项目根 `ontology_constraints.json`\n- 大 checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区只有 30G\n- SIGTERM (exit 143) 不等于失败——之前 Llama DocRED unconstrained eval 在 998/998 完成后被调度器杀，输出完整。cron 标 failed 时需人工验证 output 完整性\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980，2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- **工作目录**: `/root/schema_semantic_constrained_ie/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen SciERC merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - Qwen DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n- **活跃进程**:\n  - w5_llama_docred_lora_constrained_eval: PID 317464, cuda:0\n  - w5_qwen_docred_lora_constrained_eval: PID 321568, cuda:1\n- **⚠️ Cron 监控为空**（reconcile 返回 0）——两个 RUNNING 实验没有 cron 自动回调，下一个 session 必须手动 spawn worker 检查进程状态\n\n### 3. 📊 当前状态\n两个 DocRED constrained eval 正在跑（cuda:0 Llama, cuda:1 Qwen），这是 composability matrix 最后两格。完成后 4 个 2×2 matrix 全部就绪（Qwen×SciERC ✅, Llama×SciERC ✅, Qwen×DocRED 差 constrained, Llama×DocRED 差 constrained）。\n\nWorker 池 = 0（全退出）。无活跃 cron。registry: 2 RUNNING, 3 PREPARING（其中 w5_llama_docred_sft_data_gen 实际已完成但 registry 未更新；w1_cf_fallback_llama_scierc/docred 属 analytical finding 路线，非关键路径）。\n\n已完成 35 个实验（32 success, 1 negative, 2 killed）。\n\n### 4. 📋 待办（条件触发式）\n- **w5_qwen_docred_lora_constrained_eval 或 w5_llama_docred_lora_constrained_eval 完成** → spawn worker 读输出 JSON → 计算 DR/R-F1/CF → update_registry(conclusion, metrics) → 更新 ROADMAP 2×2 matrix → 汇报 Director\n- **两个 constrained eval 都完成** → 完整 4×2 composability table 就绪 → spawn worker 做全文数字一致性审查（Table 3/5, §5.4/5.5, Appendix B）→ 准备 May 19 内部稿\n- **无 cron 监控** → 第一优先级：spawn worker SSH 检查两个 PID 是否存活 + 输出进度；如已结束则立即走 on-experiment-done 流程\n- **w5_llama_docred_sft_data_gen** → registry 状态过时（SFT 数据早已生成、训练完成、eval 在跑），需 update_registry 标为 DONE/success 清理\n- **CF fallback PREPARING 实验** (w1_cf_fallback_llama_*) → D020 决策定为 analytical finding，这些实验是否继续需确认 Director 意见；当前不阻塞主线\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: OntoCoDec 将 type-constrained generation 引入 IE，编译 ontology axioms 为解码时语义约束。Key claim: FT + OntoCoDec 正交可组合\n- **决策链**: D020(CF fallback=analytical finding) → D023(reframe Claim 3 composability) → D025/D028(Qwen/Llama SciERC 2×2 confirmed) → D029(kill & resubmit DocRED training)\n- **时间线**: May 19 内部稿 → May 25 EMNLP ARR 提交，GPU 时间紧张\n- **易错点 1**: DocRED constrained eval 的 DR 预期较低（unconstrained FT 后 Qwen DR 未知、Llama DR=0.5%），如果 constrained 后 DR 变化不大，需要讨论 narrative 调整而非默默跳过\n- **易错点 2**: DocRED tightness=0.842 远高于 SciERC=0.333，constrained eval 可能出现更多 CF（之前 SciERC full_s1 CF=9.90%），DocRED CF 数据是新信号\n- **易错点 3**: 论文已有 SciERC 数据写入多处（Table 3/5, §5.4/5.5），DocRED 结果出来后需要全文一致性更新，不能只改一处\n- **Llama DocRED unconstrained baseline**: DR=0.5%, R-F1=43.72%, E-F1=83.93%（对比锚点）\n- **Qwen DocRED unconstrained baseline**: 需要从 registry 查（w5_qwen_docred_lora_unconstrained_eval）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778897354.md"
+}

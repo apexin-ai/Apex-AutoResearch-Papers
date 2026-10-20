@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f26126860c14f672f7bd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix tightness definition and scierc recompute",
+  "task_key": "worker_fix_tightness_definition_and_scierc_recompute_20260514T193635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tightness_definition_and_scierc_recompute_20260514T193635_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "a41e5a759c8aaee06ee9e33031fbb65dcc00b7701ac994deb010b935e91043f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**任务 1 — SciERC Tightness 重算结果：**\n\n| Relation | \\|V(r)\\| | τ(r) |\n|---|---|---|\n| Used-for | 35 | 0.0278 |\n| Feature-of | 26 | 0.2778 |\n| Hyponym-of | 21 | 0.4167 |\n| Part-of | 21 | 0.4167 |\n| Compare | 17 | 0.5278 |\n| Conjunction | 25 | 0.3056 |\n| Evaluate-for | 23 | 0.3611 |\n| **Mean** | **24.00** | **0.3333** |\n\nτ̄ = 0.333 正确，但 mean valid pairs 应为 **24**（原文写 23）。§4 和 §5 中的 \"23\" 已全部改为 \"24\"，注释行同步更新。\n\n**任务 2 — V(r) 定义修正：**\n- `\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)` → 改为 observed pairs 定义\n- 公式后补充 `\\mathcal{V}(r) \\subseteq \\operatorname{dom}(r) \\times \\operatorname{range}(r)`\n- 添加 Used-for 示例说明（35/36 pairs，Metric×Metric 缺失）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tightness-definition-and-scierc-recompute.md"
+}

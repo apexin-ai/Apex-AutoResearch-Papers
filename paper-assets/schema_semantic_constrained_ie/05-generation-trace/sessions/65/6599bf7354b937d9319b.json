@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6599bf7354b937d9319b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents parsed type guard",
+  "task_key": "worker_code_wikievents_parsed_type_guard_20260517T183336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_parsed_type_guard_20260517T183336_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "fb398add4bbc7d523ea1a33a36afcecfb5af761a86897580c5fb954f8a6b7f95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器修复完成。\n\n**修改内容**: `parse_model_output()` 中的两处 `return json.loads(...)` 改为先检查 `isinstance(result, dict)`，非 dict（如 list）时跳过，继续尝试 regex `\\{...\\}` 提取，最终无法得到 dict 则返回 None。\n\n**覆盖范围**: 所有调用 `parse_model_output` 的地方（line 629 的 `parsed_p1.get`、line 688 的 `parsed_p2.get`、line 987-989 的 `parsed.get`）都不会再因 list 返回值 crash。line 968-969 的已有守卫作为额外保险保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-parsed-type-guard.md"
+}

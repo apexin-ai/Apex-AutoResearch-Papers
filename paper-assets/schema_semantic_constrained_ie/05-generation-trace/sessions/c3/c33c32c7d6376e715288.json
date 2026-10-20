@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c33c32c7d6376e715288",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred f1 discrepancy",
+  "task_key": "worker_analysis_docred_f1_discrepancy_20260514T133716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_f1_discrepancy_20260514T133716_result.json",
+    "occurrence": 1,
+    "bytes": 2378,
+    "sha256": "56398a93cf04ea00d953e2d188770f7fc1ae2dfe9eef03351bfe7d41414a0ca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是完整结论。\n\n---\n\n## 调查结果\n\n### 根因\n\n两个 Worker 使用了不同的 **predicted relations 统计范围** 来计算 F1 denominator：\n\n| | Worker A (R-F1=9.33%) | Worker B (R-F1=7.69%) |\n|---|---|---|\n| **方法** | `recognized_set` — 只计入能归一化到有效 PID 的 triples | `all_set` — 计入所有 triples（含 out-of-vocabulary） |\n| **unconstrained pred count** | 12,214 | 17,355 |\n| **差异来源** | 过滤掉了 5,189 个 relation_vocabulary_violation triples | 包含所有 triples |\n| **tp / gold** | 1137 / 12,021~12,154 | 相同 |\n\nRecall 一致（~9.4%）是因为 tp 和 gold 相同。Precision 差异完全来自 denominator：1137/12214=9.31% vs 1137/17355=6.55%。\n\n### 正确方法\n\n**`method_all_set`（Worker B）是公平的比较方法**，因为：\n- Out-of-vocabulary predictions 是真实的模型错误（false positives），不应从 denominator 中移除\n- 对于 constrained decoding（grammar_only / full_s1），几乎没有 vocab violations（仅 5 个），两种方法结果一致\n- `recognized_set` 人为抬高了 unconstrained 的 precision，隐藏了无约束解码产生大量无效 relation type 的代价\n\n### 统一评估结果（method_all_set）\n\n| Mode | R-P | R-R | **R-F1** | Records | Unrecognized Rels |\n|---|---|---|---|---|---|\n| unconstrained | 6.55% | 9.46% | **7.74%** | 998 | 5,189 |\n| grammar_only | 7.06% | 10.12% | **8.31%** | 998 | 5 |\n| semantic_only | 6.53% | 9.59% | **7.76%** | 911* | 4,830 |\n| full_s1 | 6.99% | 10.01% | **8.23%** | 999 | 5 |\n\n*semantic_only 记录数较少，可能尚未跑完\n\n### Delta（unconstrained → full_s1）\n\n- **R-F1: +0.49pp**（full_s1 更好）\n- R-P: +0.44pp, R-R: +0.55pp\n- Entity F1: +1.22pp（0.5815 → 0.5937）\n\n### 被误导的结论（Worker A 的 recognized_set 方法）\n\n用 recognized_set 算，unconstrained 得 9.38%，full_s1 得 8.23%，delta=-1.15pp — 会错误地认为 constrained decoding 降低了 F1。实际上这是因为 unconstrained 的 5,189 个无效 prediction 被排除了。\n\n### `f1_report_docred_unconstrained_phase2.json` 的来源\n\n该文件中的数值（pred=12214, tp=1137, R-F1=9.33%）完全吻合 `recognized_set` 方法——某个脚本在计算 F1 前先过滤掉了无法映射到 PID 的 predicted relations。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-f1-discrepancy.md"
+}

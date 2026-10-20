@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de457f576bd88bab4465",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d063 gollie violation rate",
+  "task_key": "worker_ssh_d063_gollie_violation_rate_20260519T090427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d063_gollie_violation_rate_20260519T090427_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "f223ca990ef4dfac601065261b5e11b21da47100a2bf52d37ed1383e883f81f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Metric | GoLLIE-7B | OntoCoDec Unconstrained | OntoCoDec Constrained (S1) |\n|--------|-----------|------------------------|---------------------------|\n| DR%    | **0.00**  | 15.37                  | 0.93                      |\n| RV%    | **0.00**  | 1.39                   | 0                         |\n| ET%    | **0.00**  | 0.40                   | 0                         |\n| CF%    | **0.67**  | 0.08                   | 9.90                      |\n\nGoLLIE 的 Python dataclass 输出格式充当隐式 schema 约束：类名即类型名，所以 ET/RV 必然为 0%。但代价是极低的抽取覆盖率：100 篇文档仅抽出 300 个实体（ground truth ~1400）和 7 个关系（ground truth ~800），45% 文档输出为空。DR=0% 基于仅 7 个关系样本，统计上不可靠。\n\n报告已写入 `/root/schema_semantic_constrained_ie/d063_gollie_results.md`，artifact 已注册（`art_20260519_46e287`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d063-gollie-violation-rate.md"
+}

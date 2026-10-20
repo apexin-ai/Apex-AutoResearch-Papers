@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90e870975e0e98ba693b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code fix violation checkers",
+  "task_key": "worker_code_fix_violation_checkers_20260513T180257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_violation_checkers_20260513T180257_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "9023ffd612d2673ff9a9c91f38f9a8f4cf52c7bba547f63bbda076756e8d44e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果清楚地证实了 Reviewer 指出的问题。\n\n## 修改结果总结\n\n### 核心修复\n两个 checker 的 violations 从 3 类拆分为 4 类独立计数，`relation_vocabulary_violations` 不再混入 `domain_range_violations`。\n\n### DocRED 对比（37 docs, 610 triples）\n\n| 指标 | 旧版（混合） | 新版（拆分） |\n|---|---|---|\n| violated_triples (旧指标) | 20/30 = **66.7%** | N/A |\n| relation_vocabulary_violations | 不区分 | **193/610 = 31.6%** |\n| domain_range_violations | 20 (含 vocab) | **88/610 = 14.4%** |\n| **go_nogo_metric** | 0.6667 (高估) | **0.1443** |\n\n旧版把 193 个 vocab violations 都算进了 domain_range，导致违规率被严重高估。新版的 go_nogo_metric 仅基于 domain_range_violation_rate (14.4%)，排除了 grammar-constrained decoding 能解决的 vocab violations。\n\n### SciERC (3 samples, 5 triples)\n- Relation vocab violations: 0/5 (0.0%)\n- Domain/range violations: 1/5 (20.0%)\n- Fuzzy matches: 0\n\n### 新增功能\n1. **4 类 violation 独立计数**：entity_type / relation_vocabulary / domain_range / cross_field_consistency\n2. **Fuzzy matching**：token overlap >80% 和 Levenshtein ≤2，DocRED 匹配了 8 个原本会算 vocab violation 的 triples\n3. **go_nogo_metric**：per-triple domain_range_violation_rate，明确排除 vocab violations\n\n### 产出文件\n- `violation_checker.py` (345 行)\n- `violation_checker_docred.py` (354 行)\n- `outputs/violation_report_fixed.json`\n- `outputs/violation_report_docred_fixed.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-violation-checkers.md"
+}

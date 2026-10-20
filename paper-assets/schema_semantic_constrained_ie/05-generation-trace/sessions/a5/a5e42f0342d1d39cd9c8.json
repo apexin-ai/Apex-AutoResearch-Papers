@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5e42f0342d1d39cd9c8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section3 method warnings fix",
+  "task_key": "worker_paper_section3_method_warnings_fix_20260514T055617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section3_method_warnings_fix_20260514T055617_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "f5972f543600bde73bd54691afe702f4c63ffe2b6bddb6e1eb34f08db4a30d12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用工具列表中，跳过注册步骤。\n\n验证结果：\n\n1. **\"invariant\" 已清除** — 文件中不再出现该词（grep 零匹配）\n2. **Head type masking 三路径已覆盖** — Match（registry 与 domain 一致 → 单一类型）、Conflict（registry 与 domain 冲突 → fallback 到 dom(r_j) 全集，优先 ontology）、Unknown（r_j 未知 → 仅 grammar 层）\n3. **无 formalize/revisit taxonomy 的承诺** — 第 55 行的 forward reference 已删除；第 11 行改为 \"Further discussion...appears in\" 而非 \"Formal analysis...deferred to\"\n4. **Fallback 定位为 engineering robustness** — \"grammar-first fallback\"，明确标注为 error recovery 而非 formal guarantee，附 SciERC/DocRED 触发率数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section3-method-warnings-fix.md"
+}

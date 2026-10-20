@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ac1ce640e4f2425b18",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops p1 16980 gpu1 utilize",
+  "task_key": "worker_ops_p1_16980_gpu1_utilize_20260520T094745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p1_16980_gpu1_utilize_20260520T094745_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "149a2c2275b53bcb5ba96adf1fca094f9d79f12662d3d6809c9e38841d4ad5dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在工作，确认成功。\n\n## 汇总\n\n### d066 sweep 剩余配置\n\n脚本定义 8 个 run（2 模型 × 2 beam × 2 mode），手动逐个启动：\n\n| 配置 | 状态 |\n|------|------|\n| Qwen beam2 unc | ✅ 200 行 |\n| Qwen beam2 full_s1 | ✅ 200 行 |\n| Qwen beam8 unc | 🔄 GPU0 PID 738751 |\n| Qwen beam8 full_s1 | ❌ 待跑 |\n| Llama beam2 unc | 🔄 **GPU1 PID 743682，已产出 3 行** |\n| Llama beam2 full_s1 | ❌ 待跑 |\n| Llama beam8 unc | ❌ 待跑 |\n| Llama beam8 full_s1 | ❌ 待跑 |\n\n### d065 Llama\nunc 998 行、con 998 行，均已完成。eval/violation 文件也已存在。\n\n### GPU1 启动任务\n- **任务**: d066 Llama beam2 unconstrained (200 docs)\n- **PID**: 743682\n- **输出**: `/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_unconstrained.jsonl`\n- **日志**: `/root/autodl-tmp/schema_outputs/d066_beam_sweep/d066_llama_beam2_unc.log`\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 91% | 68GB/98GB | Qwen beam8 unc |\n| 1 | 90% | 18GB/98GB | Llama beam2 unc |\n\n### 后续排队\nLlama beam2 unc 完成后，GPU1 下一个应跑 **Llama beam2 full_s1**；GPU0 Qwen beam8 unc 完成后跑 **Qwen beam8 full_s1**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p1-16980-gpu1-utilize.md"
+}

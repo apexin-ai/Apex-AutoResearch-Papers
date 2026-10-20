@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d663b85c83cfe8d922",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check compile and progress",
+  "task_key": "worker_check_compile_and_progress_20260518T163708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_compile_and_progress_20260518T163708_result.json",
+    "occurrence": 1,
+    "bytes": 1558,
+    "sha256": "c27c0a2cb332531906d824cfbd6c25b7101ff054d4675f2f4dc0105df2547bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. Bib 同步 + 编译\n\n**同步**: 本地 `relwork_new_entries.bib` 比远程多 117 行（3 个已有条目 + 8 个 2026-05-18 新增条目），已追加到 westd-16980 远程文件。`new_citations.bib` 未被 `main.tex` 引用（`\\bibliography{relwork_new_entries}` 仅此一个），未同步。\n\n**编译**: **SUCCESS** — 17 pages, 0 bibtex warnings, 0 undefined citations, 0 errors。\n\n**指定 cite key 检查** — 全部已定义：\n| Key | 状态 |\n|-----|------|\n| `boostcd2025` | ✓ (已有) |\n| `grammar_aligned_2024` | ✓ (新同步) |\n| `formattax2026` | ✓ (新同步) |\n| `dccd2026` | ✓ (新同步) |\n| `slot2025` | ✓ (新同步) |\n| `guidex2025` | ✓ (新同步) |\n| `schema_rl2025` | ✓ (新同步) |\n| `jsonschemabench2025` | ✓ (新同步) |\n\nWorker 格式 key（`sakota2025boostcd`、`park2024grammaraligned` 等）仅存在于 `new_citations.bib`，但 main.tex 未使用这些 key，所以无影响。\n\n### 2. P8b DocRED Latency (westd-21461)\n\n- **Unconstrained**: 200/200 ✅ 已完成\n- **Constrained**: **57/200** 进行中（tmux 活跃，当前 doc 57）\n- 平均速度 ~20s/doc\n- **预估完成**: 剩余 143 docs × ~20s ≈ **48 分钟后**（~01:30 UTC）\n\n### 3. 70B DocRED (westd-16980)\n\n- **Unconstrained**: **435/998** (cuda:0)\n- **Constrained**: **435/998** (cuda:1)\n- 两个任务并行运行，启动于 20:48 UTC，已运行 ~3h52m\n- 速率 ~112 docs/h\n- **预估完成**: 剩余 563 docs / 112 docs/h ≈ **5 小时后**（~05:40 UTC）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-compile-and-progress.md"
+}

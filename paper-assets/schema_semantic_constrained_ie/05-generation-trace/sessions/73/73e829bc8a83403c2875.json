@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73e829bc8a83403c2875",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code urgent 21461 status and v3 launch",
+  "task_key": "worker_code_urgent_21461_status_and_v3_launch_20260518T065804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_21461_status_and_v3_launch_20260518T065804_result.json",
+    "occurrence": 1,
+    "bytes": 2010,
+    "sha256": "ddb25f5bbcf5ef22a0fc69c373e28b49c5e6f6bbc8dfe98c005dd8e2b204e0e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral v3 正常运行，1 条已写入，持续产出中。\n\n---\n\n## 汇总报告\n\n### GPU 状态 (westd-21461)\n| GPU | 型号 | 显存 | Util | 状态 |\n|-----|------|------|------|------|\n| 0 | RTX PRO 6000 (96GB) | 15291MiB | 82% | **Mistral v3 运行中** (PID 5971) |\n| 1 | RTX PRO 6000 (96GB) | 0MiB | 100%* | 空闲 (无进程) |\n\n### Step 2: 已完成实验结果\n\n**Mistral v2 retry (16K)** — 246/246 完成\n| 指标 | 值 |\n|------|-----|\n| Parse failures | 18 |\n| RoV violations | 21 (0.3%) |\n| AC violations | 1489 (19.4%) |\n| CF violations | 1030 (11.6%) |\n| **Go/No-go (RoV+AC)** | **0.1973** |\n| Entity F1 | 0.1103 (P=0.1608, R=0.0840) |\n| Trigger ID F1 | 0.0378 (P=0.0354, R=0.0404) |\n| Argument F1 | 0.0036 (P=0.0029, R=0.0049) |\n\n**Qwen grammar_only** — 246/246 完成\n| 指标 | 值 |\n|------|-----|\n| Parse failures | 35 |\n| RoV violations | 4441 (76.1%) |\n| AC violations | 479 (8.2%) |\n| CF violations | 8 (0.3%) |\n| **Go/No-go (RoV+AC)** | **0.8436** |\n| Entity F1 | 0.1446 (P=0.4257, R=0.0871) |\n| Trigger ID F1 | 0.1393 (P=0.1263, R=0.1554) |\n| Argument F1 | 0.0094 (P=0.0081, R=0.0113) |\n\n### Step 3: Mistral v3 启动确认\n\n| 检查项 | 结果 |\n|--------|------|\n| type_mask_processor.py 行数 | **938** ✓ |\n| collision 出现次数 | **7** ✓ |\n| exact_match 出现次数 | **4** ✓ |\n| 输出文件全新 | ✓ (已删除旧文件) |\n| 代码备份 | ✓ |\n| **--resume** | **未使用** ✓ |\n| data_path | `data/wikievents/all.jsonl` (246 samples) ✓ |\n| GPU | 0 (15291MiB, 82% util) |\n| PID | 5971 |\n| Samples | **246** ✓ |\n| mode | full_s1 |\n| tmux session | mistral_v3_full |\n| 已产出 | 1 行 (持续运行中) |\n\n**注意：** 初次启动时因网络不通 HuggingFace 下载失败，已改用本地 modelscope 缓存路径 `/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/`。同时默认 data_path 是 `train.jsonl` (12条)，已显式指定 `all.jsonl` (246条)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-21461-status-and-v3-launch.md"
+}

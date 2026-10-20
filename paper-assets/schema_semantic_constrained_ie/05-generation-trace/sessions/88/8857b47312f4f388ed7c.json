@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8857b47312f4f388ed7c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 16980 gpu1 check",
+  "task_key": "worker_ops_d066_16980_gpu1_check_20260520T113403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_16980_gpu1_check_20260520T113403_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "975a3fb1b3a42b13db62ce6eb81cce4f02f64ed07c8ae51f6c0e883fe7829796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d066 Beam Sweep 状态报告\n\n### Llama beam2 unconstrained\n- **文件**: `llama_docred_200_beam2_unconstrained.jsonl`\n- **行数**: 200 行 ✅ **已完成**（200/200 docs）\n- **大小**: 1.77 MB，最后修改 18:40\n\n### Llama beam2 full_s1（GPU1 正在运行）\n- **文件**: `llama_docred_200_beam2_full_s1.jsonl`\n- **行数**: 99/200，**进行中**\n- **进程 PID**: 750806，启动于 19:05，CPU 100%，GPU1 占用 18270 MiB\n- 日志显示正常推理中（pad_token_id 设置提示）\n\n### GPU 占用\n| GPU | PID | 任务 | 显存 |\n|-----|-----|------|------|\n| GPU0 | 748197 | qwen beam8 full_s1 | 68134 MiB |\n| GPU1 | 750806 | **llama beam2 full_s1** | 18270 MiB |\n\n### 磁盘\n`/root/autodl-tmp`: 171G/250G used (69%)，剩余 80G，充足。\n\n### 小结\nLlama beam2 unc 已完整输出 200 行。Llama beam2 s1 完成约 50%（99/200），两张 GPU 都在满载运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-16980-gpu1-check.md"
+}

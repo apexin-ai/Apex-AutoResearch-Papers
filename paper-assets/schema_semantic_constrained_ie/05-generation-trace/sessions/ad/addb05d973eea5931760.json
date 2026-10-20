@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "addb05d973eea5931760",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 lora unconstrained eval check",
+  "task_key": "worker_analysis_w5_lora_unconstrained_eval_check_20260515T155407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_lora_unconstrained_eval_check_20260515T155407_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "4829e4914933ec9cc2607e64ca3bc94da267c75de83097bd76c67b4f03c063a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n## W5 LoRA Unconstrained Eval — 完成\n\n### Violation 指标\n\n| 指标 | 值 |\n|------|-----|\n| JSON Parse Rate | 100% |\n| Entity Type (ET%) | 0% |\n| Relation Vocab (RV%) | 0% |\n| **Domain/Range (DR%)** | **1.95% (22/1128)** |\n| Cross-Field (CF%) | 0% |\n\n### Quality 指标\n\n| 指标 | P | R | F1 |\n|------|---|---|-----|\n| Entity | 0.652 | 0.690 | **0.671** |\n| Relation | 0.409 | 0.473 | **0.439** |\n\n### DR 热点\n\n`Evaluate-for` 关系违规最严重：13.1% (13/99)，其次 `Part-of` 5.8%、`Compare` 5.0%。\n\n### DR Gate 判断\n\n**DR = 1.95% < 2% → GATE FAILED — 暂停，需报告 Director。**\n\nLoRA 微调已将 DR 压到 gate 阈值以下，假设（unconstrained 仍 >2% 需要 constrained decoding）不成立。\n\n### GPU 状态\n\n- GPU 0: 空闲 (0 MiB)\n- GPU 1: 17.4 GB 被 PID 276937 占用 — 是 `run_constrained_ext` 进程（已运行 ~51 min），不是之前的 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-lora-unconstrained-eval-check.md"
+}

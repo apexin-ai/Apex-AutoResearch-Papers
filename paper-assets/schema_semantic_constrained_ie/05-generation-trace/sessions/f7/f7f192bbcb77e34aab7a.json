@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7f192bbcb77e34aab7a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "prep llama dryrun validation",
+  "task_key": "worker_prep_llama_dryrun_validation_20260514T104336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_llama_dryrun_validation_20260514T104336_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "b9ed1fc1494e959621dd8455f9e08af45d8b73951ce2c9abe100bdbc065d7f86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **Fallback counter 已确认**：`type_mask_processor.py` L204/387-399，服务器代码已包含\n2. **Unconstrained dry-run 通过**：1 sample, E=5 R=1, 4.6s\n3. **Full_s1 dry-run 通过**：1 sample, E=5 R=1, 5.4s，触发 2 次 grammar-first fallback\n4. **提交命令已写入** `artifacts/llama_submit_commands.md`，含 nohup + log 重定向，方便后续提取 fallback count\n\n注意：fallback count 仅输出到 stderr，不写入 JSONL。正式跑时需用 `> log 2>&1` 保留日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-llama-dryrun-validation.md"
+}

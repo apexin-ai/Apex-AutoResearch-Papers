@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "id": "79c4ca338b93d040da05",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "ssh d064 eval llama greedy con",
+  "task_key": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_d064_eval_llama_greedy_con_20260520T004046.jsonl",
+    "occurrence": 1,
+    "bytes": 13995,
+    "sha256": "2f6f571b30bc5640f2a5b632b53cb5fad792273a798b7375bd69203db5f26593"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T00:41:45.405358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T00:41:45.405757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T00:41:45.405967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/autodl-tmp/schema_outputs/d064_llama_docred_greedy_constrained_w5.jsonl"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T00:41:45.406105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/scripts/eval_d064.py"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T00:41:45.406243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"998 /root/autodl-tmp/schema_outputs/d064_llama_docred_greedy_constrained_w5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T00:41:45.406368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -80 /root/schema_semantic_constrained_ie/scripts/eval_d064.py"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T00:41:45.406503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/scripts/eval_d064.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T00:41:45.406696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified evaluation for d064 DocRED beam search experiments.\\\\nUsage: python scripts/eval_d064.py --input_path <output.jsonl> [--label <name>]\\\\nComputes: ET%, RV%, DR%, CF%, Entity F1, Relation F1, Parse Fail%\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nONTOLOGY_FILE = \\\\\\\"/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\\\\\\\"\\\\n\\\\nENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\ndef normalize_etype(raw):\\\\n    t = raw.strip().upper()\\\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--input_path\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--label\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_json\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    with open(ONTOLOGY_FILE) as f:\\\\n        ontology = json.load(f)\\\\n\\\\n    VALID_ENTITY_TYPES = set(ontology[\\\\\\\"entity_types\\\\\\\"])\\\\n    RELATION_TYPES = ontology[\\\\\\\"relation_types\\\\\\\"]\\\\n    RELATION_CONSTRAINTS = ontology[\\\\\\\"relation_constraints\\\\\\\"]\\\\n\\\\n    name_to_pcode = {}\\\\n    for pcode, name in RELATION_TYPES.items():\\\\n        name_to_pcode[name.lower().strip()] = pcode\\\\n        name_to_pcode[name.strip()] = pcode\\\\n\\\\n    VALID_RELATION_NAMES = set(name.lower().strip() for name in RELATION_TYPES.values())\\\\n\\\\n    valid_pairs_by_pcode = {}\\\\n    for pcode, constraint in RELATION_CONSTRAINTS.items():\\\\n        valid_pairs_by_pcode[pcode] = set(tuple(p) for p in constraint[\\\\\\\"valid_pairs\\\\\\\"])\\\\n\\\\n    total_samples = 0\\\\n    parse_failures = 0\\\\n    total_entities_pred = 0\\\\n    total_relations_pred = 0\\\\n    et_violations = 0\\\\n    rv_violations\n…[truncated 1192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T00:41:45.406894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/scripts/eval_d064.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T00:41:45.407133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"179 /root/schema_semantic_constrained_ie/scripts/eval_d064.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T00:41:45.407880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -100 /root/schema_semantic_constrained_ie/scripts/eval_d064.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T00:41:45.408339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            # ET violations\\\\n            for ent in pred_entities:\\\\n                if normalize_etype(ent.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")) not in VALID_ENTITY_TYPES:\\\\n                    et_violations += 1\\\\n\\\\n            # Relation violations + CF\\\\n            entity_type_map = defaultdict(set)\\\\n            for rel in pred_relations:\\\\n                rel_name = rel.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\").lower().strip()\\\\n                head_type = rel.get(\\\\\\\"head_type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                tail_type = rel.get(\\\\\\\"tail_type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n                if rel.get(\\\\\\\"head\\\\\\\") and head_type:\\\\n                    entity_type_map[rel[\\\\\\\"head\\\\\\\"].lower()].add(normalize_etype(head_type))\\\\n                if rel.get(\\\\\\\"tail\\\\\\\") and tail_type:\\\\n                    entity_type_map[rel[\\\\\\\"tail\\\\\\\"].lower()].add(normalize_etype(tail_type))\\\\n\\\\n                if rel_name not in VALID_RELATION_NAMES:\\\\n                    rv_violations += 1\\\\n                    continue\\\\n\\\\n                pcode = name_to_pcode.get(rel_name)\\\\n                if pcode and pcode in valid_pairs_by_pcode:\\\\n                    pair = (normalize_etype(head_type), normalize_etype(tail_type))\\\\n                    if pair not in valid_pairs_by_pcode[pcode]:\\\\n                        dr_violations += 1\\\\n\\\\n            for entity_name, types in entity_type_map.items():\\\\n                if len(types) > 1:\\\\n                    cf_violations += 1\\\\n\\\\n            # Entity F1\\\\n            gold_ent_set = set((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities)\\\\n            pred_ent_set = set((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities)\\\\n            entity_tp += len(gold_ent_set & pred_ent_set)\\\\n            entity_fp += len(pred_ent_set - gold_ent_set)\\\\n            entity_fn += len(gold_ent_set - pred_ent_set)\\\\n\\\\n            # Relation F1\\\\n            gold_rel_set = set()\\\\n            for r in go\n…[truncated 3183 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T00:41:45.408610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d064_llama_docred_greedy_constrained_w5.jsonl --label \"Llama_greedy_constrained_w5\" --output_json /tmp/d064_eval_llama_greedy_con.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T00:41:45.409353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== Llama_greedy_constrained_w5 ===\\\\nSamples: 998, Parse Fail: 50 (5.0%)\\\\nEntities pred: 18410, Relations pred: 14733\\\\nET%=0.00  RV%=0.00  DR%=0.00  CF%=0.16\\\\nE-F1=83.40 (P=85.97 R=80.98)\\\\nR-F1=44.83 (P=41.14 R=49.24)\\\\nSaved to /tmp/d064_eval_llama_greedy_con.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T00:41:45.409665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/",
+              "description": "Check report directory exists"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T00:41:45.412045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ace05_codebase_survey.md\nace05_schema_design.md\nace05_schema_design_626008.md\ncase_study_kappa_dr.md\ncase_study_kappa_dr_dddc01.md\ncf_fallback_code_diff_analysis.md\ncf_fallback_code_diff_analysis_fdf6e2.md\nconstrained_eval_readiness.md\ncross_model_analysis_framework.md\nd009_llama_prep.md\nd063_gollie_results.md\nd064_d066_progress.md\nd064_eval_batch2_llama_greedy.md\nd064_final_status_16980.md\nd064_final_status_21461.md\nd064_option_c_start.md\nd064_paper_changes.md\nd064_paper_template.md\nd064_progress_20260519b.md\nd064_progress_20260519c.md\nd064_qwen_greedy_start.md\nd064_status_check_r4.md\nd064_violation_batch1.md\nd065_tcr_full_results.md\nd065_tcr_pilot_results.md\nd066_beam_sweep_fix.md\nd066_beam_sweep_prep.md\nd066_start.md\nd067_seed_variance_prep.md\nd067_start.md\nd068_guided_beam.md\ndata_consistency_audit.md\ndiagnosis_70b_scierc_failure.md\ndocred_ft_paper_update_mapping.md\ndocred_unconstrained_baseline_verify.md\ndryrun_verification.md\nenrico_itergen_comparison.md\nerror_taxonomy_analysis.md\nevent_dataset_feasibility.md\nevent_dataset_feasibility_6a7e38.md\nft_ablation_analysis.md\nfuzzy_matching_threshold_analysis.md\nkappa_dr_scatter_data.md\nlatency_profiling_design.md\nlatex_compile_check.md\nliterature_docred_compare.md\nliterature_freshness_check.md\nmethod_invariant_notes.md\np2_ee_ft_bootstrap_ci.md\np3_error_analysis.md\np3_error_analysis_d95869.md\npaper_number_preaudit.md\npaper_results_summary.md\npaper_results_tables.md\npaper_tables_consolidated.md\npaper_writing_readiness.md\nparse_failure_denominator_analysis.md\npatch_summary_round5.md\nposthoc_filter_comparison.txt\nr2n3_parse_excluded_analysis.md\nr4_doc_length_breakdown_results.md\nr4_m6q4_cfdr_transferability.md\nr4_n3_runtime_profiling.md\nr4_prompt_sensitivity_results.md\nr4_sf1_matched_greedy_results.md\nr5_bootstrap_method_audit.md\nr5_ft_bootstrap_results.md\nrebuttal_draft_v1.md\nrebuttal_draft_v2.md\nreference_audit_relwork.md\nresidual_dr_error_analysis.md\nrv_003_residual_investigation.md\nscaling_analysis_data.md\ntable2_mai\n…[truncated 211 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "Bash",
+            "elapsed_ms": 2
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T00:41:45.412306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/d064_eval_llama_greedy_con.md",
+              "content": "# Llama Greedy Constrained (w5) — 998-doc DocRED\n\n| Metric | Value |\n|--------|-------|\n| ET% | 0.00 |\n| RV% | 0.00 |\n| DR% | 0.00 |\n| CF% | 0.16 |\n| E-F1 | 83.40 |\n| R-F1 | 44.83 |\n| PF% | 5.01 |\n\nDetails: entities=18410, relations=14733, violations=(ET=0, RV=0, DR=0, CF=30), parse_failures=50/998\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T00:41:45.412474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/d064_eval_llama_greedy_con.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T00:41:45.413412+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果：\n\n| Metric | Value |\n|--------|-------|\n| ET% | 0.00 |\n| RV% | 0.00 |\n| DR% | 0.00 |\n| CF% | 0.16 |\n| E-F1 | 83.40 |\n| R-F1 | 44.83 |\n| PF% | 5.01 |\n\nConstrained decoding (w5) 将 ET/RV/DR 全部压到 0%，CF% 仅剩 0.16%（30 个 cross-field 冲突）。报告已写入 `artifacts/_project/report/d064_eval_llama_greedy_con.md`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-d064-eval-llama-greedy-con.md"
+}

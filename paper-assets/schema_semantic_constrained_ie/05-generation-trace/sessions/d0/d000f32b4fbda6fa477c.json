@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d000f32b4fbda6fa477c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "cron d066 16980 gpu1 check",
+  "task_key": "worker_cron_d066_16980_gpu1_check_20260520T110244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cron_d066_16980_gpu1_check_20260520T110244_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "a3ae56673ff15253c6f93ebb8e05e0e97509ca2a05f5cbda93377856ffd29b9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载完成，已开始推理（2 行输出）。全部完成。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **Llama beam2 unc** | 成功：200/200 行，JSON 完整，success=198/fail=2 |\n| **Registry** | `d066_sweep_16980_gpu1` → DONE/success，spec/checkpoint_path/log_path 已设 |\n| **Cron** | 已不存在（跨 session 自动清理） |\n| **Llama beam2 s1 PID** | **750801** (GPU1) |\n| **GPU1** | 18279 MiB 已分配，推理中 |\n| **30s 后输出** | 2 行（刚开始生成） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cron-d066-16980-gpu1-check.md"
+}

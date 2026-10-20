@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8c543e9d705ff4bc0ddf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code p8 latency overhead",
+  "task_key": "worker_code_p8_latency_overhead_20260518T133749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p8_latency_overhead_20260518T133749.log",
+    "occurrence": 1,
+    "bytes": 540003,
+    "sha256": "06715962a73f830e5b05f3d7dc0790788a0f41e7e230ed9cc1155f5033ed5bf9"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "8c543e9d705ff4bc0ddf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c543e9d705ff4bc0ddf-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p8-latency-overhead.md"
+}

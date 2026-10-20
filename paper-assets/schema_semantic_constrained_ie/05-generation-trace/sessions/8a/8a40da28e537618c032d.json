@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a40da28e537618c032d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra grammar only crash diagnose",
+  "task_key": "worker_infra_grammar_only_crash_diagnose_20260513T224253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_grammar_only_crash_diagnose_20260513T224253_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "6cff6dff86c6943cf97fad7972b88d8e8c5114138a1aef0651ee10d0f4f01c24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 崩溃原因：**没有崩溃**\n\nPID 126473 **仍在运行**（状态 `Rl`，已运行约 26 分钟）。输出文件已从 163 行增长到 **183 行**。\n\n### 当前状态\n\n| 项目 | 状态 |\n|------|------|\n| PID 126473 (grammar_only) | 运行中，GPU 1，16502 MiB |\n| tmux `phase2_scierc_grammar_only` | 存活 |\n| 输出文件 | 183 行，最后修改 06:43 |\n| tmux `phase2_scierc_unconstrained` | 也在运行，GPU 1，~33000 MiB |\n| tmux `mvp_phase0_docred_schema` | GPU 0，24442 MiB |\n\n### GPU 状况\n\n| GPU | 已用 | 总量 | 空闲 |\n|-----|------|------|------|\n| 0 | 24451 MiB | 97887 MiB | **72800 MiB** |\n| 1 | 49503 MiB | 97887 MiB | 47748 MiB |\n\nGPU 0 有 72.8 GB 空闲，被 DocRED schema 占用约 24 GB。GPU 1 跑着 grammar_only + unconstrained 两个任务。\n\n### 备份\n\n`phase2_scierc_grammar_only_partial_183.jsonl` 已创建（446 KB，183 行）。\n\n### S2 pilot 文件\n\n- `phase2_s2_dryrun.jsonl` — 06:26，21 KB\n- `phase2_s2_pilot50.jsonl` — 06:43，53 KB\n\n**结论：grammar_only 没死，正在正常推进。无需重启。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-grammar-only-crash-diagnose.md"
+}

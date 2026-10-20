@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79fea08cb879e72199f2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops server status and eval all",
+  "task_key": "worker_ops_server_status_and_eval_all_20260514T010339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server_status_and_eval_all_20260514T010339_result.json",
+    "occurrence": 1,
+    "bytes": 1796,
+    "sha256": "9c69dfdfbf3bd9bcce143fecbd8b106056e3896cf9aa9f0271ac9c5e634faa69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全面状态如下：\n\n## 服务器状态汇总\n\n### GPU 使用\n| GPU | 显存占用 | 利用率 | 运行实验 |\n|-----|---------|--------|---------|\n| 0 | 40.8/97.9 GB | 93% | docred_schema (PID 137719) + semantic_only_v2 (PID 140804) |\n| 1 | 16.5/97.9 GB | 85% | full_s1_v2 (PID 142639) |\n\n### 实验进度\n\n| 实验 | PID | 行数 | 预期 | 进度 | 状态 |\n|------|-----|------|------|------|------|\n| docred_schema (resume) | 137719 | 936 | 998 | **94%** | 运行中，从880恢复，还剩62 |\n| semantic_only_v2 | 140804 | 148 | 551 | **27%** | 运行中 |\n| full_s1_v2 | 142639 | 244 | 551 | **44%** | 运行中 |\n| **full_s2** | **无** | 88 | 551 | 16% | **已崩溃** — exit code 130 (SIGINT) @ 00:48 UTC |\n| semantic_only (旧) | - | 10 | 551 | - | 废弃（被 v2 替代） |\n| full_s1 (旧) | - | 7 | 551 | - | 废弃（被 v2 替代） |\n\n### 关键发现\n\n1. **full_s2 被 SIGINT 杀死**（exit code 130），仅产出 88 行，需要重启（带 `--resume`）\n2. **GPU 0 同时跑两个模型**（docred + semantic_only_v2），各自速度受影响\n3. **docred_schema 最接近完成**（936/998），预计还需 ~30 分钟\n4. **没有任何实验完成**，无法运行 violation_checker\n\n### 速度估算\n- full_s1_v2：log 显示每样本 ~4-8s，剩余 307 个，预计 ~30-40 分钟\n- semantic_only_v2：剩余 403 个，GPU 0 被共享，预计 ~60+ 分钟\n- docred_schema：剩余 62 个文档（batch_size=4），预计 ~20-30 分钟\n\n### 建议操作\n- **立即**：在 GPU 1 上重启 full_s2（docred 快完成后 GPU 0 会空出来，但 GPU 1 目前 full_s1_v2 在跑，只用了 16.5GB，96GB 显存足够再跑一个）\n- **等待**：docred_schema 最快完成，可先评估\n\n是否要重启 full_s2？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-status-and-eval-all.md"
+}

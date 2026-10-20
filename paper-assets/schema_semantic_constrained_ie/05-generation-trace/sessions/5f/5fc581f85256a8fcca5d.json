@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc581f85256a8fcca5d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft constrained rerun",
+  "task_key": "worker_ssh_d062_full_ft_constrained_rerun_20260519T043914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_constrained_rerun_20260519T043914_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "fff9093519001f4812a99f642185eb8426c365046891d758852e2e69a10db661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完成。\n\n1. **损坏文件已删除** — `re_qwen_full_ft_scierc_full_s1.jsonl` 已清除\n2. **冲突进程已清理** — 发现并杀掉了另一个冲突 session `d062_con_rerun`（PID 86387），避免再次双写\n3. **新 tmux session** — `d062_constrained_only`（创建于 12:42:13）\n4. **推理已启动** — 单进程（PID 86882）在 cuda:0 上运行，占用 ~19GB 显存，模型加载完成，正在推理 551 个样本\n5. **Unconstrained 输出完整** — 551 行，无需重跑\n\n脚本流程：constrained inference → violation check (unconstrained + constrained) → 打印对比结果 → 行数验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-constrained-rerun.md"
+}

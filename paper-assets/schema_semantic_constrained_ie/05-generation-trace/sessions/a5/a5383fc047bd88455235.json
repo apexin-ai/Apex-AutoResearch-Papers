@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "a5383fc047bd88455235",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis llama docred unconstrained",
+  "task_key": "worker_analysis_llama_docred_unconstrained_20260514T194008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_docred_unconstrained_20260514T194008_result.json",
+    "occurrence": 1,
+    "bytes": 3331,
+    "sha256": "ca8accf97c4e27aae22309b6fc0d451f8d92e4be99b5140ca998f8cf4b68c9d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部指标已获得。汇总如下：\n\n```json\n{\n  \"experiment\": \"llama_docred_unconstrained\",\n  \"model\": \"Llama-3.1-8B-Instruct\",\n  \"dataset\": \"DocRED\",\n  \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\",\n  \"f1_method\": \"all_set\",\n\n  \"documents_checked\": 930,\n  \"parse_failures\": 68,\n  \"total_entities\": 16735,\n  \"total_triples\": 16437,\n\n  \"entity_type_violation_rate\": \"0.22%\",\n  \"relation_vocabulary_violation_rate\": \"16.03%\",\n  \"domain_range_violation_rate\": \"26.15%\",\n  \"cross_field_consistency_violation_rate\": \"0.12%\",\n\n  \"entity_precision\": \"61.22%\",\n  \"entity_recall\": \"51.02%\",\n  \"entity_f1\": \"55.65%\",\n\n  \"relation_precision\": \"5.22%\",\n  \"relation_recall\": \"7.00%\",\n  \"relation_f1\": \"5.98%\",\n\n  \"unrecognized_relations_total\": 2635,\n  \"top_unrecognized\": [\"located in (405)\", \"date of event (93)\", \"date of release (60)\", \"parent (53)\", \"release date (50)\"],\n  \"invalid_entity_types\": {\"<empty>\": 24, \"CONTINENT\": 5, \"SERIES\": 4, \"RIVER\": 1, \"ETHNIC_GROUP\": 1, \"EVENT\": 1}\n}\n```\n\n**与 Qwen3-8B DocRED unconstrained 对比：**\n\n| 指标 | Qwen3-8B | Llama-3.1-8B | 差异 |\n|------|----------|-------------|------|\n| parse_failures | 12 | 68 | Llama 解析失败率高 5.7× |\n| ET | 2.48% | 0.22% | Llama ET 更低 |\n| RV | 29.7% | 16.03% | Llama RV 更低，关系词汇更规范 |\n| DR | 18.5% | 26.15% | Llama DR 更高，domain-range 约束违反更严重 |\n| CF | 0.10% | 0.12% | 持平 |\n| E-F1 | 58.15% | 55.65% | Llama 略低 -2.5pp |\n| R-F1 | 7.74% | 5.98% | Llama 更低 -1.76pp |\n| entities | 20171 | 16735 | Llama 产出更少实体 |\n| triples | 17497 | 16437 | Llama 产出更少三元组 |\n\n**分析：** Llama-3.1-8B 在 DocRED unconstrained 上整体表现弱于 Qwen3-8B——R-F1 低 1.76pp，E-F1 低 2.5pp，且 parse failure 率高得多（68 vs 12）。不过 Llama 的 RV 违反率反而更低（16% vs 30%），说明它更倾向使用标准关系名称；但 DR 违反率更高（26% vs 18.5%），表明即使关系名正确，head/tail 类型约束匹配更差。这为 constrained decoding 提供了更大的潜在改进空间。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "llama_docred_unconstrained",
+              "model": "Llama-3.1-8B-Instruct",
+              "dataset": "DocRED",
+              "checker_version": "fixed_20260514_v2 (strip + alias + unique_et)",
+              "f1_method": "all_set",
+              "documents_checked": 930,
+              "parse_failures": 68,
+              "total_entities": 16735,
+              "total_triples": 16437,
+              "entity_type_violation_rate": "0.22%",
+              "relation_vocabulary_violation_rate": "16.03%",
+              "domain_range_violation_rate": "26.15%",
+              "cross_field_consistency_violation_rate": "0.12%",
+              "entity_precision": "61.22%",
+              "entity_recall": "51.02%",
+              "entity_f1": "55.65%",
+              "relation_precision": "5.22%",
+              "relation_recall": "7.00%",
+              "relation_f1": "5.98%",
+              "unrecognized_relations_total": 2635,
+              "top_unrecognized": [
+                "located in (405)",
+                "date of event (93)",
+                "date of release (60)",
+                "parent (53)",
+                "release date (50)"
+              ],
+              "invalid_entity_types": {
+                "<empty>": 24,
+                "CONTINENT": 5,
+                "SERIES": 4,
+                "RIVER": 1,
+                "ETHNIC_GROUP": 1,
+                "EVENT": 1
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-docred-unconstrained.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f22933de6c96f0d3fcc7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis r16 supplementary",
+  "task_key": "worker_analysis_r16_supplementary_20260521T031651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16_supplementary_20260521T031651.log",
+    "occurrence": 1,
+    "bytes": 834351,
+    "sha256": "a8854a426d8d7a1848170ca32f16ac630e9aadc69f40ec277c86f4ed0bc06c44"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "f22933de6c96f0d3fcc7-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "f22933de6c96f0d3fcc7-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r16-supplementary.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81b8432f18802eb82faf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r12 task1b fallback precision recall",
+  "task_key": "worker_analysis_r12_task1b_fallback_precision_recall_20260520T180440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_task1b_fallback_precision_recall_20260520T180440_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "6a90b044c56b22b8dd15d6518fbd13f4efa36fe403e04437aef3929d4e2bf028"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**DocRED** (1770 fallback / 15571 non-fallback triples):\n| | Count | Precision | Recall Contrib |\n|---|---|---|---|\n| Fallback | 1,770 | **0.00%** | 0.00% |\n| Non-fallback | 15,571 | **7.81%** | 9.87% |\n| Delta P | | **-7.81pp** | |\n\n**SciERC** (16 fallback / 1713 non-fallback triples):\n| | Count | Precision | Recall Contrib |\n|---|---|---|---|\n| Fallback | 16 | **0.00%** | 0.00% |\n| Non-fallback | 1,713 | **6.60%** | 11.60% |\n\n**诊断细节** (DocRED 1770 fallback triples):\n- 54.8% head 文本出现在 gold entities 中\n- 13.4% tail 文本出现在 gold entities 中\n- 仅 3.7% (65/1770) entity pair 匹配 gold，但这 65 个全部关系名错误\n\n**核心结论**：Fallback triples（type-pair 约束违反）precision 为 0%，recall 贡献也为 0%。它们是纯噪声。在 DocRED 上，移除 fallback triples 可以消除 ~10% 的 false positives 且不损失任何 recall。Type-pair 约束违反是提取失败的可靠指标。\n\n输出文件：\n- JSON: `westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_precision_recall.json`\n- 文本: `westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_pr_text.txt`\n- 脚本: `westd-16980:/root/schema_semantic_constrained_ie/scripts/analyze_fallback_precision_recall.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-task1b-fallback-precision-recall.md"
+}

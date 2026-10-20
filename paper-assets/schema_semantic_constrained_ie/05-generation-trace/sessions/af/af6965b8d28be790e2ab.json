@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af6965b8d28be790e2ab",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code restore cf fallback for docred",
+  "task_key": "worker_code_restore_cf_fallback_for_docred_20260515T160557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_restore_cf_fallback_for_docred_20260515T160557_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "c8cd4909238b391eb23fa9381da0a42be335ae720c4a15697f4006f9ba0c1b06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件交换完成：\n\n- `type_mask_processor.py` → CF fallback 版本（grep cf_fallback = **6 行**）\n- `type_mask_processor_clean.py` → clean 版本备份已保存\n- `__pycache__` 已清除\n- **Import OK**\n\n可以提交 DocRED CF fallback 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-restore-cf-fallback-for-docred.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2add6306feaa07b9d9e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write composability table update",
+  "task_key": "worker_write_composability_table_update_20260515T230519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_composability_table_update_20260515T230519_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "6031915bb0a301751e702ec549e9f2c97647728bf40cc64d0d00d3598783e683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。变更摘要：\n\n**section5_scierc_draft.tex:**\n- **Table 5** 扩展为 4 blocks (Qwen ZS/FT + Llama ZS/FT)，新增 Model/Setting 列，用 `\\multirow` + `\\cmidrule` 分组，`\\resizebox` 适配列宽\n- **段落文字** 分 Qwen/Llama 两段描述 FT 结果，新增跨模型一致性总结（DR ≤ 0.09%, R-F1 ±0.1pp），Claim 3 结论升级为 \"across two model families\"\n- **Secondary observations** 更新为双模型 CF 对比（Qwen 9.82→1.18pp, Llama 6.32→0.46pp）和双模型 ZS F1 中性验证（含 Llama -0.14pp 如实报告）\n- 所有数值附 exp_id 注释，保留 \"one dataset and one fine-tuning method (LoRA)\" 限定语\n\n**main.tex Limitations:**\n- Line 70 从单模型 \"DR=0%\" 更新为 \"both Qwen3-8B and Llama-3.1-8B (DR ≤ 0.09%, R-F1 loss <0.1pp)\"，CF 拆分为 Qwen 1.18% / Llama 0.46%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-composability-table-update.md"
+}

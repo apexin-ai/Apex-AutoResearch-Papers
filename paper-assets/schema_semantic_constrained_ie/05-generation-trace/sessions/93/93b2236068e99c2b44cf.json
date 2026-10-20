@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93b2236068e99c2b44cf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval w5 llama docred lora constrained eval",
+  "task_key": "worker_eval_w5_llama_docred_lora_constrained_eval_20260516T002156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w5_llama_docred_lora_constrained_eval_20260516T002156_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "2f2e8740979e31b08c648c8f9e9a4d8b7fe24397dd2dfac2133c6632e40e3be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已在运行中，无需重新提交。**\n\n状态：\n- **exp_id**: `w5_llama_docred_lora_constrained_eval`\n- **状态**: RUNNING（PID 316883 存活）\n- **提交时间**: 2026-05-16T00:22\n- **进度**: 4/998 samples（输出文件最后更新 May 16 08:23，215KB）\n- **GPU**: cuda:0, 32GB/97GB 占用, 94% 利用率\n- **命令**: `python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096`\n\n注意：进度较慢（~8h 处理 4 个文档），DocRED full_s1 的双层约束解码在长文档上开销较大。按当前速率估计总耗时约 2000h，可能需要排查是否有性能瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w5-llama-docred-lora-constrained-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbe837195e54661007f6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh westd16980 gpu check",
+  "task_key": "worker_ssh_westd16980_gpu_check_20260519T134503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd16980_gpu_check_20260519T134503_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "cc2c2f7d6e0c555cf288a8ab50ecce998fd5355303ed14065dda115ec40b0c14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2x NVIDIA RTX PRO 6000 Blackwell (各 96GB)，GPU 完全空闲（0% 利用率，0MiB 显存占用，无 GPU 进程）。\n\n活跃 Python 进程：几个 HTTP server（端口 18888/18080/38980）、JupyterLab、TensorBoard、一个 `download_wiki.py`——均非训练任务。有一个 tmux session `llama_beam`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd16980-gpu-check.md"
+}

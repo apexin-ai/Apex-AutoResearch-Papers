@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "db3bbedc01ae522e48a5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis s1 vs s2 statistical",
+  "task_key": "worker_analysis_s1-vs-s2-statistical_20260523T105844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s1-vs-s2-statistical_20260523T105844.log",
+    "occurrence": 1,
+    "bytes": 1040756,
+    "sha256": "58f58c6845a6231a52579d33cce879271e3cbe6232832544b8075fcef7410ab5"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 47,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "db3bbedc01ae522e48a5-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "db3bbedc01ae522e48a5-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "db3bbedc01ae522e48a5-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-s1-vs-s2-statistical.md"
+}

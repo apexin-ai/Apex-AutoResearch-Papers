@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd234eb4956cdf9ef07b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen rov violation analysis",
+  "task_key": "worker_code_qwen_rov_violation_analysis_20260518T025456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_rov_violation_analysis_20260518T025456_result.json",
+    "occurrence": 1,
+    "bytes": 4118,
+    "sha256": "3b69bfb15050f92926e78d896d3ee431223048bb9a3608cdce5d6709fc224134"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整报告。\n\n---\n\n## 18 个 RoV Violations 完整分析\n\n### 完整列表\n\n| # | doc_id | event_type | violated_role | arg_text |\n|---|--------|-----------|---------------|----------|\n| 1 | K0C041NHW | ArrestJailDetain.Unspecified | PlaceOfEmployment | juvenile |\n| 2 | K0C041NHW | ArrestJailDetain.Unspecified | PlaceOfEmployment | Hurricane Police Department |\n| 3 | K0C041NHW | Consume.Unspecified | PlaceOfEmployment | suspect |\n| 4 | K0C041NHW | Consume.Unspecified | PlaceOfEmployment | investigators |\n| 5 | K0C041NHW | InvestigateCrime.Unspecified | PlaceOfEmployment | ongoing |\n| 6 | scenario_en_kairos_47 | ArrestJailDetain.Unspecified | PlaceOfEmployment | An ISIS-inspired Utah teen |\n| 7 | scenario_en_kairos_47 | Contact.Unspecified | PlaceOfEmployment | concerned classmates |\n| 8 | scenario_en_kairos_47 | ArrestJailDetain.Unspecified | PlaceOfEmployment | the suspect |\n| 9 | scenario_en_kairos_47 | InvestigateCrime.Unspecified | PlaceOfEmployment | authorities |\n| 10 | scenario_en_kairos_47 | IdentifyCategorize.Unspecified | PlaceOfEmployment | bomb squad members |\n| 11 | scenario_en_kairos_47 | Research.Unspecified | PlaceOfEmployment | the male |\n| 12 | scenario_en_kairos_47 | DemonstrateWithViolence | PlaceOfEmployment | the teen |\n| 13 | scenario_en_kairos_47 | IdentifyCategorize.Unspecified | PlaceOfEmployment | evidence |\n| 14 | scenario_en_kairos_47 | SensoryObserve | PlaceOfEmployment | the department |\n| 15 | scenario_en_kairos_47 | Correspondence | PlaceOfEmployment | the police department |\n| 16 | wiki_ied_bombings_1_news_10 | ManufactureAssemble.Unspecified | ArtifactMoney | a substantial sum of money |\n| 17 | wiki_ied_bombings_1_news_10 | ManufactureAssemble.Unspecified | ArtifactMoney | the residual amount |\n| 18 | scenario_en_kairos_12 | ManufactureAssemble.Unspecified | ArtifactMoney | two people |\n\n### Pattern\n\n- **15/18** 是 `PlaceOfEmployment`（仅在 `StartPosition`/`EndPosition` 中合法）\n- **3/18** 是 `ArtifactMoney`（仅在 `Donation.Unspecified` 中合法）\n- 集中在 2-3 篇文档（K0C041NHW, scenario_en_kairos_47, wiki_ied_bombings_1_news_10）\n\n### 根因：Continuation mask 的 safety net bug（代码 bug，非 ontology 缺陷）\n\nOntology 中存在 3 个 **prefix collision**：\n- `Place` → `PlaceOfEmployment`\n- `Artifact` → `ArtifactMoney`  \n- `Damager` → `DamagerDestroyer`（存在漏洞但未被触发）\n\nBug 机制（以 `Place` → `PlaceOfEmployment` 为例）：\n\n1. `Place` 被 Qwen3 tokenizer 编码为单 token `[17371]`，`PlaceOfEmployment` 编码为 `[17371, 2124, 36032, 478]`\n2. 当 event type 是 `ArrestJailDetain.Unspecified`（valid roles = `{Crime, Detainee, Jailer, Place}`），第一个 token `17371` 被 prefix mask 正确放行（因为它能到达合法的 `Place`）\n3. 生成后 `partial = \"Place\"`，进入 continuation mask\n4. `_apply_role_continuation_mask` 中：\n   - `still_reachable = {\"Place\"}`（allowed roles 中以 \"Place\" 开头的）\n   - 检查所有 grammar-valid token：\n     - 闭合引号 `\"`：`\"Place\".startswith('Place\"')` → False → **BLOCK**\n     - `Of`：`\"Place\".startswith(\"PlaceOf\")` → False → **BLOCK**\n   - 结果：**所有 token 都被归类为 block，`tokens_allowed` 为空**\n   - Safety net `if not tokens_allowed: return logits` 触发 → **不做任何 masking**\n5. 模型自由生成 `Of` → `Employ` → `ment`，产生 `PlaceOfEmployment`\n\n### 修复建议\n\n在 `_apply_role_continuation_mask`（`type_mask_processor.py` ~L651）中，当 `partial` 精确匹配 `still_reachable` 中的某个 role 时，将闭合引号 token 显式加入 `tokens_allowed`：\n\n```python\n# After line: extended = partial + text\n# Add exact-match handling:\nexact_match_exists = partial in still_reachable\nif exact_match_exists and text == '\"':\n    tokens_allowed.append(tid)\n    continue\n```\n\n或更通用地：在分类 token 时，除了 `r.startswith(extended)` 检查外，也检查 `partial == r`（完整匹配时允许终止符）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-rov-violation-analysis.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "65dd80bc0860d0cec4d2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "audit inline numbers verification",
+  "task_key": "worker_audit_inline-numbers-verification_20260523T104307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_inline-numbers-verification_20260523T104307.log",
+    "occurrence": 1,
+    "bytes": 657835,
+    "sha256": "2b398f139e71aa083fbbbfe1aee34384dc756c86a61b08e84bb78fa6624eb08b"
+  },
+  "statistics": {
+    "messages": 72,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 24,
+      "tool_result": 24,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "65dd80bc0860d0cec4d2-part-0001.json",
+          "message_count": 70
+        },
+        {
+          "path": "65dd80bc0860d0cec4d2-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-inline-numbers-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e1696fa4a8878f52de",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops mistral scierc unconstrained done and constrained submit",
+  "task_key": "worker_ops_mistral_scierc_unconstrained_done_and_constrained_submit_20260516T052319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral_scierc_unconstrained_done_and_constrained_submit_20260516T052319_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "f0928b7ce325bfad9a86b0bf670323d86b0418e01ff3c2372e9305070a2e1bc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## w6_mistral_scierc_unconstrained — DONE\n\n| 指标 | 值 |\n|------|-----|\n| Total samples | 551 |\n| Parse fail rate | 0.00% |\n| **E_P / E_R / E_F1** | 0.2402 / 0.3156 / **0.2728** |\n| **R_P / R_R / R_F1** | 0.0295 / 0.0483 / **0.0366** |\n| ET_pct (非法实体类型) | 1.50% |\n| RV_pct (非法关系类型) | 0.00% |\n| DR_pct (悬空关系) | **56.94%** |\n\n关键发现：Mistral-7B unconstrained 的 R_F1 极低（0.037），超过一半的预测关系引用了不在实体列表中的实体（DR=57%），说明模型生成的关系和实体之间严重不一致。\n\n## w6_mistral_scierc_constrained — RUNNING\n\n- 服务器: westd-16980, GPU 0\n- PID: 334606, tmux session: `w6_mistral_scierc_constrained`\n- 已完成 11/551 样本，xgrammar 正常工作\n- 预计耗时 ~30-35 分钟（与 unconstrained 类似）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-scierc-unconstrained-done-and-constrained-submit.md"
+}

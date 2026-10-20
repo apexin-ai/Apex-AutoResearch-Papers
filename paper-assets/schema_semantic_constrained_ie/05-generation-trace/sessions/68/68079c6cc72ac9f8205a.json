@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "68079c6cc72ac9f8205a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents constrained dryrun 21461",
+  "task_key": "worker_code_wikievents_constrained_dryrun_21461_20260517T183326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_constrained_dryrun_21461_20260517T183326.log",
+    "occurrence": 1,
+    "bytes": 516519,
+    "sha256": "d1839d88370d09dd94e3c3ca09259c725cf8885530afef7d497bf4131db33f11"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "68079c6cc72ac9f8205a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68079c6cc72ac9f8205a-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-constrained-dryrun-21461.md"
+}

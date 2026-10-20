@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c67b8f2df38306c59da2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code collision group fix v2",
+  "task_key": "worker_code_collision_group_fix_v2_20260518T033316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collision_group_fix_v2_20260518T033316_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "f1ae2002655672277eaf079d08e8ae9452d37991c67f650119b5f7746a9c79f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-16980 确认 938 行一致。\n\n### 结果汇总\n\n**新增函数/方法（4 个）：**\n- `_build_entity_type_collision_groups()` (L412) — 检测共享首 token 的 entity type 碰撞组\n- `_build_entity_type_full_tokens()` (L419) — 预计算碰撞组成员的完整 token 序列\n- `_needs_entity_type_continuation()` (L433) — 判断 allowed_types 是否部分重叠碰撞组\n- `_apply_entity_type_continuation_mask()` (L442) — 在第 2+ token 步阻止通向非法 entity type 的 token\n\n**新增状态字段（3 个）：**\n- `GenerationState.in_entity_type_value` / `entity_type_value_start_len` / `entity_type_allowed_types`\n\n**`__call__` 修改点（5 处）：**\n- L596: entity type continuation 检查（与 role continuation 并列）\n- L630: ARGUMENT_ROLE 位置重置 entity type 状态\n- L647: ARGUMENT_ENTITY_TYPE 位置启用 continuation tracking\n- L656: else 分支重置\n- L660: exception handler 重置\n\n**修改后总行数：** 938（原 816，+122 行）\n**import 测试：** 通过\n**rsync：** westd-21461 → westd-16980 成功，行数一致\n**GPU dry-run：** 未执行（两卡均在使用：GPU0 63% / GPU1 87%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-collision-group-fix-v2.md"
+}

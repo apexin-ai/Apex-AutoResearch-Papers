@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41554039704094146812",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis ft ablation summary 20260516",
+  "task_key": "worker_analysis_ft_ablation_summary_20260516_20260516T105606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ft_ablation_summary_20260516_20260516T105606_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "81f4485dc536fb90b7c4756fc462e28ab9b1245c464213a35a0f21fb523bc5cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件写入 `artifacts/ft_ablation_analysis.md` 并注册为 `art_20260516_8464b5`。\n\n核心发现：\n- **Grammar 层在 FT 后完全冗余**（ET/RV 已被模型内化为零）\n- **Semantic 层提供唯一边际价值**，单独将 DR 降低 41-68%\n- **两层协作才能归零 DR**（semantic-only 仍有 0.6% 残余）\n- **F1 代价可忽略**（最大变动 -0.17pp R_F1）\n- DocRED 的 grammar_only / semantic_only 实验仍在跑，表格中标 TBD"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ft-ablation-summary-20260516.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "544a9778a1be0c11d507",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r14 taskD entity ordering",
+  "task_key": "worker_analysis_r14_taskD_entity_ordering_20260520T201720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_taskD_entity_ordering_20260520T201720_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "e5539002cb9e03cad2d12feb53079dc2cb7441d11c095d6407ac4ecc608499de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**Entity-before-relation ordering 保持率：所有设置下均为 100%**\n\n| Setting | Section Ordering | Triple Key Ordering | Total Triples |\n|---------|-----------------|--------------------:|---------------|\n| SciERC Qwen ZS | 100% (551/551) | 100% (1725/1725) | 1,725 |\n| SciERC Llama ZS | 100% (550/550) | 100% (1304/1304) | 1,304 |\n| DocRED Qwen ZS | 100%* (989/998) | 100% (17341/17341) | 17,341 |\n| DocRED Llama ZS | 100%* (995/998) | 100% (16368/16368) | 16,368 |\n| SciERC Qwen FT | 100% (551/551) | 100% (1128/1128) | 1,128 |\n| SciERC Llama FT | 100% (551/551) | 100% (1081/1081) | 1,081 |\n| DocRED Qwen FT | 100% (998/998) | 100% (15563/15563) | 15,563 |\n| DocRED Llama FT | 100% (998/998) | 100% (16074/16074) | 16,074 |\n\n\\*DocRED ZS 的 9/3 个非完整 case 是 max_tokens 截断（entities 已生成但 relations section 被截断），不是顺序违反。\n\n**原因**：EBNF grammar 定义 `root ::= { entities-section , relations-section }`，结构性保证了 entities 在 relations 之前。每个 relation triple 内部 key 顺序（head → tail → type → head_type → tail_type）也由 XGrammar JSON schema 强制。\n\n结果已保存到 `/root/autodl-tmp/schema_outputs/r14_entity_ordering.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-taskd-entity-ordering.md"
+}

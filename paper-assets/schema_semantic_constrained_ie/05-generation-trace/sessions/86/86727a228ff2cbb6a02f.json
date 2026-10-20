@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86727a228ff2cbb6a02f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper docred beam table fill",
+  "task_key": "worker_paper_docred_beam_table_fill_20260520T140058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_docred_beam_table_fill_20260520T140058_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "36c6418c0ed3ad0d78e6e44239187151a046368d510dc3415428fe6fb37dd54a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已更新。设计决策汇报：\n\n**表格 (`beam_docred_sweep_table.tex`)**\n- 双模型结构：Qwen 在上，Llama 在下，`\\midrule` 分隔；模型内部用 `\\cmidrule(l){2-8}` 分隔不同 k 值\n- 8 列：Model / k / Mode / E-F1 / R-F1 / DR% / CF% / PF%，无 Latency\n- 零违规行（Qwen k=8 con、Llama k=2 con、Llama k=8 con）的 DR 和 CF 均加粗\n- 非零违规行中单独为 0 的值不加粗（与 SciERC 表格的\"个别 DR=0 加粗\"做法不同，遵循任务指定的严格规则）\n- Sweet spot：Llama k=2 con 行 `\\cellcolor{blue!8}`\n- 缺失配置（Qwen k=4、Llama k=1/k=4）用 `---`（em-dash）\n\n**Pareto 脚本 (`plot_pareto_dual.py`)**\n- X 轴改为 Beam Width (k)，log₂ 刻度（1/2/4/8 等间距）\n- 气泡大小 = `(DR + CF + RV) × 200`（scatter area），仅非零违规点显示半透明气泡\n- 零违规点保留绿色环标记\n- DocRED 面板展示 Llama 数据（更完整、R-F1 更高）；SciERC 面板展示 Qwen（已有完整数据）\n- DocRED sweet spot 设为 Llama k=2 con（零违规 + 合理 R-F1）\n- Qwen DocRED 数据在注释中标注可扩展"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-docred-beam-table-fill.md"
+}

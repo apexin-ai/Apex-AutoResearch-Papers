@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e2d984a1d4a0963fcba",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check w6 mistral docred 21461",
+  "task_key": "worker_check_w6_mistral_docred_21461_20260516T054358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_w6_mistral_docred_21461_20260516T054358_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "57e39712916800580d08439dd47117aa382ff711eeb73930833d1859399728ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 实验 1: w6_mistral_docred_unconstrained (PID 7740, cuda:0)\n- **状态**: Running\n- **运行时间**: 13 分 41 秒\n- **已处理**: 80 / 998 samples (8.0%)\n- **速率**: ~5.8 samples/min\n- **预计剩余**: ~2.6 小时\n- **注**: `~/runs/` 下的日志是之前被 kill 的旧进程（EXIT_CODE=129），当前进程正常运行中，输出文件持续更新（最后修改 13:44）\n\n### 实验 2: w6_mistral_docred_constrained (PID 8347, cuda:1)\n- **状态**: Running\n- **运行时间**: 7 分 58 秒\n- **已处理**: 43 / 998 samples (4.3%)\n- **速率**: ~5.4 samples/min\n- **预计剩余**: ~3 小时\n- **注**: `~/runs/` 下无此实验日志文件，/tmp 日志正常输出中\n\n两个实验都在正常推理，预计约 3 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-w6-mistral-docred-21461.md"
+}

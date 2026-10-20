@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa03199859208b71e87f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code ace05 codebase survey",
+  "task_key": "worker_code_ace05_codebase_survey_20260517T141448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ace05_codebase_survey_20260517T141448_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "67c451801fb9b23b3ab5c6922c835674a5aa244ed95116cd9f8f6ffb5eb32edc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。报告已注册为 `art_20260517_da95d0`。\n\n**核心发现**：\n\n1. **架构清晰，扩展性好**：Grammar Layer (XGrammar CFG) 和 Semantic Layer (TypeConstraintProcessor) 分离设计，可以独立扩展\n\n2. **最大改动在 Semantic Layer** (`type_mask_processor.py`)：需要新增 3 个 FieldPosition（EVENT_TYPE, ARGUMENT_ROLE, ARGUMENT_ENTITY_TYPE）和 3 个对应的 mask 函数，以及 PositionDetector 的 regex 扩展\n\n3. **Grammar Layer 改动适中**：新增 `EventConstraint` dataclass 和 event JSON Schema 构建函数，XGrammar 编译流程完全复用\n\n4. **高复用率**：EntityRegistry、first-token masking、XGrammar 编译、beam search 适配、推理框架（resume/batch/timing）均可直接复用\n\n5. **Violation 类别映射**：RE 的 4 类 violation (ET/RV/DR/CF) 映射为 EE 的 5 类 (ET/EV/RoV/AC/CF)，新增 Role Vocabulary 检查\n\n6. **预估 ~18h，4 天完成**：Phase 1 ontology+grammar → Phase 2 semantic mask → Phase 3 推理流程 → Phase 4 评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ace05-codebase-survey.md"
+}

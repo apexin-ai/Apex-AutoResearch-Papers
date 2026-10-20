@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e92fbcb5cc8af02f5b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "viz fig1 paperbanana v3",
+  "task_key": "worker_viz_fig1-paperbanana-v3_20260521T124948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1-paperbanana-v3_20260521T124948_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "9ba18aa63b400073e4c22878fd23a533fee07ae7cb5781fc26f1f0a678634358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemini API 不通。** curl 返回退出码 28（连接超时），HTTP 状态码 000。`network_turbo` 代理已启用但无法连接 `generativelanguage.googleapis.com`。\n\n在 westd-21461 上无法访问 Gemini API，PaperBanana 依赖 Gemini 无法运行。请确认：\n1. 该服务器是否有外网访问 Google 服务的能力（AutoDL 代理通常不支持 Google API）\n2. 是否换一台能访问 Gemini 的服务器执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-paperbanana-v3.md"
+}

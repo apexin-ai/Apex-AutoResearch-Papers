@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e5bdef37215cbb5aaf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check all experiments status",
+  "task_key": "worker_check_all_experiments_status_20260521T124753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all_experiments_status_20260521T124753_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "1e57b53b0e1d2386b5f14bf129a25c81ce6416e61e60ae50f7c5e430de6cd0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-21461 ===\nGPU0: 空闲, VRAM 0/96 GB, util 0%\nGPU1: 使用中, VRAM 39/96 GB, util 90%\nr16_70b_docred_zs: 运行中 (PID 247853, 已运行 7h42m)\n  - 阶段: [1/2] unconstrained inference, ~864/998 样本\n  - 尚未进入 constrained (s1) 阶段\n  - unconstrained.jsonl: 863 行已写入\n  - 预计 unconstrained 剩余 ~134 样本后进入 s1 阶段\n\n=== westd-16980 ===\nGPU0: VRAM 46/96 GB, util 99%\nGPU1: VRAM 50/96 GB, util 100%\nr16_70b_lora_scierc (GPU0): step 183/663 (28%), ~14s/step, 已运行 44min, ETA ~1h56m\n  - 无 loss 输出（Trainer 尚未到 logging step）\n  - 无 checkpoint 保存\nr16_70b_lora_docred (GPU1): step 10/1146 (1%), ~32s/step, 已运行 6min, ETA ~10h\n  - 无 loss 输出\n  - 无 checkpoint 保存\n  - Num examples=3053, 3 epochs, grad_accum=8, total steps=1146\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-experiments-status.md"
+}

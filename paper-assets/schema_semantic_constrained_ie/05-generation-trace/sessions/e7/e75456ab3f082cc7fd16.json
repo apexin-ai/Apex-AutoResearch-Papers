@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e75456ab3f082cc7fd16",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research literature freshness check",
+  "task_key": "worker_research_literature_freshness_check_20260518T161900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_freshness_check_20260518T161900_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "59bd04b243edb0389909cff189d5ed58f7789fac80b241d05c7723b00685d924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/literature_freshness_check.md` 并注册。\n\n核心发现：\n\n**最重要遗漏：BoostCD/BoostIE (EMNLP 2025 Main)**。同样用 constrained decoding 做 closed IE，但通过 boosting 组合 constrained+unconstrained 两组输出。必须在 Related Work 中 address，差异化点是 OntoCoDec training-free 且区分格式层/语义层约束。\n\n**需 address 的质量风险：** Grammar-Aligned Decoding (NeurIPS 2024)、The Format Tax (2026)、The Hidden Cost of Structure (RANLP 2025) 均指出 constrained decoding 可能扭曲分布/降低质量。建议加消融实验证明 OntoCoDec 的 type constraints 不引入显著 quality degradation。\n\n**替代范式需讨论：** SLOT、G&O、DCCD 都主张 \"先自由生成再约束/格式化\" 优于 inline 约束，需要实验对比 inline type constraints vs. post-hoc filtering 在 IE 上的效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-freshness-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8bbe5d106825b6f878d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis 200doc power analysis",
+  "task_key": "worker_analysis_200doc-power-analysis_20260522T071008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_200doc-power-analysis_20260522T071008_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "999f8874d61e596eecc57e7345d630eb21f7e165fc33a183921090db6c8ef171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 核心数据\n\n**ZS 70B（998-doc）**：DR 15.0% → 0.0%，Cohen's h = 0.80（large），n=200 power = **100%**\n\n**FT 8B LoRA（998-doc，代理 70B LoRA）**：DR 0.50% → 0.21%，n=200 bootstrap：\n- R-F1 margin of error: **±3.3 points**\n- DR% margin of error: **±0.45pp**\n- **94.9%** 的 200-doc 子样本正确识别 DR 下降方向\n\n### 论文文字（可直接插入 Appendix）\n\n> To verify that the 200-document subset provides sufficient statistical power, we conducted a bootstrap analysis using the full 998-document 8B LoRA results as a reference population. Resampling 200 documents 5,000 times yields a relation F1 margin of error of ±3.3 points (95% CI) and a DR violation rate margin of error of ±0.45 percentage points—precise enough to support our conclusions. For zero-shot models, where DR violations are prevalent (15.0% unconstrained), a 200-document subset achieves 100% power to detect the constrained decoding effect (Cohen's h = 0.80); for fine-tuned models, where violations are already rare (<0.5%), 94.9% of 200-document subsamples correctly identify the direction of DR reduction, and the primary effect is established on the full 998-document evaluation.\n\n完整分析已保存到 `artifacts/power_analysis_200doc_dr.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-200doc-power-analysis.md"
+}

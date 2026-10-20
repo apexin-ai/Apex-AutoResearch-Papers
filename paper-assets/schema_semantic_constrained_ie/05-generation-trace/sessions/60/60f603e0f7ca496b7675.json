@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60f603e0f7ca496b7675",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research bib missing entries batch2",
+  "task_key": "worker_research_bib_missing_entries_batch2_20260514T185405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib_missing_entries_batch2_20260514T185405_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "fbda30e01debe8357c42d4aff7f02b42d28819138d3a53c1f01f0ea9ceb51f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10 个 bib 条目已全部写入 `relwork_new_entries.bib`。汇总：\n\n| # | cite key | 论文 | Venue | 状态 |\n|---|----------|------|-------|------|\n| 1 | `sainz2024gollie` | GoLLIE: Annotation Guidelines improve Zero-Shot IE | ICLR 2024 | ✅ |\n| 2 | `li2023codeie` | CodeIE: Large Code Generation Models are Better Few-Shot IE | ACL 2023 | ✅ |\n| 3 | `qi2024adelie` | ADELIE: Aligning LLMs on Information Extraction | EMNLP 2024 | ✅ |\n| 4 | `zaratiana2024enrico` | EnriCo: Enriched Representation and Globally Constrained Inference | arXiv 2024 (无会议发表) | ✅ |\n| 5 | `khorshidi2025odke` | ODKE+: Ontology-Guided Open-Domain KE with LLMs | arXiv 2025 (Apple Research) | ✅ |\n| 6 | `upadhyay2023openie` | Open IE with Entity Focused Constraints | EACL 2023 Findings | ✅ |\n| 7 | `regino2025kgcurator` | Can LLMs be KG Curators for Validating Triple Insertions? | GenAIK Workshop @ COLING 2025 | ✅ |\n| 8 | `tam2024letmespeak` | Let Me Speak Freely? Format Restrictions on LLM Performance | EMNLP 2024 Industry Track | ✅ |\n| 9 | `banerjee2025crane` | CRANE: Reasoning with Constrained LLM Generation | ICML 2025 | ✅ |\n| 10 | `schall2025hiddencost` | The Hidden Cost of Structure: Constrained Decoding | RANLP 2025 | ✅ |\n\n注意事项：\n- `zaratiana2024enrico` 只找到 arXiv 预印本，ACL Anthology 上无对应会议论文\n- `khorshidi2025odke` 实际论文标题是 \"ODKE+\"（带加号），cite key 中省略了\n- `banerjee2025crane` 不是 NER/IE 论文，而是关于 constrained decoding 保持推理能力的工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-missing-entries-batch2.md"
+}

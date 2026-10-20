@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "759bf705be2d8315e001",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code mistral unconstrained eval and constrained launch",
+  "task_key": "worker_code_mistral_unconstrained_eval_and_constrained_launch_20260517T203210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_unconstrained_eval_and_constrained_launch_20260517T203210_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "b3084df7989c8da14c3d165ccf010d66dc4c567259893b50ba100bd964d5441e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常，已处理 1/246 样本（constrained decoding 比 unconstrained 慢得多是正常的）。\n\n---\n\n## Mistral Unconstrained 全量结果\n- Parse Success: 194/246 (78.9%)\n- Violation Rates: ET=0.0%, EV=37.3%, RoV=63.9%, AC=0.0%, CF=0.0%\n- Trigger F1: 0.0241 (P=0.0219, R=0.0268)\n- Argument F1: 0.0000\n- Entity F1: 0.0000\n\n## Mistral Constrained 启动状态\n- tmux session: `mistral_constrained`\n- GPU: cuda:1 (15291 MiB 已占用)\n- 命令:\n  ```\n  cd /root/schema_semantic_constrained_ie && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python run_constrained_extraction.py --mode full_s1 --dataset wikievents --model_path /root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/ --constraints_path data/wikievents/ontology_constraints_wikievents.json --data_path data/wikievents/all.jsonl --output_path outputs/mistral_constrained_full.jsonl --resume 2>&1 | tee logs/mistral_constrained_full.log\n  ```\n- 初始进度: 1/246\n- 确认运行中: yes\n\n**备注:** `--skip_on_error` 参数不存在于 `run_constrained_extraction.py`，脚本内部已有 try/except 错误处理（unconstrained 运行时 52 条 parse failure 也正常完成了 246/246）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-unconstrained-eval-and-constrained-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cea38844680f55944b73",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh fix llama peft awq",
+  "task_key": "worker_ssh_fix_llama_peft_awq_20260518T220004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_llama_peft_awq_20260518T220004_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "eb7cc59e70118d1130b66fd7f1d6f1b1419df2008296f965c1c6e07314daa8f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "peft AWQ dispatch 错误已修复。脚本成功通过了 import、模型加载、LoRA 注入，进入了训练循环。当前 dry-run 失败在 OOM（GPU 0 上有其他进程占了 54GB），这是 GPU 内存问题，与原来的 peft bug 无关。\n\n**修复内容**：直接修改了 `/root/miniconda3/lib/python3.12/site-packages/peft/import_utils.py` 中 `is_gptqmodel_available()` 函数，将三处 `raise ImportError` 改为 `return False`。训练脚本本身无需改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-llama-peft-awq.md"
+}

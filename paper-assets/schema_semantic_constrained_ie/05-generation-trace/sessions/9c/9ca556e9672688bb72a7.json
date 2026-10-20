@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca556e9672688bb72a7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_15_1779016064.md",
+  "task_key": "loop_15_1779016064",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779016064.md",
+    "occurrence": 1,
+    "bytes": 3317,
+    "sha256": "201db27211ac2bd4f2ff12e6cbf4f63e6988090acf7d2822235c1ea746b8c00e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T21:03:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0/1, westd-21461 cuda:0/1（共 4 张，当前全部空闲）\n- 论文目标 venue: EMNLP 2026 ARR May 25 — 不可降级 venue，不可暗示\"时间不够\"\n- Group C fresh review 已提交（apr_20260516T210044_o9ce），等报告回来前**不要主动改论文**\n- Sampling robustness 实验数据已收集完毕，ROADMAP 中标 ✅ — 不要重跑\n- Residual DR 33.2% (Mistral DocRED) 如实报告，禁止 normalize\n\n### 2. 🖥️ 基础设施快照\n- 服务器 A：westd-16980，2× GPU（型号未记录），工作目录 /root/schema_semantic_constrained_ie\n- 服务器 B：westd-21461，2× GPU（cuda:0, cuda:1 空闲），工作目录同上\n- Python 环境：conda base（/root/miniconda3/bin/python），镜像 aml-train\n- 模型路径：服务器本地（具体路径需 SSH 探查，memory.md 未记录）\n- W&B：已配置（实验有 wandb 集成）\n- HF cache：/root/autodl-tmp/.hf_cache（如果是 AutoDL）或服务器默认\n- 活跃进程：**无**（所有实验已完成，无活跃 tmux/cron）\n- Cron：reconcile 返回 0 条，无活跃监控\n\n### 3. 📊 当前状态\n**刚完成**：全部 56 个实验（48 success / 1 negative / 3 killed / 4 misc），论文 Rebuttal v2 定稿通过 Reviewer 审查，Group C fresh review 已提交。\n\n**Registry 非 DONE 残留**（历史遗留，实际数据已收集完成）：\n- w9_qwen_scierc_zs_sampling: QUEUED (conclusion=success，数据已在论文中)\n- w9_qwen_docred_zs_sampling: QUEUED (conclusion=killed，被 r2 替代)\n- w9_qwen_docred_zs_sampling_r2: PREPARING (conclusion=killed)\n\n这 3 条是 sampling robustness 阶段的残留状态，实际数据已收集完毕并写入论文 appendix。可清理为 DONE 或保持原样。\n\n**等待中**：\n- Group C fresh review 报告（apr_20260516T210044_o9ce）→ 预计 May 17-18 返回\n\n### 4. 📋 待办（条件触发式）\n- Group C review 报告返回 → 逐条处理反馈，必要时补实验（4 GPU 空闲可立即响应）\n- Group C 反馈全部处理完 → 最终稿确认 → 提交 ARR（deadline May 25）\n- 如 Group C 提出补充实验要求 → spawn worker 立即执行（GPU 全部空闲）\n- 如 Group C 无 major issue → 进入 camera-ready 准备阶段\n\n### 5. 🎯 战略上下文\n**项目核心结论**：OntoCoDec 两层约束（grammar + semantic）消除 LLM-based IE 的 ontology violation。Grammar 层消除 ET/RV，Semantic 层是 DR 的唯一有效防御（降幅 41-72%）。两层功能互补不可替代。\n\n**决策链关键节点**：\n- D032: Post-hoc vs constrained framing — constrained 价值在\"生成时硬保证 0% violation\"而非 F1\n- D030: 第三模型 Mistral-7B-v0.3\n- D035: 论文 Round 5 收敛，进入最终定稿\n\n**易错点**：\n- Post-hoc baseline 在多数场景 R_F1 ≥ constrained — 不要用 F1 preservation 作为核心卖点，用\"generation-time guarantee + composability + extreme-case robustness\"\n- Mistral DocRED DR=33.2% 是预期行为（schema complexity），不是 bug\n- w9 系列 registry 状态看起来\"未完成\"，但实际数据已收集并写入论文 — 不要重跑\n- 论文目前处于\"等 Group C 报告\"阶段，禁止主动修改论文内容\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779016064.md"
+}

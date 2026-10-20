@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "570e242d41093787dc93",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d064 paper insertion",
+  "task_key": "worker_code_d064_paper_insertion_20260519T234935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d064_paper_insertion_20260519T234935_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "cab5f113a092330b5f04d3e07a30c858027da492c65df72d5b6536b302de9830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成。变更摘要：\n\n**已修改：**\n- `main.tex` — 添加 `\\TBD` 命令定义（L82 DocRED 引用已在先前更新）\n- `appendix_beam_search.tex` — 6 个表格数据行更新（Qwen/Llama beam 填入 998-doc 数据，greedy + Mistral 全部 \\TBD 占位）；Discussion 段落更新（Qwen/Llama DR=0%+CF 描述，Mistral DocRED 行 TBD）；Clopper-Pearson CI 替换为全量验证声明\n- `appendix_tcr.tex` — \"50-doc subset\" → \"998 docs\"\n- `section5_runtime.tex` — 已在先前更新\n\n**待填数据（\\TBD）：** Qwen greedy (~2.5h)、Llama greedy (~1h)、Mistral 998-doc（不在 d064 范围）\n\n变更日志已写入 `d064_paper_changes.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d064-paper-insertion.md"
+}

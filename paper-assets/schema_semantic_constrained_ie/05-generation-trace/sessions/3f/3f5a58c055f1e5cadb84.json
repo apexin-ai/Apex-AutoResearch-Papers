@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f5a58c055f1e5cadb84",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check p8c recovery and progress",
+  "task_key": "worker_check_p8c_recovery_and_progress_20260518T184108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_p8c_recovery_and_progress_20260518T184108_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "9b1946926ad25ea1eb78cbf26c94dba57c77fc9aec2dffb87d0c1a1c1eaa7245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n```\nP8c 状态：unconstrained 551/551, constrained 551/551 | 已完成 ✓\n  Overhead: mean +10.00%, median +11.42%\n  报告已生成: p8c_latency_report.json\n  操作：无需重跑\n\n70B unconstrained：665/998 (~66.6%)\n70B constrained：661/998 (~66.2%)\n  westd-16980 双卡运行中，GPU 0/1 均 ~90% 利用率\n\nw9 r2：358/892 (~40.1%)\n  westd-21461 cuda:1 运行中，83% 利用率\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-p8c-recovery-and-progress.md"
+}

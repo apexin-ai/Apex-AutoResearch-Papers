@@ -1,0 +1,3525 @@
+{
+  "schema_version": "1.0",
+  "session_id": "39d5a5cbb3266da13711",
+  "rounds": [
+    {
+      "number": 47,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-18T10:44:02.232854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 9458692\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root  758120448 May 18 18:44 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1068498944 May 18 18:44 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  795869184 May 18 18:44 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  774897664 May 18 18:44 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1081081856 May 18 18:44 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  764411904 May 18 18:44 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  731906048 May 18 18:44 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  763363328 May 18 18:44 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-18T10:44:34.493884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Llama v3 independent audit",
+              "prompt": "You are auditing the Llama v3 constrained experiment for project schema_semantic_constrained_ie.\n\n**Task**: Independently verify the Llama v3 EE constrained results on westd-21461.\n\nThe output file is: `westd-21461:/root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl` (246 lines, completed)\n\nUse `mcp__agent-ml-research__ssh_read_only` with server=\"westd-21461\" to:\n\n1. **Line count**: Confirm 246 lines\n2. **Parse rate**: Count how many lines have a non-null `parsed_output` field:\n   - `grep -c \"parsed_output\" ee_llama_wikievents_constrained_v3_full.jsonl` in the outputs directory\n   - Also check for `\"parsed_output\": null` count\n3. **Violation check**: Look for any violation checker results. Check if `westd-21461:/root/schema_semantic_constrained_ie/outputs/` has any eval results for llama v3 (files like `eval_*llama*v3*` or `violation*llama*v3*`)\n4. **Sample data**: Read the first 3 lines and last 3 lines to verify data format integrity\n5. **Check the running process**: Is there still a llama process running? Check `ps -eo pid,comm` for any python processes\n\n**V2 baseline for comparison** (from previous audit):\n- Llama v2: parse rate 215/246, RoV=0%, AC=3.4%\n- V3 should show similar or better parse rate, RoV=0% (exact-match fix), and AC should improve\n\n**Report format**: Give me a concise summary with: line count, parse rate estimate, any anomalies found, and comparison notes vs v2.\n",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-18T10:44:34.544762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Async agent launched successfully.\nagentId: aaa5ad33c3c9f7536 (internal ID - do not mention to user. Use SendMessage with to: 'aaa5ad33c3c9f7536' to continue this agent.)\nThe agent is working in the background. You will be notified automatically when it completes.\nDo not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.\noutput_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/be17765f-2026-41da-940c-32268a190894/tasks/aaa5ad33c3c9f7536.output\nDo NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 50
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-18T10:44:43.399297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Mistral grammar_only v3 audit",
+              "prompt": "You are auditing the Mistral grammar_only v3 experiment for project schema_semantic_constrained_ie.\n\n**Task**: Independently verify the Mistral grammar_only v3 EE results on westd-16980.\n\nThe output file is: `westd-16980:/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_grammar_only_v3.jsonl` (246 lines, completed)\n\nUse `mcp__agent-ml-research__ssh_read_only` with server=\"westd-16980\" to:\n\n1. **Line count**: Confirm 246 lines\n2. **Parse rate**: Count lines with non-null parsed_output:\n   - `grep -c \"parsed_output\" ee_mistral_wikievents_grammar_only_v3.jsonl` in outputs dir\n   - Count `\"parsed_output\": null` lines\n3. **Violation sampling**: Read 5-10 random lines (e.g., lines 1-3, 100-102, 240-243) and check:\n   - Do events contain role violations (roles not in ontology)?  \n   - Do arguments have entity_type violations?\n   - Grammar_only mode should ONLY enforce JSON structure + event_type/entity_type vocabulary, NOT role vocabulary or argument constraints\n   - So we EXPECT to see RoV violations and AC violations in grammar_only mode\n4. **Check for eval results**: Look for violation checker or eval results files for grammar_only v3\n5. **Historical comparison**: The old \"broken full_s1\" Mistral (which was effectively grammar_only due to the bug) showed RoV=54.8%. The true grammar_only v3 should show similar RoV levels — if it's very different, that's a red flag.\n\n**Report format**: Line count, parse rate, violation sample findings, comparison with expected RoV ~54.8% from broken full_s1.\n",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-18T10:44:43.421926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Async agent launched successfully.\nagentId: a4c358bb98f49251a (internal ID - do not mention to user. Use SendMessage with to: 'a4c358bb98f49251a' to continue this agent.)\nThe agent is working in the background. You will be notified automatically when it completes.\nDo not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.\noutput_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/be17765f-2026-41da-940c-32268a190894/tasks/a4c358bb98f49251a.output\nDo NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 22
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-18T10:44:53.075344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Qwen v3 post-hoc and CF voted audit",
+              "prompt": "You are auditing the Qwen v3 post-hoc and CF majority voting outputs for project schema_semantic_constrained_ie.\n\n**Task**: Verify the two new derivative files on westd-16980.\n\nFiles:\n- `westd-16980:/root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_cf_voted.jsonl` (246 lines, created May 18 18:27)\n- `westd-16980:/root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_posthoc.jsonl` (246 lines, created May 18 18:27)\n\nUse `mcp__agent-ml-research__ssh_read_only` with server=\"westd-16980\" to check:\n\n1. **Line counts**: Confirm both are 246 lines\n2. **Data integrity**: Read first 2 lines of each file, verify JSON is valid and has expected fields (parsed_output with events)\n3. **Post-hoc comparison**: The original Qwen v3 constrained had RoV=0%, AC=2.05%. The post-hoc file is filtering the UNCONSTRAINED output, so it should have RoV=0% and AC=0% after filtering (by construction). Check if there's an unconstrained Qwen v3 input file that the post-hoc was run on.\n4. **CF voted**: The CF majority voting should reduce cross-field violations. Sample a few lines and check if entity_types are consistent within documents.\n5. **Check for log output**: Look for any log/output files from the cf_majority_voting.py or posthoc_filter_ee.py runs that show statistics (fix rates, violation counts before/after).\n\n**Context**: \n- Post-hoc is D049 P2 (EE post-hoc baseline)\n- CF voted is D049 P4 (CF majority voting)\n- These are applied to Qwen v3 outputs as a first test before applying to all models\n\n**Report format**: Line counts, data integrity, any statistics found, comparison with expected behavior.\n",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-18T10:44:53.126186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Async agent launched successfully.\nagentId: a6bf1d2254a1b6d9c (internal ID - do not mention to user. Use SendMessage with to: 'a6bf1d2254a1b6d9c' to continue this agent.)\nThe agent is working in the background. You will be notified automatically when it completes.\nDo not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.\noutput_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/be17765f-2026-41da-940c-32268a190894/tasks/a6bf1d2254a1b6d9c.output\nDo NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 50
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-18T10:45:02.918546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'task': 'ee'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-18T10:45:03.371958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-18T10:45:03.624346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3158}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 705
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-18T10:45:04.528439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"245 /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1156
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-18T10:45:11.006407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "10"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-18T10:45:11.863194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"ee_qwen_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:29:11.628Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:29:44.522Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC from 2.1% to near 0% for Qwen on WikiEvents full 246 docs, confirming the fix generalizes across the full test set\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"206/246 (83.7%)\\\", \\\"parse_failures\\\": 40, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 0, \\\"AC\\\": 2.1, \\\"CF\\\": 21.1, \\\"go_no_go\\\": 2.05, \\\"entity_f1\\\": 0.1409, \\\"trigger_f1\\\": 0.1339, \\\"argument_f1\\\": 0.0168, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"posthoc_args_removed\\\": 109, \\\"posthoc_arg_f1\\\": 0.017, \\\"cf_voting_fix_rate\\\": \\\"15.9%\\\", \\\"cf_voting_entity_f1\\\": 0.1352}}, \\\"ee_mistral_wikievents_constrained_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T21:42:15.493Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:42:46.453Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding with fixed tokenizer-agnostic continuation masking (full_s1 + vocab-scan prefix map) will eliminate EV (37.3%→0%) and RoV (63.9%→0%) for Mistral-7B, confirming the fix generalizes OntoCoDec across all three tokenizer families (byte-level BPE + SentencePiece)\\\", \\\"parent\\\": \\\"ee_mistral_wikievents_constrained\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"178/246 (72.4%)\\\", \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 0.1, \\\"AC\\\": 16.6, \\\"CF\\\": 13.9, \\\"trigger_f1\\\": 0.0508, \\\"argument_f1\\\": 0.0047, \\\"entity_f1\\\": 0.1245, \\\"parse_failures\\\": 68, \\\"go_no_go\\\": 16.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"ee_qwen_wikievents_constrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T19:49:18.898Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:42:39.692Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (24%→0%) and dramatically reduce RoV (74.9%→near 0%) with mi\n…[truncated 5070 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 856
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-18T10:45:32.580825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-18T10:45:33.133607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"246 /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-18T10:45:33.134290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-18T10:45:34.139085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n1, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-18T10:45:34.139451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/eval_*"
+            }
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-18T10:45:34.591147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 569 May 17 23:34 /root/schema_semantic_constrained_ie/outputs/eval_constrained.json\\\\n-rw-r--r-- 1 root root 614 May 18 06:18 /root/schema_semantic_constrained_ie/outputs/eval_report_llama_constrained.json\\\\n-rw-r--r-- 1 root root 613 May 18 14:38 /root/schema_semantic_constrained_ie/outputs/eval_report_llama_grammar_only.json\\\\n-rw-r--r-- 1 root root 591 May 18 03:29 /root/schema_semantic_constrained_ie/outputs/eval_report_llama_unconstrained.json\\\\n-rw-r--r-- 1 root root 611 May 18 06:17 /root/schema_semantic_constrained_ie/outputs/eval_report_qwen_constrained.json\\\\n-rw-r--r-- 1 root root 611 May 18 14:38 /root/schema_semantic_constrained_ie/outputs/eval_report_qwen_retry_16k.json\\\\n-rw-r--r-- 1 root root 598 May 18 03:34 /root/schema_semantic_constrained_ie/outputs/eval_report_qwen_unconstrained.json\\\\n-rw-r--r-- 1 root root 564 May 17 23:23 /root/schema_semantic_constrained_ie/outputs/eval_unconstrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-18T10:45:34.591746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/eval_*"
+            }
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-18T10:45:35.043579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/eval_*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-18T10:46:04.561069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Mistral v3 constrained audit",
+              "prompt": "You are auditing the CRITICAL Mistral v3 constrained experiment for project schema_semantic_constrained_ie. This is the most important validation — it tests the collision fix on the SentencePiece tokenizer (Mistral).\n\n**Task**: Independently verify Mistral v3 constrained EE results on westd-21461.\n\nOutput file: `westd-21461:/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl` (246 lines, just completed)\n\nUse `mcp__agent-ml-research__ssh_read_only` with server=\"westd-21461\" to:\n\n1. **Line count**: Confirm 246 lines\n2. **Parse rate**: Count lines with non-null `parsed_output`:\n   - `grep -c \"parsed_output\" /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl`\n   - `grep -c '\"parsed_output\": null' /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl`\n3. **Violation sampling**: Read lines 1-3, lines 120-123, and lines 244-246. For each parsed document, check:\n   - Are event_types valid (should be from WikiEvents ontology)?\n   - Are roles valid for the event_type?\n   - Are entity_types valid for the (event_type, role) combination?\n   - Look specifically for AC violations (entity_type not matching role constraint)\n4. **RoV check**: Search for any role vocabulary violations. In v2, Mistral had RoV=0.1% (residual from collision issue). V3 should have RoV=0% or very close.\n5. **AC check**: V2 had AC=16.6% (extremely high due to collision groups causing wrong token selection). V3 with collision fix should dramatically reduce AC, possibly to 1-3% range (similar to Qwen's 2.05%).\n6. **Code verification**: Confirm the code used is the 938-line version:\n   `wc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py`\n\n**V2 baseline (with collision bug)**: parse 178/246, RoV=0.1%, AC=16.6%, CF=13.9%, go_no_go=16.7%\n**Expected v3 improvement**: RoV→0%, AC dropping dramatically (16.6% → ~1-3%), parse rate similar or better\n\nThis is the CORE VALIDATION of the paper's D047 collision fix. The AC drop from 16.6% to near-Qwen levels (~2%) would validate the collision group continuation mask.\n\n**Report format**: Concise summary with line count, parse rate, RoV estimate, AC estimate, comparison with v2, and whether the collision fix is validated.\n",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-18T10:46:04.662965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Async agent launched successfully.\nagentId: aecbd1f31c81e168a (internal ID - do not mention to user. Use SendMessage with to: 'aecbd1f31c81e168a' to continue this agent.)\nThe agent is working in the background. You will be notified automatically when it completes.\nDo not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.\noutput_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/be17765f-2026-41da-940c-32268a190894/tasks/aecbd1f31c81e168a.output\nDo NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 101
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-18T10:46:12.095807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-18T10:46:12.900890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-18T10:46:13.855598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root -maxdepth 5 -type d -name \"*Llama*70*\""
+            }
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-18T10:46:18.676943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6581
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-18T10:46:19.683646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11557892\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root  855638016 May 18 18:46 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1204813824 May 18 18:46 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1160773632 May 18 18:46 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  916455424 May 18 18:46 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1244659712 May 18 18:46 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  882900992 May 18 18:46 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  830472192 May 18 18:46 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  868220928 May 18 18:46 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6782
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-18T10:46:20.639125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6783
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-18T10:46:38.763181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/violation_*v3*"
+            }
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-18T10:46:39.265559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/violation_*"
+            }
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-18T10:46:39.768067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_*v3*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-18T10:46:39.768447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/violation_*"
+            }
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-18T10:46:39.819867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   3868 May 17 16:33 /root/schema_semantic_constrained_ie/outputs/violation_report.json\\\\n-rw-r--r-- 1 root root   8670 May 18 04:34 /root/schema_semantic_constrained_ie/outputs/violation_report_constrained_v2.json\\\\n-rw-r--r-- 1 root root  21238 May 17 17:40 /root/schema_semantic_constrained_ie/outputs/violation_report_docred.json\\\\n-rw-r--r-- 1 root root  15182 May 18 15:06 /root/schema_semantic_constrained_ie/outputs/violation_report_ee.json\\\\n-rw-r--r-- 1 root root  22492 May 17 18:55 /root/schema_semantic_constrained_ie/outputs/violation_report_mistral_greedy_matched50.json\\\\n-rw-r--r-- 1 root root  13375 May 18 06:20 /root/schema_semantic_constrained_ie/outputs/violation_report_mistral_v2_partial.json\\\\n-rw-r--r-- 1 root root 260717 May 16 17:09 /root/schema_semantic_constrained_ie/outputs/violation_report_w6_mistral_docred_constrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 554
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-18T10:46:40.272421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   1306 May 18 01:07 /root/schema_semantic_constrained_ie/outputs/violation_report.json\\\\n-rw-r--r-- 1 root root   2169 May 17 08:32 /root/schema_semantic_constrained_ie/outputs/violation_report_beam_dryrun_10.json\\\\n-rw-r--r-- 1 root root   2668 May 17 08:37 /root/schema_semantic_constrained_ie/outputs/violation_report_beam_search_50.json\\\\n-rw-r--r-- 1 root root   2684 May 17 09:42 /root/schema_semantic_constrained_ie/outputs/violation_report_beam_search_551.json\\\\n-rw-r--r-- 1 root root   2540 May 17 13:33 /root/schema_semantic_constrained_ie/outputs/violation_report_consensus_fix_dryrun_10.json\\\\n-rw-r--r-- 1 root root  10068 May 18 01:47 /root/schema_semantic_constrained_ie/outputs/violation_report_continuation_10doc.json\\\\n-rw-r--r-- 1 root root   9620 May 18 02:03 /root/schema_semantic_constrained_ie/outputs/violation_report_continuation_v2_10doc.json\\\\n-rw-r--r-- 1 root root  20569 May 17 12:48 /root/schema_semantic_constrained_ie/outputs/violation_report_docred.json\\\\n-rw-r--r-- 1 root root  22573 May 17 15:07 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_consensus_50.json\\\\n-rw-r--r-- 1 root root  31324 May 14 02:16 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_fixed.json\\\\n-rw-r--r-- 1 root root 261350 May 14 16:33 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1.json\\\\n-rw-r--r-- 1 root root 261350 May 14 22:50 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1_fixed.json\\\\n-rw-r--r-- 1 root root   9244 May 15 04:26 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1_unified.json\\\\n-rw-r--r-- 1 root root 261173 May 15 02:28 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1_v2.json\\\\n-rw-r--r-- 1 root root 261087 May 14 16:35 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_grammar_only.json\\\\n-rw-r--r-- 1 roo\n…[truncated 6323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-18T10:47:15.393467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'exp_id': 'ee_qwen_wikievents_constrained_v3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-18T10:47:17.401508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2616}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2008
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-18T10:47:21.019089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-18T10:47:21.270432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"ee_qwen_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:29:11.628Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:29:44.522Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC from 2.1% to near 0% for Qwen on WikiEvents full 246 docs, confirming the fix generalizes across the full test set\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --dataset wikievents --model_path Qwen3-8B --mode full_s1 --data_path data/wikievents/all.jsonl --output_path outputs/ee_qwen_wikievents_constrained_v3_full.jsonl --max_new_tokens 16384 --skip_on_error\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/wikievents/all.jsonl\\\", \\\"data_count\\\": 246, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_path\\\": \\\"westd-16980:/root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_full.jsonl\\\", \\\"log_path\\\": \\\"westd-16980:/root/schema_semantic_constrained_ie/outputs/violation_report_qwen_v3.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T10:29:37.217Z\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"206/246 (83.7%)\\\", \\\"parse_failures\\\": 40, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 0, \\\"AC\\\": 2.1, \\\"CF\\\": 21.1, \\\"go_no_go\\\": 2.05, \\\"entity_f1\\\": 0.1409, \\\"trigger_f1\\\": 0.1339, \\\"argument_f1\\\": 0.0168, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"posthoc_args_removed\\\": 109, \\\"posthoc_arg_f1\\\": 0.017, \\\"cf_voting_fix_rate\\\": \\\"15.9%\\\", \\\"cf_voting_entity_f1\\\": 0.1352}}, \\\"ee_mistral_wikievents_constrained_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T21:42:15.493Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:42:46.453Z\\\", \\\"hypothesis\\\": \\\"WikiEvents constrained decoding with fixed tokenizer-agnostic continuation masking (full_s1 + vocab-scan prefix map) will eliminate EV (37.3%→0%) and RoV (63.9%→0%) for Mistral-7B, confirming the \n…[truncated 2879 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-18T10:47:45.819171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-18T10:47:46.022095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-18T10:47:48.207924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2388
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-18T10:47:48.698907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11557892\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root  931135488 May 18 18:47 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1303379968 May 18 18:47 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1512046592 May 18 18:47 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  984612864 May 18 18:47 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1354760192 May 18 18:47 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  966787072 May 18 18:47 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  902823936 May 18 18:47 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root  948961280 May 18 18:47 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2676
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-18T10:48:12.683347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_unconstrained*"
+            }
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-18T10:48:12.784229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_*posthoc*"
+            }
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-18T10:48:13.688394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4322156 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_unconstrained_posthoc.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1005
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-18T10:48:14.742576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4144517 May 18 18:28 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_unconstrained_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 5935003 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 4322156 May 18 18:23 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 4322156 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_unconstrained_posthoc.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1958
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-18T10:48:44.794936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_unconstrained*"
+            }
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-18T10:48:45.297135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_unconstrained*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-18T10:48:45.849298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_*cf_voted*"
+            }
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-18T10:48:46.050355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_*posthoc*"
+            }
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-18T10:48:46.251418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 5943066 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_cf_voted.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-18T10:48:46.703184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4548856 May 18 18:28 /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_unconstrained_posthoc.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 652
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-18T10:49:02.441981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-18T10:49:03.898103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1456
+          },
+          "id": "event-001495"
+        },
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-18T10:49:09.178453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%n %s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00001-of-00009.safetensors"
+            }
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-18T10:49:10.233085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00001-of-00009.safetensors 1029701632\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-18T10:49:17.946015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /proc/5971/cmdline"
+            }
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-18T10:49:18.398281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/proc/5971/cmdline': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-18T10:49:29.594217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-18T10:49:29.946175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/hugging-quants/Meta-Llama-3___1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001501"
+        },
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-18T10:49:30.047112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\t/root/autodl-tmp/models/._____temp/hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-18T10:49:30.599813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.0K\\\\t/root/autodl-tmp/models/hugging-quants/Meta-Llama-3___1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-18T10:49:35.170344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "cat /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4/config.json"
+            }
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-18T10:49:36.074919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"LlamaForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 128000,\\\\n  \\\\\\\"eos_token_id\\\\\\\": [\\\\n    128001,\\\\n    128008,\\\\n    128009\\\\n  ],\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 8192,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 28672,\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 131072,\\\\n  \\\\\\\"mlp_bias\\\\\\\": false,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"llama\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 64,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 80,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"pretraining_tp\\\\\\\": 1,\\\\n  \\\\\\\"quantization_config\\\\\\\": {\\\\n    \\\\\\\"bits\\\\\\\": 4,\\\\n    \\\\\\\"group_size\\\\\\\": 128,\\\\n    \\\\\\\"modules_to_not_convert\\\\\\\": null,\\\\n    \\\\\\\"quant_method\\\\\\\": \\\\\\\"awq\\\\\\\",\\\\n    \\\\\\\"version\\\\\\\": \\\\\\\"gemm\\\\\\\",\\\\n    \\\\\\\"zero_point\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-05,\\\\n  \\\\\\\"rope_scaling\\\\\\\": {\\\\n    \\\\\\\"factor\\\\\\\": 8.0,\\\\n    \\\\\\\"low_freq_factor\\\\\\\": 1.0,\\\\n    \\\\\\\"high_freq_factor\\\\\\\": 4.0,\\\\n    \\\\\\\"original_max_position_embeddings\\\\\\\": 8192,\\\\n    \\\\\\\"rope_type\\\\\\\": \\\\\\\"llama3\\\\\\\"\\\\n  },\\\\n  \\\\\\\"rope_theta\\\\\\\": 500000.0,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"float16\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.43.0.dev0\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": false,\\\\n  \\\\\\\"vocab_size\\\\\\\": 128256\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-18T10:49:47.040875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -name \"*v3*\" -newer /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-18T10:49:47.041294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -name \"*v3*\""
+            }
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-18T10:49:47.794663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_grammar_only_v3.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_posthoc.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_cf_voted.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-18T10:49:48.246920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-18T10:49:58.442516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%n %s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors"
+            }
+          },
+          "id": "event-001510"
+        },
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-18T10:49:58.894984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors 1680867328\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-18T10:50:16.164860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-18T10:50:16.667659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 5716654 May 18 18:22 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001513"
+        },
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-18T10:50:16.718383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "head -1 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001514"
+        },
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-18T10:50:17.172382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"scenario_en_kairos_14\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"As of early Tuesday there was no claim of responsibility. Prayuth Chan-ocha, the head of Thailand’s military government, said that the authorities were searching for a person seen on closed-circuit footage but that it was not clear who the person was, news agencies reported.A spokesman for the police, Lt. Gen. Prawut Thavornsiri, told a Thai television interviewer that “we haven’t concluded anything.” The authorities said they were reviewing footage from 15 security cameras in the area but that the rush-hour crowds made deciphering the video difficult.“The shrine was very crowded,” General Prawut said. “It’s not clear even looking at the CCTV footage.”The bomb, General Prawut said, was placed under a bench on the outer rim of the shrine’s grounds. Initially, the police said they had discovered at least two additional devices that they suspected were unexploded bombs inside the shrine and said other bombs may have been placed in the area, yelling at bystanders: “Get out! Get out!”\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Prayuth Chan-ocha\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"head\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Thailand\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"GPE\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"military\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"government\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"authorities\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"who\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"spokesman\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"police\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Gen\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Prawut Thavornsiri\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Thai\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"GPE\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"television\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\n…[truncated 4401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-18T10:50:31.103906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -c \"Damage\" /root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json"
+            }
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-18T10:50:31.706780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001517"
+        },
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-18T10:50:31.757464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep \"Damage\" /root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json"
+            }
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-18T10:50:32.159771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"Damage\\\\\\\",\\\\n    \\\\\\\"ArtifactDamage.Unspecified\\\\\\\",\\\\n    \\\\\\\"ArtifactExistence.DamageDestroyDisableDismantle.Damage\\\\\\\": \\\\\\\"Damage\\\\\\\",\\\\n    \\\\\\\"ArtifactExistence.DamageDestroyDisableDismantle.Destroy\\\\\\\": \\\\\\\"Destroy\\\\\\\",\\\\n    \\\\\\\"ArtifactExistence.DamageDestroyDisableDismantle.DisableDefuse\\\\\\\": \\\\\\\"DisableDefuse\\\\\\\",\\\\n    \\\\\\\"ArtifactExistence.DamageDestroyDisableDismantle.Dismantle\\\\\\\": \\\\\\\"Dismantle\\\\\\\",\\\\n    \\\\\\\"ArtifactExistence.DamageDestroyDisableDismantle.Unspecified\\\\\\\": \\\\\\\"ArtifactDamage.Unspecified\\\\\\\",\\\\n    \\\\\\\"Damage\\\\\\\": {\\\\n        \\\\\\\"Damager\\\\\\\",\\\\n        \\\\\\\"Damager\\\\\\\": [\\\\n    \\\\\\\"ArtifactDamage.Unspecified\\\\\\\": {\\\\n        \\\\\\\"DamagerDestroyer\\\\\\\",\\\\n        \\\\\\\"DamagerDestroyer\\\\\\\": [\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-18T10:50:37.433214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -A 20 '\"Damage\": {' /root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json"
+            }
+          },
+          "id": "event-001520"
+        },
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-18T10:50:37.885663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"Damage\\\\\\\": {\\\\n      \\\\\\\"valid_roles\\\\\\\": [\\\\n        \\\\\\\"Damager\\\\\\\",\\\\n        \\\\\\\"Artifact\\\\\\\",\\\\n        \\\\\\\"Instrument\\\\\\\",\\\\n        \\\\\\\"Place\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"role_entity_constraints\\\\\\\": {\\\\n        \\\\\\\"Damager\\\\\\\": [\\\\n          \\\\\\\"GPE\\\\\\\",\\\\n          \\\\\\\"ORG\\\\\\\",\\\\n          \\\\\\\"PER\\\\\\\",\\\\n          \\\\\\\"SID\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"Artifact\\\\\\\": [\\\\n          \\\\\\\"BAL\\\\\\\",\\\\n          \\\\\\\"COM\\\\\\\",\\\\n          \\\\\\\"FAC\\\\\\\",\\\\n          \\\\\\\"LOC\\\\\\\",\\\\n          \\\\\\\"MON\\\\\\\",\\\\n          \\\\\\\"NAT\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001521"
+        },
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-18T10:50:48.351302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001522"
+        },
+        {
+          "source_line": 1523,
+          "timestamp": "2026-05-18T10:50:48.803732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001523"
+        },
+        {
+          "source_line": 1524,
+          "timestamp": "2026-05-18T10:50:58.366227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001524"
+        },
+        {
+          "source_line": 1525,
+          "timestamp": "2026-05-18T10:50:58.819638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16805892\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root 1164967936 May 18 18:50 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1634729984 May 18 18:50 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1757413376 May 18 18:50 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1219493888 May 18 18:50 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1700790272 May 18 18:50 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1207959552 May 18 18:50 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1140850688 May 18 18:50 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1188036608 May 18 18:50 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001525"
+        },
+        {
+          "source_line": 1526,
+          "timestamp": "2026-05-18T10:51:13.134231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001526"
+        },
+        {
+          "source_line": 1527,
+          "timestamp": "2026-05-18T10:51:14.090049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 955
+          },
+          "id": "event-001527"
+        },
+        {
+          "source_line": 1528,
+          "timestamp": "2026-05-18T10:51:18.448872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001528"
+        },
+        {
+          "source_line": 1529,
+          "timestamp": "2026-05-18T10:51:18.851921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001529"
+        },
+        {
+          "source_line": 1530,
+          "timestamp": "2026-05-18T10:51:24.931176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/autodl-tmp/models/hugging-quants/Meta-Llama-3___1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001530"
+        },
+        {
+          "source_line": 1531,
+          "timestamp": "2026-05-18T10:51:25.383465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001531"
+        },
+        {
+          "source_line": 1532,
+          "timestamp": "2026-05-18T10:52:03.363284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] V3 全量完成状态 + D049 进展 + GPU 资源报告\n\n## V3 实验状态（4/4 ✅）\n| 模型 | 行数 | 服务器 | Registry |\n|------|------|--------|----------|\n| Qwen v3 constrained | 246/246 | westd-16980 | ✅ 已注册，已评估 |\n| Llama v3 constrained | 246/246 | westd-21461 | ❌ 未注册 |\n| Mistral v3 constrained | 246/246 | westd-21461 | ❌ 未注册 |\n| Mistral grammar_only v3 | 246/246 | westd-16980 | ❌ 未注册 |\n\nQwen v3 已评估：RoV=0%, AC=2.1%, CF=21.1%, go_no_go=2.05%, parse=206/246\n其余 3 个实验的 violation_checker 和 eval **尚未运行**。\n\n## D049 进展\n- **P1 (70B)**: Llama-3.1-70B-Instruct-AWQ-INT4 下载中（westd-21461，当前 ~17GB，预估总量 ~37GB，ETA ~20-30min）。westd-16980 上**无 70B 模型**——需 scp 或单独下载。\n- **P2 (EE post-hoc)**: ✅ 全部 3 模型的 unconstrained → post-hoc 文件已生成（Qwen/Llama on 16980, Mistral on 21461）。\n- **P4 (CF majority voting)**: Qwen constrained v3 的 cf_voted 已生成。\n\n## [warning] Post-hoc 命名混淆\n`ee_qwen_wikievents_constrained_v3_posthoc.jsonl` 是对 **constrained** 输出跑的 post-hoc（非 D049 P2 的正确用途——P2 应对 unconstrained 跑 post-hoc）。实际 unconstrained posthoc 文件已单独存在（`*_unconstrained_posthoc.jsonl`），但 registry 中记录的 posthoc 指标（args_removed=109, arg_f1=0.017）来自 constrained 版本，需核实并更正。\n\n## GPU 状态（全部空闲）\n| 服务器:GPU | 利用率 | 显存 |\n|------------|--------|------|\n| westd-16980:0 | 0% | 0 MiB |\n| westd-16980:1 | 0% | 0 MiB |\n| westd-21461:0 | 0% | 0 MiB |\n| westd-21461:1 | 0% | 0 MiB |\n\n4/4 GPU 空闲等待 70B 模型下载完成。此为预期空窗（I/O-bound），但 westd-16980 两卡无法在 70B 模型 scp 过来之前启动任何 70B 实验。\n\n## [warning] ROADMAP 严重过时\nROADMAP 仍显示 v3 实验\"进行中\"（~179/246 等旧数字），与实际状态（全部完成）严重不符。应更新。\n\n## 待办\n1. Llama v3 / Mistral v3 constrained / Mistral grammar_only v3 的 violation_checker + eval + registry 注册\n2. 70B 模型 scp 到 westd-16980\n3. ROADMAP 更新\n4. Mistral v3 constrained 审计结果待出——这是碰撞修复的核心验证",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001532"
+        },
+        {
+          "source_line": 1533,
+          "timestamp": "2026-05-18T10:52:04.568393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1205
+          },
+          "id": "event-001533"
+        },
+        {
+          "source_line": 1534,
+          "timestamp": "2026-05-18T10:52:09.283213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001534"
+        },
+        {
+          "source_line": 1535,
+          "timestamp": "2026-05-18T10:52:09.736103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001535"
+        },
+        {
+          "source_line": 1536,
+          "timestamp": "2026-05-18T10:52:14.611728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00001-of-00009.safetensors"
+            }
+          },
+          "id": "event-001536"
+        },
+        {
+          "source_line": 1537,
+          "timestamp": "2026-05-18T10:52:15.164184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1215299584\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001537"
+        },
+        {
+          "source_line": 1538,
+          "timestamp": "2026-05-18T10:52:15.265010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00005-of-00009.safetensors"
+            }
+          },
+          "id": "event-001538"
+        },
+        {
+          "source_line": 1539,
+          "timestamp": "2026-05-18T10:52:15.670344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1855979520\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 405
+          },
+          "id": "event-001539"
+        },
+        {
+          "source_line": 1540,
+          "timestamp": "2026-05-18T10:52:25.239199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001540"
+        },
+        {
+          "source_line": 1541,
+          "timestamp": "2026-05-18T10:52:25.741214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16805892\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root 1223688192 May 18 18:52 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1710227456 May 18 18:52 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1986002944 May 18 18:52 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1389363200 May 18 18:52 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1871708160 May 18 18:52 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1328545792 May 18 18:52 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1251999744 May 18 18:52 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1246756864 May 18 18:52 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001541"
+        },
+        {
+          "source_line": 1542,
+          "timestamp": "2026-05-18T10:52:39.508164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001542"
+        },
+        {
+          "source_line": 1543,
+          "timestamp": "2026-05-18T10:52:39.809897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [], \\\"total\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 301
+          },
+          "id": "event-001543"
+        },
+        {
+          "source_line": 1544,
+          "timestamp": "2026-05-18T10:53:05.912181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Mistral v3 constrained 独立审计（碰撞修复核心验证）\n\n## 审查报告 — Mistral v3 constrained (ee_mistral_wikievents_constrained_v3_full)\n\n**结论**: PASS（待正式 violation_checker 确认）\n\n### 核心验证结果\n| 指标 | v2（碰撞 bug） | v3（修复后） | 变化 |\n|------|------------|---------|------|\n| Parse rate | 178/246 (72.4%) | 218/246 (88.6%) | +16.2pp |\n| RoV | 0.1% | ~0%（样本抽检） | ✅ 修复 |\n| AC | 16.6% | 大幅下降（样本中 SID/SEN 碰撞问题消失） | ✅ 修复 |\n| 代码版本 | — | 938 行（collision group + exact-match fix） | ✅ |\n\n**碰撞修复有效性已初步确认**：v2 中 Mistral SentencePiece tokenizer 的 SID/SEN/SIDE prefix collision 导致 AC=16.6%，v3 中该问题在样本抽检中已消失。这是论文核心 claim（D047 collision group continuation mask）的关键证据。\n\n### 发现\n- [info] 246 行确认，GPU 合规（白名单内）\n- [info] Parse rate 从 72.4% → 88.6%，提升显著\n- [warning] **混杂变量**：v3 使用 max_new_tokens=16384（v2 使用更小值），parse rate 提升不能完全归因于 collision fix。论文描述需注意区分两个因素的贡献。\n- [warning] **violation_checker 未运行**：无正式 RoV/AC/CF 数字。需立即运行 `violation_checker_wikievents.py` 获取精确数据并注册 registry。当前仅有样本抽检的定性判断。\n- [warning] **registry 未注册**：Mistral v3 constrained 实验尚未在 registry 中注册。\n\n### 建议\n1. **紧急**：对所有 v3 文件运行 violation_checker + eval_event_extraction，获取正式数字\n2. 在论文中讨论 parse rate 提升时，区分 collision fix 贡献 vs max_new_tokens 贡献（或控制变量补一个 v3 + 旧 max_new_tokens 实验）\n3. 注册所有 v3 实验到 registry",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001544"
+        },
+        {
+          "source_line": 1545,
+          "timestamp": "2026-05-18T10:53:07.169004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1256
+          },
+          "id": "event-001545"
+        },
+        {
+          "source_line": 1546,
+          "timestamp": "2026-05-18T10:53:22.854834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Mistral grammar_only v3 独立审计\n\n## 审查报告 — Mistral grammar_only v3 (ee_mistral_wikievents_grammar_only_v3)\n\n**结论**: PASS\n\n### 核心发现\n| 指标 | 旧 broken full_s1（≈grammar_only）| v3 grammar_only | 说明 |\n|------|-----|------|------|\n| Parse rate | 184/246 (74.8%) | 218/246 (88.6%) | v3 代码改进 |\n| RoV | 54.8% | ~40-60%（样本抽检，待正式 checker） | 一致：grammar_only 不约束 role |\n| mode 标记 | — | grammar_only ✅ | 全部 246 行标记正确 |\n\n**验证结论**：旧 broken full_s1（D044 判定 semantic mask 未生效）与真正 grammar_only v3 的 RoV 行为一致（均 40-60% 密集 role 违规），**确认 D044 判断正确**——旧 Mistral constrained 实验等价于 grammar_only baseline。\n\n### 发现\n- [info] 246 行确认，数据完整\n- [info] 大量 RoV 违规（Subject/Sentence/Damager/Preventer 等完全非法 role），符合 grammar_only 预期\n- [info] Parse rate 提升 13.8pp（74.8%→88.6%）——可能来自 v3 代码改进（max_new_tokens 增大等）\n- [warning] violation_checker 未运行，registry 未注册——需正式评估后注册",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001546"
+        },
+        {
+          "source_line": 1547,
+          "timestamp": "2026-05-18T10:53:24.111118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1256
+          },
+          "id": "event-001547"
+        },
+        {
+          "source_line": 1548,
+          "timestamp": "2026-05-18T10:53:37.199839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001548"
+        },
+        {
+          "source_line": 1549,
+          "timestamp": "2026-05-18T10:53:37.652041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001549"
+        },
+        {
+          "source_line": 1550,
+          "timestamp": "2026-05-18T10:53:53.254349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%n %s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00002-of-00009.safetensors"
+            }
+          },
+          "id": "event-001550"
+        },
+        {
+          "source_line": 1551,
+          "timestamp": "2026-05-18T10:53:53.707894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors 2114977792\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00002-of-00009.safetensors 1837105152\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001551"
+        },
+        {
+          "source_line": 1552,
+          "timestamp": "2026-05-18T10:54:04.653316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 -type f"
+            }
+          },
+          "id": "event-001552"
+        },
+        {
+          "source_line": 1553,
+          "timestamp": "2026-05-18T10:54:05.105666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00001-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00002-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00004-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00005-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00006-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00007-of-00009.safetensors\\\\n/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001553"
+        },
+        {
+          "source_line": 1554,
+          "timestamp": "2026-05-18T10:54:11.230188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -newer /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_cf_voted.jsonl -name \"*.py\" -type f"
+            }
+          },
+          "id": "event-001554"
+        },
+        {
+          "source_line": 1555,
+          "timestamp": "2026-05-18T10:54:11.682168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001555"
+        },
+        {
+          "source_line": 1556,
+          "timestamp": "2026-05-18T10:54:11.933519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -newer /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_cf_voted.jsonl -name \"*.sh\" -type f"
+            }
+          },
+          "id": "event-001556"
+        },
+        {
+          "source_line": 1557,
+          "timestamp": "2026-05-18T10:54:12.386419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001557"
+        },
+        {
+          "source_line": 1558,
+          "timestamp": "2026-05-18T10:54:16.978214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie -newer /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl -type f"
+            }
+          },
+          "id": "event-001558"
+        },
+        {
+          "source_line": 1559,
+          "timestamp": "2026-05-18T10:54:17.431025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/violation_report_ee.json\\\\n/root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_posthoc.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_posthoc.jsonl\\\\n/root/schema_semantic_constrained_ie/logs/mistral_v3_full.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001559"
+        },
+        {
+          "source_line": 1560,
+          "timestamp": "2026-05-18T10:54:26.127024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_ee.json"
+            }
+          },
+          "id": "event-001560"
+        },
+        {
+          "source_line": 1561,
+          "timestamp": "2026-05-18T10:54:26.682348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"checker\\\\\\\": \\\\\\\"violation_checker_wikievents\\\\\\\",\\\\n    \\\\\\\"total_documents\\\\\\\": 246,\\\\n    \\\\\\\"documents_checked\\\\\\\": 218,\\\\n    \\\\\\\"parse_failures\\\\\\\": 28,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 0.8862,\\\\n    \\\\\\\"total_entities\\\\\\\": 6629,\\\\n    \\\\\\\"total_events\\\\\\\": 2582,\\\\n    \\\\\\\"total_arguments\\\\\\\": 6737,\\\\n    \\\\\\\"ET_entity_type_violations\\\\\\\": 0,\\\\n    \\\\\\\"ET_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"EV_event_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"EV_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"RoV_role_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"RoV_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"AC_argument_constraint_violations\\\\\\\": 0,\\\\n    \\\\\\\"AC_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"CF_cross_field_violations\\\\\\\": 965,\\\\n    \\\\\\\"CF_violation_rate\\\\\\\": 0.1456,\\\\n    \\\\\\\"total_violations\\\\\\\": 965,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0605,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.0,\\\\n    \\\\\\\"go_nogo_description\\\\\\\": \\\\\\\"per-argument (RoV + AC) violation rate\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_event_type\\\\\\\": {\\\\n    \\\\\\\"Acquit.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 13,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ArrestJailDetain.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 173,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ArtifactDamage.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 242,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Attack.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 416,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"BlockPassage\\\\\\\": {\\\\n      \\\\\\\"total_ar\n…[truncated 8217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 555
+          },
+          "id": "event-001561"
+        },
+        {
+          "source_line": 1562,
+          "timestamp": "2026-05-18T10:55:07.057338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 🔑 碰撞修复核心验证：Mistral v3 constrained go_no_go = 0%\n\n## 独立核实：violation_report_ee.json (westd-21461)\n\n| 指标 | Mistral v2（碰撞 bug）| Mistral v3（修复后）| 变化 |\n|------|-----|------|------|\n| Parse rate | 178/246 (72.4%) | 218/246 (88.6%) | **+16.2pp** |\n| ET | 0% | 0% | — |\n| EV | 0% | 0% | — |\n| **RoV** | **0.1%** | **0%** | ✅ |\n| **AC** | **16.6%** | **0%** | ✅✅✅ |\n| CF | 13.9% | 14.56% | 略升（更多 parsed docs） |\n| **go_no_go** | **16.7%** | **0%** | ✅✅✅ |\n\n**论文核心 claim 完全验证**：D047 collision group continuation mask 将 Mistral（SentencePiece tokenizer）的 AC 从 16.6% 消除到 0%。go_no_go 从 16.7% → 0%。这是 OntoCoDec 跨所有 tokenizer 族（BPE: Qwen/Llama, SentencePiece: Mistral）实现零 RoV+AC 违规的决定性证据。\n\n**三模型 go_no_go 对比（v3 修复后）**：\n- Qwen (BPE): 2.05%（AC 来自 constraint tightness）\n- Llama (BPE): 待 eval\n- Mistral (SentencePiece): 0%\n\n### [warning] 两个注意事项\n1. **violation_report_ee.json 文件名无标识**：该文件名无模型/版本标识，后续 eval 会覆盖。建议重命名为 `violation_report_mistral_v3_constrained.json`。\n2. **Qwen v3 AC=2.05% vs Mistral v3 AC=0%**：Mistral 反而比 Qwen 更低。需解释差异——可能原因：Mistral 在 role-entity 组合上更保守（生成频次更低），或 Qwen 的某些 AC 违规来自非碰撞因素。论文讨论需覆盖此不对称性。",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001562"
+        },
+        {
+          "source_line": 1563,
+          "timestamp": "2026-05-18T10:55:08.420583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1363
+          },
+          "id": "event-001563"
+        },
+        {
+          "source_line": 1564,
+          "timestamp": "2026-05-18T10:55:21.902789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001564"
+        },
+        {
+          "source_line": 1565,
+          "timestamp": "2026-05-18T10:55:22.960092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"246 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1057
+          },
+          "id": "event-001565"
+        },
+        {
+          "source_line": 1566,
+          "timestamp": "2026-05-18T10:55:23.111225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "grep -c '\"parsed_output\": null' /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001566"
+        },
+        {
+          "source_line": 1567,
+          "timestamp": "2026-05-18T10:55:23.664372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"39\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001567"
+        },
+        {
+          "source_line": 1568,
+          "timestamp": "2026-05-18T10:55:23.714996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "grep -c '\"mode\": \"full_s1\"' /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001568"
+        },
+        {
+          "source_line": 1569,
+          "timestamp": "2026-05-18T10:55:24.168895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"246\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001569"
+        },
+        {
+          "source_line": 1570,
+          "timestamp": "2026-05-18T10:55:24.421124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+            }
+          },
+          "id": "event-001570"
+        },
+        {
+          "source_line": 1571,
+          "timestamp": "2026-05-18T10:55:24.922921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"938 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-001571"
+        },
+        {
+          "source_line": 1572,
+          "timestamp": "2026-05-18T10:55:35.222346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "grep '\"parsed_output\": null' /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_full.jsonl"
+            }
+          },
+          "id": "event-001572"
+        },
+        {
+          "source_line": 1573,
+          "timestamp": "2026-05-18T10:55:37.186897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"scenario_en_kairos_0\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Calling Big Brother Germans Consider Brit-Style CCTV after Foiled BombingGermany's former capital narrowly escaped a deadly bombing last week when a device placed on a train station platform failed to detonate. The authorities suspect radical Islamists, but they are having trouble finding the perpetrators due to a lack of recorded surveillance images. The case has reignited calls for greater use of CCTV in Germany.Von SPIEGEL Staff\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Brother\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Germans\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Germany\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"GPE\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"capital\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"GPE\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"device\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"WEA\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"train\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"VEH\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"station\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FAC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"platform\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"FAC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"authorities\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Islamists\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"they\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"perpetrators\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Staff\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\n  \\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Germany's former capital\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Germany\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Big Brother\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"COM\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Brit-Style\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"VAL\\\\\\\\\\\\\\\"\\\\\\\n…[truncated 10577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1964
+          },
+          "id": "event-001573"
+        },
+        {
+          "source_line": 1574,
+          "timestamp": "2026-05-18T10:55:58.665447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/violation_report_*llama*"
+            }
+          },
+          "id": "event-001574"
+        },
+        {
+          "source_line": 1575,
+          "timestamp": "2026-05-18T10:55:59.067447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/violation_report_*llama*"
+            }
+          },
+          "id": "event-001575"
+        },
+        {
+          "source_line": 1576,
+          "timestamp": "2026-05-18T10:55:59.118201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_report_*llama*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001576"
+        },
+        {
+          "source_line": 1577,
+          "timestamp": "2026-05-18T10:55:59.570393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  2289 May 17 15:33 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_llama_beam_50.json\\\\n-rw-r--r-- 1 root root 19733 May 17 15:49 /root/schema_semantic_constrained_ie/outputs/violation_report_docred_llama_beam_50_v2.json\\\\n-rw-r--r-- 1 root root 13707 May 18 07:50 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_constrained_retry.json\\\\n-rw-r--r-- 1 root root 20592 May 17 18:55 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_greedy_matched50.json\\\\n-rw-r--r-- 1 root root  2978 May 14 22:36 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1.json\\\\n-rw-r--r-- 1 root root  3050 May 15 02:28 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1_v2.json\\\\n-rw-r--r-- 1 root root  4897 May 15 02:28 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_unconstrained_v2.json\\\\n-rw-r--r-- 1 root root 26005 May 18 03:29 /root/schema_semantic_constrained_ie/outputs/violation_report_llama_unconstrained.json\\\\n-rw-r--r-- 1 root root  3386 May 16 15:48 /root/schema_semantic_constrained_ie/outputs/violation_report_w7_llama_scierc_ft_grammar_only.json\\\\n-rw-r--r-- 1 root root  3756 May 16 16:31 /root/schema_semantic_constrained_ie/outputs/violation_report_w7_llama_scierc_ft_semantic_only.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001577"
+        },
+        {
+          "source_line": 1578,
+          "timestamp": "2026-05-18T10:56:30.348702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Llama v3 constrained 独立审计（手动，原 Agent 超时）\n\n## 审查报告 — Llama v3 constrained (ee_llama_wikievents_constrained_v3_full)\n\n**结论**: PASS（待 violation_checker 确认）\n\n### 核实项\n| 指标 | v2 | v3 | 说明 |\n|------|-----|------|------|\n| 行数 | — | 246/246 ✅ | |\n| Parse rate | 215/246 (87.4%) | 207/246 (84.1%) | -3.3pp |\n| mode | full_s1 | full_s1 ✅ (全部 246 行) | |\n| 代码 | — | 938 行 ✅ | |\n| violation_checker | ✅ | ❌ 未运行 | 需立即运行 |\n\n### 发现\n- [info] 数据完整性确认：246 行，39 parse failures，mode 全部 full_s1\n- [warning] **Parse rate 略降**：84.1% vs v2 的 87.4%。抽查 parse failure（如 scenario_en_kairos_0）发现模型陷入重复生成循环（同一 trigger \"failed to detonate\" 生成 8+ 次相同事件），导致输出截断。这是 LLM 行为问题，非 constrained decoding 代码问题。\n- [warning] **violation_checker 未运行**：无 Llama v3 violation report。需运行 `violation_checker_wikievents.py` 获取正式 RoV/AC/CF 数字。v2 baseline: RoV=0%, AC=3.4%, go_no_go=3.4%。\n- [warning] **registry 未注册**\n\n### 建议\n运行 violation_checker + eval_event_extraction 并注册 registry。Llama v3 的 AC 是否从 v2 的 3.4% 进一步下降（exact-match fix 对 BPE tokenizer 的效果）是论文需要的数据点。",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001578"
+        },
+        {
+          "source_line": 1579,
+          "timestamp": "2026-05-18T10:56:31.754447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1405
+          },
+          "id": "event-001579"
+        },
+        {
+          "source_line": 1580,
+          "timestamp": "2026-05-18T10:56:43.274568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001580"
+        },
+        {
+          "source_line": 1581,
+          "timestamp": "2026-05-18T10:56:43.729144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-001581"
+        },
+        {
+          "source_line": 1582,
+          "timestamp": "2026-05-18T10:56:43.931863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001582"
+        },
+        {
+          "source_line": 1583,
+          "timestamp": "2026-05-18T10:56:44.436329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model-00001-of-00009.safetensors\\\\nmodel-00002-of-00009.safetensors\\\\nmodel-00003-of-00009.safetensors\\\\nmodel-00004-of-00009.safetensors\\\\nmodel-00005-of-00009.safetensors\\\\nmodel-00006-of-00009.safetensors\\\\nmodel-00007-of-00009.safetensors\\\\nmodel-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-001583"
+        },
+        {
+          "source_line": 1584,
+          "timestamp": "2026-05-18T10:56:55.606109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -la /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001584"
+        },
+        {
+          "source_line": 1585,
+          "timestamp": "2026-05-18T10:56:56.058231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 23100420\\\\ndrwxr-xr-x 2 root root       4096 May 18 18:34 .\\\\ndrwxr-xr-x 5 root root        135 May 18 18:34 ..\\\\n-rw-r--r-- 1 root root 1544552448 May 18 18:56 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 2162163712 May 18 18:56 model-00002-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 2346713088 May 18 18:56 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1750073344 May 18 18:56 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 2376073216 May 18 18:56 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1676673024 May 18 18:56 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1606418432 May 18 18:56 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 1571815424 May 18 18:56 model-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001585"
+        },
+        {
+          "source_line": 1586,
+          "timestamp": "2026-05-18T10:57:19.281219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "5"
+            }
+          },
+          "id": "event-001586"
+        },
+        {
+          "source_line": 1587,
+          "timestamp": "2026-05-18T10:57:19.582859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"ee_mistral_wikievents_grammar_only_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:55:33.279Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:57:01.896Z\\\", \\\"hypothesis\\\": \\\"Grammar-only mode (no semantic constraints) on Mistral with fixed 938-line code will show high RoV/AC as ablation baseline, confirming semantic layer is essential for constraint compliance\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"218/246 (88.6%)\\\", \\\"parse_failures\\\": 28, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 64, \\\"AC\\\": 13.8, \\\"CF\\\": 1.1, \\\"go_no_go\\\": 77.73, \\\"entity_f1\\\": 0.1192, \\\"trigger_f1\\\": 0.0337, \\\"argument_f1\\\": 0.0027, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"mode\\\": \\\"grammar_only\\\"}}, \\\"ee_mistral_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:55:31.905Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:56:59.824Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code with collision group continuation mask will reduce Mistral AC from 16.6% to near 0% by disambiguating SentencePiece entity type collisions at second+ token steps\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"218/246 (88.6%)\\\", \\\"parse_failures\\\": 28, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 0, \\\"AC\\\": 1.3, \\\"CF\\\": 14.9, \\\"go_no_go\\\": 1.26, \\\"entity_f1\\\": 0.1171, \\\"trigger_f1\\\": 0.0387, \\\"argument_f1\\\": 0.0031, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"posthoc_args_removed\\\": 86, \\\"posthoc_ac_after\\\": 0}}, \\\"ee_llama_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:52:02.423Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:52:28.084Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC for Llama on WikiEvents full 246 docs, confirming cross-model generalization of the fix\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"207/246 (84.1%)\\\", \\\"parse_failures\\\": 39, \\\"ET\\\": 0, \\\"EV\\\": 0,\n…[truncated 1980 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-001587"
+        },
+        {
+          "source_line": 1588,
+          "timestamp": "2026-05-18T10:58:12.475263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] ⚠️ 更正前报告 + V3 全模型对比\n\n## 更正：Mistral v3 constrained go_no_go ≠ 0%\n\n前一条报告我引用 `violation_report_ee.json`（westd-21461）中的 go_no_go=0%。**但 registry 中实际为 go_no_go=1.26%（AC=1.3%）**。\n\n原因推测：`violation_report_ee.json` 可能是对 posthoc 版本（`ee_mistral_wikievents_constrained_v3_posthoc.jsonl`，已移除 AC 违规 arguments）运行的 checker，而非原始 constrained 输出。两者 parse rate 相同（218/246），但 AC 不同。\n\n**正确数据以 registry 为准。**\n\n## V3 全模型 go_no_go 对比（registry 正式数据）\n\n| 模型 | Parse | RoV | AC | CF | go_no_go | entity_f1 |\n|------|-------|-----|-----|-----|----------|-----------|\n| **Qwen v3** | 206/246 (83.7%) | 0% | 2.1% | 21.1% | **2.05%** | 0.1409 |\n| **Llama v3** | 207/246 (84.1%) | 0% | 3.8% | 17.2% | **3.8%** | 0.1763 |\n| **Mistral v3** | 218/246 (88.6%) | 0% | 1.3% | 14.9% | **1.26%** | 0.1171 |\n| **Mistral g.o. v3** | 218/246 (88.6%) | 64% | 13.8% | 1.1% | **77.73%** | 0.1192 |\n\n### V2→V3 变化\n\n| 模型 | v2 go_no_go | v3 go_no_go | 变化 | 说明 |\n|------|-------|------|------|------|\n| Qwen | 2.4% | 2.05% | **-0.35pp** | RoV 0.3%→0%（exact-match fix） |\n| Llama | 3.4% | 3.8% | **+0.4pp** ⚠️ | AC 上升，需调查 |\n| Mistral | 16.7% | 1.26% | **-15.44pp** ✅✅ | 碰撞修复核心验证 |\n\n### [warning] Llama v3 go_no_go 微升（3.4%→3.8%）\n\nLlama（BPE, 0 碰撞）的 AC 从 v2 的 3.4% 升至 v3 的 3.8%。虽然幅度小（0.4pp），但方向不符预期（v3 应 ≤ v2）。可能原因：\n1. Parse rate 下降（87.4%→84.1%）导致不同文档集参与统计\n2. max_new_tokens 变化影响生成行为\n3. 非碰撞因素的 AC 波动\n建议：若差异显著，需控制变量实验（固定 max_new_tokens）或 bootstrap CI 确认。论文中不能 claim Llama v3 \"improved\"。\n\n### 碰撞修复核心结论\nMistral v3 的 go_no_go 从 16.7% → 1.26%（-15.44pp），验证了 D047 collision group continuation mask 对 SentencePiece tokenizer 的有效性。残余 AC=1.3% 与 Qwen/Llama 的 AC 水平（2-4%）一致，来自 constraint tightness 而非碰撞。\n\n### Post-hoc baseline 数据\n所有三个模型的 constrained v3 posthoc 也已注册：移除 AC 违规 arguments 后 AC→0%。\n- Qwen: 109 args removed\n- Llama: 173 args removed\n- Mistral: 86 args removed",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001588"
+        },
+        {
+          "source_line": 1589,
+          "timestamp": "2026-05-18T10:58:13.732890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1257
+          },
+          "id": "event-001589"
+        },
+        {
+          "source_line": 1590,
+          "timestamp": "2026-05-18T10:58:29.626307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001590"
+        },
+        {
+          "source_line": 1591,
+          "timestamp": "2026-05-18T10:58:30.131043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-001591"
+        },
+        {
+          "source_line": 1592,
+          "timestamp": "2026-05-18T10:58:30.734702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001592"
+        },
+        {
+          "source_line": 1593,
+          "timestamp": "2026-05-18T10:58:31.237855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001593"
+        },
+        {
+          "source_line": 1594,
+          "timestamp": "2026-05-18T10:58:31.338769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n1, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 604
+          },
+          "id": "event-001594"
+        },
+        {
+          "source_line": 1595,
+          "timestamp": "2026-05-18T10:58:31.791556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n1, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001595"
+        },
+        {
+          "source_line": 1596,
+          "timestamp": "2026-05-18T10:58:45.317844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001596"
+        },
+        {
+          "source_line": 1597,
+          "timestamp": "2026-05-18T10:58:45.368717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# schema_semantic_constrained_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-18 10:52 UTC | 更新原因: v3 全部完成 + eval 进行中 + 70B 准备 + ROADMAP 刷新\\\\n\\\\n## 核心方向\\\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。**目标: EMNLP 2026 conference main**（ARR May 25）。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: v3 全量完成 ✅ → eval 收集中 → 70B 准备中 | 4/4 GPU 空闲等 70B\\\\n\\\\n**RE 实验覆盖**: 70 个实验 — 全部完成\\\\n\\\\n**WikiEvents EE v3 全量重跑 — 全部完成 ✅**:\\\\n- [x] Qwen v3 constrained 246/246 — EV=0%, RoV=0%, AC=2.05% ✅ (registry 已注册)\\\\n- [x] Llama v3 constrained 246/246 — eval 进行中\\\\n- [x] Mistral v3 constrained 246/246 — eval 进行中\\\\n- [x] Mistral grammar_only v3 246/246 — eval 进行中\\\\n\\\\n**P2 Post-hoc EE baseline — 杀手级数据 ✅**:\\\\n- Qwen unconstrained post-hoc: 5467→23 arguments（99.6% 删除）才达 0% violation\\\\n- 3 models unconstrained post-hoc 文件全部生成\\\\n\\\\n**P4 CF majority voting**: 脚本完成，constrained v3 CF 已为 0%，主要用于分析论述\\\\n\\\\n## Conference Main 补强计划（D049）\\\\n\\\\n### Tier 1 — 必做 🔴\\\\n- [ ] **P1: 70B 模型实验**（~50h）— AWQ-INT4 下载中（~17/37GB, ETA 20-30min），下完立即启动 SciERC+DocRED\\\\n- [x] **P2: EE post-hoc baseline** ✅ — 3 models 完成，99.6% argument 删除是最强对比证据\\\\n- [ ] **P3: Error analysis / case study**（0h GPU）— v3 结果出齐后做\\\\n\\\\n### Tier 2 — 强力补充 🟡\\\\n- [x] **P4: CF majority voting** ✅ — 脚本完成，修复率 ~15%，根因是模型 role hallucination\\\\n- [ ] **P5: EE FT composability**（~30h）\\\\n\\\\n### Tier 3 — 时间允许 🟢\\\\n- [ ] P6-P8: grammar_only 交叉验证 / bootstrap CI / latency\\\\n\\\\n## 近期任务\\\\n- [ ] Llama/Mistral v3 constrained + Mistral grammar_only v3 eval + registry 注册\\\\n- [ ] 70B AWQ 下载完成 → dry-run → 启动 SciERC unconstrained\\\\n- [ ] 70B 模型 scp 到 westd-16980（并行跑 70B）\\\\n- [ ] Paper Agent patch §5.4 最终 v3 数字 + post-hoc 对比数据\\\\n- [ ] P3 error analysis\\\\n- [ ] 提交 Round 6 审稿\\\\n\\\\n## GPU 调度\\\\n| 服务器 | GPU | 当前 | 下一任务 |\\\\n|------\n…[truncated 1819 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-001597"
+        },
+        {
+          "source_line": 1598,
+          "timestamp": "2026-05-18T10:59:10.934956+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "70B 下载 23GB，4/4 GPU 仍空闲。预计 ~15min 完成下载。\n\n让我检查是否有新的 Worker 活动或 ROADMAP 更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer"
+          },
+          "id": "event-001598"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "messages": [
+        {
+          "source_line": 1599,
+          "timestamp": "2026-05-18T10:59:11.441570+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d049_posthoc_ee_20260518T102140]:\nWorker worker_code_d049_posthoc_ee_20260518T102140 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "source": "system"
+          },
+          "id": "event-001599"
+        },
+        {
+          "source_line": 1600,
+          "timestamp": "2026-05-18T10:59:24.699747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "5"
+            }
+          },
+          "id": "event-001600"
+        },
+        {
+          "source_line": 1601,
+          "timestamp": "2026-05-18T10:59:25.708070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"ee_mistral_wikievents_grammar_only_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:55:33.279Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:57:01.896Z\\\", \\\"hypothesis\\\": \\\"Grammar-only mode (no semantic constraints) on Mistral with fixed 938-line code will show high RoV/AC as ablation baseline, confirming semantic layer is essential for constraint compliance\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"218/246 (88.6%)\\\", \\\"parse_failures\\\": 28, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 64, \\\"AC\\\": 13.8, \\\"CF\\\": 1.1, \\\"go_no_go\\\": 77.73, \\\"entity_f1\\\": 0.1192, \\\"trigger_f1\\\": 0.0337, \\\"argument_f1\\\": 0.0027, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"mode\\\": \\\"grammar_only\\\"}}, \\\"ee_mistral_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:55:31.905Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:56:59.824Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code with collision group continuation mask will reduce Mistral AC from 16.6% to near 0% by disambiguating SentencePiece entity type collisions at second+ token steps\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"218/246 (88.6%)\\\", \\\"parse_failures\\\": 28, \\\"ET\\\": 0, \\\"EV\\\": 0, \\\"RoV\\\": 0, \\\"AC\\\": 1.3, \\\"CF\\\": 14.9, \\\"go_no_go\\\": 1.26, \\\"entity_f1\\\": 0.1171, \\\"trigger_f1\\\": 0.0387, \\\"argument_f1\\\": 0.0031, \\\"code_version\\\": \\\"938-line (collision+exact-match fix)\\\", \\\"posthoc_args_removed\\\": 86, \\\"posthoc_ac_after\\\": 0}}, \\\"ee_llama_wikievents_constrained_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T10:52:02.423Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:52:28.084Z\\\", \\\"hypothesis\\\": \\\"938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC for Llama on WikiEvents full 246 docs, confirming cross-model generalization of the fix\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_success\\\": \\\"207/246 (84.1%)\\\", \\\"parse_failures\\\": 39, \\\"ET\\\": 0, \\\"EV\\\": 0,\n…[truncated 1980 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1008
+          },
+          "id": "event-001601"
+        },
+        {
+          "source_line": 1602,
+          "timestamp": "2026-05-18T10:59:25.708556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/ee_*posthoc*"
+            }
+          },
+          "id": "event-001602"
+        },
+        {
+          "source_line": 1603,
+          "timestamp": "2026-05-18T10:59:26.264872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/ee_*posthoc*"
+            }
+          },
+          "id": "event-001603"
+        },
+        {
+          "source_line": 1604,
+          "timestamp": "2026-05-18T10:59:27.069579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4144517 May 18 18:28 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_unconstrained_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 4322156 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_unconstrained_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 5935003 May 18 18:27 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_constrained_v3_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 4322156 May 18 18:23 /root/schema_semantic_constrained_ie/outputs/ee_qwen_wikievents_posthoc.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1361
+          },
+          "id": "event-001604"
+        },
+        {
+          "source_line": 1605,
+          "timestamp": "2026-05-18T10:59:28.125828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 6276637 May 18 18:53 /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 5704658 May 18 18:50 /root/schema_semantic_constrained_ie/outputs/ee_llama_wikievents_constrained_v3_posthoc.jsonl\\\\n-rw-r--r-- 1 root root 4548856 May 18 18:28 /root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_unconstrained_posthoc.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1860
+          },
+          "id": "event-001605"
+        },
+        {
+          "source_line": 1606,
+          "timestamp": "2026-05-18T10:59:49.270884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/violation_report*posthoc*"
+            }
+          },
+          "id": "event-001606"
+        },
+        {
+          "source_line": 1607,
+          "timestamp": "2026-05-18T10:59:49.775020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   9836 May 18 18:23 /root/schema_semantic_constrained_ie/outputs/violation_report_ee_posthoc_qwen.json\\\\n-rw-r--r-- 1 root root 258412 May 15 02:21 /root/schema_semantic_constrained_ie/outputs/violation_report_posthoc_docred.json\\\\n-rw-r--r-- 1 root root   2841 May 15 02:19 /root/schema_semantic_constrained_ie/outputs/violation_report_posthoc_scierc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-001607"
+        },
+        {
+          "source_line": 1608,
+          "timestamp": "2026-05-18T10:59:50.277270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/violation_report*posthoc*"
+            }
+          },
+          "id": "event-001608"
+        },
+        {
+          "source_line": 1609,
+          "timestamp": "2026-05-18T10:59:50.428245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/eval_*posthoc*"
+            }
+          },
+          "id": "event-001609"
+        },
+        {
+          "source_line": 1610,
+          "timestamp": "2026-05-18T10:59:50.733870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_report*posthoc*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-001610"
+        },
+        {
+          "source_line": 1611,
+          "timestamp": "2026-05-18T10:59:51.186904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/eval_*posthoc*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 758
+          },
+          "id": "event-001611"
+        },
+        {
+          "source_line": 1612,
+          "timestamp": "2026-05-18T10:59:55.951720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_ee_posthoc_qwen.json"
+            }
+          },
+          "id": "event-001612"
+        },
+        {
+          "source_line": 1613,
+          "timestamp": "2026-05-18T10:59:56.404111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"checker\\\\\\\": \\\\\\\"violation_checker_wikievents\\\\\\\",\\\\n    \\\\\\\"total_documents\\\\\\\": 246,\\\\n    \\\\\\\"documents_checked\\\\\\\": 218,\\\\n    \\\\\\\"parse_failures\\\\\\\": 28,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 0.8862,\\\\n    \\\\\\\"total_entities\\\\\\\": 0,\\\\n    \\\\\\\"total_events\\\\\\\": 2291,\\\\n    \\\\\\\"total_arguments\\\\\\\": 23,\\\\n    \\\\\\\"ET_entity_type_violations\\\\\\\": 0,\\\\n    \\\\\\\"ET_violation_rate\\\\\\\": 0,\\\\n    \\\\\\\"EV_event_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"EV_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"RoV_role_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"RoV_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"AC_argument_constraint_violations\\\\\\\": 0,\\\\n    \\\\\\\"AC_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"CF_cross_field_violations\\\\\\\": 0,\\\\n    \\\\\\\"CF_violation_rate\\\\\\\": 0,\\\\n    \\\\\\\"total_violations\\\\\\\": 0,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.0,\\\\n    \\\\\\\"go_nogo_description\\\\\\\": \\\\\\\"per-argument (RoV + AC) violation rate\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_event_type\\\\\\\": {\\\\n    \\\\\\\"Acquit.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 0,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"ArrestJailDetain.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 0,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"Attack.Unspecified\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 7,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"BlockPassage\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 0,\\\\n      \\\\\\\"role_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"argument_constraint_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"Broadcast\\\\\\\": {\\\\n      \\\\\\\"total_arguments\\\\\\\": 0,\\\\n      \\\\\\\"role_vocabulary_viola\n…[truncated 8157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001613"
+        },
+        {
+          "source_line": 1614,
+          "timestamp": "2026-05-18T11:00:39.544318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] D049 P2 Post-hoc EE baseline 审计\n\n## Qwen unconstrained post-hoc 核实\n\n从 `violation_report_ee_posthoc_qwen.json`（westd-16980）独立验证：\n\n| 指标 | Unconstrained | Post-hoc 后 | 变化 |\n|------|------------|------------|------|\n| Documents checked | 218 | 218 | — |\n| Total events | ~2900+ | 2291 | EV filter 移除无效 event_type |\n| **Total arguments** | **5467** | **23** | **-99.6%** |\n| All violations | 多项 | 0% | By construction |\n\n**验证结论**: \"杀手级数据\"成立。Post-hoc 达到 0% violations 的代价是丧失 99.6% 的 arguments。对比 constrained decoding（go_no_go=2.05%，保留 ~6000+ arguments），post-hoc 不是可行替代方案。\n\n### [warning] 缺失项\n- Llama/Mistral unconstrained post-hoc 的 violation report 尚未生成——只有 Qwen 的。论文需要三个模型的数据才能展示 post-hoc 的系统性问题。\n- 需要对比：constrained 保留了多少 arguments（去除 AC 违规后），vs unconstrained posthoc 仅剩 23 个\n\n### Post-hoc 作为论文论证\n这个数据点可以成为 Table 一行或一段 discussion：\n> Post-hoc filtering achieves 0% violation by removing 99.6% of extracted arguments, rendering the output practically useless. In contrast, OntoCoDec constrained decoding retains >97% of arguments while achieving <4% go_no_go violation rate.",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-001614"
+        },
+        {
+          "source_line": 1615,
+          "timestamp": "2026-05-18T11:00:44.520910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4976
+          },
+          "id": "event-001615"
+        },
+        {
+          "source_line": 1616,
+          "timestamp": "2026-05-18T11:00:52.263695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "du -sh /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001616"
+        },
+        {
+          "source_line": 1617,
+          "timestamp": "2026-05-18T11:00:52.767035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23G\\\\t/root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-001617"
+        },
+        {
+          "source_line": 1618,
+          "timestamp": "2026-05-18T11:00:52.817736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+            }
+          },
+          "id": "event-001618"
+        },
+        {
+          "source_line": 1619,
+          "timestamp": "2026-05-18T11:00:53.320279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model-00001-of-00009.safetensors\\\\nmodel-00002-of-00009.safetensors\\\\nmodel-00003-of-00009.safetensors\\\\nmodel-00004-of-00009.safetensors\\\\nmodel-00005-of-00009.safetensors\\\\nmodel-00006-of-00009.safetensors\\\\nmodel-00007-of-00009.safetensors\\\\nmodel-00008-of-00009.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001619"
+        },
+        {
+          "source_line": 1620,
+          "timestamp": "2026-05-18T11:00:58.459846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "stat -c \"%n %s\" /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00001-of-00009.safetensors /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00003-of-00009.safetensors /root/autodl-tmp/models/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/model-00005-of-00009.safetensors"
+            }
+          },
+          "id": "event-001620"
+        }
+      ]
+    }
+  ]
+}

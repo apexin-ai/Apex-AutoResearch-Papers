@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3f001d895a9ed53bc21",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "urgent check docred schema 70b lora",
+  "task_key": "worker_urgent_check_docred_schema_70b_lora_20260522T043502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_check_docred_schema_70b_lora_20260522T043502_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "53272fa68a867e7893abf8375a4d42d6ddfd64e56e5b2f4abf88cb6596f37462"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认：westd-16980 上的 70B LoRA DocRED 推理存在同样的 schema 错误。**\n\n## 证据\n\n### 1. Constraints 文件格式（正确）\n`ontology_constraints_docred.json` 的 `relation_types` 是 **Wikidata ID → 自然语言名** 的映射：\n```json\n\"P17\": \"country\",\n\"P159\": \"headquarters location\",\n\"P361\": \"part of\"\n```\n\n### 2. Gold data 格式（正确）\n`gold_relations` 使用 Wikidata ID：\n```json\n{\"head\": \"Piraeus\", \"tail\": \"Greece\", \"type\": \"P17\", ...}\n```\n\n### 3. 模型输出格式（**错误**）\n`raw_output` 中模型输出的 relation type 是**自然语言名**：\n```json\n{\"head\": \"Skai TV\", \"tail\": \"Greece\", \"type\": \"country\", ...}\n{\"head\": \"Skai TV\", \"tail\": \"Skai Group\", \"type\": \"parent organization\", ...}\n{\"head\": \"IBM Research\", \"tail\": \"São Paulo\", \"type\": \"headquarters location\", ...}\n```\n\n### 结论\n\n问题与 westd-21461 完全一致：**模型输出自然语言关系名（\"country\", \"headquarters location\", \"inception\"），但 gold 标注使用 Wikidata ID（P17, P159, P571）**。评估时字符串不匹配，导致 R-F1=0.0。\n\n根因：prompt template 在呈现 schema 时把 relation types 展示为自然语言名（constraints 文件的 value），而非 Wikidata ID（constraints 文件的 key），模型自然就输出自然语言名。需要修改 prompt 构建逻辑，让模型输出 Wikidata ID，或在评估时加一层映射。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-check-docred-schema-70b-lora.md"
+}

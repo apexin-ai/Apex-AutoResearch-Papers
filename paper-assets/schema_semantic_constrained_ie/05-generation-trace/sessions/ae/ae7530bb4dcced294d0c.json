@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae7530bb4dcced294d0c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama lora merge and eval pipeline",
+  "task_key": "worker_code_llama_lora_merge_and_eval_pipeline_20260515T171548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_lora_merge_and_eval_pipeline_20260515T171548_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "ad50c541425996e689f774eb0ffb453ff0f5af1b47738cc0a9a5340692bf5826"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 执行结果汇总\n\n### 1. cuda:1 释放\n- **已释放**: 0 MiB, 0% utilization (kill 283829 成功)\n- cuda:0: 17169 MiB / 89% — 正在运行 unconstrained eval (PID 287677)\n\n### 2. 根分区空间\n- **无需清理**: 12G used / 19G avail (38%)\n- 两个 merged checkpoint 已是 symlink 到数据盘 `/root/autodl-tmp/checkpoints/`\n- Steps 2-3 跳过\n\n### 3. Llama LoRA 合并\n- **已完成** — 4/4 shards 完整，位于 `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - shard 1: 4.7 GB\n  - shard 2: 4.7 GB\n  - shard 3: 4.6 GB\n  - shard 4: 1.1 GB\n- Llama 基座路径确认: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n\n### 4. Registry 更新\n- `w5_llama_lora_scierc_training`: **DONE** — metrics 已写入 (train_loss=0.023, eval_loss=0.060, token_acc=99.2%/98.2%)\n- `w5_llama_lora_scierc_unconstrained_eval`: **DONE**, conclusion=success\n\n### 5. Unconstrained eval\n- **已完成**: 100/100 样本已处理 (PID 287677 仍驻留 cuda:0)\n- 输出: `outputs/w5_llama_lora_scierc_unconstrained.jsonl` (189KB)\n- 无需重新提交\n\n### 6. type_mask_processor.py\n- **已是 clean 版本**: 399 行, 0 个 cf_fallback 引用。无需恢复。\n\n**所有步骤均已就绪。** 下一步可以直接启动 constrained eval (full_s1 mode) — cuda:1 空闲可用，type_mask_processor 已是正确版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-lora-merge-and-eval-pipeline.md"
+}

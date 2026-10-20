@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2540ddc958de7d7c05",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "exp docred int4 quant check and run",
+  "task_key": "worker_exp_docred-int4-quant-check-and-run_20260523T054733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_docred-int4-quant-check-and-run_20260523T054733.log",
+    "occurrence": 1,
+    "bytes": 1046180,
+    "sha256": "d47f587205ae13696e174470d2c7c08a6292acef2f5838ff1087b6c3922b1021"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 2,
+      "assistant": 38,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "eb2540ddc958de7d7c05-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "eb2540ddc958de7d7c05-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-docred-int4-quant-check-and-run.md"
+}

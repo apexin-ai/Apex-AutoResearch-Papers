@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a78407a1091dba9f71c7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "gpu d065 qwen con split to 16980",
+  "task_key": "worker_gpu_d065_qwen_con_split_to_16980_20260520T031824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d065_qwen_con_split_to_16980_20260520T031824_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "4ae913bd0e9957861619384866b857f508f3b5df73932458a1a2c02f3d24b148"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n\n| 服务器 | 任务 | 进度 | 预计剩余 |\n|--------|------|------|----------|\n| **16980 GPU0** | LLaMA unc greedy 4096 | 430/998 | ~1h |\n| **16980 GPU1** | LLaMA con greedy 4096 | 393/998 | ~1.2h |\n| **21461 GPU0** | Qwen unc greedy 4096 | 15/998 | ~2h+ |\n\n已完成准备：\n- 16980 上 Qwen con 启动脚本已写好 (`d065_qwen_greedy_con_16980.sh`)\n- 确认 16980 上 Qwen 模型、代码、数据全部就绪，无 blocker\n- 21461 脚本为 `set -e` 顺序执行，unc 完成后 con 会自动启动，届时 kill 掉\n\n已设置轮询，LLaMA 完成后立即在 16980 启动 Qwen con，同时监控 21461 unc 完成时机以阻断 con。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-d065-qwen-con-split-to-16980.md"
+}

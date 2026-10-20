@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b214ef8a30abcc9a41d0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code fix grammar semantic interaction",
+  "task_key": "worker_code_fix_grammar_semantic_interaction_20260514T025632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_grammar_semantic_interaction_20260514T025632_result.json",
+    "occurrence": 1,
+    "bytes": 2061,
+    "sha256": "ce96994fd65030f24cb85cb49f693caf2f831310c9cc746a816eda919afcc3b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并在处理中：\n- GPU 1: 16689 MiB, 84% 利用率\n- 输出文件: 89 行（从 87 行 resume，已处理 2 个新文档）\n- 崩溃点 doc 88 已安全通过\n\n---\n\n## 汇报\n\n### 1. 崩溃根因\n\n**文件**: `compiler/type_mask_processor.py` → `_apply_type_mask` 方法\n\n**机制**: `full_s1` 模式下两层 LogitsProcessor 按序运行：\n1. **XGrammar** 先执行，将 grammar-invalid tokens 设为**有限负值**（如 -1e10），而非 `-inf`\n2. **TypeConstraintProcessor** 后执行，将 semantically-disallowed type tokens 设为 `-inf`\n\n当 semantic 约束的 `allowed_types` 与 grammar 当前位置允许的 type tokens 无交集时（如 `valid_tail_types_for_head(head_type)` 返回空集），**所有 grammar-valid type tokens 被设为 -inf**，而 grammar-invalid tokens 仍为有限负值 (-1e10 > -inf)。`argmax` 选中 grammar-invalid token → 下一步 XGrammar 的 `accept_token` assertion 失败。\n\n### 2. 修复内容\n\n**文件 1**: `compiler/type_mask_processor.py` (方案 B — 根治)\n- 新增类属性 `_GRAMMAR_MASK_THRESHOLD = -1e8`\n- `_apply_type_mask` 增加安全检查：应用 semantic mask 前验证至少一个 semantically-allowed type 有非 grammar-masked logit（> threshold）。若全部已被 grammar mask，跳过 semantic masking，交由 grammar 控制\n\n**文件 2**: `run_constrained_extraction.py` (方案 A — 已存在)\n- try-except `AssertionError` fallback 到 grammar-only 已存在（之前手动添加的）\n\n### 3. Dry-run 验证\n\n从 doc 88 (原崩溃点) 起连续 8 个文档全部 OK：\n```\n[88] Riksakten: OK E=40 R=38 42.8s  ← 原崩溃文档\n[89] Dan Sterling: OK E=19 R=14 15.8s\n[90] Guillermo Endara: OK E=31 R=31 36.0s\n[91-95] 全部 OK\n```\n\n### 4. 重启状态\n\n- **PID**: 157042\n- **tmux session**: `phase2_docred_full_s1`\n- **GPU**: cuda:1 (CUDA_VISIBLE_DEVICES=1)\n- **Resume**: 从 87 行处继续，当前已 89 行\n- **日志**: `~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-grammar-semantic-interaction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6f6093030b34bcbe010",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 ee write script",
+  "task_key": "worker_ssh_p1_ee_write_script_20260518T202112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_ee_write_script_20260518T202112_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "52bd74301e3ad337aa278198d73b906d917d9342082af4dd8f88a6325241a159"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n- 所有 4 个脚本均存在：`train_lora_wikievents.py`、`run_constrained_extraction.py`、`eval_event_extraction.py`、`violation_checker_wikievents.py`\n- 测试数据：`data/wikievents/test.jsonl`\n- Constraints：`data/wikievents/ontology_constraints_wikievents.json`\n- 模型 Qwen/Qwen3-8B 已缓存在 HF hub\n- 环境验证通过：Python 3.12.3, torch 2.8.0+cu128, CUDA OK, 2 GPUs\n\n**脚本已写入** `/root/schema_semantic_constrained_ie/scripts/run_p1_ee_ft.sh`，包含 5 步：Training → Unconstrained Inference → Constrained Inference (full_s1) → Eval → Violation Check。无缺失文件，所有步骤均可执行。\n\n**产出报告** 已写入 `artifacts/p1_ee_script_setup.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-ee-write-script.md"
+}

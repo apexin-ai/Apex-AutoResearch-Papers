@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d263c6fd2b7e89d31afe",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents qwen llama results",
+  "task_key": "worker_code_wikievents_qwen_llama_results_20260517T192706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_qwen_llama_results_20260517T192706_result.json",
+    "occurrence": 1,
+    "bytes": 1470,
+    "sha256": "bd38b19e2b189a7056a7e3530126f2a71cc22ae94f11128cd836b8ea8367beaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both baselines complete. Here are the results:\n\n---\n\n```\nModel: Llama (unconstrained)\nDocs: 246/246\nParse Success: 226/246 (91.9%)\n\nViolation Rates:\n  ET:  0.0%\n  EV:  10.5%\n  RoV: 88.8%\n  AC:  0.1%\n  CF:  0.0%\n\nF1 Scores:\n  Trigger F1: 0.0572\n  Argument F1: 0.0000\n  Entity F1: 0.0000\n```\n\n```\nModel: Qwen (unconstrained)\nDocs: 246/246\nParse Success: 218/246 (88.6%)\n\nViolation Rates:\n  ET:  0.0%\n  EV:  24.0%\n  RoV: 74.9%\n  AC:  0.3%\n  CF:  0.0%\n\nF1 Scores:\n  Trigger F1: 0.1184\n  Argument F1: 0.0009\n  Entity F1: 0.0000\n```\n\n---\n\n**Key observations:**\n\n- Both models produce 0 entities (the unconstrained prompt apparently doesn't elicit entity extraction)\n- RoV dominates violations: 88.8% (Llama) / 74.9% (Qwen). The models generate free-form role names (251 unique for Llama) instead of the 59 ontology-defined roles\n- Argument F1 is near-zero because matching requires (trigger, event_type, arg_text, role) 4-tuple, and the free-form roles never match gold\n- Trigger F1 is very low (5.7% / 11.8%) because both trigger text and event type must match\n- Qwen has higher EV violations (24%) vs Llama (10.5%), but slightly better Trigger F1\n- Parse failure rate: Llama 8.1%, Qwen 11.4%\n\nNote: I patched `violation_checker_wikievents.py` and `eval_event_extraction.py` on the server to handle the case where `parsed_output` is a bare list instead of `{\"events\": [...]}` (only affected 1 Llama record)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-qwen-llama-results.md"
+}

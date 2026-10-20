@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40d5f27194da5531fdbc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval w4 schema v2 recheck",
+  "task_key": "worker_eval_w4_schema_v2_recheck_20260515T091628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w4_schema_v2_recheck_20260515T091628_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "9320ccf592c9cc7f0dfe9112b8b8795a2ec37028de2d1bd83d11d3b3cdf3913c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已出。v2 checker 版本为 `fixed_20260514_v2 (strip + alias + unique_et)`，核心变化是 ET 计算方式（strip 空格 + alias 归一化 + unique entity 去重）。\n\n```\nSchema-informed DocRED v2 checker results:\n- ET: 0.19% (v1: 0.61%)  ← 降了 3x，v2 alias归一化消除了误报\n- RV: 18.41% (v1: 18.41%)  ← 不变\n- DR: 12.84% (v1: 12.84%)  ← 不变\n- CF: 0.15% (v1: 0.15%)  ← 不变\n- docs_checked: 943, parse_failures: 55\n- total_triples: 16782, total_entities: 19524\n- total_violation_rate: 14.63% (v1: 14.85%)\n```\n\n**唯一变化在 ET**：v1 报了 119 个 ET violations (0.61%)，v2 降到 38 个 (0.19%)。原因是 v2 checker 做了 entity type alias 归一化（PERSON→PER, ORGANIZATION→ORG 等），81 个原本判为违规的实际上是合法别名。\n\nRV、DR、CF 三个指标完全不变——这符合预期，v2 只改了 ET 检测逻辑。\n\nF1 指标不在 violation checker 输出中（需要单独的 F1 evaluation 脚本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w4-schema-v2-recheck.md"
+}

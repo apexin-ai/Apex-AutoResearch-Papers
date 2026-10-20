@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "cef41c1709fcbab1638d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ssh d063 gollie violation rate",
+  "task_key": "worker_ssh_d063_gollie_violation_rate_20260519T090427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d063_gollie_violation_rate_20260519T090427.log",
+    "occurrence": 1,
+    "bytes": 1907324,
+    "sha256": "4874144dd62338da8cc17938b20c2e008994c2d0545cafc2e50b9b12bcbe7dd1"
+  },
+  "statistics": {
+    "messages": 836,
+    "user_turns": 1,
+    "tool_calls": 309,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 208,
+      "tool_call": 309,
+      "tool_result": 309,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 380,
+      "chunks": [
+        {
+          "path": "cef41c1709fcbab1638d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cef41c1709fcbab1638d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cef41c1709fcbab1638d-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "cef41c1709fcbab1638d-part-0003.json",
+          "message_count": 160
+        },
+        {
+          "path": "cef41c1709fcbab1638d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "cef41c1709fcbab1638d-part-0005.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d063-gollie-violation-rate.md"
+}

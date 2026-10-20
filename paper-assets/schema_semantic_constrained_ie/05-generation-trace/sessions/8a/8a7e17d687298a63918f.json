@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a7e17d687298a63918f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor docred progress",
+  "task_key": "worker_monitor_docred_progress_20260514T104611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_docred_progress_20260514T104611_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "ade774e0d14b36fff2372dabed5a0f2daaf8230d0548fba31f010265b8a134dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇报\n\n| | **unconstrained** (cuda:0) | **semantic_only** (cuda:1) |\n|---|---|---|\n| **进程** | PID 170502 ✅ alive | PID 172859 ✅ alive |\n| **运行时间** | 3h06m | 2h16m |\n| **日志进度** | 485 / 998 (48.6%) | 328 / 998 (32.9%) |\n| **输出文件行数** | 570 行 | 392 行 |\n| **近期速度** | ~17-22s/doc | ~12-28s/doc |\n| **GPU 利用率** | 87%, 17.5GB/98GB | 84%, 17.5GB/98GB |\n\n**注意**: 输出文件行数 > 日志计数器，可能存在前次运行的残留数据或 resume 追加。\n\n### 预估完成时间\n\n- **unconstrained**: 按日志进度 485/998，平均 ~23s/doc，剩余 513 docs → **约 3.3 小时后完成**\n- **semantic_only**: 按日志进度 328/998，平均 ~25s/doc，剩余 670 docs → **约 4.6 小时后完成**\n\n两个实验预计今天内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-docred-progress.md"
+}

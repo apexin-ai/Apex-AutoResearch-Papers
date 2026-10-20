@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb5480211c684c756648",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze llama bootstrap ci",
+  "task_key": "worker_analyze_llama_bootstrap_ci_20260514T222348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llama_bootstrap_ci_20260514T222348_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "83174c86bfe67f6b13e60b3020fd573d9024deb62787b7ab5557cf1b5648c723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。注意：DocRED 的 E-F1 计算值（57.92 vs 58.18）与任务描述的预期值（55.65 vs 55.01）有差异——可能是对齐后评估逻辑或数据版本不同。以下是实际 bootstrap 结果：\n\n| Comparison | Delta | 95% CI | p-value | Significant? |\n|---|---|---|---|---|\n| Llama SciERC R-F1 | -0.04pp | [-0.10, -0.01] | 0.0106 | Yes (p<0.05) |\n| Llama SciERC E-F1 | +0.03pp | [-0.18, +0.22] | 0.7618 | No |\n| Llama DocRED R-F1 | +0.37pp | [+0.12, +0.62] | 0.0044 | Yes (p<0.01) |\n| Llama DocRED E-F1 | +0.27pp | [-0.11, +0.65] | 0.1684 | No |\n\n**关键发现**：\n- **Llama DocRED E-F1**：delta=+0.27pp，p=0.1684，**不显著**（CI 跨零）\n- **两个 R-F1 比较都显著**：SciERC R-F1 下降 0.04pp (p=0.011)，DocRED R-F1 上升 0.37pp (p=0.004)\n- **两个 E-F1 比较都不显著**\n\n注意 E-F1 绝对值与预期不一致（DocRED: 57.92/58.18 vs 预期 55.65/55.01），delta 方向也反了（+0.27 vs 预期 -0.64）。这可能涉及数据对齐、entity type 归一化差异等。结果 JSON 已保存在 `outputs/bootstrap_ci_results_llama.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-llama-bootstrap-ci.md"
+}

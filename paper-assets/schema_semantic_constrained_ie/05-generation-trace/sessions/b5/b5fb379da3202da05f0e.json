@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5fb379da3202da05f0e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama docred maxtoken test",
+  "task_key": "worker_code_llama_docred_maxtoken_test_20260515T063113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_docred_maxtoken_test_20260515T063113_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "23ee7f5b389535e573ade351e989a21e7fd2e72a8273bb635c703b18911b3ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/llama_docred_maxtoken/experiment_plan.md`。\n\n**核心信息**：\n\n- **当前 max_new_tokens**: 4096\n- **新值**: 6144 (1.5x)\n- 两组实验命令已就绪（唯一差异：`--max_new_tokens 6144` + `_mt6144` 输出后缀）\n- 可并行跑 cuda:0 / cuda:1，总墙钟约 6–7 小时\n- 服务器已验证：GPU 空闲、模型/数据/脚本均存在、磁盘充足\n- 判定标准：full_s1 parse failures 从 91 降至 ≤70 = 截断假设成立"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-docred-maxtoken-test.md"
+}

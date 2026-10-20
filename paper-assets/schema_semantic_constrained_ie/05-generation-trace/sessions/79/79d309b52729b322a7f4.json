@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79d309b52729b322a7f4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft scierc check",
+  "task_key": "worker_ssh_d062_full_ft_scierc_check_20260519T042148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_scierc_check_20260519T042148_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "1372a0be1e10f586652732c6a52db0c99cc02ca0251d94f787fd70053cea8b18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 在 tmux `d062_retry` 中自动运行。4.5 分钟后回查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-scierc-check.md"
+}

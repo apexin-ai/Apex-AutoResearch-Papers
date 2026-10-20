@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1c7b361fb5f67bac96",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 prompt sensitivity analysis",
+  "task_key": "worker_code_r4_prompt_sensitivity_analysis_20260517T141135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_prompt_sensitivity_analysis_20260517T141135_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "d906f26c842830bf21d3a215cdf0cda207ddd338e6bac0ef703b5f9f688d96c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个产出已注册：\n\n**核心结果：**\n\n| Prompt | Mode | ET% | RV% | DR% | ΔDR | E-F1 | R-F1 |\n|--------|------|-----|-----|-----|-----|------|------|\n| Default | Uncon | 0.40 | 1.39 | 15.37 | 94.0% | 31.01 | 8.23 |\n| Default | Con | 0.00 | 0.00 | 0.93 | | 30.98 | 8.36 |\n| Minimal | Uncon | 0.58 | 1.16 | 16.91 | 94.6% | 31.98 | 7.91 |\n| Minimal | Con | 0.00 | 0.00 | 0.92 | | 31.99 | 7.85 |\n| Detailed | Uncon | 0.22 | 0.45 | 11.07 | 94.2% | 33.55 | 10.48 |\n| Detailed | Con | 0.00 | 0.00 | 0.64 | | 33.56 | 10.48 |\n\n**关键发现：**\n- ET/RV 在所有 prompt 下 100% 消除\n- DR 降幅 94.0%–94.6%，σ=0.3pp，高度一致\n- F1 最大变化 0.13pp，可忽略\n- Prompt 对 unconstrained DR 的影响范围 5.84pp，constrained 下收窄至 0.29pp（20x 压缩），确认约束机制与 prompt 正交\n\n**产出：**\n- `art_20260517_2f2969` — `r4_prompt_sensitivity_results.md`（完整数据和分析）\n- `art_20260517_27c027` — `appendix_prompt_sensitivity.tex`（LaTeX appendix，含表格和分析段落）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-prompt-sensitivity-analysis.md"
+}

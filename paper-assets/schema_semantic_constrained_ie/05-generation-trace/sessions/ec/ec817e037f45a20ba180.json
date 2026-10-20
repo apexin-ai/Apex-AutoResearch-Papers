@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec817e037f45a20ba180",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents ontology fix fullrun",
+  "task_key": "worker_code_wikievents_ontology_fix_fullrun_20260517T173343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_ontology_fix_fullrun_20260517T173343_result.json",
+    "occurrence": 1,
+    "bytes": 1976,
+    "sha256": "6cde98167cf8c24c13d17a9dbe4e4e76cf0cda781f2779fca509ff31470c407e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Second doc: 30.5s, parsed OK. Average ~52s/doc. Estimated ~3.5 hours for 246 docs.\n\nHere's the status summary:\n\n**Part 1: Ontology Fixes - COMPLETE**\n\nAll fixes applied to `ontology_constraints_wikievents.json`:\n\n1. **5 missing event types added** (cross-products of intent x modality):\n   - `Contact.RequestCommand.Broadcast` → `RequestCommand.Broadcast`\n   - `Contact.RequestCommand.Correspondence` → `RequestCommand.Correspondence`\n   - `Contact.RequestCommand.Meet` → `RequestCommand.Meet`\n   - `Contact.ThreatenCoerce.Broadcast` → `ThreatenCoerce.Broadcast`\n   - `Contact.ThreatenCoerce.Correspondence` → `ThreatenCoerce.Correspondence`\n   - Role constraints inherited from parent intent types (Communicator, Recipient, Topic, Place)\n\n2. **CRM entity type added** to entity_types (27 total)\n\n3. **ObservedEntity and Observer roles added** to `InvestigateCrime.Unspecified`:\n   - Observer: [GPE, ORG, PER] (from data: 24 instances)\n   - ObservedEntity: [COM, FAC, ORG, PER, VEH, WEA] (from data: 24 instances)\n\n4. **Consistency validation passed** on all 246 docs:\n   - All event types mapped\n   - All entity types covered\n   - All roles have constraints\n   - 1 minor data annotation edge case (VEH as Destination in Transportation, 1 instance)\n\n5. **First-token collisions**: RequestCommand.* and ThreatenCoerce.* groups share first tokens with their `.Unspecified` siblings, disambiguated by the second token after `.`\n\n**Updated meta**: 56 event types, 27 entity types, 80 roles, 245 constraints\n\n**Part 2: Unconstrained Baseline - RUNNING**\n\n- tmux session: `wikievents_unconstrained`\n- GPU 1 (RTX PRO 6000 Blackwell, 97GB)\n- Data: `data/wikievents/all.jsonl` (246 docs)\n- Output: `outputs/wikievents_qwen_unconstrained_full.jsonl`\n- Estimated completion: ~3.5 hours (~52s/doc average)\n- 2/246 docs completed so far\n\nI'll check back on progress. Want me to monitor and report results when it completes?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-ontology-fix-fullrun.md"
+}

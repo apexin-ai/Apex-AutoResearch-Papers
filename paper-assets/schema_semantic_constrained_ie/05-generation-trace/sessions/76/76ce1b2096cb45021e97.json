@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ce1b2096cb45021e97",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check 70b inference status all",
+  "task_key": "worker_check_70b_inference_status_all_20260522T035902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_70b_inference_status_all_20260522T035902_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "92c57573564b749206b0bf9b352e03b9f96e92b1b4f55fcb235925d352853805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 70B LoRA 推理状态汇总\n\n### 进程状态：两个 unconstrained 推理任务正在运行\n\n| 任务 | PID | GPU | 启动时间 | 状态 |\n|------|-----|-----|---------|------|\n| SciERC unconstrained | 878492 / 880000 | GPU 0 | 10:16 / 10:19 | **运行中** (101% CPU) |\n| DocRED unconstrained | 881090 | GPU 1 | 10:32 | **运行中** (101% CPU) |\n\n> 注意：SciERC 有两个进程（PID 878492 和 880000），看起来是先启动了一个无 `--skip_on_error` 的，又启动了一个带 `--skip_on_error` 的，两个都在跑且都写同一个输出文件。\n\n### 输出文件行数\n\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `scierc_unconstrained.jsonl` | **344 行** | 645 KB |\n| `docred_unconstrained.jsonl` | **62 行** | 662 KB |\n\n### S1 constrained 输出\n- `scierc_s1.jsonl` — **不存在**\n- `docred_s1.jsonl` — **不存在**\n\nS1 constrained 推理尚未开始。\n\n### GPU 使用\n\n| GPU | 利用率 | 显存使用 |\n|-----|--------|---------|\n| GPU 0 | 94% | 79,190 / 97,887 MiB |\n| GPU 1 | 80% | 40,921 / 97,887 MiB |\n\n两块 GPU 都在满负载工作。\n\n### 其他\n- 有一个 `docred_200_monitor.sh` 监控脚本在 tmux pts/3 中运行（每 600 秒轮询一次）\n- DocRED 日志正常，全部是 `pad_token_id` 的常规 warning，无报错\n- tmux session `llama_beam` 存在（自 May17）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-70b-inference-status-all.md"
+}

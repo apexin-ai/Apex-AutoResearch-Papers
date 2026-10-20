@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "399a5d898b12e4dfd5c8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w9 docred sampling resume",
+  "task_key": "worker_code_w9_docred_sampling_resume_20260518T163653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w9_docred_sampling_resume_20260518T163653_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "c3d4caa3f923a37dceb9f7d65088e9773e7edda04aa74814743720d4cb1afa08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **服务器**: westd-21461, cuda:1\n- **已完成**: 106 docs（原文件保留）\n- **续跑**: 892 docs → `w9_qwen_docred_zs_sampling_r2.jsonl`\n- **tmux session**: `w9_docred_r2`\n- **Registry**: `w9_qwen_docred_zs_sampling_r2` 状态 RUNNING\n- **GPU 状态**: 模型已加载（18923MiB），83% 利用率，推理进行中\n\n完成后用 `cat w9_qwen_docred_zs_sampling.jsonl w9_qwen_docred_zs_sampling_r2.jsonl > w9_qwen_docred_zs_sampling_merged.jsonl` 合并。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w9-docred-sampling-resume.md"
+}

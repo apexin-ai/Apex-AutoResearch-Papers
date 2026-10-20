@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c191ff4b4b1a234a060c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd21461 status",
+  "task_key": "worker_check_westd21461-status_20260522T164425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd21461-status_20260522T164425_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "20138f9743aabe7aef195e27a0d49fc0ea259e83adb4ab4c6cea7061aced9279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n## 实验结果\n\n| | Unconstrained | Grammar-only | Semantic-only | Full (grammar+semantic) |\n|---|---|---|---|---|\n| **DR%** | 6.41% | 6.33% (≈0%) | **1.01%** (-84%) | 0% |\n| **R-F1** | 11.24 | 11.23 | **11.37** (+0.13) | ~11.24 |\n| **RV%** | - | 0% | 0.6% | 0% |\n| **CF** | - | 0 | 76 | 0 |\n\n### Hypothesis 判断\n\n- **Grammar-only → negative**: DR 6.33% vs 6.41%，降幅仅 0.08pp（噪声级别），grammar layer 对 70B 的 DR 几乎没有独立贡献。原因：70B 本身已能正确生成 entity type/relation name 词汇（RV=0%, ET=0%），grammar 只约束词汇不约束 domain/range 组合。\n- **Semantic-only → success**: DR 从 6.41% 降至 1.01%（84% 相对降幅），semantic layer 是 DR 减少的主要驱动力。但没有 grammar 兜底时，会漏出 0.6% RV violations 和 76 个 CF inconsistencies。\n\n### 关键 insight\n在 70B 上，**semantic layer 承担了几乎全部的 constraint enforcement 工作**，grammar layer 的贡献接近于零（因为大模型本身已具备正确的词汇生成能力）。两层联合时 grammar 的价值在于「查漏补缺」——消除 semantic-only 残留的 RV 和 CF violations。\n\n### GPU 状态\nwestd-21461 两张 RTX PRO 6000 (96GB) 均空闲，0% utilization，0MiB memory。可用于下一批实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd21461-status.md"
+}

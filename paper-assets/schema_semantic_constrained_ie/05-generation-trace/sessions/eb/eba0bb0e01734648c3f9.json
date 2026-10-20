@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eba0bb0e01734648c3f9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p2 ee ft bootstrap ci",
+  "task_key": "worker_ssh_p2_ee_ft_bootstrap_ci_20260519T004339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p2_ee_ft_bootstrap_ci_20260519T004339_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "f7d0b982b7fb8f6a26af0a51f3b3d688ad82750e870806ee7fcadf9a856b0fbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总结果：\n\n```\n=== WikiEvents EE FT Bootstrap 95% CI (10000 resamples) ===\n\nQwen3-8B FT:\n  Unconstrained (17 docs, 261 args):\n    RoV:      38.31% (95% CI: [25.13%, 46.84%])\n    AC:        2.68% (95% CI: [1.21%, 5.64%])\n    Go/No-go: 41.00% (95% CI: [27.91%, 49.14%])\n  Constrained (full_s1) (19 docs, 339 args):\n    RoV:       0.00% (95% CI: [0.00%, 0.00%])\n    AC:        0.00% (95% CI: [0.00%, 0.00%])\n    Go/No-go:  0.00% (95% CI: [0.00%, 0.00%])\n\nLlama-3.1-8B FT:\n  Unconstrained (20 docs, 377 args):\n    RoV:       8.75% (95% CI: [2.42%, 15.35%])\n    AC:        3.45% (95% CI: [0.88%, 5.97%])\n    Go/No-go: 12.20% (95% CI: [4.73%, 18.97%])\n  Constrained (full_s1) (20 docs, 255 args):\n    RoV:       0.00% (95% CI: [0.00%, 0.00%])\n    AC:        0.78% (95% CI: [0.00%, 1.73%])\n    Go/No-go:  0.78% (95% CI: [0.00%, 1.73%])\n```\n\nArtifact 已注册：`art_20260519_d5f670`。所有 CI 不重叠，constrained vs unconstrained 差异具有统计显著性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p2-ee-ft-bootstrap-ci.md"
+}

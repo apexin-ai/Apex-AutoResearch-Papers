@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "532a7bebfbe3dc99fe63",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write appendix llama per relation",
+  "task_key": "worker_write_appendix_llama_per_relation_20260514T223244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_appendix_llama_per_relation_20260514T223244_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "aa66e13cd97f5969d5679955956e0b65bdde2b9ad5c390784ba9c1773cdcac8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建：`artifacts/_project/paper/appendix_llama_per_relation.tex`\n\n内容包含：\n- 介绍段（OOV 16.8% → 0%，DR 降至 2.6%）\n- 完整 Top 10 per-relation DR 表格（从分析报告提取，P576 32.9% 到 P607 6.6%）\n- Qwen 对比段（2.6% vs 10.2%，P1198 20% vs 83%）\n- 总结句（tightness × RV 双因素叙事）\n- 所有数字标注 exp_ids"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-appendix-llama-per-relation.md"
+}

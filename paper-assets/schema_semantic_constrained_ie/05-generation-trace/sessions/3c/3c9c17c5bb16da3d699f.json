@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c9c17c5bb16da3d699f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest llama int4 docred",
+  "task_key": "worker_check_harvest-llama-int4-docred_20260523T070326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-llama-int4-docred_20260523T070326_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "ed6477760a8888cb3622e5996b532b7cc4d66b6e69fa7c085d691f23b84536c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除。\n\n---\n\n**实验收割完成：sf2_llama_int4_docred_s1 → DONE (success)**\n\n| Metric | INT4 (AWQ) | FP16 Baseline | Delta |\n|--------|-----------|---------------|-------|\n| **R-F1** | **48.04** | 47.35 | **+0.69** |\n| R-P | 44.79 | 43.46 | +1.33 |\n| R-R | 51.80 | 52.00 | -0.20 |\n| **E-F1** | **84.18** | 85.43 | **-1.25** |\n| E-P | 85.50 | 85.96 | -0.46 |\n| E-R | 82.90 | 84.91 | -2.01 |\n| DR% | 0% | 0% | 0 |\n| ET% | 0% | - | - |\n| RV% | 0% | - | - |\n| CF% | 0.22% | 0.19% | +0.03 |\n| Parse fail | 2.5% | 2.0% | +0.5 |\n\n结论：AWQ INT4 量化对 Llama DocRED FT+constrained 几乎无损——R-F1 反而略升 +0.69pp，E-F1 仅降 1.25pp，违规率保持接近零。模型体积从 ~16GB 降至 ~5.3GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-llama-int4-docred.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4179074611a7ef3862c2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest zs docred s1",
+  "task_key": "worker_check_harvest-zs-docred-s1_20260523T022708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-zs-docred-s1_20260523T022708_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "bf2554c9608ddf74778daf502ee9ce8307d7a163d995ba574fc1e386007be9e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除（可能在之前的 session 中已清理）。\n\n---\n\n## 实验结果：eval_70b_zs_docred_200_full_s1 ✓ SUCCESS\n\n| 指标 | Full S1 | Unconstrained | Grammar-only | Semantic-only |\n|------|---------|---------------|--------------|---------------|\n| **DR%** | **0.00** | 14.98 | 17.03 | 1.66 |\n| **RV%** | **0.00** | — | — | — |\n| **ET%** | **0.00** | — | — | — |\n| **CF%** | 5.34 | — | — | — |\n| **E-F1** | 70.05 | — | — | — |\n| **R-F1** | **13.25** | 13.25 | 12.73 | 13.61 |\n| **PF%** | 0.00 | — | — | — |\n\n**Hypothesis 完美验证：**\n- DR 从 unconstrained 的 14.98% 降至 **0.00%**（优于 semantic_only 的 1.66%，完全消除了 domain-range 违规）\n- R-F1 = **13.25**，与 unconstrained 完全一致，零性能损失\n- 200/200 样本全部成功，无 parse failure\n\nRegistry 已更新为 DONE (success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-zs-docred-s1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a44c9a6b52c8d8d7d3e2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code fix xgrammar assertion",
+  "task_key": "worker_code_fix_xgrammar_assertion_20260514T025531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_xgrammar_assertion_20260514T025531_result.json",
+    "occurrence": 1,
+    "bytes": 2840,
+    "sha256": "3c41d123a0bb1ac6edd6221e18886af7818686f5c3d45c5780e8769614c95d90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已完成并验证。以下是报告：\n\n---\n\n## 诊断报告\n\n### 1. 根因分析\n\n**问题所在**：`TypeConstraintProcessor._apply_type_mask()` 在 `allowed_types` 为空集时，会将 grammar 允许的所有 6 个 entity type first tokens 全部 mask 为 -inf。\n\n**触发路径**：在 `_mask_tail_type` 中，`constraint.valid_tail_types_for_head(head_type)` 返回空集。这发生在以下场景：\n- 模型生成了一个 relation type（如 \"country of citizenship\"），其 valid_pairs 只允许 `(PER, LOC)` \n- `_mask_head_type` 将 head_type 强制为 PER（按 domain/range 约束）\n- 但如果 PositionDetector 状态跟踪出现偏差（跨 relation 对象时 state 未重置），`head_type` 可能保留前一个 relation 的值\n- `valid_tail_types_for_head(前一个relation的head_type)` 对当前 relation 返回空集\n\n**后果**：grammar 只允许 6 个 type token，semantic 把 6 个全 mask 为 -inf → 交集为空 → `argmax` 选中 grammar 不允许的 token → 下一步 XGrammar `accept_token()` assertion 失败。\n\n### 2. 修复内容\n\n**Fix B（根治）** — `compiler/type_mask_processor.py`：\n- `_mask_head_type` / `_mask_tail_type`：`allowed_dr` 为空时跳过 masking（`if allowed_dr is not None and allowed_dr:`）\n- `_apply_type_mask`：三层防护：\n  1. `allowed_types` 为空 → 跳过\n  2. 无需 mask 的 token → 跳过  \n  3. 验证至少一个 allowed type 有非 grammar-masked 的 logit（`_GRAMMAR_MASK_THRESHOLD = -1e8`），否则跳过\n\n**Fix A（安全网）** — `run_constrained_extraction.py`：\n- `run_single_pass`：`try/except AssertionError` 捕获 XGrammar assertion failure，fallback 到 grammar-only 重新生成\n- `run_s2_two_pass` Pass 1 和 Pass 2：同样的 try/except 安全网\n\n### 3. Dry-run 结果\n\n**测试 1**（从头跑 5 个样本）：5/5 OK, 0 fail\n```\n[1/5] Skai TV: OK E=15 R=14 45.2s\n[2/5] Washington Place: OK E=18 R=18 55.8s\n[3/5] IBM Research – Brazil: OK E=27 R=19 47.4s\n[4/5] Lookin Ass: OK E=21 R=19 41.3s\n[5/5] Conrad O. Johnson: OK E=20 R=19 42.1s\n```\n\n**测试 2**（从崩溃点 resume，跑 3 个新样本）：3/3 OK, 0 fail\n```\n[88/90] Riksakten: OK E=40 R=38 83.8s\n[89/90] Dan Sterling: OK E=19 R=14 31.4s  ← 原崩溃文档\n[90/90] Guillermo Endara: OK E=31 R=31 72.0s\n```\n\n输出文件 `docred_full_s1.jsonl` 现有 90 行（87 原有 + 3 新增）。\n\n### 4. Resume 可行性\n\n**可以直接 `--resume` 从 90 继续到 998**。命令：\n```bash\npython3 run_constrained_extraction.py \\\n  --dataset docred --mode full_s1 \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/docred_full_s1.jsonl \\\n  --device cuda:0 --max_new_tokens 4096 --resume\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-xgrammar-assertion.md"
+}

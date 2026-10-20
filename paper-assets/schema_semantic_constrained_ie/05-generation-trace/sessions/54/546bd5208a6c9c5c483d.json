@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "546bd5208a6c9c5c483d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "ops backup lora westd 16980",
+  "task_key": "worker_ops_backup-lora-westd-16980_20260523T201433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_backup-lora-westd-16980_20260523T201433.jsonl",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "32b32bd15f58308f0860ea3b1bcb871b1c5bf5e63fc4c5a2bbc669760c32c149"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T20:14:44.009847+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 25, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_backup-lora-westd-16980_20260523T201433"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-backup-lora-westd-16980.md"
+}

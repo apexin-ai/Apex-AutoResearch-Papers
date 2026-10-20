@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df2b5b837ebb76380c0f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "gpu d065 qwen greedy 4096 21461 v2",
+  "task_key": "worker_gpu_d065_qwen_greedy_4096_21461_v2_20260520T031235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d065_qwen_greedy_4096_21461_v2_20260520T031235_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "ff0b17bc57d851d541cf6ee1210638b8c718dcdb6f16cc674ebe84f23e719a75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 ✓** — 21461 GPU0 两个进程已 kill：\n- PID 160822 (d067 seed123 unc)\n- PID 163487 (d066 beam1 unc)\n- GPU0 显存已释放确认\n\n**Step 2 ✓** — 从 16980 获取 LLaMA d065 参照命令，确认脚本/参数\n\n**Step 3 ✓** — 21461 GPU0 已启动 Qwen greedy 4096：\n- PID: 167691\n- tmux session: `d065_qwen_greedy`\n- 顺序执行：unconstrained → constrained (full_s1)\n- 输出：`/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_{unc,con}_4096.jsonl`\n- 日志：`/root/autodl-tmp/schema_outputs/d065_qwen_greedy_4096.log`\n\n**Step 4 ✓** — 16980 无 Qwen cascade 进程（无 tmux session、无 cron），无需取消\n\n**Step 5 ✓** — 确认：\n- 21461 GPU0: Qwen 推理占用 18910MiB, 83% util\n- 21461 GPU1: d066 SciERC beam8 未受影响\n- 16980 GPU0+1: LLaMA d065 两进程正常（90%/88% util）\n\n**预估完成时间**：从 d067 运行速率看（~73 docs in 40min），998 docs unconstrained 约 9h，加 constrained 约 18h 总计。预计 ~明天凌晨 5:00 CST 全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-d065-qwen-greedy-4096-21461-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79b1d7af5db7c70a330a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit registry hypothesis",
+  "task_key": "worker_audit_registry_hypothesis_20260517T025352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_registry_hypothesis_20260517T025352_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "d344ded8248e724b86798a64ea38c69a3db3fd06bc12a2a5e499f64e36f1cb1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新成功。汇报：\n\n## 自检结果\n\n| 指标 | 数量 |\n|------|------|\n| 检查实验总数 | 50 (DONE, success/negative) |\n| 补写 hypothesis | 5 个 (`w5_lora_scierc_training`, `llama_docred_full_s1_mt6144`, `llama_docred_unconstrained_mt6144`, `posthoc_filtering_baseline`, `w1_cf_fallback_scierc_pilot`) |\n| 补写 parent | 13 个 |\n\n## 典型推导链\n\n**链 1 — Qwen SciERC composability + ablation (4 层)**\n```\nw5_lora_scierc_training\n  → w5_lora_scierc_unconstrained_eval (FT baseline: DR=1.95%)\n    → w7_qwen_scierc_ft_grammar_only (grammar 不降 DR, 仍 1.9%)\n    → w7_qwen_scierc_ft_semantic_only (semantic 降 DR 68%, 至 0.6%)\n  → w5_lora_scierc_constrained_eval (full_s1: DR=0%, composability 验证)\n```\n\n**链 2 — Llama DocRED composability + ablation (3 层)**\n```\nw5_llama_docred_lora_training\n  → w5_llama_docred_lora_unconstrained_eval (FT baseline: DR=0.49%)\n  → w5_llama_docred_lora_constrained_eval (full_s1: DR=0%, composability)\n  → w8_llama_docred_ft_grammar_only (grammar 不降 DR)\n  → w8_llama_docred_ft_semantic_only (semantic 降 DR)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-registry-hypothesis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abfa1f8f5fdb10b476db",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "launch 70b docred zs",
+  "task_key": "worker_launch_70b_docred_zs_20260521T050402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_70b_docred_zs_20260521T050402_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "0957c6ea9a6c8cde1bc04d95ab7468ed2754c34b389032fe41356c223b978e38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **服务器**: westd-21461, GPU 1 (cuda:1)\n- **PID**: 247853 (python3), 39134MiB 显存占用\n- **脚本**: `/root/schema_semantic_constrained_ie/run_70b_docred_zs.sh`（unconstrained → full_s1 顺序执行，含 violation_checker）\n- **日志**: `/root/autodl-tmp/schema_outputs/r16_70b_docred_zs_s1.log`\n- **Registry**: `r16_70b_docred_zs_s1` → RUNNING\n- **Cron**: 每5分钟监控（job `5da6b40b`）\n- **修复**: 安装了缺失的 `gptqmodel==7.0.0`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-70b-docred-zs.md"
+}

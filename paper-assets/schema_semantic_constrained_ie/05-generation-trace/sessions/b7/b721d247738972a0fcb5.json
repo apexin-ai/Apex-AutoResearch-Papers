@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b721d247738972a0fcb5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section3 method fix",
+  "task_key": "worker_paper_section3_method_fix_20260514T055206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section3_method_fix_20260514T055206_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "07a51fe63a9a7527c93a5e9e7effe717283a481ca310fa32ea5b413b342300a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改已完成，两个副本均已同步：\n\n**Warning 1 — Head type masking fallback**：与实际代码 (`type_mask_processor.py` `_mask_head_type`) 对齐。原文错误地写 fallback 到全部 $\\mathcal{E}$，修正为三级逻辑：\n1. $h_j \\in \\mathcal{D}$ 且 type $\\in \\operatorname{dom}(r_j)$ → 强制单一 type\n2. $r_j$ 已知 → fallback 到 $\\operatorname{dom}(r_j)$\n3. $r_j$ 未知 → 无 semantic mask，仅 grammar 层兜底\n\n**Warning 2 — Decidability taxonomy 去重**：§3.1 保留为 canonical definition，末尾加前向引用到 `Section~\\ref{sec:composition}`。§4 已有的重复描述可在后续编辑中简化为引用回 §3.1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section3-method-fix.md"
+}

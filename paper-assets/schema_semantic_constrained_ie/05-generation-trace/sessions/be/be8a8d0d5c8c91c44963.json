@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be8a8d0d5c8c91c44963",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval d065 qwen unc 21461",
+  "task_key": "worker_eval_d065_qwen_unc_21461_20260520T101504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d065_qwen_unc_21461_20260520T101504_result.json",
+    "occurrence": 1,
+    "bytes": 2021,
+    "sha256": "487fc6ff021744890f23ddda69cbc8d447d64545454452ea88e1e37cfcacd9bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总如下：\n\n---\n\n## Part A: d065 Qwen unc eval\n\n**已有结果**（`d065_eval_qwen_unc.json`），无需重跑：\n\n| 指标 | 值 |\n|------|-----|\n| **E-F1** | 82.35 (P=85.5, R=79.43) |\n| **R-F1** | 40.89 (P=36.27, R=46.87) |\n| ET | 0.00% (0) |\n| RV | 0.23% (37) |\n| DR | 0.56% (89) |\n| CF | 0.08% (14) |\n| Parse failures | 68 / 998 (6.81%) |\n| Pred entities | 18,152 |\n| Pred relations | 16,001 |\n\n---\n\n## Part B: d066 模型/数据/脚本可用性\n\n| 资源 | 状态 |\n|------|------|\n| Qwen LoRA DocRED merged | ✓ `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged/` |\n| Llama LoRA DocRED merged | ✓ `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/` |\n| DocRED data | ✓ `dev.json`, `ontology_constraints_docred.json`, SFT files |\n| d066 scripts | ✓ `d066_docred_beam_sweep.sh`, `d066_beam_sweep_scierc.sh`, `d066_analyze_beam_sweep.py` |\n\n**d066 DocRED beam sweep 已有输出：**\n\n| 配置 | 状态 | 备注 |\n|------|------|------|\n| beam4 s1 (200) | ✓ 完成 | E-F1=83.59, R-F1=49.11, DR=0.0% |\n| beam4 unc (200) | ✓ 完成 | E-F1=83.61, R-F1=49.12, DR=0.67% |\n| beam8 s1 (200) | 🔄 运行中 | GPU1 PID 196653，2/200 行，刚启动 |\n| beam1 unc | ⚠️ 38/200 行 | 中断/未完成 |\n| beam1 s1 / beam2 s1 / beam2 unc / beam8 unc | ✗ 缺失 | |\n\nd066 SciERC beam sweep 全部完成（beam 1/2/4/8 × con/unc，已有 eval）。\n\n---\n\n## Part C: GPU 状态\n\n| GPU | PID | 利用率 | 显存 | 任务 |\n|-----|-----|--------|------|------|\n| GPU0 | 194615 | 85% | 18,919 / 97,887 MiB | d065 con rerun |\n| **GPU1** | **196653** | **80%** | **18,923 / 97,887 MiB** | **d066 docred beam8 s1（刚启动）** |\n\n**GPU1 不是空闲的**——正在跑 d066 docred beam8 s1（`--num_beams 8 --mode full_s1 --max_samples 200`）。\n\n另外发现 d067 seed variance 也在此机器上跑过（qwen_scierc seed=123 和 llama_scierc seed=456 完成，qwen_docred seed=123 被 Terminated）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d065-qwen-unc-21461.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da89f9d93f195fabd6ec",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research bib missing entries batch1",
+  "task_key": "worker_research_bib_missing_entries_batch1_20260514T185357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib_missing_entries_batch1_20260514T185357_result.json",
+    "occurrence": 1,
+    "bytes": 5430,
+    "sha256": "65166e09da756affc704dc8ad18024da16bcc8df9b2de5132e358777c5af4ef5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 papers verified. Here's the complete BibTeX block:\n\n```bibtex\n% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n@inproceedings{dong2025xgrammar,\n  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2411.15100}\n}\n\n% Confirmed via: arXiv 2307.09702\n@article{willard2023outlines,\n  title   = {Efficient Guided Generation for Large Language Models},\n  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2307.09702}\n}\n\n% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n@inproceedings{beurer-kellner2023lmql,\n  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n  year      = {2023},\n  url       = {https://doi.org/10.1145/3591300}\n}\n\n% Confirmed via: PMLR v235, ICML 2024\n@inproceedings{beurer-kellner2024domino,\n  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  pages     = {3658--3673},\n  year      = {2024},\n  series    = {PMLR},\n  volume    = {235},\n  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n}\n\n% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n@inproceedings{park2024grammar,\n  title     = {Grammar-Aligned Decoding},\n  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2405.21047}\n}\n\n% Confirmed via: OpenReview, ICLR 2021\n@inproceedings{decao2021genre,\n  title     = {Autoregressive Entity Retrieval},\n  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n}\n\n% Confirmed via: ACL Anthology 2022.naacl-main.342\n@inproceedings{josifoski2022genie,\n  title     = {{GenIE}: Generative Information Extraction},\n  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4626--4643},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.naacl-main.342/}\n}\n\n% Confirmed via: ACL Anthology 2023.emnlp-main.674\n@inproceedings{geng2023gcd,\n  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2023},\n  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n}\n\n% Confirmed via: ACL Anthology 2021.naacl-main.339\n@inproceedings{lu2021neurologic,\n  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4288--4299},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.naacl-main.339/}\n}\n\n% Confirmed via: ACL Anthology 2022.acl-long.395\n@inproceedings{lu2022uie,\n  title     = {Unified Structure Generation for Universal Information Extraction},\n  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages     = {5755--5772},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.acl-long.395/}\n}\n```\n\n10/10 全部找到，无缺失。验证来源汇总：\n\n| Cite Key | Venue | 验证来源 |\n|---|---|---|\n| dong2025xgrammar | MLSys 2025 | arXiv + MLSys proceedings |\n| willard2023outlines | arXiv 2023 | arXiv 2307.09702 |\n| beurer-kellner2023lmql | PLDI 2023 | ACM DL |\n| beurer-kellner2024domino | ICML 2024 | PMLR v235 |\n| park2024grammar | NeurIPS 2024 | OpenReview + NeurIPS proceedings |\n| decao2021genre | ICLR 2021 | OpenReview |\n| josifoski2022genie | NAACL 2022 | ACL Anthology |\n| geng2023gcd | EMNLP 2023 | ACL Anthology |\n| lu2021neurologic | NAACL 2021 | ACL Anthology |\n| lu2022uie | ACL 2022 | ACL Anthology |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-missing-entries-batch1.md"
+}

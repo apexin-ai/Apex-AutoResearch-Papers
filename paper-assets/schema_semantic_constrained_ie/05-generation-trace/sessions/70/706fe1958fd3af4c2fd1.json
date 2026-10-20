@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "706fe1958fd3af4c2fd1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops fix sampling experiments",
+  "task_key": "worker_ops_fix_sampling_experiments_20260516T195547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_sampling_experiments_20260516T195547_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "e4361bbcd28a696c91cc77cdd62de22122c8c933ec8fc3fc05cc7e684b84d410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，但我已经提前验证过了——DocRED 实验确认正常启动。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-sampling-experiments.md"
+}

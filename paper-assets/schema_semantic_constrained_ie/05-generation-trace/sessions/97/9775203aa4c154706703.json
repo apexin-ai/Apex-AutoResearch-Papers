@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9775203aa4c154706703",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research r12 task3 boostcd comparison",
+  "task_key": "worker_research_r12_task3_boostcd_comparison_20260520T174617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r12_task3_boostcd_comparison_20260520T174617_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "e58288a0873f77d9e8c137fe1a1b39bd8ab7868acc9fdce5ec8eb550a50c0167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入。总结关键发现：\n\n**Part A — BoostCD:**\n- Šakota & West, EMNLP 2025, 代码公开 (epfl-dlab/BoostCD)\n- **Reviewer 2 关于 BoostCD 用 SciERC/DocRED 的说法是错误的。** BoostCD 做的是 Closed IE（从文本提取 Wikidata KB 中的三元组），评估用 Wiki-cIE Code，与 OntoCoDec 的 open-schema IE 是完全不同的任务\n- 模型也不同：FlanT5-base (250M) vs 我们的 7-8B\n- 约束类型不同：KB 成员约束 vs 类型语义约束\n- **直接实验对比不可行也不合理**，建议在 rebuttal 中纠正事实错误并做定性讨论\n\n**Part B — \"Koldehoff et al.\":**\n- **\"Koldehoff\" 是 Reviewer 2 幻觉的作者名**，该论文实际作者是 **David M. Schmidt & Philipp Cimiano** (Bielefeld University)\n- 论文: \"Grammar-Constrained Decoding for Structured IE with Fine-Tuned Generative Models Applied to Clinical Trial Abstracts\"\n- Frontiers in AI, Vol 7, 2025, DOI: 10.3389/frai.2024.1406857\n- BibTeX entry 已写入，key 用 `schmidt2025grammar`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r12-task3-boostcd-comparison.md"
+}

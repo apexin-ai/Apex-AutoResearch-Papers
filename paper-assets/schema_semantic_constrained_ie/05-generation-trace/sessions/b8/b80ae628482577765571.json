@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b80ae628482577765571",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write relwork expansion",
+  "task_key": "worker_write_relwork_expansion_20260514T181500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_relwork_expansion_20260514T181500_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "60cbc65ec2da9d24dcd264d107f817cfe71e441768777c341271d025fc025006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出汇总：\n\n**写入文件：**\n- `section6_relwork_additions.tex` — 4 个补充段落，标注了精确插入位置\n- `relwork_new_entries.bib` — 追加 6 个新 bib 条目（PICARD, RELATE, Ontology-to-Tools, SpERT, PFN, zhou2026snowballing）\n\n**5 项补充内容：**\n\n| # | 引用 | 位置 | 要点 |\n|---|------|------|------|\n| 1 | PICARD (Scholak et al., EMNLP 2021) | Semantic Constrained Decoding for Code 段 | SQL 增量解析 vs OntoCoDec：fixed schema vs 动态 entity registry（~80 words） |\n| 2 | SpERT + PFN (ECAI 2020 / EMNLP 2021) | Structural Constraints 段 | 监督联合模型隐式 enforce type consistency，但限于 fixed schema + supervised |\n| 3 | RELATE (Olasunkanmi et al., arXiv 2509.19057) | Post-hoc Ontology Validation 段 | 三阶段 post-extraction ontology 对齐，需额外 SapBERT；OntoCoDec 在解码时 enforce |\n| 4 | Ontology-to-Tools (Zhou et al., arXiv 2602.03439) | Post-hoc Ontology Validation 段 | 编译 ontology → tool interfaces（tool-call level），OntoCoDec 在 token level |\n| 5 | zhou2026snowballing 审计 | 原文 line 85 | **已验证**：Hongxu Zhou, arXiv:2604.06066, Apr 2026。描述准确，已移除 PENDING AUDIT 注释 |\n\n**注意：** PFN 的实际 venue 是 **EMNLP 2021**，不是任务描述中的 AAAI 2021。bib 条目已按正确 venue 录入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-relwork-expansion.md"
+}

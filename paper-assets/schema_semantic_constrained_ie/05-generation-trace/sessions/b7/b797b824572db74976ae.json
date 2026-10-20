@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b797b824572db74976ae",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research docred constrained readiness",
+  "task_key": "worker_research_docred_constrained_readiness_20260514T010448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_docred_constrained_readiness_20260514T010448_result.json",
+    "occurrence": 1,
+    "bytes": 1999,
+    "sha256": "3ce6633e9216c94edd227140f3bcb2f5b02ddb19210ac5ad7365f1df6cec013a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n## DocRED Constrained Decoding 就绪度报告\n\n### 结论：**Ready to Run (Y)** — 零代码修改\n\n所有组件已完整支持 DocRED：\n\n| 组件 | 状态 | 说明 |\n|------|------|------|\n| `--dataset docred` | ✅ | `choices=[\"scierc\", \"docred\"]` (L557) |\n| `load_docred_data()` | ✅ | L113，读取 dev.json 格式 |\n| DocRED prompt 模板 | ✅ | `build_messages`/`build_s2_entity_messages`/`build_s2_relation_messages` 均有 docred 分支 |\n| `load_constraint_spec()` | ✅ | L341-374，自动检测 DocRED dict 格式，P-code→关系名转换 |\n| 约束文件 | ✅ | `ontology_constraints_docred.json`：6 entity types, 96 relations, avg 5.68 valid pairs/relation |\n| XGrammar schema | ✅ | `build_full_schema()` 数据集无关，enum 使用 `spec.relation_types`（已转为关系名） |\n| TypeConstraintProcessor | ✅ | DocRED first-token IDs 已验证唯一（PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44） |\n| violation_checker_docred.py | ✅ | `normalize_relation()` 支持关系名→P-code 映射，输出格式兼容 |\n\n### 建议实验命令\n\n```bash\ncd /root/schema_semantic_constrained_ie\n\n# grammar_only\npython run_constrained_extraction.py \\\n  --mode grammar_only --dataset docred \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/docred_grammar_only.jsonl \\\n  --max_new_tokens 4096 --resume\n\n# full_s1\npython run_constrained_extraction.py \\\n  --mode full_s1 --dataset docred \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/docred_full_s1.jsonl \\\n  --max_new_tokens 4096 --resume\n```\n\n**注意**：DocRED 是文档级（比 SciERC 句子级长得多），建议 `--max_new_tokens 4096`。998 个文档 × 文档级推理，预计耗时显著长于 SciERC。\n\n### 预估工作量：**0 分钟**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-docred-constrained-readiness.md"
+}

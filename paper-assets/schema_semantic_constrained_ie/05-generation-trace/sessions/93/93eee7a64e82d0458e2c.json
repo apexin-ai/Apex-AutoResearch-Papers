@@ -1,0 +1,2393 @@
+{
+  "schema_version": "1.0",
+  "id": "93eee7a64e82d0458e2c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ops d066 llama scierc beam2 s1 check v2",
+  "task_key": "worker_ops_d066_llama_scierc_beam2_s1_check_v2_20260520T153642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_scierc_beam2_s1_check_v2_20260520T153642.log",
+    "occurrence": 1,
+    "bytes": 101983,
+    "sha256": "99247970ef921b92c084c13000e893192d3e976788bd0bcb2f426a9cc6444574"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 21,
+      "tool_result": 21,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__delete_cron",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d18da868-cfb5-49f5-a6c6-6dde6e85b9df",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779301200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9b73948f-c1d2-427f-ac2c-488e00d21873",
+                "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me follow the steps outlined in the task. First, check the logs for the beam2 s1 rerun.",
+              "signature": "EqACCmMIDRgCKkDOKDbXUbLbfz02LFgQo9KJNMIzZV6cc/fOCOLvfat6MsQJA5j9Y8fCuVaJSDgWsI5qm7rSGuoAS8YGJumP3hy1Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPizFYB1HRpsbP/aTxoMc/DtMhaVliZfj0d5IjAzI7BPjVEZ86PsKPmzX+yzlE8dq0d7CuOZ00bDgEsoJeUyL1WzqvpxWYA6Fa1MX4Iqa8vITFbl3s0Ndy09wUJDli1YEyXnguy/fRy8n1TTTx++9xYxmnEoeDaFJEmZQjNfkLa45kQ0rBWF3npnEeTvQO8dLdl/1LufjUV62ZpCtwey+PsedWnITj9h/b+VjzITH6i3tJpKefB/gdM+GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "2ed84ea3-fc09-4e3a-9053-dde107d34165",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Aek2aYAkB6pAsk8UfLhrxj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12505,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12505
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PpibHSt6p2jh2o2KwMKsFG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__register_artifact",
+                "max_results": 7
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "580aa876-38f3-4d2e-8f17-abf37a5dceef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Aek2aYAkB6pAsk8UfLhrxj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12505,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12505
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T15:36:59.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01PpibHSt6p2jh2o2KwMKsFG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_cron"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__delete_cron"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "0c368c7a-3f08-4540-b1a7-3401343065a9",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__register_cron",
+                "mcp__agent-ml-research__delete_cron",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 28
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查 beam2 s1 日志和输出文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "f177c520-1d24-4624-86d0-5ad8105f1e60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P918m7jvksznGZwsEAgHL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2695,
+                "cache_read_input_tokens": 24346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2695
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6NoSjMqhH1KpDXtGdtQfX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "tail -50 /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "03c18107-1808-4ff7-9bf3-de9d4387d0a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P918m7jvksznGZwsEAgHL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2695,
+                "cache_read_input_tokens": 24346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2695
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019UZeezT2wPCNGA6KmnPigp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "ls -la /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "2fa60b55-d9b9-4231-80c8-b7246023a15e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P918m7jvksznGZwsEAgHL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2695,
+                "cache_read_input_tokens": 24346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2695
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T15:37:05.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6NoSjMqhH1KpDXtGdtQfX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[527/551] INTERSPEECH_2014_40_abs_sent4: OK E=3 R=2 2.5s\\\\n[528/551] CVPR_2010_30_abs_sent0: OK E=4 R=3 3.7s\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=3 3.8s\\\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 1.9s\\\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=4 5.3s\\\\n[532/551] CVPR_2010_30_abs_sent4: OK E=3 R=3 3.2s\\\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.6s\\\\n[534/551] CVPR_2004_30_abs_sent1: OK E=1 R=0 1.1s\\\\n[535/551] CVPR_2004_30_abs_sent2: OK E=1 R=0 1.0s\\\\n[536/551] CVPR_2004_30_abs_sent3: OK E=2 R=1 1.8s\\\\n[537/551] CVPR_2004_30_abs_sent4: OK E=4 R=3 3.7s\\\\n[538/551] CVPR_2004_30_abs_sent5: OK E=5 R=2 3.2s\\\\n[539/551] CVPR_2004_30_abs_sent6: OK E=1 R=0 1.0s\\\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=2 R=1 1.8s\\\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=4 R=3 3.3s\\\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.1s\\\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=5 R=3 3.6s\\\\n[544/551] CVPR_2003_30_abs_sent0: OK E=4 R=4 4.6s\\\\n[545/551] CVPR_2003_30_abs_sent1: OK E=7 R=4 5.8s\\\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 2.6s\\\\n[547/551] CVPR_2003_30_abs_sent3: OK E=2 R=1 1.6s\\\\n[548/551] NIPS_2016_80_abs_sent0: OK E=2 R=1 1.9s\\\\n[549/551] NIPS_2016_80_abs_sent1: OK E=3 R=2 2.6s\\\\n[550/551] NIPS_2016_80_abs_sent2: OK E=4 R=4 4.7s\\\\n[551/551] NIPS_2016_80_abs_sent3: OK E=4 R=2 2.5s\\\\n\\\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\\\nOutput: /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "8154d7a9-46c3-474c-bcf2-dcfe8e514037",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[527/551] INTERSPEECH_2014_40_abs_sent4: OK E=3 R=2 2.5s\\\\n[528/551] CVPR_2010_30_abs_sent0: OK E=4 R=3 3.7s\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=3 3.8s\\\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 1.9s\\\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=4 5.3s\\\\n[532/551] CVPR_2010_30_abs_sent4: OK E=3 R=3 3.2s\\\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.6s\\\\n[534/551] CVPR_2004_30_abs_sent1: OK E=1 R=0 1.1s\\\\n[535/551] CVPR_2004_30_abs_sent2: OK E=1 R=0 1.0s\\\\n[536/551] CVPR_2004_30_abs_sent3: OK E=2 R=1 1.8s\\\\n[537/551] CVPR_2004_30_abs_sent4: OK E=4 R=3 3.7s\\\\n[538/551] CVPR_2004_30_abs_sent5: OK E=5 R=2 3.2s\\\\n[539/551] CVPR_2004_30_abs_sent6: OK E=1 R=0 1.0s\\\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=2 R=1 1.8s\\\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=4 R=3 3.3s\\\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.1s\\\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=5 R=3 3.6s\\\\n[544/551] CVPR_2003_30_abs_sent0: OK E=4 R=4 4.6s\\\\n[545/551] CVPR_2003_30_abs_sent1: OK E=7 R=4 5.8s\\\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 2.6s\\\\n[547/551] CVPR_2003_30_abs_sent3: OK E=2 R=1 1.6s\\\\n[548/551] NIPS_2016_80_abs_sent0: OK E=2 R=1 1.9s\\\\n[549/551] NIPS_2016_80_abs_sent1: OK E=3 R=2 2.6s\\\\n[550/551] NIPS_2016_80_abs_sent2: OK E=4 R=4 4.7s\\\\n[551/551] NIPS_2016_80_abs_sent3: OK E=4 R=2 2.5s\\\\n\\\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\\\nOutput: /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[527/551] INTERSPEECH_2014_40_abs_sent4: OK E=3 R=2 2.5s\\n[528/551] CVPR_2010_30_abs_sent0: OK E=4 R=3 3.7s\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=3 3.8s\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 1.9s\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=4 5.3s\\n[532/551] CVPR_2010_30_abs_sent4: OK E=3 R=3 3.2s\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.6s\\n[534/551] CVPR_2004_30_abs_sent1: OK E=1 R=0 1.1s\\n[535/551] CVPR_2004_30_abs_sent2: OK E=1 R=0 1.0s\\n[536/551] CVPR_2004_30_abs_sent3: OK E=2 R=1 1.8s\\n[537/551] CVPR_2004_30_abs_sent4: OK E=4 R=3 3.7s\\n[538/551] CVPR_2004_30_abs_sent5: OK E=5 R=2 3.2s\\n[539/551] CVPR_2004_30_abs_sent6: OK E=1 R=0 1.0s\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=2 R=1 1.8s\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=4 R=3 3.3s\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.1s\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=5 R=3 3.6s\\n[544/551] CVPR_2003_30_abs_sent0: OK E=4 R=4 4.6s\\n[545/551] CVPR_2003_30_abs_sent1: OK E=7 R=4 5.8s\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 2.6s\\n[547/551] CVPR_2003_30_abs_sent3: OK E=2 R=1 1.6s\\n[548/551] NIPS_2016_80_abs_sent0: OK E=2 R=1 1.9s\\n[549/551] NIPS_2016_80_abs_sent1: OK E=3 R=2 2.6s\\n[550/551] NIPS_2016_80_abs_sent2: OK E=4 R=4 4.7s\\n[551/551] NIPS_2016_80_abs_sent3: OK E=4 R=2 2.5s\\n\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\nOutput: /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T15:37:06.080Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019UZeezT2wPCNGA6KmnPigp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1022151 May 20 23:34 /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "5341ec1c-850e-4390-b605-bcd440623979",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1022151 May 20 23:34 /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1022151 May 20 23:34 /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "551/551 全部成功，输出文件就绪。运行 eval。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "91a7ba4a-cb1f-4952-8435-c7cdbb531fa2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jfwm2tpB6kzdQMqXVP1bJe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2156,
+                "cache_read_input_tokens": 27041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2156
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cba1bWmkBY8ypyjpzovgZi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl --label llama_scierc_beam2_s1 --dataset scierc"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "3e3d53db-c3a2-4018-b4fa-04772e1c5721",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jfwm2tpB6kzdQMqXVP1bJe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2156,
+                "cache_read_input_tokens": 27041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2156
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T15:37:11.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cba1bWmkBY8ypyjpzovgZi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl --label llama_scierc_beam2_s1 --dataset scierc'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nusage: eval_d064.py [-h] --input_path INPUT_PATH [--label LABEL]\\\\n                    [--output_json OUTPUT_JSON]\\\\neval_d064.py: error: unrecognized arguments: --dataset scierc\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "3a905d9d-a857-4d1e-837e-cb0939d17794",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl --label llama_scierc_beam2_s1 --dataset scierc'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nusage: eval_d064.py [-h] --input_path INPUT_PATH [--label LABEL]\\\\n                    [--output_json OUTPUT_JSON]\\\\neval_d064.py: error: unrecognized arguments: --dataset scierc\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl --label llama_scierc_beam2_s1 --dataset scierc'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nusage: eval_d064.py [-h] --input_path INPUT_PATH [--label LABEL]\\n                    [--output_json OUTPUT_JSON]\\neval_d064.py: error: unrecognized arguments: --dataset scierc\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The eval script doesn't accept --dataset. Let me remove that argument.",
+              "signature": "EosCCmMIDRgCKkBvQMiTL8186nDfuMuH5TZrLXyjTeX32dEoF4Lseb7qFtO/XIbw9mceKG93jtBPR3D+7umdFVea4sPFwWBKL3srMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLO9/k/IQTMPsJihMRoMYNDVeOXt9hJnp9YVIjDq2heD7ToOmBqeMFmwDFQYp+8l+UkhrgCHy0dU/gAKFpW/kx0mwNQwiJE0+LBUtTMqVjJmCN2bEvOyeBkrZPtL197QHANSo4xlK9auTBrgKM6lfEhjRe8fm9zW4BN+wA2KF2PQ0/b6Qk9QAlazes1fT2V+yitUykVCubPV7RKsuhXF3+TIuN3qGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "dea4ac32-496c-40e9-acd9-7ecf1741ccc1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PK88zRhtvFVQrV1mskDsaS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 487,
+                "cache_read_input_tokens": 29197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 487
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 脚本不接受 --dataset 参数，去掉重试。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "dce11205-8f3b-4d3b-a991-8d0ac8c9a076",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PK88zRhtvFVQrV1mskDsaS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 487,
+                "cache_read_input_tokens": 29197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 487
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012hmYK9xvuQe3p2JSLEqKnG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl --label llama_scierc_beam2_s1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "efccd1a1-51bd-4805-a568-1da9ebc40320",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PK88zRhtvFVQrV1mskDsaS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 487,
+                "cache_read_input_tokens": 29197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 487
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T15:37:19.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012hmYK9xvuQe3p2JSLEqKnG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== llama_scierc_beam2_s1 ===\\\\nSamples: 551, Parse Fail: 0 (0.0%)\\\\nEntities pred: 1777, Relations pred: 1142\\\\nET%=100.00  RV%=100.00  DR%=0.00  CF%=0.17\\\\nE-F1=68.34 (P=66.59 R=70.17)\\\\nR-F1=46.12 (P=42.73 R=50.10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "05edf86e-2508-4e5a-b630-a4ec611fe485",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== llama_scierc_beam2_s1 ===\\\\nSamples: 551, Parse Fail: 0 (0.0%)\\\\nEntities pred: 1777, Relations pred: 1142\\\\nET%=100.00  RV%=100.00  DR%=0.00  CF%=0.17\\\\nE-F1=68.34 (P=66.59 R=70.17)\\\\nR-F1=46.12 (P=42.73 R=50.10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== llama_scierc_beam2_s1 ===\\nSamples: 551, Parse Fail: 0 (0.0%)\\nEntities pred: 1777, Relations pred: 1142\\nET%=100.00  RV%=100.00  DR%=0.00  CF%=0.17\\nE-F1=68.34 (P=66.59 R=70.17)\\nR-F1=46.12 (P=42.73 R=50.10)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Beam2 s1 eval 完成。更新 registry、删除 cron，同时启动 beam8 s1。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "201012b8-9a66-4d67-b750-90f0ffc100b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FmzFsspYnXfFFXCswNZGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 446,
+                "cache_read_input_tokens": 29684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 446
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0166PBqMKDtdd9vtp7amuao8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "status",
+                "value": "DONE",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "39a0fa52-5e16-4e04-a039-09f26ace80a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FmzFsspYnXfFFXCswNZGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 446,
+                "cache_read_input_tokens": 29684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 446
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Np3XRXfRNvzXimzKDd8YMy",
+              "name": "mcp__agent-ml-research__delete_cron",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "adb7b2df-2321-4093-9973-cef1abecb1a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FmzFsspYnXfFFXCswNZGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 446,
+                "cache_read_input_tokens": 29684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 446
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T15:37:23.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0166PBqMKDtdd9vtp7amuao8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4058}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "53b6935a-1954-4add-8ec9-016680cb332e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4058}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.4058}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T15:37:23.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Np3XRXfRNvzXimzKDd8YMy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "a90aa1b5-c5bd-49d5-a5c3-b9b94c07cf48",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"deleted\": \"d066_sweep_llama_scierc_beam2_s1_551\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhupYaBYUa8GA6qzZZf1Mc",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "conclusion",
+                "value": "success",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "b8651c7b-b88d-4a74-b9e3-8f5f0149c10c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014hpj2mXHmqmka1j2CF4941",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 538,
+                "cache_read_input_tokens": 30130,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 538
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T15:37:31.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GhupYaBYUa8GA6qzZZf1Mc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:31.620Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6789}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "241dd49f-d66b-4e73-90f6-878471e55f0e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:31.620Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6789}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam2_s1_551\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:04:53.443Z\", \"updated_at\": \"2026-05-20T15:37:31.620Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6789}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UrT4wVqVj9mKrm7EGdDb7p",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "status",
+                "value": "DONE",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "a0acf318-674c-464f-a1ee-d079e172b009",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrVgcsBaGh8x51qDnQ6USw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 30668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 622
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T15:37:35.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UrT4wVqVj9mKrm7EGdDb7p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3629}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "78ef0123-1377-4134-ac27-f51b351755ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3629}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.3629}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYzB7SNppYEEE3V6p7yrMk",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "metrics",
+                "value": {
+                  "entity_f1": 68.34,
+                  "entity_p": 66.59,
+                  "entity_r": 70.17,
+                  "relation_f1": 46.12,
+                  "relation_p": 42.73,
+                  "relation_r": 50.1,
+                  "parse_fail_pct": 0,
+                  "ET_pct": 100,
+                  "RV_pct": 100,
+                  "DR_pct": 0,
+                  "CF_pct": 0.17
+                },
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "350f854e-fdc8-48be-926b-bd152f47b68e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrVgcsBaGh8x51qDnQ6USw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 30668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 622
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T15:37:37.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYzB7SNppYEEE3V6p7yrMk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:37.678Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6817}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "53477196-9b2b-4365-9a3d-b90ce2898ab7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:37.678Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6817}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam2_s1_551\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:04:53.443Z\", \"updated_at\": \"2026-05-20T15:37:37.678Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}, \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 68.34, \"entity_p\": 66.59, \"entity_r\": 70.17, \"relation_f1\": 46.12, \"relation_p\": 42.73, \"relation_r\": 50.1, \"parse_fail_pct\": 0, \"ET_pct\": 100, \"RV_pct\": 100, \"DR_pct\": 0, \"CF_pct\": 0.17}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6817}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GcLxNwUTU99FZLYPBDK5h8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "2122c272-b080-4d12-b7f0-4b9935b80572",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011YjTpmcwte1kpSXCy89MXR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 31290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1124
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T15:37:41.904Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GcLxNwUTU99FZLYPBDK5h8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:41.592Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6969}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "907a538d-89a2-4d43-8496-a577d1385ec3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:41.592Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6969}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam2_s1_551\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:04:53.443Z\", \"updated_at\": \"2026-05-20T15:37:41.592Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}, \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 68.34, \"entity_p\": 66.59, \"entity_r\": 70.17, \"relation_f1\": 46.12, \"relation_p\": 42.73, \"relation_r\": 50.1, \"parse_fail_pct\": 0, \"ET_pct\": 100, \"RV_pct\": 100, \"DR_pct\": 0, \"CF_pct\": 0.17}, \"checkpoint_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6969}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AjHSMXbsjh1gxAxrgBtwEj",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "log_path",
+                "value": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "6d0798e9-9ca0-4a35-98f5-7518a9f3a54d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011YjTpmcwte1kpSXCy89MXR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 31290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1124
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T15:37:43.124Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AjHSMXbsjh1gxAxrgBtwEj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:42.823Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7328}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "22229a8b-36f4-4015-adf7-9274fcece5bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:42.823Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7328}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam2_s1_551\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:04:53.443Z\", \"updated_at\": \"2026-05-20T15:37:42.823Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}, \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 68.34, \"entity_p\": 66.59, \"entity_r\": 70.17, \"relation_f1\": 46.12, \"relation_p\": 42.73, \"relation_r\": 50.1, \"parse_fail_pct\": 0, \"ET_pct\": 100, \"RV_pct\": 100, \"DR_pct\": 0, \"CF_pct\": 0.17}, \"checkpoint_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"log_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7328}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BoJJWTYgQL3h51gKwz1h2N",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam2_s1_551",
+                "field": "status",
+                "value": "DONE",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "d4fa9f2f-1777-40bb-a46c-76eb55f57c05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KbU3MouTna4DTTkyaJfiSb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1753,
+                "cache_read_input_tokens": 32414,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1753
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T15:37:48.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BoJJWTYgQL3h51gKwz1h2N",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:46.989Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\\", \\\"completed_at\\\": \\\"2026-05-20T15:37:46.989Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5073}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "c182556a-2d14-404c-a273-d57fa6aa5d0c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam2_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:04:53.443Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:37:46.989Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_f1\\\": 68.34, \\\"entity_p\\\": 66.59, \\\"entity_r\\\": 70.17, \\\"relation_f1\\\": 46.12, \\\"relation_p\\\": 42.73, \\\"relation_r\\\": 50.1, \\\"parse_fail_pct\\\": 0, \\\"ET_pct\\\": 100, \\\"RV_pct\\\": 100, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.17}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\\", \\\"completed_at\\\": \\\"2026-05-20T15:37:46.989Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5073}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam2_s1_551\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:04:53.443Z\", \"updated_at\": \"2026-05-20T15:37:46.989Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam2 constrained (full_s1) on 551-sentence test set.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 2 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}, \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 68.34, \"entity_p\": 66.59, \"entity_r\": 70.17, \"relation_f1\": 46.12, \"relation_p\": 42.73, \"relation_r\": 50.1, \"parse_fail_pct\": 0, \"ET_pct\": 100, \"RV_pct\": 100, \"DR_pct\": 0, \"CF_pct\": 0.17}, \"checkpoint_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\", \"log_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\", \"completed_at\": \"2026-05-20T15:37:46.989Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5073}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "beam2 s1 registry 已关闭。启动 beam8 s1。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "bab2ad45-e2ab-4454-8dbe-afaaf4e6aa8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeAFgMH3xRhZcjDm1WuAEc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 899,
+                "cache_read_input_tokens": 34167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 899
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EBkq87TZvwazn18i8Le11Y",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "5d7ef4fd-c01c-4d00-a746-90942688ec6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeAFgMH3xRhZcjDm1WuAEc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 899,
+                "cache_read_input_tokens": 34167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 899
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T15:38:23.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EBkq87TZvwazn18i8Le11Y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!'\\\\n\\\\nStdout:\\\\n\\\\nPID=772017\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "9ef57386-ba0e-475c-83d7-6b5bac0d833e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!'\\\\n\\\\nStdout:\\\\n\\\\nPID=772017\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!'\\n\\nStdout:\\n\\nPID=772017\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The command timed out but the PID was printed: 772017. The process started successfully in the background. Let me verify it's running and then register it.",
+              "signature": "EuECCmMIDRgCKkAL4LBcdc5o8xCDEQVsiAaN0UFsWGDD1oG+x6qRSzsw0AHsCyNCbSmeIXs70H+MRf6F8+OZGvPTGAUHmZbjM9HqMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDM5OODlolb6CTNeG6RoMv3GquKQvNT+5i1djIjCBdcbLooa1nfgsVi6Xb7kialV5nkOcBcvLeJk5FtD4h1+8+cI0NXhAzhggHUe2QpcqqwFQuRd3aZfIucwcNWJGPbBV/YT0CxQ7UMb+l4mWUe0/rS9AvHDQXtovA3nEGreVXyZIMO65F8TEipXyBaO48h8Qv9Hhg0STavui7h5Vw+8j3snzK9Rxrm4COv9c1zExSAGTv4um22DoCQYiF+9jgjAn61VhzF1Skeo+6LYQuv5bvJakeOBth82wj2GzDPgzEcSdXEc4sxKyv0S0UoyvCuHsBpvwWvATg+GcIyIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "63a8991e-7419-446c-b6c5-0102b87044f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkbeRDFmg13Y2hKS6TusZY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 35066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 684
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID=772017 已启动（超时只是 SSH 等待，进程已后台运行）。验证进程并注册 registry + cron。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "c1ac28dc-70aa-4b18-a893-8b186133bfe8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkbeRDFmg13Y2hKS6TusZY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 35066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 684
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LfsM3PVPe4T8yiDEcXtD73",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "ps -p 772017 -o pid,cmd --no-headers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "20d3cc0b-e8f8-4c3a-829c-f73b5b72f9cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkbeRDFmg13Y2hKS6TusZY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 35066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 684
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T15:38:29.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LfsM3PVPe4T8yiDEcXtD73",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"772017 bash -c cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "74d2ac39-0533-474e-b453-94e090066568",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"772017 bash -c cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"772017 bash -c cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl > /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log 2>&1 & echo PID=$!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中。注册 registry 和 cron。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "63d90e33-8dda-42cc-b032-f6e70e92866a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BrUgDKSF57PdjUPyqtqRfv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 617,
+                "cache_read_input_tokens": 35750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 617
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BdMTSYAzgnMEL5FnTYhhis",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "field": "hypothesis",
+                "value": "d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "fe71574e-f0a2-4ae5-9c64-903e6c576ccb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BrUgDKSF57PdjUPyqtqRfv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 617,
+                "cache_read_input_tokens": 35750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 617
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T15:38:35.059Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BdMTSYAzgnMEL5FnTYhhis",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.633}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "38710f8a-3dbd-4bf2-b805-eea2882fe6e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.633}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam8_s1_551\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:38:34.783Z\", \"updated_at\": \"2026-05-20T15:38:34.783Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.633}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CHf7AFqSCbjmsVvZdQTbaZ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "field": "parent",
+                "value": "d066_beam_sweep",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "1a0a130f-29ba-4351-960a-1a4a650e0b6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BrUgDKSF57PdjUPyqtqRfv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 617,
+                "cache_read_input_tokens": 35750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 617
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T15:38:36.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CHf7AFqSCbjmsVvZdQTbaZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:36.002Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6995}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "e419e165-01f8-4a98-9707-d73a58ab5f14",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:36.002Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6995}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam8_s1_551\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:38:34.783Z\", \"updated_at\": \"2026-05-20T15:38:36.002Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\", \"parent\": \"d066_beam_sweep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6995}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KhJEuZerPoVLQ3b2UX5hhv",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "schema_semantic_constrained_ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl",
+                  "server": "westd-16980",
+                  "data_path": "data/processed_data/test.json",
+                  "data_count": 551,
+                  "model_name": "llama_lora_scierc_merged",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+                  "eval_data": "scierc test set (551 sentences)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "5ca00627-ed27-443a-a672-cba4b459f100",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014htgUXQcf3ARCnK9tt47uz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 792,
+                "cache_read_input_tokens": 36367,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 792
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T15:38:43.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KhJEuZerPoVLQ3b2UX5hhv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4152}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "1072d824-88e7-4ef9-ba8b-8dd201ed6d68",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4152}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4152}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PPUaxtHggj2F6T4vuG8ZuY",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "f204b594-2654-481c-8250-c454d5d72df2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKCDTnBJpvCbdWzBrKQG2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 493,
+                "cache_read_input_tokens": 37159,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 493
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T15:38:54.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PPUaxtHggj2F6T4vuG8ZuY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:53.836Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4528}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "dabb24c7-5a12-46c5-af1a-bf7680b4a608",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:38:53.836Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4528}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam8_s1_551\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:38:34.783Z\", \"updated_at\": \"2026-05-20T15:38:53.836Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\", \"parent\": \"d066_beam_sweep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4528}}"
+              }
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NXAbvtD3pUEdCmm3r5NztT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "schema_semantic_constrained_ie",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl",
+                  "server": "westd-16980",
+                  "data_path": "data/processed_data/test.json",
+                  "data_count": 551,
+                  "model_name": "llama_lora_scierc_merged",
+                  "seed": 42,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+                  "eval_data": "scierc test set (551 sentences)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "3c4a6714-956f-4f64-b17a-44da6f3cb648",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YERi9GLiEEfCaePZGCY1d1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 355,
+                "cache_read_input_tokens": 37652,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 355
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T15:39:06.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NXAbvtD3pUEdCmm3r5NztT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:39:05.057Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7616}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "a2ca3ecf-e3ec-4690-8412-79edd22fbadd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:38:34.783Z\\\", \\\"updated_at\\\": \\\"2026-05-20T15:39:05.057Z\\\", \\\"hypothesis\\\": \\\"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\\\", \\\"parent\\\": \\\"d066_beam_sweep\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama_lora_scierc_merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"scierc test set (551 sentences)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7616}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d066_sweep_llama_scierc_beam8_s1_551\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:38:34.783Z\", \"updated_at\": \"2026-05-20T15:39:05.057Z\", \"hypothesis\": \"d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.\", \"parent\": \"d066_beam_sweep\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"llama_lora_scierc_merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_scierc_merged\", \"eval_data\": \"scierc test set (551 sentences)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7616}}"
+              }
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J9cuu2DGBprjaCb2Wei552",
+              "name": "mcp__agent-ml-research__register_cron",
+              "input": {
+                "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+                "server": "westd-16980",
+                "pid": "772017",
+                "log_path": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log",
+                "project": "schema_semantic_constrained_ie",
+                "interval_seconds": 300
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "f6792c8b-7b02-4aba-bfee-59c863bda5a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UE7iLcDsjU5pZq3ibSamXE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 912,
+                "cache_read_input_tokens": 38007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 912
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T15:39:10.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J9cuu2DGBprjaCb2Wei552",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"pid\\\": \\\"772017\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\\\", \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-20T15:39:10.267Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "5a7a36a7-b834-474c-89b8-316ce3de76a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"d066_sweep_llama_scierc_beam8_s1_551\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"pid\\\": \\\"772017\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\\\", \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-20T15:39:10.267Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"d066_sweep_llama_scierc_beam8_s1_551\", \"server\": \"westd-16980\", \"pid\": \"772017\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\", \"interval_seconds\": 300, \"project\": \"schema_semantic_constrained_ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-20T15:39:10.267Z\"}}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**beam2 s1 eval 结果：**\n| Metric | Value |\n|--------|-------|\n| E-F1 | 68.34 (P=66.59, R=70.17) |\n| R-F1 | 46.12 (P=42.73, R=50.10) |\n| Parse Fail | 0% |\n| ET% / RV% | 100% / 100% |\n| DR% / CF% | 0% / 0.17% |\n\n**beam8 s1 已启动：** PID=772017, westd-16980 GPU1, cron 监控已注册（300s 间隔）。这是最后一个 Llama SciERC 配置。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "uuid": "2163fbef-3389-4439-b430-fdc0da3a4463",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BU3YyXyAxFc3hWxqi56JD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 38919,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 445
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**beam2 s1 eval 结果：**\n| Metric | Value |\n|--------|-------|\n| E-F1 | 68.34 (P=66.59, R=70.17) |\n| R-F1 | 46.12 (P=42.73, R=50.10) |\n| Parse Fail | 0% |\n| ET% / RV% | 100% / 100% |\n| DR% / CF% | 0% / 0.17% |\n\n**beam8 s1 已启动：** PID=772017, westd-16980 GPU1, cron 监控已注册（300s 间隔）。这是最后一个 Llama SciERC 配置。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 145193,
+            "duration_api_ms": 103367,
+            "num_turns": 22,
+            "stop_reason": "end_turn",
+            "session_id": "1a95a3a8-07a6-4487-8c82-768120b216a6",
+            "total_cost_usd": 0.55388875,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 27523,
+              "cache_read_input_tokens": 539698,
+              "output_tokens": 4408,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27523,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 197,
+                  "cache_read_input_tokens": 38919,
+                  "cache_creation_input_tokens": 445,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 445
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1601,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001716,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21,
+                "outputTokens": 4408,
+                "cacheReadInputTokens": 539698,
+                "cacheCreationInputTokens": 27523,
+                "webSearchRequests": 0,
+                "costUSD": 0.55217275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d62e0ba8-872e-4559-a978-43da39005782"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-d066-llama-scierc-beam2-s1-check-v2.md"
+}

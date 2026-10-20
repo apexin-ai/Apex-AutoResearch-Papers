@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7c7ed12afbe00aa2631f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check regression r21 patches",
+  "task_key": "worker_check_regression-r21-patches_20260523T043532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_regression-r21-patches_20260523T043532_result.json",
+    "occurrence": 1,
+    "bytes": 2110177,
+    "sha256": "bb1b8c63da2b6252bd978a55d57e491fee39858124c25c870f3aeba93da09941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2110197,
+                "serialized_sha256": "66c7c8bc8b3eb009624dc30bd2bddf96eaa29a27a181407e3cd2d4f341326c2e",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-regression-r21-patches.md"
+}

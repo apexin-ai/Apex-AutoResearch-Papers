@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8dd166606612a518c86",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama 16k results and grammar only launch",
+  "task_key": "worker_code_llama_16k_results_and_grammar_only_launch_20260518T030611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_16k_results_and_grammar_only_launch_20260518T030611_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "490c57f5abae59dcbe04736021be156b8d3f269d9c88edab4400c33e8af7c3dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完毕。汇总结果：\n\n---\n\n## Llama 16K (constrained_full) 结果\n\n**Violation Check** (215 parsed / 31 parse failures):\n| 指标 | 违规数 | 违规率 |\n|------|--------|--------|\n| ET (Entity Type) | 0 | 0.0% |\n| EV (Event Vocab) | 0 | 0.0% |\n| RoV (Role Vocab) | 0 | 0.0% |\n| AC (Arg Constraint) | 159 | 3.4% |\n| CF (Cross-Field) | 655 | 15.5% |\n| **Go/No-go (RoV+AC)** | — | **3.41%** |\n\n**Eval F1** (215 evaluated / 31 parse failures):\n| 指标 | Precision | Recall | F1 |\n|------|-----------|--------|----|\n| Entity | 0.3890 | 0.1155 | **0.1781** |\n| Trigger ID | 0.0865 | 0.0717 | **0.0784** |\n| Argument | 0.0105 | 0.0115 | **0.0110** |\n\n## Llama grammar_only 启动确认\n\n- PID: 521758\n- GPU: cuda:1, 16348MiB 占用\n- tmux session: `llama_grammar_only`\n- 模型加载完成，已开始推理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-16k-results-and-grammar-only-launch.md"
+}

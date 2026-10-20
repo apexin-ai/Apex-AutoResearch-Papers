@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da0d49a909e0d5542de0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code q1 llama lora beam prep",
+  "task_key": "worker_code_q1_llama_lora_beam_prep_20260518T133005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_q1_llama_lora_beam_prep_20260518T133005_result.json",
+    "occurrence": 1,
+    "bytes": 1465,
+    "sha256": "ca2a2035cc909d0f29600b9a2429c2d62d3ccd1d111f83077dd27b1b5e1f73cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Q1 实验准备汇报\n\n### Checkpoint\n**就绪。** westd-21461 上 `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged/` 已有完整 checkpoint（16GB，4 个 safetensors 分片 + tokenizer），与 westd-16980 一致。\n\n### Beam search\n**支持。** 原任务命令中的 `--beam_size 4` 不存在，正确参数是：\n- `--decoding_strategy beam --num_beams 4`\n- 实现了专用的 `BeamAwareTypeConstraintProcessor`（per-beam 重放语义约束）和 `BeamSearchGrammarProcessor`\n\n### 数据\n- SciERC test: `data/processed_data/test.json`，**100 docs**（非 551）\n- Ontology: `ontology_constraints.json`（项目根目录）\n\n### GPU\n2x NVIDIA RTX PRO 6000 Blackwell（98GB），**完全空闲**（0 MiB used）。\n\n### Dry-run\n2 docs 成功，输出格式正确，每 sample 约 1.7-5.3s。\n\n### 修正后的启动命令\n\n```bash\ncd /root/schema_semantic_constrained_ie && /root/miniconda3/bin/python3.12 run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset scierc \\\n  --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged \\\n  --data_path data/processed_data/test.json \\\n  --constraints_path ontology_constraints.json \\\n  --decoding_strategy beam \\\n  --num_beams 4 \\\n  --output_path /root/autodl-tmp/schema_outputs/q1_llama_lora_scierc_beam4.jsonl \\\n  --max_new_tokens 4096 \\\n  --skip_on_error\n```\n\n预估 100 docs × ~3.5s/doc ≈ 6 分钟完成。可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-q1-llama-lora-beam-prep.md"
+}

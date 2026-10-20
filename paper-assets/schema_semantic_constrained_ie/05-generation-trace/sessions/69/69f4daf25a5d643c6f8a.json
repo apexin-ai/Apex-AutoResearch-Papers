@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69f4daf25a5d643c6f8a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval unified docred w5",
+  "task_key": "worker_eval_unified-docred-w5_20260520T085452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_unified-docred-w5_20260520T085452_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "8834fd3d0e7f34ae910fe60da006cead2e14e98cf490c5c3928bc3ac13c4072a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结如下：\n\n**评估了 17 个 DocRED JSONL 文件**，全部用 eval_d064.py 统一跑完。\n\n**核心发现 — Table 2 FT DocRED 存在 3 个错误：**\n\n1. **Llama Con E-F1: 85.23 → 83.94**（CRITICAL，差 1.29pp）。Table 2 误用了 `d064_llama_beam4_constrained` 的 E-F1=85.23，实际 greedy 结果是 83.94\n2. **Qwen Unc CF%: 0.12 → 0.09**\n3. **Qwen Con CF%: 0.41 → 0.27**\n\n**eval_d064.py vs d066 eval 脚本**：在 w5 文件上结果完全一致。Reviewer 报告的 0.84pp 差异不是脚本差异导致的，而是 Table 2 混用了 beam4 和 greedy 数据。\n\n**w5 vs d065 文件差异**：同一推理 raw_output，但 parsed_output 的文本规范化不同（空格处理），导致 d065 的 E-F1 高 ~0.8pp。d065 Qwen 文件不完整（仅 197/998 docs）。\n\n报告已写入 `artifacts/d065/unified_eval/docred_unified_eval.md`，corrected Table 2 在 Section 7。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-unified-docred-w5.md"
+}

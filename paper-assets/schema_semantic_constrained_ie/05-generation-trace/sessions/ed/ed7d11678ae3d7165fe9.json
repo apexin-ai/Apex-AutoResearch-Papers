@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed7d11678ae3d7165fe9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4646,
+    "sha256": "976e056dcec3327a3434e5ec1fac42c96c393a8871d4e1b6779447b60cfbae2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-17T20:25:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0,1 + westd-21461 cuda:0,1（共 4 张 RTX PRO 6000 96GB）\n- westd-21461 代码曾被同步操作损坏（M007/M008）：任何跨服务器实验启动前必须 rsync 整个源码目录（不要逐文件同步），同步后验证 `wc -l compiler/type_mask_processor.py` = 796 行\n- WikiEvents 实验不做 EE ablation（D043），只做 unconstrained vs full_s1\n- Continuation masking v2 是所有 WikiEvents constrained 实验的默认配置（D042）\n- 所有 constrained 实验命令必须包含 `--skip_on_error`（M006: Agent 两次遗漏此参数导致 Llama 崩溃）\n- 目标 conference main，禁止 fallback 到 Findings（用户明确指示 D040）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980 (connect.westd.seetacloud.com) + westd-21461 (connect.westd.seetacloud.com)\n- 工作目录：`/root/schema_semantic_constrained_ie`（两台服务器相同）\n- 模型缓存：HuggingFace 默认路径（Qwen3-8B, Llama-3.1-8B, Mistral-7B-v0.3）\n- 数据：`/root/schema_semantic_constrained_ie/data/wikievents/`（train/dev/test.jsonl, 246 docs total）\n- Ontology：`ontology_constraints_wikievents.json`（56 event types, 27 entity types, 245 constraints）\n- 活跃进程（截至 handoff）：\n  - westd-16980:cuda:0 — Qwen constrained full_s1 246 docs（刚启动）\n  - westd-16980:cuda:1 — Llama constrained full_s1 246 docs（刚启动）\n  - westd-21461:cuda:0 — Mistral unconstrained ~96/246（重启后继续）\n  - westd-21461:cuda:1 — 可能在跑 constrained dry-run v2（代码修复后重跑）\n- 审稿 C群：`oc_01fc90ae186a4ed432770f7601995139`\n\n### 3. 📊 当前状态\n**刚完成**：\n- Qwen + Llama unconstrained baselines 全量完成（246 docs）。结果：RoV 74.9%/88.8%, EV 24.0%/10.5%\n- Continuation masking v2 突破（10-doc: RoV 59.8%→0%, semantic violations ↓95.8%）\n- Paper Agent 完成 §5.4 草稿 + 页数压缩（主体回到 8 页）\n- Reviewer 评估 cross-task claim 完成：三层级联 Grammar→RoV→AC 比 RE 更丰富\n\n**正在进行**：\n- Qwen + Llama constrained 全量（westd-16980 双卡，预计 1-1.5h）\n- Mistral unconstrained ~96/246（westd-21461:cuda:0，预计 ~2h）\n- westd-21461 代码修复（type_mask_processor.py 被清空为 0 bytes，正在恢复）\n- Paper Agent 可能在处理页数压缩 patch\n\n**Registry**：WikiEvents 实验全部缺 registry 记录（Reviewer M007 发现），需在全量完成后批量注册。已注册的只有 ee_qwen/llama_wikievents_unconstrained。\n\n### 4. 📋 待办（条件触发式）\n- Qwen/Llama constrained 全量完成 → 汇报 violation rates (ET/EV/RoV/AC/CF) + F1 → 与 10-doc pilot 对比（RoV 是否保持 0%）→ 如果 argument count ↓>20% 需加 caveat\n- Mistral unconstrained 完成 → 汇报结果 → 立即启动 Mistral constrained（westd-21461，确保代码已修复）\n- 3 模型 constrained 全部完成 → 批量注册 registry → 派 Paper Agent patch §5.4 全量数字 → 更新 paper_framing.md\n- 全量结果确认后 → 更新 Intro/Abstract/Conclusion（cross-task story 升级）→ submit_paper_to_review (Round 6)\n- westd-21461 代码修复确认 → 验证 `wc -l` + `grep` → 才能在 21461 启动 constrained\n\n### 5. 🎯 战略上下文\n**核心 story**：OntoCoDec 从 RE-specific → task-agnostic IE constraint framework。RE (SciERC+DocRED, 2 models, DR↓42-99%) + EE (WikiEvents, 3 models, semantic violations ↓95.8%) 双任务验证。\n\n**决策链**：D040(conference main) → D041(ACE05→WikiEvents) → D042(continuation v2 默认) → D043(不做 EE ablation)\n\n**易错点**：\n1. westd-21461 代码同步已失败两次（M007 遗漏文件，M008 清空文件）。下次同步必须 rsync 整个目录 + 验证。绝不信任 Agent 的 \"已同步\" 汇报，让 Reviewer 验证。\n2. Arg F1 ≈ 0%（zero-shot EE 预期）→ §5.4 不做 F1 impact claim，聚焦 violation reduction。审稿人可能攻击 \"practical value\"，防线是 mechanism generalization + FT 已证明 high-F1 有效。\n3. 10-doc continuation v2 argument count ↓22%。全量结果如果确认，需诚实报告为 precision-completeness tradeoff。\n4. 80 个 undefined citations（Paper Agent 报告）— 可能是 bib 缺失旧条目，需在提交前修复。\n5. 页数刚好 8 页，后续 patch 数字时不能膨胀。§5.4 用 inline text 不用 table。\n6. DDL May 25（8 天），constrained 结果今天到 → 明天论文改写 → May 20 提交审稿 → May 23-24 定稿。时间紧但可行。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "844f55d1166297b23767",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check qwen beam998 done",
+  "task_key": "worker_check_qwen_beam998_done_20260521T053747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen_beam998_done_20260521T053747_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "3bf06f373672129672e04282d2203306456def422186cca6533cc601e61702e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**r14_qwen_docred_beam4_998 结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| E_F1 | 58.19 |\n| R_F1 | 8.72 |\n| DR_pct | **0.0%** |\n| RV_pct | **0.0%** |\n| ET_pct | **0.0%** |\n| CF_pct | 4.94% |\n| parse_fail | 3.51% (35/998) |\n\n**关键发现：**\n- Beam-4 约束解码**完全消除**了 DR/RV/ET 三类违规，schema 合规性达 100%\n- E_F1=58.19 对 ZS Qwen DocRED 合理\n- R_F1=8.72 极低，relation_fp=15754 远超 relation_tp=1273 — 模型生成大量不匹配 gold 的关系。这是 ZS baseline 本身的问题（无 finetuning），非约束解码导致的退化\n- CF_pct=4.94% 仍有残留（cross-field consistency 不受 grammar 约束）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-beam998-done.md"
+}

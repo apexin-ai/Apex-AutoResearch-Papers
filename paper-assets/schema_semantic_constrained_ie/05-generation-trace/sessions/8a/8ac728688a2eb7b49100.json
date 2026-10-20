@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ac728688a2eb7b49100",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops kill docred sampling and analyze",
+  "task_key": "worker_ops_kill_docred_sampling_and_analyze_20260516T205312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_docred_sampling_and_analyze_20260516T205312_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "b139ea2d5f4b02995e71e4ba7572fd36c0e8fbf33622686f3443bdb131b4e52b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果总结：**\n\n| | Sampling r3 (114 docs) | Greedy (998 docs) |\n|---|---|---|\n| ET | 0.00% | 0.00% |\n| RV | 0.00% | 0.03% |\n| DR | **10.31%** | **10.21%** |\n| CF | **12.63%** | **2.57%** |\n| E_F1 | 57.05 | 59.37 |\n| R_F1 | 7.92 | 8.23 |\n\n关键发现：DR 与 greedy 几乎一致（+0.1pp），确认 domain-range violations 是系统性结构问题，sampling 无法改善。CF 反而显著恶化（+10pp），因为温度采样降低了类型标注的自洽性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-docred-sampling-and-analyze.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb85b355312588aaa477",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check monitor westd21461 progress",
+  "task_key": "worker_check_monitor-westd21461-progress_20260523T054741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_monitor-westd21461-progress_20260523T054741_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "30d1ec39ca189830ef5de6c070f2047def6b0fdf1d72d94d50def8fcab05a003"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nS2 DocRED: 140/200 行 (70%) — 上次 137，增加了 3 行，最后更新 13:47\nPrompt Sensitivity: 40/551 行 (7.3%) — 文件 minimal_constrained.jsonl，最后更新 13:48\n```\n\n两个进程都在跑。进程 106695（prompt sensitivity）占用 39256 MiB 显存，进程 88995（S2 DocRED）占用 41598 MiB 显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-monitor-westd21461-progress.md"
+}

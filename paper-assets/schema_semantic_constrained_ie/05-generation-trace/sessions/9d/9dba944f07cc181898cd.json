@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dba944f07cc181898cd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops r14 taskB get pid",
+  "task_key": "worker_ops_r14_taskB_get_pid_20260520T202223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_r14_taskB_get_pid_20260520T202223_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "b5824f39d72c60347bdd58d1e8acc8624bb9a8057d66cc0a5fe9589e1a619e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Python 主进程 PID: **226609**（CPU 98.6%，正在运行）。进度：6/998 docs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-r14-taskb-get-pid.md"
+}

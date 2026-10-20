@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69650f160df41e378bf5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd21461 ssh test",
+  "task_key": "worker_check_westd21461_ssh_test_20260522T041452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd21461_ssh_test_20260522T041452_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "d1335d019d55c382725cc886ef06e081264b360ced1031345157f8847e5a8c50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**连接**: westd-21461 SSH 连接正常。\n\n**GPU 状态**: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (各 96GB)，当前空闲（0 MiB 已用，0% 利用率）。\n\n**70B DocRED ZS 进程**: 未运行。`ps aux` 中无 `run_constrained` 相关进程，只有系统服务（sshd、tensorboard、jupyter、supervisord）。\n\n**输出文件**: `/root/autodl-tmp/schema_outputs/` 中有 70B DocRED ZS 相关文件，最新时间戳为 May 22 07:12：\n- `r16_70b_docred_zs_s1.jsonl` (8.2MB)\n- `r16_70b_docred_zs_s1.log` (304KB)\n- `r16_70b_docred_zs_s1_violations.json` (2.7KB)\n- `r16_70b_docred_zs_unconstrained.jsonl` (8.2MB) — May 21 22:01\n\n进程已结束，GPU 已释放，输出文件已生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd21461-ssh-test.md"
+}

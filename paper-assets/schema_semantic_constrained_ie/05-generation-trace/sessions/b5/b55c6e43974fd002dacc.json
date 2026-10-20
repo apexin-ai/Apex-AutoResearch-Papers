@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b55c6e43974fd002dacc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper d072 cascade update",
+  "task_key": "worker_paper_d072_cascade_update_20260520T161337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d072_cascade_update_20260520T161337_result.json",
+    "occurrence": 1,
+    "bytes": 2729,
+    "sha256": "6f0e6832251cde38acde2676d6f62f90a2c45cbe5b0f226c2ad0ebf4b0ae1de5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总如下：\n\n---\n\n## 修改汇总\n\n### 1. section5_scierc_draft.tex (8 处)\n- **L104**: \"eliminates or near-eliminates\" → \"eliminates\"\n- **L105**: DocRED 段落重写 — \"0.76→0.01 (↓99%), 0.49→0.21 (↓57%)\" → \"0.56→0%, 0.49→0%\" + R-F1 delta -0.10/+0.15\n- **L106**: 删除 \"lower Llama-DocRED reduction (57%)\" 整句\n- **L106(新)**: DR ≤ 0.21% → 0.09%\n- **L108**: DR ≤ 0.21% → 0.09%\n- **L109**: R-F1 44.23 → 43.60\n- **L129-130**: Table 2 Qwen DocRED: 0.76/0.09/40.86/82.15/↓99% → 0.56/0.08/40.89/82.35, 0.01/0.27/40.56/81.43/↓99% → 0.00/0.22/40.79/81.87/↓100%\n- **L138-139**: Table 2 Llama DocRED: 43.72/83.93 → 44.55/84.77, 0.21/0.21/43.78/83.94/↓57% → 0.00/0.26/44.70/84.71/↓100%\n- **L143**: Caption DR ≤ 0.21% → 0.09%\n\n### 2. abstract.tex (L6)\n- \"near-eliminates DR violations (DR ≤ 0.21%)\" → \"eliminates DR violations (DR ≤ 0.09%)\"\n\n### 3. section1_introduction_draft.tex (L22)\n- \"near-eliminates DR (≤ 0.21%)\" → \"eliminates DR violations (DR ≤ 0.09%)\"\n\n### 4. section3_violation_landscape.tex (L8)\n- \"near-eliminating DR violations\" → \"eliminating DR violations\"\n\n### 5. section4_composition_draft.tex (L31, L40)\n- \"DR 0.01--0.21%\" → \"DR ≤ 0.09%\"\n- \"DR drops to ≤ 0.21%\" → \"≤ 0.09%\"\n\n### 6. section5_crossmodel_draft.tex (L59)\n- \"DR ≤ 0.21%\" → \"DR ≤ 0.09%\"\n\n### 7. section5_docred_draft.tex (L62, L71)\n- \"near-eliminates RV\" → \"eliminates RV\"\n- \"0.01--0.21%\" → \"≤ 0.09%\"\n\n### 8. main.tex Limitations (L81)\n- \"DR ≤ 0.21%\" → \"DR ≤ 0.09%\"\n\n### 9. section7_conclusion_compressed.tex (L4)\n- \"DR ≤ 0.21%\" → \"DR ≤ 0.09%\"\n\n### 10. appendix_discussion.tex (9 处)\n- **ft-ablation 表**: Qwen DocRED unc/Full S1、Llama DocRED unc/Full S1 四行全部更新至 d065 权威值\n- **L269 caption**: max ΔR-F1 -0.30pp → -0.10pp\n- **L275**: DR ≤ 0.21% → 0.09%\n- **L276**: max R-F1 decrease -0.30pp → -0.10pp, 精简措辞\n- **post-hoc 表 L328-329**: R-F1_cd 40.56→40.79 (Qwen), 43.78→44.70 (Llama)\n\n### 11. appendix_beam_search.tex (L135)\n- R-F1=44.23 → 43.60\n\n---\n\n## Grep 验证结果\n- `0.21%` — **零命中** ✅\n- `near-eliminat` — 仅废弃文件 `section5_docred_draft_9b84f1.tex` ✅\n- 旧 DocRED 数字 (82.15/40.86/81.43/40.56/83.93/43.72/83.94/43.78) — **两处残余**:\n  - `appendix_beam_search.tex:123` 的 43.72 是 SciERC beam 数据，非 DocRED ✅\n  - `appendix_discussion.tex:255` 的 Qwen DocRED Semantic 中间行 (DR=0.21, E-F1=82.15) — **无 d065 权威数据，需后续补充**\n- `0.76` — **零命中** ✅\n- `44.23` — **零命中** ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d072-cascade-update.md"
+}

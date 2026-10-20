@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e433e587a30b108b3e5a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 mistral scierc beam 551 launch",
+  "task_key": "worker_code_w10_mistral_scierc_beam_551_launch_20260517T072439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_mistral_scierc_beam_551_launch_20260517T072439_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "a45beea4086caeb37258854d6b36b476720f97ba58b9e60520e3b75594b4b9d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动。\n\n---\n\n**报告：**\n\n| 项目 | 值 |\n|---|---|\n| **Mistral 模型路径** | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` |\n| **PID** | 5112 |\n| **GPU** | cuda:0, 15282MiB 占用 |\n| **tmux session** | `mistral_scierc_beam` |\n\n**完整启动命令：**\n```bash\npython run_constrained_extraction.py \\\n  --mode full_s1 --dataset scierc \\\n  --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 \\\n  --data_path data/processed_data/test.json \\\n  --constraints_path ontology_constraints.json \\\n  --output_path outputs/scierc_mistral_beam_551.jsonl \\\n  --decoding_strategy beam --num_beams 4 \\\n  --device cuda:0\n```\n\n**Mistral SciERC greedy baseline：** 该服务器上未找到 SciERC Mistral 的历史输出（outputs 目录只有 DocRed Mistral 结果）。greedy baseline 可能在其他服务器上。\n\n**日志路径：** `~/runs/schema_semantic_constrained_ie/w10_mistral_scierc_beam_551.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-mistral-scierc-beam-551-launch.md"
+}

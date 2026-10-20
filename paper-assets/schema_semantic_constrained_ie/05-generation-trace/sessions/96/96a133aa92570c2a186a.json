@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96a133aa92570c2a186a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check constrained eval status",
+  "task_key": "worker_ops_check_constrained_eval_status_20260516T021024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_constrained_eval_status_20260516T021024_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "2a62d112298636959597b71eb2d3b7802bdd4ace620246e62540ef664877ffff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在运行中，汇总：\n\n| 实验 | PID | 状态 | 运行时间 | 进度 | 速度 | 预估剩余 |\n|------|-----|------|----------|------|------|----------|\n| **Llama constrained eval** | 317469 (Rl) | Running | 1h44m | 409/998 (41%) | ~15s/sample | ~2.5h |\n| **Qwen constrained eval** | 321568 (Rl) | Running | 16m | 48/998 (4.8%) | ~20s/sample | ~5.3h |\n\n- 两个进程状态都是 `Rl`（运行中），正常产出 jsonl 结果\n- Llama 推理速度更快（~15s/sample vs Qwen ~20s/sample），预计约 2.5 小时后完成\n- Qwen 启动较晚，预计约 5 小时后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-constrained-eval-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f3780859221c19517a6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis sigma rectangularity",
+  "task_key": "worker_analysis_sigma_rectangularity_20260515T140530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sigma_rectangularity_20260515T140530_result.json",
+    "occurrence": 1,
+    "bytes": 3331,
+    "sha256": "8acfc456bf50393c3d8b7127dd44aa3bb8f49aa4afda7a89b4ef42505eafe17e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整结果。\n\n## Rectangularity 分析结果\n\n### 1. σ(r) Rectangularity 概况\n\n| Dataset | Total rels | Rectangular | Non-rect | 总 over-permissive rate |\n|---------|-----------|-------------|----------|------------------------|\n| **SciERC** | 7 | **0/7** | 7/7 | **33.3%** |\n| **DocRED** | 96 | **23/96** | 73/96 | **36.8%** |\n\n**没有一个 SciERC relation 是 rectangular。** DocRED 只有 23/96 是 rectangular（主要是 dom×range 本身就很小的 relations，如只有 1-2 个 valid pair 且 dom/range 各只有 1 个 type）。\n\n### 2. SciERC 非 rectangular relations\n\n| Relation | |σ(r)| | |dom×range| | Over-permissive | Rate |\n|----------|--------|-----------|----------------|------|\n| Compare | 17 | 36 | 19 | 52.8% |\n| Hyponym-of | 21 | 36 | 15 | 41.7% |\n| Part-of | 21 | 36 | 15 | 41.7% |\n| Evaluate-for | 23 | 36 | 13 | 36.1% |\n| Conjunction | 25 | 36 | 11 | 30.6% |\n| Feature-of | 26 | 36 | 10 | 27.8% |\n| Used-for | 35 | 36 | 1 | 2.8% |\n\nSciERC 所有 relation 的 dom 和 range 都涵盖大部分 entity types（6×6=36 的笛卡尔积），但实际 valid pairs 远小于此。\n\n### 3. 实际影响量化（Independent-valid but pair-invalid triples）\n\n| Condition | DocRED full_s1 | DocRED unconstrained | SciERC full_s1 | SciERC unconstrained |\n|-----------|---------------|---------------------|----------------|---------------------|\n| Total triples | 17,341 | 17,497 | 1,729 | 1,724 |\n| Pair violations | 1,770 | 3,157 | 16 | 265 |\n| Independent violations | 1,279 | 2,199 | 0 | 14 |\n| **Gap (indep-ok, pair-bad)** | **491** | **958** | **16** | **251** |\n| **Gap / pair violations** | **27.7%** | **30.3%** | **100%** | **94.7%** |\n\n关键发现：\n\n- **SciERC full_s1**：16 个 pair violations 中，**100%** 被 independent enforcement 漏掉——所有 DR violations 都是 head_type ∈ dom(r) 且 tail_type ∈ range(r) 但 pair 不合法。Independent enforcement 对 SciERC **完全无法捕获** non-rectangular 的违规。\n- **DocRED full_s1**：1,770 个 pair violations 中 491 个（27.7%）被 independent 漏掉。\n- **DocRED unconstrained**：无约束时 gap 更大，958 个（30.3%）。\n\n### 4. 主要 gap 来源 relations\n\n**DocRED**：`influenced by`(97), `member of`(71), `author`(69), `location of formation`(52), `conflict`(35)\n\n**SciERC**：`Evaluate-for`(8), `Feature-of`(6), `Compare`(2)\n\n### 5. 对 §2/§3 的建议\n\n**σ(r) 显著不是 rectangular。** Independent enforcement 是 pair-based 的松弛（over-approximation），在 SciERC 上捕获率为 0%，在 DocRED 上遗漏约 28% 的 pair violations。\n\n§3 写作建议：\n- **不能**写 \"σ(r) is rectangular\" — 数据不支持\n- 应在 §2 形式化中明确定义 pair-based constraint σ(r) 和 independent constraint dom(r)×range(r) 的区别\n- §3 可以走两条路：\n  - **A**: 实现 pair-based enforcement，彻底解决 — 改动不大（约束检查从两个 set membership 改为一个 tuple lookup）\n  - **B**: 保留 independent enforcement，但 §3 需要量化其 over-permissiveness bound，说明它是 σ(r) 的 outer approximation，并用实验数据说明实际 gap\n\n结果已保存至 `/root/schema_semantic_constrained_ie/outputs/rectangularity_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sigma-rectangularity.md"
+}

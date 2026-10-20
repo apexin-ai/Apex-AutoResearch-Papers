@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7dee1117711ae4974f5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops westd 21461 check",
+  "task_key": "worker_ops_westd-21461-check_20260516T060958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-21461-check_20260516T060958_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "eeb0ad214ec9da82355a644a675066d59e71ee2c259bbc4989bfbca7afa1fe7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-21461 状态\n\n### GPU\n- cuda:0: RTX PRO 6000 Black, 15291/97887 MiB, 90% util, 57°C, 337W — PID 7740\n- cuda:1: RTX PRO 6000 Black, 15291/97887 MiB, 86% util, 55°C, 320W — PID 8347\n\n### w6_mistral_docred_unconstrained\n- PID 7740: **alive**, 运行 40min (13:30 启动)\n- 进度: **219/998** (21.9%)\n- 速率: ~5.5 doc/min\n- ETA: ~2h22min，预计 **16:32** 完成\n\n### w6_mistral_docred_constrained\n- PID 8347: **alive**, 运行 34min (13:36 启动)\n- 进度: **164/998** (16.4%)\n- 速率: ~4.8 doc/min (constrained 略慢，符合预期)\n- ETA: ~2h53min，预计 **17:03** 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-21461-check.md"
+}

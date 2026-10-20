@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b84818fbcbbb56822703",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w5 llama docred lora constrained eval",
+  "task_key": "worker_diagnose_w5_llama_docred_lora_constrained_eval_20260516T002726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w5_llama_docred_lora_constrained_eval_20260516T002726_result.json",
+    "occurrence": 1,
+    "bytes": 2270,
+    "sha256": "ad428c8fe07862b09934e2fd053b1627fc369706d20c3af5664bd91efe397592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因：误报 — 进程实际仍在运行\n\n**EXIT_CODE=143 来自 job wrapper/SSH 会话层，而非 Python 推理进程本身。** 实际的 constrained eval 进程（PID 317469）当前正在 GPU 0 上正常运行并产出结果。\n\n### 证据\n\n| 项目 | 状态 |\n|------|------|\n| PID 317469 | 正在运行，cmdline 完全匹配 constrained eval 命令 |\n| GPU 0 | 16GB/98GB VRAM，88% 利用率，无 OOM |\n| 输出文件 | 2分钟内从 3 行 → 11 行，持续增长 |\n| 磁盘 | 根分区 47%，数据盘 48%，无空间问题 |\n| dmesg/kill 记录 | 无 OOM-killer 或异常 kill 痕迹 |\n\n### 时间线\n\n```\n08:17:23  log 文件创建（进程启动）\n08:17~08:27  模型加载(~3s) + 约束语法编译初始化(~9min)\n           ← 96种关系类型的 grammar 编译耗时较长\n08:27:10  output 文件创建（首个样本写入）\n08:27:56  log 显示 3 个 pad_token_id 警告\n  ↑ 大约此时 job wrapper 报告 EXIT_CODE=143\n08:29:45  output 已增长到 11 行 / 104KB\n08:30+    进程继续运行中...\n```\n\n### 日志关键片段（最后输出）\n\n```\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\n```\n无错误、无 Traceback、无 Terminated 字样。\n\n### 输出状态\n\n- 已处理 **11/998** 样本，速度约 14s/样本\n- 预计总耗时 **~3.8 小时**\n- 输出文件持续增长中\n\n### 关于 unconstrained eval 的 SIGTERM\n\n`w5_llama_docred_lora_unconstrained_eval` 也是同样模式：首次运行被 wrapper SIGTERM 杀掉（已处理 775/998），后通过 resume 成功完成全部 998 样本。这确认了 SIGTERM 来自 job 管理层，非程序自身问题。\n\n### 建议\n\n1. **无需干预** — 当前进程正常运行中，等待完成即可\n2. 定期监控进度：`wc -l outputs/w5_llama_docred_lora_constrained_eval.jsonl`\n3. 如果后续确实被 kill，脚本支持 resume（已在 unconstrained eval 上验证过）\n4. 考虑将 job wrapper 的超时阈值调大，避免 constrained eval 的长初始化时间（~10min 编译语法）触发误报"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w5-llama-docred-lora-constrained-eval.md"
+}

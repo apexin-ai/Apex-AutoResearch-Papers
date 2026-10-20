@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b204b4711646eeead11a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w9 llama tokenizer firsttoken",
+  "task_key": "worker_analysis_w9_llama_tokenizer_firsttoken_20260515T085711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w9_llama_tokenizer_firsttoken_20260515T085711_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "7eb20a33bd0ee3467fae445dce7092b97216794b18b79d7a10b6728c3fd34350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个组合（Llama/Qwen × SciERC/DocRED）first-token 唯一性 **全部 PASS**，无冲突。\n\n**关键发现**：\n- SciERC 6 types：Llama/Qwen 均 6/6 unique（raw + space-prefix）。`OtherScientificTerm` 是 4-token，但首 token `Other` 在类型集合内仍唯一\n- DocRED 6 types：Llama/Qwen 均 6/6 unique。`MISC`→`M`+`ISC`（首 id=44），`ORG`(space)→` OR`+`G`，但首 token 在类型集合内仍唯一\n- Llama 与 Qwen 在低频字节 token 上 id 完全一致（`M`=44, ` M`=386），同属 byte-level BPE 家族\n- **唯一注意点**：DocRED 的 `MISC` 首 token 是单字节 `M`，若 schema 扩展加入其他 `M*` 类型会冲突；当前 6 类安全\n\n报告已写到 `artifacts/rebuttal/w9_tokenizer_firsttoken_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w9-llama-tokenizer-firsttoken.md"
+}

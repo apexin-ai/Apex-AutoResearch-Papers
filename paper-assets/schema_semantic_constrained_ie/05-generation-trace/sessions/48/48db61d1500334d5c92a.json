@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "48db61d1500334d5c92a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents ontology fix fullrun",
+  "task_key": "worker_code_wikievents_ontology_fix_fullrun_20260517T173343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_ontology_fix_fullrun_20260517T173343.log",
+    "occurrence": 1,
+    "bytes": 852787,
+    "sha256": "363ed7caf667e70eafa604152aafacc20277194ce2bf5645c3cef90f5330adb7"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 1,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 40,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 101,
+      "user": 1,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "48db61d1500334d5c92a-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "48db61d1500334d5c92a-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "48db61d1500334d5c92a-part-0002.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-ontology-fix-fullrun.md"
+}

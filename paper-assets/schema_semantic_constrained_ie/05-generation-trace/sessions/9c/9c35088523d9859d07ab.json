@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c35088523d9859d07ab",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 grammar only done",
+  "task_key": "worker_analysis_phase2_grammar_only_done_20260513T234049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_grammar_only_done_20260513T234049_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "598fbde9cdce595f5591674d4443235998506aadbfc8bdcce27e0fe8fe791d38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，conclusion = **success**。\n\n关键发现：Grammar-only constrained decoding 以**零 F1 代价**完全消除了 relation vocabulary violation (1.4%→0%) 和 entity type violation (0.4%→0%)。Domain/range violation 维持 ~15% 不变，其中 Feature-of (32%) 和 Compare (41%) 是重灾区，将是 Phase 3 domain/range constraint 的主要攻击目标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-grammar-only-done.md"
+}

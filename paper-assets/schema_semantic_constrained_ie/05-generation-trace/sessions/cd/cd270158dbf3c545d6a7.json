@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd270158dbf3c545d6a7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "launch 70b lora docred",
+  "task_key": "worker_launch_70b_lora_docred_20260521T115709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_70b_lora_docred_20260521T115709_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "95a1b9618b3bc9cc9871c142f262a1d953f9e5f0229745f04b66704f9980ed78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中，约 30.7s/step。\n\n**汇总：**\n- **实验**: `r16_70b_lora_docred`，GPU 1（PID 835754），tmux session `docred_70b`\n- **模型**: 70B AWQ INT4 + LoRA（r=16, α=32），使用 `AwqGEMMLinear` 可训练内核\n- **数据**: DocRED train 3053 / dev 998，Llama 格式\n- **速度**: ~30.7s/step，1146 steps total → 预计约 9.8 小时完成\n- **修复**: 遇到两个 gptqmodel 兼容性问题 — `AwqGEMMQuantLinear` 重命名为 `AwqGEMMLinear`（加 alias patch），`AwqMarlinLinear` 不支持 `.train()`（改用 `AwqConfig(backend=\"auto_trainable\")` 强制 GEMM 内核）\n- **Registry**: RUNNING，cron 每 5 分钟监控"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-70b-lora-docred.md"
+}

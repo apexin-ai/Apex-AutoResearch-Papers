@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "394624adc66d962255ce",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code urgent all server status check",
+  "task_key": "worker_code_urgent_all_server_status_check_20260517T234951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_all_server_status_check_20260517T234951_result.json",
+    "occurrence": 1,
+    "bytes": 2566,
+    "sha256": "45e6cf5394a55e127112c0b6e6e94dd511e093fe6ed244712d0f52295da950fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all data. The Llama retry already completed (246 lines, up from 212→215 parse success). The Qwen retry is still running (232/246). Let me compile the final report.\n\n## westd-16980\n\n### GPU 状态\n- cuda:0: **运行中** — Qwen constrained retry (27187MiB/97887MiB, 82% util)\n- cuda:1: **空闲** (0MiB, 0% util)\n\n### Qwen Constrained (retry 进行中)\n- **retry 状态**: 运行中，当前 232/246（还差 14 docs）\n- 以下为 **pre-retry (backup)** 数据，retry 完成后会改善：\n  - Parse Success: **197/246** (80.1%)\n  - Violation: ET=0%, EV=0%, **RoV=0.4%**, AC=2.4%, CF=19.5%\n  - F1: Trigger=0.138, Argument=0.018, Entity=0.138\n\n### Llama Constrained (retry 已完成 ✓)\n- **retry 状态**: 完成，246/246 lines\n- Parse Success: **215/246** (87.4%) [之前 212/246=86.2%, 改善 +3 docs]\n- Violation: ET=0%, EV=0%, **RoV=0%**, AC=3.4%, CF=15.5%\n- F1: Trigger=0.078, Argument=0.011, Entity=0.178\n\n### 对比：Unconstrained baselines\n| | Llama Uncon | Qwen Uncon |\n|---|---|---|\n| Parse | 226/246 | 218/246 |\n| RoV | **88.8%** | **74.9%** |\n| EV | 10.5% | 24.0% |\n| Trigger F1 | 0.057 | 0.118 |\n| Arg F1 | 0.0 | 0.001 |\n| Entity F1 | 0.0 | 0.0 |\n\n---\n\n## westd-21461\n\n### GPU 状态\n- cuda:0: **运行中** — Mistral constrained v2 (19535MiB/97887MiB, 80% util)\n- cuda:1: **空闲** (0MiB, 0% util)\n\n### Mistral Constrained v2 (cuda:0)\n- 进度: **191/246** (77.6%), 运行中\n- Violation (191 partial): ET=0%, EV=0%, **RoV=0.03%** (1/3010), AC=17.2%, CF=13.9%\n- Parse failures: 53/191 (27.7%) — 较高\n\n### Mistral Grammar_only (cuda:1) — 已完成 ✓\n- 进度: **246/246** 完成\n- Parse Success: 184/246 (74.8%) — 62 parse failures\n- Violation: ET=0%, EV=0%, **RoV=54.8%** (!), AC=19.2%, CF=0.7%\n- RoV+AC rate: 0.74 — grammar-only 约束完全没有抑制 role violations\n\n### 空闲 GPU 列表\n- westd-16980 cuda:1\n- westd-21461 cuda:1\n\n---\n\n## 关键发现\n\n1. **Qwen RoV**: pre-retry 仍有 0.4%，retry 完成后需重新检查（目标降到 0%）\n2. **Llama constrained**: retry 将 parse success 从 212→215，RoV 已为 0% ✓\n3. **Mistral grammar_only 失败**: RoV=54.8%，说明纯语法约束无法控制 role vocabulary，只有 semantic constraint (v2) 有效（v2 RoV≈0%）\n4. **Mistral v2 parse failure 高** (53/191=27.7%): 需关注，可能需要后续 retry\n5. **F1 全面偏低**: Entity/Trigger/Argument F1 都很低，可能是 eval 脚本的 matching 标准非常严格，或 output format 与 gold 不完全对齐"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-all-server-status-check.md"
+}

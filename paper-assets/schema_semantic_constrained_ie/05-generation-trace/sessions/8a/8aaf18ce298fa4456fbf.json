@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aaf18ce298fa4456fbf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research eval consistency p0",
+  "task_key": "worker_research_eval_consistency_p0_20260520T011114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_eval_consistency_p0_20260520T011114_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "20a408a0d153a9d6985f1dc21fdba93f15abc6b395f99cdcbae4c0071552b180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/eval_consistency_investigation.md`。\n\n核心发现：\n\n**两个根因叠加导致差异：**\n\n1. **不同 JSONL 文件**：w5 原始运行（25 parse failures）vs d064 重跑（50 parse failures），同一 checkpoint 但不同代码版本导致推理输出不同\n\n2. **不同 F1 计算方法**：Table 2 的 registry 数据 **跳过 parse failures 不计入 FN**（E-F1=85.23），eval_d064.py **计入 FN**（E-F1=83.94 on same file）\n\n**更严重的问题**：Table 2 对 Qwen 和 Llama 使用了不同的 parse failure 处理——Qwen E_F1=81.43（含 parse failures），Llama E_F1=85.23（排除 parse failures）——模型间比较不公平。\n\n**建议**：用 eval_d064.py（parse failures 计入 FN）统一重新评估所有 w5 文件，更新 Table 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-eval-consistency-p0.md"
+}

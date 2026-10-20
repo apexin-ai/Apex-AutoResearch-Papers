@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "509b2e6dd92cf3639ebf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis parse failure denominator check",
+  "task_key": "worker_analysis_parse_failure_denominator_check_20260516T181758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_parse_failure_denominator_check_20260516T181758_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "ed44b5dcaf6e8e14502fe6ac25bc19cccdc72781fc072d9c97fd5fc5e66a9522"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成：`artifacts/parse_failure_denominator_analysis.md`\n\n核心结论：\n\n1. **当前计算方式**：violation rates 分母仅含 parsed docs（parse failure 文档被 `continue` 跳过，不进分母）\n2. **All-set 调整公式**：`all_set_rate = current_rate × (1 − parse_fail_rate)`\n3. **差异不 material**：\n   - 最大影响案例 Llama DocRED ZS（parse fail 9.12%）：DR 从 2.55% → 2.32%，降 0.23 pp\n   - FT 实验绝对调整量 < 0.01 pp\n   - Constrained vs Unconstrained 的相对 reduction 比例几乎不变（如 Qwen DocRED FT 始终 98.7%）\n4. **建议**：保持 parsed-only 方式，论文注明分母定义并单独报 parse failure rate"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-parse-failure-denominator-check.md"
+}

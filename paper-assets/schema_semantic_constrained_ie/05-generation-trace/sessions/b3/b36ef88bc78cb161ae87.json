@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b36ef88bc78cb161ae87",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops 21461 eval and d066",
+  "task_key": "worker_ops_21461_eval_and_d066_20260520T101348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_21461_eval_and_d066_20260520T101348_result.json",
+    "occurrence": 1,
+    "bytes": 1184,
+    "sha256": "36e1803c082283e4cf62f2795837f850299d3071ef42ae72461fdbf8177b12aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n## 产出汇总\n\n### 1. d065 Qwen unc eval\n| 指标 | 值 |\n|------|-----|\n| **E-F1** | **82.35** (P=85.50, R=79.43) |\n| **R-F1** | **40.89** (P=36.27, R=46.87) |\n| ET% | 0.00 |\n| RV% | 0.23 |\n| DR% | 0.56 |\n| CF% | 0.08 |\n| Parse Fail | 6.8% (68/998) |\n\n结果已保存到 `/root/autodl-tmp/schema_outputs/d065_eval_qwen_unc.json`\n\n### 2. d066 模型/数据检查\n| 资源 | 状态 |\n|------|------|\n| qwen_lora_docred_merged | ✓ 存在 |\n| llama_lora_docred_merged | ✓ 存在 |\n| data/docred/dev.json | ✓ 存在 |\n| ontology_constraints_docred.json | ✓ 存在 |\n| d066 已有输出 | beam1_unc, beam4_s1, beam4_unc |\n\n### 3. GPU1 启动 d066 Qwen beam8 con\n- **配置**: Qwen beam8 constrained (full_s1), 200 docs, 4096 tokens\n- **PID**: 196648\n- **输出**: `d066_docred_beam_sweep/qwen_docred_beam8_s1.jsonl`\n- **日志**: `d066_docred_beam_sweep/d066_qwen_beam8_s1_21461.log`\n- 模型已加载完成，正在推理中\n\n### 4. 双 GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU0 | 84% | 18.9 / 95.6 GB (d065 con rerun) |\n| GPU1 | 80% | 18.9 / 95.6 GB (d066 beam8 s1) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-21461-eval-and-d066.md"
+}

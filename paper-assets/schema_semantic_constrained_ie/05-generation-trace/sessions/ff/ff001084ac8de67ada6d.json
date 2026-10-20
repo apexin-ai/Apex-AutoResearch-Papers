@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff001084ac8de67ada6d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit table2 full reeval",
+  "task_key": "worker_audit_table2_full_reeval_20260520T110921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table2_full_reeval_20260520T110921_result.json",
+    "occurrence": 1,
+    "bytes": 5172,
+    "sha256": "95a3c756e6fb52396eed17206a33c53a056696e2f90ea30c1272e7af15d212ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`_cf_corrected` 文件不是 Table 2 所用的（DR% 偏移很大）。现在整理所有结果。\n\n---\n\n## A. 文件溯源表\n\n| 行 | 服务器 | 完整路径 | 行数 | 模式 |\n|---|--------|---------|------|------|\n| Qwen unc | westd-16980 | `/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl` | 998 | unconstrained |\n| Qwen con | westd-16980 | `/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl` | 998 | full_s1 |\n| Llama unc | westd-16980 | `/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_unconstrained_eval.jsonl` | 998 | unconstrained |\n| Llama con | westd-16980 | `/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl` | 998 | full_s1 |\n\n4 个文件全在 westd-16980 的 `outputs/` 目录，均 998 行（全量 DocRED dev）。\n\n---\n\n## B. eval_d064.py 完整输出\n\n### Qwen LoRA DocRED unconstrained\n```\n=== qwen_unc ===\nSamples: 998, Parse Fail: 71 (7.1%)\nEntities pred: 18091, Relations pred: 15870\nET%=0.00  RV%=0.27  DR%=0.76  CF%=0.09\nE-F1=82.15 (P=85.44 R=79.11)\nR-F1=40.86 (P=36.41 R=46.56)\n```\n\n### Qwen LoRA DocRED constrained (Full S1)\n```\n=== qwen_con ===\nSamples: 998, Parse Fail: 85 (8.5%)\nEntities pred: 17799, Relations pred: 15563\nET%=0.00  RV%=0.00  DR%=0.01  CF%=0.27\nE-F1=81.43 (P=85.41 R=77.81)\nR-F1=40.56 (P=36.35 R=45.86)\n```\n\n### Llama LoRA DocRED unconstrained\n```\n=== llama_unc ===\nSamples: 998, Parse Fail: 23 (2.3%)\nEntities pred: 19106, Relations pred: 16171\nET%=0.00  RV%=0.15  DR%=0.49  CF%=0.08\nE-F1=83.93 (P=84.93 R=82.96)\nR-F1=43.72 (P=38.59 R=50.41)\n```\n\n### Llama LoRA DocRED constrained (Full S1)\n```\n=== llama_con ===\nSamples: 998, Parse Fail: 25 (2.5%)\nEntities pred: 19077, Relations pred: 16074\nET%=0.00  RV%=0.00  DR%=0.21  CF%=0.21\nE-F1=83.94 (P=85.00 R=82.90)\nR-F1=43.78 (P=38.79 R=50.24)\n```\n\n---\n\n## C. 指标汇总表\n\n| Metric | Qwen unc | Qwen con | Llama unc | Llama con |\n|--------|----------|----------|-----------|-----------|\n| E-F1 | 82.15 | 81.43 | 83.93 | 83.94 |\n| E-P | 85.44 | 85.41 | 84.93 | 85.00 |\n| E-R | 79.11 | 77.81 | 82.96 | 82.90 |\n| R-F1 | 40.86 | 40.56 | 43.72 | 43.78 |\n| R-P | 36.41 | 36.35 | 38.59 | 38.79 |\n| R-R | 46.56 | 45.86 | 50.41 | 50.24 |\n| DR% | 0.76 | 0.01 | 0.49 | 0.21 |\n| RV% | 0.27 | 0.00 | 0.15 | 0.00 |\n| CF% | 0.09 | 0.27 | 0.08 | 0.21 |\n| ET% | 0.00 | 0.00 | 0.00 | 0.00 |\n| PF% | 7.1 | 8.5 | 2.3 | 2.5 |\n\n---\n\n## D. 与当前 Table 2 tex 对比\n\nTable 2 只展示 DR, CF, R-F1, E-F1 四列（无 ET/RV/P/R）。\n\n| 字段 | tex 当前值 | eval 新值 | 一致? |\n|------|-----------|----------|-------|\n| Qwen unc DR | 0.76 | 0.76 | **YES** |\n| Qwen unc CF | 0.09 | 0.09 | **YES** |\n| Qwen unc R-F1 | 40.86 | 40.86 | **YES** |\n| Qwen unc E-F1 | 82.15 | 82.15 | **YES** |\n| Qwen con DR | 0.01 | 0.01 | **YES** |\n| Qwen con CF | 0.27 | 0.27 | **YES** |\n| Qwen con R-F1 | 40.56 | 40.56 | **YES** |\n| Qwen con E-F1 | 81.43 | 81.43 | **YES** |\n| Llama unc DR | 0.49 | 0.49 | **YES** |\n| Llama unc CF | --- | 0.08 | **---**（tex 标注未计算，eval 产出 0.08）|\n| Llama unc R-F1 | 43.72 | 43.72 | **YES** |\n| Llama unc E-F1 | 83.93 | 83.93 | **YES** |\n| Llama con DR | **0.20** | **0.21** | **NO** |\n| Llama con CF | **0.26** | **0.21** | **NO** |\n| Llama con R-F1 | **44.23** | **43.78** | **NO** |\n| Llama con E-F1 | 83.94 | 83.94 | **YES** |\n\n### 差异总结\n\nQwen 两行完全一致。Llama unconstrained 基本一致（CF 仅 tex 标 \"---\"，实际 0.08）。\n\n**Llama constrained 有 3 处不一致**：\n- **DR%**: tex=0.20, eval=**0.21**（差 0.01）\n- **CF%**: tex=0.26, eval=**0.21**（差 0.05）\n- **R-F1**: tex=**44.23**, eval=**43.78**（差 0.45 pp — 显著偏差）\n\nR-F1=44.23 在论文其他地方出现于 beam search SciERC 结果，可能是 copy-paste 错误。\n\n---\n\n## E. eval 命令记录\n\n```bash\n# Qwen unconstrained\ncd /root/schema_semantic_constrained_ie && python3 scripts/eval_d064.py \\\n  --input_path /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl \\\n  --label qwen_unc\n\n# Qwen constrained\ncd /root/schema_semantic_constrained_ie && python3 scripts/eval_d064.py \\\n  --input_path /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl \\\n  --label qwen_con\n\n# Llama unconstrained\ncd /root/schema_semantic_constrained_ie && python3 scripts/eval_d064.py \\\n  --input_path /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_unconstrained_eval.jsonl \\\n  --label llama_unc\n\n# Llama constrained\ncd /root/schema_semantic_constrained_ie && python3 scripts/eval_d064.py \\\n  --input_path /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl \\\n  --label llama_con\n```\n\n全部在 westd-16980 执行。\n\n---\n\n**结论**：Llama con DocRED 行需修正 3 个数字（DR 0.20→0.21, CF 0.26→0.21, R-F1 44.23→43.78）。Llama unc 的 CF 列应填入 0.08 而非 \"---\"。其余 12 个数字与 eval 完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table2-full-reeval.md"
+}

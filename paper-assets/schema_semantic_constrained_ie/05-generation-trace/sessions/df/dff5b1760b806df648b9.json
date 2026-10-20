@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dff5b1760b806df648b9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778945394.md",
+  "task_key": "loop_13_1778945394",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778945394.md",
+    "occurrence": 1,
+    "bytes": 3894,
+    "sha256": "1081adf0bb99cc71b4c2e1bfd440ee53759f38ecdd2dc5979c57ae64d3b643a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T13:13:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 [cuda:0, cuda:1] + westd-21461 [cuda:0, cuda:1]，共 4 卡，不得用其他\n- westd-21461 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- submit_training_job 命令必须自带环境激活（conda activate），GPU 编号始终从 0 开始\n- w6_mistral_docred_unconstrained 已失败 2 次（SIGHUP），第 3 次重试前必须确认根因已修复\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 /root/schema_semantic_constrained_ie，Python /root/miniconda3/bin/python3，2x GPU\n  - 模型：/root/autodl-tmp/checkpoints/llama_lora_docred_merged, qwen_lora_docred_merged, llama_lora_scierc_merged, qwen3_8b_lora_scierc_merged\n  - 活跃：w8_llama_docred_ft_grammar_only (RUNNING, cuda:1)\n- **westd-21461**: 同结构，2x RTX PRO 6000 Blackwell 98GB\n  - 模型：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3（symlink → ms_cache）\n  - 活跃：w6_mistral_docred_constrained (PID 8347, cuda:1, cron 监控中)\n  - 空闲：cuda:0（unconstrained 失败后释放）\n- 数据：SciERC data/processed_data/test.json (551), DocRED data/docred/dev.json (998)\n- 约束文件：ontology_constraints.json (SciERC), data/docred/ontology_constraints_docred.json (DocRED, 96 relations)\n\n### 3. 📊 当前状态\n刚收到 w6_mistral_docred_unconstrained 第二次失败回调（EXIT_CODE=129/SIGHUP）。已派诊断 Worker (worker_diagnose_w6_mistral_docred_unconstrained_20260516T083833) SSH 深查根因。已向 Director 汇报失败 + 2 GPU 空闲状况，等 Director 决策。\n\n**RUNNING**: \n- w8_llama_docred_ft_grammar_only (westd-16980 cuda:1) — FT Llama DocRED grammar_only ablation\n- w6_mistral_docred_constrained (westd-21461 cuda:1) — Mistral DocRED constrained eval\n\n**PREPARING**:\n- w8_ft_posthoc_baseline — FT post-hoc filtering baseline（Dream 审稿必做项）\n\n**等待中**:\n- 诊断 Worker 回调 → 确认 SIGHUP 根因\n- Director 决策 → westd-16980 cuda:0 分配任务\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 更新 registry notes + 根据 error_type 决定：infra 可自动修复则重试 w6 unconstrained on westd-21461 cuda:0；resource 问题则报 Director\n- Director 回复 cuda:0 任务分配 → 按指令提交（候选：w8_ft_posthoc_baseline / w8_llama_docred_ft_semantic_only / latency profiling）\n- w6_mistral_docred_constrained cron 回调（完成）→ 按 on-experiment-done 走 success/negative 分支，与 Qwen/Llama 对比 DR reduction\n- w8_llama_docred_ft_grammar_only cron 回调（完成）→ 分析 grammar_only 对 FT Llama DocRED 的效果，与 SciERC 结果对比\n\n### 5. 🎯 战略上下文\n- **核心方向**: OntoCoDec 两层约束解码，目标 EMNLP 2026 ARR May 25 提交\n- **关键进展**: 3 模型（Qwen/Llama/Mistral）× 2 数据集（SciERC/DocRED）的 zero-shot + composability(FT+OntoCoDec) 矩阵接近完成\n- **Dream 审稿（borderline accept）暴露的必修项**: ①缺 related work (SynCode/IterGen/BoostCD) ②FT regime 无 ablation（w7 SciERC 已完成，DocRED 在跑） ③FT post-hoc baseline 未做 ④entity types 太少\n- **w7 ablation 核心结论（SciERC 已完成）**: grammar 层消除 RV/ET，semantic 层消除 DR（-68%），两层互补缺一不可。full_s1 DR=0% 证明联合约束完全消除 violations\n- **易错点**: \n  - w6_mistral_docred_unconstrained 两次 SIGHUP，不要盲目第三次重试——必须先确认根因\n  - post-hoc baseline (w8_zs) 结论已翻转论文论点：ZS 下 post-hoc R_F1 ≥ constrained R_F1，论文应强调 \"generation-time hard guarantee + composability\" 而非 \"F1 保留\"\n  - Qwen tokenizer 有 regex warning，可能影响 w7 结果可比性——ROADMAP 提到需评估\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778945394.md"
+}

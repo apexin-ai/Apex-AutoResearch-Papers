@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7351cee5b75baaa4ee3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778755449.md",
+  "task_key": "loop_3_1778755449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778755449.md",
+    "occurrence": 1,
+    "bytes": 4409,
+    "sha256": "e6ad13d69f8078ad4d6093d39fffca20e2b4b3eb0edf442f07653b000dabbc7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T09:44:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-16980 的 cuda:0 和 cuda:1，白名单 gpu_ids=[0,1]，禁止触碰其他 GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 重提交实验前必须先单独清理旧 tmux session，禁止在 allocate_and_submit 命令内放 tmux kill-session（会自杀）\n- type_mask_processor.py 已有 grammar-semantic 交互 safety check（allowed_types∩grammar-valid=∅ 时跳过 semantic masking）——修改此逻辑前必须理解 DocRED 高 tightness 场景\n- DR scaling gap（SciERC ↓94% vs DocRED ↓45.5%）已定性为 constraint tightness 驱动，是 contribution 不是 weakness，论文 framing 已调整，不要回滚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，工作目录 `/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-8B `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，Llama-3.1-8B `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据：SciERC `data/processed_data/test.json` (551)，DocRED `data/docred/dev.json` (998)\n- 约束文件：SciERC `ontology_constraints.json`，DocRED `data/docred/ontology_constraints_docred.json`\n- 活跃进程：phase2_docred_unconstrained (PID 170502, tmux=phase2_docred_unconstrained, cuda:0)，phase2_docred_semantic_only (PID 172859, tmux=phase2_docred_semantic_only, cuda:1)\n- 活跃 cron：2 个，分别监控上述两个实验\n- Worker 池：0（空闲，等 cron 回调）\n\n### 3. 📊 当前状态\n刚完成 phase2_docred_full_s1 分析（DR 18.7%→10.19%，↓45.5%）和 phase2_docred_grammar_only 分析（ET/RV→0%）。SciERC Phase 2 全部 4 组实验已完成，核心结论：full_s1 DR↓94% 且 F1 无损。\n\n**RUNNING（2 个，占满 2 GPU）：**\n- `phase2_docred_unconstrained` — DocRED baseline，cuda:0，PID 170502\n- `phase2_docred_semantic_only` — DocRED semantic-only 消融，cuda:1，PID 172859\n\n**等待中：**\n- 2 个 cron 回调（上述两个实验完成时触发）\n- 无待处理的 Director 决策\n- 无 pending Worker\n\n论文写作进度：§1/§2/§3/§4/§6/§7/Abstract 已有草稿或完稿，§5 DocRED subsection 和 §5 Cross-model 等实验数据。.bib 已完成 18 篇。\n\n### 4. 📋 待办（条件触发式）\n- phase2_docred_unconstrained cron 回调 → spawn Worker 跑 violation_checker_docred.py 分析 → 更新 registry metrics\n- phase2_docred_semantic_only cron 回调 → 同上分析 → 更新 registry\n- **两个 DocRED 实验全部完成** → 汇报 Director 完整 DocRED 4 组消融表 → 派 Worker 填 §5 DocRED subsection placeholders → 派 Worker 更新 Abstract/Conclusion 中 DocRED placeholders\n- DocRED 消融表就绪后 → 启动 D009 Llama-3.1-8B cross-model 验证（SciERC unconstrained + full_s1，2 组实验，模型已在服务器且兼容性已验证）\n- Llama 实验完成 → §5 Cross-model subsection → 全文校对\n- 内部初稿 DDL：May 19（距今 5 天）\n\n### 5. 🎯 战略上下文\n**项目核心结论**：OntoCoDec（grammar+semantic 双层约束解码）在 SciERC 上 DR↓94% 且 F1 无损（full_s1 主推），在 DocRED 上 DR↓45.5%（tightness 驱动的 scaling，是 contribution）。S2 降级为 ablation（D007）。\n\n**决策链**：D001 EMNLP ARR 5/25 → D003 MVP GO → D006 SciERC 核心确认 → D007 S1 主推 → D008 DocRED 全消融 → D009 Llama cross-model should-have\n\n**易错点**：\n1. DocRED DR 10.19% 残余不是 failure——constraint tightness 分析已证明高 tightness 关系（1-2 valid pairs）占 30.6% DR，SciERC 无此类关系。论文 claim \"significant reduction\" 而非 \"near-elimination\"\n2. CF violation（SciERC 9.9%, DocRED 2.57%）是 semantic 层固有副作用（per-relation 独立 type enforcement），已定位为 limitation，不要试图修复\n3. Cron PID 追踪不可靠——曾导致 4 次假失败。若 cron 报 failed 先检查 `wc -l` 输出文件行数 vs 目标样本数再判断\n4. Llama 实验零代码修改可跑，但 pad_token=None 处理逻辑已有，不要重复加\n5. DocRED 实验加 `--max_new_tokens 4096`（文档级比句子级长）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778755449.md"
+}

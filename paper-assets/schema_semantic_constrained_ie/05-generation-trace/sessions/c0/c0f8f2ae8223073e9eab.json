@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0f8f2ae8223073e9eab",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap_ci_20260514T181218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_20260514T181218_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "602a1e57015fd4fd5c3aa57e7ac743a3cf39070d14e17bc1fe8880482c4532f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap CI 计算完成。汇总：\n\n### SciERC (551 sentences)\n\n| 对比 | Rel ΔF1 | 95% CI | p-value |\n|------|---------|--------|---------|\n| unconstrained → full_s1 | +0.13pp | [-0.24, +0.58] | 0.582 |\n| unconstrained → grammar_only | -0.00pp | [-0.22, +0.22] | 0.980 |\n| unconstrained → semantic_only | -0.08pp | [-0.36, +0.15] | 0.424 |\n\n**所有 SciERC 对比均不显著。** CI 很宽（±0.3-0.6pp），因为样本少且绝对 F1 低（~8%）。\n\n### DocRED (998 documents)\n\n| 对比 | Rel ΔF1 | 95% CI | p-value |\n|------|---------|--------|---------|\n| unconstrained → full_s1 | **+0.50pp** | [+0.23, +0.81] | **<0.001** |\n| unconstrained → grammar_only | **+0.57pp** | [+0.31, +0.87] | **<0.001** |\n| unconstrained → semantic_only | -0.01pp | [-0.10, +0.09] | 0.895 |\n| grammar_only → full_s1 | -0.07pp | [-0.16, +0.02] | 0.138 |\n| semantic_only → full_s1 | **+0.50pp** | [+0.24, +0.81] | **<0.001** |\n\n**DocRED 关键发现：**\n- unconstrained → full_s1 Rel F1 提升显著（p<0.001），Entity F1 同样显著（+0.53pp, p<0.001）\n- grammar constraint 是主要贡献者（unconstrained→grammar_only 显著），semantic alone 无显著效果\n- grammar_only → full_s1 不显著：加 semantic 约束在 grammar 基础上无增量\n\n结果 JSON 已保存至 `outputs/bootstrap_ci_results.json`，脚本在 `compute_bootstrap_ci.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

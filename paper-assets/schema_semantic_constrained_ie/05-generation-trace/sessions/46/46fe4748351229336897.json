@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46fe4748351229336897",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "writing r16 paper text fixes",
+  "task_key": "worker_writing_r16_paper_text_fixes_20260521T033136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r16_paper_text_fixes_20260521T033136_result.json",
+    "occurrence": 1,
+    "bytes": 2513,
+    "sha256": "ea7d5e4920d9d677f11fe7c315deafc610729c57a0de057f8e59578d7f6bcbb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改总结\n\n### 已修改的文件和变更\n\n| 文件 | 变更 | Action |\n|---|---|---|\n| `abstract.tex` | \"enabling dependency\" → \"empirical enabling dependency\" | M1 |\n| `section1_introduction_draft.tex` | \"enabling dependency\" → \"empirical enabling dependency\"; 加 Mistral 排除原因 \"due to atypical entity typing interaction\" | M1, M3 |\n| `section3_method_draft.tex` | Corollary 内 \"enabling dependency\" → \"empirical enabling dependency\"(2处); DFA 示例改为 DocRED (7 entity types, >10^17 states)，补充 O(|E|^|entities|) 复杂度说明 | M1, W6 |\n| `section4_composition_draft.tex` | WikiEvents κ̄=0.029 后加 \"(27 entity types, 56 event types, mean 21 valid type pairs per event type out of 27²=729 possible)\"; \"enabling dependency\" → \"empirical enabling dependency\" | W1, M1 |\n| `section5_docred_draft.tex` | Zero-shot diagnostic 段末加 residual DR fallback 解释（1.4--5.7% fallback rate, causal tracing 证实）; \"enabling dependency\" → \"empirical enabling dependency\" | W2, M1 |\n| `section5_scierc_draft.tex` | \"enabling dependency\" → \"empirical enabling dependency\" | M1 |\n| `section5_runtime.tex` | 70B CF 分析扩展：CF 5.15--7.01% 与 8B ZS (2.57--9.90%) 对比，归因 zero-shot 不确定性而非模型规模，INT4 可能加剧，FT 是关键缓解手段 | W4 |\n| `appendix_related_work.tex` | \"enabling dependency\" → \"empirical enabling dependency\" | M1 |\n| `appendix_discussion.tex` | \"enabling dependency\" → \"empirical enabling dependency\" | M1 |\n\n### 各 Action Item 状态\n\n| Item | 状态 | 说明 |\n|---|---|---|\n| MF2 | done | 已有 92--100%，无需修改 |\n| MF3 | done | 已有 0--21.1% ZS, ≤1.3% FT，无需修改 |\n| W1 | done | §4 加入 WikiEvents 约束密度数据 |\n| W2 | done | §5 DocRED 加入 ZS residual DR fallback 归因 |\n| W3 | done | 已有 \"initial evidence for applicability\" 和 \"preliminary\" |\n| W4 | done | 70B 段落加入 CF 跨规模对比分析 |\n| W5 | done | 已有 \"formalize a well-known intuition\" |\n| W6 | done | §3 DFA 状态数改引 DocRED，补充复杂度公式 |\n| M1 | done | 全文 9 处 \"enabling dependency\" 加 \"empirical\" |\n| M3 | done | §1 加 Mistral 排除原因 |\n\n### 一致性确认\n\n- Abstract / §1 / §5 DR 范围一致：92--100% FT, 45--99% ZS\n- CF 范围一致：≤1.3% FT, 0--21.1% ZS\n- DR ≤ 0.09%、R-F1 ±0.6pp 全文统一\n- \"empirical enabling dependency\" 术语统一"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-r16-paper-text-fixes.md"
+}

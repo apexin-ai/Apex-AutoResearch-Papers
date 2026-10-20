@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9baf5c7434000463412a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 docred full beam",
+  "task_key": "worker_ssh_d064_docred_full_beam_20260519T090455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_docred_full_beam_20260519T090455_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "e9440d85c0604445930191053f756547302c80182178e658e6ac1d759d9a9ff7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态总结：\n\n| Task | GPU | Status | ETA |\n|------|-----|--------|-----|\n| Llama DocRED LoRA 训练 | cuda:0 | 22/573 steps | ~77 min |\n| Qwen beam-4 unc | cuda:1 | 15/998 docs | ~5h |\n| Qwen beam-4 con | cuda:1 | 等待 unc 完成 | ~5h after |\n| Llama beam-4 unc | cuda:0 | 等待训练完成 | ~5h after training |\n| Llama beam-4 con | cuda:0 | 等待 unc 完成 | ~5h after unc |\n\n自动化串联脚本已就位，30 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-docred-full-beam.md"
+}

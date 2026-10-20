@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea4bd5ce25dd0ddf41d1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix section2 background numbers",
+  "task_key": "worker_fix_section2_background_numbers_20260514T062508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_section2_background_numbers_20260514T062508_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "bb428433e5f82d5c5c3542bf9b0756a0149722ed86a9a5a43b05c50a8bc217d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数值一致性已修正。修改摘要：\n\n**修正的错误：**\n| 位置 | 旧值 | 新值 | 来源 |\n|------|------|------|------|\n| 原 Line 11 range | 3 (Part-of) → 6 (Used-for) | **17 (Compare) → 35 (Used-for)** | `ontology_constraints.json` |\n| 原 Line 11 average | 3.73 | 删除（移至 line 14 用 24.0） | 计算验证 |\n| 原 Line 14 SciERC avg | 26.1 | **24.0** | 7 relations: 17+26+21+21+25+35+23=168, 168/7=24.0 |\n| 原 Line 14 DocRED \"out of\" | 529 | **36** | DocRED 也是 6 entity types, |E|²=36 |\n\n**叙事调整：** 原文 line 11 和 line 14 数值自相矛盾（3.73 vs 26.1），现改为统一的 per-relation 叙事——整体平均 24.0/36 看似宽松，但 Compare (17, tightness 0.53) 和 Part-of/Hyponym-of (21, tightness 0.42) 排除 >40% type-pair space，与 §3 violation landscape 和 §5 per-relation 实验数据呼应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-section2-background-numbers.md"
+}

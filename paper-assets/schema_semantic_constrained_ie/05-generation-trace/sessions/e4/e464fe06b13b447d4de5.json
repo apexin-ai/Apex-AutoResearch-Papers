@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e464fe06b13b447d4de5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_14_1778952043.md",
+  "task_key": "loop_14_1778952043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778952043.md",
+    "occurrence": 1,
+    "bytes": 4994,
+    "sha256": "312319b42524489a67120bf4a6560789672b6c8cee6eba11992696a7a3b3f4e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T16:41:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `get_project_resource_usage` 显示 `allocated_gpus=[]`，但 3 个实验通过 cron 在跑——GPU 分配状态不明，提交新实验前**必须等 Director 确认 GPU 白名单**\n- westd-16980 和 westd-21461 上有活跃实验，不要在已占用 GPU 上叠加任务\n- Qwen DocRED parse_fail_rate=8.52%（constrained）远高于 Llama 2.51%——对比 R_F1 时**必须同时报 excl_fail 口径**，否则 delta 被 parse failure 污染\n- DocRED 96 relation types constrained eval 极慢（6h+），排 GPU 时间时按此估算\n- 模型在 `/root/autodl-tmp/checkpoints/`，数据在 `/root/schema_semantic_constrained_ie/data/`——不要混淆根分区和数据盘\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 `/root/schema_semantic_constrained_ie`，Python `/root/miniconda3/bin/python`，conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **westd-21461**: 同上布局\n- 模型路径: Qwen LoRA DocRED merged → `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`；Llama LoRA DocRED merged → `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n- 数据: DocRED dev → `data/docred/dev.json` (998 samples)；SciERC → `data/scierc/` (551 samples)\n- 活跃 cron（reconcile 确认）: `w8_qwen_docred_ft_grammar_only` (pid=18555), `w8_qwen_docred_ft_semantic_only` (pid=20035), `w8_llama_docred_ft_semantic_only` (刚提交)\n- W&B: 多数实验 WANDB_MODE=disabled，metrics 从日志/输出文件提取\n\n### 3. 📊 当前状态\nSession 重启后完成初始化：reconcile crons、读 registry、向 Director 发了综合进展汇报（composability 2×2 全绿、Mistral 3rd model 完成、w7 SciERC ablation 完成、post-hoc baseline 完成）。已派 2 个 Worker：\n1. `worker_analysis_compile_paper_tables_20260516_20260516T123831` — 编译论文结果表格（registry → artifacts）\n2. `worker_code_latency_profiling_prep_20260516_20260516T123851` — 准备 latency profiling 脚本（SSH 到 westd-16980）\n\n**两个 Worker 均未回调**。\n\nRegistry RUNNING/ALLOCATED:\n- `w8_qwen_docred_ft_grammar_only` — RUNNING，FT Qwen DocRED grammar_only eval，预期 DR ≈ 0.76%（与 unconstrained 持平）\n- `w8_qwen_docred_ft_semantic_only` — RUNNING，FT Qwen DocRED semantic_only eval，预期 DR ~0.3-0.5%\n- `w8_llama_docred_ft_semantic_only` — ALLOCATED，FT Llama DocRED semantic_only eval，刚提交\n\n等待: 3 个 cron 回调 + 2 个 Worker 回调 + Director 回复 GPU 分配确认。\n\n### 4. 📋 待办\n- **w8_qwen_docred_ft_grammar_only cron 回调** → 派 Worker 读日志提取 metrics → update_registry(DONE) → 确认 grammar_only DR ≈ baseline（与 SciERC/Llama DocRED 模式一致）\n- **w8_qwen_docred_ft_semantic_only cron 回调** → 同上 → 确认 semantic_only 独立降 DR\n- **w8_llama_docred_ft_semantic_only cron 回调** → 同上 → **DocRED FT ablation 2×4 矩阵全部完成** → 汇报 Director → 触发论文 ablation section 写作\n- **3 个 w8 DocRED ablation 全部完成** → 合并 SciERC + DocRED ablation 数据，生成完整 Table 4 (2 datasets × 2 models × 4 modes) → 与 paper_framing.md Claim 3 enabling dependency 叙事对齐\n- **Worker paper_tables 回调** → 检查产出质量，注册 artifact\n- **Worker latency_profiling 回调** → 检查脚本，等 GPU 空出后 submit_training_job 跑 profiling\n- **GPU 空出后**（w8 完成）→ 按优先级：latency profiling > 任何剩余补充实验\n- **Director 回复 GPU 分配** → 更新 resource tracking，确保后续提交合规\n\n### 5. 🎯 战略上下文\n- **核心结论链**: OntoCoDec 两层约束互补（grammar 消 ET/RV，semantic 消 DR），composability 在 2 模型 × 2 数据集全部成立（FT+OntoCoDec DR→≈0% 且不损 F1），Mistral 3rd model 提供泛化性证据\n- **DDL**: EMNLP 2026 ARR May 25，内部稿 May 19（3 天后）。w8 DocRED ablation 完成后，实验基本齐全，重心转论文\n- **Post-hoc framing 已调整（D032）**: constrained decoding 价值 = 生成时硬保证 + composability + 极端场景鲁棒性，不是 F1 preservation\n- **易错点**: (1) Qwen DocRED 的 overall R_F1 delta(-0.30pp) 和 excl_fail delta(+0.03pp) 差异大，论文必须解释 parse_fail 影响；(2) Mistral DocRED 残余 DR=33.2% 不要试图 normalize，如实报告并分析 constraint coverage 与 schema complexity 的关系；(3) grammar_only 在 FT regime 对 DR 完全无效是核心 ablation 发现，不要弱化表述；(4) w8_llama_docred_ft_semantic_only 状态是 ALLOCATED 而非 RUNNING，确认 cron 正在监控它\n- **Dream 审稿 5 个结构性问题**: ①缺 related work (SynCode/IterGen/BoostCD) ②FT regime 无 ablation → w7/w8 正在修复 ③FT post-hoc baseline → 已完成(w8) ④entity types 太少 → D031 决定不加 NYT29 ⑤novelty 定位 → paper framing 调整中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778952043.md"
+}

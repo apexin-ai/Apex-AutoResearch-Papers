@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a3a646a276c84498db1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 ee step1 env verify",
+  "task_key": "worker_ssh_p1_ee_step1_env_verify_20260518T195603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_ee_step1_env_verify_20260518T195603_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "eee0cf1a7385b809fa894c402859a30a6185bf124280ec78ffb16db8f0133ff6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。关键发现：\n\n1. **之前 3 次失败根因**：系统 `python3`（`/usr/bin/python3`，Python 3.10）没有 torch 等 ML 库。所有依赖装在 `/root/miniconda3/bin/python3`（Python 3.12）里。\n2. **GPU 0 上已有 `train_lora_wikievents.py` 在运行**（PID 55834，18.9GB），GPU 1 被 docred extraction 占用（PID 39244，82% util）。\n3. 脚本中的数据路径与实际文件完全匹配，代码路径在 `/root/schema_semantic_constrained_ie/`。\n4. 依赖库版本：torch 2.8.0+cu128, transformers 5.8.1, peft 0.19.1, trl 1.4.0, datasets 4.8.5。\n\n**正确的训练命令**：\n```bash\ncd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 scripts/train_lora_wikievents.py\n```\n\n报告已写入 `artifacts/p1_ee_env_diagnosis.md`。需要确认：GPU 0 上已有同名训练在跑，是否要杀掉它再启动？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-ee-step1-env-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c21781130d4f6b413e3b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "figure fix fig1 overlap",
+  "task_key": "worker_figure_fix-fig1-overlap_20260522T061939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix-fig1-overlap_20260522T061939_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "d296e00189f0de507866f43c5ba8c39f853783390b7eb794ed2238443e8d5aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有重叠问题已修复，验证通过。\n\n### 修改清单\n\n| 问题 | 修复方式 |\n|------|---------|\n| **跨面板箭头 (P1→P2, P2→P3)** 与面板边框重叠 | 添加 `patheffects.withStroke(linewidth=5, foreground='white')` 白色描边缓冲，zorder 提升至 7 |\n| **\"enabling\" 标签** bbox 溢出子面板右边缘 | `enabling_x` 从 `gp_w-0.35` 内移至 `gp_w-0.6`，bbox pad 从 0.15 减至 0.1，字号 10→9.5 |\n| **t+1 循环箭头** 弧线穿过 \"Sample from G∩S\" 方框 | 替换为 U 形折线路径：yt 左边 → x=11.45 垂直段 → Mfinal 左边，完全绕开所有 Panel 3 内部元素 |\n| **No/Yes 标签** 与箭头线距离过近 | 偏移量从 0.12 增至 0.25/0.28，添加白色 bbox 背景隔离 |\n\n### 产出文件\n- `gen_fig1.py` — 本地已更新\n- `fig1_framework.png` (454KB) + `fig1_framework.pdf` (56KB) — 本地 artifacts 目录已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-fig1-overlap.md"
+}

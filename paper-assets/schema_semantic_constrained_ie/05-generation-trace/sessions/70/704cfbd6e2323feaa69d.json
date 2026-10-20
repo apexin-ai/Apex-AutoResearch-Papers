@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "704cfbd6e2323feaa69d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis prepare violation analysis",
+  "task_key": "worker_analysis_prepare_violation_analysis_20260513T200611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prepare_violation_analysis_20260513T200611_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "7a6617c39c512217ab6a41df8f72fee3d1bf69cbe2cf7ae9bc6ba3b322013ca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本通过 dry-run 验证。结果总结：\n\n---\n\n## Part 1: 实验进度\n\n| 实验 | 已处理 | 状态 | GPU 占用 |\n|------|--------|------|----------|\n| SciERC schema-informed | 551/551 | **完成** | cuda:0 空闲 |\n| DocRED minimal | 457/998 | 运行中 (~40min 剩余) | cuda:1: 83%, 18.5GB |\n\n## Part 2: SciERC 对比结果 (minimal vs schema_informed)\n\n**核心指标 — Domain/Range violation rate 下降 62.4%：15.37% → 5.78%**\n\n| 指标 | minimal | schema_informed | 变化 |\n|------|---------|-----------------|------|\n| D/R violation rate | 15.37% | 5.78% | **-62.4%** |\n| Relation vocab violation | 1.39% | 0.30% | -78.4% |\n| Entity type violation | 0.40% | 0.00% | -100% |\n| Total violation rate | 7.17% | 2.53% | -64.7% |\n\nPer-relation 改进最大：Feature-of (-22.3pp), Part-of (-22.5pp), Compare (-14.8pp)。唯一退步的是 Evaluate-for (+5.8pp)。\n\nMcNemar 检验四类 violation 全部统计显著 (p<0.01)。\n\n## 产出\n\n1. `compare_prompts.py` 已部署到服务器，支持 SciERC/DocRED 两个数据集，包含聚合对比和 McNemar 检验\n2. `outputs/violation_report_schema.json` — schema_informed violation report\n3. `outputs/comparison_minimal_vs_schema_informed.json` — 完整对比 JSON"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prepare-violation-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab16e9fb9f5cddbec1f5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix invalidate cf analysis",
+  "task_key": "worker_fix_invalidate_cf_analysis_20260515T141258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_invalidate_cf_analysis_20260515T141258_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "196056cee96f1c0ba24a356a2e7d4dd1b98742a483fa621dc04716e4a40669ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重命名完成。被标记为 `.INVALID` 的文件清单：\n\n- `comparison_table.md.INVALID`\n- `violation_budget.md.INVALID`\n- `violation_report_cf_fb_qwen_scierc.json.INVALID`\n- `dr_vs_cf_pareto.pdf.INVALID`\n- `dr_vs_cf_pareto.png.INVALID`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-invalidate-cf-analysis.md"
+}

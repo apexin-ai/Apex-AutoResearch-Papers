@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98785dbb40afcd5fef94",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research r13 taskA boostcd gcd itergen",
+  "task_key": "worker_research_r13_taskA_boostcd_gcd_itergen_20260520T190848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r13_taskA_boostcd_gcd_itergen_20260520T190848_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "243923277ec195f55197978cdc2c3502920bd735641638291f56a8c2c125320a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/r13_review/taskA_boostcd_gcd_itergen.md`。\n\n核心发现：\n\n- **三篇论文均不在 SciERC 上评测**，也没有任何共同评测数据集与 OntoCoDec 重叠\n- **BoostCD / GCD** (同一团队 EPFL dlab) 做 Wikidata-grounded closed IE，输出为 Wikipedia 标题 + Wikidata 关系名，用 KB membership / CFG 约束——与 OntoCoDec 的 span-level NER+RE + schema semantic constraints 在任务定义、输出粒度、约束类型上均不同\n- **IterGen** 完全不做 IE 任务（只做 SQL + privacy），仅在方法论层面（解码时施加语义约束）有关联\n- BoostCD 最佳 F1 = 52.35 (Wiki-cIE Code)，GCD 最佳 F1 = 36.0 (SynthIE-text)——这些数字与 SciERC 上的 span-level F1 不可直接对比\n\n这些数据足以支撑 Related Work 中 \"different benchmarks, task formulations, and constraint types preclude direct numerical comparison\" 的论断，同时提供了具体维度的差异证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r13-taska-boostcd-gcd-itergen.md"
+}

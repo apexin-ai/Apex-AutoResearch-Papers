@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a60dfc334b141cb4628e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code mistral adaptation",
+  "task_key": "worker_code_mistral_adaptation_20260516T025856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_adaptation_20260516T025856_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "79ddd820d7dbc426e8754352921333335595085a3cf68ad54a91ff1538c348d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 改动摘要\n\n### 修改的文件\n\n| 文件 | 改动 |\n|------|------|\n| `run_constrained_extraction.py` | 行623-627: 默认模型候选列表新增 Llama/Mistral 路径；行631: 错误信息改为通用 |\n| `download_mistral.sh` | **新建**，39行，HF下载+验证脚本 |\n\n### 为什么只改了2行\n\n现有代码已完全模型无关：\n- **AutoModelForCausalLM**: 自动加载 MistralForCausalLM\n- **apply_chat_template**: Mistral v0.3 tokenizer 自带 chat template，正确处理 system/user 角色\n- **`_chat_template_kwargs`**: 对非 Qwen 模型返回 `{}`，Mistral 不需要 `enable_thinking`\n- **pad_token**: 已有 `pad_token = eos_token` 兜底\n- **XGrammar**: 32K vocab + 标准 BPE，完全兼容\n\n运行时只需 `--model_path /root/autodl-tmp/models/mistralai/Mistral-7B-Instruct-v0.3` 即可，其余参数与 Qwen/Llama 完全一致。`download_mistral.sh` 未执行，等 GPU 实验完成后再运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-adaptation.md"
+}

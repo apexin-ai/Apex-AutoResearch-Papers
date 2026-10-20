@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f94f550e1217828af70",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 llama docred beam 50",
+  "task_key": "worker_code_w10_llama_docred_beam_50_20260517T071157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_llama_docred_beam_50_20260517T071157_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "ceae8e885f72ea266346e8465771b13e59b2561e157bca255ef2a680c0ed5d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正在运行。\n\n**报告：**\n\n1. **模型路径**: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct` (ZS 版本，与之前 Llama SciERC beam 一致)\n\n2. **完整命令**:\n```bash\npython run_constrained_extraction.py \\\n  --mode full_s1 --dataset docred \\\n  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/docred_llama_beam_50.jsonl \\\n  --decoding_strategy beam --num_beams 4 \\\n  --device cuda:0 --max_samples 50\n```\n\n3. **PID**: 424211 (cuda:0, 17.5GB 显存, 84% 利用率)\n\n4. **预估耗时**: ~30-50 分钟。参考 Qwen DocRED beam 50 每样本 ~20-30s，Llama 因 grammar-first fallback 更频繁会稍慢，预估每样本 ~40-60s。\n\n**注意事项**：\n- tmux session: `llama_docred_beam`\n- 日志: `/root/runs/schema_semantic_constrained_ie/w10_llama_docred_beam_50.log`\n- 输出: `outputs/docred_llama_beam_50.jsonl`\n- 任务参数中 `--data_path` 用了 `data/docred/dev.json`（非 `data/processed_data/docred_test.json`，后者不存在）\n- `--decoding_strategy beam`（非 `--beam_search`，已从代码 argparse 确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-llama-docred-beam-50.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f23e35d98a891e2a96c5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents flatten redryrun",
+  "task_key": "worker_code_wikievents_flatten_redryrun_20260517T153849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_flatten_redryrun_20260517T153849.log",
+    "occurrence": 1,
+    "bytes": 676817,
+    "sha256": "2c84aedaefd8dde330c7350bd8b313039cc626322c560fcd3886e19ffa306d51"
+  },
+  "statistics": {
+    "messages": 210,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "f23e35d98a891e2a96c5-part-0001.json",
+          "message_count": 167
+        },
+        {
+          "path": "f23e35d98a891e2a96c5-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-flatten-redryrun.md"
+}

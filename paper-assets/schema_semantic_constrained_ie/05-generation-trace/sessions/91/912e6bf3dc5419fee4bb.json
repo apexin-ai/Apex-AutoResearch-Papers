@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "912e6bf3dc5419fee4bb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix checker et normalization",
+  "task_key": "worker_fix_checker_et_normalization_20260514T144616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_checker_et_normalization_20260514T144616_result.json",
+    "occurrence": 1,
+    "bytes": 2039,
+    "sha256": "af02043fef8073f1ef5ed37d62f496b3c2c1dac74bbd54f76945aee7ce38427b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，结果符合预期。\n\n## 修复结果\n\n### 修改内容\n在 `violation_checker_docred.py` 中：\n1. **添加 `.strip()`** — 修复前导空格（如 `' TIME'` → `'TIME'`），消除 507 个假阳性\n2. **添加 alias mapping** — `PERSON→PER`, `ORGANIZATION→ORG`, `LOCATION→LOC` 等，消除 1108 个假阳性\n\n### 修复后消融表\n\n| Mode | ET% | DR% | RV% | CF% | Entities | Triples |\n|------|-----|-----|-----|-----|----------|---------|\n| unconstrained | 8.18 | 18.46 | 29.66 | 0.10 | 20171 | 17497 |\n| grammar_only | 0.00 | 26.17 | 0.03 | 0.07 | 20150 | 17341 |\n| semantic_only | 10.44 | 13.84 | 29.87 | 1.05 | 20185 | 17571 |\n| full_s1 | 0.00 | 10.19 | 0.03 | 2.57 | 20218 | 17372 |\n\n### 修复前后对比\n\n| Mode | ET before | ET after | Delta |\n|------|-----------|----------|-------|\n| unconstrained | 8.18% | 8.18% | 0.00pp |\n| grammar_only | 0.00% | 0.00% | 0.00pp |\n| **semantic_only** | **18.44%** | **10.44%** | **-8.00pp** |\n| full_s1 | 0.00% | 0.00% | 0.00pp |\n\nET 减少量精确吻合：507 (strip) + 1108 (alias) = **1615**，即 3722→2107。\n\nsemantic_only 的 DR 也从 15.05%→13.84% (-1.21pp)，因为 normalize 同样应用于 domain_range pair 匹配，消除了因 `PERSON`/`' PER'` 导致的假阳性 DR violation。CF 从 2.29%→1.05%，因为 `PERSON` 和 `PER` 不再被视为同一实体的冲突类型。\n\nunconstrained / grammar_only / full_s1 的所有指标不变，验证修复的隔离性。\n\n### Alias Map\n\n```python\nENTITY_TYPE_ALIASES = {\n    'PERSON': 'PER',     # 1081 instances in semantic_only\n    'PEOPLE': 'PER',\n    'ORGANIZATION': 'ORG',  # 13 instances\n    'ORGANISATION': 'ORG',\n    'LOCATION': 'LOC',      # 14 instances\n    'NUMBER': 'NUM',\n    'NUMERICAL': 'NUM',\n    'MISCELLANEOUS': 'MISC',\n}\n```\n\n剩余 2107 个 ET violations (10.44%) 是真实退化：WORK(823)、EVENT(743)、ETHNIC_GROUP(137) 等——模型生成了 DocRED schema 中不存在的类型，属于论文 limitation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-checker-et-normalization.md"
+}

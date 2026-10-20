@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f0416c7c03fcb357878",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp vllm guided json",
+  "task_key": "worker_exp_vllm-guided-json_20260522T131448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_vllm-guided-json_20260522T131448_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "4844a5f2adcebfa7a125c7aeab917c9c4de02244ab59be9c3c0c9c10f619f197"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 总结\n\nvLLM guided_json 验证实验成功，确认 **guided_json ≈ Grammar-Only ablation**：\n\n| Metric | Grammar-Only (ours) | vLLM guided_json | Δ |\n|--------|:---:|:---:|:---:|\n| DR% | 14.84 | **15.26** | +0.42 |\n| RV% | 0 | **0** | 0 |\n| ET% | 0 | **0** | 0 |\n| CF% | 0.08 | **0.04** | -0.04 |\n| R-F1 | 8.23 | **8.75** | +0.52 |\n| E-F1 | 30.98 | **30.91** | -0.07 |\n\n所有差异在噪声范围内。两者都保证 RV=0%, ET=0%（JSON schema + enum 约束），但都留下 ~15% 的 domain-range violations 未处理——这正是我们论文中 semantic constraint layer 的价值所在。\n\n产出文件：\n- 推理结果: `outputs/vllm_guided_json_scierc_zs.jsonl`\n- 违规报告: `outputs/violation_report_vllm_guided_json.json`\n- 实验注册: `vllm_guided_json_scierc_zs` (DONE/success)\n- Artifact: `art_20260522_7c65fb`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-vllm-guided-json.md"
+}

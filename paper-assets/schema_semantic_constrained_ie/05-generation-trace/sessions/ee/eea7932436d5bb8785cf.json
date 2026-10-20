@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eea7932436d5bb8785cf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops kill duplicate semantic only",
+  "task_key": "worker_ops_kill_duplicate_semantic_only_20260514T005851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_semantic_only_20260514T005851_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "2c33e33ea3a21c12dc4f4a9cede39ec7638749e39ed57c78233fa05115ebdf11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 140568**: 已不存在，无需 kill\n- **PID 140804** (semantic_only_v2): 正常运行中\n\n**当前 GPU 进程列表：**\n\n| GPU | PID | 显存占用 | 备注 |\n|-----|--------|---------|------|\n| GPU 0 | 137719 | 22656 MiB | docred_schema |\n| GPU 0 | 140804 | 16502 MiB | semantic_only_v2 |\n| GPU 1 | 142639 | 16502 MiB | — |\n\n注意：GPU 1 上只看到 1 个进程 (PID 142639)，不是预期的 138136 和 140885。138136 和 140885 可能已结束，142639 可能是后续启动的新进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-semantic-only.md"
+}

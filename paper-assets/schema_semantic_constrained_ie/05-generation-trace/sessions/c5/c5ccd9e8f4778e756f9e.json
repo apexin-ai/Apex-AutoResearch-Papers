@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5ccd9e8f4778e756f9e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check qwen docred constrained eval progress",
+  "task_key": "worker_ops_check_qwen_docred_constrained_eval_progress_20260516T021047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_qwen_docred_constrained_eval_progress_20260516T021047_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "10136535f4ae9814f163087991450153e5dd61800a4e7a3a06354ad8024cc824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## w5_qwen_docred_lora_constrained_eval 进度\n\n| 指标 | 状态 |\n|------|------|\n| 完成进度 | **48 / 998** samples (4.8%) |\n| GPU 进程 (321568) | **ALIVE**, 运行 16m16s, RSS 1.9GB |\n| Wrapper 进程 (321563) | **ALIVE**, 运行 16m17s |\n| GPU 0 | 86% 利用率, 16825 / 97887 MiB |\n| GPU 1 | 83% 利用率, 17265 / 97887 MiB |\n\n**速度**: ~3 samples/min (~20s/sample)，比预估的 14s 略慢。\n\n**预估剩余时间**: 950 samples / 3 per min ≈ **5.3 小时**（约 10:30 UTC 完成）。\n\n注意：日志显示 `Device: cuda:0`（非 cuda:1），进程运行时间仅 16 分钟——看起来是近期才启动的，并非 02:00 UTC 提交的那次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-qwen-docred-constrained-eval-progress.md"
+}

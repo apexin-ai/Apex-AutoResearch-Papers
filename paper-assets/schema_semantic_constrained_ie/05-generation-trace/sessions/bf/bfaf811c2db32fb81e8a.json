@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfaf811c2db32fb81e8a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra model download check",
+  "task_key": "worker_infra_model_download_check_20260513T175841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_check_20260513T175841_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "7a0057cd50598f6a22e06ea9e196bfe0d3664530d43d2088bdb871add0954f59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态: DOWNLOADING**\n- 下载方式: ModelScope（已启用 network_turbo）\n- 总进度: ~8.5G / 15.3G (~55%)\n- 瓶颈: shard-00001 仅 18%，但随着其他分片完成带宽会重新分配\n- 预计完成: ~45-60 分钟后\n- 模型路径: `/root/autodl-tmp/models/Qwen3-8B/Qwen/Qwen3-8B/`\n\n4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download-check.md"
+}

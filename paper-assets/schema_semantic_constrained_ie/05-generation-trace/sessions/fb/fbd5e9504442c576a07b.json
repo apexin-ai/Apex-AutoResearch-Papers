@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbd5e9504442c576a07b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code anon repo push",
+  "task_key": "worker_code_anon_repo_push_20260525T090527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon_repo_push_20260525T090527_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "acb27195d3258006ffc749f0756a1d1e7a5844d23d5ba6a08844e420186673f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n- **Credentials:** Verified, admin+push access confirmed.\n- **Anonymity:** Git author email fixed from `anonymous@example.com` → `anonymous@anonymous.invalid` via history rewrite. No identity leaks in file contents.\n- **Completeness:** README, core code, requirements, evaluation scripts all present and complete.\n- **Cleanup:** Created missing `.gitignore`; repo was otherwise clean.\n- **Push:** Force-pushed successfully after transient GitHub 500 errors.\n- **Final commit:** `7ef1fe4ffc73c442e66be330d43e09803c141515`\n- **Audit report:** `/tmp/anon_repo_audit.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-push.md"
+}

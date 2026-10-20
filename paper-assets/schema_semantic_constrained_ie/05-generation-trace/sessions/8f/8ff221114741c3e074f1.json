@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ff221114741c3e074f1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix bootstrap ci entity filter",
+  "task_key": "worker_fix_bootstrap_ci_entity_filter_20260514T184012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_ci_entity_filter_20260514T184012_result.json",
+    "occurrence": 1,
+    "bytes": 1641,
+    "sha256": "1578b0216f14bd851810b4593f9fcc5fc1ab8056dae4ffb46fedecce72c5d341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n## 修复内容\n\n**`compute_bootstrap_ci.py` 的 `docred_sample_stats` 函数（3 处修改）：**\n\n1. **Line 117** — `gold_ent_set`: 移除 `docred_normalize_entity_type()` 调用，使用原始类型（与 registry 的 `posthoc_filter.py` 一致）\n2. **Line 127** — `pred_ent_set`: 移除 `DOCRED_VALID_ENTITY_TYPES` filter 和 `docred_normalize_entity_type()` normalization。改为直接 `set((text, type) for e in entities)`，与 registry 完全一致\n3. **Line 119-120** — `parsed is None` 时返回全零（之前返回 `ent_gold=len(gold_ent_set)`），匹配 registry 跳过 parse-failure 文档的行为\n\nSciERC 无需修复（bootstrap 和 registry 都使用 normalize+filter 逻辑，已一致）。\n\n---\n\n## Bootstrap CI 结果 (B=10,000)\n\n### DocRED (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| **Rel F1** | **+0.50pp** | [+0.23, +0.81] | **<0.001** |\n| **Ent F1** | **+1.23pp** | [+0.94, +1.55] | **<0.001** |\n\n### SciERC (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| Rel F1 | +0.13pp | [-0.23, +0.58] | 0.58 |\n| Ent F1 | -0.03pp | [-0.11, +0.08] | 0.53 |\n\n### Grammar-only Entity F1\n**DocRED grammar_only Entity F1 = 59.38%** (P=58.47%, R=60.32%)\n- 之前 registry 为 null，现已更新\n- grammar_only vs unconstrained: Ent F1 +1.23pp [+0.93, +1.55], p<0.001\n- grammar_only 与 full_s1 的 Entity F1 几乎相同（Δ=+0.00pp, p=0.66），说明 entity F1 的提升完全来自 grammar 层的 JSON schema enum 约束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-ci-entity-filter.md"
+}

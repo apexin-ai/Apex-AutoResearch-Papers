@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb707fc91611b0bb564",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval w5 qwen docred ft eval",
+  "task_key": "worker_eval_w5_qwen_docred_ft_eval_20260515T200422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w5_qwen_docred_ft_eval_20260515T200422_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "c053a5397fa77ebef2243b296256722205d7929a764a8d6312cf17c443b2a823"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **Qwen unconstrained eval** (`w5_qwen_docred_lora_unconstrained_eval`): 已在 cuda:1 上运行，7/998 samples，registry 已更新为 RUNNING\n- **Qwen constrained eval** (`w5_qwen_docred_lora_constrained_eval`): 等 unconstrained 完成后提交\n- **Llama unconstrained eval** 也在并行跑 cuda:0（33/998 samples）\n\n270s 后回来检查进度，unconstrained 完成后立即提交 constrained eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w5-qwen-docred-ft-eval.md"
+}

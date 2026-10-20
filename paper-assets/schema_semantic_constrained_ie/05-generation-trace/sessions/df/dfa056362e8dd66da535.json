@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfa056362e8dd66da535",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check gpu inventory both servers",
+  "task_key": "worker_check_gpu-inventory-both-servers_20260523T044245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-inventory-both-servers_20260523T044245_result.json",
+    "occurrence": 1,
+    "bytes": 6888,
+    "sha256": "860ccf901e1d5ee966f21f886c85814681d730a1e4e7f42ec9f36aa27dfa07e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部收集完毕。\n\n---\n\n## 服务器 1: westd-21461\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 | 状态 |\n|-----|--------|----------|--------|------|\n| 0 | 0% | 0 MiB | 97,887 MiB (~96GB) | **空闲** |\n| 1 | 87% | 41,607 MiB | 97,887 MiB | **占用中** |\n\n### 可用模型\n| 模型 | 路径 | 大小 |\n|------|------|------|\n| Llama-3.1-70B-Instruct-AWQ-INT4 | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4/` | 38G |\n| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | 15G |\n| Qwen3-8B | `/root/autodl-tmp/models/Qwen3-8B-ms/` | 16G |\n| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/` (符号链接) | 14G |\n\n### LoRA Checkpoint / Merged 模型\n| 名称 | 路径 | 大小 | 类型 |\n|------|------|------|------|\n| 70b_lora_docred | `/root/autodl-tmp/checkpoints/70b_lora_docred/` | 267M | LoRA adapter (checkpoint-1146) |\n| 70b_lora_scierc | `/root/autodl-tmp/checkpoints/70b_lora_scierc/` | 768M | LoRA adapter (checkpoint-663) |\n| qwen3_8b_lora_scierc_merged | `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged/` | 16G | merged |\n| qwen_lora_docred_merged | `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged/` | 16G | merged |\n| qwen3_8b_lora_wikievents_merged | `/root/autodl-tmp/checkpoints/qwen3_8b_lora_wikievents_merged/` | 16G | merged |\n| qwen_full_ft_scierc | `/root/autodl-tmp/checkpoints/qwen_full_ft_scierc/` | 16G | full fine-tune |\n| llama_lora_scierc_merged | `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged/` | 15G | merged |\n| llama_lora_docred_merged | `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/` | 15G | merged |\n\n### 数据集\n| 数据集 | 路径 |\n|--------|------|\n| DocRED | `/root/schema_semantic_constrained_ie/data/docred/` |\n| WikiEvents | `/root/schema_semantic_constrained_ie/data/wikievents/` |\n| SFT data | `/root/schema_semantic_constrained_ie/data/sft/` |\n| Processed data | `/root/schema_semantic_constrained_ie/data/processed_data/` |\n\n(SciERC 数据通过 `schema_outputs/` 的推理输出文件存在，原始数据可能在 `processed_data` 中)\n\n### 推理/评估/训练脚本\n```\n/root/schema_semantic_constrained_ie/scripts/eval_d064.py\n/root/schema_semantic_constrained_ie/scripts/eval_d066_scierc.py\n/root/schema_semantic_constrained_ie/eval_event_extraction.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_llama_scierc.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_docred.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_docred_llama.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_wikievents.py\n/root/schema_semantic_constrained_ie/scripts/train_full_ft_scierc.py\n```\n\n### 磁盘空间\n**250G 总量，已用 177G，剩余 74G (71%)**\n\n---\n\n## 服务器 2: westd-16980\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 | 状态 |\n|-----|--------|----------|--------|------|\n| 0 | 0% | 0 MiB | 97,887 MiB (~96GB) | **空闲** |\n| 1 | 0% | 0 MiB | 97,887 MiB | **空闲** |\n\n### 可用模型\n| 模型 | 路径 | 大小 |\n|------|------|------|\n| Llama-3.1-70B-Instruct-AWQ-INT4 | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4/` | 38G |\n| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | 15G |\n| Qwen3-8B | `/root/autodl-tmp/models/Qwen3-8B-ms/` (符号链接 `Qwen3-8B-link`) | 16G |\n| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3-ms/` | 14G |\n| GoLLIE model | `/root/autodl-tmp/gollie_model/` | 13G |\n\n### LoRA Checkpoint / Merged 模型\n| 名称 | 路径 | 大小 | 类型 |\n|------|------|------|------|\n| 70b_lora_docred | `/root/autodl-tmp/checkpoints/70b_lora_docred/` | 1.1G | LoRA adapter (checkpoint-1146 + final) |\n| 70b_lora_scierc | `/root/autodl-tmp/checkpoints/70b_lora_scierc/` | 1.1G | LoRA adapter (checkpoint-663 + final) |\n| llama_8b_lora_wikievents | `/root/autodl-tmp/checkpoints/llama_8b_lora_wikievents/` | 1.2G | LoRA adapter (checkpoint-26/39 + final) |\n| llama_8b_lora_wikievents_merged | `/root/autodl-tmp/checkpoints/llama_8b_lora_wikievents_merged/` | 15G | merged |\n| llama_lora_scierc_merged | `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged/` | 15G | merged |\n| llama_lora_docred_merged | `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/` | 15G | merged |\n| qwen3_8b_lora_scierc_merged | `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged/` | 16G | merged |\n| qwen_lora_docred_merged | `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged/` | 16G | merged |\n\n### 数据集\n| 数据集 | 路径 |\n|--------|------|\n| ACE05 | `/root/schema_semantic_constrained_ie/data/ace05/` |\n| DocRED | `/root/schema_semantic_constrained_ie/data/docred/` |\n| WikiEvents | `/root/schema_semantic_constrained_ie/data/wikievents/` |\n| RAMS | `/root/schema_semantic_constrained_ie/data/rams/` |\n| Synthetic | `/root/schema_semantic_constrained_ie/data/synthetic/` |\n| SFT data | `/root/schema_semantic_constrained_ie/data/sft/` |\n| Processed data | `/root/schema_semantic_constrained_ie/data/processed_data/` |\n\n### 推理/评估/训练脚本\n```\n/root/schema_semantic_constrained_ie/scripts/eval_d064.py\n/root/schema_semantic_constrained_ie/scripts/eval_d066_unified.py\n/root/schema_semantic_constrained_ie/scripts/eval_gollie_scierc.py\n/root/schema_semantic_constrained_ie/scripts/eval_gollie_comparison.py\n/root/schema_semantic_constrained_ie/eval_event_extraction.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_llama_scierc.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_docred.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_docred_llama.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_wikievents.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_wikievents_llama.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_70b_scierc.py\n/root/schema_semantic_constrained_ie/scripts/train_lora_70b_docred.py\n/root/GoLLIE/src/trainer.py\n/root/GoLLIE/src/evaluate.py\n```\n\n### 磁盘空间\n**250G 总量，已用 173G，剩余 78G (69%)**\n\n---\n\n## 总结\n\n| | westd-21461 | westd-16980 |\n|--|------------|------------|\n| 空闲 GPU | 1 × 96GB (GPU 0) | **2 × 96GB (全空闲)** |\n| 占用 GPU | GPU 1 (87%, 42GB占用) | 无 |\n| 基座模型 | 70B-AWQ, 8B-Llama, Qwen3-8B, Mistral-7B | 70B-AWQ, 8B-Llama, Qwen3-8B, Mistral-7B, **GoLLIE** |\n| 独有资源 | qwen_full_ft_scierc, qwen3_8b_lora_wikievents_merged | llama_8b_lora_wikievents (未merge adapter), GoLLIE, ACE05/RAMS/Synthetic 数据 |\n| 磁盘剩余 | 74G | 78G |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-inventory-both-servers.md"
+}

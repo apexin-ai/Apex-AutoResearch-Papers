@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44b57ce701887cff1b5d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_15_1778964798.md",
+  "task_key": "loop_15_1778964798",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778964798.md",
+    "occurrence": 1,
+    "bytes": 3597,
+    "sha256": "e27fd67b4f89111040f41dbaeedfe7ffbd94fc53d5154966a105e809d052dbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T20:20:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0/1, westd-21461 cuda:0/1（共 4 卡）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- DocRED FT ablation 是最后一批实验，完成后进入论文 patch 阶段，不再开新实验除非 Reviewer 要求\n- 论文目标：EMNLP 2026 ARR May 25，时间线极紧\n\n### 2. 🖥️ 基础设施快照\n- **westd-21461**: 工作目录 `/root/schema_semantic_constrained_ie`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - 数据：`data/docred/dev.json` (998 samples)\n  - outputs: `outputs/w8_qwen_docred_ft_semantic_only.jsonl`\n  - log: `~/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_semantic_only.log`\n- **westd-16980**: 工作目录同上\n  - 模型：`/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n  - w8_llama_docred_ft_semantic_only: PID 361202, tmux session 活跃, cuda:1\n- W&B: 项目配置中有，但这批 eval 实验未必都有 wandb_run_id（从 log 提取 metrics）\n- HF cache: `/root/autodl-tmp/.hf_cache`\n\n### 3. 📊 当前状态\n- **刚发生**: `w8_qwen_docred_ft_semantic_only` cron 回调到达（ANALYZING），已派 Worker `worker_analyze_w8_qwen_docred_ft_semantic_only_20260516T161925` 去 SSH 提取 metrics 并更新 registry\n- **RUNNING**: `w8_llama_docred_ft_semantic_only`（westd-16980 cuda:1, PID 361202, 预计 ~1.5h 完成）\n- **等待中**:\n  - Worker 回调：analyze worker 完成后需汇报 Director + 更新 report.md\n  - Cron 回调：w8_llama_docred_ft_semantic_only 完成后同样需要分析\n- **整体**: 54 实验中 50 DONE, 1 ANALYZING, 1 RUNNING, 2 pending workers\n\n### 4. 📋 待办\n- Worker `analyze_w8_qwen_docred_ft_semantic_only` 回调 → 读 metrics → 更新 report.md → 向 Director 汇报（如果 Llama 也完成则合并汇报）\n- `w8_llama_docred_ft_semantic_only` cron 回调（进程退出）→ 派 Worker 分析 → 更新 registry → 与 Qwen 结果合并汇报 Director\n- 两个 semantic_only 全部 DONE → 向 Director 汇报\"DocRED FT ablation 2×2 完成，两层互补结论 4/4 确认\" → 建议立即派 Worker 做论文 DocRED FT ablation patch\n- 论文 patch 完成 → Round 5 送 Reviewer → 目标 ≥8/10 → dream_simulate final\n\n### 5. 🎯 战略上下文\n- **核心结论**: OntoCoDec 两层互补——grammar 消除 ET/RV（entity type + relation violation），semantic 消除 DR（domain relevance）。SciERC 4/4 已确认，DocRED grammar_only 2/2 已确认（DR 不降），DocRED semantic_only 是最后拼图\n- **预期**: Qwen DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC -68%）；Llama DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC -42%）\n- **易错点**:\n  - grammar_only 的 DR 不降是\"正确的 success\"（验证 grammar 层不约束 DR），不要误判为 negative\n  - parse_fail_rate 在 DocRED 偏高（grammar_only 约 7%），这是已知的 DocRED 复杂 schema 问题，不影响 conclusion\n  - 如果 semantic_only DR 未降 → 这是真正的 negative，需要走 red-section framing 流程，但根据 SciERC 模式不太可能发生\n- **决策链**: D030(Mistral 选型) → D031(不加 NYT29) → D032(post-hoc baseline 确认 C2) → D033(Mistral crossover) → D034(Qwen tokenizer warning 无害)\n- **论文状态**: Round 4 = 7/10，连续两轮无 CRITICAL/WARNING。DocRED FT ablation 数据补完后做 final patch 即可进 Round 5\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778964798.md"
+}

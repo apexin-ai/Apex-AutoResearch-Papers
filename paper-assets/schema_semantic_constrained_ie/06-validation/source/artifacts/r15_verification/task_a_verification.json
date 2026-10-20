@@ -1,0 +1,117 @@
+{
+  "guarantee_matches": [
+    {
+      "file": "section1_introduction_draft.tex",
+      "line": 6,
+      "content": "Large language models are increasingly used for information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity is guaranteed to carry a type consistent with the ontology's domain/range constraints for $r$."
+    },
+    {
+      "file": "section1_introduction_draft.tex",
+      "line": 10,
+      "content": "At deployment-grade quality (R-F1 40--46\\%), even 1--2\\% residual violations compound across thousands of documents into systematic knowledge graph corruption; type violation elimination guarantees ontological consistency of constructed KGs independent of extraction F1, making reliable constraint enforcement necessary."
+    },
+    {
+      "file": "section1_introduction_draft.tex",
+      "line": 14,
+      "content": "Grammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints."
+    },
+    {
+      "file": "section1_introduction_draft.tex",
+      "line": 16,
+      "content": "Training-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime guarantees; no method provides both semantic awareness and runtime enforcement."
+    },
+    {
+      "file": "section1_introduction_draft.tex",
+      "line": 27,
+      "content": "\\item A two-layer constrained decoding framework guided by a decidability analysis of IE type constraints (context-free, prefix-decidable with state, non-local), yielding pair-based sequential enforcement with formal guarantees at each level (\\S\\ref{sec:decidability}). Constraints compile automatically from IE ontologies (validated on schemas with up to 96 relation types); enforcement outcomes are characterized by constraint tightness $\\bar{\\kappa}$, a descriptive metric correlating schema restrictiveness with DR reduction (94--99\\% at $\\bar{\\kappa}{<}0.5$ vs.\\ 42--90\\% at $\\bar{\\kappa}{>}0.8$; Appendix~\\ref{app:tcr})."
+    },
+    {
+      "file": "abstract.tex",
+      "line": 2,
+      "content": "We present \\textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \\emph{grammar layer} (context-free) compiles ontology constraints into grammars guaranteeing JSON validity and vocabulary membership; a \\emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict."
+    },
+    {
+      "file": "section3_method_draft.tex",
+      "line": 17,
+      "content": "OntoCoDec guarantees levels 1--2 (grammar and semantic layers, respectively); level~3 is addressed by beam search or post-hoc resolution (Appendix~\\ref{app:tcr})."
+    },
+    {
+      "file": "section3_method_draft.tex",
+      "line": 37,
+      "content": "\\noindent\\textbf{Corollary.} The enabling dependency is necessary: the grammar layer alone cannot enforce domain/range constraints (Proposition~1), while the semantic layer alone achieves only 24\\% DR reduction without grammar-guaranteed vocabulary membership (\\S\\ref{sec:scierc-results}, Table~\\ref{tab:scierc-ablation})."
+    },
+    {
+      "file": "section3_method_draft.tex",
+      "line": 62,
+      "content": "The decoder enforces this sequentially: $\\tau^h \\in \\operatorname{dom}(r)$ at head position, then $\\tau^t \\in \\operatorname{range}(r, \\tau^h)$ at tail position, achieving best-effort pair-based enforcement (pair validity guaranteed when no fallback is triggered; domain-only filtering otherwise) strictly stronger than independent domain/range checks (which over-permit 33--37\\% spurious pairs on SciERC/DocRED; \\S\\ref{sec:rectangularity})."
+    },
+    {
+      "file": "section4_composition_draft.tex",
+      "line": 11,
+      "content": "The conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the enabling dependency (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property guaranteed only by the grammar layer."
+    },
+    {
+      "file": "section5_docred_draft_9b84f1.tex",
+      "line": 99,
+      "content": "\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}"
+    },
+    {
+      "file": "section5_scierc_draft_4796e8.tex",
+      "line": 99,
+      "content": "\\paragraph{Grammar layer: cost-free structural guarantees.}"
+    },
+    {
+      "file": "section6_related_work.tex",
+      "line": 7,
+      "content": "XGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} guarantee format validity via CFG-based token masking; GCD~\\cite{geng2023gcd} applies this to IE."
+    },
+    {
+      "file": "section6_relwork_outline.tex",
+      "line": 79,
+      "content": "\\textbf{Distinction:} Training-based methods provide \\emph{soft} structural guidance---the model learns to prefer valid outputs but offers no compliance guarantee at inference time. EnriCo's ASP constraints are hard but model-specific and require manual rule authoring. OntoCoDec provides \\emph{hard} decoding-time enforcement that is training-free, automatically compiled from ontology schemas, and composable with any of these approaches."
+    },
+    {
+      "file": "section6_relwork_additions.tex",
+      "line": 25,
+      "content": "%         learned soft preference rather than a guarantee.\" (end of line 56,"
+    },
+    {
+      "file": "appendix_related_work.tex",
+      "line": 59,
+      "content": "ADELIE~\\cite{qi2024adelie} uses SFT and DPO to align LLMs on IE tasks, achieving state-of-the-art results among open-source models while preserving general capabilities, though compliance with ontological constraints remains a learned soft preference rather than a guarantee."
+    },
+    {
+      "file": "appendix_related_work.tex",
+      "line": 63,
+      "content": "Training-based methods provide \\emph{soft} structural guidance: the model learns to prefer valid outputs but cannot guarantee compliance at inference time, as demonstrated by non-trivial violation rates even in fine-tuned systems."
+    },
+    {
+      "file": "abstract_d3264e.tex",
+      "line": 12,
+      "content": "The two layers compose via bitwise AND on token-level masks, with an enabling dependency: the grammar layer guarantees well-formed output, upon which the semantic layer enforces relational type rules."
+    },
+    {
+      "file": "abstract_fd4b26.tex",
+      "line": 12,
+      "content": "The two layers compose via bitwise AND on token-level masks, with an enabling dependency: the grammar layer guarantees well-formed output, upon which the semantic layer enforces relational type rules."
+    }
+  ],
+  "contributions_paragraph": "Our contributions:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n    \\item A two-layer constrained decoding framework guided by a decidability analysis of IE type constraints (context-free, prefix-decidable with state, non-local), yielding pair-based sequential enforcement with formal guarantees at each level (\\S\\ref{sec:decidability}). Constraints compile automatically from IE ontologies (validated on schemas with up to 96 relation types); enforcement outcomes are characterized by constraint tightness $\\bar{\\kappa}$, a descriptive metric correlating schema restrictiveness with DR reduction (94--99\\% at $\\bar{\\kappa}{<}0.5$ vs.\\ 42--90\\% at $\\bar{\\kappa}{>}0.8$; Appendix~\\ref{app:tcr}).\n    \\item A comprehensive evaluation of type constraint enforcement across 3 IE datasets, 4 models (7--70B), and 2 tasks: (a)~for RE, the five-way ablation confirms that neither layer alone achieves $>$24\\% DR reduction while their composition yields 94--100\\%, and that fine-tuning does not obviate constraints (residual DR 1--2\\% at R-F1 40--46\\%); (b)~preliminary event extraction results on WikiEvents demonstrate generalization to 245 constraints across three tokenizer families (\\S\\ref{sec:wikievents}).\n\\end{enumerate}",
+  "kappa_bar_in_contributions": true,
+  "bib_check": {
+    "chen2024agentre": {
+      "in_bib": true,
+      "cited_in_tex": true,
+      "cited_files": ["section5_scierc_draft.tex:108"],
+      "orphan": false,
+      "missing": false
+    },
+    "fan2024fsn": {
+      "in_bib": true,
+      "cited_in_tex": true,
+      "cited_files": ["section5_scierc_draft.tex:108"],
+      "orphan": false,
+      "missing": false
+    }
+  }
+}

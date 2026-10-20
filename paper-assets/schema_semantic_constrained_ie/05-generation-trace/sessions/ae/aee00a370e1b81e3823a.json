@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aee00a370e1b81e3823a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d068 kill processes",
+  "task_key": "worker_ssh_d068_kill_processes_20260519T164933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d068_kill_processes_20260519T164933_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "ff5124f13b27b6f76f6622a31dd34d69926baaa57d70a0f335855ca74b892939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. d068 进程：全部已 kill\n- westd-16980: 2 个进程 (beta=0.0, beta=0.5) + 2 个 bash wrapper → 已清除\n- westd-21461: 2 个进程 (beta=1.0, beta=2.0) + 2 个 bash wrapper → 已清除\n- 无残留\n\n### 2. d064 进程：全部正常运行\n- **westd-16980**: 2 个 d064 进程占 GPU 0/1，利用率 91%/84%\n- **westd-21461**: 2 个 d064 进程占 GPU 0/1，利用率 87%/78%\n- 无异常进程占 GPU\n\n### 3. d064 进度（DocRED dev set, 998 条）\n\n| 服务器 | 任务 | 完成数 | 进度 |\n|--------|------|--------|------|\n| westd-16980 | llama_beam4_unconstrained | 465 | 47% |\n| westd-16980 | llama_beam4_constrained | 401 | 40% |\n| westd-21461 | llama_greedy_constrained | 510 | 51% |\n| westd-21461 | llama_greedy_unconstrained | **998** | **完成** |\n| westd-21461 | qwen_beam4_constrained | 251 | 25% |\n| westd-21461 | qwen_beam4_unconstrained | **998** | **完成** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d068-kill-processes.md"
+}

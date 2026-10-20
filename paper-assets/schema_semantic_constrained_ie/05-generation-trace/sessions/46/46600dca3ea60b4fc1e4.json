@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46600dca3ea60b4fc1e4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 lora scierc constrained eval",
+  "task_key": "worker_analysis_w5_lora_scierc_constrained_eval_20260515T162340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_lora_scierc_constrained_eval_20260515T162340_result.json",
+    "occurrence": 1,
+    "bytes": 1952,
+    "sha256": "75184ecc4d4a36963e1e742d2f20326d46b223887ab2317e07c73811702bd762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the analysis:\n\n---\n\n## w5_lora_scierc_constrained_eval 结果\n\n### Metrics 汇总\n\n| Metric | Fine-tuned Constrained | Fine-tuned Unconstrained | Base Constrained | Base Unconstrained |\n|--------|----------------------|------------------------|-----------------|-------------------|\n| **Entity F1** | **0.6705** | 0.6705 | 0.3098 | 0.3101 |\n| **Relation F1** | **0.4377** | 0.4386 | 0.0836 | 0.0823 |\n| ET | 0% | — | — | — |\n| RV | 0% | — | — | — |\n| **DR** | **0.00%** | 1.95% | 0.93% | 15.37% |\n| **CF** | **1.18%** | 0% | 9.90% | 0.08% |\n| JSON parse | 100% | — | — | — |\n| Samples | 551 | 551 | 551 | 551 |\n\n运行时间：~28 分钟（551 samples, wall_clock 1665s）\n\n### 关键分析\n\n**1. Composability 验证：完全成功**\n- DR: 1.95% → **0.00%** — 约束解码彻底消除了 domain-range 违规\n- ET/RV 均为 0% — grammar constraint 完美约束了词汇表\n\n**2. F1 代价：几乎为零**\n- Entity F1: 0.6705 → 0.6705 (±0.00pp) — 完全无损\n- Relation F1: 0.4386 → 0.4377 (-0.09pp) — 可忽略\n\n**3. 相比 base model 的提升幅度**\n- Entity F1: 0.3098 → 0.6705 (**+36.07pp**)\n- Relation F1: 0.0836 → 0.4377 (**+35.41pp**)\n\n**4. CF 趋势**\n- Base constrained CF=9.90% → Fine-tuned constrained CF=1.18% (**-8.72pp**)\n- Fine-tuned 模型学会了更一致的实体类型标注，大幅降低了 cross-field 不一致\n- CF 从 unconstrained 的 0% 上升到 1.18%，说明 constrained decoding 在改变生成路径时引入了少量类型不一致（21 例，主要是 Generic vs 具体类型的歧义，如 \"parsing\" 既标 Generic 又标 Task）\n\n### 结论\n\n**Composability 完全验证通过。** Fine-tuning + constrained decoding 是正交且可组合的：fine-tuning 提升 F1（+36pp entity, +35pp relation），constrained decoding 消除 schema 违规（DR → 0%），两者组合无 F1 代价。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-lora-scierc-constrained-eval.md"
+}

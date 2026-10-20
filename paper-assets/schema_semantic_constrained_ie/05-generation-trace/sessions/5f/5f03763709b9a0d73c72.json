@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5f03763709b9a0d73c72",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "diagnose w1 cf fallback docred code verify",
+  "task_key": "worker_diagnose_w1_cf_fallback_docred_code_verify_20260515T165402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_w1_cf_fallback_docred_code_verify_20260515T165402.jsonl",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "65c6337e9da34f7b91b3ef5f9350e405fb1f696a5fd9d0127806596c1282abdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:54:12.345020+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_w1_cf_fallback_docred_code_verify_20260515T165402"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-w1-cf-fallback-docred-code-verify.md"
+}

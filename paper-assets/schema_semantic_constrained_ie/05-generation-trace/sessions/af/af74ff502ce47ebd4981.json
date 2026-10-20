@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af74ff502ce47ebd4981",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research paper docred update checklist",
+  "task_key": "worker_research_paper_docred_update_checklist_20260516T021217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_docred_update_checklist_20260516T021217_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "b29539a4bd96c8c0795d67782fb1ce51c7b41d35057df49268852b13929c2006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist 已写入 `artifacts/docred_paper_update_checklist.md`。\n\n共识别 **16 个需更新位置** + **5 个条件更新项** + **14 个一致性检查点**。\n\n核心更新优先级：\n1. **Table 5** (`tab:composability`, section5_scierc_draft.tex L159-199) — 添加 DocRED 行，是最关键的结构性更新\n2. **Composability 正文** (section5_scierc_draft.tex L125-157) — 添加 DocRED FT 讨论段落\n3. **Abstract** (L14) — 扩展 composability claim 到 DocRED\n4. **Limitations** (main.tex L70, L76) — 删除 \"one dataset\" / \"remains to be explored\"\n5. **Appendix B** (appendix_discussion.tex L74-76) — \"one dataset\" → \"two datasets\"\n\n关键不确定性：DocRED FT+S1 的 DR 是否能降到 0%。如果不为 0%，abstract 和 introduction 中的 \"DR→0%\" claim 需要改写为分数据集报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-docred-update-checklist.md"
+}

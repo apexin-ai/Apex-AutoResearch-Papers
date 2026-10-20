@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0fc6ec31bc1e5525e7c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents fix 21461 type mask",
+  "task_key": "worker_code_wikievents_fix_21461_type_mask_20260517T193816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_fix_21461_type_mask_20260517T193816_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "125e1e578e09d0595944650bc246a12c809bd41f0dd746b47533b1194c4a1bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。最终状态汇总：\n\n| 文件 | westd-16980 | westd-21461 修复后 |\n|---|---|---|\n| `compiler/type_mask_processor.py` | 796 行 | 796 行 ✓ |\n| `compiler/ontology_compiler.py` | 485 行 | 485 行 ✓ |\n| `run_constrained_extraction.py` | 1008 行 | 1008 行 ✓ |\n| `violation_checker_wikievents.py` | 396 行 | 396 行 ✓ |\n\n`type_mask_processor.py`（原 0 字节）和 `violation_checker_wikievents.py`（差 2 行）已从 westd-16980 通过 SCP 修复到 westd-21461，其余文件一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-fix-21461-type-mask.md"
+}

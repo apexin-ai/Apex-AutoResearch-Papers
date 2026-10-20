@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "906500de5563a1427199",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis cf violation rootcause",
+  "task_key": "worker_analysis_cf_violation_rootcause_20260514T021039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cf_violation_rootcause_20260514T021039_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "b44c03d3eec077db60c23d8fc2dec75922d4e03ef866aecb9ed789b940f8fb0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果保存到 `outputs/cf_violation_analysis.json`。关键发现：\n\n### Dimension 1: Within-Relations CF（同 entity 在不同 relation 中 type 不一致）\n\n| Mode | Violations | CF Rate |\n|------|-----------|---------|\n| unconstrained | 1 | 0.04% |\n| full_s1 | 10 | 0.36% |\n| full_s2 | 18 | **0.72%** |\n\nS2 最高，但绝对数量不大（18个）。最常见冲突模式：`Part-of|Used-for` 对 (5次)，`Feature-of|Used-for` (3次)。\n\n### Dimension 2: Entity-vs-Relation EVR（Pass1 entity type ≠ Pass2 relation head/tail type）\n\n| Mode | Violations | EVR Rate | Affected Samples |\n|------|-----------|----------|-----------------|\n| unconstrained | 3 | 0.09% | 2 |\n| **full_s1** | **248** | **7.34%** | **167** |\n| full_s2 | 182 | 5.54% | 131 |\n\n**意外发现**：S1 的 EVR 违反率 (7.34%) 比 S2 (5.54%) 还高。这说明 S1 单通道在一个 JSON 中同时生成 entities 和 relations 时，也会产生内部不一致——entity list 中的 type 和 relation triple 中的 head_type/tail_type 不匹配。\n\nS2 的 EVR 主要 drift 模式：\n- `Generic↔OtherScientificTerm` (60次) — 占比最大\n- `Generic↔Material` (28次)\n- `Generic↔Metric` (20次)\n\n大量 drift 涉及 **Generic** type，说明 Pass 2 的 semantic constraint 倾向于将 Pass 1 标注为 Generic 的 entity 重新分配为更具体的 type（或反向），因为 Generic 在 domain/range 约束中与具体 type 的 valid_pairs 不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cf-violation-rootcause.md"
+}

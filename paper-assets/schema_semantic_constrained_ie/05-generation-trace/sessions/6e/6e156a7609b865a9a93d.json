@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e156a7609b865a9a93d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents phase3 integration dryrun",
+  "task_key": "worker_code_wikievents_phase3_integration_dryrun_20260517T150624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_phase3_integration_dryrun_20260517T150624_result.json",
+    "occurrence": 1,
+    "bytes": 1488,
+    "sha256": "4c7a560e86186efba2f9e41fc47241ceb5166ab3d4957f3b0b33e5f586cb4ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry Run 报告\n\n### 门控条件: **全部 PASS**\n\n| 条件 | 结果 |\n|------|------|\n| (a) XGrammar 编译 event JSON schema | ✓ PASS |\n| (b) Unconstrained violation > 5% | ✓ PASS (EV=15.8%, RoV=83.2%) |\n| (c) Constrained F1 drop < 5pp | ✓ PASS (Trigger F1 +13.3pp) |\n\n### 对比结果 (10 docs)\n\n|  | Unconstrained | Constrained (full_s1) |\n|--|--------------|----------------------|\n| Parse success | 8/10 | 5/10 |\n| EV violation | **15.8%** | **0.0%** ↓ |\n| RoV violation | 83.2% | 83.3% |\n| Trigger F1 | 10.2% | **23.5%** ↑ |\n| Argument F1 | 0.0% | 0.0% |\n\n### 代码改动\n1. **`compiler/ontology_compiler.py`**: `_build_spec()` 新增 `event_constraints` → `argument_constraints` 格式转换\n2. **`violation_checker_wikievents.py`**: `load_constraints()` 同上转换\n3. **`run_constrained_extraction.py`**: 新增 `--dataset wikievents` 支持（数据加载、event prompt、event JSON schema 编译、`--max_docs` 别名）\n\n### 已知限制\n1. **Semantic layer (Layer 2) 对 EE 失效**: 层级事件类型名共享 first token（如 `ArtifactExistence.*` 全部共享 token 85578），触发 XGrammar assertion error → fallback 到 grammar-only\n2. **5/10 parse failure**: max_new_tokens=2048 不够文档级抽取，需增至 4096+\n3. **RoV 仍高**: grammar 只约束全局 80 个 role enum，不约束 per-event-type role → 需 trie-based multi-token masking\n\n报告已保存到 `outputs/dryrun_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-phase3-integration-dryrun.md"
+}

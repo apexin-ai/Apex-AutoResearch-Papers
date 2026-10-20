@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f408af40fc7e81ed0167",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code d064 beam sweep prep",
+  "task_key": "worker_code_d064_beam_sweep_prep_20260519T151214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d064_beam_sweep_prep_20260519T151214.log",
+    "occurrence": 1,
+    "bytes": 555293,
+    "sha256": "7b75f29acbe34048272b6589c516f4af31757b1d4495d07f9c6e164f54cd1a5a"
+  },
+  "statistics": {
+    "messages": 217,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "f408af40fc7e81ed0167-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f408af40fc7e81ed0167-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d064-beam-sweep-prep.md"
+}

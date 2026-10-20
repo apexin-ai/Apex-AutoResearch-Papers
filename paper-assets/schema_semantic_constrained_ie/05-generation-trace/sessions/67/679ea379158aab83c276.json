@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "679ea379158aab83c276",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "reviewer / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_20.md",
+    "occurrence": 1,
+    "bytes": 3006,
+    "sha256": "2f30e33cf486f85b4f05fbdec533745fa950a760c94c7f8dcd830f419c358b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-25T08:09:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文真源在本地 `artifacts/_project/paper/`，不是远程服务器。之前 Report #57 因只读远程残留旧版误判\"worker 未修改\"，已记入 memory。\n- Abstract ≤200 words（当前 ~134 words，安全）\n- Limitations 必须在正文（不在 appendix），当前已正确放置（main.tex L68-93）\n- 一篇文章只能有一个 limitations section\n- EMNLP 2026 long paper 正文严格 8 页限制（当前刚好 8 页，§7 压缩过一次修复超限）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980 + westd-21461，均已标记可释放，GPU 空闲\n- 远程代码根：`/root/schema_semantic_constrained_ie`\n- 本地论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/`\n- 匿名代码仓库已 push，`_anonymous_repo.json` 已持久化\n- LoRA adapters 已从 westd-21461 备份\n- 活跃进程：无（0 RUNNING 实验，无 cron，无 tmux session）\n\n### 3. 📊 当前状态\n论文 submission-ready，等用户手动提交 ARR（DDL May 25）。164 实验全部 DONE（133 success / 15 negative / 11 failed+killed）。\n\n本轮（Loop #20+）我完成了：\n- Novelty 防御审查 → 4 项建议全部被采纳（C1/C2/C3 reframe + PICARD 区分）✅ 已验证\n- 15 个阴性实验 vs 论文覆盖度审计 → PASS（13 显式覆盖，2 可合理省略）\n- ROADMAP 更新审查 → 所有 claim 验证通过\n- Figure 1 v6/v7/v7b 三轮审查 → v7b (Morandi) 标 warning（低对比度可读性风险）\n- Figure 4 beam-pareto redraw 审查 → PASS\n- 多轮 appendix 交叉引用新增验证 → 10 个新 label 全部存在\n\n等待中：无 worker / cron / Director 决策待处理。\n\n### 4. 📋 待办\n- Director 通知 final freeze → 做最终 PDF 视觉审查（`paper-visual-review` skill），检查页数、undefined refs、图表渲染\n- Director 要求选 Fig1 版本（v7 vs v7b）→ 如果选 v7b 需确认灰度打印可读性\n- 提交后收到审稿意见 → 切换到 rebuttal 模式（加载 `rebuttal` skill）\n- 任何新 worker 完成通知 → 按审查维度审查\n\n### 5. 🎯 战略上下文\n- 核心发现：non-additive layer interaction（grammar 3% + semantic 24% → composed 94%），论文最独特的贡献\n- 最危险攻击面 A1：\"known techniques composed, not novel\"。当前 intro 已 reframe 为 insight/finding（C1 non-additive, C2 decidability analysis showing, C3 去掉 Preliminary）。§6 PICARD 区分已强化（static declared types vs dynamic inferred types）\n- 预估评分 3.0-3.5（Findings to Borderline Conference）\n- 易错点：Fig1 当前是 v7b (Morandi)，如果 Director 未明确选择版本就提交，可能用的是低对比度版本\n- S2 70B 退化（-8pp R-F1）已诚实披露，不需要额外处理\n- 60 条 bib（7 orphans 已清理），abstract ~134 words，正文 8 页 — 均在限制内\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20.md"
+}

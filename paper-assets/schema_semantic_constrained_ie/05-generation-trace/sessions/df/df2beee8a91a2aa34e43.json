@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df2beee8a91a2aa34e43",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper r12 precheck disclaimers",
+  "task_key": "worker_paper_r12_precheck_disclaimers_20260520T125228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r12_precheck_disclaimers_20260520T125228_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "b2ca862af6d0b60e6d875d76debaa87788930c4bd21b81224cec62a4240d15f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，32 pages。\n\n**修改 1** — `appendix_prompt_sensitivity.tex:33`\n在最后一段末尾追加：\n> Schema-informed prompting results serve as an upper bound on zero-shot prompt-level intervention; training-based approaches (e.g., GoLLIE) achieve compliance through code-generation format but with different coverage trade-offs (§\\ref{sec:related_work}).\n\n**修改 2** — `appendix_reproducibility.tex:49–52`\n在 seed-variance 表格后新增段落：\n> \\paragraph{Beam search non-determinism.} Greedy decoding is deterministic (§\\ref{app:greedy-determinism} above). Beam search ($k{\\geq}2$) introduces non-determinism from GPU floating-point accumulation order; we report single-run results. Based on the greedy cross-hardware variance ($\\sigma < 0.5$ pp, Table~\\ref{tab:seed-variance}), beam search variance is expected to be of similar magnitude."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r12-precheck-disclaimers.md"
+}

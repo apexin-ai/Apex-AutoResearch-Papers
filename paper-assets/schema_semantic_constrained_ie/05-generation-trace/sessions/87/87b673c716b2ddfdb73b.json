@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87b673c716b2ddfdb73b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code sampling support implementation",
+  "task_key": "worker_code_sampling_support_implementation_20260516T192301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sampling_support_implementation_20260516T192301_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "c4e395ef9e2d17d340d53cded7bee31d9210a479d926358035c76f88bbd7bf75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器完全一致。不是 git 仓库所以跳过 commit。\n\n---\n\n**完成。** 修改了 `run_constrained_extraction.py`，改动摘要：\n\n| 位置 | 改动 |\n|------|------|\n| 第 617-618 行 | 新增 `--temperature` (default=0.0) 和 `--top_p` (default=1.0) CLI 参数 |\n| 第 418 行 | `run_single_pass` 签名增加 `sampling_kwargs=None` |\n| 第 436-437 行 | `gen_kwargs.update(sampling_kwargs)` 在 logits_processor 之前 |\n| 第 466 行 | `run_s2_two_pass` 签名增加 `sampling_kwargs=None` |\n| 第 486-487 行 | Pass 1 generate 前 `gen_kwargs_p1.update(sampling_kwargs)` |\n| 第 545-546 行 | Pass 2 generate 前 `gen_kwargs_p2.update(sampling_kwargs)` |\n| 第 708-710 行 | main() 中构建 `sampling_kwargs` dict（仅 temperature>0 时启用 sampling） |\n| 第 723, 729 行 | 调用两个函数时传入 `sampling_kwargs` |\n\n**generate() 完整参数列表**（sampling 模式）：`input_ids`, `attention_mask`, `max_new_tokens`, `do_sample=True`, `temperature`, `top_p`, `logits_processor=[grammar_proc, type_constraint_proc]`\n\n默认行为不变（temperature=0 → greedy, `sampling_kwargs=None`），logits_processor 始终生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sampling-support-implementation.md"
+}

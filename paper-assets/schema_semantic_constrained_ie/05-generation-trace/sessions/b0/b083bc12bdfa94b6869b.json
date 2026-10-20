@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b083bc12bdfa94b6869b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix llama bootstrap v2 check",
+  "task_key": "worker_fix_llama_bootstrap_v2_check_20260514T224930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_bootstrap_v2_check_20260514T224930_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "5c4b0c55dc465495d5cddeb3dfacc357115f8d90a60fccc46366886592ac5d7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap CI 完成，所有 registry alignment 验证通过。\n\n## Llama Bootstrap CI 结果\n\n### Registry Alignment 验证（容差 ≤0.05pp）\n\n| 实验 | 指标 | Bootstrap | Registry | Delta | 状态 |\n|------|------|-----------|----------|-------|------|\n| SciERC U | E-F1 | 23.5294 | 23.56 | 0.0306pp | PASS |\n| SciERC U | R-F1 | 2.6714 | 2.68 | 0.0086pp | PASS |\n| SciERC S1 | E-F1 | 23.4867 | 23.49 | 0.0033pp | PASS |\n| SciERC S1 | R-F1 | 2.5405 | 2.54 | 0.0005pp | PASS |\n| DocRED U | E-F1 | 55.6542 | 55.65 | 0.0042pp | PASS |\n| DocRED U | R-F1 | 5.9779 | 5.98 | 0.0021pp | PASS |\n| DocRED S1 | E-F1 | 55.0089 | 55.01 | 0.0011pp | PASS |\n| DocRED S1 | R-F1 | 6.2749 | 6.27 | 0.0049pp | PASS |\n\n### SciERC（Llama-3.1-8B）\n\n| 指标 | Unconstrained | Constrained (S1) | Δ (pp) | 95% CI | p |\n|------|--------------|-----------------|--------|--------|---|\n| E-F1 | 23.53 | 23.49 | +0.03 | [−0.18, +0.22] | 0.7618 |\n| R-F1 | 2.67 | 2.54 | −0.04 | [−0.10, −0.01] | 0.0106 |\n\n### DocRED（Llama-3.1-8B）\n\n| 指标 | Unconstrained | Constrained (S1) | Δ (pp) | 95% CI | p |\n|------|--------------|-----------------|--------|--------|---|\n| E-F1 | 55.65 | 55.01 | −0.65 | [−1.23, −0.09] | 0.0220 |\n| R-F1 | 5.98 | 6.27 | +0.30 | [+0.06, +0.54] | 0.0128 |\n\n### 修复摘要\n原始脚本的 `docred_sample_stats_llama` 在 parse failure 时返回 `gold=0`（导致 F1 虚高 2.27pp），修复为 `gold=len(gold_set)`，与评估管线一致（parse failure 视为 false negatives）。\n\n### 关键发现\n- **DocRED R-F1**: Constrained 显著优于 Unconstrained（+0.30pp, p=0.013），schema 约束有效提升了关系抽取\n- **DocRED E-F1**: Constrained 显著低于 Unconstrained（−0.65pp, p=0.022），约束可能限制了实体识别\n- **SciERC R-F1**: Constrained 显著低于 Unconstrained（−0.04pp, p=0.011），但绝对差异极小\n- **SciERC E-F1**: 无显著差异（p=0.762）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-bootstrap-v2-check.md"
+}

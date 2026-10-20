@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae70af263bd482370caa",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r16 supplementary",
+  "task_key": "worker_analysis_r16_supplementary_20260521T031651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16_supplementary_20260521T031651_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "85cedce0f27a3777d5cb2cd450713b1ac05474b9c9fb92e5daf8cd0bda0bca79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 sub-tasks complete. Results written to `artifacts/r16_verification/task_c_supplementary.json`.\n\n**Summary:**\n\n| Sub-task | Key Finding |\n|---|---|\n| **WikiEvents κ̄** | **0.029** — extremely tight (vs SciERC 0.38, DocRED 0.82). 27 entity types, 56 event types, avg 21.2 valid pairs per event type out of 729 possible. |\n| **70B CF** | 7.01% on DocRED (no SciERC 70B exists). 2–3× higher than 8B ZS (2.57%), 20–30× higher than 8B FT (0.2%). Primarily a ZS→FT gap, INT4 quantization likely contributes. |\n| **Citations** | Both **REAL**. regino2025kgcurator → GenAIK@COLING 2025; formattax2026 → arXiv 2604.03616. |\n| **±0.6pp R-F1** | **Holds for RE** (max \\|Δ\\|=0.30pp on SciERC+DocRED). **Exceeds on WikiEvents**: Llama FT Arg-F1 delta = −1.07pp. If the claim scopes to R-F1 only it's accurate; if covering all datasets, needs widening to ±1.1pp or explicit exclusion of WikiEvents (where CIs overlap). |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r16-supplementary.md"
+}

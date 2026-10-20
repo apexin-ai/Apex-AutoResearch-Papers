@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c4f315e270243eb4ccd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code bpe collision diagnosis",
+  "task_key": "worker_code_bpe_collision_diagnosis_20260518T113741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bpe_collision_diagnosis_20260518T113741_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "0fb77b4a73671b9832d03d5822fcc995a58ed6ad07ab6e9dd594c0a395432823"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Qwen3-8B (Qwen2TokenizerFast)\n**碰撞组：0** — 27 个 entity type 全部有唯一首 token，无歧义。\n\n### Llama-3.1-8B (PreTrainedTokenizerFast)\n**碰撞组：0** — 27 个 entity type 全部有唯一首 token，无歧义。\n\nQwen3 和 Llama-3.1 的 tokenizer 词表大（~128K），多数 entity type 缩写被整词编码（如 `ORG`→单 token, `SEN`→单 token），天然无碰撞。\n\n### Mistral-7B (LlamaTokenizerFast)\n**碰撞组：2，涉及 5 个 entity type：**\n\n| 碰撞 Token | 解码 | 碰撞的 Entity Types |\n|---|---|---|\n| 29503 | `S` | **SID, SEN, SIDE** |\n| 29528 | `B` | **BAL, BOD** |\n\nMistral 的 32K 词表较小，JSON context 下 `S`/`B` 开头的短缩写没有被合并为多字符 token，导致首 token 退化为单字母。\n\n### 与 AC 分析的违规 pattern 对应\n\nMistral 的两个碰撞组意味着：在 constrained decoding 的首 token 阶段，模型无法仅通过首 token logit 区分：\n- **`SID` vs `SEN` vs `SIDE`** — 如果 AC (Autoregressive Constrained) 解码仅在首 token 做 type-level pruning，这三者会被混淆\n- **`BAL` vs `BOD`** — 同理\n\nQwen3 和 Llama-3.1 不受影响。如果实验中 Mistral 在这 5 个 type 上出现异常高的混淆率或 AC 违规，首 token 碰撞是直接原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bpe-collision-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beca366297a8804f533a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix appendix table overflow and compile",
+  "task_key": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_appendix_table_overflow_and_compile_20260515T053111_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "514ffc8e6d4981ede64fca2dfdbd7865bebe8a283682920e019688589995fc57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译无错误。结果汇总：\n\n**修复的表格（3个，均在正文 Section 5）：**\n- `section5_scierc_draft.tex` — SciERC 5-way ablation table，溢出 19.2pt → 已加 `\\resizebox{\\columnwidth}{!}`\n- `section5_docred_draft.tex` — DocRED 4-way ablation table，溢出 21.6pt → 已加 `\\resizebox{\\columnwidth}{!}`\n- `section5_crossmodel_draft.tex` — Cross-model table，溢出 16.1pt → 已加 `\\resizebox{\\columnwidth}{!}`\n\n**Appendix 表格：**\n- `appendix_llama_per_relation.tex` 中的表格已有 `\\resizebox`，无需修改\n\n**编译结果：**\n- 0 errors，overfull hbox 从 4 个降至 1 个（`appendix_related_work.tex` 中一段文字溢出 1.44pt，可忽略）\n- 总页数 16 页\n- 正文（§1–§7）= **8 页**（恰好达到上限），bibliography 从第 8 页末开始\n\n**正文刚好 8 页，无需压缩。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-table-overflow-and-compile.md"
+}

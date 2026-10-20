@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b41989815577bee502f8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops latency docred collect 20260516T115",
+  "task_key": "worker_ops_latency_docred_collect_20260516T115_20260516T111651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_latency_docred_collect_20260516T115_20260516T111651_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "0292b3ea7766e8e1d1bcfe3c161f99cac49634e52a1bf2139d0d36a662a3e656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**1. 进程状态：仍在运行**\n- PID 351214，17:37 启动，已跑 ~101 分钟\n- 当前进度：`semantic_only` 阶段 [60/100]\n\n**2. DocRED 结果尚未写入文件**（`/tmp/latency_benchmark_docred_results.json` 不存在）\n\n**3. 当前进度（从日志）：**\n\n| 方法 | 状态 | Mean latency | Median | Std |\n|------|------|-------------|--------|-----|\n| unconstrained | ✅ 完成 | 21.023s | 15.588s | 17.729s |\n| grammar_only | ✅ 完成 | 21.366s | 15.793s | 17.990s |\n| semantic_only | ⏳ 60/100 | ~20.55s (so far) | - | - |\n| full_s1 | ⬜ 未开始 | - | - | - |\n\n**初步 overhead 估算（已完成部分）：**\n- grammar_only: +1.63%（vs SciERC +1.68%）\n\n**预计剩余时间：** semantic_only 剩 40 样本 (~14 min) + full_s1 100 样本 (~35 min) ≈ **~50 分钟完成**\n\n注意：DocRED 每样本 ~21s 远大于 SciERC 的 ~2.6s，符合预期（文档更长，输出 token 更多）。`/tmp/latency_benchmark_results.json` 确认是 SciERC 旧结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-latency-docred-collect-20260516t115.md"
+}

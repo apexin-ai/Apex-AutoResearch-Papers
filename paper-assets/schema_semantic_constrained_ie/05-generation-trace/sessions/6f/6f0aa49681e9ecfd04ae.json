@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0aa49681e9ecfd04ae",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze docred full s1 fallback",
+  "task_key": "worker_analyze_docred_full_s1_fallback_20260514T083432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_docred_full_s1_fallback_20260514T083432_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "1eb8b3cb4a340fe0a5b2a30f6621e8348cfe2f8bc24e3214aed6ba2e314bead7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/docred_full_s1_dr_root_cause_analysis.md`。\n\n---\n\n**核心发现：**\n\n1. **根因是约束紧度差异，不是 semantic 层失效**。DocRED avg tightness=0.842 vs SciERC=0.333 — DocRED 每个 relation 中位数仅允许 5/36 对 type pairs，SciERC 中位数 23/36。\n\n2. **Semantic 层确实有效**：DR 从 grammar-only 的 26.17% 降到 10.19%（-61%，-15.98pp），几乎所有 relation 都有改善。\n\n3. **剩余 10.19% 集中在高 tightness relations**：\n   - tightness ≥ 0.95 (1-2 pairs): 聚合 DR = 30.6%\n   - tightness 0.90-0.94 (3-4 pairs): 聚合 DR = 19.3%  \n   - tightness < 0.70 (11+ pairs): 聚合 DR = 0.7%\n\n4. **Fallback 日志不可用**（counter 代码在 full_s1 之后加入），但从 violation 模式可推断：高 tightness relations 下 semantic∩grammar=∅ 概率最大，是 fallback 高发区。\n\n5. **SciERC DR 低的原因**：约束本身就松，Used-for 允许 35/36 对，最紧的 Compare 也有 17/36 对，LLM 几乎不可能违规。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-docred-full-s1-fallback.md"
+}

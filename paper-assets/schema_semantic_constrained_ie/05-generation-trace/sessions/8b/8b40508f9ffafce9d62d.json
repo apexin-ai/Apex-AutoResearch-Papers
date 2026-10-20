@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b40508f9ffafce9d62d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest all docred 70b",
+  "task_key": "worker_check_harvest-all-docred-70b_20260523T003418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-all-docred-70b_20260523T003418_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "ce3afcbde7dc7cb3803111cfa04c34dab78a67d6bbb45121a49405c057ca099f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全满。汇报如下：\n\n---\n\n## 收割结果\n\n### westd-16980（2xRTX PRO 6000 Blackwell 96GB）\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| eval_70b_lora_docred_200_semantic_only | 169/200 | 仍在跑 (GPU 0) |\n| eval_70b_lora_docred_200_grammar_only | 165/200 | 仍在跑 (GPU 1) |\n\n### westd-21461（2xRTX PRO 6000 Blackwell 96GB）— 收割2个，启动2个\n\n**已完成并收割：**\n\n| 实验 | R_F1 | E_F1 | DR% | RV% | 结论 |\n|------|------|------|-----|-----|------|\n| 70B ZS unconstrained | 13.25 | 70.14 | 13.45 | 7.88 | baseline ✅ |\n| 70B ZS grammar_only | 13.23 | 70.12 | 17.03 | 0 | negative ❌ |\n\n**关键发现：** grammar_only 的 DR (17.03%) 比 unconstrained (13.45%) **更高**。grammar 消除了 RV (7.88%→0%)，但把这些关系强制映射到合法名后 domain/range 错配反而增多。与 SciERC 一致（grammar 对 DR 零贡献），但 DocRED 上呈现更极端的\"RV→DR 转化\"效应。\n\n**新启动实验：**\n\n| 实验 | GPU | 预估耗时 |\n|------|-----|----------|\n| eval_70b_zs_docred_200_full_s1 | GPU 0 | ~2-3h |\n| eval_70b_lora_docred_200_full_s2 | GPU 1 | ~2-3h |\n\n---\n\n## DocRED 70B ZS 200-doc 消融矩阵（4/5 完成）\n\n| Mode | R_F1 | DR% | RV% | CF |\n|------|------|-----|-----|-----|\n| unconstrained | 13.25 | 13.45 | 7.88 | 0 |\n| grammar_only | 13.23 | **17.03** | 0 | 0 |\n| semantic_only | 13.05 | **1.66** | 8.24 | 132 |\n| full_s1 | 🔄 running | — | — | — |\n\n## GPU 利用率\n- **westd-16980:** GPU 0 (75%), GPU 1 (75%) — 满载\n- **westd-21461:** GPU 0 (99%), GPU 1 (82%) — 满载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-all-docred-70b.md"
+}

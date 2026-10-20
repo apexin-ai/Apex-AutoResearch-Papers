@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fee882b6d3b3bb09d79d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code mistral v2 retry 16k and qwen grammar only",
+  "task_key": "worker_code_mistral_v2_retry_16k_and_qwen_grammar_only_20260518T014323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_v2_retry_16k_and_qwen_grammar_only_20260518T014323_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "7ccc44c7a58ece3968a7e86ac82f6b58f48b563983480f8fc4dbef75f6af863e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已成功启动，GPU 正在运行推理。\n\n## 产出\n\n### Mistral v2 retry 16K\n- Failure lines removed: **68**（保留 178 行）\n- tmux: `mistral_v2_retry_16k`, cuda:0\n- 启动确认: **yes**\n- nvidia-smi: GPU 0 — 15,284 MiB / 97,887 MiB, 84% util\n\n### Qwen grammar_only\n- 模型路径: `/root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/`\n- tmux: `qwen_grammar_only`, cuda:1\n- 启动确认: **yes**\n- nvidia-smi: GPU 1 — 18,910 MiB / 97,887 MiB, 86% util"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-v2-retry-16k-and-qwen-grammar-only.md"
+}

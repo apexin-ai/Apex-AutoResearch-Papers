@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d16c13975eb7794a6e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred minimal result",
+  "task_key": "worker_analysis_docred_minimal_result_20260513T214033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_minimal_result_20260513T214033_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "3ba152b7dd457d021008ebeb5f91d461b41bfae45710950da878d7fdfcc57c2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DocRED minimal 提取和 violation analysis 完成。\n\n### 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| 文档总数 | 998 |\n| 成功解析 | 962 (96.4%) |\n| 解析失败 | 36 |\n| 提取实体数 | 19,099 |\n| 提取三元组数 | 16,540 |\n| **Entity type violation rate** | **7.5%** (1,437) |\n| **Relation vocab violation rate** | **28.9%** (4,775/16,540) |\n| **Domain/range violation rate (go/no-go)** | **18.7%** (3,093/16,540) |\n| Cross-field consistency violations | 0.08% (15) |\n| Fuzzy relation matches | 126 |\n\n### Top-5 D/R Violation（按违规率，≥5 triples）\n\n| 关系 | 违规率 | 违规数/总数 |\n|------|--------|-------------|\n| P35 (head of state) | 100% | 10/10 |\n| P710 (participant) | 91.9% | 34/37 |\n| P172 (ethnic group) | 87.5% | 21/24 |\n| P488 (chairperson) | 83.3% | 5/6 |\n| P6 (head of government) | 77.8% | 7/9 |\n\n### Top-5 D/R Violation（按绝对数量）\n\n| 关系 | 违规数/总数 | 违规率 |\n|------|-------------|--------|\n| P31 (instance of) | 322/533 | 60.4% |\n| P1001 (applies to jurisdiction) | 264/594 | 44.4% |\n| P1344 (participant in) | 194/312 | 62.2% |\n| P276 (location) | 147/273 | 53.8% |\n| P206 (located next to water) | 139/427 | 32.6% |\n\nD/R violation rate = 18.7%，模型在 DocRED schema 约束下有显著的 domain/range 违规，尤其是 P31（instance of）贡献最大量违规。Relation vocab 违规率 28.9% 也偏高，说明模型频繁生成 schema 外的关系类型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-minimal-result.md"
+}

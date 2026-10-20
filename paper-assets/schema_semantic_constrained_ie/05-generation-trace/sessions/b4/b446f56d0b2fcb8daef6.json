@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b446f56d0b2fcb8daef6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents constrained qwen llama full",
+  "task_key": "worker_code_wikievents_constrained_qwen_llama_full_20260517T193643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_constrained_qwen_llama_full_20260517T193643_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "82472ac341665bd751f71fdc72558038d8dc8bff08501de71a588db2c104850e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 constrained 实验均已正常启动并在推理中：\n\n| 实验 | GPU | VRAM | 利用率 | 已完成 | 模式 |\n|------|-----|------|--------|--------|------|\n| Qwen3-8B constrained | cuda:0 | 17585 MiB | 84% | 5/246 docs | full_s1 |\n| Llama-3.1-8B constrained | cuda:1 | 16619 MiB | 88% | 11/246 docs | full_s1 |\n\n两个 log 均确认 `Mode: full_s1`，246 samples，56 event types + 80 argument roles 正确加载。Llama 跑得更快（constrained decoding 对 Qwen3 的 thinking mode 可能有额外开销）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-constrained-qwen-llama-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f74cb942d2e91279a0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis scierc entity count quick",
+  "task_key": "worker_analysis_scierc-entity-count-quick_20260523T101158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scierc-entity-count-quick_20260523T101158_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "a6896e0ed71b6cc99a9be3e3caee07763182ad8c1ad3c3dcb987204f444eba48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SciERC test set，100 篇文档，每文档 unique entity 数量：\n\n| 统计量 | 值 |\n|--------|-----|\n| 中位数 | 16.5 |\n| 均值 | 16.9 |\n| P25 | 12.0 |\n| P75 | 20.0 |\n| max | 36 |\n| min | 5 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-entity-count-quick.md"
+}

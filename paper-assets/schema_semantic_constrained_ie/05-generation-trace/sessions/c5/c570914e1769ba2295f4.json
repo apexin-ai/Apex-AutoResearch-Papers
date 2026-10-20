@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c570914e1769ba2295f4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w7 llama grammar complete cycle",
+  "task_key": "worker_ops_w7_llama_grammar_complete_cycle_20260516T074809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w7_llama_grammar_complete_cycle_20260516T074809_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "b9fea0b8046661ade14860880a343bc04e87bb3090ee469ad1c2c73738e5975a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## Part 1: w7_llama_scierc_ft_grammar_only Metrics\n\n| 指标 | 值 |\n|------|-----|\n| Samples | 551/551 (0 parse failures) |\n| ET% | **0%** |\n| RV% | **0%** |\n| DR% | **1.11%** (12/1082) |\n| CF% | **0%** |\n| E_F1 | 0.6776 (P=0.6647, R=0.691) |\n| R_F1 | 0.4545 (P=0.432, R=0.4795) |\n\n符合预期：grammar_only 不约束 DR（与 unconstrained FT 的 DR≈1.11% 一致），ET/RV/CF 全部清零。\n\n## Part 2: Registry\n\nw7_llama_scierc_ft_grammar_only → **DONE / success**，metrics 已写入。\n\n## Part 3: w7_llama_scierc_ft_semantic_only\n\n- 已提交到 tmux session `w7_llama_ft_semantic`，cuda:0\n- **PID: 344026**，模型已加载，正在推理\n- Registry: PREPARING → QUEUED → **RUNNING**\n\n## Part 4: Cron\n\n已注册 12 分钟周期监控（job `17f6b8e3`），完成后自动收尾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w7-llama-grammar-complete-cycle.md"
+}

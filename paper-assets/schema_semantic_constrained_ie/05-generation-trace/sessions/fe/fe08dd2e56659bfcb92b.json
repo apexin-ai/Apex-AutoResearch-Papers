@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fe08dd2e56659bfcb92b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code r4 m3q3 semantic only et",
+  "task_key": "worker_code_r4_m3q3_semantic_only_et_20260517T110021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_m3q3_semantic_only_et_20260517T110021.log",
+    "occurrence": 1,
+    "bytes": 733759,
+    "sha256": "51b914c440f4cb703afd4afeaf47570c5f6e9d5c2c0fb98518d9ad4c828dcb25"
+  },
+  "statistics": {
+    "messages": 117,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "fe08dd2e56659bfcb92b-part-0001.json",
+          "message_count": 86
+        },
+        {
+          "path": "fe08dd2e56659bfcb92b-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r4-m3q3-semantic-only-et.md"
+}

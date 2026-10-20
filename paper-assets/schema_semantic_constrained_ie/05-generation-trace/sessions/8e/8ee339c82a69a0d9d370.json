@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ee339c82a69a0d9d370",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "verify scierc allset f1",
+  "task_key": "worker_verify_scierc_allset_f1_20260514T135218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_scierc_allset_f1_20260514T135218_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "ef76c11430925aa8898c40aac545fc87e86f47befbc77d647883fc8d8bd89fcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果：\n\n### SciERC all_set R-F1 与 registry 一致性\n\n| Mode | Registry R-F1 | all_set R-F1 | 匹配 | Unrecognized |\n|------|-------------|-------------|------|-------------|\n| unconstrained | 8.23% | 8.23% | **一致** | 24/1724 (1.39%) |\n| grammar_only | 8.23% | 8.23% | **一致** | 0/1725 (0.00%) |\n| semantic_only | 8.15% | 8.15% | **一致** | 26/1726 (1.51%) |\n| full_s1 | 8.36% | 8.36% | **一致** | 0/1729 (0.00%) |\n\n### 关键确认\n\n1. **violation_checker.py 的 F1 计算已是 all_set 方法**——`compute_f1(gold_rels, relations, rel_key)` 传入全部 predictions，OOV relations 进入 pred_set 计为 FP。\n2. **4 个实验的 all_set R-F1 与 registry 完全一致**，无需更新。\n3. **all_set vs recognized_set 差异极小**：unconstrained -0.07pp，semantic_only -0.08pp，grammar_only 和 full_s1 无差异（两者 unrecognized=0，grammar constraint 已消除 RV violations）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-scierc-allset-f1.md"
+}

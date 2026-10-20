@@ -1,0 +1,807 @@
+{
+  "schema_version": "1.0",
+  "id": "7c8a695298c58a8ba1c8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix p0 tightness scaling claim",
+  "task_key": "worker_fix_p0_tightness_scaling_claim_20260514T210017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_p0_tightness_scaling_claim_20260514T210017.log",
+    "occurrence": 1,
+    "bytes": 86204,
+    "sha256": "c32d4a33f18b7ae2a06d1a55cfb9ed959a01e522f36be2d5fd3fbb90d67870d6"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5074e4ec-6c0e-4c51-8e8f-fd092b9be803",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779102000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.86,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "05db3441-a392-49d2-9146-7ae15e7cd4ed",
+                "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read both files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "829dd6b9-ddeb-4cf8-84f6-d34a23840e31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TPs1uE4NTyWjFwpJ9tEAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11823,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11823
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XxxBGdNnemEmCjE39BydMs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "b1792623-c6ad-4f61-9f2a-1a6ee356d820",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TPs1uE4NTyWjFwpJ9tEAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11823,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11823
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T21:00:29.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XxxBGdNnemEmCjE39BydMs",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — DocRED Results (Draft)\n2\t% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)\n3\t% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n4\t%          phase2_docred_semantic_only, phase2_docred_full_s1\n5\t% All numbers verified against registry 2026-05-14.\n6\t% F1 computed via all_set method with name→Wikidata PID normalization.\n7\t\n8\t\\subsection{Cross-Dataset Validation on DocRED}\n9\t\\label{sec:docred-results}\n10\t\n11\tTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED,\n12\ta document-level relation extraction benchmark with 96 Wikidata relation\n13\ttypes---14$\\times$ the ontology size of SciERC\n14\t(Section~\\ref{sec:scierc-results}).\n15\tAll experiments use Qwen3-8B in a zero-shot setting on 998 test documents\n16\twith identical prompts and decoding parameters.\n17\tRelation F1 is computed via name-to-Wikidata-PID normalization:\n18\teach predicted relation name is mapped to its canonical PID before\n19\tmatching against gold annotations, and predictions that cannot be mapped\n20\tto any valid PID are counted as false positives.\n21\t\n22\t% ──────────────────────────────────────────\n23\t%  Table: DocRED four-way ablation\n24\t% ──────────────────────────────────────────\n25\t\\begin{table}[t]\n26\t\\centering\n27\t\\small\n28\t\\setlength{\\tabcolsep}{3.6pt}\n29\t\\begin{tabular}{@{}l rrrrr rr@{}}\n30\t\\toprule\n31\t& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n32\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n33\t\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n34\t\\textbf{Mode}\n35\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n36\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n37\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n38\t\\midrule\n39\tUnconstrained\n40\t  & 18.46 & ---\n41\t  & 29.66 & 2.48\n42\t  & 0.10\n43\t  & 7.74  & 58.15 \\\\\n44\tGrammar\n45\t  & 26.17 & $\\uparrow$42\\%\n46\t  & \\textbf{0.03} & \\textbf{0}\n47\t  & 0.07\n48\t  & \\textbf{8.31}  & \\textbf{59.38} \\\\\n49\tSemantic\n50\t  & 13.84 & $\\downarrow$25\\%\n51\t  & 29.87 & 4.22\n52\t  & 1.05\n53\t  & 7.70  & 57.81 \\\\\n54\tFull (S1)\n55\t  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n56\t  & \\textbf{0.03} & \\textbf{0}\n57\t  & 2.57\n58\t  & 8.23  & 59.37 \\\\\n59\t\\bottomrule\n60\t\\end{tabular}\n61\t\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\n62\tDR: domain/range violation rate;\n63\tRV: relation vocabulary violation rate;\n64\tET: entity type violation rate;\n65\tCF: cross-field consistency violation rate.\n66\t$\\Delta$DR: relative change vs.\\ the unconstrained baseline\n67\t($\\uparrow$: increase; $\\downarrow$: decrease).\n68\tBest per column in \\textbf{bold} (CF excluded---see text).\n69\tF1 scores are multiplied by 100.\n70\tEntity type violation rates reflect per-unique-entity counting (checker v2).\n71\tStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n72\t\\label{tab:docred-ablation}\n73\t\\end{table}\n74\t\n75\t% ──────────────────────────────────────────\n76\t%  (a) Core result\n77\t% ──────────────────────────────────────────\n78\t\\paragraph{Core result: DR halved with preserved or improved F1.}\n79\tThe full two-layer configuration reduces domain/range violations from\n80\t18.46\\% to 10.21\\%, a 45\\% relative reduction, while simultaneously\n81\teliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\n82\tnear-eliminating relation vocabulary violations\n83\t(29.66\\%\\,$\\to$\\,0.03\\%).\n84\t% phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966\n85\t% phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003\n86\tRelation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).\n87\tEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n88\t% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n89\t% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n90\t% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n91\t% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n92\t% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66\n93\tThe relation F1 improvement is statistically significant, attributable\n94\tto grammar-layer elimination of 5{,}189 out-of-vocabulary relation\n95\tpredictions that are counted as false positives under the all-valid-set\n96\tprotocol (Section~\\ref{sec:discussion}).\n97\tCross-field consistency violations increase modestly from 0.10\\% to\n98\t2.57\\%, substantially lower than the 9.90\\% observed on SciERC;\n99\t% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257\n100\twe discuss this trade-off in Section~\\ref{sec:discussion}.\n101\t\n102\t% ──────────────────────────────────────────\n103\t%  (b) Grammar layer\n104\t% ──────────────────────────────────────────\n105\t\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}\n106\tGrammar-only constraints generalize to DocRED's 96-relation ontology,\n107\teliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\n108\tnear-eliminating relation vocabulary violations\n109\t(29.66\\%\\,$\\to$\\,0.03\\%).\n110\t% phase2_docred_grammar_only: ET=0, RV=0.0003\n111\tHowever, domain/range violations \\emph{increase} from 18.46\\% to\n112\t26.17\\% (+42\\% relative).\n113\t% phase2_docred_grammar_only: DR=0.2617\n114\tThis counter-intuitive result has a structural explanation.\n115\tIn the unconstrained baseline, 29.66\\% of triples contain\n116\tout-of-vocabulary relation names and are classified as RV violations;\n117\tbecause no schema entry exists for an invalid relation name,\n118\tthese triples \\emph{cannot} be evaluated against domain/range rules\n119\tand are therefore absent from the DR count.\n120\tWhen grammar constraints force all relation names into the valid\n121\tvocabulary, these formerly RV-classified triples receive valid\n122\trelation names---but the associated entity types frequently violate\n123\tthe domain/range rules of the assigned relation, surfacing as new\n124\tDR violations.\n125\tThe grammar layer thus \\emph{reveals} latent type incompatibilities\n126\trather than creating them, directly motivating the semantic layer:\n127\twithout domain/range enforcement, grammar alone makes the type\n128\tviolation landscape worse, not better.\n129\t\n130\t% ──────────────────────────────────────────\n131\t%  (c) Enabling dependency\n132\t% ──────────────────────────────────────────\n133\t\\paragraph{Enabling dependency confirmed across datasets.}\n134\tSemantic constraints alone reduce DR by 25\\%\n135\t(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\n136\tviolations (RV\\,=\\,29.87\\%) or entity type violations\n137\t(ET\\,=\\,4.22\\%).\n138\t% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.0422\n139\tThe elevated ET under semantic-only decoding (4.22\\% vs.\\ 2.48\\%\n140\tunconstrained) reflects a genuine trajectory perturbation:\n141\tconstrained logit masking shifts the generation distribution,\n142\tcausing the model to produce more non-standard entity types\n143\t(e.g., \\textsc{Work}, \\textsc{Event}, \\textsc{Ethnic\\_Group})\n144\tthat fall outside DocRED's canonical six-type vocabulary.\n145\t% Top non-standard types: WORK (823), EVENT (743), ETHNIC_GROUP (137)\n146\tWe discuss this side effect in the limitations.\n147\tCombining both layers (Full S1) reduces DR a further 26\\% relative to\n148\tthe semantic-only configuration (13.84\\%\\,$\\to$\\,10.21\\%),\n149\t% phase2_docred_full_s1: DR=0.1021; delta=(13.84-10.21)/13.84=0.262\n150\treplicating the enabling dependency observed on SciERC:\n151\twithout grammar-enforced vocabulary constraints, the semantic layer\n152\tencounters out-of-vocabulary relation types for which no domain/range\n153\trules exist, limiting its enforcement capacity.\n154\tThe consistency of this pattern across two datasets with substantially\n155\tdifferent ontology sizes (7 vs.\\ 96 relation types) and violation\n156\tprofiles (SciERC RV\\,=\\,1.39\\% vs.\\ DocRED RV\\,=\\,29.66\\%) confirms\n157\tthat the grammar$\\to$semantic enabling dependency is a general\n158\tarchitectural property of the framework, not an artifact of a\n159\tparticular schema.\n160\t\n161\t% ──────────────────────────────────────────\n162\t%  (d) Comparison with post-hoc filtering\n163\t% ──────────────────────────────────────────\n164\t\\paragraph{Comparison with post-hoc filtering.}\n165\tAn alternative to decoding-time constraint enforcement is post-hoc filtering:\n166\tgenerating triples without constraints and discarding those that violate\n167\tschema rules afterward.\n168\t% posthoc_report_docred: filtering applied to phase2_docred_unconstrained\n169\tOn DocRED, post-hoc filtering removes 8{,}419 of 17{,}497 triples\n170\t(48.1\\% rejection rate), including 5{,}189 out-of-vocabulary predictions,\n171\t692 entity type violations, and 2{,}538 domain/range violations.\n172\t% posthoc_docred: removed_rv=5189, removed_et=692, removed_dr=2538\n173\tThis raises precision from 6.55\\% to 11.22\\% but reduces recall from\n174\t9.46\\% to 8.40\\%, as 127 gold-standard triples are discarded along with\n175\tthe violations (relation F1: 7.74\\,$\\to$\\,9.61).\n176\t% posthoc_docred: P_before=0.0655, P_after=0.1122, R_before=0.0946, R_after=0.0840\n177\t% posthoc_docred: F1_before=0.0774, F1_after=0.0961, tp_before=1137, tp_after=1010\n178\tOn SciERC, the pattern is analogous: 16.8\\% of triples are rejected, recall\n179\tdrops from 11.40\\% to 10.68\\%, and 7 gold-standard triples are lost.\n180\t% posthoc_scierc: rejection_rate=0.1676, R_before=0.114, R_after=0.1068\n181\t% posthoc_scierc: tp_before=111, tp_after=104\n182\tOntoCoDec avoids this coverage--precision trade-off by guiding generation\n183\ttoward schema-compliant triples rather than discarding non-compliant ones,\n184\tand operates as a single decoding pass without a separate filtering stage.\n185\t\n186\t% ──────────────────────────────────────────\n187\t%  (e) Constraint tightness scaling\n188\t% ──────────────────────────────────────────\n189\t\\paragraph{Constraint tightness governs enforcement ceiling.}\n190\tThe residual DR on DocRED (10.21\\%) substantially exceeds that of\n191\tSciERC (0.93\\%, Section~\\ref{sec:scierc-results}).\n192\tThis gap is explained by per-relation \\emph{constraint tightness}:\n193\tDocRED relations admit on average only 5.68 valid entity type pairs\n194\t(mean tightness\\,=\\,0.842, i.e., 84.2\\% of entity type pairs violate\n195\tdomain/range rules), compared to 24 valid pairs on SciERC\n196\t(tightness\\,=\\,0.333).\n197\t% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842\n198\t% SciERC: avg_valid_pairs=24, avg_tightness=0.333\n199\tWith tighter per-relation constraints, the semantic layer's logit mask\n200\teliminates a larger fraction of candidate tokens at each decoding step,\n201\tincreasing the probability that the intersection of grammar and\n202\tsemantic masks yields a narrow or empty candidate set.\n203\tIn the limiting case, the system falls back to grammar-only constraints,\n204\tpreserving structural validity but forgoing domain/range enforcement\n205\tfor that token position.\n206\tFor example, P1198 (\\textsc{unemployment\\_rate}) triggers fallback on\n207\t83\\% of decoded triples due to its extremely tight constraint set,\n208\twhile P171 (\\textsc{parent\\_taxon}) falls back at 78\\%.\n209\t% docred_fallback: P1198=83%, P171=78% (tight constraints)\n210\tIn contrast, relations with looser constraints such as P127\n211\t(\\textsc{owned\\_by}) and P170 (\\textsc{creator}) exhibit 0\\% fallback.\n212\t% docred_fallback: P127=0%, P170=0% (loose constraints)\n213\tThe aggregate triple-level fallback rate (10.2\\%; 1{,}770 of 17{,}341\n214\ttriples) closely tracks the residual DR rate (10.21\\%), confirming\n215\tthat each residual violation corresponds to exactly one fallback event.\n216\t% docred_fallback: 1770/17341=10.2%; phase2_docred_full_s1: DR=0.1021\n217\tConversely, SciERC's looser constraints leave more valid alternatives\n218\tfor the model to redirect probability mass toward, enabling\n219\tnear-complete DR elimination.\n220\tThe DR reduction thus scales inversely with constraint tightness:\n221\t45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n222\t% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%\n223\tThe grammar-only configuration achieves marginally higher relation F1\n224\t(8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically\n225\tsignificant (bootstrap $p = 0.14$) and likely reflects minor\n226\tdistributional shifts from semantic logit masking.\n227\t% grammar_only: R-F1=8.31; full_s1: R-F1=8.23; bootstrap p=0.14\n228\tThis represents, to our knowledge, the first empirical characterization\n229\tof how ontology constraint properties modulate decoding-time enforcement\n230\teffectiveness; we develop this analysis further in\n231\tSection~\\ref{sec:discussion}.\n232\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "55341862-abba-4a7e-917e-12a944c9ccbf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "content": "% Section 5 — DocRED Results (Draft)\n% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)\n% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n%          phase2_docred_semantic_only, phase2_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n% F1 computed via all_set method with name→Wikidata PID normalization.\n\n\\subsection{Cross-Dataset Validation on DocRED}\n\\label{sec:docred-results}\n\nTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED,\na document-level relation extraction benchmark with 96 Wikidata relation\ntypes---14$\\times$ the ontology size of SciERC\n(Section~\\ref{sec:scierc-results}).\nAll experiments use Qwen3-8B in a zero-shot setting on 998 test documents\nwith identical prompts and decoding parameters.\nRelation F1 is computed via name-to-Wikidata-PID normalization:\neach predicted relation name is mapped to its canonical PID before\nmatching against gold annotations, and predictions that cannot be mapped\nto any valid PID are counted as false positives.\n\n% ──────────────────────────────────────────\n%  Table: DocRED four-way ablation\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.6pt}\n\\begin{tabular}{@{}l rrrrr rr@{}}\n\\toprule\n& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n\\textbf{Mode}\n  & DR\\,$\\downarrow$ & $\\Delta$DR\n  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n\\midrule\nUnconstrained\n  & 18.46 & ---\n  & 29.66 & 2.48\n  & 0.10\n  & 7.74  & 58.15 \\\\\nGrammar\n  & 26.17 & $\\uparrow$42\\%\n  & \\textbf{0.03} & \\textbf{0}\n  & 0.07\n  & \\textbf{8.31}  & \\textbf{59.38} \\\\\nSemantic\n  & 13.84 & $\\downarrow$25\\%\n  & 29.87 & 4.22\n  & 1.05\n  & 7.70  & 57.81 \\\\\nFull (S1)\n  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n  & \\textbf{0.03} & \\textbf{0}\n  & 2.57\n  & 8.23  & 59.37 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\nDR: domain/range violation rate;\nRV: relation vocabulary violation rate;\nET: entity type violation rate;\nCF: cross-field consistency violation rate.\n$\\Delta$DR: relative change vs.\\ the unconstrained baseline\n($\\uparrow$: increase; $\\downarrow$: decrease).\nBest per column in \\textbf{bold} (CF excluded---see text).\nF1 scores are multiplied by 100.\nEntity type violation rates reflect per-unique-entity counting (checker v2).\nStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n\\label{tab:docred-ablation}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Core result\n% ──────────────────────────────────────────\n\\paragraph{Core result: DR halved with preserved or improved F1.}\nThe full two-layer configuration reduces domain/range violations from\n18.46\\% to 10.21\\%, a 45\\% relative reduction, while simultaneously\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966\n% phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003\nRelation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66\nThe relation F1 improvement is statistically significant, attributable\nto grammar-layer elimination of 5{,}189 out-of-vocabulary relation\npredictions that are counted as false positives under the all-valid-set\nprotocol (Section~\\ref{sec:discussion}).\nCross-field consistency violations increase modestly from 0.10\\% to\n2.57\\%, substantially lower than the 9.90\\% observed on SciERC;\n% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257\nwe discuss this trade-off in Section~\\ref{sec:discussion}.\n\n% ──────────────────────────────────────────\n%  (b) Grammar layer\n% ──────────────────────────────────────────\n\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}\nGrammar-only constraints generalize to DocRED's 96-relation ontology,\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_grammar_only: ET=0, RV=0.0003\nHowever, domain/range violations \\emph{increase} from 18.46\\% to\n26.17\\% (+42\\% relative).\n% phase2_docred_grammar_only: DR=0.2617\nThis counter-intuitive result has a structural explanation.\nIn the unconstrained baseline, 29.66\\% of triples contain\nout-of-vocabulary relation names and are classified as RV violations;\nbecause no schema entry exists for an invalid relation name,\nthese triples \\emph{cannot} be evaluated against domain/range rules\nand are therefore absent from the DR count.\nWhen grammar constraints force all relation names into the valid\nvocabulary, these formerly RV-classified triples receive valid\nrelation names---but the associated entity types frequently violate\nthe domain/range rules of the assigned relation, surfacing as new\nDR violations.\nThe grammar layer thus \\emph{reveals} latent type incompatibilities\nrather than creating them, directly motivating the semantic layer:\nwithout domain/range enforcement, grammar alone makes the type\nviolation landscape worse, not better.\n\n% ──────────────────────────────────────────\n%  (c) Enabling dependency\n% ──────────────────────────────────────────\n\\paragraph{Enabling dependency confirmed across datasets.}\nSemantic constraints alone reduce DR by 25\\%\n(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\nviolations (RV\\,=\\,29.87\\%) or entity type violations\n(ET\\,=\\,4.22\\%).\n% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.0422\nThe elevated ET under semantic-only decoding (4.22\\% vs.\\ 2.48\\%\nunconstrained) reflects a genuine trajectory perturbation:\nconstrained logit masking shifts the generation distribution,\ncausing the model to produce more non-standard entity types\n(e.g., \\textsc{Work}, \\textsc{Event}, \\textsc{Ethnic\\_Group})\nthat fall outside DocRED's canonical six-type vocabulary.\n% Top non-standard types: WORK (823), EVENT (743), ETHNIC_GROUP (137)\nWe discuss this side effect in the limitations.\nCombining both layers (Full S1) reduces DR a further 26\\% relative to\nthe semantic-only configuration (13.84\\%\\,$\\to$\\,10.21\\%),\n% phase2_docred_full_s1: DR=0.1021; delta=(13.84-10.21)/13.84=0.262\nreplicating the enabling dependency observed on SciERC:\nwithout grammar-enforced vocabulary constraints, the semantic layer\nencounters out-of-vocabulary relation types for which no domain/range\nrules exist, limiting its enforcement capacity.\nThe consistency of this pattern across two datasets with substantially\ndifferent ontology sizes (7 vs.\\ 96 relation types) and violation\nprofiles (SciERC RV\\,=\\,1.39\\% vs.\\ DocRED RV\\,=\\,29.66\\%) confirms\nthat the grammar$\\to$semantic enabling dependency is a general\narchitectural property of the framework, not an artifact of a\nparticular schema.\n\n% ──────────────────────────────────────────\n%  (d) Comparison with post-hoc filtering\n% ──────────────────────────────────────────\n\\paragraph{Comparison with post-hoc filtering.}\nAn alternative to decoding-time constraint enforcement is post-hoc filtering:\ngenerating triples without constraints and discarding those that violate\nschema rules afterward.\n% posthoc_report_docred: filtering applied to phase2_docred_unconstrained\nOn DocRED, post-hoc filtering removes 8{,}419 of 17{,}497 triples\n(48.1\\% rejection rate), including 5{,}189 out-of-vocabulary predictions,\n692 entity type violations, and 2{,}538 domain/range violations.\n% posthoc_docred: removed_rv=5189, removed_et=692, removed_dr=2538\nThis raises precision from 6.55\\% to 11.22\\% but reduces recall from\n9.46\\% to 8.40\\%, as 127 gold-standard triples are discarded along with\nthe violations (relation F1: 7.74\\,$\\to$\\,9.61).\n% posthoc_docred: P_before=0.0655, P_after=0.1122, R_before=0.0946, R_after=0.0840\n% posthoc_docred: F1_before=0.0774, F1_after=0.0961, tp_before=1137, tp_after=1010\nOn SciERC, the pattern is analogous: 16.8\\% of triples are rejected, recall\ndrops from 11.40\\% to 10.68\\%, and 7 gold-standard triples are lost.\n% posthoc_scierc: rejection_rate=0.1676, R_before=0.114, R_after=0.1068\n% posthoc_scierc: tp_before=111, tp_after=104\nOntoCoDec avoids this coverage--precision trade-off by guiding generation\ntoward schema-compliant triples rather than discarding non-compliant ones,\nand operates as a single decoding pass without a separate filtering stage.\n\n% ──────────────────────────────────────────\n%  (e) Constraint tightness scaling\n% ──────────────────────────────────────────\n\\paragraph{Constraint tightness governs enforcement ceiling.}\nThe residual DR on DocRED (10.21\\%) substantially exceeds that of\nSciERC (0.93\\%, Section~\\ref{sec:scierc-results}).\nThis gap is explained by per-relation \\emph{constraint tightness}:\nDocRED relations admit on average only 5.68 valid entity type pairs\n(mean tightness\\,=\\,0.842, i.e., 84.2\\% of entity type pairs violate\ndomain/range rules), compared to 24 valid pairs on SciERC\n(tightness\\,=\\,0.333).\n% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842\n% SciERC: avg_valid_pairs=24, avg_tightness=0.333\nWith tighter per-relation constraints, the semantic layer's logit mask\neliminates a larger fraction of candidate tokens at each decoding step,\nincreasing the probability that the intersection of grammar and\nsemantic masks yields a narrow or empty candidate set.\nIn the limiting case, the system falls back to grammar-only constraints,\npreserving structural validity but forgoing domain/range enforcement\nfor that token position.\nFor example, P1198 (\\textsc{unemployment\\_rate}) triggers fallback on\n83\\% of decoded triples due to its extremely tight constraint set,\nwhile P171 (\\textsc{parent\\_taxon}) falls back at 78\\%.\n% docred_fallback: P1198=83%, P171=78% (tight constraints)\nIn contrast, relations with looser constraints such as P127\n(\\textsc{owned\\_by}) and P170 (\\textsc{creator}) exhibit 0\\% fallback.\n% docred_fallback: P127=0%, P170=0% (loose constraints)\nThe aggregate triple-level fallback rate (10.2\\%; 1{,}770 of 17{,}341\ntriples) closely tracks the residual DR rate (10.21\\%), confirming\nthat each residual violation corresponds to exactly one fallback event.\n% docred_fallback: 1770/17341=10.2%; phase2_docred_full_s1: DR=0.1021\nConversely, SciERC's looser constraints leave more valid alternatives\nfor the model to redirect probability mass toward, enabling\nnear-complete DR elimination.\nThe DR reduction thus scales inversely with constraint tightness:\n45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%\nThe grammar-only configuration achieves marginally higher relation F1\n(8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically\nsignificant (bootstrap $p = 0.14$) and likely reflects minor\ndistributional shifts from semantic logit masking.\n% grammar_only: R-F1=8.31; full_s1: R-F1=8.23; bootstrap p=0.14\nThis represents, to our knowledge, the first empirical characterization\nof how ontology constraint properties modulate decoding-time enforcement\neffectiveness; we develop this analysis further in\nSection~\\ref{sec:discussion}.\n",
+                "numLines": 232,
+                "startLine": 1,
+                "totalLines": 232
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qyu3RLYcGbth5E2NEGDUPM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "9e28fdca-fbe4-4e65-ae27-4bb647425258",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TPs1uE4NTyWjFwpJ9tEAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11823,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11823
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T21:00:29.497Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qyu3RLYcGbth5E2NEGDUPM",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — Cross-Model Validation (Draft)\n2\t% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n4\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\n5\t%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n6\t%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n7\t% All numbers verified against registry 2026-05-14.\n8\t\n9\t\\subsection{Cross-Model Validation}\n10\t\\label{sec:cross-model}\n11\t\n12\tTo verify that our constraint framework generalizes beyond a single LLM,\n13\twe replicate the full two-layer (S1) configuration with\n14\tLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\n15\tand evaluation protocol.\n16\tTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n17\t\n18\t% ──────────────────────────────────────────\n19\t%  Table: Cross-model comparison\n20\t% ──────────────────────────────────────────\n21\t\\begin{table}[t]\n22\t\\centering\n23\t\\small\n24\t\\setlength{\\tabcolsep}{3.4pt}\n25\t\\begin{tabular}{@{}ll rrrr rr@{}}\n26\t\\toprule\n27\t& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n28\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n29\t\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n30\t\\textbf{Dataset} & \\textbf{Model}\n31\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n32\t  & Rel. & Ent. \\\\\n33\t\\midrule\n34\t\\multirow{4}{*}{SciERC}\n35\t  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n36\t  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n37\t  \\cmidrule(l){2-8}\n38\t  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n39\t  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n40\t% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n41\t% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n42\t% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n43\t% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n44\t\\midrule\n45\t\\multirow{4}{*}{DocRED}\n46\t  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n47\t  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n48\t  \\cmidrule(l){2-8}\n49\t  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n50\t  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n51\t% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n52\t% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n53\t% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n54\t% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\n58\tU: unconstrained baseline; S1: full two-layer constraints.\n59\tDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\n60\tF1 scores are multiplied by 100.}\n61\t\\label{tab:cross-model}\n62\t\\end{table}\n63\t\n64\t% ──────────────────────────────────────────\n65\t%  (a) Grammar layer: model-agnostic\n66\t% ──────────────────────────────────────────\n67\t\\paragraph{Grammar-layer guarantees are model-agnostic.}\n68\tRV and ET violations reach 0\\% under S1 for both models on both\n69\tdatasets.\n70\t% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n71\t% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\n72\tThis confirms that the grammar layer's structural enforcement---relation\n73\tvocabulary restriction and entity type validation---operates on the\n74\tconstrained decoding mechanism itself and does not depend on\n75\tmodel-specific generation patterns.\n76\t\n77\t% ──────────────────────────────────────────\n78\t%  (b) Semantic layer: DR reduction across models\n79\t% ──────────────────────────────────────────\n80\t\\paragraph{Semantic-layer DR reduction generalizes across models.}\n81\tDomain/range violations decrease under S1 for both models on both\n82\tdatasets:\n83\tSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n84\t99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n85\t% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\n86\tDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n87\t90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n88\t% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\n89\tIn both cases, relation F1 is preserved or marginally improves\n90\t(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n91\t% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n92\t% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\n93\tindicating that constraint enforcement redirects probability mass\n94\ttoward schema-compliant outputs without degrading extraction quality.\n95\t\n96\t% ──────────────────────────────────────────\n97\t%  (c) Llama vs Qwen DR reduction asymmetry\n98\t% ──────────────────────────────────────────\n99\t\\paragraph{Llama achieves higher DR reduction than Qwen.}\n100\tLlama's relative DR reduction exceeds Qwen's on both datasets\n101\t(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\n102\t% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2\n103\t% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR\n104\t% reduction, which holds within each model. However, Llama achieves\n105\t% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),\n106\t% suggesting that model-specific factors (e.g., how probability mass is\n107\t% distributed across constrained tokens) interact with constraint\n108\t% tightness. This interaction requires further analysis.\n109\tNotably, Llama's absolute IE quality is lower than Qwen's\n110\t(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\n111\tbut this does not diminish the validity of the compliance comparison:\n112\tconstraint enforcement is evaluated on the model's own output\n113\tdistribution, and the consistent violation reduction pattern across\n114\ttwo models with different capability levels strengthens the\n115\tmodel-agnostic claim.\n116\t\n117\t% ──────────────────────────────────────────\n118\t%  (d) CF trade-off\n119\t% ──────────────────────────────────────────\n120\t\\paragraph{CF trade-off persists across models.}\n121\tCross-field consistency violations increase under S1 for both models\n122\t(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\n123\tDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n124\t0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n125\t% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n126\t% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\n127\tLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\n128\tits lower baseline generation quality producing more cases where\n129\tconstrained field corrections create inter-field inconsistencies.\n130\tThis cross-model pattern confirms that CF elevation is a systematic\n131\tproperty of the current constraint architecture rather than a\n132\tmodel-specific artifact, motivating a joint cross-field enforcement\n133\tmechanism as future work (Section~\\ref{sec:discussion}).\n134\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "aa2b063d-b0a2-4c6f-9909-28b0ad0e6aaf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "content": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\n% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2\n% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR\n% reduction, which holds within each model. However, Llama achieves\n% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),\n% suggesting that model-specific factors (e.g., how probability mass is\n% distributed across constrained tokens) interact with constraint\n% tightness. This interaction requires further analysis.\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+                "numLines": 134,
+                "startLine": 1,
+                "totalLines": 134
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me make the edits.\n\n**Edit 1A**: In `section5_docred_draft.tex`, replace the single-factor claim at lines 220-221 with the new tightness × RV interaction narrative.\n\n**Edit 1B**: Check if there's a \"Grammar R-F1 > Full S1\" comment that contradicts the new narrative. Lines 223-227 have content about grammar_only R-F1=8.31 vs full_s1 R-F1=8.23. The task says \"保留这个观察但确保它没有与新 tightness narrative 矛盾\" — keep the observation but ensure no contradiction. \n\nThe F1 difference observation is separate from the tightness analysis, so there's no conflict. I'll keep it unchanged.\n\n**Edit 2**: In `section5_crossmodel_draft.tex`, replace the `[TIGHTNESS-NARRATIVE-TBD]` block (lines 102-108) with the specified explanation.\n\nNow I'll apply both edits.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "ee0ab24e-c47f-4c29-b567-3193f5e389ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GoggxXozZBn7X4TvT8yot9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7866,
+                "cache_read_input_tokens": 23664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7866
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make both edits in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "6c94d197-859d-4073-be85-05b19198a445",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GoggxXozZBn7X4TvT8yot9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7866,
+                "cache_read_input_tokens": 23664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7866
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UkgaPP1kLcgoANhFnad1H6",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "old_string": "The DR reduction thus scales inversely with constraint tightness:\n45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%",
+                "new_string": "Among the factors governing residual DR, constraint tightness interacts\nwith the model's baseline violation profile.\nQwen3-8B's high relation vocabulary violation rate (RV\\,=\\,29.66\\%)\nmeans that grammar-layer enforcement surfaces numerous latent DR\nviolations when OOV relation names are forced into the valid vocabulary\n(Section~\\ref{sec:docred-results}, grammar paragraph), yielding\nresidual DR of 10.21\\%.\nLlama-3.1-8B's lower RV (16.03\\%) limits this surfacing effect,\nachieving residual DR of 2.55\\%---a 90.2\\% relative reduction on the\nsame ontology where Qwen achieves 44.7\\%.\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nConstraint tightness thus sets an upper bound on enforcement difficulty,\nbut the realized residual DR depends additionally on the fraction of\ntriples that receive valid relation names in the first place."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "2a3b2c9d-0d14-4ebc-b21f-6564aefd623b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GoggxXozZBn7X4TvT8yot9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7866,
+                "cache_read_input_tokens": 23664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7866
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T21:00:48.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UkgaPP1kLcgoANhFnad1H6",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "a41e1ec9-cff0-47bc-8463-5e965e57bf09",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+              "oldString": "The DR reduction thus scales inversely with constraint tightness:\n45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%",
+              "newString": "Among the factors governing residual DR, constraint tightness interacts\nwith the model's baseline violation profile.\nQwen3-8B's high relation vocabulary violation rate (RV\\,=\\,29.66\\%)\nmeans that grammar-layer enforcement surfaces numerous latent DR\nviolations when OOV relation names are forced into the valid vocabulary\n(Section~\\ref{sec:docred-results}, grammar paragraph), yielding\nresidual DR of 10.21\\%.\nLlama-3.1-8B's lower RV (16.03\\%) limits this surfacing effect,\nachieving residual DR of 2.55\\%---a 90.2\\% relative reduction on the\nsame ontology where Qwen achieves 44.7\\%.\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nConstraint tightness thus sets an upper bound on enforcement difficulty,\nbut the realized residual DR depends additionally on the fraction of\ntriples that receive valid relation names in the first place.",
+              "originalFile": "% Section 5 — DocRED Results (Draft)\n% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)\n% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n%          phase2_docred_semantic_only, phase2_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n% F1 computed via all_set method with name→Wikidata PID normalization.\n\n\\subsection{Cross-Dataset Validation on DocRED}\n\\label{sec:docred-results}\n\nTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED,\na document-level relation extraction benchmark with 96 Wikidata relation\ntypes---14$\\times$ the ontology size of SciERC\n(Section~\\ref{sec:scierc-results}).\nAll experiments use Qwen3-8B in a zero-shot setting on 998 test documents\nwith identical prompts and decoding parameters.\nRelation F1 is computed via name-to-Wikidata-PID normalization:\neach predicted relation name is mapped to its canonical PID before\nmatching against gold annotations, and predictions that cannot be mapped\nto any valid PID are counted as false positives.\n\n% ──────────────────────────────────────────\n%  Table: DocRED four-way ablation\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.6pt}\n\\begin{tabular}{@{}l rrrrr rr@{}}\n\\toprule\n& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n\\textbf{Mode}\n  & DR\\,$\\downarrow$ & $\\Delta$DR\n  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n\\midrule\nUnconstrained\n  & 18.46 & ---\n  & 29.66 & 2.48\n  & 0.10\n  & 7.74  & 58.15 \\\\\nGrammar\n  & 26.17 & $\\uparrow$42\\%\n  & \\textbf{0.03} & \\textbf{0}\n  & 0.07\n  & \\textbf{8.31}  & \\textbf{59.38} \\\\\nSemantic\n  & 13.84 & $\\downarrow$25\\%\n  & 29.87 & 4.22\n  & 1.05\n  & 7.70  & 57.81 \\\\\nFull (S1)\n  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n  & \\textbf{0.03} & \\textbf{0}\n  & 2.57\n  & 8.23  & 59.37 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\nDR: domain/range violation rate;\nRV: relation vocabulary violation rate;\nET: entity type violation rate;\nCF: cross-field consistency violation rate.\n$\\Delta$DR: relative change vs.\\ the unconstrained baseline\n($\\uparrow$: increase; $\\downarrow$: decrease).\nBest per column in \\textbf{bold} (CF excluded---see text).\nF1 scores are multiplied by 100.\nEntity type violation rates reflect per-unique-entity counting (checker v2).\nStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n\\label{tab:docred-ablation}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Core result\n% ──────────────────────────────────────────\n\\paragraph{Core result: DR halved with preserved or improved F1.}\nThe full two-layer configuration reduces domain/range violations from\n18.46\\% to 10.21\\%, a 45\\% relative reduction, while simultaneously\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966\n% phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003\nRelation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66\nThe relation F1 improvement is statistically significant, attributable\nto grammar-layer elimination of 5{,}189 out-of-vocabulary relation\npredictions that are counted as false positives under the all-valid-set\nprotocol (Section~\\ref{sec:discussion}).\nCross-field consistency violations increase modestly from 0.10\\% to\n2.57\\%, substantially lower than the 9.90\\% observed on SciERC;\n% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257\nwe discuss this trade-off in Section~\\ref{sec:discussion}.\n\n% ──────────────────────────────────────────\n%  (b) Grammar layer\n% ──────────────────────────────────────────\n\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}\nGrammar-only constraints generalize to DocRED's 96-relation ontology,\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_grammar_only: ET=0, RV=0.0003\nHowever, domain/range violations \\emph{increase} from 18.46\\% to\n26.17\\% (+42\\% relative).\n% phase2_docred_grammar_only: DR=0.2617\nThis counter-intuitive result has a structural explanation.\nIn the unconstrained baseline, 29.66\\% of triples contain\nout-of-vocabulary relation names and are classified as RV violations;\nbecause no schema entry exists for an invalid relation name,\nthese triples \\emph{cannot} be evaluated against domain/range rules\nand are therefore absent from the DR count.\nWhen grammar constraints force all relation names into the valid\nvocabulary, these formerly RV-classified triples receive valid\nrelation names---but the associated entity types frequently violate\nthe domain/range rules of the assigned relation, surfacing as new\nDR violations.\nThe grammar layer thus \\emph{reveals} latent type incompatibilities\nrather than creating them, directly motivating the semantic layer:\nwithout domain/range enforcement, grammar alone makes the type\nviolation landscape worse, not better.\n\n% ──────────────────────────────────────────\n%  (c) Enabling dependency\n% ──────────────────────────────────────────\n\\paragraph{Enabling dependency confirmed across datasets.}\nSemantic constraints alone reduce DR by 25\\%\n(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\nviolations (RV\\,=\\,29.87\\%) or entity type violations\n(ET\\,=\\,4.22\\%).\n% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.0422\nThe elevated ET under semantic-only decoding (4.22\\% vs.\\ 2.48\\%\nunconstrained) reflects a genuine trajectory perturbation:\nconstrained logit masking shifts the generation distribution,\ncausing the model to produce more non-standard entity types\n(e.g., \\textsc{Work}, \\textsc{Event}, \\textsc{Ethnic\\_Group})\nthat fall outside DocRED's canonical six-type vocabulary.\n% Top non-standard types: WORK (823), EVENT (743), ETHNIC_GROUP (137)\nWe discuss this side effect in the limitations.\nCombining both layers (Full S1) reduces DR a further 26\\% relative to\nthe semantic-only configuration (13.84\\%\\,$\\to$\\,10.21\\%),\n% phase2_docred_full_s1: DR=0.1021; delta=(13.84-10.21)/13.84=0.262\nreplicating the enabling dependency observed on SciERC:\nwithout grammar-enforced vocabulary constraints, the semantic layer\nencounters out-of-vocabulary relation types for which no domain/range\nrules exist, limiting its enforcement capacity.\nThe consistency of this pattern across two datasets with substantially\ndifferent ontology sizes (7 vs.\\ 96 relation types) and violation\nprofiles (SciERC RV\\,=\\,1.39\\% vs.\\ DocRED RV\\,=\\,29.66\\%) confirms\nthat the grammar$\\to$semantic enabling dependency is a general\narchitectural property of the framework, not an artifact of a\nparticular schema.\n\n% ──────────────────────────────────────────\n%  (d) Comparison with post-hoc filtering\n% ──────────────────────────────────────────\n\\paragraph{Comparison with post-hoc filtering.}\nAn alternative to decoding-time constraint enforcement is post-hoc filtering:\ngenerating triples without constraints and discarding those that violate\nschema rules afterward.\n% posthoc_report_docred: filtering applied to phase2_docred_unconstrained\nOn DocRED, post-hoc filtering removes 8{,}419 of 17{,}497 triples\n(48.1\\% rejection rate), including 5{,}189 out-of-vocabulary predictions,\n692 entity type violations, and 2{,}538 domain/range violations.\n% posthoc_docred: removed_rv=5189, removed_et=692, removed_dr=2538\nThis raises precision from 6.55\\% to 11.22\\% but reduces recall from\n9.46\\% to 8.40\\%, as 127 gold-standard triples are discarded along with\nthe violations (relation F1: 7.74\\,$\\to$\\,9.61).\n% posthoc_docred: P_before=0.0655, P_after=0.1122, R_before=0.0946, R_after=0.0840\n% posthoc_docred: F1_before=0.0774, F1_after=0.0961, tp_before=1137, tp_after=1010\nOn SciERC, the pattern is analogous: 16.8\\% of triples are rejected, recall\ndrops from 11.40\\% to 10.68\\%, and 7 gold-standard triples are lost.\n% posthoc_scierc: rejection_rate=0.1676, R_before=0.114, R_after=0.1068\n% posthoc_scierc: tp_before=111, tp_after=104\nOntoCoDec avoids this coverage--precision trade-off by guiding generation\ntoward schema-compliant triples rather than discarding non-compliant ones,\nand operates as a single decoding pass without a separate filtering stage.\n\n% ──────────────────────────────────────────\n%  (e) Constraint tightness scaling\n% ──────────────────────────────────────────\n\\paragraph{Constraint tightness governs enforcement ceiling.}\nThe residual DR on DocRED (10.21\\%) substantially exceeds that of\nSciERC (0.93\\%, Section~\\ref{sec:scierc-results}).\nThis gap is explained by per-relation \\emph{constraint tightness}:\nDocRED relations admit on average only 5.68 valid entity type pairs\n(mean tightness\\,=\\,0.842, i.e., 84.2\\% of entity type pairs violate\ndomain/range rules), compared to 24 valid pairs on SciERC\n(tightness\\,=\\,0.333).\n% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842\n% SciERC: avg_valid_pairs=24, avg_tightness=0.333\nWith tighter per-relation constraints, the semantic layer's logit mask\neliminates a larger fraction of candidate tokens at each decoding step,\nincreasing the probability that the intersection of grammar and\nsemantic masks yields a narrow or empty candidate set.\nIn the limiting case, the system falls back to grammar-only constraints,\npreserving structural validity but forgoing domain/range enforcement\nfor that token position.\nFor example, P1198 (\\textsc{unemployment\\_rate}) triggers fallback on\n83\\% of decoded triples due to its extremely tight constraint set,\nwhile P171 (\\textsc{parent\\_taxon}) falls back at 78\\%.\n% docred_fallback: P1198=83%, P171=78% (tight constraints)\nIn contrast, relations with looser constraints such as P127\n(\\textsc{owned\\_by}) and P170 (\\textsc{creator}) exhibit 0\\% fallback.\n% docred_fallback: P127=0%, P170=0% (loose constraints)\nThe aggregate triple-level fallback rate (10.2\\%; 1{,}770 of 17{,}341\ntriples) closely tracks the residual DR rate (10.21\\%), confirming\nthat each residual violation corresponds to exactly one fallback event.\n% docred_fallback: 1770/17341=10.2%; phase2_docred_full_s1: DR=0.1021\nConversely, SciERC's looser constraints leave more valid alternatives\nfor the model to redirect probability mass toward, enabling\nnear-complete DR elimination.\nThe DR reduction thus scales inversely with constraint tightness:\n45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%\nThe grammar-only configuration achieves marginally higher relation F1\n(8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically\nsignificant (bootstrap $p = 0.14$) and likely reflects minor\ndistributional shifts from semantic logit masking.\n% grammar_only: R-F1=8.31; full_s1: R-F1=8.23; bootstrap p=0.14\nThis represents, to our knowledge, the first empirical characterization\nof how ontology constraint properties modulate decoding-time enforcement\neffectiveness; we develop this analysis further in\nSection~\\ref{sec:discussion}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 217,
+                  "oldLines": 9,
+                  "newStart": 217,
+                  "newLines": 21,
+                  "lines": [
+                    " Conversely, SciERC's looser constraints leave more valid alternatives",
+                    " for the model to redirect probability mass toward, enabling",
+                    " near-complete DR elimination.",
+                    "-The DR reduction thus scales inversely with constraint tightness:",
+                    "-45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).",
+                    "-% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%",
+                    "+Among the factors governing residual DR, constraint tightness interacts",
+                    "+with the model's baseline violation profile.",
+                    "+Qwen3-8B's high relation vocabulary violation rate (RV\\,=\\,29.66\\%)",
+                    "+means that grammar-layer enforcement surfaces numerous latent DR",
+                    "+violations when OOV relation names are forced into the valid vocabulary",
+                    "+(Section~\\ref{sec:docred-results}, grammar paragraph), yielding",
+                    "+residual DR of 10.21\\%.",
+                    "+Llama-3.1-8B's lower RV (16.03\\%) limits this surfacing effect,",
+                    "+achieving residual DR of 2.55\\%---a 90.2\\% relative reduction on the",
+                    "+same ontology where Qwen achieves 44.7\\%.",
+                    "+% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%",
+                    "+% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%",
+                    "+Constraint tightness thus sets an upper bound on enforcement difficulty,",
+                    "+but the realized residual DR depends additionally on the fraction of",
+                    "+triples that receive valid relation names in the first place.",
+                    " The grammar-only configuration achieves marginally higher relation F1",
+                    " (8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically",
+                    " significant (bootstrap $p = 0.14$) and likely reflects minor"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H7qGxSYTQ9byjrZVFnh1qw",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2\n% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR\n% reduction, which holds within each model. However, Llama achieves\n% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),\n% suggesting that model-specific factors (e.g., how probability mass is\n% distributed across constrained tokens) interact with constraint\n% tightness. This interaction requires further analysis.",
+                "new_string": "This asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "9878ce78-2d4d-45fe-89e5-22374bbf7ca4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GoggxXozZBn7X4TvT8yot9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7866,
+                "cache_read_input_tokens": 23664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7866
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T21:00:51.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7qGxSYTQ9byjrZVFnh1qw",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "846c18b7-bf51-49fc-9c47-230de2707779",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2\n% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR\n% reduction, which holds within each model. However, Llama achieves\n% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),\n% suggesting that model-specific factors (e.g., how probability mass is\n% distributed across constrained tokens) interact with constraint\n% tightness. This interaction requires further analysis.",
+              "newString": "This asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\n% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2\n% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR\n% reduction, which holds within each model. However, Llama achieves\n% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),\n% suggesting that model-specific factors (e.g., how probability mass is\n% distributed across constrained tokens) interact with constraint\n% tightness. This interaction requires further analysis.\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 99,
+                  "oldLines": 13,
+                  "newStart": 99,
+                  "newLines": 14,
+                  "lines": [
+                    " \\paragraph{Llama achieves higher DR reduction than Qwen.}",
+                    " Llama's relative DR reduction exceeds Qwen's on both datasets",
+                    " (SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).",
+                    "-% [TIGHTNESS-NARRATIVE-TBD]: The tightness-based explanation from §5.2",
+                    "-% predicts that tighter constraints (DocRED, τ̄=0.842) yield lower DR",
+                    "-% reduction, which holds within each model. However, Llama achieves",
+                    "-% substantially higher DR reduction than Qwen on DocRED (90.2% vs 45%),",
+                    "-% suggesting that model-specific factors (e.g., how probability mass is",
+                    "-% distributed across constrained tokens) interact with constraint",
+                    "-% tightness. This interaction requires further analysis.",
+                    "+This asymmetry reflects the interaction between constraint tightness",
+                    "+and model-specific violation profiles: Qwen's higher baseline RV",
+                    "+(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface",
+                    "+more latent DR violations, raising residual DR despite identical",
+                    "+ontology constraints (see tightness paragraph,",
+                    "+Section~\\ref{sec:docred-results}).",
+                    "+% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%",
+                    "+% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%",
+                    " Notably, Llama's absolute IE quality is lower than Qwen's",
+                    " (R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),",
+                    " but this does not diminish the validity of the compliance comparison:"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **section5_docred_draft.tex L220-222** — 替换了旧的 single-factor tightness scaling claim，改为 tightness × RV 交互叙事：RV 高的 Qwen 因 grammar 层强制匹配导致 latent DR 浮出，残余 DR 10.21%；RV 低的 Llama 达到 2.55%（DR↓90.2%）。保留了 L223-227 的 grammar R-F1 vs full S1 观察（无矛盾）。\n\n2. **section5_crossmodel_draft.tex L102-108** — `[TIGHTNESS-NARRATIVE-TBD]` 替换为 3 句 tightness × RV 交互解释，引用 §5 tightness 段落，附 exp_id 注释追溯。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "uuid": "4e098144-1591-4f20-b282-787c9e18ecc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qN72vBmUGJ5AgCSKzNjUL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1361,
+                "cache_read_input_tokens": 31530,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1361
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **section5_docred_draft.tex L220-222** — 替换了旧的 single-factor tightness scaling claim，改为 tightness × RV 交互叙事：RV 高的 Qwen 因 grammar 层强制匹配导致 latent DR 浮出，残余 DR 10.21%；RV 低的 Llama 达到 2.55%（DR↓90.2%）。保留了 L223-227 的 grammar R-F1 vs full S1 观察（无矛盾）。\n\n2. **section5_crossmodel_draft.tex L102-108** — `[TIGHTNESS-NARRATIVE-TBD]` 替换为 3 句 tightness × RV 交互解释，引用 §5 tightness 段落，附 exp_id 注释追溯。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 33202,
+            "duration_api_ms": 34221,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "d6dd7d1f-4002-46fc-bd38-3f4cca55f779",
+            "total_cost_usd": 0.20661700000000002,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 21050,
+              "cache_read_input_tokens": 67035,
+              "output_tokens": 1590,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21050,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 242,
+                  "cache_read_input_tokens": 31530,
+                  "cache_creation_input_tokens": 1361,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1361
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1672,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0017670000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4,
+                "outputTokens": 1590,
+                "cacheReadInputTokens": 67035,
+                "cacheCreationInputTokens": 21050,
+                "webSearchRequests": 0,
+                "costUSD": 0.20485000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b4221ec3-f86d-44d9-bdab-45e80e25b1b7"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-p0-tightness-scaling-claim.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7007b50b4dd9c1af9bcb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 beam latency collect",
+  "task_key": "worker_ssh_d062_beam_latency_collect_20260519T035059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_beam_latency_collect_20260519T035059_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "e15180baa39c288fa5e22de84ced6f4e8366b9ff485e19097d3c5c70429bcd0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**d062_beam_latency 实验结果汇总**：\n\n| Condition | s/doc | vs Greedy Unc |\n|-----------|-------|---------------|\n| Greedy unconstrained | 2.612 | 1.00x |\n| Greedy constrained | 2.873 | 1.10x |\n| Beam-4 unconstrained | 3.446 | 1.32x |\n| Beam-4 constrained | 4.013 | 1.54x |\n\n- Beam search 增加 ~32-40% 延迟\n- Constraint overhead 在 beam 下为 16.5%（greedy 下为 10.0%），因为 constraint checker 需在每步对所有 4 个 beam 独立检查\n- Registry 已更新为 DONE/success，artifact 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-beam-latency-collect.md"
+}

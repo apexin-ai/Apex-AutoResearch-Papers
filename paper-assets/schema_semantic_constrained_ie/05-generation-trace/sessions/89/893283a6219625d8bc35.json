@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "893283a6219625d8bc35",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops diagnose docred full s1",
+  "task_key": "worker_ops_diagnose_docred_full_s1_20260514T023934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_docred_full_s1_20260514T023934_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "7295b5d44dff3a7f5d89193970b7cd486d3cf4453e5b792f3321e8ef7982e5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：实验失败**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 PID 152032 | 已退出 |\n| 完成度 | 87/998 行 (8.7%) |\n| 崩溃原因 | 不明（无 OOM、无日志，静默退出） |\n| 文件最后写入 | 10:35 |\n| GPU 现状 | cuda:0 被 grammar_only (PID 150766, 134/998) 占用，cuda:1 空闲 |\n\n已完成：\n- registry 更新了 notes（需要重跑）\n- cron 已清除\n\n**重跑建议**：等 grammar_only 完成后在 cuda:0 重跑，或立即用 cuda:1 启动。建议加 `nohup ... > /tmp/docred_full_s1.log 2>&1 &` 以便捕获崩溃日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-docred-full-s1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54a3a8ced48e5b7c9762",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code scp llama model and launch v3",
+  "task_key": "worker_code_scp_llama_model_and_launch_v3_20260518T072523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scp_llama_model_and_launch_v3_20260518T072523_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "62a41dcef054740beef05f2312d55fc1a89257d06768107289cba553a073204e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n| Step | 结果 |\n|------|------|\n| **Step 1** | westd-21461 旧模型已清理 |\n| **Step 2** | westd-16980 模型 15G，4 个 safetensors 分片完整 |\n| **Step 3** | 方案 A 失败（16980→21461 不通），方案 B 变体成功：从 21461 拉取 16980（21461 有 16980 的 SSH config），速度 ~500MB/s |\n| **Step 4** | westd-21461 模型 15G，文件字节数完全一致；Python 验证通过：**Model loaded OK, params: 8,030,261,248** |\n| **Step 5** | `type_mask_processor.py` = 938 行 ✓；**PID=9486**（实际 python 进程 PID=9491） |\n| **Step 6** | GPU 1 占用 **18,268 MiB**，利用率 88%；输出文件已生成（30KB，正在写入）；日志显示模型加载完成，已开始 constrained generation |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scp-llama-model-and-launch-v3.md"
+}

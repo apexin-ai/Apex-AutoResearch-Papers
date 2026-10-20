@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7ce3da918e8fe78f16",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama v3 eval",
+  "task_key": "worker_code_llama_v3_eval_20260518T103044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_v3_eval_20260518T103044_result.json",
+    "occurrence": 1,
+    "bytes": 1560,
+    "sha256": "19524156bb44884e29aee373cb76e73bcdcced724e0876e52bce4741b5e3ce2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`cf_majority_voting.py` 不存在。下面是所有已完成步骤的汇总：\n\n---\n\n## Llama v3 Constrained 评估结果\n\n### 1. Violations (原始)\n| 类型 | 数量 | 比率 |\n|------|------|------|\n| ET (Entity Type) | 0 | 0.0% |\n| EV (Event Vocab) | 0 | 0.0% |\n| RoV (Role Vocab) | 0 | 0.0% |\n| AC (Arg Constraint) | 173 | 3.8% |\n| CF (Cross-Field) | 704 | 17.2% |\n| **RoV+AC rate** | — | **3.8%** |\n\nDocuments: 207 checked, 39 parse failures\n\n### 2. F1 (原始)\n| 指标 | P | R | F1 |\n|------|------|------|------|\n| Entity | 0.3892 | 0.1140 | **0.1763** |\n| Trigger ID | 0.0808 | 0.0696 | **0.0748** |\n| Argument | 0.0113 | 0.0124 | **0.0118** |\n\n### 3. Parse Failures\n- **39/246** 文档解析失败（violation checker 报告）\n- 注意：用户提供的 parse failure 脚本检查 `events` 字段，但实际数据用的是 `parsed_output`，导致误报 246/246。实际失败数为 39。\n\n### 4. Post-hoc Filter 效果\n- 移除 173 个 AC violation arguments（4547 → 4374）\n- EV/RoV 移除: 0\n- Argument F1: 0.0113 → **0.0118** (P 从 0.0113 → 0.0118)\n- Entity/Trigger F1 不变\n- 提升极小\n\n### 5. CF Majority Voting\n- **`cf_majority_voting.py` 脚本不存在**，无法执行。需要先创建该脚本。\n\n---\n\n**总结**: Constrained v3 的 EV=0%, RoV=0% 说明 schema constraint 在词汇层面完全生效。AC 3.8% 仍有残留。CF 17.2% 较高。但整体 F1 极低（Arg F1 仅 1.2%），说明模型生成质量本身是主要瓶颈，不是 constraint violation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-v3-eval.md"
+}

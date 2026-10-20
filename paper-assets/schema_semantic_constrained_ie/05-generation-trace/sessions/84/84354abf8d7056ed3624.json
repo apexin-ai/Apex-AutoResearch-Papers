@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "84354abf8d7056ed3624",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "audit appendix tables verification",
+  "task_key": "worker_audit_appendix-tables-verification_20260523T104322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix-tables-verification_20260523T104322.log",
+    "occurrence": 1,
+    "bytes": 852669,
+    "sha256": "6ae8085de8450dea291b665fe45d1ec2feeb3bc9e21e7628a15b14c19b9672ff"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 38,
+      "tool_result": 38,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "84354abf8d7056ed3624-part-0001.json",
+          "message_count": 70
+        },
+        {
+          "path": "84354abf8d7056ed3624-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-appendix-tables-verification.md"
+}

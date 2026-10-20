@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7531ce61c3c4e61a2bd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops p1 westd16980 status",
+  "task_key": "worker_ops_p1_westd16980_status_20260520T094351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p1_westd16980_status_20260520T094351_result.json",
+    "occurrence": 1,
+    "bytes": 2053,
+    "sha256": "e357c5913e2d4e83db403878896ed314fdf87866f115bf2c46f4677ecd467f50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态报告\n\n### GPU\n\n| GPU | 使用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| GPU0 | 90% | 68,143 MiB | 97,887 MiB (69.6%) |\n| GPU1 | 0% | 0 MiB | 97,887 MiB (空闲) |\n\n### 正在运行的 Python 进程\n\n| PID | CPU | 启动时间 | 命令 |\n|-----|-----|----------|------|\n| 738751 | 100% | 17:02 (运行约42分钟) | `run_constrained_extraction.py --mode unconstrained --dataset docred --model_path qwen_lora_docred_merged --decoding_strategy beam --num_beams 8 --max_docs 200` |\n| 349350 | 0% | May16 | http.server :18888 (checkpoint 文件服务) |\n| 451275 | 0% | May17 | download_wiki.py |\n| 485171 | 0% | May18 | http.server :18080 |\n| 492102 | 0% | May18 | http.server :38980 |\n\n系统进程: jupyter-lab, tensorboard (自启动，忽略)\n\n### d065 Llama 进程\n\n**无 d065 相关进程在跑。** 只匹配到 tmux session `llama_beam` 的壳进程。\n\n### d066 Beam Sweep 进程\n\n**正在跑。** `d066_qwen_beam_sweep.sh` 脚本活跃中：\n- PID 712981/712982: bash 脚本（启动于 10:56）\n- PID 712984: tee 日志写入\n- PID 738751: 当前执行的是 **qwen_docred_200_beam8_unconstrained**（GPU0，100% CPU）\n  - 输出: `/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_unconstrained.jsonl`\n\n### outputs 目录最近文件\n\n今天 (May 20) 生成了 16 个 d066 结果 JSON（10:01-10:02），涵盖：\n- d066_scierc_zs_{s1,semantic,grammar,unc}.json\n- d066_docred_zs_{s1,semantic,grammar,unc}.json\n- d066_{llama,qwen}_{scierc,docred}_lora_{s1,unc}.json\n- d068_guided_beam/ 目录 (May 20 00:27)\n\n### tmux Sessions\n\n| Session | 创建时间 |\n|---------|----------|\n| llama_beam | May 17 10:56 |\n| llama_wikievents | May 18 00:42 |\n| llama_wikievents_full | May 18 01:47 |\n| qwen_wikievents | May 18 00:42 |\n\n### nohup 输出\n\n无 nohup.out 文件。\n\n---\n\n**总结**: GPU0 被 d066 beam sweep 占用（qwen_docred beam8 unconstrained 正在跑），GPU1 完全空闲。d065 无活跃进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p1-westd16980-status.md"
+}

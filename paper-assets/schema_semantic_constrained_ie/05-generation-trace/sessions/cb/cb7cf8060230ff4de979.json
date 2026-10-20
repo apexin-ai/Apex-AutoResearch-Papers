@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb7cf8060230ff4de979",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft fix conflict",
+  "task_key": "worker_ssh_d062_full_ft_fix_conflict_20260519T043813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_fix_conflict_20260519T043813_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "f30d77f2cf36b86ddc0bec4fe364a0416f25aa6d96c683e91850a38b175e0433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进展正常：20 秒内从 18 行增长到 32 行，且只有 1 个进程在写入。\n\n## 报告\n\n1. **Kill 的进程**：\n   - PID 86612 — 来源不明的第二个 `run_constrained_extraction.py` 进程，与我们启动的进程同时写同一输出文件\n   - 原始问题中提到的 `d062_retry` / `d062_full_ft_infer` 的进程和 tmux session 在介入前已全部结束\n\n2. **文件损坏情况**：\n   - `re_qwen_full_ft_scierc_full_s1.jsonl`（constrained）**已损坏** — 仅 46 行（应 551），第 22 行为全零字节（并发写入特征）。已删除\n   - `re_qwen_full_ft_scierc_unconstrained.jsonl`（unconstrained）**完整** — 551 行，0 错误\n\n3. **重跑 constrained**：\n   - tmux session: **`d062_constrained_only`**（注意：不是我创建的 `d062_con_rerun`，我的 session 被某个自动化替换了）\n   - PID 86882，当前唯一写入进程\n   - 当前进度：32/551 docs，稳定增长中\n   - 预估完成时间：约 20 秒 14 行 → 551 行约 13 分钟\n\n4. **注意**：服务器上似乎有其他自动化在运行（替换了我创建的 tmux session、启动了额外进程），建议检查是否有 cron job 或其他 agent 在操作同一服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-fix-conflict.md"
+}

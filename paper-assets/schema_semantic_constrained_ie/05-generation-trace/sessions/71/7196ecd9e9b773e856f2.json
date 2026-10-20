@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7196ecd9e9b773e856f2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis fuzzy matching threshold source",
+  "task_key": "worker_analysis_fuzzy_matching_threshold_source_20260516T181829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fuzzy_matching_threshold_source_20260516T181829_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "0821c1e05c4d55d8588f1dc35b481d95ee8abbe29cff6d9b7b0025233ad9fa31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，核心结论：\n\n**阈值来源：(a) 先验选择。** Token Jaccard >0.8 和 Levenshtein ≤2 是硬编码在 6+ 个文件中的相同常量，无参数化接口，无 tuning 痕迹。\n\n关键发现：\n- Fuzzy matching 用于**关系类型名称归一化**（不是实体名称匹配）\n- SciERC 全部实验 fuzzy match count = 0（零影响）\n- DocRED 仅 ZS unconstrained/semantic_only 触发，影响 <1% triples（129/17,497）\n- 所有 constrained 模式和 FT 模型中 fuzzy match = 0\n- Strict 和 Fuzzy R_F1 差异可忽略（<0.1pp）\n\n报告含完整的代码位置表、所有实验 R_F1 汇总、审稿人回复建议，保存在 `artifacts/fuzzy_matching_threshold_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fuzzy-matching-threshold-source.md"
+}

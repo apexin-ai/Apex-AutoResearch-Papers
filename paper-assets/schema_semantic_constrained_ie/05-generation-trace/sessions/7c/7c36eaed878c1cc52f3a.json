@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c36eaed878c1cc52f3a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents complete data download",
+  "task_key": "worker_code_wikievents_complete_data_download_20260517T170038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_complete_data_download_20260517T170038_result.json",
+    "occurrence": 1,
+    "bytes": 1549,
+    "sha256": "7431a4fcedc15ba4aadc71e554e3877cfef2ccf4fd7336498fb410b2b4da76f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总报告：\n\n---\n\n## WikiEvents 数据集下载完成\n\n### 数据统计\n\n| Split | Documents | Events | Arguments | Entities |\n|-------|-----------|--------|-----------|----------|\n| train | 206 | 3,241 | 4,542 | 28,296 |\n| dev | 20 | 345 | 428 | 2,256 |\n| test | 20 | 365 | 566 | 2,673 |\n| **total** | **246** | **3,951** | **5,536** | **33,225** |\n\n- 平均每文档 events: 16.1\n- 平均每 event arguments: 1.40\n- 唯一 event types: 50\n- 唯一 entity types: 17\n\n### Event Type 分布 (Top 10)\n1. Conflict.Attack.DetonateExplode: 823\n2. Life.Die.Unspecified: 525\n3. Conflict.Attack.Unspecified: 411\n4. Life.Injure.Unspecified: 301\n5. Contact.Contact.Unspecified: 202\n6. Contact.Contact.Broadcast: 195\n7. Justice.ArrestJailDetain.Unspecified: 188\n8. Movement.Transportation.Unspecified: 156\n9. Justice.ChargeIndict.Unspecified: 104\n10. Justice.InvestigateCrime.Unspecified: 92\n\n### Ontology Constraints 一致性\n\n**Event Type 映射**: 45/50 已映射，5 个缺失：\n- `Contact.RequestCommand.{Broadcast, Correspondence, Meet}`\n- `Contact.ThreatenCoerce.{Broadcast, Correspondence}`\n\n**Entity Types**: 数据中的 `CRM` 不在 ontology 中（ontology 多出 10 个未在数据中出现的类型）\n\n**Role Constraints**: `Justice.InvestigateCrime` 的 `ObservedEntity` 和 `Observer` 角色不在 constraints 中\n\n### 数据加载兼容性\n\n`load_wikievents_data()` 完全兼容，**不需要修改代码**。通过 `--data_path` 参数可切换 train/dev/test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-complete-data-download.md"
+}

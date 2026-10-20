@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53069ee8b644a9fbbcc7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 qwen parse failure diagnosis",
+  "task_key": "worker_ssh_p1_qwen_parse_failure_diagnosis_20260518T231746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_qwen_parse_failure_diagnosis_20260518T231746_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "377e4e3aec316c95361f9aa49b6e84ede881d088dbc410c2730e3bd76b93e98f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。三个根因：\n\n**根因 1（主因）：严重的重复退化**。模型在 greedy 解码下将同一事件/实体重复生成 50-100+ 次，填满 4096 token 后 JSON 被截断，parse 失败。unconstrained 模式每个失败样本平均 ~100 个 trigger 提及。生成配置没有 `repetition_penalty`。\n\n**根因 2（constrained 专属）：Grammar schema 与 FT 格式不匹配**。`compile_event_json_schema()` 生成的 schema 要求 `{\"entities\": [...], \"events\": [...]}` 双字段，但 FT 训练数据只有 `{\"events\": [...]}`。xgrammar 强制模型先输出 entities，模型不会做这件事，于是幻觉式重复生成实体直到 token 耗尽，events 部分从未被生成。这就是 constrained (10%) 比 unconstrained (25%) 更差的原因。\n\n**根因 3（次要）：`<think>` token 前缀不一致**。训练数据 prompt 末尾包含 `<think>\\n\\n</think>\\n\\n`，推理时 `enable_thinking=False` 不生成这些 token。模型似乎已适应（输出直接以 JSON 开头），但可能影响生成质量。\n\n报告已写入 `artifacts/p1_qwen_parse_failure_diagnosis.md` 并注册（`art_20260518_e3da09`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-qwen-parse-failure-diagnosis.md"
+}

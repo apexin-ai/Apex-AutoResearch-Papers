@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785ab9565f36a72521ff",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra llama download prep",
+  "task_key": "worker_infra_llama-download-prep_20260514T073447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama-download-prep_20260514T073447_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "f07d3a09c152a1095e4170415729fb896400091103068ab3572645cc4668d961"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度\n\nDocRED dev set 共 **998** 个样本，两个进程都还活着：\n\n| 实验 | PID | 已完成 | 进度 | 运行时间 |\n|------|-----|--------|------|---------|\n| grammar_only | 150766 (R) | 992/998 | **99.4%** | 5h40m |\n| full_s1 (resume) | 157042 (S) | 853/998 | **85.5%** | 4h18m |\n\n`grammar_only` 即将完成，`full_s1` 预计还需约 1 小时。\n\n---\n\n## Llama-3.1-8B 下载 — 阻塞\n\n正确的 model ID 是 `meta-llama/Llama-3.1-8B`。\n\n前置条件检查：\n- 磁盘空间: 193GB 可用 ✓\n- huggingface-cli: 已安装 ✓\n- **HF token: 服务器上不存在** ✗（检查了 `~/.cache/huggingface/token` 和 `~/.huggingface/token`，均无）\n\n**无法继续下载**。Llama 模型需要：\n1. 在 [HuggingFace 模型页面](https://huggingface.co/meta-llama/Llama-3.1-8B) 接受 Meta 的使用协议\n2. 生成一个有权限的 HF token 并登录到服务器\n\n请提供 HF token，我可以在服务器上执行 `huggingface-cli login` 后开始下载。或者如果有其他下载渠道（如 ModelScope），也可以走那条路。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-download-prep.md"
+}

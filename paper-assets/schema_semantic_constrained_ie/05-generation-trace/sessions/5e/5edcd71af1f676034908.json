@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5edcd71af1f676034908",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "submit prep arr checklist",
+  "task_key": "worker_submit-prep_arr-checklist_20260523T161126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit-prep_arr-checklist_20260523T161126_result.json",
+    "occurrence": 1,
+    "bytes": 2111373,
+    "sha256": "7084fabf16fac2974e53040d93fbf1e6aabdf1f006ec3251c2d011c37bbb1a55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2111393,
+                "serialized_sha256": "bf506213d9eda103271c22b8cb001141296f046f48c19e06b6a13bc818017a69",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-prep-arr-checklist.md"
+}

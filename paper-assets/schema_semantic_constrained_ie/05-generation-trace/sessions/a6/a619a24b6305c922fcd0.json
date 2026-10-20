@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a619a24b6305c922fcd0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis scierc violation",
+  "task_key": "worker_analysis_scierc_violation_20260513T191114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scierc_violation_20260513T191114_result.json",
+    "occurrence": 1,
+    "bytes": 2912,
+    "sha256": "ccb7bb8a734ad4f2a15352b3386f37c020ce6dd7b1032939453efdebad8cc23b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SciERC 全量 Violation Analysis 结果\n\n### 1. 总体统计\n\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 551 |\n| 提取三元组数 | 1,724 |\n| 提取实体数 | 2,474 |\n| JSON 解析失败 | 0 (0.0%) |\n| Fuzzy matches | 0 |\n\n### 2. 四类 Violation 计数与率\n\n| Violation 类型 | 计数 | 分母 | Rate |\n|---------------|------|------|------|\n| Entity type violations | 10 / 2,474 | entities | **0.40%** |\n| Relation vocabulary violations | 24 / 1,724 | triples | **1.39%** |\n| Domain/range violations | 265 / 1,724 | triples | **15.37%** |\n| Cross-field consistency violations | 2 | entities | **0.08%** |\n\n**总违规三元组**: 301, 总违规率: 7.17%\n\n### 3. Go/No-Go Metric\n\n**domain_range_violation_rate = 0.1537 (15.4%)**\n\n这是 OntoCoDec 核心目标指标——每 6.5 个三元组就有 1 个违反 domain/range 约束，说明 unconstrained LLM 在 schema 一致性上存在显著问题，constrained decoding 有明确改进空间。\n\n### 4. Per-Relation Type Breakdown\n\n| Relation | Total | D/R Violations | Rate |\n|----------|-------|----------------|------|\n| **Used-for** | 787 | 6 | **0.76%** ✅ |\n| **Conjunction** | 32 | 0 | **0.00%** ✅ |\n| **Hyponym-of** | 124 | 18 | **14.52%** |\n| **Evaluate-for** | 133 | 32 | **24.06%** ⚠️ |\n| **Part-of** | 72 | 18 | **25.00%** ⚠️ |\n| **Feature-of** | 486 | 163 | **33.54%** 🔴 |\n| **Compare** | 66 | 28 | **42.42%** 🔴 |\n\n**Feature-of** 和 **Compare** 是重灾区，合计贡献 191/265 = 72% 的 domain/range violations。Used-for 约束最宽松，违规率极低。\n\n### 5. 典型违规示例\n\n**Entity type violations** — 模型将 relation type 误填为 entity type：\n- `\"high-density\"` → type `\"Feature-of\"` (应为 Material/OtherScientificTerm 等)\n- `\"low-power\"` → type `\"Feature-of\"`\n\n**Relation vocabulary violations** — 模型幻觉出 ontology 外的关系：\n- `Outperforms` (method outperforms method)\n- `Consistent-with`, `Smaller-than`\n\n**Domain/range violations** — 关系名合法但 head/tail type 组合不合法：\n- `Hyponym-of(Task, OtherScientificTerm)` — 不在合法 type pair 中\n- `Feature-of(Task, Material)` — Feature-of 大量出现 (Task, Material) 违规组合\n\n**Cross-field consistency violations** — 同一 mention 被标注为不同 type：\n- `\"eigenvectors\"` → Material vs OtherScientificTerm\n- `\"nlp\"` → Generic vs OtherScientificTerm\n\n### 6. 附加质量指标 (Entity/Relation F1)\n\n| | Precision | Recall | F1 | TP | Gold | Pred |\n|--|-----------|--------|-----|-----|------|------|\n| Entity | 0.2605 | 0.3831 | 0.3101 | 641 | 1,673 | 2,461 |\n| Relation | 0.0644 | 0.1140 | 0.0823 | 111 | 974 | 1,724 |\n\nRelation F1 仅 8.2%，说明 unconstrained baseline 在 SciERC 上的精确匹配性能较弱，进一步验证了 constrained decoding 方向的必要性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-violation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e686efbf767d3b8c3da2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "sync code westd21461 fallback",
+  "task_key": "worker_sync_code-westd21461-fallback_20260522T054942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_code-westd21461-fallback_20260522T054942_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "6393b2a701df67fe090bafdc837817711aa7fac0b9f2ecaba92f9241620a9f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n**已同步文件**（westd-16980 → westd-21461，旧版本已 `.bak` 备份）：\n\n| 文件 | 状态 |\n|------|------|\n| `run_constrained_extraction.py` | 已同步，`--lora_path` 参数可用 |\n| `violation_checker_wikievents.py` | 已同步 |\n| `eval_event_extraction.py` | 已同步 |\n| `analyze_ac_violations.py` | 已同步 |\n\n**无需同步**：`compiler/`（12 文件全部一致）、`prompts/`（2 文件全部一致）、其余共享的 `.py` 文件。\n\n现在可以在 westd-21461 上直接用 `--lora_path` 参数启动推理，无需 monkey-patch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-code-westd21461-fallback.md"
+}

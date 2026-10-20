@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99c113b42ac4920de992",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r16 trie verify",
+  "task_key": "worker_analysis_r16_trie_verify_20260521T034406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16_trie_verify_20260521T034406_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "a3f728fb7374e3045a78c6364951ddc56785707d266af8ef231bfb728dcffe5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Findings\n\n**The trie is NOT buggy — DR=95.5% is the expected result proving the enabling dependency.**\n\n### Trie behavior\n- Contains all 6 entity types + 7 relation types\n- Constrains ONLY at type field positions (detected via regex on `\"type\":`, `\"head_type\":`, `\"tail_type\":`)\n- Does NOT enforce JSON structure — this is by design (GCD-equivalent)\n\n### Why DR=95.5%\nThree patterns, all consistent with \"trie works, but no schema enforcement\":\n\n1. **~83% of samples**: Model generates valid JSON but **omits head_type/tail_type fields entirely**. Relations have only `{head, tail, type}` — no type fields to constrain → DR checker sees empty types → violations. Entity types and relation types are all valid (0% violations for both).\n\n2. **~9% (50 samples)**: Model attempts head_type/tail_type but **generates broken JSON**. Two failure modes:\n   - **Hedging**: `\"type\": \"Part-of\" or \"Used-for\"` — trie constrains \"Part-of\" then model continues unconstrained with `or \"Used-for\"`\n   - **Missing commas**: `\"type\": \"Feature-of\" \"head_type\": \"OtherScientificTerm\"` — correct values, no separators\n\n3. **~4.5%**: Valid JSON with head_type/tail_type properly constrained.\n\n### Conclusion\nThis proves the enabling dependency: **grammar-level schema enforcement is prerequisite for vocabulary constraints to cover full schema compliance**. The trie can only constrain values at positions it detects — it cannot force the model to generate those positions in the first place, nor prevent JSON malformation around them.\n\n### Experiment progress\n- Qwen FT: **done** (551/551)\n- Qwen ZS: **running** (233/551)\n- Llama FT/ZS: **pending**\n- PID 241846: alive (36 min elapsed)\n\nOutput written to `artifacts/r16_verification/trie_verify.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r16-trie-verify.md"
+}

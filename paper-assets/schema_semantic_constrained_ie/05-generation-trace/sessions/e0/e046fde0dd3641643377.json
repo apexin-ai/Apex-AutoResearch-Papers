@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e046fde0dd3641643377",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 investigate failure",
+  "task_key": "worker_ssh_d064_investigate_failure_20260519T124714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_investigate_failure_20260519T124714_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "a0d54b6c4438a058f7eab057a018e3feae6f62a53bd10abb1897d16f5dcbf1d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n**d064 没有失败，两条流水线正在正常运行。**\n\n### 当前状态\n\n| GPU | 当前任务 | 进度 | 速率 |\n|-----|---------|------|------|\n| 0 (Llama) | Greedy unconstrained | 554/998 (55%) | ~14s/doc |\n| 1 (Qwen) | Beam-4 unconstrained | 620/998 (62%) | ~21.5s/doc |\n\nLlama LoRA 训练已完成（loss=0.057, acc=98.07%），模型已 merge。\n\n### 剩余工作（自动 cascade，无需干预）\n\n- **GPU 0**: greedy unc → greedy con → beam-4 unc → beam-4 con（共 ~19-27h）\n- **GPU 1**: beam-4 unc → beam-4 con（共 ~8-10h）\n- **瓶颈**: GPU 0，预计 **5/20 晚间**全部完成，距 DDL 5/25 有 4+ 天余量\n\n### 部分评估（进行中数据）\n\n| 配置 | E-F1 | R-F1 | ET% | RV% | DR% | CF% | Parse Fail% |\n|------|------|------|-----|-----|-----|-----|-------------|\n| Qwen beam-4 unc (620) | 83.28 | 44.78 | 0.00 | 0.14 | 0.70 | 0.04 | 3.7% |\n| Llama greedy unc (554) | 83.43 | 44.97 | 0.00 | 0.29 | 0.27 | 0.13 | 4.5% |\n\n违约率极低，F1 健康。报告已注册 (`art_20260519_5ee027`)。\n\n**建议**: 不要碰服务器，让 cascade 跑完。5/20 上午查 Qwen，晚间查 Llama。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-investigate-failure.md"
+}

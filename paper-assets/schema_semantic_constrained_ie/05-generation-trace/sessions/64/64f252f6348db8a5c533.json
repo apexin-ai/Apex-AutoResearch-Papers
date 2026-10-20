@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64f252f6348db8a5c533",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper composability update prep",
+  "task_key": "worker_paper_composability_update_prep_20260516T030411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_composability_update_prep_20260516T030411_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "b565b5f9306e8eb77a9dc40a8d89e937b4c2a1388324ad340c2b7d0f476d57e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模板已产出并注册。总结：\n\n**产出文件:** `artifacts/composability_update_template.md`\n\n**关键发现:**\n- `section5_composability.tex` 不存在，composability 内容实际在 `section5_scierc_draft.tex` (L125-199)\n- Llama FT-U CF% 未录入 registry（缺字段），建议默认用 0\n- 两个 constrained eval 仍在 RUNNING\n\n**模板覆盖 6 个更新位置（按优先级）:**\n\n| 优先级 | 更新 | 文件 | 行号 |\n|--------|------|------|------|\n| P0 | Table 5 加 DocRED LoRA 行 | section5_scierc_draft.tex | 159-199 |\n| P0 | 删 \"DocRED not reported\" | main.tex | 70 |\n| P1 | Composability 段加 DocRED 数字 | section5_scierc_draft.tex | 127-157 |\n| P1 | 表 caption \"one dataset\" → \"two datasets\" | section5_scierc_draft.tex | 197 |\n| P1 | Limitations ZS-only claim 修正 | main.tex | 69 |\n| P2 | Appendix CF-DR trade-off 补 DocRED evidence | appendix_discussion.tex | 74 |\n\n模板包含两种 Table 5 方案（加 Dataset 列 vs 最小改动追加行）、所有占位符的计算公式、以及结果到手后的条件判断指南（高 DR / 低 DR / 高 CF / R-F1 下降各场景如何调整 claim）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-composability-update-prep.md"
+}

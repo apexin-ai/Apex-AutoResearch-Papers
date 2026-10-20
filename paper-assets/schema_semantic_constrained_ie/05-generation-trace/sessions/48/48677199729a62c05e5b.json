@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "48677199729a62c05e5b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code p8c ft scierc latency",
+  "task_key": "worker_code_p8c_ft_scierc_latency_20260518T173932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p8c_ft_scierc_latency_20260518T173932.log",
+    "occurrence": 1,
+    "bytes": 545067,
+    "sha256": "01bb008e2661e64a0a8a03d9f28ca32f4487ee8251be1c5ca317470d86ac82e3"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 2,
+      "assistant": 64,
+      "tool_call": 102,
+      "tool_result": 102
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "48677199729a62c05e5b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "48677199729a62c05e5b-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p8c-ft-scierc-latency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b343f31fc343436f57f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code check v3 westd21461",
+  "task_key": "worker_code_check_v3_westd21461_20260518T080939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_v3_westd21461_20260518T080939_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "0b2d039dbc0355ef7557c298ca8e3d2ec4803e08dc14ff05428a3eff685f8382"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-21461 v3 实验状态汇报\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | GPU 利用率 | 功耗 |\n|-----|------|---------|-----------|------|\n| 0 | RTX PRO 6000 (96GB) | 20,313 / 97,887 MiB | 85% | 323W/600W |\n| 1 | RTX PRO 6000 (96GB) | 18,277 / 97,887 MiB | 88% | 336W/600W |\n\n### 运行中的进程\n- **GPU 0**: Mistral v3 实验 (PID 5971)，运行 ~66 分钟，tmux 会话 `mistral_v3_full`\n- **GPU 1**: Llama v3 实验 (PID 9491)，运行 ~41 分钟，nohup 后台运行\n- 另有一个 Llama 模型下载进程 (PID 8621) 仍在运行\n\n### v3 输出文件进度（目标 246 行）\n\n| 文件 | 当前行数 | 进度 |\n|------|---------|------|\n| `ee_mistral_wikievents_constrained_v3_full.jsonl` | **73 / 246** | 29.7% |\n| `ee_llama_wikievents_constrained_v3_full.jsonl` | **56 / 246** | 22.8% |\n| `ee_qwen_wikievents_constrained_v3_full.jsonl` | **6 / 246** | 2.4% |\n\nQwen 只有 6 行且文件最后修改时间为 15:10，无对应运行进程，可能已中断或完成后停止。\n\n### 其他确认\n- `type_mask_processor.py`: **938 行**（修复版确认）\n- `/root/OntoCoDec/run_v3_eval.sh`: 不存在（路径应在 `schema_semantic_constrained_ie` 下）\n- tmux 会话: `mistral_v3_full` (1 window)\n\n### 结论\nMistral 和 Llama 的 v3 实验正在正常推进，分别完成约 30% 和 23%。Qwen 的 v3 实验疑似中断（仅 6 行，无运行进程）。按当前速度，Mistral 和 Llama 预计还需约 2-3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-v3-westd21461.md"
+}

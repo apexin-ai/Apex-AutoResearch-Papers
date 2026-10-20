@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411c7451e16d2b48ce6c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check p8b docred latency completion",
+  "task_key": "worker_check_p8b_docred_latency_completion_20260518T172628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_p8b_docred_latency_completion_20260518T172628_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "490ad1fa1f24f0f0ea8623e6e1cc292516d1dd6c22f1a50a72515324e12df868"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清理或过期）。\n\n---\n\n```\n状态：SUCCESS\nMetrics：unconstrained=19.34s/doc, constrained=19.81s/doc, overhead=2.43%\nRegistry：已更新 (DONE, conclusion=success)\nCron：无需删除（已不存在）\n```\n\nConstrained decoding 仅增加 2.43% 的延迟开销，假设验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-p8b-docred-latency-completion.md"
+}

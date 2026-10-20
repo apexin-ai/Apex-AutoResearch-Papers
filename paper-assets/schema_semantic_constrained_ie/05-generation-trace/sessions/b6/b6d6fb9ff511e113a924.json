@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d6fb9ff511e113a924",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "paper d072 cascade update",
+  "task_key": "worker_paper_d072_cascade_update_20260520T161337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d072_cascade_update_20260520T161337.log",
+    "occurrence": 1,
+    "bytes": 791245,
+    "sha256": "8f553dd388dd601d1d7cfea13488ba043c562e59e12027f4f7264180e261e7e5"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 0,
+    "tool_calls": 52,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 52,
+      "tool_result": 52,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "b6d6fb9ff511e113a924-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "b6d6fb9ff511e113a924-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d072-cascade-update.md"
+}

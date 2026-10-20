@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e5349d44b8e9598dbb2f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "paper data integration",
+  "task_key": "worker_paper_data_integration_20260521T115741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data_integration_20260521T115741.log",
+    "occurrence": 1,
+    "bytes": 649395,
+    "sha256": "89cbfe09a000a264a7cf9f26079e7e85fabdc477f43ad93836e84678757f785c"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 183,
+      "chunks": [
+        {
+          "path": "e5349d44b8e9598dbb2f-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "e5349d44b8e9598dbb2f-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-data-integration.md"
+}

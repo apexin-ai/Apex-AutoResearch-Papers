@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "5f69fc5395e1189f81b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents complete data download",
+  "task_key": "worker_code_wikievents_complete_data_download_20260517T170038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_complete_data_download_20260517T170038.log",
+    "occurrence": 1,
+    "bytes": 702643,
+    "sha256": "11a98273072c75aa02305efe33451fd462dbfb387c6fea5de62f854abab07840"
+  },
+  "statistics": {
+    "messages": 480,
+    "user_turns": 0,
+    "tool_calls": 164,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 126,
+      "tool_call": 164,
+      "tool_result": 164,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "5f69fc5395e1189f81b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f69fc5395e1189f81b6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f69fc5395e1189f81b6-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-complete-data-download.md"
+}

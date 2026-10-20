@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8640cc1dca9ae8d185a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 llama docred beam 50 check",
+  "task_key": "worker_code_w10_llama_docred_beam_50_check_20260517T072142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_llama_docred_beam_50_check_20260517T072142_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "3726d19552690c8a91290f911a5c5fbd58ccc01e879ab39f84a3b03b7053143b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Status ===\nProcess: running (PID 424211, ~8 min elapsed)\nOutput lines: 22 / 50\nGPU usage: cuda:0 79%, 18679/97887 MiB; cuda:1 idle\n\n=== Progress ===\n22/50 samples completed (~44%), still actively processing on beam search (num_beams=4).\nTmux session: llama_docred_beam\n\n=== Greedy baseline comparison ===\n(Llama DocRED greedy: DR=2.55%, CF=??%, E_F1=??, R_F1=??)\n```\n\n实验还在跑，已完成 22/50 样本。按当前速度（8分钟22个），预计再约10分钟完成。完成后需要再跑 violation checker 和 F1 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-llama-docred-beam-50-check.md"
+}

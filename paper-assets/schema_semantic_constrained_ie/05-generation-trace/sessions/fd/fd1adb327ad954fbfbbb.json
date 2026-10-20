@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd1adb327ad954fbfbbb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code beam scierc 551 collect",
+  "task_key": "worker_code_beam_scierc_551_collect_20260517T014119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_scierc_551_collect_20260517T014119_result.json",
+    "occurrence": 1,
+    "bytes": 1042,
+    "sha256": "f18bf96655f2dd1ecf771ad01c2a4c49b618b8e3697b990e3f1f29ced156a818"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。汇总：\n\n```\nStatus: COMPLETE (551/551, 0 failures)\nOutput file: outputs/beam_search_scierc_full_551.jsonl\nLines: 551\n\n=== Violation Rates ===\nET%:  0.0%   (0/2476 entities)\nRV%:  0.0%   (0/1737 relations)\nDR%:  0.0%   (0/1737 relations)\nCF%:  0.53%  (13 cross-field consistency violations)\nGo/No-go (DR): 0.0000\n\n=== F1 Scores ===\nE_F1: P=0.2683  R=0.3963  F1=0.3200  (TP=663, Gold=1673, Pred=2471)\nR_F1: P=0.0669  R=0.1191  F1=0.0856  (TP=116, Gold=974, Pred=1735)\n\nParse failures: 0/551\nTotal entities extracted: 2476\nTotal relations extracted: 1737\n```\n\n关键发现：\n- **Constraint compliance 完美** — ET/RV/DR 全部为 0%，beam search + grammar constraint 成功消除了所有类型和关系词汇违反以及 domain-range 违反\n- **F1 偏低** — Entity F1=0.32, Relation F1=0.086。模型倾向于过度生成（Pred >> Gold），precision 很低\n- 仅有 13 例 cross-field consistency 违反（同一 mention 在不同关系中类型不一致），比率 0.53%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beam-scierc-551-collect.md"
+}

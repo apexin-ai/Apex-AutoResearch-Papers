@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4855659487d072a8b93b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix docred lora restart tb",
+  "task_key": "worker_fix_docred_lora_restart_tb_20260521T124132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_docred_lora_restart_tb_20260521T124132.log",
+    "occurrence": 1,
+    "bytes": 525198,
+    "sha256": "94bc147658d51968fab9565c5dd5cd68129d4e70d7d24430a8c1ede34b89d86f"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "4855659487d072a8b93b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4855659487d072a8b93b-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-docred-lora-restart-tb.md"
+}

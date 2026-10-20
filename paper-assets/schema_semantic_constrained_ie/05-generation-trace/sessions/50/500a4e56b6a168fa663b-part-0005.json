@@ -1,0 +1,512 @@
+{
+  "schema_version": "1.0",
+  "session_id": "500a4e56b6a168fa663b",
+  "rounds": [
+    {
+      "number": 42,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-16T03:05:37.605732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# schema_semantic_constrained_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 18:13 UTC | 更新原因: D028: Llama SciERC 2×2 完成 + DocRED LoRA 双卡并行训练中\\\\n\\\\n## 核心方向\\\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: Round 1 审稿应对 — composability matrix 扩展中\\\\n- **Qwen SciERC 2×2**: ✅ DR=0.0%, R-F1 -0.09pp\\\\n- **Llama SciERC 2×2**: ✅ DR=0.09%, R-F1 +0.02pp (D028)\\\\n- **跨模型一致性确认**: Claim 3 composability 两模型坚实支撑\\\\n- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)\\\\n- **论文**: Table 3/5, §5.4/5.5, Appendix B 已更新，PDF 编译通过\\\\n\\\\n## Composability 覆盖进展\\\\n| | SciERC | DocRED |\\\\n|--|--------|--------|\\\\n| Qwen3-8B | ✅ 完整 2×2 | 🔥 LoRA 训练中 (cuda:1, ETA ~2h) |\\\\n| Llama3.1-8B | ✅ 完整 2×2 (D028) | ⏳ SFT 数据生成中 → cuda:0 训练 |\\\\n\\\\n## 2×2 Composability Matrices\\\\n\\\\n### Qwen3-8B × SciERC\\\\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\\\\n|--|--|--|--|--|\\\\n| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\\\\n| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\\\\n\\\\n### Llama3.1-8B × SciERC\\\\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\\\\n|--|--|--|--|--|\\\\n| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |\\\\n| Fine-tuned LoRA | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | -91.9% | +0.02pp |\\\\n\\\\n## 关键路径\\\\n1. ~~Llama SciERC 2×2~~ ✅ (D028)\\\\n2. **Qwen DocRED LoRA** ← cuda:1 训练中 (~2h)\\\\n3. **Llama DocRED LoRA** ← cuda:0 准备中（SFT 数据 + 脚本适配）\\\\n4. 各自跑 unconstrained + constrained eval → 完整 4 格 matrix\\\\n5. 全文数字一致性审查 → Round 2 review\\\\n6. May 19 内部稿交付 → May 25 EMNLP ARR 提交\\\\n\\\\n## GPU 调度\\\\nwestd-16980: cuda:0 + cuda:1\\\\n- cuda:0: ⏳ Llama DocRED LoRA 待提交（SFT 数据生成中）\\\\n- cuda:1\n…[truncated 2605 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 0
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-16T03:05:57.039075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -640 /root/schema_semantic_constrained_ie/run_constrained_extraction.py"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-16T03:05:57.541956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2: Constrained extraction with grammar (XGrammar) + semantic (TypeConstraintProcessor) layers.\\\\n\\\\nModes:\\\\n  unconstrained  - no constraints (baseline)\\\\n  grammar_only   - XGrammar JSON/enum structure enforcement\\\\n  semantic_only  - TypeConstraintProcessor domain/range masking\\\\n  full_s1        - both layers, single-pass\\\\n  full_s2        - two-pass: entities first, then constrained relations\\\\n\\\\nDatasets: scierc (sentence-level), docred (document-level)\\\\nOutput: JSONL compatible with violation_checker.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nfrom compiler.ontology_compiler import ConstraintSpec, RelationConstraint\\\\nfrom compiler.type_mask_processor import TypeConstraintProcessor\\\\n\\\\n\\\\ndef _chat_template_kwargs(tokenizer):\\\\n    name = getattr(tokenizer, 'name_or_path', '').lower()\\\\n    if 'qwen' in name:\\\\n        return {'enable_thinking': False}\\\\n    return {}\\\\n\\\\n\\\\nRAW_TO_CANONICAL = {\\\\n    \\\\\\\"USED-FOR\\\\\\\": \\\\\\\"Used-for\\\\\\\", \\\\\\\"FEATURE-OF\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n    \\\\\\\"HYPONYM-OF\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\", \\\\\\\"PART-OF\\\\\\\": \\\\\\\"Part-of\\\\\\\",\\\\n    \\\\\\\"COMPARE\\\\\\\": \\\\\\\"Compare\\\\\\\", \\\\\\\"CONJUNCTION\\\\\\\": \\\\\\\"Conjunction\\\\\\\",\\\\n    \\\\\\\"EVALUATE-FOR\\\\\\\": \\\\\\\"Evaluate-for\\\\\\\",\\\\n}\\\\n\\\\n# DocRED entity type order must match Phase 0 (run_extraction_docred.py)\\\\nDOCRED_ENTITY_TYPES = [\\\\\\\"PER\\\\\\\", \\\\\\\"ORG\\\\\\\", \\\\\\\"LOC\\\\\\\", \\\\\\\"TIME\\\\\\\", \\\\\\\"NUM\\\\\\\", \\\\\\\"MISC\\\\\\\"]\\\\n\\\\nSCIERC_SYSTEM = \\\\\\\"\\\\\\\"\\\\\\\"You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.\\\\n\\\\nEntity types: Task, Method, Material, Metric, OtherScientificTerm, Generic\\\\nRelation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for\\\\n\\\\nOutput a JSON object with:\\\\\n…[truncated 7305 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-16T03:06:36.537899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 定期审查报告 — 2026-05-16 11:10 UTC\n\n## 1. ROADMAP 严重过时（16h+）\nROADMAP.md 最后更新 2026-05-15 18:13 UTC，至少落后以下事件：\n- DocRED LoRA 双模型训练完成（15T19:57/20:02）\n- 双模型 unconstrained eval 完成（16T00:22/01:55）\n- 双模型 constrained eval 正在运行（未反映）\n- W6 Mistral 三实验注册（16T02:59，未提及）\n- GPU 调度表显示错误 PID，与实际进程不符\n\n建议：Agent 在当前 constrained eval 完成时同步更新 ROADMAP。\n\n## 2. W6 Mistral 实验 spec 为空\n`w6_mistral_scierc_unconstrained`、`w6_mistral_scierc_constrained`、`w6_mistral_docred_unconstrained` 三个实验在 registry 中零 spec 字段——无 hypothesis、command、server、data_path、model_name、seed、gpu。注册已 8h+。空 spec 实验启动后无法追溯审查。\n\n要求：启动前必须补全 spec（至少 hypothesis、command、server、model_name、data_path、seed、gpu）。\n\n## 3. Mistral 模型版本需确认\n`download_mistral.sh` 指向 `mistralai/Mistral-7B-Instruct-v0.3`（2024 年 5 月发布，2 年前）。截至 2026 年，Mistral 已有 Mistral Small Instruct 3、Mistral Nemo 等更新模型。作为第三模型族的 generalization 验证，v0.3 可能被审稿人质疑 \"为何不用更新版本\"。\n\n如果选择 v0.3 有特定理由（参数量匹配 7-8B 级别、Apache 2.0 许可证、复现性），需要在论文或 decision log 中明确 justify。否则建议升级到当前前沿的同量级 Mistral 模型。\n\n## 4. 运行中实验状态正常\n- Llama constrained eval: 603/998 (60%), cuda:0, GPU 87%, PID 317469, ETA ~1h44m\n- Qwen constrained eval: 201/998 (20%), cuda:1, GPU 84%, PID 321568, ETA ~4h37m\n- GPU 白名单合规：Llama→cuda:0, Qwen→cuda:1 ✓\n- 显存利用 ~17% 正常（8B 模型 + batch_size=1 在 98GB 卡上预期如此）\n\n## 5. Registry 状态不一致（minor）\n3 个 PREPARING 实验的 conclusion 字段已填但 status 未更新：\n- `w1_cf_fallback_llama_scierc`: status=PREPARING, conclusion=killed\n- `w1_cf_fallback_llama_docred`: status=PREPARING, conclusion=killed\n- `w5_llama_docred_sft_data_gen`: status=PREPARING, conclusion=success\n\n建议批量修正 status 以保持 registry 一致性。",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-16T03:06:40.503874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3965
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-16T03:06:45.677510+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。当前监控状态：\n\n- **Llama constrained eval**: 603/998, 预计 ~1h44m 后完成（约 12:54 UTC）\n- **Qwen constrained eval**: 201/998, 预计 ~4h37m 后完成（约 15:47 UTC）\n- 已上报 5 项发现：ROADMAP 过时、Mistral spec 空缺、模型版本、运行中实验正常、registry 状态不一致\n\n下一步：等待 Llama constrained eval 完成通知，届时核实 metrics 并验证 composability delta。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer"
+          },
+          "id": "event-000726"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "messages": [
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-16T03:08:33.620016+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_composability_update_prep_20260516T030411]:\nWorker worker_paper_composability_update_prep_20260516T030411 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "source": "system"
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-16T03:08:41.004417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "limit": "8",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'notes']"
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-16T03:08:41.908436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w6_mistral_docred_unconstrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-16T02:59:03.876Z\\\"}, \\\"w6_mistral_scierc_constrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-16T02:59:03.181Z\\\"}, \\\"w6_mistral_scierc_unconstrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-16T02:59:02.565Z\\\"}, \\\"w5_qwen_docred_lora_constrained_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:01.162Z\\\", \\\"notes\\\": \\\"由另一个 worker 提交，本次确认进程正常运行。PID 321568 (GPU subprocess), wrapper PID 321563, tmux session. CUDA_VISIBLE_DEVICES=1 由 wrapper 控制。模型已加载，2/998 开始推理。Grammar 编译 96 relation types 后开始生成。ETA ~5-6h (参考 unconstrained 5.82h, constrained 更慢)。\\\"}, \\\"w5_qwen_docred_lora_unconstrained_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T01:55:03.824Z\\\", \\\"metrics\\\": {\\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0.27, \\\"DR_pct\\\": 0.76, \\\"CF_pct\\\": 0.12, \\\"E_F1\\\": 82.15, \\\"E_P\\\": 85.44, \\\"E_R\\\": 79.11, \\\"R_F1\\\": 40.86, \\\"R_P\\\": 36.41, \\\"R_R\\\": 46.56, \\\"parse_fail_rate\\\": 7.11, \\\"total_samples\\\": 998, \\\"success_samples\\\": 927, \\\"fail_samples\\\": 71, \\\"total_entities_pred\\\": 18091, \\\"total_relations_pred\\\": 15870, \\\"ET_pct_excl_fail\\\": 0, \\\"RV_pct_excl_fail\\\": 0.27, \\\"DR_pct_excl_fail\\\": 0.76, \\\"CF_pct_excl_fail\\\": 0.12, \\\"E_F1_excl_fail\\\": 85.72, \\\"E_P_excl_fail\\\": 85.44, \\\"E_R_excl_fail\\\": 86, \\\"R_F1_excl_fail\\\": 42.2, \\\"R_P_excl_fail\\\": 36.41, \\\"R_R_excl_fail\\\": 50.17}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"998/998 完成, 927 success / 71 fail. 两组指标已计算. parse_fail_rate=7.11% 高于 Llama(2.3%), Qwen 在长文档上更易超时. R_F1=40.86 略低于 Llama(43.72), E_F1=82.15 略低于 Llama(83.93). DR_pct=0.76% 高于 Llama(0.49%), 说明 Qwen LoRA 残留更多 domain-range 违规.\\\"}, \\\"w5_llama_docred_lora_constrained_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-16T00:31:30.615Z\\\", \\\"notes\\\": \\\"重提交后 PID 317464 (wrapper) / 317469 (GPU subprocess) 在 cuda:0 正常运行。EXIT_CODE=143 来自 wrapper 层误报，非推理进程故障。Grammar 编译 96 relation typ\n…[truncated 1700 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-16T03:08:42.009855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -lt /root/schema_semantic_constrained_ie/paper/"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-16T03:08:43.265669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 796\\\\n-rw-r--r-- 1 root root  33853 May 16 02:10 main.log\\\\n-rw-r--r-- 1 root root 305233 May 16 02:10 main.pdf\\\\n-rw-r--r-- 1 root root  45868 May 16 02:10 main.aux\\\\n-rw-r--r-- 1 root root   3583 May 16 02:10 main.out\\\\n-rw-r--r-- 1 root root  19945 May 16 02:10 main.bbl\\\\n-rw-r--r-- 1 root root   1313 May 16 02:10 main.blg\\\\n-rw-r--r-- 1 root root   3245 May 16 02:09 main.tex\\\\n-rw-r--r-- 1 root root   5949 May 16 02:03 appendix_discussion.tex\\\\n-rw-r--r-- 1 root root   2980 May 16 02:03 discussion_cf_fallback.tex\\\\n-rw-r--r-- 1 root root   4831 May 16 02:02 section5_composability.tex\\\\n-rw-r--r-- 1 root root   4188 May 15 16:15 section6_related_work.tex\\\\n-rw-r--r-- 1 root root   3166 May 15 16:14 section1_introduction_draft.tex\\\\n-rw-r--r-- 1 root root   3247 May 15 16:14 section7_conclusion_compressed.tex\\\\n-rw-r--r-- 1 root root  19502 May 15 15:44 main.fdb_latexmk\\\\n-rw-r--r-- 1 root root  62345 May 15 15:44 main.fls\\\\n-rw-r--r-- 1 root root  45186 May 15 15:44 acl_natbib.bst\\\\n-rw-r--r-- 1 root root  13725 May 15 15:30 section6_relwork_outline.tex\\\\n-rw-r--r-- 1 root root   6017 May 15 15:28 section6_relwork_additions.tex\\\\n-rw-r--r-- 1 root root   1971 May 15 15:28 abstract_d3264e.tex\\\\n-rw-r--r-- 1 root root   1971 May 15 15:28 abstract_fd4b26.tex\\\\n-rw-r--r-- 1 root root   3707 May 15 15:27 section7_conclusion_550cbf.tex\\\\n-rw-r--r-- 1 root root   5786 May 15 15:27 section7_conclusion.tex\\\\n-rw-r--r-- 1 root root   9096 May 15 15:27 section5_docred_draft_9b84f1.tex\\\\n-rw-r--r-- 1 root root   7335 May 15 15:26 section5_scierc_draft_4796e8.tex\\\\n-rw-r--r-- 1 root root   4562 May 15 15:25 discussion_paragraphs_cf83d1.tex\\\\n-rw-r--r-- 1 root root   6811 May 15 15:25 discussion_paragraphs.tex\\\\n-rw-r--r-- 1 root root   5332 May 15 15:24 paper_tables_draft.tex\\\\n-rw-r--r-- 1 root root  25362 May 15 15:22 relwork_new_entries.bib\\\\n-rw-r--r-- 1 root root   2417 May 15 15:20 appendix_llama_per_relation\n…[truncated 913 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-16T03:08:48.743996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/section5_composability.tex"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-16T03:08:49.196374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Section 5 — Composability with Fine-Tuned Models\\\\n% exp_ids: w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval,\\\\n%          w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval\\\\n\\\\n\\\\\\\\subsection{Composability with Fine-Tuned Models}\\\\n\\\\\\\\label{sec:composability-ft}\\\\n\\\\nThe cross-model validation in \\\\\\\\S\\\\\\\\ref{sec:cross-model} establishes that\\\\nOntoCoDec generalizes across model families in the zero-shot regime.\\\\nA complementary question is whether the same constraints remain useful\\\\nafter task-specific fine-tuning, where the model has been trained to\\\\nemit ontology-conformant outputs and one might expect violations to\\\\ndisappear on their own.\\\\nWe test this by LoRA fine-tuning both Qwen3-8B and Llama-3.1-8B on\\\\nSciERC and then evaluating each fine-tuned model with and without the\\\\ntwo-layer constraints, yielding a 2$\\\\\\\\times$2 design per model family.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}lll rr rr@{}}\\\\n\\\\\\\\toprule\\\\n& & & \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{Viol.~(\\\\\\\\%)}}\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){4-5} \\\\\\\\cmidrule(l){6-7}\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{Train} & \\\\\\\\textbf{Decode}\\\\n  & DR\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n  & Rel.\\\\\\\\,$\\\\\\\\uparrow$ & Ent.\\\\\\\\,$\\\\\\\\uparrow$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{Qwen3-8B}\\\\n  & Zero-shot & U   & 15.37 & 0.08 & 8.23 & 31.01 \\\\\\\\\\\\\\\\\\\\n  & Zero-shot & S1  & \\\\\\\\textbf{0.93}  & 9.90 & 8.36 & 30.98 \\\\\\\\\\\\\\\\\\\\n  & LoRA      & U   &  1.95 & 0    & 43.86 & 67.05 \\\\\\\\\\\\\\\\\\\\n  & LoRA      & S1  & \\\\\\\\textbf{0.00}  & 1.18 & 43.77 & 67.05 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{Llama-3.1-8B}\\\\n  & Zero-shot & U   & 13.34 & 0.24 & 2.68 & 23.56 \\\\\\\\\\\\\\\\\\\\n  & Zero-shot & S1  & \\\\\\\\textbf{0.08} & 6.56 & 2.54 & 23.49 \\\\\\\\\\\\\\\\\\\\n  & LoRA      & U   &  1.11 \n…[truncated 3497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-16T03:08:57.783014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/main.tex"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-16T03:08:58.285533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{multirow}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{xcolor}\\\\n\\\\n\\\\\\\\title{OntoCoDec: Type-Valid Information Extraction\\\\\\\\\\\\\\\\via Compiled Ontology Constraints}\\\\n\\\\n\\\\\\\\author{Anonymous ACL submission}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n% === Abstract ===\\\\n\\\\\\\\input{abstract}\\\\n\\\\n% === §1 Introduction ===\\\\n\\\\\\\\input{section1_introduction_draft}\\\\n\\\\n% === §2 Background ===\\\\n\\\\\\\\input{section2_background}\\\\n\\\\n% === §3 Method ===\\\\n\\\\\\\\input{section3_method_draft}\\\\n\\\\n% === §4 Constraint Composition ===\\\\n\\\\\\\\section{Constraint Composition}\\\\n\\\\\\\\label{sec:composition}\\\\n\\\\\\\\input{section4_composition_draft}\\\\n\\\\n% === §5 Experiments ===\\\\n\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\n\\\\\\\\subsection{Violation Landscape}\\\\n\\\\\\\\input{section3_violation_landscape}\\\\n\\\\n\\\\\\\\input{section5_scierc_draft}\\\\n\\\\\\\\input{section5_docred_draft}\\\\n\\\\\\\\input{section5_crossmodel_draft}\\\\n\\\\\\\\input{section5_composability}\\\\n\\\\n% === §6 Related Work ===\\\\n\\\\\\\\input{section6_related_work}\\\\n\\\\n% === §7 Discussion and Conclusion ===\\\\n\\\\\\\\section{Discussion and Conclusion}\\\\n\\\\\\\\label{sec:discussion}\\\\n\\\\\\\\input{section7_conclusion_compressed}\\\\n\\\\n% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\\\\n\\\\\\\\section*{Limitations}\\\\n\\\\nThe semantic layer introduces cross-field consistency (CF) violations (up to 12.02\\\\\\\\%) under zero-shot prompting, a systematic consequence of per-relation independent enforcement that remains an open challenge; this rate falls to $\\\\\\\\leq$1.18\\\\\\\\% once the base model is LoRA fine-tuned (Table~\\\\\\\\re\n…[truncated 1759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-16T03:08:58.436730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_discussion.tex"
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-16T03:08:58.940243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix B — Extended Discussion\\\\n% Contains discussion paragraphs moved from the main text during compression.\\\\n\\\\n\\\\\\\\section{Extended Discussion}\\\\\\\\label{app:discussion}\\\\n\\\\n%%% Paragraph 1: Low F1 Practical Significance %%%\\\\n% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),\\\\n%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)\\\\n\\\\n\\\\\\\\paragraph{Practical Significance of Zero-Shot F1.}\\\\nOur reported relation F1 of approximately 8\\\\\\\\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.\\\\nFor reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\\\\\\\\% relation F1 with full training data~\\\\\\\\citep{zhong2021frustratingly,ye2022packed}.\\\\nConstraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.\\\\nWhen applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\\\\\\\\% DR on SciERC, 18.46\\\\\\\\% on DocRED).\\\\n% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained\\\\nIn our evaluation, F1 serves as a \\\\\\\\emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.\\\\nThe contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.\\\\n\\\\n%%% Paragraph 4: Decoding-Time vs. Post-Hoc Enforcement %%%\\\\n% exp_ids: posthoc_filtering_baseline, phase2_scierc_full_s1 (R-F1=8.36%),\\\\n%          phase2_docred_full_s1 (R-F1=8.23%, ET=0%)\\\\n\\\\n\\\\\\\\paragraph{D\n…[truncated 4455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-16T03:09:09.805436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/discussion_cf_fallback.tex"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-16T03:09:10.258105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Discussion paragraph — CF↔DR re-routing analytical finding\\\\n% exp_ids: w1_cf_fallback_scierc_pilot, phase2_scierc_full_s1\\\\n% Data: SciERC + Qwen3-8B pilot of grammar-first-fallback-with-CF-registry variant.\\\\n\\\\n\\\\\\\\paragraph{CF--DR Re-routing: Why the Current Design Is Near-Optimal.}\\\\nA natural question is whether the elevated CF rate under full S1 can be\\\\nreduced by triggering grammar-first fallback whenever the semantic layer\\\\nwould assign an entity a type inconsistent with a previously registered\\\\nassignment for the same entity.\\\\nWe piloted this variant on SciERC with Qwen3-8B and observed that CF drops\\\\nsharply from 9.90\\\\\\\\,\\\\\\\\% to 0.04\\\\\\\\,\\\\\\\\% ($-$9.86\\\\\\\\,pp), but DR \\\\\\\\emph{rises} from\\\\n0.93\\\\\\\\,\\\\\\\\% to 14.78\\\\\\\\,\\\\\\\\% ($+$13.85\\\\\\\\,pp), nearly matching the unconstrained baseline.\\\\n% w1_cf_fallback_scierc_pilot: DR=0.1478, CF=0.0004; phase2_scierc_full_s1: DR=0.0093, CF=0.099\\\\nThe combined violation budget $(\\\\\\\\text{DR}+\\\\\\\\text{CF})$ therefore grows from\\\\n10.83\\\\\\\\,\\\\\\\\% to 14.82\\\\\\\\,\\\\\\\\%, a net increase of 3.99\\\\\\\\,pp; relation F1 is essentially\\\\nunchanged ($-$0.13\\\\\\\\,pp, 8.36\\\\\\\\,$\\\\\\\\to$\\\\\\\\,8.23), and entity F1 is identical to baseline.\\\\n% R-F1 8.36→8.23 (-0.13pp), E-F1 30.98 unchanged\\\\nThe fallback mechanism fires on 36.6\\\\\\\\,\\\\\\\\% of mask calls overall, with a\\\\nCF-registry-specific trigger rate of 4.5\\\\\\\\,\\\\\\\\% (17{,}024 mask calls; 6{,}237\\\\nfallback events).\\\\n% w1_cf_fallback_scierc_pilot: grammar_first_fallback_rate=0.3664, cf_registry_fallback_rate=0.0448\\\\nThese numbers reveal a fundamental tension: the two violation types\\\\ndraw from the same pool of constrained tokens.\\\\nTriggering fallback to satisfy cross-entity coherence releases the\\\\ndomain/range guarantee for the token in question, re-routing the\\\\nviolation rather than eliminating it.\\\\n\\\\n\\\\\\\\paragraph{Schema ambiguity dominates residual CF.}\\\\nWe further decomposed the 245~CF-affected entities by confli\n…[truncated 1360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-16T03:09:24.418969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-16T03:09:24.921259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"621 /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-16T03:09:25.373342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl"
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-16T03:09:25.825495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"217 /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-16T03:09:35.062241+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度更新：Llama 621/998 (62%), Qwen 217/998 (22%)，两个进程持续推进中。\n\n`worker_paper_composability_update_prep` 审查结论：论文准备工作合理，SciERC composability 表数字全部与 registry 匹配。待 DocRED constrained eval 完成后需要：\n1. 在 Table 3 添加 DocRED 行\n2. 更新 Limitations 节中 \"DocRED fine-tuning is not reported\" 这句过时描述\n3. 更新 table caption 覆盖范围\n\n无需单独上报 Director，这些都是已知的待办事项，依赖正在运行的 eval 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer"
+          },
+          "id": "event-000744"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "messages": [
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-16T03:18:40.179000+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-16T03:19:29.612261+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0 + cuda:1（westd-16980 双卡）。当前分配：Llama→cuda:0, Qwen→cuda:1。W6 Mistral 实验必须等当前卡空出才能跑，不可越界。\n- DocRED constrained eval 输出文件路径已锁定：`outputs/w5_llama_docred_lora_constrained_eval.jsonl` 和 `outputs/w5_qwen_docred_lora_constrained_eval.jsonl`。不要删除或覆盖——支持 `--resume`。\n- Limitations 节当前仍写 \"DocRED fine-tuning is not reported\"——constrained eval 完成后必须更新，否则论文自相矛盾。\n- W6 Mistral 三实验 registry spec 为空（零字段），已上报 Director。启动前必须要求补全 spec，否则无法追溯审查。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980 (root)，2× NVIDIA RTX PRO 6000 Blackwell (98GB each)\n- 工作目录：`/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境，无 venv）\n- 模型路径：\n  - Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama-3.1-8B: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen LoRA DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama LoRA DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n  - Mistral: **未下载**，脚本在 `/root/schema_semantic_constrained_ie/download_mistral.sh`，目标 `mistralai/Mistral-7B-Instruct-v0.3`\n- 数据集：SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- 无 W&B 配置（本项目不检查 W&B）\n- 活跃进程（截至 handoff）：\n  - Llama constrained eval: PID 317469 (wrapper 317464), cuda:0, tmux session, 621/998\n  - Qwen constrained eval: PID 321568 (wrapper 321563), cuda:1, tmux session, 217/998\n\n### 3. 📊 当前状态\n刚完成：审查 `worker_paper_composability_update_prep` 产出——论文 section5_composability.tex SciERC 表数字全部与 registry 一致（已逐格核对）。向 Director 上报了 5 条发现（ROADMAP 16h+ 过时、W6 Mistral spec 空、Mistral 模型版本可能过旧、运行中实验正常、registry 状态不一致）。\n\nRUNNING：\n- `w5_llama_docred_lora_constrained_eval`: 621/998 (62%), cuda:0, ~3.8 samples/min, ETA ~1.5h\n- `w5_qwen_docred_lora_constrained_eval`: 217/998 (22%), cuda:1, ~2.9 samples/min, ETA ~4.5h\n\nPREPARING（活跃）：\n- `w6_mistral_scierc_unconstrained`, `w6_mistral_scierc_constrained`, `w6_mistral_docred_unconstrained` — 空壳注册，无 spec\n\nPREPARING（遗留，需清理）：\n- `w1_cf_fallback_llama_scierc` (conclusion=killed), `w1_cf_fallback_llama_docred` (conclusion=killed), `w5_llama_docred_sft_data_gen` (conclusion=success) — status 未同步\n\n### 4. 📋 待办（条件触发式）\n- **Llama constrained eval on_complete 回调** → 立即审查 metrics：DR 应 ≈0%，R-F1 delta vs unconstrained (43.72) 应 <0.5pp。交叉核对输出文件行数=998。\n- **Qwen constrained eval on_complete 回调** → 同上审查。额外关注 parse_fail_rate 是否与 unconstrained (7.11%) 一致或更高（constrained 模式通常更慢，超时风险更大）。\n- **两个 constrained eval 均完成** → 审查论文更新：section5_composability.tex 应新增 DocRED 行，Limitations 应删除 \"DocRED fine-tuning is not reported\"。数字一致性全文审查。\n- **W6 Mistral 实验转 RUNNING** → 检查 spec 是否已补全、GPU 分配是否合规、模型是否已下载。Mistral-7B-Instruct-v0.3 版本问题已上报，看 Director 决策。\n- **ROADMAP 更新通知** → 核对是否反映了 DocRED 完整 2×2 + Mistral 计划。\n\n### 5. 🎯 战略上下文\n- **核心结论 Claim 3**：Fine-tuning 和 constrained decoding 互补——FT 提 F1，constraints 确保 long-tail compliance。SciERC 已双模型确认（Qwen DR 1.95→0.00%, Llama DR 1.11→0.09%, F1 delta <0.1pp）。DocRED 即将补完。\n- **决策链**：D020 CF fallback→analytical finding / D023 reframe Claim 3 / D025+D028 SciERC composability 确认 / D029 DocRED 训练重提交\n- **最易判断错的事**：\n  1. 不要因为 Qwen parse_fail_rate 7.1% 就判定实验失败——Agent 已添加 excl_fail 指标变体，这是已知的 Qwen 长文档超时问题，不是 bug。\n  2. Mistral v0.3 版本问题——已上报但 Director 未回复。不要自行决定\"版本太旧不跑\"，等 Director 决策。版本选择可能有参数量匹配 (7B 级) 的合理理由。\n  3. ROADMAP 极度过时（最后更新 15T18:13），不要把 ROADMAP 当 ground truth——以 registry 为准。\n  4. `discussion_cf_fallback.tex` 是独立文件但未被 `main.tex` include（主文用 `appendix_discussion.tex` 包含同内容），可能是历史草稿残留，不影响 PDF 输出。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer"
+          },
+          "id": "event-000746"
+        }
+      ]
+    }
+  ]
+}

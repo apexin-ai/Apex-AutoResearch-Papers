@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c7cdc739441055babbf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents constrained dryrun 21461",
+  "task_key": "worker_code_wikievents_constrained_dryrun_21461_20260517T183326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_constrained_dryrun_21461_20260517T183326_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "b823a2cc01db5e97539f79485f1ff3937804d19b6685fb7f68f0df5b39a6c334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7/20 完成。constrained 解码比 unconstrained 慢（每个 sample 约 30-60 秒），这在预期范围内。\n\n总结：\n\n- **WikiEvents constrained dry-run 已成功在 westd-21461:cuda:1 上运行**\n- tmux session: `constrained_dryrun`\n- 模型: Qwen/Qwen3-8B（通过 hf-mirror.com 下载，约 16GB）\n- 模式: `full_s1`（xgrammar + semantic 双层约束）\n- 已完成 7/20 samples，GPU 利用率 84%，VRAM 18.9GB\n- 输出: `outputs/wikievents_qwen_constrained_dryrun_test20.jsonl`\n- 日志: `outputs/constrained_dryrun.log`（因管道缓冲暂未实时更新，但输出文件在正常增长）\n- cuda:0 上的 Mistral baseline 似乎已经跑完（0MiB VRAM）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-constrained-dryrun-21461.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f64f04259c9874a6c3d0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code docred sft data prep",
+  "task_key": "worker_code_docred_sft_data_prep_20260515T172731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_docred_sft_data_prep_20260515T172731.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "b7b0523eca0b7d651472b23d3d25d21b351389f2a43fe6176cb4f33a6b65a22e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:27:39.380532+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_docred_sft_data_prep_20260515T172731"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-docred-sft-data-prep.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "abe74edb85f8a116f145",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code 70b launch 21461",
+  "task_key": "worker_code_70b_launch_21461_20260518T114616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_70b_launch_21461_20260518T114616.log",
+    "occurrence": 1,
+    "bytes": 666805,
+    "sha256": "aa55f59476c74de4ace9f34155d5ab6607be6142c8d158e69f44400814384868"
+  },
+  "statistics": {
+    "messages": 367,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 129,
+      "tool_result": 129,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 367,
+      "chunks": [
+        {
+          "path": "abe74edb85f8a116f145-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "abe74edb85f8a116f145-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "abe74edb85f8a116f145-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-70b-launch-21461.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e6907aa57537f7a35d5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp tcr beam llama scierc",
+  "task_key": "worker_exp_tcr-beam-llama-scierc_20260522T152954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_tcr-beam-llama-scierc_20260522T152954_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "1516794d0e7b02ad0ad0b3ab8f47874b7bb041dbbb4398b604832479c5f8a6dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册完毕：\n\n- **实验**: `tcr_beam4_llama_scierc`\n- **服务器**: westd-16980, **GPU**: cuda:1 (18.3GB, 91% util)\n- **PID**: 963523 (实际 python 子进程 963528)\n- **模型**: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n- **输出**: `outputs/beam4_tcr_llama_scierc.jsonl`\n- **日志**: `/tmp/beam4_tcr_llama_scierc.log`\n- **监控**: 每 3 分钟自动检查状态\n\n模型已加载完成，正在对 551 个样本进行推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-tcr-beam-llama-scierc.md"
+}

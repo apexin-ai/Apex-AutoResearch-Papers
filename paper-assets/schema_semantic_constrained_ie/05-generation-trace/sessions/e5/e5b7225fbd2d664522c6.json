@@ -1,0 +1,735 @@
+{
+  "schema_version": "1.0",
+  "id": "e5b7225fbd2d664522c6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "fix p8c finalize",
+  "task_key": "worker_fix_p8c_finalize_20260518T184341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_p8c_finalize_20260518T184341.jsonl",
+    "occurrence": 1,
+    "bytes": 31958,
+    "sha256": "bca532f5e5698a69c6e59943fa7ab8058854977f52e63bc20c1f3cf2f2fe5ab6"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T18:45:25.840547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute,CronDelete,CronList",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T18:45:25.840948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T18:45:25.841141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "cat /root/autodl-tmp/schema_outputs/p8c_latency_report.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T18:45:25.841276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "head -1 /root/autodl-tmp/schema_outputs/p8c_timing_ft_unconstrained.jsonl"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T18:45:25.841436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"unconstrained\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"mean\\\\\\\": 2.612,\\\\n    \\\\\\\"median\\\\\\\": 2.355,\\\\n    \\\\\\\"p5\\\\\\\": 0.448,\\\\n    \\\\\\\"p95\\\\\\\": 5.966,\\\\n    \\\\\\\"std\\\\\\\": 1.758,\\\\n    \\\\\\\"total\\\\\\\": 1439.0\\\\n  },\\\\n  \\\\\\\"constrained_full_s1\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"mean\\\\\\\": 2.873,\\\\n    \\\\\\\"median\\\\\\\": 2.624,\\\\n    \\\\\\\"p5\\\\\\\": 0.789,\\\\n    \\\\\\\"p95\\\\\\\": 6.123,\\\\n    \\\\\\\"std\\\\\\\": 1.699,\\\\n    \\\\\\\"total\\\\\\\": 1582.9\\\\n  },\\\\n  \\\\\\\"overhead_ratio\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 1.1,\\\\n    \\\\\\\"median\\\\\\\": 1.114,\\\\n    \\\\\\\"p95\\\\\\\": 1.026\\\\n  },\\\\n  \\\\\\\"per_doc_ratio\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 1.205,\\\\n    \\\\\\\"median\\\\\\\": 1.117,\\\\n    \\\\\\\"p5\\\\\\\": 1.023,\\\\n    \\\\\\\"p95\\\\\\\": 1.754\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T18:45:25.841662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent0\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Used-for\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Recognition of proper nouns\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Material\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"morphological analysis\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text processing\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}], \\\\\\\\\\\\\\\"relations\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Recognition of proper nouns\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\n…[truncated 1884 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T18:45:25.841873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "head -1 /root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T18:45:25.842093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent0\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Used-for\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Recognition of proper nouns\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Material\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"morphological analysis\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}, {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text processing\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"}], \\\\\\\\\\\\\\\"relations\\\\\\\\\\\\\\\": [{\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Japanese text\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Recognition of proper nouns\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\n…[truncated 1879 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T18:45:25.842255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'p8c_ft_scierc_latency'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T18:45:25.842387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called CronList"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "CronList"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T18:45:25.842509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0192}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T18:45:25.842622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No scheduled jobs."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "CronList",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T18:45:25.842808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T18:45:25.843364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"p8c_ft_scierc_latency\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}}, \\\"p8b_docred_latency\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:14:28.888Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:48:57.349Z\\\", \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding overhead on Qwen3-8B DocRED (200-doc subset) measured on same GPU as P8 SciERC will confirm moderate overhead (<2x), providing consistent timing data for paper\\\", \\\"parent\\\": \\\"p8_latency_overhead\\\", \\\"spec\\\": {\\\"command\\\": \\\"run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/schema_outputs/docred_timing_subset_200.json\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B (base, no fine-tuning)\\\", \\\"eval_data\\\": \\\"DocRED dev subset 200 docs\\\"}, \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T17:48:57.349Z\\\"}, \\\"w9_qwen_docred_zs_sampling_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:56:42.483Z\\\", \\\"updated_at\\\": \\\"2026-05-18T16:39:44.672Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path /root/autodl-tmp/schema_outputs/w9_docred_remaining.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling_r2.jsonl --batch_size 1 --max_new_tokens 4096 --temperature 0.\n…[truncated 29943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T18:45:25.843614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "hypothesis",
+              "value": "OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T18:45:25.843789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:44:39.701Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5734}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T18:45:25.843924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)', 'server': 'westd-21461', 'data_path': 'data/processed_data/test.json', 'data_count': 551, 'model_name': 'Qwen3-8B-LoRA-SciERC-FT', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged', 'eval_data': 'data/processed_data/test.json'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T18:45:25.844066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3053}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T18:45:25.844214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T18:45:25.844348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:44:52.046Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.255}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T18:45:25.844480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)', 'server': 'westd-21461', 'data_path': 'data/processed_data/test.json', 'data_count': 551, 'model_name': 'Qwen3-8B-LoRA-SciERC-FT', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged', 'eval_data': 'data/processed_data/test.json'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T18:45:25.844628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:44:57.429Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1578}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T18:45:25.844801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T18:45:25.844947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:02.776Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5193}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T18:45:25.845088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/schema_outputs/p8c_latency_report.json",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T18:45:25.845230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:03.686Z\\\", \\\"metrics\\\": {\\\"unconstrained_docs\\\": 551, \\\"constrained_docs\\\": 551, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_latency_report.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.491}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T18:45:25.845365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "metrics",
+              "value": "{'unconstrained_mean_s': 2.612, 'constrained_mean_s': 2.873, 'unconstrained_median_s': 2.355, 'constrained_median_s': 2.624, 'overhead_mean_pct': 10, 'overhead_median_pct': 11.42, 'per_doc_ratio_mean': 1.205, 'per_doc_ratio_median': 1.117, 'num_docs': 551, 'unconstrained_total_s': 1439, 'constrained_total_s': 1582.9}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T18:45:25.845523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:06.411Z\\\", \\\"metrics\\\": {\\\"unconstrained_mean_s\\\": 2.612, \\\"constrained_mean_s\\\": 2.873, \\\"unconstrained_median_s\\\": 2.355, \\\"constrained_median_s\\\": 2.624, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42, \\\"per_doc_ratio_mean\\\": 1.205, \\\"per_doc_ratio_median\\\": 1.117, \\\"num_docs\\\": 551, \\\"unconstrained_total_s\\\": 1439, \\\"constrained_total_s\\\": 1582.9}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_latency_report.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.569}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T18:45:25.845698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "status",
+              "value": "ANALYZING",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T18:45:25.845857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:10.466Z\\\", \\\"metrics\\\": {\\\"unconstrained_mean_s\\\": 2.612, \\\"constrained_mean_s\\\": 2.873, \\\"unconstrained_median_s\\\": 2.355, \\\"constrained_median_s\\\": 2.624, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42, \\\"per_doc_ratio_mean\\\": 1.205, \\\"per_doc_ratio_median\\\": 1.117, \\\"num_docs\\\": 551, \\\"unconstrained_total_s\\\": 1439, \\\"constrained_total_s\\\": 1582.9}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_latency_report.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6074}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T18:45:25.845987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "conclusion",
+              "value": "success",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T18:45:25.846128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:14.302Z\\\", \\\"metrics\\\": {\\\"unconstrained_mean_s\\\": 2.612, \\\"constrained_mean_s\\\": 2.873, \\\"unconstrained_median_s\\\": 2.355, \\\"constrained_median_s\\\": 2.624, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42, \\\"per_doc_ratio_mean\\\": 1.205, \\\"per_doc_ratio_median\\\": 1.117, \\\"num_docs\\\": 551, \\\"unconstrained_total_s\\\": 1439, \\\"constrained_total_s\\\": 1582.9}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_latency_report.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5037}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T18:45:25.846263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p8c_ft_scierc_latency",
+              "field": "status",
+              "value": "DONE",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T18:45:25.846430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p8c_ft_scierc_latency\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:43:08.206Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:18.087Z\\\", \\\"metrics\\\": {\\\"unconstrained_mean_s\\\": 2.612, \\\"constrained_mean_s\\\": 2.873, \\\"unconstrained_median_s\\\": 2.355, \\\"constrained_median_s\\\": 2.624, \\\"overhead_mean_pct\\\": 10, \\\"overhead_median_pct\\\": 11.42, \\\"per_doc_ratio_mean\\\": 1.205, \\\"per_doc_ratio_median\\\": 1.117, \\\"num_docs\\\": 551, \\\"unconstrained_total_s\\\": 1439, \\\"constrained_total_s\\\": 1582.9}, \\\"hypothesis\\\": \\\"OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B-LoRA-SciERC-FT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged\\\", \\\"eval_data\\\": \\\"data/processed_data/test.json\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/schema_outputs/p8c_latency_report.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T18:45:18.087Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7662}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T18:45:25.846610+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron list already shows no jobs in this session — the cron was likely in a previous session and already expired.\n\n```\nunconstrained: mean=2.612s/doc, median=2.355s/doc\nconstrained:   mean=2.873s/doc, median=2.624s/doc\noverhead:      mean=10%, median=11.42%\nregistry:      DONE(success)\ncron:          none active (already cleared)\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_p8c_finalize_20260518T184341"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/fix-p8c-finalize.md"
+}

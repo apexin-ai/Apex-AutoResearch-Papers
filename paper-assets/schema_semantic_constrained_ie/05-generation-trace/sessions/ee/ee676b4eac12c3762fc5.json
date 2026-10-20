@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee676b4eac12c3762fc5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778890535.md",
+  "task_key": "loop_10_1778890535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778890535.md",
+    "occurrence": 1,
+    "bytes": 4222,
+    "sha256": "5d9b0b8f5e2954e2280cf531d0053d728907534cb2da8c421e534bb815483f3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:22:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: 仅 westd-16980 的 cuda:0 + cuda:1，Director 指令也不能覆盖\n- spec.command 禁止硬编码 CUDA_VISIBLE_DEVICES（级联故障教训：内层覆盖外层 wrapper 注入，导致跑错卡）\n- WANDB_MODE=disabled（项目未配 wandb key），不要假设有 W&B metrics\n- DocRED 数据在 `data/docred/dev.json`，constraints 在 `data/docred/ontology_constraints_docred.json`；SciERC 数据在 `data/processed_data/test.json`，constraints 在项目根 `ontology_constraints.json`——路径不对称，别猜\n- 大 checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区只有 30G\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-16980, root@, 工作目录 `/root/schema_semantic_constrained_ie`\n- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8, torch 2.10.0+cu128, transformers 4.57.6\n- 模型路径:\n  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Qwen SciERC merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Qwen DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged` ← 刚生成\n  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Llama SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n- 活跃进程 (handoff 时刻):\n  - w5_llama_lora_scierc_constrained_eval: PID 290317, cuda:1 (session start 时 reconcile 确认 running，可能已完成)\n  - Worker `worker_eval_w5_qwen_docred_ft_eval_20260515T200422`: 正在准备 DocRED FT eval 提交\n\n### 3. 📊 当前状态\n**刚做完**: w5_qwen_docred_lora_training SUCCESS — eval_loss=0.0614, token_acc=98.04%, 97min。Registry 已更新 DONE/success，飞书结果卡片已发，Director 已汇报。\n\n**RUNNING/PREPARING**:\n- w5_llama_lora_scierc_constrained_eval (RUNNING, cuda:1) — Llama FT + OntoCoDec on SciERC，完成后填补 Llama SciERC 2×2 最后一格。可能已完成但我没来得及确认。\n- w5_qwen_docred_ft_unconstrained_eval / w5_qwen_docred_ft_constrained_eval — eval worker 正在派发中，尚未出现在 registry\n\n**等待中**:\n- Worker 回调: `worker_eval_w5_qwen_docred_ft_eval_20260515T200422` — DocRED FT eval 提交结果\n- Cron: w5_llama_lora_scierc_constrained_eval 完成回调\n- Cron: DocRED FT eval 完成回调（worker 提交后自动注册）\n\n### 4. 📋 待办（条件触发式）\n- eval worker 回调 → 确认 DocRED FT unconstrained + constrained eval 已提交，检查 registry 状态\n- w5_llama_lora_scierc_constrained_eval cron 回调 → 按 on-experiment-done 处理，更新 Llama SciERC 2×2 matrix（memory.md 已有 Llama 结果模板）\n- w5_qwen_docred_ft_unconstrained_eval 完成 → 记录 DR/F1，对比 zero-shot baseline (DR=18.46%, R-F1=7.74%)，确认残余 DR >0%\n- w5_qwen_docred_ft_constrained_eval 完成 → 构建 Qwen DocRED 2×2 matrix，对比 SciERC 结果。若 DR→0% 则 composability claim 升级为 cross-dataset\n- 所有 4 个 2×2 cell 完成 → 向 Director 汇报完整 composability 证据矩阵 (2 datasets × 2 models)，推进论文写入\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: OntoCoDec 与 fine-tuning 正交可组合。SciERC 已完全验证 (Qwen DR 0.0%, Llama DR 0.09%)。DocRED 是 cross-dataset 泛化证据。\n- **决策链**: D018→D022→D023→D024→D025 确立 composability claim；D027 杀掉错误的 CF fallback 实验\n- **DocRED 约束更紧** (avg tightness 0.842 vs SciERC 0.333)，预期 FT 后残余 DR 高于 SciERC（2-5% vs 1.95%），但 OntoCoDec 仍应能清零。如果 DocRED FT+OntoCoDec DR 未清零，不要直接报 negative——先检查是 tightness 导致的 CF 还是真的 DR 残留\n- **易踩坑**: registry filter `{\"exp_id\": \"xxx\"}` 在本项目上不工作（返回空），需用 Bash 从 full dump 搜索。已在两次调用中确认此 bug\n- **时间线**: May 19 内部稿 → May 25 EMNLP ARR 提交。composability 数据是最后一块拼图，完成后进入全文编译 + Round 2 review\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778890535.md"
+}

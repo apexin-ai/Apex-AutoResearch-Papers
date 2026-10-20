@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9172cd2a620e45726d8f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis cf fallback code diff 20260515T154255 retry2",
+  "task_key": "worker_analysis_cf_fallback_code_diff_20260515T154255_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cf_fallback_code_diff_20260515T154255_retry2.log",
+    "occurrence": 1,
+    "bytes": 9838936,
+    "sha256": "0a2dfca83c5e85988cf06bb81b7b91932aad8b3983a12691788a3946d81e252b"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "9172cd2a620e45726d8f-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "9172cd2a620e45726d8f-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cf-fallback-code-diff-20260515t154255-retry2.md"
+}

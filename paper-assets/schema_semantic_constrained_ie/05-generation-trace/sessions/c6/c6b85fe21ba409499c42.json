@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b85fe21ba409499c42",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "figure fix fig1 curved arrows",
+  "task_key": "worker_figure_fix-fig1-curved-arrows_20260522T064040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix-fig1-curved-arrows_20260522T064040_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "9965e87894cbb76168434dc71aa465528b57615381d7f730877e686d334f5e93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。图片验证结果：\n\n- **蓝色箭头**（Grammar Automaton M_g → Grammar Layer）：已改为向上弧线，清晰绕过中间区域\n- **橙色箭头**（Semantic Rules → Semantic Layer）：已改为向下弧线，清晰绕过中间区域\n- 两条曲线方向相反，互不覆盖\n- 其他所有元素（t+1 U 形折线、No/Yes 白色背景、enabling 标签等）保持不变\n\n**改动详情**（`gen_fig1.py` 第 152-165 行）：\n- 蓝色箭头：`draw_arrow` → `FancyArrowPatch` + `connectionstyle='arc3,rad=0.4'`（正值 = 向上弧）\n- 橙色箭头：`draw_arrow` → `FancyArrowPatch` + `connectionstyle='arc3,rad=-0.5'`（负值 = 向下弧）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-fig1-curved-arrows.md"
+}

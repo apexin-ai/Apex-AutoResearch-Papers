@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c28016c1c27c23e20ba6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research table2 vs appendix discrepancy",
+  "task_key": "worker_research_table2_vs_appendix_discrepancy_20260520T140637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_table2_vs_appendix_discrepancy_20260520T140637_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "2b211206b4f6c777cb907b37d7753ef5cb7975dd81146f59be05e44bd63ee005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 根因结论\n\n**根因是 `compiler/type_mask_processor.py` 代码版本不同。**\n\n- w5 运行于 May 15-16，使用旧版 type_mask_processor（544 行）\n- May 18 发生重大 grammar fix，代码从 544 行扩展到 938 行，新增 entity type continuation masking、role prefix/continuation masking 等 token 级约束\n- d065 运行于 May 20，使用新版\n\n新版在 generation 时强制 domain-range 约束（如 `_mask_tail_type` 根据当前 relation + head_type 限制 allowed tail types），导致：\n\n| 指标 | w5 (旧代码) | d065 (新代码) | 原因 |\n|---|---|---|---|\n| DR% | 0.21% (33个) | 0% | 新版 generation 时即满足 DR 约束 |\n| R-F1 | 43.78 | 44.70 | entity type 分配改变影响 gold matching |\n| E-F1 | 83.94 | 84.71 | 同上 |\n\n205/998 (20.5%) 的 sample 输出不同。所有命令行参数（model、dataset、seed、decoding_strategy、max_new_tokens）完全一致，eval 脚本也无问题。\n\n完整报告已注册为 artifact `root_cause_w5_vs_d065`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-table2-vs-appendix-discrepancy.md"
+}

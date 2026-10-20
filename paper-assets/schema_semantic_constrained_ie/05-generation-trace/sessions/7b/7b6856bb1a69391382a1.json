@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b6856bb1a69391382a1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix 70b scierc registry spec",
+  "task_key": "worker_fix_70b_scierc_registry_spec_20260518T132510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_70b_scierc_registry_spec_20260518T132510_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "c54f786311ec222cf8f7c34f917d0b3eea40bf5d8b65523cac1737417bfc3c34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**data_path**：Registry 原记录 `data/scierc/test.jsonl` 不存在。实际数据文件是 `data/processed_data/test.json`（100 个文档，JSONL 格式）。代码按句子拆分后产生 551 个样本，与日志中 `Samples: 551` 一致。data_count=551 是正确的。\n\n**实验状态**：两个实验均已跑完（551/551 success, 0 fail），进程已退出。\n\n**日志迁移**：\n- `/tmp/70b_unconstrained.log` → `logs/70b_scierc_unconstrained.log` (81,815 bytes)\n- `/tmp/70b_constrained.log` → `logs/70b_scierc_constrained.log` (81,507 bytes)\n- 原 `/tmp/` 文件保留未删\n\n**Registry 更新**（两个实验均已修正）：\n- `spec.data_path`: `data/scierc/test.jsonl` → `data/processed_data/test.json`\n- `spec.log_path`: `/tmp/70b_*.log` → `logs/70b_scierc_*.log`\n- 其余 spec 字段已完整恢复\n\n注意：两个实验 status 仍为 RUNNING，实际已完成，后续需要跑 violation check 再转 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-70b-scierc-registry-spec.md"
+}

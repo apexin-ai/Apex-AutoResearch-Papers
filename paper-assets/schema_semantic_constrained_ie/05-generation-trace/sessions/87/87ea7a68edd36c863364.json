@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ea7a68edd36c863364",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research third model compatibility",
+  "task_key": "worker_research_third_model_compatibility_20260516T023439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_third_model_compatibility_20260516T023439_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "7d069e3ef93f625d3b7e56cceac6e518119faa202399b01a1205d2c5eaedd01a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/_project/report/third_model_compatibility_report.md`。\n\n**结论: 推荐 Mistral-7B-Instruct-v0.3 作为第三模型。**\n\n核心理由：\n- **适配成本极低** (~10 行增量改动)，标准 `MistralForCausalLM` 架构无特殊机制\n- **XGrammar 完全兼容**，32K 小 vocab 使 FSM 索引构建更快，无 soft-capping 干扰\n- **32K context** 覆盖所有 DocRED 文档，无需截断\n- **Apache 2.0** 许可证，无需接受协议\n\nGemma-2-9B-it 的主要问题：必须用 `eager` attention（慢）、不支持 system role（需改 prompt 构建）、constrained decoding 有重复循环风险、8K context 可能不够。适配约需 30-50 行改动且存在未知风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-third-model-compatibility.md"
+}

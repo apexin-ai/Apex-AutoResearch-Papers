@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7e431da95ca0c03babe",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "prep checkpoint transfer sizing",
+  "task_key": "worker_prep_checkpoint-transfer-sizing_20260522T052516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_checkpoint-transfer-sizing_20260522T052516_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "42204df19918200b2885e2bcea55c51d718eebfd67ce66c37f09e10208743813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### DocRED 70B LoRA (`checkpoint-1146`)\n- **总大小: 768 MB**\n- 关键文件:\n  - `adapter_model.safetensors` — 250 MB (LoRA 权重)\n  - `optimizer.pt` — 500 MB\n  - `tokenizer.json` — 16 MB\n\n### SciERC 70B LoRA (`checkpoint-663`)\n- **总大小: 768 MB**\n- 关键文件:\n  - `adapter_model.safetensors` — 250 MB (LoRA 权重)\n  - `optimizer.pt` — 500 MB\n  - `tokenizer.json` — 16 MB\n\n### 传输评估\n\n两个 checkpoint 各 768 MB，合计约 **1.5 GB**。如果只需推理（不需恢复训练），可以只传 `adapter_model.safetensors` + `adapter_config.json` + tokenizer 文件，每个 checkpoint 约 **267 MB**，合计 ~530 MB。\n\n关于跨服务器直连：AutoDL 实例之间通常无法直接 ping/scp（各实例在独立容器网络中），需要通过中间节点或 autodl-tmp 网盘中转。常见方案：\n1. **通过本地中转**: westd-16980 → 本地 → westd-21461\n2. **HuggingFace Hub 中转**: 上传为私有 repo，另一台拉取\n3. **AutoDL 文件存储**: 如果两台在同一区域，可挂载共享存储"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-checkpoint-transfer-sizing.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f40a1d0b31adfe1b6bdb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exec docred unc truncate 200 followup",
+  "task_key": "worker_exec_docred-unc-truncate-200-followup_20260522T065713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_docred-unc-truncate-200-followup_20260522T065713_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "d245973248f78532870a963cb9d51cce4d7902f270caea1a2a68844f8e41f784"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中。快速监控脚本每 30 秒检查一次，到 200 行后会自动 kill 进程并创建截断文件。4 分钟后回来确认并运行 violation check。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-docred-unc-truncate-200-followup.md"
+}

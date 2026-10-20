@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc80b463f1169e5af97d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "verify final compile d016",
+  "task_key": "worker_verify_final_compile_d016_20260514T230651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_final_compile_d016_20260514T230651_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "77dcaf97bf12484abb190018eded42efc15ddece061c2c05878303dca4a5a864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clean. Here's the compilation report:\n\n---\n\n## Compilation Report\n\n| Item | Result |\n|------|--------|\n| **Exit code** | 0 (success) |\n| **PDF size** | 288 KB (295,287 bytes) |\n| **Total pages** | 16 |\n\n### Page Distribution\n\n| Section | Pages |\n|---------|-------|\n| Body (§1–§7) | 1–8 (**8 pages**) |\n| References | 9–10 (2 pages) |\n| Appendix A–C | 11–16 (6 pages) |\n\n**Body ≤ 8 pages: YES** (exactly 8 — §7 Discussion and Conclusion starts on page 8)\n\n### Warnings\n\n| Type | Count | Details |\n|------|-------|---------|\n| Undefined references | **0** | — |\n| Missing citations | **0** | — |\n| Overfull hbox | **4** | Worst: 21.55pt too wide (lines 17–52) |\n| Rerun needed | **No** | Converged after 3 passes |\n\n### Overfull hbox details\n1. **21.55pt** too wide — lines 17–52\n2. **19.21pt** too wide — lines 21–67\n3. **16.12pt** too wide — lines 17–43\n4. **1.44pt** too wide — lines 16–28\n\nAll overfull boxes are in the appendix extended related work section (likely long URLs or author lists). The body is clean."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-final-compile-d016.md"
+}

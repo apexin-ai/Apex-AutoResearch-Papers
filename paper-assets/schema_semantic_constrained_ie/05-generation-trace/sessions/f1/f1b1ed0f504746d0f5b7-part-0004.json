@@ -1,0 +1,940 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f1b1ed0f504746d0f5b7",
+  "rounds": [
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-26T10:25:29.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gu1SKSP2Vo1uygByxokzie",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the information I need. Let me compile the complete audit results.\n\nHere are the verification results for all 10 BibTeX entries:\n\n---\n\n```\n[wang2023instructuie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (all 14 authors match: Wang Xiao, Zhou Weikang, Zu Can, Xia Han, Chen Tianze, Zhang Yuansen, Zheng Rui, Ye Junjie, Zhang Qi, Gui Tao, Kang Jihua, Yang Jingsheng, Li Siyuan, Du Chunsai)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\")\n  - Venue: ✓ (arXiv preprint arXiv:2304.08085)\n  - DOI/arXiv: ✓ (2304.08085)\n  - 正文引用: ✓ (section6_related_work.tex L13, listed among schema-aware IE methods)\n  - 备注: None\n```\n\n```\n[zhou2024universalner] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zhou Wenxuan, Zhang Sheng, Gu Yu, Chen Muhao, Poon Hoifung)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\")\n  - Venue: ✓ (ICLR 2024, OpenReview r65xfUb76p)\n  - DOI/arXiv: ✓ (OpenReview URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, listed among schema-aware IE methods)\n  - 备注: None\n```\n\n```\n[wadhwa2023revisiting] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Wadhwa Somin, Amir Silvio, Wallace Byron)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (\"Revisiting Relation Extraction in the era of Large Language Models\")\n  - Venue: ✓ (ACL 2023, Volume 1: Long Papers, pages 15566-15589)\n  - DOI/arXiv: ✓ (10.18653/v1/2023.acl-long.868)\n  - 正文引用: ✓ (section3_violation_landscape.tex L13 for R-F1 range context; section6_related_work.tex L13 for violations persist claim)\n  - 备注: None\n```\n\n```\n[paolini2021tanl] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Paolini Giovanni, Athiwaratkun Ben, Krone Jason, Ma Jie, Achille Alessandro, Anubhai Rishita, Nogueira dos Santos Cicero, Xiang Bing, Soatto Stefano)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"Structured Prediction as Translation between Augmented Natural Languages\")\n  - Venue: ✓ (ICLR 2021, OpenReview US-TP-xnXI)\n  - DOI/arXiv: ✓ (OpenReview URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, appendix_related_work.tex L55-60)\n  - 备注: None\n```\n\n```\n[fei2022lasuie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Fei Hao, Wu Shengqiong, Li Jingye, Li Bobo, Li Fei, Qin Libo, Zhang Meishan, Zhang Min, Chua Tat-Seng)\n  - 年份: ✓ (2022)\n  - 标题: ✓ (\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\")\n  - Venue: ✓ (NeurIPS 2022, volume 35)\n  - DOI/arXiv: ✓ (arXiv URL 2304.06248 correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, appendix_related_work.tex L55-60)\n  - 备注: None\n```\n\n```\n[riedel2010modeling] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Riedel Sebastian, Yao Limin, McCallum Andrew)\n  - 年份: ✓ (2010)\n  - 标题: ✓ (\"Modeling Relations and Their Mentions without Labeled Text\")\n  - Venue: ✓ (booktitle \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" is a valid way to cite ECML-PKDD 2010; Springer LNCS vol. 6323, pp. 148-163)\n  - DOI/arXiv: N/A (none provided, acceptable)\n  - 正文引用: ✓ (section6_related_work.tex L17, cited for ILP constraints)\n  - 备注: The venue \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" is the formal Springer proceedings name for ECML-PKDD. This is correct. However, the bib entry comment says \"Confirmed via: ACL Anthology, EMNLP-CoNLL 2010\" which is wrong -- this paper was NOT at EMNLP-CoNLL. The comment is misleading but does not affect the bib entry itself.\n```\n\n```\n[anderson2017guided] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Anderson Peter, Fernando Basura, Johnson Mark, Gould Stephen)\n  - 年份: ✓ (2017)\n  - 标题: ✓ (\"Guided Open Vocabulary Image Captioning with Constrained Beam Search\")\n  - Venue: ✓ (EMNLP 2017, pages 936-945)\n  - DOI/arXiv: N/A (none provided, acceptable; ACL Anthology D17-1098)\n  - 正文引用: ✓ (section5_runtime.tex L12, cited for beam search)\n  - 备注: None\n```\n\n```\n[lu2021text2event] ✗\n  - 存在性: ✓\n  - 作者: ✗ — The bib entry lists the last author as \"Chen, Shaobo\" but the ACL Anthology (2021.acl-long.217) lists \"Shaoyi Chen\". The correct name is Shaoyi Chen, not Shaobo Chen.\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"Text2Event: Controllable Sequence-to-Structure Generation for End-to-end Event Extraction\")\n  - Venue: ✓ (ACL-IJCNLP 2021, Long Papers, pages 2722-2735)\n  - DOI/arXiv: N/A (none provided, acceptable)\n  - 正文引用: ✓ (appendix_wikievents_pilot.tex L6)\n  - 备注: Last author name is wrong: \"Shaobo\" should be \"Shaoyi\". Fix: change \"Chen, Shaobo\" to \"Chen, Shaoyi\" in the bib entry.\n```\n\n```\n[luo2025kgtrie] ✗\n  - 存在性: ✓ (paper exists at arXiv:2410.13080 and ICML 2025)\n  - 作者: ✗ — The bib lists \"Li, Yuan-Fang\" as 4th author, but the ICML 2025 proceedings (PMLR v267/luo25t) and OpenReview list the authors as: Linhao Luo, Zicheng Zhao, Gholamreza Haffari, Yuan-Fang Li, Chen Gong, Shirui Pan. The bib has the same names but the order differs: bib has \"Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen\" matching PMLR order. Actually, comparing carefully: bib = \"Luo, Linhao and Zhao, Zicheng and Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen and Pan, Shirui\" vs PMLR = \"Linhao Luo, Zicheng Zhao, Gholamreza Haffari, Yuan-Fang Li, Chen Gong, Shirui Pan\" — these match. Author order is correct. ✓ (revised)\n  - 年份: ✓ (2025)\n  - 标题: ✗ — The bib entry title is \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" but the actual paper title per ICML proceedings, OpenReview, and arXiv is \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\". The subtitle is completely fabricated.\n  - Venue: ✓ (ICML 2025, PMLR v267)\n  - DOI/arXiv: ✓ (arXiv:2410.13080 is correct)\n  - 正文引用: ✓ (section6_related_work.tex L9, cited for trie-based KG constraints)\n  - 备注: CRITICAL — the title is wrong. The bib says \"Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" but the real subtitle is \"Faithful Reasoning on Knowledge Graphs with Large Language Models\". The cite key \"kgtrie\" is acceptable as shorthand for the KG-Trie method proposed in the paper. Fix: change title to \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\".\n```\n\n```\n[vukovic2024dialogue] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Vukovic Renato, Arps David, van Niekerk Carel, Ruppik Benjamin Matthias, Lin Hsien-chin, Heck Michael, Gasic Milica)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (\"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\")\n  - Venue: ✓ (SIGDIAL 2024, pages 370-384, Kyoto, Japan)\n  - DOI/arXiv: ✓ (arXiv:2408.02361)\n  - 正文引用: ✓ (section6_related_work.tex L18, cited for dialogue RE with ontology constraints)\n  - 备注: None\n```\n\n---\n\n**Summary: 8 correct, 2 with errors.**\n\nErrors requiring fixes in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib`:\n\n1. **`lu2021text2event` (line 622)**: Last author \"Chen, Shaobo\" should be \"Chen, Shaoyi\"\n2. **`luo2025kgtrie` (line 634)**: Title is fabricated. \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" should be \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\""
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: aab5321221134249a (use SendMessage with to: 'aab5321221134249a' to continue this agent)\n<usage>total_tokens: 63758\ntool_uses: 29\nduration_ms: 182925</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "24323b4f-b744-41f2-a23e-bb678d5e4a7f",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You are auditing BibTeX entries for correctness. For each entry below, use WebSearch to verify: (1) the paper exists, (2) author names are correct, (3) year is correct, (4) title is correct, (5) venue is correct, (6) DOI/arXiv ID if present. Search for each paper's exact title in quotes plus key author names.\n\nFor each entry, output the result in this format:\n```\n[cite_key] ✓ or ✗\n  - 存在性: ✓/✗\n  - 作者: ✓/✗ (note issues)\n  - 年份: ✓/✗\n  - 标题: ✓/✗\n  - Venue: ✓/✗ (note issues)\n  - DOI/arXiv: ✓/✗\n  - 正文引用: ✓/✗ (note issues)\n  - 备注: (notes)\n```\n\nHere are the 10 entries to verify:\n\n**51. wang2023instructuie**\nTitle: \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\"\nAuthors: Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai\nVenue: arXiv:2304.08085 (2023)\nCitation context: section6_related_work.tex L13\n\n**52. zhou2024universalner**\nTitle: \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\"\nAuthors: Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\nVenue: ICLR 2024\nURL: https://openreview.net/forum?id=r65xfUb76p\nCitation context: section6_related_work.tex L13\n\n**53. wadhwa2023revisiting**\nTitle: \"Revisiting Relation Extraction in the era of Large Language Models\"\nAuthors: Wadhwa, Somin and Amir, Silvio and Wallace, Byron\nVenue: ACL 2023 (Long Papers)\nDOI: 10.18653/v1/2023.acl-long.868\nURL: https://aclanthology.org/2023.acl-long.868\nCitation context: section3_violation_landscape.tex L13 (R-F1 range), section6_related_work.tex L13 (violations persist)\n\n**54. paolini2021tanl**\nTitle: \"Structured Prediction as Translation between Augmented Natural Languages\"\nAuthors: Paolini, Giovanni and Athiwaratkun, Ben and Krone, Jason and Ma, Jie and Achille, Alessandro and Anubhai, Rishita and Nogueira dos Santos, Cícero and Xiang, Bing and Soatto, Stefano\nVenue: ICLR 2021\nURL: https://openreview.net/forum?id=US-TP-xnXI\nCitation context: section6_related_work.tex L13, appendix_related_work.tex L55-60\n\n**55. fei2022lasuie**\nTitle: \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\"\nAuthors: Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Libo and Zhang, Meishan and Zhang, Min and Chua, Tat-Seng\nVenue: NeurIPS 2022 (volume 35)\nURL: https://arxiv.org/abs/2304.06248\nCitation context: section6_related_work.tex L13, appendix_related_work.tex L55-60\n\n**56. riedel2010modeling**\nTitle: \"Modeling Relations and Their Mentions without Labeled Text\"\nAuthors: Riedel, Sebastian and Yao, Limin and McCallum, Andrew\nVenue: \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" (Springer, 2010)\nCitation context: section6_related_work.tex L17 (ILP constraints)\nNOTE: The bib says \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" but this paper is better known as ECML-PKDD 2010. Verify venue is correct.\n\n**57. anderson2017guided**\nTitle: \"Guided Open Vocabulary Image Captioning with Constrained Beam Search\"\nAuthors: Anderson, Peter and Fernando, Basura and Johnson, Mark and Gould, Stephen\nVenue: EMNLP 2017\nCitation context: section5_runtime.tex L12 (beam search)\n\n**58. lu2021text2event**\nTitle: \"Text2Event: Controllable Sequence-to-Structure Generation for End-to-end Event Extraction\"\nAuthors: Lu, Yaojie and Lin, Hongyu and Xu, Jin and Han, Xianpei and Tang, Jialong and Li, Annan and Sun, Le and Liao, Meng and Chen, Shaobo\nVenue: ACL-IJCNLP 2021 (Long Papers)\nCitation context: appendix_wikievents_pilot.tex L6\n\n**59. luo2025kgtrie**\nTitle: \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\"\nAuthors: Luo, Linhao and Zhao, Zicheng and Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen and Pan, Shirui\nVenue: ICML 2025\nURL: https://arxiv.org/abs/2410.13080\nCitation context: section6_related_work.tex L9 (type systems)\nNOTE: cite key says \"kgtrie\" but verify if the paper actually proposes something called KGTrie or if the cite key is misleading.\n\n**60. vukovic2024dialogue**\nTitle: \"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\"\nAuthors: Vukovic, Renato and Arps, David and van Niekerk, Carel and Ruppik, Benjamin Matthias and Lin, Hsien-chin and Heck, Michael and Gašić, Milica\nVenue: SIGDIAL 2024\nURL: https://arxiv.org/abs/2408.02361\nCitation context: section6_related_work.tex L18 (dialogue RE)\n\nSearch each one and report findings. Do NOT skip any entry.",
+              "agentId": "aab5321221134249a",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the information I need. Let me compile the complete audit results.\n\nHere are the verification results for all 10 BibTeX entries:\n\n---\n\n```\n[wang2023instructuie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (all 14 authors match: Wang Xiao, Zhou Weikang, Zu Can, Xia Han, Chen Tianze, Zhang Yuansen, Zheng Rui, Ye Junjie, Zhang Qi, Gui Tao, Kang Jihua, Yang Jingsheng, Li Siyuan, Du Chunsai)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\")\n  - Venue: ✓ (arXiv preprint arXiv:2304.08085)\n  - DOI/arXiv: ✓ (2304.08085)\n  - 正文引用: ✓ (section6_related_work.tex L13, listed among schema-aware IE methods)\n  - 备注: None\n```\n\n```\n[zhou2024universalner] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zhou Wenxuan, Zhang Sheng, Gu Yu, Chen Muhao, Poon Hoifung)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\")\n  - Venue: ✓ (ICLR 2024, OpenReview r65xfUb76p)\n  - DOI/arXiv: ✓ (OpenReview URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, listed among schema-aware IE methods)\n  - 备注: None\n```\n\n```\n[wadhwa2023revisiting] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Wadhwa Somin, Amir Silvio, Wallace Byron)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (\"Revisiting Relation Extraction in the era of Large Language Models\")\n  - Venue: ✓ (ACL 2023, Volume 1: Long Papers, pages 15566-15589)\n  - DOI/arXiv: ✓ (10.18653/v1/2023.acl-long.868)\n  - 正文引用: ✓ (section3_violation_landscape.tex L13 for R-F1 range context; section6_related_work.tex L13 for violations persist claim)\n  - 备注: None\n```\n\n```\n[paolini2021tanl] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Paolini Giovanni, Athiwaratkun Ben, Krone Jason, Ma Jie, Achille Alessandro, Anubhai Rishita, Nogueira dos Santos Cicero, Xiang Bing, Soatto Stefano)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"Structured Prediction as Translation between Augmented Natural Languages\")\n  - Venue: ✓ (ICLR 2021, OpenReview US-TP-xnXI)\n  - DOI/arXiv: ✓ (OpenReview URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, appendix_related_work.tex L55-60)\n  - 备注: None\n```\n\n```\n[fei2022lasuie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Fei Hao, Wu Shengqiong, Li Jingye, Li Bobo, Li Fei, Qin Libo, Zhang Meishan, Zhang Min, Chua Tat-Seng)\n  - 年份: ✓ (2022)\n  - 标题: ✓ (\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\")\n  - Venue: ✓ (NeurIPS 2022, volume 35)\n  - DOI/arXiv: ✓ (arXiv URL 2304.06248 correct)\n  - 正文引用: ✓ (section6_related_work.tex L13, appendix_related_work.tex L55-60)\n  - 备注: None\n```\n\n```\n[riedel2010modeling] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Riedel Sebastian, Yao Limin, McCallum Andrew)\n  - 年份: ✓ (2010)\n  - 标题: ✓ (\"Modeling Relations and Their Mentions without Labeled Text\")\n  - Venue: ✓ (booktitle \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" is a valid way to cite ECML-PKDD 2010; Springer LNCS vol. 6323, pp. 148-163)\n  - DOI/arXiv: N/A (none provided, acceptable)\n  - 正文引用: ✓ (section6_related_work.tex L17, cited for ILP constraints)\n  - 备注: The venue \"Joint European Conference on Machine Learning and Knowledge Discovery in Databases\" is the formal Springer proceedings name for ECML-PKDD. This is correct. However, the bib entry comment says \"Confirmed via: ACL Anthology, EMNLP-CoNLL 2010\" which is wrong -- this paper was NOT at EMNLP-CoNLL. The comment is misleading but does not affect the bib entry itself.\n```\n\n```\n[anderson2017guided] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Anderson Peter, Fernando Basura, Johnson Mark, Gould Stephen)\n  - 年份: ✓ (2017)\n  - 标题: ✓ (\"Guided Open Vocabulary Image Captioning with Constrained Beam Search\")\n  - Venue: ✓ (EMNLP 2017, pages 936-945)\n  - DOI/arXiv: N/A (none provided, acceptable; ACL Anthology D17-1098)\n  - 正文引用: ✓ (section5_runtime.tex L12, cited for beam search)\n  - 备注: None\n```\n\n```\n[lu2021text2event] ✗\n  - 存在性: ✓\n  - 作者: ✗ — The bib entry lists the last author as \"Chen, Shaobo\" but the ACL Anthology (2021.acl-long.217) lists \"Shaoyi Chen\". The correct name is Shaoyi Chen, not Shaobo Chen.\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"Text2Event: Controllable Sequence-to-Structure Generation for End-to-end Event Extraction\")\n  - Venue: ✓ (ACL-IJCNLP 2021, Long Papers, pages 2722-2735)\n  - DOI/arXiv: N/A (none provided, acceptable)\n  - 正文引用: ✓ (appendix_wikievents_pilot.tex L6)\n  - 备注: Last author name is wrong: \"Shaobo\" should be \"Shaoyi\". Fix: change \"Chen, Shaobo\" to \"Chen, Shaoyi\" in the bib entry.\n```\n\n```\n[luo2025kgtrie] ✗\n  - 存在性: ✓ (paper exists at arXiv:2410.13080 and ICML 2025)\n  - 作者: ✗ — The bib lists \"Li, Yuan-Fang\" as 4th author, but the ICML 2025 proceedings (PMLR v267/luo25t) and OpenReview list the authors as: Linhao Luo, Zicheng Zhao, Gholamreza Haffari, Yuan-Fang Li, Chen Gong, Shirui Pan. The bib has the same names but the order differs: bib has \"Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen\" matching PMLR order. Actually, comparing carefully: bib = \"Luo, Linhao and Zhao, Zicheng and Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen and Pan, Shirui\" vs PMLR = \"Linhao Luo, Zicheng Zhao, Gholamreza Haffari, Yuan-Fang Li, Chen Gong, Shirui Pan\" — these match. Author order is correct. ✓ (revised)\n  - 年份: ✓ (2025)\n  - 标题: ✗ — The bib entry title is \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" but the actual paper title per ICML proceedings, OpenReview, and arXiv is \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\". The subtitle is completely fabricated.\n  - Venue: ✓ (ICML 2025, PMLR v267)\n  - DOI/arXiv: ✓ (arXiv:2410.13080 is correct)\n  - 正文引用: ✓ (section6_related_work.tex L9, cited for trie-based KG constraints)\n  - 备注: CRITICAL — the title is wrong. The bib says \"Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" but the real subtitle is \"Faithful Reasoning on Knowledge Graphs with Large Language Models\". The cite key \"kgtrie\" is acceptable as shorthand for the KG-Trie method proposed in the paper. Fix: change title to \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\".\n```\n\n```\n[vukovic2024dialogue] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Vukovic Renato, Arps David, van Niekerk Carel, Ruppik Benjamin Matthias, Lin Hsien-chin, Heck Michael, Gasic Milica)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (\"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\")\n  - Venue: ✓ (SIGDIAL 2024, pages 370-384, Kyoto, Japan)\n  - DOI/arXiv: ✓ (arXiv:2408.02361)\n  - 正文引用: ✓ (section6_related_work.tex L18, cited for dialogue RE with ontology constraints)\n  - 备注: None\n```\n\n---\n\n**Summary: 8 correct, 2 with errors.**\n\nErrors requiring fixes in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib`:\n\n1. **`lu2021text2event` (line 622)**: Last author \"Chen, Shaobo\" should be \"Chen, Shaoyi\"\n2. **`luo2025kgtrie` (line 634)**: Title is fabricated. \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" should be \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\""
+                }
+              ],
+              "totalDurationMs": 182925,
+              "totalTokens": 63758,
+              "totalToolUseCount": 29,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 536,
+                "cache_read_input_tokens": 60162,
+                "output_tokens": 3059,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 536
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3059,
+                    "cache_read_input_tokens": 60162,
+                    "cache_creation_input_tokens": 536,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 536,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 6,
+                "searchCount": 3,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 20
+              }
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Finding **/*.bib",
+                "usage": {
+                  "total_tokens": 48455,
+                  "tool_uses": 34,
+                  "duration_ms": 292047
+                },
+                "last_tool_name": "Glob",
+                "uuid": "1b559d73-6203-4021-af0d-56ed912c115d",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E7KADembAD5KQ6v8N7CgLx",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "a60aca52-506f-47ba-acbf-a4277597ebe1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QVZdHw5CcpGdCyYMziFnGK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 46562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 532,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-26T10:25:32.534Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E7KADembAD5KQ6v8N7CgLx",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260514T094226/median/references.bib\nartifacts/new_citations.bib\nartifacts/_project/paper/new_citations.bib\nartifacts/_project/paper/relwork_new_entries.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "a5dcab0f-ea5c-41bb-a3e7-2be3ab6ecbe0"
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Searching for olasunkanmi2025relate",
+                "usage": {
+                  "total_tokens": 48703,
+                  "tool_uses": 35,
+                  "duration_ms": 295038
+                },
+                "last_tool_name": "Grep",
+                "uuid": "c00d35cc-06bd-4ec1-a0e9-0c3d702c6086",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016hoWGEvJsuFXJcWJWu2Qqt",
+              "name": "Grep",
+              "input": {
+                "pattern": "olasunkanmi2025relate",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "output_mode": "content",
+                "-A": 8
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "180077d1-d789-46f6-a6a5-4d090b195452",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QbYzqqopsAiZYDeMKwLZbC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 47094,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-26T10:25:40.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016hoWGEvJsuFXJcWJWu2Qqt",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (59.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/adcad17b-e4eb-47b4-9b4e-071c14742b32/tool-results/toolu_016hoWGEvJsuFXJcWJWu2Qqt.txt\n\nPreview (first 2KB):\n_paper_audit_result.json:929:          \"message\": \"\\\\cite{olasunkanmi2025relate} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.\",\n_paper_audit_result.json-930-          \"location\": \"appendix_related_work,section6_relwork_additions\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/_paper_audit_result.json-931-        },\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/_paper_audit_result.json-932-        {\n_paper_audit_result.json-933-          \"kind\": \"missing_bib_key\",\n_paper_audit_result.json-934-          \"message\": \"\\\\cite{ontologx_2025} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.\",\n_paper_audit_result.json-935-          \"location\": \"appendix_related_work,section6_related_work,section6_relwork_outline\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/_paper_audit_result.json-936-        },\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/_paper_audit_result.json-937-        {\n--\nartifacts/bib_audit_report.md:46:| `olasunkanmi2025relate` | arXiv:2509.19057 | ✅ | ✅ | ✅ |\nartifacts/bib_audit_report.md-47-| `zhou2026ontologytools` | arXiv:2602.03439 | ✅ | ⚠️ \"Bulter\" matches arXiv | ✅ |\nartifacts/bib_audit_report.md-48-| `eberts2020spert` | arXiv:1909.07755 | ✅ | ✅ | ✅ |\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/bib_audit_report.md-49-| `yan2021pfn` | ACL 2021.emnlp-main.17 | ✅ | ✅ | ✅ |\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/bib_audit_report.md-50-| `zhong2021frustratingly` | ACL 2021.naacl-main.5 | ✅ | ✅ | ✅ |\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "55feaa6b-b2fb-4a7d-a983-ee4a0c6e7778"
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Searching for @(article|inproceedings|misc)\\\\{(scholak2021picar…",
+                "usage": {
+                  "total_tokens": 49756,
+                  "tool_uses": 36,
+                  "duration_ms": 307087
+                },
+                "last_tool_name": "Grep",
+                "uuid": "f882316e-83a5-434a-b551-aa12cd7d0140",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FtnyDLkFNFPtyknuzthSTd",
+              "name": "Grep",
+              "input": {
+                "pattern": "@(article|inproceedings|misc)\\\\{(scholak2021picard|olasunkanmi2025relate|zhou2026ontologytools|eberts2020spert|yan2021pfn|zhong2021frustratingly|ye2022packed|zhou2026snowballing|dong2025xgrammar|willard2023outlines)",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "6d8a7f26-185e-489f-b195-db93b5ed7f96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdnZeCGCMiSisFEqEpuaEy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1014,
+                "cache_read_input_tokens": 47305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1014,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-26T10:25:47.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FtnyDLkFNFPtyknuzthSTd",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "8afd3ba5-b1e2-44cb-aa37-55b9c97ceb93"
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Searching for scholak2021picard|olasunkanmi2025relate|zhou2026o…",
+                "usage": {
+                  "total_tokens": 50035,
+                  "tool_uses": 37,
+                  "duration_ms": 310491
+                },
+                "last_tool_name": "Grep",
+                "uuid": "f0e30d11-049a-421c-a9f9-9f6f1641b6ab",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MjFHMRaMTXMEJTwkwofTxc",
+              "name": "Grep",
+              "input": {
+                "pattern": "scholak2021picard|olasunkanmi2025relate|zhou2026ontologytools|eberts2020spert|yan2021pfn|zhong2021frustratingly|ye2022packed|zhou2026snowballing|dong2025xgrammar|willard2023outlines",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "glob": "*.bib",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "d317346c-7794-4498-8966-81d6c32a9b86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GbboD6zcyV7QLA83RQRt3X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 218,
+                "cache_read_input_tokens": 48319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 218,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-26T10:25:50.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MjFHMRaMTXMEJTwkwofTxc",
+              "type": "tool_result",
+              "content": "Found 2 files\nartifacts/_project/paper/relwork_new_entries.bib\nartifacts/dream_reports/dream_20260514T094226/median/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "ff6b005c-43bd-49f0-bec2-9bdb52e8d880"
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Reading artifacts/_project/paper/relwork_new_entries.bib",
+                "usage": {
+                  "total_tokens": 50361,
+                  "tool_uses": 38,
+                  "duration_ms": 313115
+                },
+                "last_tool_name": "Read",
+                "uuid": "b33b19ff-fbc2-46cb-a050-2bd366ad6f43",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Hvzc5ReNcuA2YU8zyEWmo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "9aa6ee8a-fb4a-4f31-8cc8-503a28e23a41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LsqKwBpjyJ25v9WuTvqr3T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 263,
+                "cache_read_input_tokens": 48537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 263,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-26T10:25:53.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Hvzc5ReNcuA2YU8zyEWmo",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Merged authoritative BibTeX references\n3\t% ============================================================\n4\t\n5\t% vLLM — used for GCD-equivalence verification experiment\n6\t@inproceedings{kwon2023vllm,\n7\t  title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n8\t  author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph and Zhang, Hao and Stoica, Ion},\n9\t  booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles (SOSP)},\n10\t  year      = {2023},\n11\t}\n12\t\n13\t% Confirmed via: Semantic Scholar, arXiv:2201.11227, OpenReview\n14\t% Venue: ICLR 2022 (cite key corrected from synchromesh_neurips2022)\n15\t@inproceedings{synchromesh_iclr2022,\n16\t  title     = {Synchromesh: Reliable Code Generation from Pre-trained Language Models},\n17\t  author    = {Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares, Gustavo and Meek, Christopher and Gulwani, Sumit},\n18\t  booktitle = {International Conference on Learning Representations},\n19\t  year      = {2022},\n20\t  url       = {https://openreview.net/forum?id=KmtVD97J43e}\n21\t}\n22\t\n23\t% Confirmed via: NeurIPS 2023 proceedings, microsoft/monitors4codegen GitHub\n24\t@inproceedings{mgd_neurips2023,\n25\t  title     = {Monitor-Guided Decoding of Code {LMs} with Static Analysis of Repository Context},\n26\t  author    = {Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. and Rajamani, Sriram K.},\n27\t  booktitle = {Advances in Neural Information Processing Systems},\n28\t  volume    = {36},\n29\t  year      = {2023},\n30\t  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}\n31\t}\n32\t\n33\t% Confirmed via: ACM DL doi:10.1145/3729274, arXiv:2504.09246, SRI Lab ETH\n34\t@article{pldi2025_type_constrained_codegen,\n35\t  title     = {Type-Constrained Code Generation with Language Models},\n36\t  author    = {M\\\"{u}ndler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn and Vechev, Martin},\n37\t  journal   = {Proceedings of the ACM on Programming Languages},\n38\t  volume    = {9},\n39\t  number    = {PLDI},\n40\t  year      = {2025},\n41\t  doi       = {10.1145/3729274},\n42\t  url       = {https://dl.acm.org/doi/10.1145/3729274}\n43\t}\n44\t\n45\t% Confirmed via: ACL Anthology W04-2401, scottyih.org\n46\t% WARNING: cite key suggests AAAI 2004, but actual venue is CoNLL 2004 at HLT-NAACL\n47\t@inproceedings{roth_yih_2004,\n48\t  title     = {A Linear Programming Formulation for Global Inference in Natural Language Tasks},\n49\t  author    = {Roth, Dan and Yih, Wen-tau},\n50\t  booktitle = {Proceedings of the Eighth Conference on Computational Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004},\n51\t  pages     = {1--8},\n52\t  year      = {2004},\n53\t  address   = {Boston, Massachusetts, USA},\n54\t  url       = {https://aclanthology.org/W04-2401/}\n55\t}\n56\t\n57\t% Confirmed via: ACL Anthology 2023.findings-emnlp.425, zjunlp/AdaKGC GitHub\n58\t@inproceedings{adakgc_emnlp2023,\n59\t  title     = {Schema-adaptable Knowledge Graph Construction},\n60\t  author    = {Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang, Ningyu},\n61\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2023},\n62\t  pages     = {6408--6431},\n63\t  year      = {2023},\n64\t  url       = {https://aclanthology.org/2023.findings-emnlp.425/}\n65\t}\n66\t\n67\t% Confirmed via: ACL Anthology 2024.acl-long.475, arXiv:2403.07969\n68\t@inproceedings{knowcoder_acl2024,\n69\t  title     = {{KnowCoder}: Coding Structured Knowledge into {LLMs} for Universal Information Extraction},\n70\t  author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n71\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n72\t  pages     = {8758--8779},\n73\t  year      = {2024},\n74\t  address   = {Bangkok, Thailand},\n75\t  url       = {https://aclanthology.org/2024.acl-long.475/}\n76\t}\n77\t\n78\t% Confirmed via: Oxford Academic Bioinformatics btae104, PubMed 38383067\n79\t@article{spires_2024,\n80\t  title     = {Structured Prompt Interrogation and Recursive Extraction of Semantics ({SPIRES}): A Method for Populating Knowledge Bases Using Zero-shot Learning},\n81\t  author    = {Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. and Joachimiak, Marcin P. and Matentzoglu, Nicolas and Kim, HyeongSik and Moxon, Sierra and Reese, Justin T. and Haendel, Melissa A. and Robinson, Peter N. and Mungall, Christopher J.},\n82\t  journal   = {Bioinformatics},\n83\t  volume    = {40},\n84\t  number    = {3},\n85\t  pages     = {btae104},\n86\t  year      = {2024},\n87\t  doi       = {10.1093/bioinformatics/btae104},\n88\t  url       = {https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230}\n89\t}\n90\t\n91\t% Confirmed via: Wiley Advanced Intelligent Systems doi:10.1002/aisy.202501381, arXiv:2510.01409\n92\t@article{ontologx_2025,\n93\t  title     = {{OntoLogX}: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models},\n94\t  author    = {Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, Federico},\n95\t  journal   = {Advanced Intelligent Systems},\n96\t  year      = {2026},\n97\t  doi       = {10.1002/aisy.202501381},\n98\t  url       = {https://doi.org/10.1002/aisy.202501381}\n99\t}\n100\t\n101\t% Confirmed via: Springer LNCS 15370, arXiv:2411.15666, Lama-West GitHub\n102\t@inproceedings{ekaw2024_ontology_beam,\n103\t  title     = {Ontology-Constrained Generation of Domain-Specific Clinical Summaries},\n104\t  author    = {Mehenni, Gaya and Zouaq, Amal},\n105\t  booktitle = {Knowledge Engineering and Knowledge Management ({EKAW} 2024)},\n106\t  series    = {Lecture Notes in Computer Science},\n107\t  volume    = {15370},\n108\t  pages     = {382--398},\n109\t  year      = {2024},\n110\t  publisher = {Springer},\n111\t  doi       = {10.1007/978-3-031-77792-9_23}\n112\t}\n113\t\n114\t% ============================================================\n115\t\n116\t% Confirmed via: ACL Anthology 2021.emnlp-main.779, arXiv:2109.05093, GitHub ServiceNow/picard\n117\t@inproceedings{scholak2021picard,\n118\t  title     = {{PICARD}: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models},\n119\t  author    = {Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry},\n120\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n121\t  year      = {2021},\n122\t  url       = {https://aclanthology.org/2021.emnlp-main.779/}\n123\t}\n124\t\n125\t% Confirmed via: arXiv:2509.19057, ResearchGate, OpenReview gcG8dmAUNh\n126\t@article{olasunkanmi2025relate,\n127\t  title   = {{RELATE}: Relation Extraction in Biomedical Abstracts with {LLMs} and Ontology Constraints},\n128\t  author  = {Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley},\n129\t  journal = {arXiv preprint arXiv:2509.19057},\n130\t  year    = {2025},\n131\t  url     = {https://arxiv.org/abs/2509.19057}\n132\t}\n133\t\n134\t% Confirmed via: arXiv:2602.03439, University of Cambridge / The World Avatar project\n135\t@article{zhou2026ontologytools,\n136\t  title   = {Ontology-to-tools compilation for executable semantic constraint enforcement in {LLM} agents},\n137\t  author  = {Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus},\n138\t  journal = {arXiv preprint arXiv:2602.03439},\n139\t  year    = {2026},\n140\t  url     = {https://arxiv.org/abs/2602.03439}\n141\t}\n142\t\n143\t% Confirmed via: IOS Press ECAI 2020 FAIA vol.325, arXiv:1909.07755, GitHub lavis-nlp/spert\n144\t@inproceedings{eberts2020spert,\n145\t  title     = {Span-based Joint Entity and Relation Extraction with Transformer Pre-training},\n146\t  author    = {Eberts, Markus and Ulges, Adrian},\n147\t  booktitle = {Proceedings of the 24th European Conference on Artificial Intelligence ({ECAI} 2020)},\n148\t  series    = {Frontiers in Artificial Intelligence and Applications},\n149\t  volume    = {325},\n150\t  pages     = {2006--2013},\n151\t  year      = {2020},\n152\t  doi       = {10.3233/FAIA200321}\n153\t}\n154\t\n155\t% Confirmed via: ACL Anthology 2021.emnlp-main.17, arXiv:2108.12202\n156\t% NOTE: venue is EMNLP 2021 (NOT AAAI 2021)\n157\t@inproceedings{yan2021pfn,\n158\t  title     = {A Partition Filter Network for Joint Entity and Relation Extraction},\n159\t  author    = {Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu},\n160\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n161\t  pages     = {185--197},\n162\t  year      = {2021},\n163\t  url       = {https://aclanthology.org/2021.emnlp-main.17/}\n164\t}\n165\t\n166\t% Confirmed via: ACL Anthology 2021.naacl-main.5, GitHub princeton-nlp/PURE\n167\t@inproceedings{zhong2021frustratingly,\n168\t  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},\n169\t  author    = {Zhong, Zexuan and Chen, Danqi},\n170\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n171\t  pages     = {50--61},\n172\t  year      = {2021},\n173\t  address   = {Online},\n174\t  publisher = {Association for Computational Linguistics},\n175\t  url       = {https://aclanthology.org/2021.naacl-main.5}\n176\t}\n177\t\n178\t% Confirmed via: ACL Anthology 2022.acl-long.337, GitHub thunlp/PL-Marker\n179\t@inproceedings{ye2022packed,\n180\t  title     = {Packed Levitated Marker for Entity and Relation Extraction},\n181\t  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},\n182\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n183\t  pages     = {4904--4917},\n184\t  year      = {2022},\n185\t  address   = {Dublin, Ireland},\n186\t  publisher = {Association for Computational Linguistics},\n187\t  url       = {https://aclanthology.org/2022.acl-long.337}\n188\t}\n189\t\n190\t% Confirmed via: arXiv:2604.06066 (previously PENDING AUDIT — now verified)\n191\t@article{zhou2026snowballing,\n192\t  title   = {From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in {LLM} Reflection},\n193\t  author  = {Zhou, Hongxu},\n194\t  journal = {arXiv preprint arXiv:2604.06066},\n195\t  year    = {2026},\n196\t  url     = {https://arxiv.org/abs/2604.06066}\n197\t}\n198\t\n199\t% ============================================================\n200\t% Batch 1: Constrained decoding + IE foundations (10 entries)\n201\t% ============================================================\n202\t\n203\t% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n204\t@inproceedings{dong2025xgrammar,\n205\t  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n206\t  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n207\t  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n208\t  year      = {2025},\n209\t  url       = {https://arxiv.org/abs/2411.15100}\n210\t}\n211\t\n212\t% Confirmed via: arXiv 2307.09702\n213\t@article{willard2023outlines,\n214\t  title   = {Efficient Guided Generation for Large Language Models},\n215\t  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n216\t  journal = {arXiv preprint arXiv:2307.09702},\n217\t  year    = {2023},\n218\t  url     = {https://arxiv.org/abs/2307.09702}\n219\t}\n220\t\n221\t% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n222\t@inproceedings{beurer-kellner2023lmql,\n223\t  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n224\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n225\t  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n226\t  year      = {2023},\n227\t  url       = {https://doi.org/10.1145/3591300}\n228\t}\n229\t\n230\t% Confirmed via: PMLR v235, ICML 2024\n231\t@inproceedings{beurer-kellner2024domino,\n232\t  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n233\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n234\t  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n235\t  pages     = {3658--3673},\n236\t  year      = {2024},\n237\t  series    = {PMLR},\n238\t  volume    = {235},\n239\t  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n240\t}\n241\t\n242\t% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n243\t@inproceedings{park2024grammar,\n244\t  title     = {Grammar-Aligned Decoding},\n245\t  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n246\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n247\t  year      = {2024},\n248\t  url       = {https://arxiv.org/abs/2405.21047}\n249\t}\n250\t\n251\t% Confirmed via: OpenReview, ICLR 2021\n252\t@inproceedings{decao2021genre,\n253\t  title     = {Autoregressive Entity Retrieval},\n254\t  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n255\t  booktitle = {International Conference on Learning Representations},\n256\t  year      = {2021},\n257\t  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n258\t}\n259\t\n260\t% Confirmed via: ACL Anthology 2022.naacl-main.342\n261\t@inproceedings{josifoski2022genie,\n262\t  title     = {{GenIE}: Generative Information Extraction},\n263\t  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n264\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n265\t  pages     = {4626--4643},\n266\t  year      = {2022},\n267\t  url       = {https://aclanthology.org/2022.naacl-main.342/}\n268\t}\n269\t\n270\t% Confirmed via: ACL Anthology 2023.emnlp-main.674\n271\t@inproceedings{geng2023gcd,\n272\t  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n273\t  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n274\t  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n275\t  year      = {2023},\n276\t  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n277\t}\n278\t\n279\t% Confirmed via: ACL Anthology 2021.naacl-main.339\n280\t@inproceedings{lu2021neurologic,\n281\t  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n282\t  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n283\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n284\t  pages     = {4288--4299},\n285\t  year      = {2021},\n286\t  url       = {https://aclanthology.org/2021.naacl-main.339/}\n287\t}\n288\t\n289\t% Confirmed via: ACL Anthology 2022.acl-long.395\n290\t@inproceedings{lu2022uie,\n291\t  title     = {Unified Structure Generation for Universal Information Extraction},\n292\t  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n293\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n294\t  pages     = {5755--5772},\n295\t  year      = {2022},\n296\t  url       = {https://aclanthology.org/2022.acl-long.395/}\n297\t}\n298\t\n299\t% ============================================================\n300\t\n301\t% Confirmed via: ICLR 2024 proceedings, OpenReview Y3wpuxd7u9, arXiv:2310.03668\n302\t@inproceedings{sainz2024gollie,\n303\t  title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling},\n304\t  author    = {Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},\n305\t  booktitle = {The Twelfth International Conference on Learning Representations},\n306\t  year      = {2024},\n307\t  url       = {https://openreview.net/forum?id=Y3wpuxd7u9}\n308\t}\n309\t\n310\t% Confirmed via: ACL Anthology 2023.acl-long.855, arXiv:2305.05711\n311\t@inproceedings{li2023codeie,\n312\t  title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n313\t  author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n314\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n315\t  pages     = {15339--15353},\n316\t  year      = {2023},\n317\t  address   = {Toronto, Canada},\n318\t  url       = {https://aclanthology.org/2023.acl-long.855/}\n319\t}\n320\t\n321\t% Confirmed via: ACL Anthology 2024.emnlp-main.419, arXiv:2405.05008, GitHub THU-KEG/ADELIE\n322\t@inproceedings{qi2024adelie,\n323\t  title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},\n324\t  author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},\n325\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n326\t  year      = {2024},\n327\t  address   = {Miami, Florida, USA},\n328\t  url       = {https://aclanthology.org/2024.emnlp-main.419/}\n329\t}\n330\t\n331\t% Confirmed via: arXiv:2404.12493, GitHub urchade/EnriCo\n332\t% NOTE: arXiv preprint; no conference publication found\n333\t@article{zaratiana2024enrico,\n334\t  title   = {{EnriCo}: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction},\n335\t  author  = {Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry},\n336\t  journal = {arXiv preprint arXiv:2404.12493},\n337\t  year    = {2024},\n338\t  url     = {https://arxiv.org/abs/2404.12493}\n339\t}\n340\t\n341\t% Confirmed via: arXiv:2509.04696, Apple ML Research machinelearning.apple.com/research/odke\n342\t% NOTE: cite key uses \"odke\"; actual paper title is \"ODKE+\"\n343\t@article{khorshidi2025odke,\n344\t  title   = {{ODKE+}: Ontology-Guided Open-Domain Knowledge Extraction with {LLMs}},\n345\t  author  = {Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang},\n346\t  journal = {arXiv preprint arXiv:2509.04696},\n347\t  year    = {2025},\n348\t  url     = {https://arxiv.org/abs/2509.04696}\n349\t}\n350\t\n351\t% Confirmed via: ACL Anthology 2023.findings-eacl.95\n352\t@inproceedings{upadhyay2023openie,\n353\t  title     = {Open Information Extraction with Entity Focused Constraints},\n354\t  author    = {Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana},\n355\t  booktitle = {Findings of the Association for Computational Linguistics: {EACL} 2023},\n356\t  year      = {2023},\n357\t  url       = {https://aclanthology.org/2023.findings-eacl.95/}\n358\t}\n359\t\n360\t% Confirmed via: ACL Anthology 2025.genaik-1.10, GenAIK Workshop at COLING 2025\n361\t@inproceedings{regino2025kgcurator,\n362\t  title     = {Can {LLMs} be Knowledge Graph Curators for Validating Triple Insertions?},\n363\t  author    = {Regino, Andr{\\'e} Gomes and dos Reis, Julio Cesar},\n364\t  booktitle = {Proceedings of the Workshop on Generative {AI} and Knowledge Graphs ({GenAIK}) at {COLING} 2025},\n365\t  pages     = {87--99},\n366\t  year      = {2025},\n367\t  address   = {Abu Dhabi, UAE},\n368\t  url       = {https://aclanthology.org/2025.genaik-1.10/}\n369\t}\n370\t\n371\t% Confirmed via: ACL Anthology 2024.emnlp-industry.91, arXiv:2408.02442\n372\t@inproceedings{tam2024letmespeak,\n373\t  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},\n374\t  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},\n375\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n376\t  pages     = {1218--1236},\n377\t  year      = {2024},\n378\t  address   = {Miami, Florida, US},\n379\t  url       = {https://aclanthology.org/2024.emnlp-industry.91/}\n380\t}\n381\t\n382\t% Confirmed via: PMLR v267/banerjee25a, ICML 2025, arXiv:2502.09061\n383\t@inproceedings{banerjee2025crane,\n384\t  title     = {{CRANE}: Reasoning with Constrained {LLM} Generation},\n385\t  author    = {Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa and Singh, Gagandeep},\n386\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n387\t  pages     = {2836--2857},\n388\t  year      = {2025},\n389\t  url       = {https://proceedings.mlr.press/v267/banerjee25a.html}\n390\t}\n391\t\n392\t% Confirmed via: ACL Anthology 2025.ranlp-1.124\n393\t@inproceedings{schall2025hiddencost,\n394\t  title     = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n395\t  author    = {Schall, Maximilian and de Melo, Gerard},\n396\t  booktitle = {Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing ({RANLP} 2025)},\n397\t  year      = {2025},\n398\t  address   = {Varna, Bulgaria},\n399\t  url       = {https://aclanthology.org/2025.ranlp-1.124/}\n400\t}\n401\t\n402\t% ============================================================\n403\t% D015 reviewer-requested references (5 entries)\n404\t% ============================================================\n405\t\n406\t% Confirmed via: ACL Anthology 2021.findings-emnlp.204, GitHub Babelscape/rebel\n407\t@inproceedings{cabot2021rebel,\n408\t  title     = {{REBEL}: Relation Extraction By End-to-end Language Generation},\n409\t  author    = {Huguet Cabot, Pere-Llu{\\'\\i}s and Navigli, Roberto},\n410\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2021},\n411\t  pages     = {2370--2381},\n412\t  year      = {2021},\n413\t  url       = {https://aclanthology.org/2021.findings-emnlp.204/}\n414\t}\n415\t\n416\t% ============================================================\n417\t\n418\t% Confirmed via: arXiv:2403.01632, OpenReview HiUZtgAPoH\n419\t% FIX: venue is TMLR (not ICML 2024)\n420\t@article{ugare2024syncode,\n421\t  title     = {{SynCode}: {LLM} Generation with Grammar Augmentation},\n422\t  author    = {Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh, Gagandeep},\n423\t  journal   = {Transactions on Machine Learning Research},\n424\t  year      = {2024},\n425\t  url       = {https://openreview.net/forum?id=HiUZtgAPoH}\n426\t}\n427\t\n428\t% Confirmed via: OpenReview ac93gRzxxV, ICLR 2025 poster page, arXiv:2410.07295\n429\t% FIX: replaced wrong author Banerjee with correct author Gumaste\n430\t@inproceedings{ugare2025itergen,\n431\t  title     = {{IterGen}: Iterative Semantic-aware Structured {LLM} Generation with Backtracking},\n432\t  author    = {Ugare, Shubham and Gumaste, Rohan and Suresh, Tarun and Singh, Gagandeep and Misailovic, Sasa},\n433\t  booktitle = {The Thirteenth International Conference on Learning Representations},\n434\t  year      = {2025},\n435\t  url       = {https://openreview.net/forum?id=ac93gRzxxV}\n436\t}\n437\t\n438\t% Confirmed via: ACL Anthology 2025.emnlp-main.926, arXiv:2506.14901\n439\t% FIX: removed fabricated authors Geng/Josifoski (they co-authored geng2023gcd, not this paper)\n440\t@inproceedings{boostcd2025,\n441\t  title     = {Combining Constrained and Unconstrained Decoding via Boosting: {BoostCD} and Its Application to Information Extraction},\n442\t  author    = {Sakota, Marija and West, Robert},\n443\t  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n444\t  year      = {2025},\n445\t  url       = {https://aclanthology.org/2025.emnlp-main.926/}\n446\t}\n447\t\n448\t% ============================================================\n449\t% Dataset & model references (5 entries)\n450\t% ============================================================\n451\t\n452\t% Confirmed via: ACL Anthology D18-1360, arXiv:1808.09602\n453\t@inproceedings{luan2018scierc,\n454\t  title     = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n455\t  author    = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n456\t  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n457\t  pages     = {3219--3232},\n458\t  year      = {2018},\n459\t  address   = {Brussels, Belgium},\n460\t  url       = {https://aclanthology.org/D18-1360/}\n461\t}\n462\t\n463\t% Confirmed via: ACL Anthology P19-1074, arXiv:1906.06127\n464\t@inproceedings{yao2019docred,\n465\t  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},\n466\t  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},\n467\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n468\t  pages     = {764--777},\n469\t  year      = {2019},\n470\t  address   = {Florence, Italy},\n471\t  url       = {https://aclanthology.org/P19-1074/}\n472\t}\n473\t\n474\t% Confirmed via: arXiv:2302.10205, Semantic Scholar\n475\t@article{wei2023zeroshot,\n476\t  title   = {{ChatIE}: Zero-Shot Information Extraction via Chatting with {ChatGPT}},\n477\t  author  = {Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and Huang, Shen and Xie, Pengjun and Xu, Jinan and Chen, Yufeng and Zhang, Meishan and Jiang, Yong and Han, Wenjuan},\n478\t  journal = {arXiv preprint arXiv:2302.10205},\n479\t  year    = {2023},\n480\t  url     = {https://arxiv.org/abs/2302.10205}\n481\t}\n482\t\n483\t% Confirmed via: arXiv:2505.09388, Hugging Face model cards\n484\t@article{qwen2025qwen3,\n485\t  title   = {Qwen3 Technical Report},\n486\t  author  = {{Qwen Team}},\n487\t  journal = {arXiv preprint arXiv:2505.09388},\n488\t  year    = {2025},\n489\t  url     = {https://arxiv.org/abs/2505.09388}\n490\t}\n491\t\n492\t% Confirmed via: NeurIPS 2024 proceedings, arXiv:2312.07104\n493\t@inproceedings{zheng2024sglang,\n494\t  title     = {{SGLang}: Efficient Execution of Structured Language Model Programs},\n495\t  author    = {Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, Jeff and Yu, Cody Hao and Cao, Shiyi and Kozyrakis, Christos and Stoica, Ion and Gonzalez, Joseph E. and Barrett, Clark and Sheng, Ying},\n496\t  booktitle = {Advances in Neural Information Processing Systems},\n497\t  volume    = {37},\n498\t  year      = {2024},\n499\t  url       = {https://arxiv.org/abs/2312.07104}\n500\t}\n501\t\n502\t% Confirmed via: ACL Anthology 2021.naacl-main.69\n503\t@inproceedings{li2021document,\n504\t  title     = {Document-Level Event Argument Extraction by Conditional Generation},\n505\t  author    = {Li, Sha and Ji, Heng and Han, Jiawei},\n506\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n507\t  pages     = {894--908},\n508\t  year      = {2021},\n509\t  url       = {https://aclanthology.org/2021.naacl-main.69/}\n510\t}\n511\t\n512\t% ============================================================\n513\t\n514\t% grammar_aligned_2024 removed: duplicate of park2024grammar (same paper)\n515\t\n516\t@inproceedings{guidex2025,\n517\t    author    = {De La Fuente, Neil and Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agirre, Eneko},\n518\t    title     = {{GUIDEX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction},\n519\t    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n520\t    year      = {2025},\n521\t    publisher = {Association for Computational Linguistics},\n522\t    url       = {https://aclanthology.org/2025.findings-acl.1245/},\n523\t}\n524\t\n525\t@article{jsonschemabench2025,\n526\t    author    = {Geng, Saibo and Cooper, Hudson and Moskal, Micha{\\l} and Jenkins, Samuel and Berman, Julian and Ranchin, Nathan and West, Robert and Horvitz, Eric and Nori, Harsha},\n527\t    title     = {{JSONSchemaBench}: A Rigorous Benchmark of Structured Outputs for Language Models},\n528\t    journal   = {arXiv preprint arXiv:2501.10868},\n529\t    year      = {2025},\n530\t    url       = {https://arxiv.org/abs/2501.10868},\n531\t}\n532\t\n533\t% ============================================================\n534\t% Round 9 SF6 references (5 entries)\n535\t% ============================================================\n536\t\n537\t% Confirmed via: arXiv:2304.08085\n538\t@article{wang2023instructuie,\n539\t  title     = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n540\t  author    = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n541\t  journal   = {arXiv preprint arXiv:2304.08085},\n542\t  year      = {2023},\n543\t  url       = {https://arxiv.org/abs/2304.08085}\n544\t}\n545\t\n546\t% Confirmed via: OpenReview r65xfUb76p, ICLR 2024\n547\t@inproceedings{zhou2024universalner,\n548\t  title     = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n549\t  author    = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n550\t  booktitle = {The Twelfth International Conference on Learning Representations},\n551\t  year      = {2024},\n552\t  url       = {https://openreview.net/forum?id=r65xfUb76p}\n553\t}\n554\t\n555\t% Confirmed via: ACL Anthology 2023.acl-long.868\n556\t@inproceedings{wadhwa2023revisiting,\n557\t  title     = {Revisiting Relation Extraction in the era of Large Language Models},\n558\t  author    = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n559\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n560\t  pages     = {15566--15589},\n561\t  year      = {2023},\n562\t  doi       = {10.18653/v1/2023.acl-long.868},\n563\t  url       = {https://aclanthology.org/2023.acl-long.868}\n564\t}\n565\t\n566\t% ============================================================\n567\t% R12 reviewer-requested references\n568\t% ============================================================\n569\t\n570\t% ============================================================\n571\t% R13 SF5 references (F1 anchoring)\n572\t% ============================================================\n573\t\n574\t\n575\t% Confirmed via: OpenReview US-TP-xnXI, arXiv:2101.05779, amazon-science/tanl GitHub\n576\t@inproceedings{paolini2021tanl,\n577\t  title     = {Structured Prediction as Translation between Augmented Natural Languages},\n578\t  author    = {Paolini, Giovanni and Athiwaratkun, Ben and Krone, Jason and Ma, Jie and Achille, Alessandro and Anubhai, Rishita and Nogueira dos Santos, C{\\'\\i}cero and Xiang, Bing and Soatto, Stefano},\n579\t  booktitle = {International Conference on Learning Representations},\n580\t  year      = {2021},\n581\t  url       = {https://openreview.net/forum?id=US-TP-xnXI}\n582\t}\n583\t\n584\t% ============================================================\n585\t% R12 reviewer-requested references\n586\t% ============================================================\n587\t\n588\t% Confirmed via: NeurIPS 2022 proceedings, arXiv:2304.06248\n589\t@inproceedings{fei2022lasuie,\n590\t  title     = {{LasUIE}: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model},\n591\t  author    = {Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Libo and Zhang, Meishan and Zhang, Min and Chua, Tat-Seng},\n592\t  booktitle = {Advances in Neural Information Processing Systems},\n593\t  volume    = {35},\n594\t  year      = {2022},\n595\t  url       = {https://arxiv.org/abs/2304.06248}\n596\t}\n597\t\n598\t% Confirmed via: ACL Anthology, EMNLP-CoNLL 2010 (originally 2009 workshop)\n599\t@inproceedings{riedel2010modeling,\n600\t  title     = {Modeling Relations and Their Mentions without Labeled Text},\n601\t  author    = {Riedel, Sebastian and Yao, Limin and McCallum, Andrew},\n602\t  booktitle = {Joint European Conference on Machine Learning and Knowledge Discovery in Databases},\n603\t  pages     = {148--163},\n604\t  year      = {2010},\n605\t  publisher = {Springer}\n606\t}\n607\t\n608\t% Confirmed via: ACL Anthology 2017.emnlp-main.90\n609\t@inproceedings{anderson2017guided,\n610\t  title     = {Guided Open Vocabulary Image Captioning with Constrained Beam Search},\n611\t  author    = {Anderson, Peter and Fernando, Basura and Johnson, Mark and Gould, Stephen},\n612\t  booktitle = {Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing},\n613\t  pages     = {936--945},\n614\t  year      = {2017},\n615\t  publisher = {Association for Computational Linguistics}\n616\t}\n617\t\n618\t% R21 additions\n619\t\n620\t@inproceedings{lu2021text2event,\n621\t  title     = {{Text2Event}: Controllable Sequence-to-Structure Generation for End-to-end Event Extraction},\n622\t  author    = {Lu, Yaojie and Lin, Hongyu and Xu, Jin and Han, Xianpei and Tang, Jialong and Li, Annan and Sun, Le and Liao, Meng and Chen, Shaobo},\n623\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n624\t  pages     = {2722--2735},\n625\t  year      = {2021},\n626\t  publisher = {Association for Computational Linguistics}\n627\t}\n628\t\n629\t\n630\t% R24 additions\n631\t\n632\t% Confirmed via: arXiv:2410.13080, ICML 2025\n633\t@inproceedings{luo2025kgtrie,\n634\t  title     = {Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation},\n635\t  author    = {Luo, Linhao and Zhao, Zicheng and Haffari, Gholamreza and Li, Yuan-Fang and Gong, Chen and Pan, Shirui},\n636\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n637\t  year      = {2025},\n638\t  url       = {https://arxiv.org/abs/2410.13080}\n639\t}\n640\t\n641\t% Confirmed via: arXiv:2408.02361, SIGDIAL 2024\n642\t@inproceedings{vukovic2024dialogue,\n643\t  title     = {Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding},\n644\t  author    = {Vukovic, Renato and Arps, David and van Niekerk, Carel and Ruppik, Benjamin Matthias and Lin, Hsien-chin and Heck, Michael and Ga\\v{s}i\\'{c}, Milica},\n645\t  booktitle = {Proceedings of the 25th Annual Meeting of the Special Interest Group on Discourse and Dialogue},\n646\t  pages     = {370--384},\n647\t  year      = {2024},\n648\t  address   = {Kyoto, Japan},\n649\t  url       = {https://arxiv.org/abs/2408.02361}\n650\t}\n651\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "428bc7f9-054f-4096-98f0-6cf27efa8d40"
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "description": "Searching for arxiv.org abs 2509.19057 author list exact spelli…",
+                "usage": {
+                  "total_tokens": 63382,
+                  "tool_uses": 39,
+                  "duration_ms": 318326
+                },
+                "last_tool_name": "WebSearch",
+                "uuid": "d98c31a1-7d64-4555-bfab-03ba916b506b",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016jiSX3Y3FjEyrUyEhfg8kT",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv.org abs 2509.19057 author list exact spelling"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "ba2747f6-6319-4976-97ed-69b65cc4d63b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012X5ZsZADjW1k3rPk5Z5j7t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13019,
+                "cache_read_input_tokens": 48800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13019,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-26T10:26:03.640Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016jiSX3Y3FjEyrUyEhfg8kT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv.org abs 2509.19057 author list exact spelling\"\n\nLinks: [{\"title\":\"[2509.19057] RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\",\"url\":\"https://arxiv.org/abs/2509.19057\"},{\"title\":\"[2602.19057] Structural Analysis of Directional qLDPC Codes\",\"url\":\"https://arxiv.org/abs/2602.19057\"},{\"title\":\"Author Identifiers - arXiv info\",\"url\":\"https://info.arxiv.org/help/author_identifiers.html\"},{\"title\":\"[2605.19057] Magnetohydrodynamics Simulations\",\"url\":\"https://arxiv.org/abs/2605.19057\"},{\"title\":\"[2509.17418v1] Vision Language Models Are Not (Yet) Spelling Correctors\",\"url\":\"https://arxiv.org/abs/2509.17418v1\"},{\"title\":\"[2509.10811] Quantum-Assisted Recursive Algorithm for Solving the Exact Cover Problem\",\"url\":\"https://arxiv.org/abs/2509.10811\"},{\"title\":\"[2504.19057] A correspondence between the Rabi model and an Ising model with long-range interactions\",\"url\":\"https://arxiv.org/abs/2504.19057\"},{\"title\":\"arXiv.org e-Print archive\",\"url\":\"https://arxiv.org/\"},{\"title\":\"[2403.13253] Document Author Classification Using Parsed Language Structure\",\"url\":\"https://arxiv.org/abs/2403.13253\"}]\n\nBased on the search results, the paper titled \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\" (arXiv 2509.19057) has Olawumi Olasunkanmi listed as the first author along with 5 other authors.\n\nHowever, the search results only provide the first author's name explicitly. The search result snippet doesn't include the complete author list with exact spelling for all authors. To get the full author list with exact spellings, you would need to visit the arXiv page directly at https://arxiv.org/abs/2509.19057 or access the PDF version of the paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "bd96a7ff-0942-47ec-ba70-c7a3b649bee7"
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a38292952ce525754",
+                "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Verify bib entries batch 2",
+                "usage": {
+                  "total_tokens": 64053,
+                  "tool_uses": 39,
+                  "duration_ms": 392299
+                },
+                "uuid": "a03ae6c4-e29c-4dd7-8b03-6fa1b47ea9b7",
+                "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32"
+              }
+            }
+          ],
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-26T10:27:12.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XH5HVKVJPTWMDZTKUgP1oy",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now let me also check the \"PFN\" paper — the bib entry cites it as EMNLP 2021, and the ACL Anthology confirms this. Also need to verify the SciERC supervised SOTA claim in section3 L14.\n\nThe section says \"supervised end-to-end SOTA on SciERC achieves 41.6% strict Rel-F1 (PL-Marker) and 36.8% (PURE)\" — let me verify this is an appropriate contextual use of these citations. Both are cited as supervised SOTA baselines for SciERC relation F1, which is factually accurate per the papers.\n\nNow I have all information needed. Here is my complete audit:\n\n---\n\n```\n[scholak2021picard] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Torsten Scholak, Nathan Schucher, Dzmitry Bahdanau — matches arXiv and ACL Anthology)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\")\n  - Venue: ✓ (EMNLP 2021, proceedings pages 9895–9901, ACL Anthology 2021.emnlp-main.779)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.emnlp-main.779/ confirmed; also arXiv:2109.05093)\n  - 正文引用: ✓ (section6_related_work.tex L9: cited for type-system prefix automata — accurate, PICARD uses incremental SQL parsing for constrained decoding; appendix_related_work.tex L23: cited for text-to-SQL domain semantic constrained decoding — accurate)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[olasunkanmi2025relate] ✓ (minor concern)\n  - 存在性: ✓\n  - 作者: ⚠️ (BibTeX has \"Satusky, Mathew\"; RENCI staff page lists \"Matthew Satusky\" with double-t \"Matthew\". The arXiv page itself appears to use \"Mathew Satusky\" matching the BibTeX, so this follows the paper's own listing. Acceptable but note the discrepancy with the author's institutional profile.)\n  - 年份: ✓ (2025, arXiv:2509.19057)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2509.19057, also on OpenReview)\n  - DOI/arXiv: ✓ (arXiv:2509.19057 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L72-77: cited in post-hoc ontology validation paragraph for biomedical relation extraction with ontology grounding via retrieval/reranking pipeline — accurate description of the paper's contribution)\n  - 备注: Author first name \"Mathew\" matches arXiv listing but differs from institutional profile \"Matthew\". The BibTeX follows the paper's own attribution, which is correct practice.\n```\n\n```\n[zhou2026ontologytools] ⚠️ (author name concern)\n  - 存在性: ✓\n  - 作者: ⚠️ (\"Bulter, Patrick\" appears on arXiv as submitted by the authors, BUT the Cambridge Computational Modelling Group page lists the researcher as \"Patrick Butler\" (https://como.ceb.cam.ac.uk/people/pb879/). This is very likely a typo in the arXiv submission itself. The BibTeX matches arXiv, but the correct surname is almost certainly \"Butler\".)\n  - 年份: ✓ (2026, submitted February 2026)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2602.03439)\n  - DOI/arXiv: ✓ (arXiv:2602.03439 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L80: cited for compiling OWL ontologies into executable tool interfaces — accurate description of the paper's contribution, correctly contrasted with OntoCoDec's token-level approach)\n  - 备注: \"Bulter\" is almost certainly a typo for \"Butler\" in the original arXiv submission. The BibTeX follows arXiv as-is, which is technically correct (matching the source of record). However, the authors may correct this in a future arXiv revision. Recommend adding a comment in the bib noting the suspected typo.\n```\n\n```\n[eberts2020spert] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Markus Eberts, Adrian Ulges)\n  - 年份: ✓ (2020)\n  - 标题: ✓ (\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\" — note the BibTeX uses \"Pre-training\" while IOS Press listing uses \"Pre-Training\" with capital T; minor capitalization difference, acceptable)\n  - Venue: ✓ (ECAI 2020, FAIA vol 325, pages 2006–2013)\n  - DOI/arXiv: ✓ (DOI 10.3233/FAIA200321 confirmed at IOS Press; also arXiv:1909.07755)\n  - 正文引用: ✓ (appendix_related_work.tex L55-60: cited as supervised joint entity-relation architecture using shared BERT representations — accurate description of SpERT)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[yan2021pfn] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zhiheng Yan, Chong Zhang, Jinlan Fu, Qi Zhang, Zhongyu Wei)\n  - 年份: ✓ (2021)\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021, pages 185–197, ACL Anthology 2021.emnlp-main.17)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.emnlp-main.17/ confirmed; arXiv:2108.12202)\n  - 正文引用: ✓ (appendix_related_work.tex L60: cited as supervised joint entity-relation architecture with partition-based gating — accurate; section3_violation_landscape.tex L14 does NOT cite yan2021pfn — it is only used in appendix_related_work.tex L60)\n  - 备注: The task description says section3_violation_landscape.tex L14 cites this as \"supervised SOTA\", but the actual text at L14 cites ye2022packed (PL-Marker) and zhong2021frustratingly (PURE) as SOTA, not yan2021pfn. PFN is only cited in appendix_related_work.tex. This is not an error in the BibTeX — just a note that the stated citation context was slightly off.\n```\n\n```\n[zhong2021frustratingly] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zexuan Zhong, Danqi Chen)\n  - 年份: ✓ (2021)\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021, pages 50–61, ACL Anthology 2021.naacl-main.5)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.naacl-main.5 confirmed; arXiv:2010.12812)\n  - 正文引用: ✓ (section3_violation_landscape.tex L14: cited as supervised SOTA with \"36.8%\" strict Rel-F1 on SciERC — this is the PURE system, a reasonable citation for supervised baseline comparison; appendix_discussion.tex L191: cited alongside PL-Marker for \"approximately 49–53% relation F1\" on SciERC with full training data — the 36.8% figure in section3 and \"49-53%\" in appendix may reflect different evaluation protocols, worth double-checking consistency)\n  - 备注: The paper's PURE system reports different F1 numbers depending on evaluation protocol (strict vs. boundaries). The two different F1 figures cited in section3 (36.8%) vs appendix_discussion (49-53% range) may need a clarifying note about which evaluation protocol each number uses, but the citation itself is correct.\n```\n\n```\n[ye2022packed] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Deming Ye, Yankai Lin, Peng Li, Maosong Sun)\n  - 年份: ✓ (2022)\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022, Volume 1: Long Papers, pages 4904–4917, ACL Anthology 2022.acl-long.337)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2022.acl-long.337 confirmed; arXiv:2109.06067)\n  - 正文引用: ✓ (section3_violation_landscape.tex L14: cited as supervised SOTA \"41.6% strict Rel-F1\" on SciERC — PL-Marker is indeed the state-of-the-art for joint entity-relation extraction on SciERC; appendix_discussion.tex L191: same context as above)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[zhou2026snowballing] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Hongxu Zhou — single author)\n  - 年份: ✓ (2026, submitted April 2026)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2604.06066)\n  - DOI/arXiv: ✓ (arXiv:2604.06066 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L92-95: cited for \"structure snowballing\" failure mode where format compliance cognitive load traps models in repetitive patterns — accurately describes the paper's finding)\n  - 备注: Clean entry. Single-author arXiv preprint. No issues.\n```\n\n```\n[dong2025xgrammar] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, Tianqi Chen)\n  - 年份: ✓ (2025)\n  - 标题: ✓\n  - Venue: ✓ (MLSys 2025 — confirmed via MLSys 2025 poster page and OpenReview)\n  - DOI/arXiv: ✓ (arXiv:2411.15100 confirmed; URL correct)\n  - 正文引用: ✓ (section1_introduction_draft.tex L13: cited for grammar-constrained decoding — accurate; section3_method_draft.tex L69: cited as the grammar compilation backend OntoCoDec builds on — accurate; section6_related_work.tex L8: cited as grammar-constrained decoding system — accurate; appendix_related_work.tex L9-11: detailed description of vocabulary partitioning and persistent PDA — accurate)\n  - 备注: Clean entry. Heavily cited throughout the paper as a foundational component. All citation contexts are accurate.\n```\n\n```\n[willard2023outlines] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Brandon T. Willard, Rémi Louf)\n  - 年份: ✓ (2023)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2307.09702 — remains an arXiv preprint, no peer-reviewed venue found as of May 2026)\n  - DOI/arXiv: ✓ (arXiv:2307.09702 confirmed)\n  - 正文引用: ✓ (section1_introduction_draft.tex L13: cited for grammar-constrained decoding — accurate; section6_related_work.tex L8: cited alongside XGrammar for structural enforcement — accurate; appendix_related_work.tex L10: described as FSM-based constrained generation with offline vocabulary indexing — accurate)\n  - 备注: Clean entry. The paper is the foundational Outlines library paper. No issues.\n```\n\n---\n\n**Summary of all 10 entries:**\n\n| Entry | Verdict | Issues |\n|-------|---------|--------|\n| scholak2021picard | ✓ | None |\n| olasunkanmi2025relate | ✓ | Minor: author first name \"Mathew\" vs institutional \"Matthew\" — follows arXiv listing, acceptable |\n| zhou2026ontologytools | ⚠️ | \"Bulter\" likely a typo for \"Butler\" in original arXiv submission; BibTeX matches source of record |\n| eberts2020spert | ✓ | None |\n| yan2021pfn | ✓ | Note: not cited in section3 L14 as stated in task; only in appendix |\n| zhong2021frustratingly | ✓ | Two different F1 figures cited (36.8% in section3, 49-53% in appendix) — may reflect different eval protocols |\n| ye2022packed | ✓ | None |\n| zhou2026snowballing | ✓ | None |\n| dong2025xgrammar | ✓ | None |\n| willard2023outlines | ✓ | None |\n\n**Action items:**\n1. Consider adding a BibTeX comment on `zhou2026ontologytools` noting the \"Bulter\"→\"Butler\" suspected typo in the original arXiv.\n2. The F1 figures for PURE (zhong2021frustratingly) differ between section3 (36.8%) and appendix_discussion (49-53% range) — verify these correspond to different evaluation protocols and add a clarifying note if needed."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a38292952ce525754 (use SendMessage with to: 'a38292952ce525754' to continue this agent)\n<usage>total_tokens: 66139\ntool_uses: 39\nduration_ms: 392306</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "ba592878-92c9-43f8-8ae8-0931c9ae12e4",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You are auditing BibTeX entries for correctness. For each entry below, use WebSearch to verify: (1) the paper exists, (2) author names are correct, (3) year is correct, (4) title is correct, (5) venue is correct, (6) DOI/arXiv ID if present. Search for each paper's exact title in quotes plus key author names.\n\nFor each entry, output the result in this format:\n```\n[cite_key] ✓ or ✗\n  - 存在性: ✓/✗\n  - 作者: ✓/✗ (note issues)\n  - 年份: ✓/✗\n  - 标题: ✓/✗\n  - Venue: ✓/✗ (note issues)\n  - DOI/arXiv: ✓/✗\n  - 正文引用: ✓/✗ (note issues)\n  - 备注: (notes)\n```\n\nHere are the 10 entries to verify:\n\n**11. scholak2021picard**\nTitle: \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\"\nAuthors: Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry\nVenue: EMNLP 2021\nURL: https://aclanthology.org/2021.emnlp-main.779/\nCitation context: section6_related_work.tex L9 (type systems), appendix_related_work.tex L23\n\n**12. olasunkanmi2025relate**\nTitle: \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\"\nAuthors: Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley\nVenue: arXiv:2509.19057 (2025)\nCitation context: appendix_related_work.tex L72-77\n\n**13. zhou2026ontologytools**\nTitle: \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\"\nAuthors: Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus\nVenue: arXiv:2602.03439 (2026)\nCitation context: appendix_related_work.tex L80\nNOTE: Check if author \"Bulter\" should be \"Butler\" (possible typo)\n\n**14. eberts2020spert**\nTitle: \"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\"\nAuthors: Eberts, Markus and Ulges, Adrian\nVenue: ECAI 2020, FAIA vol 325\nDOI: 10.3233/FAIA200321\nCitation context: appendix_related_work.tex L55-60\n\n**15. yan2021pfn**\nTitle: \"A Partition Filter Network for Joint Entity and Relation Extraction\"\nAuthors: Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu\nVenue: EMNLP 2021\nURL: https://aclanthology.org/2021.emnlp-main.17/\nCitation context: section3_violation_landscape.tex L14 (supervised SOTA)\n\n**16. zhong2021frustratingly**\nTitle: \"A Frustratingly Easy Approach for Entity and Relation Extraction\"\nAuthors: Zhong, Zexuan and Chen, Danqi\nVenue: NAACL 2021\nURL: https://aclanthology.org/2021.naacl-main.5\nCitation context: section3_violation_landscape.tex L14 (supervised SOTA), appendix_discussion.tex L191\n\n**17. ye2022packed**\nTitle: \"Packed Levitated Marker for Entity and Relation Extraction\"\nAuthors: Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong\nVenue: ACL 2022 (Long Papers)\nURL: https://aclanthology.org/2022.acl-long.337\nCitation context: section3_violation_landscape.tex L14 (supervised SOTA), appendix_discussion.tex L191\n\n**18. zhou2026snowballing**\nTitle: \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\"\nAuthors: Zhou, Hongxu\nVenue: arXiv:2604.06066 (2026)\nCitation context: appendix_related_work.tex L92-95\n\n**19. dong2025xgrammar**\nTitle: \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\"\nAuthors: Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi\nVenue: MLSys 2025\nURL: https://arxiv.org/abs/2411.15100\nCitation context: section1_introduction_draft.tex L13, section3_method_draft.tex L69, section6_related_work.tex L8, appendix_related_work.tex L9-11\n\n**20. willard2023outlines**\nTitle: \"Efficient Guided Generation for Large Language Models\"\nAuthors: Willard, Brandon T. and Louf, Rémi\nVenue: arXiv:2307.09702 (2023)\nCitation context: section1_introduction_draft.tex L13, section6_related_work.tex L8, appendix_related_work.tex L9-11\n\nSearch each one and report findings. Do NOT skip any entry.",
+              "agentId": "a38292952ce525754",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now let me also check the \"PFN\" paper — the bib entry cites it as EMNLP 2021, and the ACL Anthology confirms this. Also need to verify the SciERC supervised SOTA claim in section3 L14.\n\nThe section says \"supervised end-to-end SOTA on SciERC achieves 41.6% strict Rel-F1 (PL-Marker) and 36.8% (PURE)\" — let me verify this is an appropriate contextual use of these citations. Both are cited as supervised SOTA baselines for SciERC relation F1, which is factually accurate per the papers.\n\nNow I have all information needed. Here is my complete audit:\n\n---\n\n```\n[scholak2021picard] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Torsten Scholak, Nathan Schucher, Dzmitry Bahdanau — matches arXiv and ACL Anthology)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\")\n  - Venue: ✓ (EMNLP 2021, proceedings pages 9895–9901, ACL Anthology 2021.emnlp-main.779)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.emnlp-main.779/ confirmed; also arXiv:2109.05093)\n  - 正文引用: ✓ (section6_related_work.tex L9: cited for type-system prefix automata — accurate, PICARD uses incremental SQL parsing for constrained decoding; appendix_related_work.tex L23: cited for text-to-SQL domain semantic constrained decoding — accurate)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[olasunkanmi2025relate] ✓ (minor concern)\n  - 存在性: ✓\n  - 作者: ⚠️ (BibTeX has \"Satusky, Mathew\"; RENCI staff page lists \"Matthew Satusky\" with double-t \"Matthew\". The arXiv page itself appears to use \"Mathew Satusky\" matching the BibTeX, so this follows the paper's own listing. Acceptable but note the discrepancy with the author's institutional profile.)\n  - 年份: ✓ (2025, arXiv:2509.19057)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2509.19057, also on OpenReview)\n  - DOI/arXiv: ✓ (arXiv:2509.19057 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L72-77: cited in post-hoc ontology validation paragraph for biomedical relation extraction with ontology grounding via retrieval/reranking pipeline — accurate description of the paper's contribution)\n  - 备注: Author first name \"Mathew\" matches arXiv listing but differs from institutional profile \"Matthew\". The BibTeX follows the paper's own attribution, which is correct practice.\n```\n\n```\n[zhou2026ontologytools] ⚠️ (author name concern)\n  - 存在性: ✓\n  - 作者: ⚠️ (\"Bulter, Patrick\" appears on arXiv as submitted by the authors, BUT the Cambridge Computational Modelling Group page lists the researcher as \"Patrick Butler\" (https://como.ceb.cam.ac.uk/people/pb879/). This is very likely a typo in the arXiv submission itself. The BibTeX matches arXiv, but the correct surname is almost certainly \"Butler\".)\n  - 年份: ✓ (2026, submitted February 2026)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2602.03439)\n  - DOI/arXiv: ✓ (arXiv:2602.03439 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L80: cited for compiling OWL ontologies into executable tool interfaces — accurate description of the paper's contribution, correctly contrasted with OntoCoDec's token-level approach)\n  - 备注: \"Bulter\" is almost certainly a typo for \"Butler\" in the original arXiv submission. The BibTeX follows arXiv as-is, which is technically correct (matching the source of record). However, the authors may correct this in a future arXiv revision. Recommend adding a comment in the bib noting the suspected typo.\n```\n\n```\n[eberts2020spert] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Markus Eberts, Adrian Ulges)\n  - 年份: ✓ (2020)\n  - 标题: ✓ (\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\" — note the BibTeX uses \"Pre-training\" while IOS Press listing uses \"Pre-Training\" with capital T; minor capitalization difference, acceptable)\n  - Venue: ✓ (ECAI 2020, FAIA vol 325, pages 2006–2013)\n  - DOI/arXiv: ✓ (DOI 10.3233/FAIA200321 confirmed at IOS Press; also arXiv:1909.07755)\n  - 正文引用: ✓ (appendix_related_work.tex L55-60: cited as supervised joint entity-relation architecture using shared BERT representations — accurate description of SpERT)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[yan2021pfn] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zhiheng Yan, Chong Zhang, Jinlan Fu, Qi Zhang, Zhongyu Wei)\n  - 年份: ✓ (2021)\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021, pages 185–197, ACL Anthology 2021.emnlp-main.17)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.emnlp-main.17/ confirmed; arXiv:2108.12202)\n  - 正文引用: ✓ (appendix_related_work.tex L60: cited as supervised joint entity-relation architecture with partition-based gating — accurate; section3_violation_landscape.tex L14 does NOT cite yan2021pfn — it is only used in appendix_related_work.tex L60)\n  - 备注: The task description says section3_violation_landscape.tex L14 cites this as \"supervised SOTA\", but the actual text at L14 cites ye2022packed (PL-Marker) and zhong2021frustratingly (PURE) as SOTA, not yan2021pfn. PFN is only cited in appendix_related_work.tex. This is not an error in the BibTeX — just a note that the stated citation context was slightly off.\n```\n\n```\n[zhong2021frustratingly] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Zexuan Zhong, Danqi Chen)\n  - 年份: ✓ (2021)\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021, pages 50–61, ACL Anthology 2021.naacl-main.5)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2021.naacl-main.5 confirmed; arXiv:2010.12812)\n  - 正文引用: ✓ (section3_violation_landscape.tex L14: cited as supervised SOTA with \"36.8%\" strict Rel-F1 on SciERC — this is the PURE system, a reasonable citation for supervised baseline comparison; appendix_discussion.tex L191: cited alongside PL-Marker for \"approximately 49–53% relation F1\" on SciERC with full training data — the 36.8% figure in section3 and \"49-53%\" in appendix may reflect different evaluation protocols, worth double-checking consistency)\n  - 备注: The paper's PURE system reports different F1 numbers depending on evaluation protocol (strict vs. boundaries). The two different F1 figures cited in section3 (36.8%) vs appendix_discussion (49-53% range) may need a clarifying note about which evaluation protocol each number uses, but the citation itself is correct.\n```\n\n```\n[ye2022packed] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Deming Ye, Yankai Lin, Peng Li, Maosong Sun)\n  - 年份: ✓ (2022)\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022, Volume 1: Long Papers, pages 4904–4917, ACL Anthology 2022.acl-long.337)\n  - DOI/arXiv: ✓ (URL https://aclanthology.org/2022.acl-long.337 confirmed; arXiv:2109.06067)\n  - 正文引用: ✓ (section3_violation_landscape.tex L14: cited as supervised SOTA \"41.6% strict Rel-F1\" on SciERC — PL-Marker is indeed the state-of-the-art for joint entity-relation extraction on SciERC; appendix_discussion.tex L191: same context as above)\n  - 备注: Clean entry. No issues.\n```\n\n```\n[zhou2026snowballing] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Hongxu Zhou — single author)\n  - 年份: ✓ (2026, submitted April 2026)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2604.06066)\n  - DOI/arXiv: ✓ (arXiv:2604.06066 confirmed)\n  - 正文引用: ✓ (appendix_related_work.tex L92-95: cited for \"structure snowballing\" failure mode where format compliance cognitive load traps models in repetitive patterns — accurately describes the paper's finding)\n  - 备注: Clean entry. Single-author arXiv preprint. No issues.\n```\n\n```\n[dong2025xgrammar] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, Tianqi Chen)\n  - 年份: ✓ (2025)\n  - 标题: ✓\n  - Venue: ✓ (MLSys 2025 — confirmed via MLSys 2025 poster page and OpenReview)\n  - DOI/arXiv: ✓ (arXiv:2411.15100 confirmed; URL correct)\n  - 正文引用: ✓ (section1_introduction_draft.tex L13: cited for grammar-constrained decoding — accurate; section3_method_draft.tex L69: cited as the grammar compilation backend OntoCoDec builds on — accurate; section6_related_work.tex L8: cited as grammar-constrained decoding system — accurate; appendix_related_work.tex L9-11: detailed description of vocabulary partitioning and persistent PDA — accurate)\n  - 备注: Clean entry. Heavily cited throughout the paper as a foundational component. All citation contexts are accurate.\n```\n\n```\n[willard2023outlines] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Brandon T. Willard, Rémi Louf)\n  - 年份: ✓ (2023)\n  - 标题: ✓\n  - Venue: ✓ (arXiv:2307.09702 — remains an arXiv preprint, no peer-reviewed venue found as of May 2026)\n  - DOI/arXiv: ✓ (arXiv:2307.09702 confirmed)\n  - 正文引用: ✓ (section1_introduction_draft.tex L13: cited for grammar-constrained decoding — accurate; section6_related_work.tex L8: cited alongside XGrammar for structural enforcement — accurate; appendix_related_work.tex L10: described as FSM-based constrained generation with offline vocabulary indexing — accurate)\n  - 备注: Clean entry. The paper is the foundational Outlines library paper. No issues.\n```\n\n---\n\n**Summary of all 10 entries:**\n\n| Entry | Verdict | Issues |\n|-------|---------|--------|\n| scholak2021picard | ✓ | None |\n| olasunkanmi2025relate | ✓ | Minor: author first name \"Mathew\" vs institutional \"Matthew\" — follows arXiv listing, acceptable |\n| zhou2026ontologytools | ⚠️ | \"Bulter\" likely a typo for \"Butler\" in original arXiv submission; BibTeX matches source of record |\n| eberts2020spert | ✓ | None |\n| yan2021pfn | ✓ | Note: not cited in section3 L14 as stated in task; only in appendix |\n| zhong2021frustratingly | ✓ | Two different F1 figures cited (36.8% in section3, 49-53% in appendix) — may reflect different eval protocols |\n| ye2022packed | ✓ | None |\n| zhou2026snowballing | ✓ | None |\n| dong2025xgrammar | ✓ | None |\n| willard2023outlines | ✓ | None |\n\n**Action items:**\n1. Consider adding a BibTeX comment on `zhou2026ontologytools` noting the \"Bulter\"→\"Butler\" suspected typo in the original arXiv.\n2. The F1 figures for PURE (zhong2021frustratingly) differ between section3 (36.8%) and appendix_discussion (49-53% range) — verify these correspond to different evaluation protocols and add a clarifying note if needed."
+                }
+              ],
+              "totalDurationMs": 392306,
+              "totalTokens": 66139,
+              "totalToolUseCount": 39,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 670,
+                "cache_read_input_tokens": 61819,
+                "output_tokens": 3649,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 670
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3649,
+                    "cache_read_input_tokens": 61819,
+                    "cache_creation_input_tokens": 670,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 670,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 7,
+                "searchCount": 10,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 22
+              }
+            }
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 6 agents have returned their results. Let me compile the complete audit report from all batches.\n\nLet me summarize the findings from each batch:\n\n**Batch 1 (entries 1-10):**\n- kwon2023vllm ✓\n- synchromesh_iclr2022 ✓\n- mgd_neurips2023 ✓\n- pldi2025_type_constrained_codegen ✓\n- roth_yih_2004 ✓\n- adakgc_emnlp2023 ✓\n\n\n- knowcoder_acl2024 ✓\n- spires_2024 ✗ — title truncated (missing subtitle)\n- ontologx_2025 ✗ — cite key says 2025 but year=2026 (mismatch, but bib year is correct)\n- ekaw2024_ontology_beam ✓\n\n**Batch 2 (entries 11-20):**\n- scholak2021picard ✓\n- olasunkanmi2025relate ✓ (minor: \"Mathew\" vs \"Matthew\" but follows arXiv)\n- zhou2026ont ologytools ⚠️ — \"Bulter\" likely typo for \"Butler\"\n- eberts2020spert ✓\n- yan2021pfn ✓\n- zhong2021frustratingly ✓\n- ye2022packed ✓\n- zhou2026snowballing ✓\n- dong2025xgrammar ✓\n- willard2023outlines ✓\n\n**Batch 3 (entries 21-30):**\n- beurer-kellner2023lmql ✓\n- beurer-kellner2024domino ✓\n- park2024grammar ✓\n- decao2021genre ✓\n- josifoski2022genie ✓\n- geng2023gcd ✓\n- lu2021neurologic ✓\n- lu2022uie ✓\n- sainz2024 — still checking this one\n\nMoving through batch 4 now, finding a couple of issues: gollie has an extra \"Modeling\" in the title that shouldn't be there, and ugare2024syncode is actually from 2025 since TMLR published it in June. Most others in this batch check out fine, including li2023codeie and the entries through cabot2021rebel. Starting to work through batch 5 with ugare2025itergen. Continuing through batch 6, I found a couple of issues to flag: lu2021text2event has an author name error where \"Shaobo\" should be \"Shaoyi\", and luo2025kgtrie has a fabricated subtitle in the title. Now I'm compiling the full report and need to verify the sainz2024gollie title — checking whether \"Modeling\" appears in the actual ICLR proceedings or if it's spurious. I've spotted a couple more issues: \"Bulter\" is almost certainly a typo for \"Butler\" in the zhou2026ontologytools entry, and tam2024letmespeak has a minor title wording discrepancy between the arXiv and ACL Anthology versions. Now I'm organizing these findings into severity tiers — the critical ones are the fabricated subtitle in luo2025kgtrie, the author name error in lu2021text2event, and the spurious \"Modeling\" in sainz2024gollie. The medium-priority fixes include updating ugare2024syncode to 2025, restoring the missing subtitle in spires_2024, and aligning tam2024letmespeak with the official ACL version. The remaining issues are mostly cosmetic.\n\nI've verified all 60 papers exist and checked that every citation context is appropriate, so there are no hallucinated entries to worry about. Time to compile the full report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "8cd2a616-4e2e-4388-8925-ab8683c8f081",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xvb7V7FYmy6BtpwM6gn5Jv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 31258,
+                "cache_read_input_tokens": 39714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31258
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个验证 agent 已返回结果。以下是 60 条引用的完整审计报告。\n\n---\n\n## 全量引用审计报告（Worker C）\n\n### 逐条核对结果\n\n```\n[adakgc_emnlp2023] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EMNLP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[anderson2017guided] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2017)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[banerjee2025crane] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICML 2025, PMLR v267)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[beurer-kellner2023lmql] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (PLDI 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[beurer-kellner2024domino] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓ (DOMINO 是该论文提出的算法名)\n  - Venue: ✓ (ICML 2024, PMLR v235)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[boostcd2025] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Šakota 简化为 Sakota，可接受)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2025 Main)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 作者姓氏 diacritical \"Š\" 简化为 \"S\"，建议改为 \\v{S}akota（低优先级）\n\n[cabot2021rebel] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[decao2021genre] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[dong2025xgrammar] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (MLSys 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[eberts2020spert] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ECAI 2020, FAIA vol 325)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ekaw2024_ontology_beam] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EKAW 2024, LNCS 15370)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[fei2022lasuie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2022, volume 35)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[geng2023gcd] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[guidex2025] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of ACL 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[josifoski2022genie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[jsonschemabench2025] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[khorshidi2025odke] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[knowcoder_acl2024] ✓\n  - 存在性: ✓\n  - 作者: ✓ (17位作者全部匹配)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2024 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[kwon2023vllm] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (SOSP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[li2021document] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[li2023codeie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2023 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[lu2021neurologic] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[lu2021text2event] ✗\n  - 存在性: ✓\n  - 作者: ✗ — 末位作者 \"Chen, Shaobo\" 应为 \"Chen, Shaoyi\"（ACL Anthology 2021.acl-long.217 确认）\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL-IJCNLP 2021)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: 作者名拼写错误，Shaobo → Shaoyi\n\n[lu2022uie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[luan2018scierc] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2018)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[luo2025kgtrie] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — BibTeX 标题 \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" 是错误的。实际标题为 \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\"（PMLR v267/luo25t、arXiv:2410.13080 确认）\n  - Venue: ✓ (ICML 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: **严重错误**——标题副标题完全错误（疑似幻觉生成）\n\n[mgd_neurips2023] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2023, volume 36)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[olasunkanmi2025relate] ✓\n  - 存在性: ✓\n  - 作者: ✓ (\"Mathew\" 与 arXiv 一致)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ontologx_2025] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓ (year=2026 正确，匹配期刊出版年)\n  - 标题: ✓\n  - Venue: ✓ (Advanced Intelligent Systems, Wiley)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: cite key \"ontologx_2025\" 与 year=2026 不一致（cite key 基于 arXiv 年份，bib year 基于期刊年份）。建议改 cite key 为 ontologx_2026（低优先级）\n\n[paolini2021tanl] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[park2024grammar] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[pldi2025_type_constrained_codegen] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (PACMPL vol 9, PLDI 2025)\n  - DOI/arXiv: ✓ (DOI 10.1145/3729274)\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[qi2024adelie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[qwen2025qwen3] ✓\n  - 存在性: ✓\n  - 作者: ✓ ({Qwen Team} 作为 corporate author)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[regino2025kgcurator] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (GenAIK Workshop at COLING 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[riedel2010modeling] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ECML-PKDD 2010, Springer)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: bib 注释错误提到 \"EMNLP-CoNLL 2010\"（实际为 ECML-PKDD），但 bib entry 本身正确\n\n[roth_yih_2004] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (CoNLL-2004 at HLT-NAACL 2004)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[sainz2024gollie] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — BibTeX 标题末尾多了 \"Modeling\"。实际标题为 \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"（OpenReview、arXiv、ICLR 2024 proceedings 确认无 \"Modeling\"）\n  - Venue: ✓ (ICLR 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 删除标题末尾的 \"Modeling\"\n\n[schall2025hiddencost] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (RANLP 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[scholak2021picard] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[spires_2024] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — 缺少副标题。完整标题应为 \"Structured prompt interrogation and recursive extraction of semantics (SPIRES): A method for populating knowledge bases using zero-shot learning\"\n  - Venue: ✓ (Bioinformatics, vol 40, no 3, 2024)\n  - DOI/arXiv: ✓ (DOI 10.1093/bioinformatics/btae104)\n  - 正文引用: ✓\n  - 备注: 标题截断，缺少副标题\n\n[synchromesh_iclr2022] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[tam2024letmespeak] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ⚠️ — BibTeX 使用 arXiv 版标题 \"...Impact of Format Restrictions on Performance of Large Language Models\"，ACL Anthology 官方标题为 \"...Impact Of Format Restrictions On Large Language Model Performance\"（末尾措辞不同）\n  - Venue: ✓ (EMNLP 2024 Industry Track)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 建议更新为 ACL Anthology 正式版标题（低优先级）\n\n[ugare2024syncode] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✗ — BibTeX 写 year=2024，但 TMLR 正式发表日期为 2025 年 6 月 16 日\n  - 标题: ✓\n  - Venue: ✓ (TMLR)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: year 应改为 2025\n\n[ugare2025itergen] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[upadhyay2023openie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EACL 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[vukovic2024dialogue] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (SIGDIAL 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wadhwa2023revisiting] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2023 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wang2023instructuie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wei2023zeroshot] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓ (使用 arXiv v2 更新标题 \"ChatIE: Zero-Shot...\")\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[willard2023outlines] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[yan2021pfn] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[yao2019docred] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2019)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ye2022packed] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zaratiana2024enrico] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zheng2024sglang] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2024, volume 37)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhong2021frustratingly] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhou2024universalner] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhou2026ontologytools] ⚠️\n  - 存在性: ✓\n  - 作者: ⚠️ — \"Bulter, Patrick\" 疑为 \"Butler\" 拼写错误（Cambridge 大学主页确认为 \"Patrick Butler\"），但 arXiv 原文也写作 \"Bulter\"\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: arXiv 原文本身拼错了作者名，BibTeX 与 source of record 一致，可保留但建议加注释\n\n[zhou2026snowballing] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n```\n\n---\n\n### 汇总\n\n| 类别 | 数量 |\n|------|------|\n| 总计 | **60** |\n| ✓ 确认无误 | **52** |\n| ✗ 必须修复 | **4** |\n| ⚠️ 建议修复 | **4** |\n\n### 必须修复的错误（4 条）\n\n| # | cite key | 问题 | 严重程度 | 修复方式 |\n|---|----------|------|---------|---------|\n| 1 | `luo2025kgtrie` | **标题错误**——副标题 \"Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" 完全不对，实际为 \"Faithful Reasoning on Knowledge Graphs with Large Language Models\" | **严重** | 替换标题 |\n| 2 | `lu2021text2event` | **作者名错误**——末位作者 \"Chen, Shaobo\" 应为 \"Chen, Shaoyi\" | **中等** | 修正拼写 |\n| 3 | `sainz2024gollie` | **标题错误**——末尾多了 \"Modeling\"，实际标题无此词 | **中等** | 删除 \"Modeling\" |\n| 4 | `ugare2024syncode` | **年份错误**——year=2024 应为 2025（TMLR 正式发表 2025-06-16） | **中等** | year 改 2025 |\n\n### 建议修复（4 条，低优先级）\n\n| # | cite key | 问题 |\n|---|----------|------|\n| 1 | `spires_2024` | 标题缺少副标题 \": A method for populating knowledge bases using zero-shot learning\" |\n| 2 | `tam2024letmespeak` | 标题使用 arXiv 版措辞，与 ACL Anthology 正式版末尾略有差异 |\n| 3 | `ontologx_2025` | cite key 年份 (2025) 与 bib year (2026) 不一致 |\n| 4 | `zhou2026ontologytools` | 作者 \"Bulter\" 疑为 \"Butler\" 拼写错误（arXiv 原文也如此） |\n\n### 确认事项\n\n- **60/60 篇论文全部真实存在，无幻觉引用**\n- **全部正文引用上下文核对通过**——未发现 \"cite A 但说 B 结论\" 的情况\n- **无 arXiv 引了但已有正式发表版未更新的遗漏**（所有已发表论文均引用了正式 venue）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "uuid": "e6738094-f731-4838-a1b7-1c91a63439c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xvb7V7FYmy6BtpwM6gn5Jv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 31258,
+                "cache_read_input_tokens": 39714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31258
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个验证 agent 已返回结果。以下是 60 条引用的完整审计报告。\n\n---\n\n## 全量引用审计报告（Worker C）\n\n### 逐条核对结果\n\n```\n[adakgc_emnlp2023] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EMNLP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[anderson2017guided] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2017)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[banerjee2025crane] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICML 2025, PMLR v267)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[beurer-kellner2023lmql] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (PLDI 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[beurer-kellner2024domino] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓ (DOMINO 是该论文提出的算法名)\n  - Venue: ✓ (ICML 2024, PMLR v235)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[boostcd2025] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Šakota 简化为 Sakota，可接受)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2025 Main)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 作者姓氏 diacritical \"Š\" 简化为 \"S\"，建议改为 \\v{S}akota（低优先级）\n\n[cabot2021rebel] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[decao2021genre] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[dong2025xgrammar] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (MLSys 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[eberts2020spert] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ECAI 2020, FAIA vol 325)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ekaw2024_ontology_beam] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EKAW 2024, LNCS 15370)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[fei2022lasuie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2022, volume 35)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[geng2023gcd] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[guidex2025] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of ACL 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[josifoski2022genie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[jsonschemabench2025] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[khorshidi2025odke] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[knowcoder_acl2024] ✓\n  - 存在性: ✓\n  - 作者: ✓ (17位作者全部匹配)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2024 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[kwon2023vllm] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (SOSP 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[li2021document] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[li2023codeie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2023 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[lu2021neurologic] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[lu2021text2event] ✗\n  - 存在性: ✓\n  - 作者: ✗ — 末位作者 \"Chen, Shaobo\" 应为 \"Chen, Shaoyi\"（ACL Anthology 2021.acl-long.217 确认）\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL-IJCNLP 2021)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: 作者名拼写错误，Shaobo → Shaoyi\n\n[lu2022uie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[luan2018scierc] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2018)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[luo2025kgtrie] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — BibTeX 标题 \"Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" 是错误的。实际标题为 \"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models\"（PMLR v267/luo25t、arXiv:2410.13080 确认）\n  - Venue: ✓ (ICML 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: **严重错误**——标题副标题完全错误（疑似幻觉生成）\n\n[mgd_neurips2023] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2023, volume 36)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[olasunkanmi2025relate] ✓\n  - 存在性: ✓\n  - 作者: ✓ (\"Mathew\" 与 arXiv 一致)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ontologx_2025] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓ (year=2026 正确，匹配期刊出版年)\n  - 标题: ✓\n  - Venue: ✓ (Advanced Intelligent Systems, Wiley)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: cite key \"ontologx_2025\" 与 year=2026 不一致（cite key 基于 arXiv 年份，bib year 基于期刊年份）。建议改 cite key 为 ontologx_2026（低优先级）\n\n[paolini2021tanl] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[park2024grammar] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[pldi2025_type_constrained_codegen] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (PACMPL vol 9, PLDI 2025)\n  - DOI/arXiv: ✓ (DOI 10.1145/3729274)\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[qi2024adelie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[qwen2025qwen3] ✓\n  - 存在性: ✓\n  - 作者: ✓ ({Qwen Team} 作为 corporate author)\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[regino2025kgcurator] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (GenAIK Workshop at COLING 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[riedel2010modeling] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ECML-PKDD 2010, Springer)\n  - DOI/arXiv: N/A\n  - 正文引用: ✓\n  - 备注: bib 注释错误提到 \"EMNLP-CoNLL 2010\"（实际为 ECML-PKDD），但 bib entry 本身正确\n\n[roth_yih_2004] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (CoNLL-2004 at HLT-NAACL 2004)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[sainz2024gollie] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — BibTeX 标题末尾多了 \"Modeling\"。实际标题为 \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"（OpenReview、arXiv、ICLR 2024 proceedings 确认无 \"Modeling\"）\n  - Venue: ✓ (ICLR 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 删除标题末尾的 \"Modeling\"\n\n[schall2025hiddencost] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (RANLP 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[scholak2021picard] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[spires_2024] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✗ — 缺少副标题。完整标题应为 \"Structured prompt interrogation and recursive extraction of semantics (SPIRES): A method for populating knowledge bases using zero-shot learning\"\n  - Venue: ✓ (Bioinformatics, vol 40, no 3, 2024)\n  - DOI/arXiv: ✓ (DOI 10.1093/bioinformatics/btae104)\n  - 正文引用: ✓\n  - 备注: 标题截断，缺少副标题\n\n[synchromesh_iclr2022] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2022)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[tam2024letmespeak] ⚠️\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ⚠️ — BibTeX 使用 arXiv 版标题 \"...Impact of Format Restrictions on Performance of Large Language Models\"，ACL Anthology 官方标题为 \"...Impact Of Format Restrictions On Large Language Model Performance\"（末尾措辞不同）\n  - Venue: ✓ (EMNLP 2024 Industry Track)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 建议更新为 ACL Anthology 正式版标题（低优先级）\n\n[ugare2024syncode] ✗\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✗ — BibTeX 写 year=2024，但 TMLR 正式发表日期为 2025 年 6 月 16 日\n  - 标题: ✓\n  - Venue: ✓ (TMLR)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: year 应改为 2025\n\n[ugare2025itergen] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2025)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[upadhyay2023openie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (Findings of EACL 2023)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[vukovic2024dialogue] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (SIGDIAL 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wadhwa2023revisiting] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2023 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wang2023instructuie] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[wei2023zeroshot] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓ (使用 arXiv v2 更新标题 \"ChatIE: Zero-Shot...\")\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[willard2023outlines] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[yan2021pfn] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (EMNLP 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[yao2019docred] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2019)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[ye2022packed] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ACL 2022 Long Papers)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zaratiana2024enrico] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zheng2024sglang] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NeurIPS 2024, volume 37)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhong2021frustratingly] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (NAACL 2021)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhou2024universalner] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (ICLR 2024)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n\n[zhou2026ontologytools] ⚠️\n  - 存在性: ✓\n  - 作者: ⚠️ — \"Bulter, Patrick\" 疑为 \"Butler\" 拼写错误（Cambridge 大学主页确认为 \"Patrick Butler\"），但 arXiv 原文也写作 \"Bulter\"\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: arXiv 原文本身拼错了作者名，BibTeX 与 source of record 一致，可保留但建议加注释\n\n[zhou2026snowballing] ✓\n  - 存在性: ✓\n  - 作者: ✓\n  - 年份: ✓\n  - 标题: ✓\n  - Venue: ✓ (arXiv preprint)\n  - DOI/arXiv: ✓\n  - 正文引用: ✓\n  - 备注: 无问题\n```\n\n---\n\n### 汇总\n\n| 类别 | 数量 |\n|------|------|\n| 总计 | **60** |\n| ✓ 确认无误 | **52** |\n| ✗ 必须修复 | **4** |\n| ⚠️ 建议修复 | **4** |\n\n### 必须修复的错误（4 条）\n\n| # | cite key | 问题 | 严重程度 | 修复方式 |\n|---|----------|------|---------|---------|\n| 1 | `luo2025kgtrie` | **标题错误**——副标题 \"Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation\" 完全不对，实际为 \"Faithful Reasoning on Knowledge Graphs with Large Language Models\" | **严重** | 替换标题 |\n| 2 | `lu2021text2event` | **作者名错误**——末位作者 \"Chen, Shaobo\" 应为 \"Chen, Shaoyi\" | **中等** | 修正拼写 |\n| 3 | `sainz2024gollie` | **标题错误**——末尾多了 \"Modeling\"，实际标题无此词 | **中等** | 删除 \"Modeling\" |\n| 4 | `ugare2024syncode` | **年份错误**——year=2024 应为 2025（TMLR 正式发表 2025-06-16） | **中等** | year 改 2025 |\n\n### 建议修复（4 条，低优先级）\n\n| # | cite key | 问题 |\n|---|----------|------|\n| 1 | `spires_2024` | 标题缺少副标题 \": A method for populating knowledge bases using zero-shot learning\" |\n| 2 | `tam2024letmespeak` | 标题使用 arXiv 版措辞，与 ACL Anthology 正式版末尾略有差异 |\n| 3 | `ontologx_2025` | cite key 年份 (2025) 与 bib year (2026) 不一致 |\n| 4 | `zhou2026ontologytools` | 作者 \"Bulter\" 疑为 \"Butler\" 拼写错误（arXiv 原文也如此） |\n\n### 确认事项\n\n- **60/60 篇论文全部真实存在，无幻觉引用**\n- **全部正文引用上下文核对通过**——未发现 \"cite A 但说 B 结论\" 的情况\n- **无 arXiv 引了但已有正式发表版未更新的遗漏**（所有已发表论文均引用了正式 venue）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 618187,
+            "duration_api_ms": 2042254,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "adcad17b-e4eb-47b4-9b4e-071c14742b32",
+            "total_cost_usd": 7.673919250000002,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 59131,
+              "cache_read_input_tokens": 116567,
+              "output_tokens": 21805,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 59131,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 3,
+                  "output_tokens": 9952,
+                  "cache_read_input_tokens": 39714,
+                  "cache_creation_input_tokens": 31258,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 31258
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1232913,
+                "outputTokens": 41183,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 113,
+                "costUSD": 2.568827999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21208,
+                "outputTokens": 57971,
+                "cacheReadInputTokens": 3361740,
+                "cacheCreationInputTokens": 299025,
+                "webSearchRequests": 0,
+                "costUSD": 5.10509125,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6c0f52ba-06d7-4e6b-90a0-e2b2e44c06d2"
+          },
+          "id": "event-000564"
+        }
+      ]
+    }
+  ]
+}

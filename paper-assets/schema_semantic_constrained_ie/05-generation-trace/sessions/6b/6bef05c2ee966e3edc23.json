@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bef05c2ee966e3edc23",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper table2 cascade fix 13",
+  "task_key": "worker_paper_table2_cascade_fix_13_20260520T113317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2_cascade_fix_13_20260520T113317_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "7f9fa989fb0a748de83616fd033d0adb597061a561babc91313d36a1d9f73367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改报告\n\n### 修改清单（4处）\n\n| # | 文件 | 行 | 旧值 | 新值 |\n|---|------|-----|------|------|\n| 1 | `abstract.tex` | 6 | `eliminates DR violations` | `near-eliminates DR violations (DR $\\leq$ 0.21\\%)` |\n| 2 | `section1_introduction_draft.tex` | 22 | `eliminates DR` | `near-eliminates DR ($\\leq$ 0.21\\%)` |\n| 3 | `section3_violation_landscape.tex` | 8 | `eliminating DR violations` | `near-eliminating DR violations` |\n| 4 | `section5_crossmodel_draft.tex` | 59 | `DR\\,$\\leq$\\,0.20\\%` | `DR\\,$\\leq$\\,0.21\\%` |\n\n### 验证结果\n\n**编译**: 0 errors, 32 pages, 504264 bytes.\n\n**grep (a) DR context 0.20 残留**: 空 — 无残留。\n\n**grep (b) \"eliminates/eliminating DR\" 残留**: 剩余出现均合法：\n- `appendix_beam_search.tex:59,60` — beam search 确实将 DR 降到 0%，\"eliminates\" 事实正确\n- `appendix_discussion.tex:193` — \"Fine-tuning alone eliminates DR on four of seven relations\"，描述具体 relation 级别的消除\n- `section5_scierc_draft.tex:104` — \"eliminates or near-eliminates DR\"，Qwen LoRA 确实 DR=0%\n\n**grep (c) 44.23 / 0.51 残留**: 均合法：\n- `appendix_beam_search.tex:135`, `section5_scierc_draft.tex:110` — R-F1=44.23 是 Qwen SciERC beam 结果\n- `appendix_discussion.tex:260` — 0.51 是 per-relation 表格中的 Grammar 行 CF 值，非 ΔDR\n\n**grep (d) \"eliminat\" + DR context**: 所有剩余出现均为合法用法（beam DR→0%、ET/RV 消除、per-relation 细节、DEPRECATED 文件）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table2-cascade-fix-13.md"
+}

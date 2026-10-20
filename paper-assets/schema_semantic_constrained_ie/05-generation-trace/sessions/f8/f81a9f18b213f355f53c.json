@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f81a9f18b213f355f53c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis prompt consistency check",
+  "task_key": "worker_analysis_prompt_consistency_check_20260513T215555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prompt_consistency_check_20260513T215555_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "4dbedec487dcc0b2d7d5ce95154c88827f5bd196fbb4a82b465e9ec0c3e6f2a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n### 发现\n\n- **SciERC**: Phase 2 的 `SCIERC_SYSTEM` + `SCIERC_USER_TEMPLATE` 与 Phase 0 的 `MINIMAL_SYSTEM_PROMPT` + `USER_TEMPLATE` **完全一致**，无需修复。\n\n- **DocRED**: 发现两处排序不一致（同一集合，不同顺序）：\n  1. **Entity types**: Phase 0 用 `PER, ORG, LOC, TIME, NUM, MISC`，Phase 2 用字母序 `LOC, MISC, NUM, ORG, PER, TIME`\n  2. **Relation types**: Phase 0 按名称字母序排列，Phase 2 按 P-code 插入序\n\n### 修复\n\n在 `run_constrained_extraction.py` 中：\n1. 添加 `DOCRED_ENTITY_TYPES = [\"PER\", \"ORG\", \"LOC\", \"TIME\", \"NUM\", \"MISC\"]` 常量\n2. `build_messages` DocRED 分支改用 `DOCRED_ENTITY_TYPES` + `sorted(relation_types)`\n3. `build_s2_entity_messages` / `build_s2_relation_messages` DocRED 分支同步修复\n\n修复后两个数据集的 prompt 均与 Phase 0 逐字一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prompt-consistency-check.md"
+}

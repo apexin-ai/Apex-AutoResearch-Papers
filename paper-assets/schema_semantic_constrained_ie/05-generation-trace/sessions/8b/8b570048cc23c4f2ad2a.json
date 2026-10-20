@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b570048cc23c4f2ad2a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama docred beam4 unc check",
+  "task_key": "worker_ops_d066_llama_docred_beam4_unc_check_20260520T142012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_docred_beam4_unc_check_20260520T142012_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "67bbad41d29f49af760b13dc656c19eae9270fbab22699c1e15642459270a488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d066_sweep_llama_docred_beam4_unc — 成功**\n\n| 指标 | 值 |\n|------|-----|\n| Samples | 200 (1 parse fail, 0.5%) |\n| **E-F1** | **85.67** (P=85.52, R=85.81) |\n| **R-F1** | **52.65** (P=51.97, R=53.35) |\n| Violation rates | ET=0%, RV=0.08%, DR=0.04%, CF=0.08% |\n\nRegistry 已更新（conclusion=success + metrics + paths），cron 已删除。\n\nwestd-16980 GPU1 已释放。DocRED Llama unconstrained beam sweep (beam1/2/4/8) 全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-docred-beam4-unc-check.md"
+}

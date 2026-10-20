@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f45b3979dacee8fe25",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix w5 qwen docred lora training gpu cleanup",
+  "task_key": "worker_fix_w5_qwen_docred_lora_training_gpu_cleanup_20260515T180309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_w5_qwen_docred_lora_training_gpu_cleanup_20260515T180309_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "ea2c360aaae4429a8bcf9c9468e2272cfb44e20703fcbc84df4c3f9217d8f939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **PID 293601 + 294205** 已杀掉，GPU 0 无运行进程\n- **GPU 0**: 显存释放中，GPU-Util 0%\n- **GPU 1**: 完全空闲（0MiB）\n- **无 tmux 残留 session**\n\n两块 GPU 均可用，可以重新提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-w5-qwen-docred-lora-training-gpu-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a830023d27e63e861904",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama v3 21461 cuda1 urgent",
+  "task_key": "worker_code_llama_v3_21461_cuda1_urgent_20260518T071726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_v3_21461_cuda1_urgent_20260518T071726_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "56eced57a05586accced8e0076002c7ad18bd92a59f9dc7f40188a6e633e51f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：模型需要 16GB，实际只有 ~1.3GB。下载严重不完整。\n\n**启动失败。** 汇总如下：\n\n| 项目 | 结果 |\n|------|------|\n| 代码行数 | 938 行 ✅ |\n| Llama 模型路径 | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct` |\n| PID | 8352（已崩溃） |\n| GPU 1 显存 | 0MiB（未加载） |\n| **错误** | `SafetensorError: incomplete metadata, file not fully covered` |\n\n**根因**：ModelScope 下载的 Llama 3.1 8B 权重文件严重不完整（实际 ~1.3GB / 需要 ~16GB）。4 个 shard 均为部分下载。\n\n**需要操作**：重新下载完整的 Llama 3.1 8B 模型权重。是否要在该服务器上执行 ModelScope 下载？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-v3-21461-cuda1-urgent.md"
+}

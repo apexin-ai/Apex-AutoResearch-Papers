@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "4ab45bceea2eeb4bb936",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ssh d062 full ft final check",
+  "task_key": "worker_ssh_d062_full_ft_final_check_20260519T044208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_final_check_20260519T044208.log",
+    "occurrence": 1,
+    "bytes": 1141245,
+    "sha256": "c7dcd669bf4c58243f2c410b6b2f1b105d333a2c3e388c450794f9774a281f72"
+  },
+  "statistics": {
+    "messages": 809,
+    "user_turns": 1,
+    "tool_calls": 353,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 353,
+      "tool_result": 353,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 784,
+      "chunks": [
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0005.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "4ab45bceea2eeb4bb936-part-0005.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d062-full-ft-final-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2421a203b05a89ef0cc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check p1 maxtoken progress",
+  "task_key": "worker_check_p1_maxtoken_progress_20260515T093937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_p1_maxtoken_progress_20260515T093937_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "c505002ab509971cdf1b6994589d92e5b57b2f3629f5e7bb589ae945585003ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n**GPU 状态**：cuda:0 (18GB/97GB, 89% util)、cuda:1 (18GB/97GB, 84% util) — 均健康运行\n\n---\n\n**1. `llama_docred_unconstrained_mt6144`** (PID 246947, cuda:0)\n- 存活：✅ 已运行 1h 20m 35s\n- 进度：**220/998 docs (22.0%)**\n- 速率：~22 sec/doc\n- 预估剩余：~4h 45min（约 2026-05-15 ~6h 后完成）\n- 日志：正常生成中（重复 pad_token_id 提示，属正常）\n\n**2. `llama_docred_full_s1_mt6144`** (PID 247487, cuda:1)\n- 存活：✅ 已运行 1h 18m 00s\n- 进度：**192/998 docs (19.2%)**\n- 速率：~24.4 sec/doc\n- 预估剩余：~5h 28min\n- 日志：`Grammar-first fallback` 已触发 61 次（semantic mask 会清空 grammar-valid tokens 时回退到 grammar-only）— 符合 full_s1 模式预期\n\n两个实验均健康，无错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-p1-maxtoken-progress.md"
+}

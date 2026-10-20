@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4de6b8a6e0111ca90543",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 quick check r2",
+  "task_key": "worker_ssh_d064_quick_check_r2_20260519T135155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_quick_check_r2_20260519T135155_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "18cf773505d84622a1347c6030fa48358da254c731fd3c733b4d6c646e12237b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张 GPU 都在满载跑（GPU0 18.3GB/90%, GPU1 18.9GB/89%）。文件行数均有增长：\n\n| 文件 | 上次 | 现在 | 增量 |\n|------|------|------|------|\n| Qwen unc | 683 | 788 | +105 |\n| Llama greedy unc | 653 | 818 | +165 |\n\n推理仍在正常进行，两个任务都在稳步产出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-quick-check-r2.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c16b7577228ccd3dc377",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code llama lora disk merge eval",
+  "task_key": "worker_code_llama_lora_disk_merge_eval_20260515T171955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_llama_lora_disk_merge_eval_20260515T171955.jsonl",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "581a9b53fc54ca8e2d6d7ae2646c32198ee243464956261d52d1774cabba3f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:20:05.318811+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_llama_lora_disk_merge_eval_20260515T171955"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-llama-lora-disk-merge-eval.md"
+}

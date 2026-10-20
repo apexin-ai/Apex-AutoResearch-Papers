@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e29b1bfff2502aff024",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778737014.md",
+  "task_key": "loop_2_1778737014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778737014.md",
+    "occurrence": 1,
+    "bytes": 4716,
+    "sha256": "48c8807bb11bd93c6a129e2c392121e9e91084b37bea4ecdcb291da860c0e0d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T04:27:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-16980 cuda:0, cuda:1 **只有这两张**，禁止用其他 GPU\n- submit_training_job 命令**必须**带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，否则 EXIT_CODE=127 (python3 not found)。已连续踩坑 2 次\n- EXIT_CODE=129 (SIGHUP) 是 cron 误判——进程可能已正常完成，**必须先查日志确认 \"Done: N samples\" 再判定成功/失败**，不要盲信 cron conclusion\n- `--device cuda:0` 是固定的（框架注入 CUDA_VISIBLE_DEVICES 做物理映射），不要改成 cuda:1\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-16980, 工作目录 `/root/schema_semantic_constrained_ie`\n- Python: `/root/miniconda3/bin/python3` (conda base, Python 3.12.3)\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- torch 2.10.0+cu128, transformers 4.57.6, CUDA 12.8, XGrammar v2\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell 94GB each\n- 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- SciERC 数据: `data/processed_data/test.json` (551 sentences)\n- DocRED 数据: `data/docred/dev.json` (998 docs)\n- 分析工具: `violation_checker.py` (SciERC), `violation_checker_docred.py` (DocRED)\n- 活跃进程: 无确认活跃 GPU 进程（所有 SciERC Phase 2 已完成，docred_schema 被 SIGTERM 杀掉）\n\n### 3. 📊 当前状态\n**刚做完**: 诊断 phase2_scierc_full_s1 + semantic_only 的 EXIT_CODE=129 假失败。日志确认 551/551 全部完成。已更正 registry conclusion→success。\n\n**等待中的 Worker 回调**:\n1. `worker_analysis_phase2_scierc_s1_semantic` — 正在对 full_s1 + semantic_only 运行 violation_checker 分析，结果将写入 registry metrics\n2. `worker_resume_mvp_phase0_docred_schema` — 正在 --resume 续跑 docred_schema (814/998→998)，用 cuda:0\n3. `worker_analysis_phase2_scierc_unconstrained` — 之前派的，分析 unconstrained baseline（应已完成或即将完成）\n4. `worker_analysis_s2_relation_f1_rootcause` — 调查 S2 pilot50 relation_f1=0.0 的 root cause\n\n**Registry 关键状态**:\n- phase2_scierc_grammar_only: DONE/success ✅ (rv=0%, dr=14.84%, F1 无损)\n- phase2_scierc_unconstrained: DONE/success ✅ (metrics 待 Worker 回写)\n- phase2_scierc_full_s1: DONE/success ✅ (metrics 待 Worker 分析)\n- phase2_scierc_semantic_only: DONE/success ✅ (metrics 待 Worker 分析)\n- phase2_s2_pilot50: DONE/success ✅ (dr=0% 但 relation_f1=0.0，root cause 调查中)\n- mvp_phase0_docred_schema: DONE/failed → Worker 正在 resume 续跑\n\n### 4. 📋 待办（条件触发式）\n- **Worker analysis:phase2_scierc_s1_semantic 回调** → 读 metrics，按 on-experiment-done 流程：更新 memory.md，向 Director 汇报 Phase 2 SciERC 全部 4 路对比（unconstrained/grammar_only/semantic_only/full_s1）。**关键判定**: dr_violation 降幅 + F1 trade-off 决定论文 story\n- **Worker resume:docred_schema 回调** → 998 docs 全部完成后跑 violation_checker_docred.py 分析 schema-informed 效果，对比 minimal (dr=18.7%)\n- **Worker s2_relation_f1_rootcause 回调** → 如果 root cause 可修 → 修 S2 代码 → 重跑 full_s2 full 551\n- **Phase 2 SciERC 全部完成 + DocRED schema 完成** → 向 Director 提交完整 Phase 2 结论 + 建议是否启动 Phase 2 DocRED / Llama cross-model\n- **semantic_only 的 dr_violation 仍 >0%** → 检查是否 PositionDetector 有 edge case 遗漏（S2 pilot 已验证 dr=0%，S1 可能有残余）\n- **full_s1 的 F1 降 >5pp vs unconstrained** → 触发 red-section，产出 Framing 调整提案\n\n### 5. 🎯 战略上下文\n- **D001**: 主目标 EMNLP 2026 ARR (5/25)，后备 AAAI 2027\n- **D002**: Phase 0 GO 通过 (dr=15.4% >> 5%)\n- **D003**: MVP 通过，进入 Research 阶段\n- **核心 story**: OntoCoDec = compile IE ontology → decoding-time constraints。Grammar 层\"免费\"(零 F1 代价消除 rv+et)。Semantic 层是关键贡献——dr violation 能降多少、F1 代价多大\n- **grammar_only 已证明**: rv 1.4%→0%, et 0.4%→0%, F1 delta ≈ 0。这是 \"structural constraints at zero cost\" claim\n- **最易判断错的事**: Phase 2 有两套 baseline——Phase 0 minimal 和 Phase 2 unconstrained。Phase 2 unconstrained 用的是**相同代码路径和 prompt**，是更公平的 baseline。Delta 计算应优先用 Phase 2 unconstrained\n- **S2 (两通道) vs S1 (单通道)**: S2 pilot50 验证 dr=0% 但 relation_f1=0.0，有 bug 在查。S1 是保底方案\n- **时间压力**: EMNLP deadline 5/25，只剩 11 天。Phase 2 SciERC 实验数据已齐（等分析），DocRED + cross-model 是 stretch goal\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778737014.md"
+}

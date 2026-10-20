@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aaa211772ac619fa178",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops submit w7 qwen ft semantic only",
+  "task_key": "worker_ops_submit_w7_qwen_ft_semantic_only_20260516T065524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_w7_qwen_ft_semantic_only_20260516T065524_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "4754946f080b98ff31abd850567730690bac2d4629bc134836fb12e384c6e8af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交成功，汇总：\n\n| 项目 | 值 |\n|------|-----|\n| 实验 ID | w7_qwen_scierc_ft_semantic_only |\n| PID | **340898** |\n| GPU | cuda:0, 利用率 86%, 显存 16396 MiB / 97887 MiB |\n| 样本数 | 551 |\n| 日志 | `/tmp/w7_qwen_scierc_ft_semantic_only.log` |\n| tmux session | `w7_qwen_ft_semantic` |\n\n模型已加载完毕并开始推理，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-w7-qwen-ft-semantic-only.md"
+}

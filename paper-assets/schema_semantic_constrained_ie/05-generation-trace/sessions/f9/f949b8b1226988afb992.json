@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f949b8b1226988afb992",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code w5 lora prep",
+  "task_key": "worker_code_w5_lora_prep_20260515T143139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_w5_lora_prep_20260515T143139.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "6373a0e5e4ae9729480b373a2237dacfcae91e6b326c9b3603520607a5e60bde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:31:45.845874+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5_lora_prep_20260515T143139"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-w5-lora-prep.md"
+}

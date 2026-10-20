@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f389a39c97b7537c7692",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diag llama docred full s1 mt6144",
+  "task_key": "worker_diag_llama_docred_full_s1_mt6144_20260515T082058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_llama_docred_full_s1_mt6144_20260515T082058_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "601f7c9d465207323ac01e8d73c714fd357925f7bcdbc68439d921917e43c26e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**根因**：`CUDA error: invalid device ordinal`。命令用了 `--device cuda:1`，但启动实验的 tmux session 很可能设了 `CUDA_VISIBLE_DEVICES=0`，导致进程只能看到一块 GPU，`cuda:1` 不存在。`nvidia-smi` 确认硬件有 2 块 RTX PRO 6000，硬件无问题。崩溃位置：`run_constrained_extraction.py:655` → transformers `caching_allocator_warmup` (modeling_utils.py:6090)。\n\n**当前状态**：日志已被新运行覆盖，新运行切到 `cuda:0` 正常推理中（输出文件 34KB）。需注意如果 unconstrained 实验也在 `cuda:0`，两个实验共用同一 GPU 有 OOM 风险。\n\n报告已写入 `artifacts/llama_docred_full_s1_mt6144/failure_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-llama-docred-full-s1-mt6144.md"
+}

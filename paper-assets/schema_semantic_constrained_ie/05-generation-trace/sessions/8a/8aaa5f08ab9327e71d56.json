@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aaa5f08ab9327e71d56",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check gpu pid confirm",
+  "task_key": "worker_check_gpu-pid-confirm_20260523T063344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-pid-confirm_20260523T063344_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "2852a8b0a86271456a767f12394e4fd40600706aaa615bccd541a2ea71d9505f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0 (UUID: GPU-b2b394ce-b576-803e-0ea4-37b11bc494c8): PID 106695 — /root/miniconda3/bin/python run_prompt_sensitivity_70b.py — Prompt Sensitivity (39258 MiB)\nGPU 1 (UUID: GPU-fdca9d9d-4bcb-3d05-f15c-88df335d9cb6): PID 88995 — python run_constrained_extraction.py --model_path .../Meta-Llama-3___1-70B-Instruct-AWQ-INT4 --lora_path .../70b_lora_docred/checkpoint-1146 --data_path data/docred/dev.json --dataset docred --mode full_s2 --output_path outputs/70b_lora_docred_200_full_s2.jsonl --max_samples 200 — S2 DocRED (41598 MiB)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-pid-confirm.md"
+}

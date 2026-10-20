@@ -1,0 +1,656 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7edc27df5adb1c37977b",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsRmLGrDJ6R7bHH6WzvJZu",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json') as f:\n    llama = json.load(f)\nqwen = {\n    'unconstrained': {\n        'trigger_f1': {'mean': 0.3183, 'ci_lower': 0.2529, 'ci_upper': 0.3723, 'point': 0.3208},\n        'argument_f1': {'mean': 0.079, 'ci_lower': 0.0485, 'ci_upper': 0.1127, 'point': 0.0785},\n        'rov': {'mean': 0.3701, 'ci_lower': 0.2538, 'ci_upper': 0.4667, 'point': 0.3831},\n        'ac': {'mean': 0.0356, 'ci_lower': 0.0164, 'ci_upper': 0.0735, 'point': 0.0345},\n        'parse_rate': 0.85\n    },\n    'constrained': {\n        'trigger_f1': {'mean': 0.2713, 'ci_lower': 0.2109, 'ci_upper': 0.3276, 'point': 0.2672},\n        'argument_f1': {'mean': 0.0823, 'ci_lower': 0.059, 'ci_upper': 0.1108, 'point': 0.0818},\n        'rov': {'mean': 0.0, 'ci_lower': 0.0, 'ci_upper': 0.0, 'point': 0.0},\n        'ac': {'mean': 0.0, 'ci_lower': 0.0, 'ci_upper': 0.0, 'point': 0.0},\n        'parse_rate': 0.95\n    }\n}\nmerged = {\n    'qwen_ft': qwen,\n    'llama_ft': llama['llama_ft'],\n    'metadata': {\n        'n_bootstrap': 1000,\n        'seed': 42,\n        'ci_method': 'percentile',\n        'ci_level': 0.95,\n        'resampling': 'document-level with replacement',\n        'note': 'parse failures skipped (gold not counted), matching eval_event_extraction.py',\n        'qwen_ft_source': 'westd-21461: ee_qwen_ft_wikievents_{unconstrained_r5,full_s1_r5}.jsonl',\n        'llama_ft_source': 'westd-16980: ee_llama_ft_wikievents_{unconstrained_r2,full_s1_r2}.jsonl'\n    }\n}\nwith open('/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json', 'w') as f:\n    json.dump(merged, f, indent=2, ensure_ascii=False)\nprint('Merged and saved.')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "d2e085bf-1cf6-461e-86e5-a1a1fb37b821",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QKENC71ZQfLR9coKDZLUJ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1494,
+                "cache_read_input_tokens": 106081,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1494
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-20T17:54:25.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsRmLGrDJ6R7bHH6WzvJZu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Merged and saved.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "f0b6abfa-1125-4093-88d8-1f88e9cd52f7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Merged and saved.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Merged and saved.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the final output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "e091eb8c-81f6-4797-b39a-39fad35fe06c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M7UdMnEhNjHUvW3WW1Zjmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 950,
+                "cache_read_input_tokens": 107575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 950
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1N5AYuknTepksbChvzHn3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat /root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "4ad5439d-27f6-473c-8f12-adb3a11f55e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M7UdMnEhNjHUvW3WW1Zjmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 950,
+                "cache_read_input_tokens": 107575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 950
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-20T17:54:29.411Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T1N5AYuknTepksbChvzHn3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_ft\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3183,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2529,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3723,\\\\n        \\\\\\\"point\\\\\\\": 0.3208\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.079,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0485,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1127,\\\\n        \\\\\\\"point\\\\\\\": 0.0785\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3701,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2538,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.4667,\\\\n        \\\\\\\"point\\\\\\\": 0.3831\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0356,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0164,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0735,\\\\n        \\\\\\\"point\\\\\\\": 0.0345\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 0.85\\\\n    },\\\\n    \\\\\\\"constrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2713,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2109,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3276,\\\\n        \\\\\\\"point\\\\\\\": 0.2672\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0823,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.059,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1108,\\\\n        \\\\\\\"point\\\\\\\": 0.0818\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 0.95\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_ft\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2763,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2302,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.323,\\\\n        \\\\\\\"point\\\\\\\": 0.2752\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0985,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0659,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1247,\\\\n        \\\\\\\"point\\\\\\\": 0.0998\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.108,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0376,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1817,\\\\n        \\\\\\\"point\\\\\\\": 0.1107\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0489,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0172,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0728,\\\\n        \\\\\\\"point\\\\\\\": 0.0503\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"constrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2689,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2092,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.326,\\\\n        \\\\\\\"point\\\\\\\": 0.2691\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0894,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0594,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1217,\\\\n        \\\\\\\"point\\\\\\\": 0.0891\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0075,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0168,\\\\n        \\\\\\\"point\\\\\\\": 0.0078\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"resampling\\\\\\\": \\\\\\\"document-level with replacement\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"parse failures skipped (gold not counted), matching eval_event_extraction.py\\\\\\\",\\\\n    \\\\\\\"qwen_ft_source\\\\\\\": \\\\\\\"westd-21461: ee_qwen_ft_wikievents_{unconstrained_r5,full_s1_r5}.jsonl\\\\\\\",\\\\n    \\\\\\\"llama_ft_source\\\\\\\": \\\\\\\"westd-16980: ee_llama_ft_wikievents_{unconstrained_r2,full_s1_r2}.jsonl\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "939d3f04-7c64-49af-bf5f-5e3329138db6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_ft\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3183,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2529,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3723,\\\\n        \\\\\\\"point\\\\\\\": 0.3208\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.079,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0485,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1127,\\\\n        \\\\\\\"point\\\\\\\": 0.0785\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3701,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2538,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.4667,\\\\n        \\\\\\\"point\\\\\\\": 0.3831\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0356,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0164,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0735,\\\\n        \\\\\\\"point\\\\\\\": 0.0345\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 0.85\\\\n    },\\\\n    \\\\\\\"constrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2713,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2109,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3276,\\\\n        \\\\\\\"point\\\\\\\": 0.2672\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0823,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.059,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1108,\\\\n        \\\\\\\"point\\\\\\\": 0.0818\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 0.95\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_ft\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2763,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2302,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.323,\\\\n        \\\\\\\"point\\\\\\\": 0.2752\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0985,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0659,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1247,\\\\n        \\\\\\\"point\\\\\\\": 0.0998\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.108,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0376,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1817,\\\\n        \\\\\\\"point\\\\\\\": 0.1107\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0489,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0172,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0728,\\\\n        \\\\\\\"point\\\\\\\": 0.0503\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"constrained\\\\\\\": {\\\\n      \\\\\\\"trigger_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2689,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2092,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.326,\\\\n        \\\\\\\"point\\\\\\\": 0.2691\\\\n      },\\\\n      \\\\\\\"argument_f1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0894,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0594,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.1217,\\\\n        \\\\\\\"point\\\\\\\": 0.0891\\\\n      },\\\\n      \\\\\\\"rov\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"point\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"ac\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0075,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0168,\\\\n        \\\\\\\"point\\\\\\\": 0.0078\\\\n      },\\\\n      \\\\\\\"parse_rate\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"resampling\\\\\\\": \\\\\\\"document-level with replacement\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"parse failures skipped (gold not counted), matching eval_event_extraction.py\\\\\\\",\\\\n    \\\\\\\"qwen_ft_source\\\\\\\": \\\\\\\"westd-21461: ee_qwen_ft_wikievents_{unconstrained_r5,full_s1_r5}.jsonl\\\\\\\",\\\\n    \\\\\\\"llama_ft_source\\\\\\\": \\\\\\\"westd-16980: ee_llama_ft_wikievents_{unconstrained_r2,full_s1_r2}.jsonl\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_ft\\\": {\\n    \\\"unconstrained\\\": {\\n      \\\"trigger_f1\\\": {\\n        \\\"mean\\\": 0.3183,\\n        \\\"ci_lower\\\": 0.2529,\\n        \\\"ci_upper\\\": 0.3723,\\n        \\\"point\\\": 0.3208\\n      },\\n      \\\"argument_f1\\\": {\\n        \\\"mean\\\": 0.079,\\n        \\\"ci_lower\\\": 0.0485,\\n        \\\"ci_upper\\\": 0.1127,\\n        \\\"point\\\": 0.0785\\n      },\\n      \\\"rov\\\": {\\n        \\\"mean\\\": 0.3701,\\n        \\\"ci_lower\\\": 0.2538,\\n        \\\"ci_upper\\\": 0.4667,\\n        \\\"point\\\": 0.3831\\n      },\\n      \\\"ac\\\": {\\n        \\\"mean\\\": 0.0356,\\n        \\\"ci_lower\\\": 0.0164,\\n        \\\"ci_upper\\\": 0.0735,\\n        \\\"point\\\": 0.0345\\n      },\\n      \\\"parse_rate\\\": 0.85\\n    },\\n    \\\"constrained\\\": {\\n      \\\"trigger_f1\\\": {\\n        \\\"mean\\\": 0.2713,\\n        \\\"ci_lower\\\": 0.2109,\\n        \\\"ci_upper\\\": 0.3276,\\n        \\\"point\\\": 0.2672\\n      },\\n      \\\"argument_f1\\\": {\\n        \\\"mean\\\": 0.0823,\\n        \\\"ci_lower\\\": 0.059,\\n        \\\"ci_upper\\\": 0.1108,\\n        \\\"point\\\": 0.0818\\n      },\\n      \\\"rov\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"point\\\": 0.0\\n      },\\n      \\\"ac\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"point\\\": 0.0\\n      },\\n      \\\"parse_rate\\\": 0.95\\n    }\\n  },\\n  \\\"llama_ft\\\": {\\n    \\\"unconstrained\\\": {\\n      \\\"trigger_f1\\\": {\\n        \\\"mean\\\": 0.2763,\\n        \\\"ci_lower\\\": 0.2302,\\n        \\\"ci_upper\\\": 0.323,\\n        \\\"point\\\": 0.2752\\n      },\\n      \\\"argument_f1\\\": {\\n        \\\"mean\\\": 0.0985,\\n        \\\"ci_lower\\\": 0.0659,\\n        \\\"ci_upper\\\": 0.1247,\\n        \\\"point\\\": 0.0998\\n      },\\n      \\\"rov\\\": {\\n        \\\"mean\\\": 0.108,\\n        \\\"ci_lower\\\": 0.0376,\\n        \\\"ci_upper\\\": 0.1817,\\n        \\\"point\\\": 0.1107\\n      },\\n      \\\"ac\\\": {\\n        \\\"mean\\\": 0.0489,\\n        \\\"ci_lower\\\": 0.0172,\\n        \\\"ci_upper\\\": 0.0728,\\n        \\\"point\\\": 0.0503\\n      },\\n      \\\"parse_rate\\\": 1.0\\n    },\\n    \\\"constrained\\\": {\\n      \\\"trigger_f1\\\": {\\n        \\\"mean\\\": 0.2689,\\n        \\\"ci_lower\\\": 0.2092,\\n        \\\"ci_upper\\\": 0.326,\\n        \\\"point\\\": 0.2691\\n      },\\n      \\\"argument_f1\\\": {\\n        \\\"mean\\\": 0.0894,\\n        \\\"ci_lower\\\": 0.0594,\\n        \\\"ci_upper\\\": 0.1217,\\n        \\\"point\\\": 0.0891\\n      },\\n      \\\"rov\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"point\\\": 0.0\\n      },\\n      \\\"ac\\\": {\\n        \\\"mean\\\": 0.0075,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0168,\\n        \\\"point\\\": 0.0078\\n      },\\n      \\\"parse_rate\\\": 1.0\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"seed\\\": 42,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"resampling\\\": \\\"document-level with replacement\\\",\\n    \\\"note\\\": \\\"parse failures skipped (gold not counted), matching eval_event_extraction.py\\\",\\n    \\\"qwen_ft_source\\\": \\\"westd-21461: ee_qwen_ft_wikievents_{unconstrained_r5,full_s1_r5}.jsonl\\\",\\n    \\\"llama_ft_source\\\": \\\"westd-16980: ee_llama_ft_wikievents_{unconstrained_r2,full_s1_r2}.jsonl\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "6d5b2768-48c8-4f2e-b563-fb744434cd36",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B5psdbL37aUaddavD9MVuB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1925,
+                "cache_read_input_tokens": 108525,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1925
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vpxx1nrLeF9i9QEHn8n2RW",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r12_wikievents_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%.",
+                "project": "schema_semantic_constrained_ie",
+                "source_path": "/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json",
+                "tags": [
+                  "bootstrap",
+                  "wikievents",
+                  "event_extraction",
+                  "confidence_interval"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "b170602d-07d9-410b-8e50-5500f5d2ae3d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B5psdbL37aUaddavD9MVuB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1925,
+                "cache_read_input_tokens": 108525,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1925
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-20T17:54:36.867Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vpxx1nrLeF9i9QEHn8n2RW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "51390c9b-b051-45c6-8ba4-948cfa93a1b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not locally. Let me register it using content instead.",
+              "signature": "EqQCCmMIDRgCKkCRosPomsz/e3kU2b3Htzk9xWm5aherdA5oBQzK0PM/oyaaWuAhxiqlbM1QgMBZG3StxvX5sCS4PRHhJL3Pmk0nMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPvNzFvtOSL3PznVghoMUrKP93zN16YUDnrVIjDyISESLubjpySXAm5YcsSC1hyCAiPkcrdAhk3CmCm7zn8uNArbzsx27afhGuXhK28qb5ehzAsqQMMi7KgBqMkbPEqC0cggpcbmVY10TqMn849AxcmvYJGbiyYAmVHqGBYVnUe7kGIzhb1mJvfnlh0lhw6cK0vilOsBew8ugbhdr34G1/S+pedQRoyYNG4MPeCdsamZZww685Bip6O7/2KWoBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "5a815d09-23c3-4e6e-b25b-5c36bfe08e5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GetpVJnpRk96uedea18KL3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 345,
+                "cache_read_input_tokens": 110450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 345
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJ4baFRryDNpsFqbetoL9F",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r12_wikievents_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%.",
+                "project": "schema_semantic_constrained_ie",
+                "content_filename": "r12_wikievents_bootstrap.json",
+                "content": "{\n  \"qwen_ft\": {\n    \"unconstrained\": {\n      \"trigger_f1\": {\"mean\": 0.3183, \"ci_lower\": 0.2529, \"ci_upper\": 0.3723, \"point\": 0.3208},\n      \"argument_f1\": {\"mean\": 0.079, \"ci_lower\": 0.0485, \"ci_upper\": 0.1127, \"point\": 0.0785},\n      \"rov\": {\"mean\": 0.3701, \"ci_lower\": 0.2538, \"ci_upper\": 0.4667, \"point\": 0.3831},\n      \"ac\": {\"mean\": 0.0356, \"ci_lower\": 0.0164, \"ci_upper\": 0.0735, \"point\": 0.0345},\n      \"parse_rate\": 0.85\n    },\n    \"constrained\": {\n      \"trigger_f1\": {\"mean\": 0.2713, \"ci_lower\": 0.2109, \"ci_upper\": 0.3276, \"point\": 0.2672},\n      \"argument_f1\": {\"mean\": 0.0823, \"ci_lower\": 0.059, \"ci_upper\": 0.1108, \"point\": 0.0818},\n      \"rov\": {\"mean\": 0.0, \"ci_lower\": 0.0, \"ci_upper\": 0.0, \"point\": 0.0},\n      \"ac\": {\"mean\": 0.0, \"ci_lower\": 0.0, \"ci_upper\": 0.0, \"point\": 0.0},\n      \"parse_rate\": 0.95\n    }\n  },\n  \"llama_ft\": {\n    \"unconstrained\": {\n      \"trigger_f1\": {\"mean\": 0.2763, \"ci_lower\": 0.2302, \"ci_upper\": 0.323, \"point\": 0.2752},\n      \"argument_f1\": {\"mean\": 0.0985, \"ci_lower\": 0.0659, \"ci_upper\": 0.1247, \"point\": 0.0998},\n      \"rov\": {\"mean\": 0.108, \"ci_lower\": 0.0376, \"ci_upper\": 0.1817, \"point\": 0.1107},\n      \"ac\": {\"mean\": 0.0489, \"ci_lower\": 0.0172, \"ci_upper\": 0.0728, \"point\": 0.0503},\n      \"parse_rate\": 1.0\n    },\n    \"constrained\": {\n      \"trigger_f1\": {\"mean\": 0.2689, \"ci_lower\": 0.2092, \"ci_upper\": 0.326, \"point\": 0.2691},\n      \"argument_f1\": {\"mean\": 0.0894, \"ci_lower\": 0.0594, \"ci_upper\": 0.1217, \"point\": 0.0891},\n      \"rov\": {\"mean\": 0.0, \"ci_lower\": 0.0, \"ci_upper\": 0.0, \"point\": 0.0},\n      \"ac\": {\"mean\": 0.0075, \"ci_lower\": 0.0, \"ci_upper\": 0.0168, \"point\": 0.0078},\n      \"parse_rate\": 1.0\n    }\n  },\n  \"metadata\": {\n    \"n_bootstrap\": 1000, \"seed\": 42, \"ci_method\": \"percentile\", \"ci_level\": 0.95,\n    \"resampling\": \"document-level with replacement\",\n    \"note\": \"parse failures skipped (gold not counted), matching eval_event_extraction.py\"\n  }\n}",
+                "tags": [
+                  "bootstrap",
+                  "wikievents",
+                  "event_extraction",
+                  "confidence_interval"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "afff5508-c1be-46df-a12f-37941c24bb24",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GetpVJnpRk96uedea18KL3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 345,
+                "cache_read_input_tokens": 110450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 345
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T17:54:49.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'qwen_ft': {'unconstrain...l_event_extraction.py'}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01BJ4baFRryDNpsFqbetoL9F"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "63f56abd-af53-44cc-9856-360e58482b2e",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'qwen_ft': {'unconstrain...l_event_extraction.py'}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J8q3RDSQmHLuNjDWEhGmUP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r12_wikievents_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%. Saved at westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json",
+                "project": "schema_semantic_constrained_ie",
+                "content_filename": "r12_wikievents_bootstrap.json",
+                "content": "See westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json for full JSON. Summary: Qwen FT unc T-F1=0.3208 [0.2529,0.3723], A-F1=0.0785 [0.0485,0.1127]; Qwen FT con T-F1=0.2672 [0.2109,0.3276], A-F1=0.0818 [0.059,0.1108]; Llama FT unc T-F1=0.2752 [0.2302,0.323], A-F1=0.0998 [0.0659,0.1247]; Llama FT con T-F1=0.2691 [0.2092,0.326], A-F1=0.0891 [0.0594,0.1217]",
+                "tags": [
+                  "bootstrap",
+                  "wikievents",
+                  "event_extraction",
+                  "confidence_interval"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "cfaa8ff5-eacd-40bc-93a9-7550cf2aaca0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DcxkBBeUXsxK1AvGiBegyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1343,
+                "cache_read_input_tokens": 110795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1343
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-20T17:54:57.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J8q3RDSQmHLuNjDWEhGmUP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_3501e2\\\", \\\"name\\\": \\\"r12_wikievents_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%. Saved at westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_wikievents_bootstrap.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T17:54:57.190874+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"wikievents\\\", \\\"event_extraction\\\", \\\"confidence_interval\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "12f164eb-06c0-43db-abe0-8ee56de163ac",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_3501e2\\\", \\\"name\\\": \\\"r12_wikievents_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%. Saved at westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_wikievents_bootstrap.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T17:54:57.190874+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"wikievents\\\", \\\"event_extraction\\\", \\\"confidence_interval\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_3501e2\", \"name\": \"r12_wikievents_bootstrap_ci\", \"type\": \"data\", \"description\": \"Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments: Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1, RoV%, AC%. Saved at westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_wikievents_bootstrap.json\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T17:54:57.190874+00:00\", \"tags\": [\"bootstrap\", \"wikievents\", \"event_extraction\", \"confidence_interval\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap CI 完成。结果保存在 `westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json`。\n\n汇总（point estimate [95% CI]）：\n\n| Model | Mode | T-F1 | A-F1 | RoV | AC |\n|-------|------|------|------|-----|-----|\n| **Qwen FT** | unc | 0.3208 [0.253, 0.372] | 0.0785 [0.049, 0.113] | 0.3831 [0.254, 0.467] | 0.0345 [0.016, 0.074] |\n| **Qwen FT** | con | 0.2672 [0.211, 0.328] | 0.0818 [0.059, 0.111] | 0.0 [0, 0] | 0.0 [0, 0] |\n| **Llama FT** | unc | 0.2752 [0.230, 0.323] | 0.0998 [0.066, 0.125] | 0.1107 [0.038, 0.182] | 0.0503 [0.017, 0.073] |\n| **Llama FT** | con | 0.2691 [0.209, 0.326] | 0.0891 [0.059, 0.122] | 0.0 [0, 0] | 0.0078 [0, 0.017] |\n\n关键观察：\n- 20 docs 的 CI 宽度约 ±0.05-0.06 (T-F1)，符合预期的小样本不确定性\n- Constrained 的 RoV 全部为 0（CI 也为 0），验证了约束解码完全消除了 role vocabulary violations\n- T-F1/A-F1 的 unc vs con CI 高度重叠，说明 F1 差异在统计上不显著\n\n脚本位于两个服务器的 `scripts/bootstrap_wikievents_ci.py`，文件来源：Qwen FT 在 westd-21461，Llama FT 在 westd-16980。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "uuid": "e2296773-2c2d-4cb2-9ecc-e5ea0d1ecbcb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pkd8f41evYUkoDj3mg1n5a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 989,
+                "cache_read_input_tokens": 112138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 989
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap CI 完成。结果保存在 `westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json`。\n\n汇总（point estimate [95% CI]）：\n\n| Model | Mode | T-F1 | A-F1 | RoV | AC |\n|-------|------|------|------|-----|-----|\n| **Qwen FT** | unc | 0.3208 [0.253, 0.372] | 0.0785 [0.049, 0.113] | 0.3831 [0.254, 0.467] | 0.0345 [0.016, 0.074] |\n| **Qwen FT** | con | 0.2672 [0.211, 0.328] | 0.0818 [0.059, 0.111] | 0.0 [0, 0] | 0.0 [0, 0] |\n| **Llama FT** | unc | 0.2752 [0.230, 0.323] | 0.0998 [0.066, 0.125] | 0.1107 [0.038, 0.182] | 0.0503 [0.017, 0.073] |\n| **Llama FT** | con | 0.2691 [0.209, 0.326] | 0.0891 [0.059, 0.122] | 0.0 [0, 0] | 0.0078 [0, 0.017] |\n\n关键观察：\n- 20 docs 的 CI 宽度约 ±0.05-0.06 (T-F1)，符合预期的小样本不确定性\n- Constrained 的 RoV 全部为 0（CI 也为 0），验证了约束解码完全消除了 role vocabulary violations\n- T-F1/A-F1 的 unc vs con CI 高度重叠，说明 F1 差异在统计上不显著\n\n脚本位于两个服务器的 `scripts/bootstrap_wikievents_ci.py`，文件来源：Qwen FT 在 westd-21461，Llama FT 在 westd-16980。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 542598,
+            "duration_api_ms": 528010,
+            "num_turns": 65,
+            "stop_reason": "end_turn",
+            "session_id": "0ce383da-5fa3-40b1-9014-9b9c22079a6c",
+            "total_cost_usd": 2.7547340000000005,
+            "usage": {
+              "input_tokens": 36,
+              "cache_creation_input_tokens": 101286,
+              "cache_read_input_tokens": 2407767,
+              "output_tokens": 36640,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 101286,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 595,
+                  "cache_read_input_tokens": 112138,
+                  "cache_creation_input_tokens": 989,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 989
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1548,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001633,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 36,
+                "outputTokens": 36640,
+                "cacheReadInputTokens": 2407767,
+                "cacheCreationInputTokens": 101286,
+                "webSearchRequests": 0,
+                "costUSD": 2.7531010000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "efde3f95-ee3d-472d-a7e7-4c3a32cc70be"
+          },
+          "id": "event-000179"
+        }
+      ]
+    }
+  ]
+}

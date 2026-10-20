@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc57acf8ba35233a50ce",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check docred experiment progress",
+  "task_key": "worker_check_docred_experiment_progress_20260514T061515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_docred_experiment_progress_20260514T061515_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "5038150f2f579e9797692e901b21fe894e4a9f1f9d18e937cbabf177abc072f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DocRED 实验状态报告（14:16 CST）\n\n| | grammar_only (cuda:0) | full_s1 (cuda:1) |\n|---|---|---|\n| **进程** | PID 150766 ✅ 存活 | PID 157047 ✅ 存活 |\n| **GPU 显存** | 17,526 MiB / 97,887 MiB | 17,478 MiB / 97,887 MiB |\n| **GPU 利用率** | 84% | 84% |\n| **GPU 温度** | 54°C | 54°C |\n| **进度** | **759 / 998** (76.1%) | **625 / 998** (62.6%) |\n| **已运行** | ~4h22m (09:54 起) | ~4h11m (10:05 起) |\n| **速度** | ~174 docs/hr | ~149 docs/hr |\n| **剩余** | 239 docs → **~1.4h** | 373 docs → **~2.5h** |\n| **预计完成** | **~15:38** | **~16:46** |\n\n**异常：** 无。两卡温度正常，利用率稳定，输出文件持续写入（最近修改时间均在 14:16）。\n\n**注意：** full_s1 的实际 PID 是 157047（不是 157042）。另外 `phase2_batch.log` 记录的是另一个 SciERC 实验（176/551），与这两个 DocRED 实验无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-docred-experiment-progress.md"
+}

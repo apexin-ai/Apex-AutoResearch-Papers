@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a27575c139176053fba6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis r12 task6 table2 bootstrap ci",
+  "task_key": "worker_analysis_r12_task6_table2_bootstrap_ci_20260520T180503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_task6_table2_bootstrap_ci_20260520T180503.log",
+    "occurrence": 1,
+    "bytes": 811970,
+    "sha256": "b14733b28f520efe1dba77891a4a540b489294e355c5e533b929496f3b646c3c"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 70,
+      "tool_result": 70,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "a27575c139176053fba6-part-0001.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "a27575c139176053fba6-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "a27575c139176053fba6-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r12-task6-table2-bootstrap-ci.md"
+}

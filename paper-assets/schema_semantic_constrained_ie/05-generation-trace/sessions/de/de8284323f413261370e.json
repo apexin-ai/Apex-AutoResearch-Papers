@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de8284323f413261370e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section4 composition draft",
+  "task_key": "worker_paper_section4_composition_draft_20260514T051358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section4_composition_draft_20260514T051358_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "592550f3befa4b31de1111af5a55d7926e8eaddd96a8ebaf38e4b7e377d413bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具在当前环境中不可用（可能是 MCP server 未暴露）。\n\n文件已写到：\n`artifacts/section4_composition_draft.tex`\n\n### 结构概览\n\n1. **Constraint Composition** — 定义 $G(t)$, $S(t)$, conjunction $M_{\\text{final}} = M_{\\text{grammar}} \\wedge M_{\\text{semantic}}$；解释 asymmetric enabling dependency（grammar 是 semantic 的前提）\n2. **Grammar-First Invariant** — 形式化 $S(t) \\cap G(t) \\neq \\emptyset$ 前提条件；描述违反后果（argmax 选中 grammar-invalid token → crash）；resolution 策略（阈值检查 + skip semantic masking）；优先级设计原则（structural integrity > type compliance）\n3. **Decidability Taxonomy** — local（entity/relation vocabulary → grammar CFG）、prefix-decidable（domain/range → semantic layer + stateful registry）、non-local（forward coreference → 超出单 pass 范围，引向 S2 和 limitations）\n\n需要手动注册 artifact 或后续由 worker 补注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section4-composition-draft.md"
+}

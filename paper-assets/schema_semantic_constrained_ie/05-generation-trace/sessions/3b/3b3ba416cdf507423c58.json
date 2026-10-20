@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3ba416cdf507423c58",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops status check westd21461",
+  "task_key": "worker_ops_status_check_westd21461_20260516T111002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_westd21461_20260516T111002_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "6ccbd49c17bef50f7a6ab211f238fb10e92cc89937a815881cec7237044f6ead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在跑，汇总如下：\n\n## 状态汇总\n\n### GPU\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 18.9/97.9 GB | 85% |\n| 1 | RTX PRO 6000 Blackwell | 18.9/97.9 GB | 84% |\n\n### w8_qwen_docred_ft_grammar_only (PID 18555, cuda:0)\n- **状态**: RUNNING\n- **运行时间**: 1h42m43s\n- **日志进度**: [166/998] — **16.6%**\n- **输出文件**: 299 行（可能包含之前的数据或多行输出）\n- **最新样本**: New Haven Harbor, 37.1s\n- **预计剩余**: ~8-9h（按 ~1.6 samples/min）\n\n### w8_qwen_docred_ft_semantic_only (PID 20035, cuda:1)\n- **状态**: RUNNING\n- **运行时间**: 1h01m02s\n- **日志进度**: [166/998] — **16.6%**\n- **输出文件**: 172 行\n- **最新样本**: New Haven Harbor, 38.4s\n- **预计剩余**: ~5-6h（按 ~2.7 samples/min）\n\n两个实验进度相同（都在第166个样本），但 grammar_only 启动早 ~40min。实验未完成，无法运行 violation checker 和更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-westd21461-copy-2.md"
+}

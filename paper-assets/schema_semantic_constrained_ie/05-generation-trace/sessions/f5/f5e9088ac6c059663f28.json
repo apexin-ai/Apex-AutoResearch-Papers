@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f5e9088ac6c059663f28",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix et triplecount and rerun all",
+  "task_key": "worker_fix_et_triplecount_and_rerun_all_20260514T182039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_et_triplecount_and_rerun_all_20260514T182039.log",
+    "occurrence": 1,
+    "bytes": 645667,
+    "sha256": "c738391878452ec73d4d8da4731dc170ac3bcf011511e676c66b5b9aa22c4c50"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "f5e9088ac6c059663f28-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "f5e9088ac6c059663f28-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-et-triplecount-and-rerun-all.md"
+}

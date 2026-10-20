@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a87b77afaf36159d2cd4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis phase2 semantic and full s1",
+  "task_key": "worker_analysis_phase2_semantic_and_full_s1_20260514T003508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_semantic_and_full_s1_20260514T003508.log",
+    "occurrence": 1,
+    "bytes": 906989,
+    "sha256": "e465bfaa65caa75b12dd0c69f5775cbd9ae0a2e23e5847d311c57a2ccab6639d"
+  },
+  "statistics": {
+    "messages": 526,
+    "user_turns": 0,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 160,
+      "tool_call": 181,
+      "tool_result": 181,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 526,
+      "chunks": [
+        {
+          "path": "a87b77afaf36159d2cd4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a87b77afaf36159d2cd4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a87b77afaf36159d2cd4-part-0003.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-semantic-and-full-s1.md"
+}

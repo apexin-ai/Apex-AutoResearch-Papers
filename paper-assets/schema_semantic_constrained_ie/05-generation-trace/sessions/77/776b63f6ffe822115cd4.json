@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "776b63f6ffe822115cd4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778751838.md",
+  "task_key": "loop_3_1778751838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778751838.md",
+    "occurrence": 1,
+    "bytes": 4458,
+    "sha256": "e004ca80a3e0cd84e37030571e99be48183b47b87852421887e71ffa4ac9b6a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T08:33:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-16980 cuda:0 + cuda:1**，不得用其他 GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 重提交实验前必须单独清理旧 tmux session，**禁止在 allocate_and_submit 命令内放 tmux kill-session**（会自杀）\n- Cron PID 追踪不可靠（已导致 4 次假失败），长运行实验用 `wc -l` 输出文件判断完成\n- `_apply_type_mask` 有 grammar-semantic 交互 bug 修复（`_GRAMMAR_MASK_THRESHOLD = -1e8`），DocRED 约束更紧会触发，SciERC 不会——不要回滚此修复\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), torch 2.10.0+cu128, transformers 4.57.6\n- **模型**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B` (Qwen3-8B)\n- **数据**: SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- **约束文件**: SciERC `ontology_constraints.json`, DocRED `data/docred/ontology_constraints_docred.json`\n- **活跃进程**:\n  - phase2_docred_unconstrained: PID 170502, tmux=phase2_docred_unconstrained, cuda:0\n  - phase2_docred_semantic_only: PID 172859, tmux=phase2_docred_semantic_only, cuda:1\n- **Cron**: 2 个活跃（tracking 上述两个实验）\n\n### 3. 📊 当前状态\n**刚发生**: phase2_docred_full_s1 进入 **ANALYZING** 状态（on_complete hook 已触发于 08:29 UTC）。**这是最高优先级待处理事项**——需要 spawn worker 分析结果、更新 registry metrics、汇报 Director。\n\n**仍在跑**:\n- phase2_docred_unconstrained (cuda:0, PID 170502) — DocRED unconstrained baseline，启动于 07:40 UTC\n- phase2_docred_semantic_only (cuda:1, PID 172859) — DocRED semantic-only 消融，启动于 08:30 UTC\n\n**已完成的 DocRED 实验**:\n- phase2_docred_grammar_only: DONE (success) — ET=0%, RV=0.03%, DR=26.17%（grammar 消除 ET/RV 但不碰 DR）\n\n**SciERC 全部完成**，核心结果: full_s1 DR 15.37%→0.93% (↓94%), F1 无损\n\n**论文写作**: §1-§4, §6, Abstract, §7 初稿完成，§5 DocRED subsection 等实验结果填 placeholder\n\n### 4. 📋 待办（条件触发式）\n- **立即**: phase2_docred_full_s1 ANALYZING → spawn worker 跑 violation_checker_docred.py 分析 `outputs/docred_full_s1.jsonl`，提取 metrics → update_registry(conclusion, metrics) → 汇报 Director\n- phase2_docred_unconstrained cron 回调 → 同上分析流程，结果作为 DocRED baseline\n- phase2_docred_semantic_only cron 回调 → 同上，验证 semantic-only 在 DocRED 的 DR 降幅\n- **DocRED 4 实验全部完成** → spawn worker 写 §5 DocRED subsection（填 placeholder），更新 Abstract/Conclusion 中的 DocRED 数字\n- DocRED 完成后 GPU 释放 → 启动 D009 cross-model 验证（Llama-3.1-8B SciERC unconstrained + full_s1，2 组实验）。**注意**: Llama 模型需要先下载到 westd-16980，让 Worker WebSearch 确认当前 HF model ID\n- 全部实验完成 → May 18-19 全文校对 + 一致性检查 → May 19 内部稿\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，内部初稿 DDL May 19（距今 5 天）\n- **核心 story**: OntoCoDec = grammar + semantic 双层约束解码，编译 IE ontology 为 decoding-time logits mask。SciERC DR↓94% F1 无损已确认，DocRED 跨数据集验证进行中\n- **S1 是主推策略**，S2 降级为 ablation (D007)\n- **决策链**: D001(EMNLP target) → D003(MVP GO) → D006(SciERC 核心结果确认) → D007(S2降级) → D008(DocRED全消融) → D009(cross-model should-have)\n- **易踩的坑**:\n  - DocRED grammar_only DR=26.17% 远高于 SciERC 14.84%——这是因为 grammar 不含 D/R 约束，不要误以为 grammar 层在 DocRED 上退步了\n  - CF violation (cross-field) 是 semantic 层的已知 limitation (S1=9.90%)，论文已定位为 future work\n  - phase2_docred_full_s1 之前有一次 failed（grammar-semantic 交互 bug），已修复并 --resume 完成，分析时注意输出文件可能有 resume 拼接\n  - 不要把 Phase 0 的 violation 数字和 Phase 2 的直接比——pipeline 和 prompt 不同，Phase 2 有专门的 unconstrained baseline\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778751838.md"
+}

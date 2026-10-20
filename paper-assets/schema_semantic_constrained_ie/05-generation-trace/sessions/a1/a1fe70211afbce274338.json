@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1fe70211afbce274338",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research r13 taskB gollie f1",
+  "task_key": "worker_research_r13_taskB_gollie_f1_20260520T190855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r13_taskB_gollie_f1_20260520T190855_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "45a03cfa42f4eb9c990900606c680d7a97863e472067c9c5c71554891ed9a158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。核心发现：\n\n1. **GoLLIE 没有 SciERC RE 的 zero-shot 结果** — SciERC 是 GoLLIE 的 supervised 训练集之一，不是 zero-shot 评测目标。GoLLIE 只在 ACE05 上报了 supervised RE（34B: 70.1 F1）。\n\n2. **SciERC RE 的 baseline 地图**：\n   - Supervised SOTA: Rel+ F1 = 42.3 (FSN), Rel F1 = 54.2\n   - LLM zero-shot 最好: 23.14 (AgentRE)\n   - LLM few-shot 最好: 33.70 (AgentRE)\n\n3. **对 rebuttal 的意义**：我们的 R-F1 40-46% 大幅超越 LLM zero-shot（~23）和 few-shot（~34）baselines，接近 supervised SOTA（42.3 Rel+）。GoLLIE 不能作为 SciERC RE 的 zero-shot 锚点，但 AgentRE 和 GPT-RE 可以。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r13-taskb-gollie-f1.md"
+}

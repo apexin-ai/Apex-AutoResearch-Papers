@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3435c431c13ab164b3f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r16 beam wikievents 70b",
+  "task_key": "worker_analysis_r16_beam_wikievents_70b_20260521T033801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16_beam_wikievents_70b_20260521T033801_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "cfe5c8d7412b3a05c498b1fa643158423e7e110e96f87b39e3d46321d948d762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results written to `artifacts/r16_verification/beam_wikievents_70b.json`.\n\n### Sub-task 1: Beam 998-doc Progress\n\n| | Qwen (westd-21461) | Llama (westd-16980) |\n|---|---|---|\n| Status | Running (7h18m) | Running (5h52m) |\n| Progress | **799/998 (80.1%)** | **852/998 (85.4%)** |\n| Rate | 1.82 docs/min | 2.42 docs/min |\n| ETA | ~109 min (~1h50m) | ~60 min (~1h) |\n\nLlama is faster per-doc and should finish first. Both have occasional FAIL docs (timeout at ~115s).\n\n### Sub-task 2: WikiEvents Test Split\n\n**20 docs is the full official test split.** WikiEvents (Li et al., 2021) splits: train=206, dev=20, test=20, total=246. Confirmed by `all.jsonl` = 246 lines on server. The `train.jsonl` (12 lines) is a curated SFT subset, not the full training set.\n\n### Sub-task 3: 70B LoRA Feasibility\n\n**Feasible, with large headroom.**\n\n- GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition, **96GB VRAM** per card (2 cards)\n- 70B AWQ INT4 estimate: ~43GB total (38GB model + 1.5GB LoRA + 3GB KV cache + 0.5GB constraint)\n- Headroom: **~33GB** on cuda:1\n- Model already downloaded: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4` (38G)\n- No blockers"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r16-beam-wikievents-70b.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "4382d358e926592c8091",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "exp 70b prompt sensitivity",
+  "task_key": "worker_exp_70b-prompt-sensitivity_20260523T053247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_70b-prompt-sensitivity_20260523T053247.log",
+    "occurrence": 1,
+    "bytes": 1182472,
+    "sha256": "28bc618567d55d960ded3534b717927d66c4d82e6ae79a452f6ae39dd2271707"
+  },
+  "statistics": {
+    "messages": 606,
+    "user_turns": 1,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 253,
+      "tool_result": 253,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 587,
+      "chunks": [
+        {
+          "path": "4382d358e926592c8091-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "4382d358e926592c8091-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4382d358e926592c8091-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4382d358e926592c8091-part-0004.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "4382d358e926592c8091-part-0004.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-70b-prompt-sensitivity.md"
+}

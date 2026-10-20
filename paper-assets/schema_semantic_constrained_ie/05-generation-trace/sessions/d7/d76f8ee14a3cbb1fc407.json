@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d76f8ee14a3cbb1fc407",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 llama docred lora training",
+  "task_key": "worker_analysis_w5_llama_docred_lora_training_20260515T195603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_llama_docred_lora_training_20260515T195603_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "cae1efc42060b07ab23e46023d6911b4966aa2b5965a6b1d9caee730aa3a3341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功完成。核心结论：\n\n**Metrics**: train_loss=0.0572, eval_loss=0.0624, eval_token_acc=**98.06%**, 训练耗时 **89.3 分钟** (573 steps)\n\n**关键发现**: eval_loss 在 **epoch 2 最优** (0.0596)，epoch 3 回升至 0.0624，轻微过拟合。推荐推理评测时同时测 **checkpoint-382** (epoch 2) 和最终 checkpoint。\n\n**与 SciERC 对比**: 训练时间 8.2× (654s→5357s)，token_acc 略低 0.11pp (98.17%→98.06%)，均在合理范围。\n\n**Checkpoints 完整**: adapter 1.2GB + merged model 15GB，磁盘余量充足 (根分区 46%, 数据盘 42%)。\n\n报告已注册: `art_20260515_cfa2be`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-llama-docred-lora-training.md"
+}

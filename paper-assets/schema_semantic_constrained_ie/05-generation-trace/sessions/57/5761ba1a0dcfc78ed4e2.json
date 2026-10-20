@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5761ba1a0dcfc78ed4e2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops qwen monitor eval 21461",
+  "task_key": "worker_ops_qwen-monitor-eval-21461_20260520T082141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen-monitor-eval-21461_20260520T082141_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "d645bf8a38e4797e3d01def29f9931f006c0089fd7aaa0abe18887dd33358a10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个都还在跑，均未完成。\n\n**当前进度：**\n\n```\nQwen unc: 运行中, 887/998, ETA ~17:00 UTC\nQwen con: 运行中, 707/998, ETA ~18:10 UTC\n```\n\n**计算依据：**\n- unc (PID 167691): 11:14 启动，已跑 308 min 完成 887 样本 → 0.35 min/sample，剩 111 个 → ~39 min\n- con (PID 174618): 11:56 启动，已跑 266 min 完成 707 样本 → 0.38 min/sample，剩 291 个 → ~110 min\n\n两个 GPU 利用率正常（87%/89%），进程状态健康。unc 预计约 40 分钟后完成，con 约 2 小时后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen-monitor-eval-21461.md"
+}

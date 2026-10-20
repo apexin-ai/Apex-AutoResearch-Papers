@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "856131fe021b50e255f8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis latency profiling docred",
+  "task_key": "worker_analysis_latency_profiling_docred_20260516T091743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latency_profiling_docred_20260516T091743_result.json",
+    "occurrence": 1,
+    "bytes": 2471901,
+    "sha256": "1c49019e5ee52e0038876f5c1335b8b2777460e38d55ffab36a342df4de9b7b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2471921,
+                "serialized_sha256": "9dcfe8393c97e9aa091377321fead22498407d3daacd61d84b44983f01794c24",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-latency-profiling-docred.md"
+}

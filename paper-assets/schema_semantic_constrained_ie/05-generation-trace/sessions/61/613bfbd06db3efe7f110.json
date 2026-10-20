@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "613bfbd06db3efe7f110",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research maven dataset feasibility",
+  "task_key": "worker_research_maven_dataset_feasibility_20260517T143427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven_dataset_feasibility_20260517T143427_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "ca63ad817455b3153847bcb962652f95fbf5996bc85c799be9bda932558500a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n1. **MAVEN/MAVEN-Arg** — 无 schema-level entity type constraints，不适合\n2. **RAMS** — 数据中无 entity type 标注，不适合\n3. **WikiEvents** ✅ — 51 event types, 226 组 (event, role)→entity_types 约束，99.98% 满足率，完美匹配 OntoCoDec semantic layer\n4. 数据已本地下载并完成统计分析，服务器后台下载进行中\n5. 报告已注册: `art_20260517_6a7e38`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-maven-dataset-feasibility.md"
+}

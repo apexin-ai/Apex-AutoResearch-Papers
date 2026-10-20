@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "666e55773703d4c45feb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents sync 21461 urgent",
+  "task_key": "worker_code_wikievents_sync_21461_urgent_20260517T183931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_sync_21461_urgent_20260517T183931_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "f785905e9993ddd231d53c10a4acd71ef37a5087a892da45887053e0d92c6092"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **`isinstance(parsed, list)` 守卫**：已插入 westd-21461 的 line 972，结构与 westd-16980 一致\n- **`isinstance(result, dict)` 检查**：两台服务器均有 (lines 510, 518)\n- **Mistral 进程 PID 28658**：正在运行 (wikievents unconstrained baseline, CPU 100%)，使用的是旧代码（已加载内存），修复保护后续实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-sync-21461-urgent.md"
+}

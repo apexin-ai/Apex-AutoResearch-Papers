@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfd10b4ae97e40cac1ef",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "resume mvp phase0 docred schema",
+  "task_key": "worker_resume_mvp_phase0_docred_schema_20260514T003555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_resume_mvp_phase0_docred_schema_20260514T003555_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "41ebc1dc76b95eacc7256c978d300ed43fdc705798e6a31d0bb96ca2eab3b154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出文件完好，仍 880 行（模型刚加载完，还没开始写新结果）。\n\n**状态确认：**\n- tmux session `mvp_phase0_docred_schema_r2` 正在运行（PID 137719, cuda:0）\n- 已处理 880/998 docs，剩余 118 docs 续跑中\n- 模型已加载完毕，即将开始推理\n- 重复的 nohup 进程已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/resume-mvp-phase0-docred-schema.md"
+}

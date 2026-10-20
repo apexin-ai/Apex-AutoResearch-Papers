@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44fcab02ec1c05b2dac8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper table2 d069 fix",
+  "task_key": "worker_paper_table2_d069_fix_20260520T103700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2_d069_fix_20260520T103700_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "0edb0b4ffb886e32e7c2ffea7ca2e45ac695590bce25bfa995d64b1e43e7d05d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，31 页 PDF，0 errors，0 undefined references。\n\n## 修改汇总\n\n| 文件 | 行号 | 字段 | 旧值 | 新值 |\n|------|------|------|------|------|\n| `section5_scierc_draft.tex` | L130 | Qwen Unc CF | 0.12 | **0.09** |\n| `section5_scierc_draft.tex` | L131 | Qwen Con CF | 0.41 | **0.27** |\n| `section5_scierc_draft.tex` | L140 | Llama Con E-F1 | 85.23 | **83.94** |\n| `appendix_discussion.tex` | L253 | Qwen Unc CF | 0.12 | **0.09** |\n| `appendix_discussion.tex` | L256 | Qwen Con CF | 0.41 | **0.27** |\n| `appendix_discussion.tex` | L262 | Llama Con E-F1 | 85.23 | **83.94** |\n\nAbstract 和正文中无额外引用需要修改。`appendix_beam_search.tex` 中的 85.23 是 beam-4 的正确值，未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table2-d069-fix.md"
+}

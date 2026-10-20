@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c653994c1873fc6c12f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778886016.md",
+  "task_key": "loop_10_1778886016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778886016.md",
+    "occurrence": 1,
+    "bytes": 4584,
+    "sha256": "5a0abe141909fc46e5dcff3a6e734573b48a7844ff2f94ace19be3b6325b20d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-15T23:00:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **仅 cuda:0 和 cuda:1** (westd-16980)，不得使用其他 GPU\n- `spec.command` **严禁包含 CUDA_VISIBLE_DEVICES**——由 `submit_training_job` 的 gpu 参数统一注入。D029 级联故障教训：内层硬编码覆盖外层 wrapper 导致幽灵进程 + OOM\n- SciERC 数据路径是 `data/processed_data/test.json`，constraints 在项目根 `ontology_constraints.json`——**不是** `data/scierc/` 下\n- W1 CF fallback **已定论为 Analytical Finding** (D020)，不再跑新实验。CF↔DR 根本性张力已证明\n- LoRA merged checkpoint **必须存数据盘** `/root/autodl-tmp/checkpoints/`，根分区仅 30G\n- `kill_job` 后必须 `nvidia-smi | grep python` 确认无残留子进程\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen LoRA SciERC merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama LoRA SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - Qwen LoRA DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama LoRA DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/`\n- **活跃进程**:\n  - `w5_qwen_docred_lora_unconstrained_eval`: PID 304006, tmux session, cuda:1\n  - `w5_llama_docred_lora_unconstrained_eval`: PID 303525, tmux session, cuda:0\n- **W&B**: WANDB_MODE=disabled（项目未配 key）\n\n### 3. 📊 当前状态\n刚完成 Qwen+Llama DocRED LoRA 训练（D029 级联故障修复后重提交成功），两张卡现在各跑一个 unconstrained eval：\n- **cuda:0**: `w5_llama_docred_lora_unconstrained_eval` (PREPARING，已提交 PID 303525，DocRED 998 docs ~5-6h)\n- **cuda:1**: `w5_qwen_docred_lora_unconstrained_eval` (RUNNING, PID 304006，DocRED 998 docs ~5-6h)\n\nRegistry 状态: 30 success / 1 negative / 4 killed / 33 total。PREPARING 待跑:\n- `w5_qwen_docred_lora_constrained_eval` — 等 unconstrained eval 完成后提交\n- `w5_llama_docred_lora_constrained_eval` — 等 unconstrained eval 完成后提交\n\n无活跃 Worker 回调等待中。两个 unconstrained eval 有 cron 监控，完成后会触发 `[CRON]` 回调。\n\n### 4. 📋 待办（条件触发式）\n- `w5_qwen_docred_lora_unconstrained_eval` cron 完成 → 分析 DR/R-F1 → 提交 `w5_qwen_docred_lora_constrained_eval` 到 cuda:1\n- `w5_llama_docred_lora_unconstrained_eval` cron 完成 → 分析 DR/R-F1 → 提交 `w5_llama_docred_lora_constrained_eval` 到 cuda:0\n- 4 个 DocRED LoRA eval 全部完成 → 填充 DocRED composability 2×2 matrix → 更新论文 Table 3/5 + §5.4/5.5 → 全文数字一致性审查\n- 全部 matrix 完成 → 汇报 Director，DocRED LoRA 全补完 = 4.25/5 目标分路径\n- May 19 内部稿 → May 25 EMNLP ARR 提交\n\n### 5. 🎯 战略上下文\n**项目核心**: OntoCoDec 编译 IE ontology schema 为两层 token-level constraints (grammar+semantic)，在解码时消除 LLM-based IE 的 type violations。Novelty: 第一个把 type-constrained generation 引入 IE（semantic 层是 gap）。\n\n**已验证 claims**: C1 violation landscape (SciERC DR=15.4%, DocRED DR=18.5%) → C2 prompt 不够 → C3 框架有效 (DR↓94%/45%) → C5 跨模型 (Qwen+Llama) → C6 F1 保持。Composability (Claim 3 扩展): SciERC 2×2 两模型全完成，DocRED 2×2 是最后一块。\n\n**决策链**: D020 CF fallback=analytical finding → D025/D028 composability 确认 → D029 级联故障修复后重提交 DocRED LoRA 训练 → 现在跑 eval。\n\n**易错点**:\n1. DocRED constrained eval 命令的 `--constraints_path` 是 `data/docred/ontology_constraints_docred.json`，不是根目录的 `ontology_constraints.json`\n2. DocRED full_s1 eval 需要 `--max_new_tokens 4096`（不是默认 2048）\n3. 两个 unconstrained eval 预估 ~5-6h，cron 回调大约在提交后 5-6h 触发——不要提前轮询\n4. Constraint tightness 是 DocRED DR 残余高于 SciERC 的根因（0.842 vs 0.333），不是 semantic 层失效——这个 framing 在论文中已处理\n5. 论文目标分路径已到 \"Llama LoRA 成功: 4.0/5+\"，DocRED LoRA 全补完冲 4.25/5\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778886016.md"
+}

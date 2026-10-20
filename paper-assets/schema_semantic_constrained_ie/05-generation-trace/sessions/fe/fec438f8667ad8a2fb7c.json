@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fec438f8667ad8a2fb7c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code entity type collision diagnosis",
+  "task_key": "worker_code_entity_type_collision_diagnosis_20260518T014924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_entity_type_collision_diagnosis_20260518T014924_result.json",
+    "occurrence": 1,
+    "bytes": 1934,
+    "sha256": "d8ad565c7351e1f3f94337644f352688405dbf9c8ee38bb03a12c25d36523519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现如下：\n\n## 根因确认：Mistral AC=16.6% → **(A) First-token collision**\n\n### 关键数据\n\n**Mistral (SentencePiece)**:\n- ALL 27 entity types bare ≠ generation-context token IDs（SentencePiece 上下文依赖）\n- `_build_entity_type_prefix_map()` 全词表扫描 → 所有 generation-context tokens 都在 prefix map 中 ✓（D044 修复有效）\n- `compile_type_constraints()` 对 Mistral **直接崩溃**（bare encoding 4 组碰撞），`ensure_first_token_map()` 绕过了检查\n- **2 个 generation-context 碰撞组**无法被 mask 区分：\n\n| First Token | ID | Colliding Types |\n|---|---|---|\n| 'S' | 29503 | SEN, SID, SIDE |\n| 'B' | 29528 | BAL, BOD |\n\n**碰撞影响**：**103/245 (42%)** 的 (event_type, role) 约束与碰撞组有 partial overlap，**51/56** event types 受影响。主要模式：几乎所有 agent role 允许 SID 但不允许 SEN/SIDE，mask 无法阻止 SEN/SIDE 生成。\n\n**Qwen**: 0 mismatches, 0 collisions → AC=2.1% 残余来自其他因素\n**Llama**: 0 mismatches, 0 collisions → AC=3.4% 残余来自其他因素\n\n### 机制\n\n当约束说 \"只允许 SID\" 时：\n1. Token 29503 ('S') 可达 {SEN, SID, SIDE}，SID ∈ allowed → 不阻塞\n2. XGrammar 允许 'EN'/'ID'/'IDE' 三种延续\n3. Semantic mask 只在首 token 生效 → SEN/SIDE 可能生成 → AC violation\n\n### 推荐修复\n\n**方案 1（推荐）**: 碰撞组 continuation mask — 检测到碰撞组首 token 未被阻塞时，在下一步对碰撞组成员的第二 token 做 masking\n**方案 2**: 多 token trie masking（更通用但更复杂）\n**方案 3**: 重命名碰撞 entity types（SEN→SENT, BOD→BODY 等，最简单但需改 ontology+prompt+checker）\n\n详细报告：`artifacts/entity_type_collision_diagnosis.md`\n诊断脚本：`scripts/diagnose_entity_type_tokens.py`（已部署到远程服务器并运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-entity-type-collision-diagnosis-copy-2.md"
+}

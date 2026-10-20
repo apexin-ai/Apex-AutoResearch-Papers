@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65b465c99fa58b5799ed",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section3 violation landscape",
+  "task_key": "worker_paper_section3_violation_landscape_20260514T061352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section3_violation_landscape_20260514T061352_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "1fc3ae1fa15a4d58e07bfa43341cb97b825b7e13430853f8bad1172351d93b9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section3_violation_landscape.tex` 并注册。\n\nSection 结构：\n- **§3.1 Experimental Setup** — 数据集/模型/4类 violation 定义\n- **§3.2 Violation Distribution** — 跨数据集对比，核心发现：DR 由 constraint tightness 驱动而非 ontology size；DocRED RV 高达 28.9% 反映 vocabulary capacity 瓶颈\n- **§3.3 Per-Relation Analysis** — 7 个 relation 的 DR 分布（42.4%→0%），与 constraint tightness 正相关\n- **§3.4 Prompt Insufficiency** — schema-informed prompting 整体有效但 per-relation 不可靠（Evaluate-for +5.8pp），且随 ontology 复杂度衰减（DocRED ↓31% vs SciERC ↓62%），motivate decoding-time enforcement\n\n所有数字与 registry 一致，引用了 Table 2 (`\\ref{tab:prompt_comparison}`)、Figure 2 (`\\ref{fig:per_relation_dr}`)、三篇文献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section3-violation-landscape.md"
+}

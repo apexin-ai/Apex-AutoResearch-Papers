@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dac503d7ac4fe9f5ebdb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred progress check",
+  "task_key": "worker_analysis_docred_progress_check_20260513T210751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_progress_check_20260513T210751_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "1fb82e2fc1472f4bbaf1425047e5550255dd14e67d117dd7e2c8aba88814def8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DocRED dev set 共 998 篇文档。\n\n## 结果汇总\n\n| 实验 | PID | 状态 | 已完成 | 总计 | 进度 | 运行时间 |\n|------|-----|------|--------|------|------|----------|\n| **DocRED minimal** | 113153 | 运行中 | 801 | 998 | **80.3%** | 1h37m |\n| **DocRED schema-informed** | 116360 | 运行中 | 228 | 998 | **22.8%** | 55m |\n\n**GPU 状态：**\n- GPU 0: 88% utilization, 22789/97887 MiB\n- GPU 1: 82% utilization, 19545/97887 MiB\n\n两个实验都在正常运行。DocRED minimal 预计还需 ~25-30 分钟完成，schema-informed 预计还需 ~2.5-3 小时。\n\nDocRED minimal 完成后需要跑 violation analysis，目前还未到时机。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-progress-check.md"
+}

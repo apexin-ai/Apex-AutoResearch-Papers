@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f14bf0aaa225952a0051",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 option c check qwen prep",
+  "task_key": "worker_ssh_d064_option_c_check_qwen_prep_20260519T234912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_option_c_check_qwen_prep_20260519T234912_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "2af2473d201418783263d1d1fb55a2bb666b2854c46a0685f7626098b173f449"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Option C**: 未完成。unconstrained 已完 (998/998)，constrained 862/998 运行中，约 30 分钟完成 (~08:20 UTC)。\n\n**Qwen checkpoint**: 在 16980 本地找到 `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`，无需 scp。\n\n**Qwen greedy 启动**:\n- GPU0 unconstrained — 已启动 (PID 676441)，5/998 正常推理中\n- GPU1 constrained — 待 LLaMA constrained 完成后启动（GPU1 当前被占用）\n\n**需要后续操作**: LLaMA constrained 完成后（~08:20 UTC），在 GPU1 启动 Qwen constrained。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-option-c-check-qwen-prep.md"
+}

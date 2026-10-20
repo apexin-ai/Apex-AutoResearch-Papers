@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfcd8179657ddd1ee6fc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents unconstrained 16980",
+  "task_key": "worker_code_wikievents_unconstrained_16980_20260517T164054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_unconstrained_16980_20260517T164054_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "eec37743e387359073527c7bd6b0f43109689696c6c829e3e3dee3b2cbe7dab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成了。汇总：\n\n## 结果\n\n### Llama-3.1-8B-Instruct (GPU 1)\n- **12/12 成功**，0 失败\n- 总推理时间 ~200s（平均 ~17s/doc）\n- 输出: `outputs/wikievents_llama_unconstrained.jsonl`\n\n### Qwen3-8B (GPU 0)\n- **11/12 成功**，1 失败（`scenario_en_kairos_14` 解析失败，耗时 74.5s）\n- 总推理时间 ~551s（平均 ~46s/doc）\n- 输出: `outputs/wikievents_qwen_unconstrained.jsonl`\n\n### 注意事项\n1. **数据量只有 12 docs**（不是预期的 ~246）。`data/wikievents/train.jsonl` 只包含 12 条记录。如需全量 WikiEvents corpus 需要额外下载。\n2. `max_new_tokens` 已自动升级到 4096（代码中 wikievents 分支的默认行为）。\n3. Qwen 比 Llama 慢约 2.8x，主要因为 Qwen 生成更长的输出（更多 events extracted per doc）且第一个文档解析失败说明输出格式可能有问题。\n4. 两个模型的 `E=0`（entity count 为 0）是正常的，因为 wikievents 的 event extraction prompt 可能不单独列出 entities。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-unconstrained-16980.md"
+}

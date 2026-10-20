@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f531e5aa8a5a3a3de6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis rv 003 residual investigation",
+  "task_key": "worker_analysis_rv_003_residual_investigation_20260516T185739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rv_003_residual_investigation_20260516T185739_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "7dea2aa375aab22e91bbccf069c62a74d39aaa5f82c346bf9c18db7cdc8322c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n**结论**: RV=0.03% 是 XGrammar v0.1.33 的 enum 编译 bug。\n\n- 全部 5 个 violation 来自**同一篇文档 \"Souvlaki\"**，生成了不存在的关系 `\"membericipant of\"`（\"member of\" + \"participant of\" 的 portmanteau）\n- **机制**: XGrammar 接受 token \"member\"(9792) 后，其 byte-level automaton 错误地允许了 token \"icipant\"(22505)——该 token 是另一个 enum 值 \"participant of\" 的子串\n- **为什么 finetuned 模型没问题**: w8 实验的 finetuned 模型在该 context 下对 token 22505 的概率接近 0，bug 不会触发；phase2 的 base model 熵更高，偶尔命中\n- **论文可报**: 可以声明 \"RV≈0% under grammar constraint\"，脚注标注 5 个 XGrammar tokenizer edge case"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rv-003-residual-investigation.md"
+}

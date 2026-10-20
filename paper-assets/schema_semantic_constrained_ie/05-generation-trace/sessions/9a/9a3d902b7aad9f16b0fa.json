@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a3d902b7aad9f16b0fa",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama docred sft data gen",
+  "task_key": "worker_code_llama_docred_sft_data_gen_20260515T180719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_docred_sft_data_gen_20260515T180719_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "d6a7db76d285e1213eb4c5687973746f7c818ba5a18b0e7d886c7b63a4c7d472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**结果汇总：**\n\n| 文件 | 路径 | 大小 | 样本数 |\n|------|------|------|--------|\n| train | `data/docred/sft_train_llama.jsonl` | 19M | 3053 |\n| dev | `data/docred/sft_dev_llama.jsonl` | 6.1M | 998 |\n\n**格式验证：**\n- 每行均可解析为合法 JSON\n- Prompt 使用 Llama 3.1 chat template（`<|begin_of_text|>`, `<|start_header_id|>`, `<|eot_id|>`），无 Qwen token\n- Completion 均为合法 JSON，包含 `entities` + `relations` 字段\n- Prompt 包含 6 个实体类型和 96 个 DocRED 关系类型\n- Prompt 通过 `build_messages` + `_chat_template_kwargs` 与推理脚本字节级对齐\n- 现有 Qwen 版 SFT 文件未被修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-docred-sft-data-gen.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b3a673d3f258f949d198",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "exp vllm guided json",
+  "task_key": "worker_exp_vllm-guided-json_20260522T131448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_vllm-guided-json_20260522T131448.log",
+    "occurrence": 1,
+    "bytes": 758634,
+    "sha256": "c113413c9ce14ccf81ef77271ca4945ab0b4ba2fbf570fbbee84d6bc87a9c959"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 88,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "b3a673d3f258f949d198-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b3a673d3f258f949d198-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-vllm-guided-json.md"
+}

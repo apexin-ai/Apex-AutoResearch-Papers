@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c27a5d21575374e6b704",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis llama docred unconstrained mt6144",
+  "task_key": "worker_analysis_llama_docred_unconstrained_mt6144_20260515T140054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_llama_docred_unconstrained_mt6144_20260515T140054.jsonl",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "39e29c4451b3411659d5179374573e719da4738da5467ec2de738dc233c00cc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:01:01.099917+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_docred_unconstrained_mt6144_20260515T140054"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-llama-docred-unconstrained-mt6144.md"
+}

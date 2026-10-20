@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72256b54059616d379b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check tcr qwen status",
+  "task_key": "worker_check_tcr-qwen-status_20260522T154715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_tcr-qwen-status_20260522T154715_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "2654bbc4b11353898d6a6cedae01cc1f4a83e587833601ca2af751efe9a2caf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### TCR Beam4 Qwen SciERC — 已完成 (DONE, negative)\n\n| 指标 | 值 |\n|------|-----|\n| Entity F1 | 67.26 (P=65.05, R=69.64) |\n| Relation F1 | 44.24 (P=39.36, R=50.51) |\n| D/R violations | 23/1250 (1.84%) |\n| Entity type violations | 0/1802 (0%) |\n| Relation vocab violations | 0/1250 (0%) |\n| Cross-field violations | 1 |\n| JSON failures | 0 |\n| **TCR changed selection** | **0/551 (0.0%)** |\n\n**关键发现**：TCR 完全没有生效——所有 551 个样本的 beam candidates 的 TCR score 都是 1.0，意味着 Qwen beam search 产出的所有候选序列本身就已经满足 type consistency，reranking 无事可做。结论标记为 negative。\n\n---\n\n### GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 81% | 40.4 / 97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | 91% | 18.3 / 97.9 GB |\n\n### 其他实验进度\n\n| 实验 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| `beam4_tcr_llama_scierc` | GPU 1 | 25/551 (~5%) | RUNNING |\n| `70b_lora_scierc_beam4_s1` | GPU 0 | 183/551 (~33%) | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-tcr-qwen-status.md"
+}

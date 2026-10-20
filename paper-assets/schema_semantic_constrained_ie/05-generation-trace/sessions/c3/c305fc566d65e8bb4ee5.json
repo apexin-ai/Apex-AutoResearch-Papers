@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c305fc566d65e8bb4ee5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 scierc unconstrained",
+  "task_key": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_scierc_unconstrained_20260513T234927_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "1ab31e2ca1a0ecf70abd95c2f0a8eeaee7921e908e7135eeda50f45d254ddc21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. 完整分析结果：\n\n## Phase 2 Unconstrained Baseline — 分析结果\n\n**结论: SUCCESS** — 与 Phase 0 完全一致，确认代码路径正确，constrained vs unconstrained 对比公平。\n\n### 核心指标\n\n| Metric | Phase 0 | Phase 2 Unconstrained | Delta |\n|--------|---------|----------------------|-------|\n| entity_f1 | 0.3101 | **0.3101** | 0 |\n| relation_f1 | 0.0823 | **0.0823** | 0 |\n| DR violation | 15.37% | **15.37%** | 0 |\n| RV violation | 1.39% | **1.39%** | 0 |\n| ET violation | 0.4% | **0.4%** | 0 |\n| total_triples | 1724 | **1724** | 0 |\n\n### 与 Phase 2 grammar_only 对比\n\n| Metric | Unconstrained | Grammar Only | Delta |\n|--------|--------------|-------------|-------|\n| entity_f1 | 0.3101 | 0.3098 | -0.0003 |\n| relation_f1 | 0.0823 | 0.0823 | 0 |\n| DR violation | 15.37% | 14.84% | **-0.53pp** |\n| RV violation | 1.39% | 0% | **-1.39pp** |\n| ET violation | 0.4% | 0% | **-0.4pp** |\n\n### Per-relation DR Violation Breakdown\n\n| Relation | Triples | Violations | Rate |\n|----------|---------|-----------|------|\n| Feature-of | 486 | 163 | **33.5%** |\n| Compare | 66 | 28 | **42.4%** |\n| Part-of | 72 | 18 | 25.0% |\n| Evaluate-for | 133 | 32 | 24.1% |\n| Hyponym-of | 124 | 18 | 14.5% |\n| Used-for | 787 | 6 | 0.8% |\n| Conjunction | 32 | 0 | 0% |\n\n所有 delta vs Phase 0 均为零，完美复现。Grammar_only 已将 RV 和 ET violation 降至 0%，DR violation 微降 0.53pp（语法约束对 domain-range 影响有限，符合预期）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-scierc-unconstrained.md"
+}

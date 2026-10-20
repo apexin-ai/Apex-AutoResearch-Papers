@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e8b4fbe0d304f14a52",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit bib verification",
+  "task_key": "worker_audit_bib-verification_20260522T125257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_bib-verification_20260522T125257_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "1ef9108ee5e3e4fa6dfaf2869232dff2f53994639e3a87339366ddd640166886"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Part 1 — arXiv:2510.01409 (`ontologx_2025`)**：条目已正确，无需修改。标题 \"OntoLogX\"、作者 Cotti 等人、年份 2025 均与真实论文一致。正文中也未出现 \"OntologyCL\" 错误名称。\n\n**Part 2 — 全 bib 核查结果**（60 条逐条验证）：\n\n修正了 4 个错误：\n\n| 条目 | 问题 | 严重性 |\n|------|------|--------|\n| `paolini2021tanl` | 作者完全伪造：Akyürek/Oğuz 不是该论文作者，真实作者为 Paolini+Athiwaratkun+Krone 等 9 人 (AWS) | ❌ 严重 |\n| `boostcd2025` | 多出 2 个伪造作者 Geng/Josifoski（被混淆为另一篇 geng2023gcd），真实作者仅 Sakota+West | ❌ 严重 |\n| `ugare2024syncode` | 会议错误：标注为 ICML 2024，实际发表在 TMLR | ⚠️ 中等 |\n| `ugare2025itergen` | 作者错误：Banerjee→应为 Gumaste | ⚠️ 中等 |\n\n其余 56 条均验证通过。详细报告见 `artifacts/bib_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bib-verification.md"
+}

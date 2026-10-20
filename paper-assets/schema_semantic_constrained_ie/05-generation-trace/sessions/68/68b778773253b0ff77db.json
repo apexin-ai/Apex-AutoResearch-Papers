@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68b778773253b0ff77db",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write section4 tightness definition",
+  "task_key": "worker_write_section4_tightness_definition_20260514T184734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_section4_tightness_definition_20260514T184734_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "d949056c5ecec082302b5b007523743ac8715b266191dba256d0c5311b703e3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 `section4_composition_draft.tex` 的 Grammar-First Fallback 与 Decidability Taxonomy 之间插入 Constraint Tightness 定义段落（第 29–43 行）。内容包含：\n\n- τ(r) = 1 − |V(r)| / |T|² 的正式定义与公式（Eq. `\\ref{eq:tightness}`）\n- 值域 [0,1] 的端点解释\n- 均值 τ̄ 的定义\n- 直觉解释：tightness → fallback 概率 → residual DR\n- 引用 §5 DocRED 经验数据（DocRED τ̄=0.842 → DR↓45% vs SciERC τ̄=0.333 → DR↓94%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-section4-tightness-definition.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b461cf59640d1c62c2a5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check docred eval status",
+  "task_key": "worker_ops_check_docred_eval_status_20260515T230058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_docred_eval_status_20260515T230058_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "ad82d5a40fd5c7de53c79de72f88f43e18e872c356c468a508caa0e456ce886e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "save_project_file 不支持写 artifacts。直接输出报告结果：\n\n## DocRED LoRA Unconstrained Eval — 状态报告\n\n**检查时间**: 2026-05-15，两个进程均已运行约 3 小时\n\n### 1. w5_llama_docred_lora_unconstrained_eval — **RUNNING**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 303525 (存活, 已运行 3h02m54s) |\n| GPU | cuda:0, 利用率 89%, 显存 16921/97887 MiB |\n| 进度 | **~728/998 (73%)** |\n| FAIL | 17 次 (超时, E=0 R=0, 63.1s/次) |\n| 输出 | `outputs/w5_llama_docred_lora_unconstrained_eval.jsonl` (728 行) |\n| 速度 | ~15s/sample |\n| **预计剩余** | **~1h 10m** |\n| timeout | 14400s (4h)，充裕 |\n\n### 2. w5_qwen_docred_lora_unconstrained_eval — **RUNNING**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 304006 (存活, 已运行 2h57m29s) |\n| GPU | cuda:1, 利用率 88%, 显存 17343/97887 MiB |\n| 进度 | **~514/998 (51%)** |\n| FAIL | 37 次 (超时) |\n| 输出 | `outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl` (514 行) |\n| 速度 | ~21s/sample |\n| **预计剩余** | **~2h 50m** |\n| timeout | 86400s (24h)，充裕 |\n\n### 汇总\n\n两个实验均正常运行，GPU 利用率高 (88-89%)，无 OOM 或异常退出迹象。Qwen 比 Llama 慢 (~21s vs ~15s/sample)，FAIL 率也更高 (37 vs 17)。\n\nRegistry 状态需更新：**Llama 应从 QUEUED → RUNNING**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-docred-eval-status.md"
+}

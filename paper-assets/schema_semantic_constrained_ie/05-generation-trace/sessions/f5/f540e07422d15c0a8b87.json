@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0",
+  "id": "f540e07422d15c0a8b87",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "infra registry sync audit",
+  "task_key": "worker_infra_registry_sync_audit_20260513T230318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_infra_registry_sync_audit_20260513T230318.jsonl",
+    "occurrence": 1,
+    "bytes": 13703,
+    "sha256": "cf19b74e98815ffc5b4076128d4aa55d4adda9088113717e2aa31aaa0cb1c888"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T23:04:03.395766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T23:04:03.396109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T23:04:03.396311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory,gpu_uuid --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T23:04:03.396573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-gpu=index,uuid,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T23:04:03.396777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"116365, 24442 MiB, GPU-0ce19412-d126-ec05-795b-3fddc575596a\\\\n126473, 16502 MiB, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178\\\\n126948, 16502 MiB, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T23:04:03.396931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ps aux --no-headers -w -w",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T23:04:03.397063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-0ce19412-d126-ec05-795b-3fddc575596a, 24451 MiB, 97887 MiB, 87 %\\\\n1, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178, 33018 MiB, 97887 MiB, 92 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T23:04:03.397187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T23:04:03.397435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3424 ?        Ss   May12   0:00 bash /init/boot/boot.sh\\\\nroot        891  2.3  0.0 724384 20784 ?        Sl   May12  54:58 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        907  0.0  0.0 191560 104276 ?       S    May12   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        910  0.0  0.0  15444  9396 ?        S    May12   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        912  0.2  0.0 6746828 104424 ?      Sl   May12   5:13 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        913  0.0  0.0 2795264 20448 ?       Sl   May12   1:05 proxy -c /init/proxy/proxy.ini\\\\nroot        915  0.0  0.0 3328672 73872 ?       Sl   May12   1:14 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        916  0.0  0.0 2499824 20460 ?       Sl   May12   0:28 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        997  0.0  0.0 28341192 9208 ?       Sl   May12   2:17 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_uza1cc63/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_uza1cc63/startup_error\\\\nroot     101413  0.0  0.0  16692 11032 ?        Ss   01:28   0:01 sshd: root@notty\\\\nroot     101549  0.0  0.0  16692 10656 ?        Ss   01:31   0:01 sshd: root@notty\\\\nroot     106527  0.0  0.0   6188  3780 ?        Ss   02:05   0:00 tmux new-session -d -s mvp_phase0_violation_rate rm -f /tmp/agent-ml-exit/mvp_phase0_violation_rate.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m\n…[truncated 6356 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T23:04:03.397639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T23:04:03.397833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T23:04:03.397973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"315 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T23:04:03.398100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T23:04:03.398223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"276 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T23:04:03.398342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/outputs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T23:04:03.398460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "dmesg -T",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T23:04:03.398611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 22860\\\\ndrwxr-xr-x 2 root root     4096 May 14 06:49 .\\\\ndrwxr-xr-x 7 root root     4096 May 14 05:50 ..\\\\n-rw-r--r-- 1 root root     5779 May 14 04:11 comparison_minimal_vs_schema_informed.json\\\\n-rw-r--r-- 1 root root     6036 May 14 02:00 dry_run.jsonl\\\\n-rw-r--r-- 1 root root     1605 May 14 02:00 dry_run_violations.json\\\\n-rw-r--r-- 1 root root     6207 May 14 05:51 dryrun_phase2_grammar.jsonl\\\\n-rw-r--r-- 1 root root     9360 May 14 06:12 phase2_batch.log\\\\n-rw-r--r-- 1 root root    21278 May 14 06:26 phase2_s2_dryrun.jsonl\\\\n-rw-r--r-- 1 root root   118133 May 14 06:49 phase2_s2_pilot50.jsonl\\\\n-rw-r--r-- 1 root root   748162 May 14 07:03 phase2_scierc_grammar_only.jsonl\\\\n-rw-r--r-- 1 root root   446178 May 14 06:43 phase2_scierc_grammar_only_partial_183.jsonl\\\\n-rw-r--r-- 1 root root   670837 May 14 07:03 phase2_scierc_unconstrained.jsonl\\\\n-rw-r--r-- 1 root root  1293316 May 14 02:44 raw_outputs.jsonl\\\\n-rw-r--r-- 1 root root 10454294 May 14 05:43 raw_outputs_docred.jsonl\\\\n-rw-r--r-- 1 root root  7374950 May 14 07:03 raw_outputs_docred_schema.jsonl\\\\n-rw-r--r-- 1 root root  1334526 May 14 03:53 raw_outputs_schema.jsonl\\\\n-rw-r--r-- 1 root root     2176 May 14 05:34 test_full_s1.jsonl\\\\n-rw-r--r-- 1 root root     3301 May 14 05:35 test_full_s2.jsonl\\\\n-rw-r--r-- 1 root root     2181 May 14 05:33 test_grammar_only.jsonl\\\\n-rw-r--r-- 1 root root     7277 May 14 06:09 test_s2_fixed.jsonl\\\\n-rw-r--r-- 1 root root     7261 May 14 06:14 test_s2_fixed2.jsonl\\\\n-rw-r--r-- 1 root root     2182 May 14 05:34 test_semantic_only.jsonl\\\\n-rw-r--r-- 1 root root     2182 May 14 05:27 test_unconstrained.jsonl\\\\n-rw-r--r-- 1 root root     1768 May 14 06:14 violation_report.json\\\\n-rw-r--r-- 1 root root   469080 May 14 05:44 violation_report_docred.json\\\\n-rw-r--r-- 1 root root    31324 May 14 02:16 violation_report_docred_fixed.json\\\\n-rw-r--r-- 1 root root     2184 May 14 02:16 violation_report_fixed.json\\\\n-rw-\n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T23:04:03.398782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T23:04:03.398932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T23:04:03.399056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"50 /root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T23:04:03.399172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T23:04:03.399290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"684 /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T23:04:03.399462+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPROCESS_STATUS:\n  grammar_only:    running, PID=126473, GPU=cuda:1 (GPU-342cbca6), progress=315/551\n  unconstrained:   running, PID=126948, GPU=cuda:1 (GPU-342cbca6), progress=276/551\n  s2_pilot50:      completed (no process), progress=50/50, output=118KB\n  docred_schema:   running, PID=116365, GPU=cuda:0 (GPU-0ce19412), progress=684/998\n\nGPU_ALLOCATION:\n  GPU 0: docred_schema (PID 116365), 24442 MiB used / 97887 MiB, util 87%\n  GPU 1: grammar_only (PID 126473) + unconstrained (PID 126948), 16502+16502=33004 MiB used / 97887 MiB, util 92%\n\nCRASH_ROOT_CAUSE:\n  dmesg: [无法读取 — read_only 不允许 dmesg]\n  journalctl: [无法读取 — read_only 不允许]\n  实际状态: 4 个实验均无异常，3 个在跑，s2_pilot50 已正常完成\n```\n\n注意：grammar_only 和 unconstrained 共享 GPU 1（各占 ~16.5GB），两者都设了 `--device cuda:0` 但通过 `CUDA_VISIBLE_DEVICES` 隔离——grammar_only 未设 CUDA_VISIBLE_DEVICES（实际映射到物理 GPU 1），unconstrained 设了 `CUDA_VISIBLE_DEVICES=1`。两个进程在同一张卡上并行跑，GPU 利用率 92%。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_registry_sync_audit_20260513T230318"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/infra-registry-sync-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e31676ce34ade1c80e74",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 docred sft data gen",
+  "task_key": "worker_analysis_w5_docred_sft_data_gen_20260515T175244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_docred_sft_data_gen_20260515T175244_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "29d138b3ac6735bfc5c984ba52263270c42929f7aaaa634ec567809f0a0a5941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## w5_docred_sft_data_gen 实验结果报告\n\n### 1. 日志状态\n**成功完成，无报错。** `EXIT_CODE=0`,流程：加载约束规范 → 加载 Qwen3-8B tokenizer → 处理 train_annotated.json (3053 文档) → 处理 dev.json (998 文档)。\n\n### 2. 数据规模\n| 文件 | 行数 | 大小 | 实体总数 | 关系总数 | 均值实体/文档 | 均值关系/文档 |\n|------|------|------|---------|---------|---------------|---------------|\n| sft_train.jsonl | 3053 | 19M | 59,493 | 38,180 | 19.49 | 12.51 |\n| sft_dev.jsonl | 998 | 6.0M | 19,528 | 12,275 | 19.57 | 12.30 |\n\n跳过空文档：0。\n\n### 3. 格式与质量\n- **JSON 格式：** 4051 行全部解析通过，0 行损坏或缺字段。\n- **字段：** 每行包含 `prompt`, `completion`, `doc_id`, `n_entities`, `n_relations`。\n- **Prompt 结构：** Qwen3 chat 模板（`<|im_start|>...<|im_end|>` + `<think>\\n\\n</think>`），包含 6 个实体类型 (PER/ORG/LOC/TIME/NUM/MISC) 和 96 个 DocRED 关系类型清单。\n- **Completion 结构：** 合法 JSON，含 `entities`(text+type) 和 `relations`(head/tail/type/head_type/tail_type) 字段，三元组与文档内容一致（如 \"Skai TV → Piraeus → headquarters location\"）。\n\n### 4. 异常/警告\n无。数据可直接用于 SFT 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-docred-sft-data-gen.md"
+}

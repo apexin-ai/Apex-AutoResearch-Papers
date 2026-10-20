@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd38de0bb5ea9a5cafbf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r5 bootstrap method audit",
+  "task_key": "worker_code_r5_bootstrap_method_audit_20260517T141145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r5_bootstrap_method_audit_20260517T141145_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "131caf87a0f4320dadf1bd50d85dd984a1781935f04b517b78e75a5c5b9ce375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**审计结论：所有 bootstrap 脚本已使用 corpus micro-F1，无需修改。**\n\n三个脚本 (`compute_bootstrap_ci.py`, `compute_bootstrap_ci_ft.py`, `compute_bootstrap_ci_llama.py`) 均采用相同逻辑：bootstrap resample 后对 TP/gold/pred 全局求和再算 F1（即 micro-F1），与主表计算方式一致。ZS 和 FT 的所有 p-value 和 CI 均无需更新。\n\n报告已注册：`r5_bootstrap_method_audit`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r5-bootstrap-method-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd7600b90b942a4023d4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix reviewer crossmodel fixes",
+  "task_key": "worker_fix_reviewer_crossmodel_fixes_20260514T210233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reviewer_crossmodel_fixes_20260514T210233_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "45110bec4f37b54dda29c4ac46ef0e095c88813d8cd73b8ed4efca1efb55ed5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项修复完成：\n\n| Fix | 修改内容 |\n|-----|---------|\n| #1 | 表格 Llama SciERC (U) CF: 0.09→0.24；注释 CF=0.0009→0.0024；CF 段落 0.09%→0.24% |\n| #2 | \"reach 0%\" → \"are eliminated or near-eliminated ($\\leq$0.03%)\" |\n| #3 | R-F1 段落后新增 E-F1 讨论（Qwen +0.03/+1.22pp，Llama DocRED -0.64pp + parse fail 归因） |\n| #5 | caption 末尾添加 parse failure 数据（4 组 U→S1） |\n| #6 | 所有 `phase2_*_llama_*` exp_id 改为 `llama_*` 格式（header + 4 条数据注释） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-reviewer-crossmodel-fixes.md"
+}

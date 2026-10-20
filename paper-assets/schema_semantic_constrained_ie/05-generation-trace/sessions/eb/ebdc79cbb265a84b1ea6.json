@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebdc79cbb265a84b1ea6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh w5 ee ft cf calc",
+  "task_key": "worker_ssh_w5_ee_ft_cf_calc_20260519T064605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w5_ee_ft_cf_calc_20260519T064605_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "bbee939db6ee1736e9379cd25346df60a3d999ecb0d04e9960eb55d8601bb3d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Model | Condition | Total Args | CF Entities | CF Rate (%) |\n|-------|-----------|-----------|-------------|-------------|\n| Qwen FT | Unconstrained | 261 | 2 | 0.77 |\n| Qwen FT | Constrained | 339 | 3 | 0.89 |\n| Llama FT | Unconstrained | 298 | 1 | 0.34 |\n| Llama FT | Constrained | 255 | 3 | 1.18 |\n\n核心发现：\n1. **CF 率很低**（0.3%--1.2%），FT 本身已大幅降低 CF\n2. **Constrained decoding 未降低 CF**，两个模型的 constrained CF 反而略高于 unconstrained，因为当前约束语法只约束单事件内 role-type 兼容性，不做跨事件 entity type 一致性检查\n3. **多数 CF 是语义歧义**而非模型错误（如 \"drone\" → VEH/WEA, \"police\" → ORG/PER）\n4. 与 RE CF 率（Qwen 1.18%, Llama 0.46% on SciERC）处于同一量级\n\nArtifact 已注册为 `w5_ee_ft_cf_results`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w5-ee-ft-cf-calc.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "a232b4de21e38be34818",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code docred eval pipeline prep",
+  "task_key": "worker_code_docred_eval_pipeline_prep_20260515T174952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_docred_eval_pipeline_prep_20260515T174952.jsonl",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "06cda02043452e8a6e6a2ea886e7b95d808c900d3915845c8dfbfccb9ea452fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:49:59.735092+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_docred_eval_pipeline_prep_20260515T174952"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-docred-eval-pipeline-prep.md"
+}

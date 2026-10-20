@@ -1,0 +1,1342 @@
+{
+  "schema_version": "1.0",
+  "id": "af3fdc9384de0450e178",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code r4 sf8 reproducibility",
+  "task_key": "worker_code_r4_sf8_reproducibility_20260517T105439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_r4_sf8_reproducibility_20260517T105439.jsonl",
+    "occurrence": 1,
+    "bytes": 66151,
+    "sha256": "fc510176288049a4e2ba7c6a366227a3ff903ea5a7ffa797dbe7a47abc4fda2c"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T10:57:52.422394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T10:57:52.422774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T10:57:52.422980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 3 -name \"*.yaml\" -o -name \"*.json\" -o -name \"train*.py\" -o -name \"finetune*.py\" -o -name \"*.jsonl\" | head -80"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T10:57:52.423128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T10:57:52.423255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -name \"*.sh\" | head -20"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T10:57:52.423380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T10:57:52.423554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T10:57:52.423713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T10:57:52.423865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 3 \\( -name \"*.yaml\" -o -name \"*.json\" -o -name \"train*.py\" -o -name \"finetune*.py\" \\) | head -80"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T10:57:52.424055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/violation_report_docred.json\\\\n/root/schema_semantic_constrained_ie/outputs/dry_run_violations.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_fixed.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_fixed.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_schema.json\\\\n/root/schema_semantic_constrained_ie/outputs/comparison_minimal_vs_schema_informed.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_s2_dryrun.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_s2_pilot50.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_grammar_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_comparison.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1_fixed.json\\\\n/root/schema_semantic_constrained_ie/outputs/runtime_summary.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_semantic_only_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_full_s1_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_analysis_results.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_schema.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_full_s2.json\\\\n/root/schema_semantic_constrained_ie/outputs/cf_violation_analysis.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_full_s1.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_grammar_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_unconstrained.json\\\\n/root/schema_semantic_co\n…[truncated 5087 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T10:57:52.424217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 3 -name \"*.sh\" | head -30"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T10:57:52.424348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/run_phase2_scierc_batch.sh\\\\n/root/schema_semantic_constrained_ie/scripts/run_docred_lora_eval.sh\\\\n/root/schema_semantic_constrained_ie/wait_and_analyze.sh\\\\n/root/schema_semantic_constrained_ie/download_mistral.sh\\\\n/root/schema_semantic_constrained_ie/run_stability_test.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T10:57:52.424473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 4 -name \"*.jsonl\" | head -40"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T10:57:52.424629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/dry_run.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_unconstrained.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_grammar_only.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_semantic_only.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_full_s1.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_full_s2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/dryrun_phase2_grammar.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/posthoc_scierc.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_s2_fixed.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/test_s2_fixed2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_s2_dryrun.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only_partial_183.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl\\\\n/root/schema_semantic_constrained_ie/outpu\n…[truncated 1137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T10:57:52.424835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 4 -name \"*.py\" | grep -iE \"train|finetune|lora|sft\" | head -30"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T10:57:52.424995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/analyze_ontology.py\\\\n/root/schema_semantic_constrained_ie/run_extraction.py\\\\n/root/schema_semantic_constrained_ie/violation_checker.py\\\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\\\n/root/schema_semantic_constrained_ie/compiler/__init__.py\\\\n/root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\\\n/root/schema_semantic_constrained_ie/compiler/test_type_mask.py\\\\n/root/schema_semantic_constrained_ie/compiler/tests/__init__.py\\\\n/root/schema_semantic_constrained_ie/compiler/tests/test_e2e.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor_cf_fallback.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor_clean.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor_cf_fallback_backup.py\\\\n/root/schema_semantic_constrained_ie/compiler/beam_aware_processor.py\\\\n/root/schema_semantic_constrained_ie/compiler/beam_grammar_processor.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_consensus_processor.py\\\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\\\n/root/schema_semantic_constrained_ie/scripts/compare_phase2.py\\\\n/root/schema_semantic_constrained_ie/scripts/q8_fp_analysis.py\\\\n/root/schema_semantic_constrained_ie/scripts/rectangularity_analysis.py\\\\n/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_scierc.py\\\\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\\\\n/root/schema_semantic_constrained_ie/scripts/train_lora_llama_scierc.py\\\\n/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_docred.py\\\\n/root/schema_semantic_constrained_ie/scripts/train_lora_docred.py\\\\n/root/schema\n…[truncated 246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T10:57:52.425141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 4 -name \"*.yaml\" -o -name \"*.yml\" | head -20"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T10:57:52.425267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T10:57:52.425385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/scripts/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T10:57:52.425504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/runtime_summary_detailed.json"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T10:57:52.425635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132\\\\ndrwxr-xr-x  2 root root  4096 May 16 09:54 .\\\\ndrwxr-xr-x 12 root root  4096 May 17 15:57 ..\\\\n-rw-r--r--  1 root root  8329 May 14 07:42 compare_phase2.py\\\\n-rw-r--r--  1 root root  5695 May 16 08:22 compute_metrics.py\\\\n-rw-r--r--  1 root root  8159 May 16 09:54 compute_metrics_qwen_unconstrained.py\\\\n-rw-r--r--  1 root root  7180 May 16 01:36 prepare_sft_data_docred.py\\\\n-rw-r--r--  1 root root  6624 May 16 02:08 prepare_sft_data_docred_llama.py\\\\n-rw-r--r--  1 root root  8015 May 15 22:35 prepare_sft_data_scierc.py\\\\n-rw-r--r--  1 root root  9643 May 15 19:11 q8_fp_analysis.py\\\\n-rw-r--r--  1 root root 11513 May 15 22:07 rectangularity_analysis.py\\\\n-rwxr-xr-x  1 root root  3151 May 16 02:28 run_docred_lora_eval.sh\\\\n-rw-r--r--  1 root root  8781 May 16 01:43 train_lora_docred.py\\\\n-rw-r--r--  1 root root  8146 May 16 02:12 train_lora_docred_llama.py\\\\n-rw-r--r--  1 root root  9380 May 16 00:42 train_lora_llama_scierc.py\\\\n-rw-r--r--  1 root root  9112 May 15 22:36 train_lora_scierc.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T10:57:52.425868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"Qwen_SciERC_unconstrained\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"avg\\\\\\\": 8.693883847549909,\\\\n    \\\\\\\"median\\\\\\\": 8.526,\\\\n    \\\\\\\"p25\\\\\\\": 5.898,\\\\n    \\\\\\\"p75\\\\\\\": 11.174,\\\\n    \\\\\\\"p95\\\\\\\": 16.0315,\\\\n    \\\\\\\"min\\\\\\\": 1.273,\\\\n    \\\\\\\"max\\\\\\\": 21.748,\\\\n    \\\\\\\"std\\\\\\\": 3.8876252883794904,\\\\n    \\\\\\\"total_s\\\\\\\": 4790.33,\\\\n    \\\\\\\"total_min\\\\\\\": 79.83883333333333\\\\n  },\\\\n  \\\\\\\"Qwen_SciERC_grammar_only\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"avg\\\\\\\": 8.81457168784029,\\\\n    \\\\\\\"median\\\\\\\": 8.354,\\\\n    \\\\\\\"p25\\\\\\\": 5.721,\\\\n    \\\\\\\"p75\\\\\\\": 10.999,\\\\n    \\\\\\\"p95\\\\\\\": 16.728,\\\\n    \\\\\\\"min\\\\\\\": 1.324,\\\\n    \\\\\\\"max\\\\\\\": 39.028,\\\\n    \\\\\\\"std\\\\\\\": 4.514509992320384,\\\\n    \\\\\\\"total_s\\\\\\\": 4856.828999999998,\\\\n    \\\\\\\"total_min\\\\\\\": 80.94714999999997\\\\n  },\\\\n  \\\\\\\"Qwen_SciERC_full_s1\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 551,\\\\n    \\\\\\\"avg\\\\\\\": 6.76075499092559,\\\\n    \\\\\\\"median\\\\\\\": 5.981,\\\\n    \\\\\\\"p25\\\\\\\": 3.8810000000000002,\\\\n    \\\\\\\"p75\\\\\\\": 9.011500000000002,\\\\n    \\\\\\\"p95\\\\\\\": 13.9025,\\\\n    \\\\\\\"min\\\\\\\": 0.666,\\\\n    \\\\\\\"max\\\\\\\": 20.371,\\\\n    \\\\\\\"std\\\\\\\": 3.6663641985248883,\\\\n    \\\\\\\"total_s\\\\\\\": 3725.1760000000017,\\\\n    \\\\\\\"total_min\\\\\\\": 62.086266666666695\\\\n  },\\\\n  \\\\\\\"Qwen_DocRED_unconstrained\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 998,\\\\n    \\\\\\\"avg\\\\\\\": 19.754658316633268,\\\\n    \\\\\\\"median\\\\\\\": 18.248,\\\\n    \\\\\\\"p25\\\\\\\": 14.19575,\\\\n    \\\\\\\"p75\\\\\\\": 23.08775,\\\\n    \\\\\\\"p95\\\\\\\": 32.97615,\\\\n    \\\\\\\"min\\\\\\\": 3.659,\\\\n    \\\\\\\"max\\\\\\\": 73.48,\\\\n    \\\\\\\"std\\\\\\\": 8.993669078355,\\\\n    \\\\\\\"total_s\\\\\\\": 19715.14899999997,\\\\n    \\\\\\\"total_min\\\\\\\": 328.5858166666661\\\\n  },\\\\n  \\\\\\\"Qwen_DocRED_grammar_only\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 998,\\\\n    \\\\\\\"avg\\\\\\\": 20.57611523046092,\\\\n    \\\\\\\"median\\\\\\\": 18.729999999999997,\\\\n    \\\\\\\"p25\\\\\\\": 14.7705,\\\\n    \\\\\\\"p75\\\\\\\": 23.74825,\\\\n    \\\\\\\"p95\\\\\\\": 33.1228,\\\\n    \\\\\\\"min\\\\\\\": 3.704,\\\\n    \\\\\\\"max\\\\\\\": 186.42,\\\\n    \\\\\\\"std\\\\\\\": 10.745523333224076,\\\\n    \\\\\\\"total_s\\\\\\\": 20534.962999\n…[truncated 2166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T10:57:52.426052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T10:57:52.426332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"W5: LoRA fine-tune Qwen3-8B on SciERC IE for OntoCoDec composability eval.\\\\n\\\\nPurpose\\\\n-------\\\\nTrain a LoRA adapter on top of Qwen3-8B using the SciERC training set in the\\\\nexact prompt format used by `run_constrained_extraction.py` at inference.\\\\nAfter training, the adapter is merged into a stand-alone fp16 model that the\\\\neval script can consume by simply pointing `--model_path` at the merged dir.\\\\n\\\\nTwo-step W5 plan (this script handles step 1 + merging):\\\\n  1. Unconstrained fine-tuned baseline:\\\\n       python scripts/train_lora_scierc.py\\\\n       python run_constrained_extraction.py --mode unconstrained \\\\\\\\\\\\n           --model_path checkpoints/qwen3_8b_lora_scierc_merged ...\\\\n     Check DR (violation rate) drops by >5% vs. zero-shot.\\\\n  2. Constrained eval on the same fine-tuned model:\\\\n       python run_constrained_extraction.py --mode full_s1 \\\\\\\\\\\\n           --model_path checkpoints/qwen3_8b_lora_scierc_merged ...\\\\n\\\\nInputs\\\\n------\\\\n- Train JSONL: data/sft/scierc_sft_train.jsonl  (prompt+completion format)\\\\n- Eval  JSONL: data/sft/scierc_sft_dev.jsonl\\\\n- Base model:  /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B\\\\n\\\\nOutputs\\\\n-------\\\\n- checkpoints/qwen3_8b_lora_scierc/         <- raw LoRA adapter + tokenizer\\\\n- checkpoints/qwen3_8b_lora_scierc_merged/  <- merged fp16 model (eval target)\\\\n- wandb run: project=schema_semantic_constrained_ie, name=w5_lora_qwen3_scierc\\\\n\\\\nKey dependencies\\\\n----------------\\\\ntorch 2.10, transformers 4.57, peft 0.19, trl 1.1, accelerate 1.13.\\\\n\\\\nUsage examples\\\\n--------------\\\\nDry run (2 optimizer steps, no merge, no wandb):\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_scierc.py --dry_run\\\\n\\\\nFull training (single GPU, ~3 epochs):\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_scierc.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets im\n…[truncated 7072 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T10:57:52.426498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/train_lora_llama_scierc.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T10:57:52.426791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"W5: LoRA fine-tune Llama-3.1-8B-Instruct on SciERC IE for OntoCoDec composability eval.\\\\n\\\\nPurpose\\\\n-------\\\\nLlama-3.1-8B-Instruct counterpart to scripts/train_lora_scierc.py (Qwen3-8B).\\\\nSame dataset, same LoRA hyper-parameters, same merge-to-fp16 flow. The only\\\\nnon-trivial difference is the chat format: the SFT JSONL has Qwen chat tokens\\\\n(<|im_start|>...) baked into the `prompt` field, so before training we strip\\\\nthose and re-render via Llama's tokenizer.apply_chat_template.\\\\n\\\\nDerived from: scripts/train_lora_scierc.py\\\\nBase model:   /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\\\\nTrain data:   data/sft/scierc_sft_train.jsonl (1762 ex)\\\\nEval  data:   data/sft/scierc_sft_dev.jsonl   (260 ex)\\\\nOutputs:      checkpoints/llama_lora_scierc{,_merged}/\\\\n\\\\nLoRA: r=16, alpha=32, dropout=0.05, target=all-linear (q/k/v/o + gate/up/down).\\\\nTrain: 3 epochs, bs=4, grad_accum=4 (effective 16), lr=2e-4, cosine, bf16.\\\\n\\\\nDry run (no merge, no wandb):\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_llama_scierc.py --dry_run\\\\nFull:\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_llama_scierc.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport os\\\\nimport re\\\\n\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom peft import LoraConfig, PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom trl import SFTConfig, SFTTrainer\\\\n\\\\n\\\\n# Qwen chat-token prompts have the shape:\\\\n#   <|im_start|>system\\\\\\\\n{SYS}<|im_end|>\\\\\\\\n<|im_start|>user\\\\\\\\n{USR}<|im_end|>\\\\\\\\n<|im_start|>assistant\\\\\\\\n<think>...\\\\n# DOTALL so .+? crosses newlines.\\\\n_QWEN_RE = re.compile(\\\\n    r\\\\\\\"<\\\\\\\\|im_start\\\\\\\\|>system\\\\\\\\n(?P<sys>.+?)<\\\\\\\\|im_end\\\\\\\\|>\\\\\\\\s*\\\\\\\"\\\\n    r\\\\\\\"<\\\\\\\\|im_start\\\\\\\\|>user\\\\\\\\n(?P<usr>.+?)<\\\\\\\\|im_end\\\\\\\\|>\\\\\\\",\\\\n    re.DOTALL,\\\\n)\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", defa\n…[truncated 7188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T10:57:52.426959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/train_lora_docred.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T10:57:52.427093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/train_lora_docred_llama.py"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T10:57:52.427356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"W5: LoRA fine-tune Qwen3-8B on DocRED IE for OntoCoDec composability eval.\\\\n\\\\nPurpose\\\\n-------\\\\nTrain a LoRA adapter on top of Qwen3-8B using the DocRED training set in the\\\\nexact prompt format used by `run_constrained_extraction.py --dataset docred`\\\\nat inference. After training, the adapter is merged into a stand-alone\\\\nbfloat16 model that the eval script can consume by simply pointing\\\\n`--model_path` at the merged dir.\\\\n\\\\nDerived from `scripts/train_lora_scierc.py`. Key differences vs. SciERC:\\\\n  * DocRED is document-level (longer inputs), so `max_length=4096`\\\\n    (SciERC was 2048).\\\\n  * To keep the effective batch size at 16 within 24-48GB VRAM, we lower\\\\n    per-device batch to 2 and raise gradient_accumulation_steps to 8.\\\\n  * Merged model is written to `/root/autodl-tmp/...` (data disk, ~16GB\\\\n    bfloat16 footprint won't fit on the root partition).\\\\n\\\\nTwo-step W5 plan (this script handles step 1 + merging):\\\\n  1. Unconstrained fine-tuned baseline:\\\\n       python scripts/train_lora_docred.py\\\\n       python run_constrained_extraction.py --mode unconstrained \\\\\\\\\\\\\\\\\\\\n           --dataset docred --model_path <merged_dir> ...\\\\n     Check DR (violation rate) drops vs. zero-shot.\\\\n  2. Constrained eval on the same fine-tuned model:\\\\n       python run_constrained_extraction.py --mode full_s1 \\\\\\\\\\\\\\\\\\\\n           --dataset docred --model_path <merged_dir> ...\\\\n\\\\nInputs\\\\n------\\\\n- Train JSONL: data/docred/sft_train.jsonl  (prompt+completion format)\\\\n- Eval  JSONL: data/docred/sft_dev.jsonl\\\\n- Base model:  /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B\\\\n\\\\nOutputs\\\\n-------\\\\n- checkpoints/qwen_lora_docred/                      <- raw LoRA adapter\\\\n- /root/autodl-tmp/checkpoints/qwen_lora_docred_merged/  <- merged bf16 model\\\\n- wandb run: project=schema_semantic_constrained_ie, name=w5_lora_qwen3_docred\\\\n\\\\nUsage examples\\\\n--------------\\\\nDry run (2 optimizer \n…[truncated 7114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T10:57:52.427664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"LoRA fine-tune Llama-3.1-8B-Instruct on DocRED IE.\\\\n\\\\nPurpose\\\\n-------\\\\nLlama-3.1-8B-Instruct counterpart to scripts/train_lora_docred.py (Qwen3-8B).\\\\nSame dataset schema, same LoRA hyper-parameters, same merge-to-fp16 flow.\\\\n\\\\nUnlike train_lora_llama_scierc.py, this script does NOT need Qwen->Llama\\\\nprompt conversion — the DocRED Llama SFT data (sft_train_llama.jsonl) was\\\\ngenerated directly with Llama chat tokens baked in.\\\\n\\\\nKey differences vs. Qwen DocRED (train_lora_docred.py):\\\\n  * Base model: Llama-3.1-8B-Instruct (not Qwen3-8B)\\\\n  * Data files: data/docred/sft_{train,dev}_llama.jsonl (Llama chat format)\\\\n  * No prompt reformatting needed\\\\n\\\\nKey differences vs. Llama SciERC (train_lora_llama_scierc.py):\\\\n  * max_length=4096 (DocRED is document-level, SciERC was 2048)\\\\n  * batch_size=2, grad_accum=8 (longer sequences need smaller batch)\\\\n  * No Qwen->Llama prompt conversion (data already in Llama format)\\\\n\\\\nHyperparams aligned with Llama SciERC LoRA (eval_loss=0.0595, token_acc=98.17%):\\\\n  LoRA: r=16, alpha=32, dropout=0.05, target=all-linear (q/k/v/o + gate/up/down).\\\\n  Train: 3 epochs, lr=2e-4, cosine, bf16, warmup=0.1.\\\\n  Effective batch size: 2*8=16 (same as SciERC's 4*4=16).\\\\n\\\\nBase model:   /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\\\\nTrain data:   data/docred/sft_train_llama.jsonl (3053 ex)\\\\nEval  data:   data/docred/sft_dev_llama.jsonl   (998 ex)\\\\nOutputs:      checkpoints/llama_lora_docred/                        <- LoRA adapter\\\\n              /root/autodl-tmp/checkpoints/llama_lora_docred_merged/ <- merged bf16\\\\n\\\\nDry run:\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_docred_llama.py --dry_run\\\\nFull:\\\\n    CUDA_VISIBLE_DEVICES=0 python scripts/train_lora_docred_llama.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport os\\\\n\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom peft import LoraConfig, PeftModel\\\\nfrom transfor\n…[truncated 7121 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T10:57:52.427889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/data/sft/scierc_sft_train.jsonl /root/schema_semantic_constrained_ie/data/sft/scierc_sft_dev.jsonl /root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl /root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl 2>/dev/null"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T10:57:52.428032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    1762 /root/schema_semantic_constrained_ie/data/sft/scierc_sft_train.jsonl\\\\n     260 /root/schema_semantic_constrained_ie/data/sft/scierc_sft_dev.jsonl\\\\n    3053 /root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl\\\\n     998 /root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl\\\\n    6073 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T10:57:52.428158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -name \"*beam*\" -o -name \"*w5*\" -o -name \"*lora*\" | head -30"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T10:57:52.428309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/beam_search_dryrun_10.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.log\\\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval_fallback_stats.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w5_lora_unconstrained.json\\\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_full_s1_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_full_s1_violation_report.json\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_unconstrained.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_constrained.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_unconstrained_violations.json\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_constrained_report.json\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_constrained_violation_report.json\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_unconstrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/analysis_w5_llama_docred_lora_constrained_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_beam_dryrun_10.json\\\\n/root/schema_semantic_constrained_ie/outputs/beam_search_50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_beam_search_50.json\\\\n/root/schema_semantic_constrained_ie/outputs/beam_search_full_551.log\\\\n/root/schema_semantic_constrained_ie/outputs/beam_search_scierc_full_551.jsonl\\\\n/root/schema_s\n…[truncated 746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T10:57:52.428454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/runtime_benchmark.json"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T10:57:52.428645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 4790.33,\\\\n      \\\\\\\"docs\\\\\\\": 551,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 8.694,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 131797,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 27.51,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"grammar_only\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 4856.83,\\\\n      \\\\\\\"docs\\\\\\\": 551,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 8.815,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 131821,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 27.14,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": 1.4\\\\n    },\\\\n    \\\\\\\"semantic_only\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 3981.5,\\\\n      \\\\\\\"docs\\\\\\\": 551,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 7.226,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 131771,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 33.1,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": -16.9\\\\n    },\\\\n    \\\\\\\"full_s1\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 3725.18,\\\\n      \\\\\\\"docs\\\\\\\": 551,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 6.761,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 131843,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 35.39,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": -22.2\\\\n    },\\\\n    \\\\\\\"posthoc\\\\\\\": {\\\\n      \\\\\\\"inference_seconds\\\\\\\": 4790.33,\\\\n      \\\\\\\"filter_seconds\\\\\\\": 0.059,\\\\n      \\\\\\\"total_seconds\\\\\\\": 4790.389,\\\\n      \\\\\\\"docs\\\\\\\": 551,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 8.694,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 131797,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 27.51,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"docred\\\\\\\": {\\\\n    \\\\\\\"unconstrained\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 19715.15,\\\\n      \\\\\\\"docs\\\\\\\": 998,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 19.755,\\\\n      \\\\\\\"tokens_generated\\\\\\\": 1121442,\\\\n      \\\\\\\"tokens_per_sec\\\\\\\": 56.88,\\\\n      \\\\\\\"overhead_vs_unconstrained_pct\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"grammar_only\\\\\\\": {\\\\n      \\\\\\\"total_seconds\\\\\\\": 20534.96,\\\\n      \\\\\\\"docs\\\\\\\": 998,\\\\n      \\\\\\\"avg_sec_per_doc\\\\\\\": 20.576,\\\\n \n…[truncated 1570 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T10:57:52.428822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -name \"wandb\" -type d 2>/dev/null; ls /root/schema_semantic_constrained_ie/checkpoints/ 2>/dev/null"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T10:57:52.428955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_lora_docred\\\\nllama_lora_scierc\\\\nllama_lora_scierc_merged\\\\nqwen3_8b_lora_scierc\\\\nqwen3_8b_lora_scierc_merged\\\\nqwen_lora_docred\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T10:57:52.429114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json, statistics\nfiles = {\n    'Qwen_SciERC_beam': '/root/schema_semantic_constrained_ie/outputs/beam_search_scierc_full_551.jsonl',\n    'Llama_SciERC_beam': '/root/schema_semantic_constrained_ie/outputs/llama_scierc_beam_full_s1_551.jsonl',\n    'Qwen_DocRED_beam': '/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl',\n    'Llama_DocRED_beam': '/root/schema_semantic_constrained_ie/outputs/docred_llama_beam_50.jsonl',\n}\nfor name, path in files.items():\n    times = []\n    try:\n        with open(path) as f:\n            for line in f:\n                doc = json.loads(line)\n                for k in ['inference_time_seconds', 'inference_time', 'time_seconds']:\n                    if k in doc:\n                        times.append(doc[k])\n                        break\n        if times:\n            print(f'{name}: n={len(times)}, mean={statistics.mean(times):.3f}, std={statistics.stdev(times):.3f}')\n        else:\n            print(f'{name}: no time field found. keys={list(json.loads(open(path).readline()).keys())[:10]}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\n\"\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T10:57:52.429256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen_SciERC_beam: n=551, mean=5.915, std=2.344\\\\nLlama_SciERC_beam: n=551, mean=4.814, std=2.326\\\\nQwen_DocRED_beam: n=50, mean=31.352, std=26.089\\\\nLlama_DocRED_beam: n=50, mean=20.783, std=10.079\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T10:57:52.429378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -path \"*/wandb/latest-run/files/wandb-summary.json\" 2>/dev/null | head -10; find /root/schema_semantic_constrained_ie -name \"trainer_state.json\" | head -10"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T10:57:52.429508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-222/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-222/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-382/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-382/trainer_state.json\\\\n/root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T10:57:52.429694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json\nfiles = [\n    ('Qwen SciERC', '/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Llama SciERC', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Qwen DocRED', '/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json'),\n    ('Llama DocRED', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json'),\n]\nfor name, path in files:\n    with open(path) as f:\n        state = json.load(f)\n    total_steps = state.get('max_steps') or state.get('global_step')\n    train_time = state.get('total_flos', 0)\n    log_history = state.get('log_history', [])\n    # find total runtime from last log entry\n    last = log_history[-1] if log_history else {}\n    warmup = state.get('warmup_steps', 'N/A')\n    print(f'{name}: total_steps={total_steps}, global_step={state.get(\\\"global_step\\\")}, warmup_steps={warmup}')\n    # Look for train_runtime\n    for entry in reversed(log_history):\n        if 'train_runtime' in entry:\n            rt = entry['train_runtime']\n            print(f'  train_runtime={rt:.1f}s ({rt/3600:.2f}h)')\n            break\n    for entry in reversed(log_history):\n        if 'eval_loss' in entry:\n            print(f'  final eval_loss={entry[\\\"eval_loss\\\"]:.4f}')\n            break\n\"\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T10:57:52.429852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen SciERC: total_steps=333, global_step=333, warmup_steps=N/A\\\\n  final eval_loss=0.0586\\\\nLlama SciERC: total_steps=333, global_step=333, warmup_steps=N/A\\\\n  final eval_loss=0.0595\\\\nQwen DocRED: total_steps=573, global_step=573, warmup_steps=N/A\\\\n  final eval_loss=0.0614\\\\nLlama DocRED: total_steps=573, global_step=573, warmup_steps=N/A\\\\n  final eval_loss=0.0624\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T10:57:52.429980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json, statistics\n\n# Full DocRED beam search data\nfiles = {\n    'Qwen_DocRED_beam_full': '/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl',\n    'Llama_DocRED_beam_full': '/root/schema_semantic_constrained_ie/outputs/docred_llama_beam_50.jsonl',\n}\nfor name, path in files.items():\n    with open(path) as f:\n        lines = f.readlines()\n    print(f'{name}: {len(lines)} records')\n    doc = json.loads(lines[0])\n    print(f'  sample keys: {list(doc.keys())[:15]}')\n\"\n"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T10:57:52.430109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen_DocRED_beam_full: 50 records\\\\n  sample keys: ['doc_id', 'input_text', 'gold_entities', 'gold_relations', 'raw_output', 'parsed_output', 'inference_time_seconds', 'mode', 'decoding_strategy', 'num_beams']\\\\nLlama_DocRED_beam_full: 50 records\\\\n  sample keys: ['doc_id', 'input_text', 'gold_entities', 'gold_relations', 'raw_output', 'parsed_output', 'inference_time_seconds', 'mode', 'decoding_strategy', 'num_beams']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T10:57:52.430264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json\nfiles = [\n    ('Qwen SciERC', '/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Llama SciERC', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Qwen DocRED', '/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json'),\n    ('Llama DocRED', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json'),\n]\nfor name, path in files:\n    with open(path) as f:\n        state = json.load(f)\n    log_history = state.get('log_history', [])\n    # print last 3 log entries to find train_runtime\n    for entry in log_history[-3:]:\n        print(f'{name}: {entry}')\n    print()\n\"\n"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T10:57:52.430419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen SciERC: {'entropy': 0.9222305163741111, 'epoch': 2.888888888888889, 'grad_norm': 0.1631155163049698, 'learning_rate': 1.0799414351212234e-06, 'loss': 0.0302, 'mean_token_accuracy': 0.988931231200695, 'num_tokens': 1613867.0, 'step': 320}\\\\nQwen SciERC: {'entropy': 0.9630585953593254, 'epoch': 2.979591836734694, 'grad_norm': 0.13609528541564941, 'learning_rate': 8.830462048531329e-08, 'loss': 0.0329, 'mean_token_accuracy': 0.9864985719323158, 'num_tokens': 1664727.0, 'step': 330}\\\\nQwen SciERC: {'epoch': 3.0, 'eval_entropy': 0.9635339553539569, 'eval_loss': 0.05858446657657623, 'eval_mean_token_accuracy': 0.9815891330058758, 'eval_num_tokens': 1676064.0, 'eval_runtime': 9.5057, 'eval_samples_per_second': 27.352, 'eval_steps_per_second': 6.838, 'step': 333}\\\\n\\\\nLlama SciERC: {'entropy': 1.0137642666697502, 'epoch': 2.888888888888889, 'grad_norm': 0.19681322574615479, 'learning_rate': 1.0799414351212234e-06, 'loss': 0.0211, 'mean_token_accuracy': 0.9925299122929573, 'num_tokens': 1709699.0, 'step': 320}\\\\nLlama SciERC: {'entropy': 1.0545968472957612, 'epoch': 2.979591836734694, 'grad_norm': 0.18119069933891296, 'learning_rate': 8.830462048531329e-08, 'loss': 0.0229, 'mean_token_accuracy': 0.9911708399653435, 'num_tokens': 1763564.0, 'step': 330}\\\\nLlama SciERC: {'epoch': 3.0, 'eval_entropy': 1.0564585007154024, 'eval_loss': 0.05948667600750923, 'eval_mean_token_accuracy': 0.9816787738066454, 'eval_num_tokens': 1775547.0, 'eval_runtime': 9.0993, 'eval_samples_per_second': 28.574, 'eval_steps_per_second': 7.143, 'step': 333}\\\\n\\\\nQwen DocRED: {'entropy': 0.7139757823199033, 'epoch': 2.9325474787164376, 'grad_norm': 0.09027349948883057, 'learning_rate': 3.6445791231497494e-07, 'loss': 0.0462, 'mean_token_accuracy': 0.9837983451783657, 'num_tokens': 13881836.0, 'step': 560}\\\\nQwen DocRED: {'entropy': 0.709706836938858, 'epoch': 2.9849377865094957, 'grad_norm': 0.09419994056224823, 'learning_rate': 2.976827891172\n…[truncated 1289 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T10:57:52.430602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie -path \"*/wandb/run-*/files/wandb-summary.json\" 2>/dev/null | head -10"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T10:57:52.430756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T10:57:52.430887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -name \"*docred*beam*\" -o -name \"*beam*docred*\" | sort"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T10:57:52.431016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_llama_beam_50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_llama_beam_50.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_llama_beam_50_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T10:57:52.431136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "stat -c '%Y %n' /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T10:57:52.431264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778858035 /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json\\\\n1778864066 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json\\\\n1778875226 /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json\\\\n1778874758 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T10:57:52.431414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json\nfiles = [\n    ('Qwen SciERC', '/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Llama SciERC', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json'),\n    ('Qwen DocRED', '/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json'),\n    ('Llama DocRED', '/root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json'),\n]\nfor name, path in files:\n    with open(path) as f:\n        state = json.load(f)\n    # check all top-level keys\n    for k in ['train_runtime', 'total_flos', 'warmup_steps']:\n        if k in state:\n            print(f'{name}: {k}={state[k]}')\n    # check for runtime in any log entry\n    for entry in state.get('log_history', []):\n        if 'train_runtime' in entry:\n            print(f'{name}: train_runtime in log = {entry[\\\"train_runtime\\\"]}')\n            break\n\"\n"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T10:57:52.431612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen SciERC: total_flos=1.0287752867960832e+17\\\\nLlama SciERC: total_flos=1.0646462881225114e+17\\\\nQwen DocRED: total_flos=7.300989000225792e+17\\\\nLlama DocRED: total_flos=7.23014348473516e+17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T10:57:52.431799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "stat -c '%Y %n' /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-222/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-222/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-382/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-382/trainer_state.json /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T10:57:52.431942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778857807 /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-222/trainer_state.json\\\\n1778858035 /root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/checkpoint-333/trainer_state.json\\\\n1778863849 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-222/trainer_state.json\\\\n1778864066 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc/checkpoint-333/trainer_state.json\\\\n1778873282 /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-382/trainer_state.json\\\\n1778875226 /root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred/checkpoint-573/trainer_state.json\\\\n1778872972 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-382/trainer_state.json\\\\n1778874758 /root/schema_semantic_constrained_ie/checkpoints/llama_lora_docred/checkpoint-573/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T10:57:52.432112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/",
+              "description": "List existing artifacts"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T10:57:52.432256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nanalyze_ontology_docred.py\nappendix_sampling_table.tex\nbeam_sampling_feasibility.md\ncf_fallback_code_diff_analysis.md\ncompare_prompts.py\ncomposability_update_checklist.md\ncomposability_update_template.md\nconstrained_eval_readiness.md\ncross_model_analysis_framework.md\nd009_llama_prep.md\ndata_consistency_audit.md\ndocred_full_s1_dr_root_cause_analysis.md\ndocred_lora_eval_commands.md\ndocred_paper_update_checklist.md\ndocred_phase2_ablation_analysis.md\ndocred_progress_check.md\ndocred_unconstrained_baseline_verify.md\ndream_reports\ndual_factor_analysis\nft_ablation_analysis.md\nfuzzy_matching_threshold_analysis.md\nimpact_analysis.py\nlatency_profiling_docred_qwen_ft.json\nliterature_docred_compare.md\nliterature_map.yaml\nliterature_survey_constrained_decoding_ie.md\nliterature_survey_ontology_constrained_ie.md\nllama_docred_full_s1\nllama_docred_full_s1_mt6144\nllama_docred_maxtoken\nllama_docred_per_relation_dr_analysis.md\nllama_docred_unconstrained_mt6144\nllama_submit_commands.md\nmanifest.yaml\nmethod_invariant_notes.md\nmistral_tightness_r2_analysis.md\noov_replacement_cases.md\npair_based_enforcement_plan.md\npaper_number_consistency_check.md\npaper_number_preaudit.md\npaper_results_summary.md\npaper_results_tables.md\npaper_writing_readiness.md\nparse_failure_denominator_analysis.md\nphase2_docred_full_s1\nphase2_docred_semantic_only\nrebuttal\nrebuttal_draft_v1.md\nrebuttal_draft_v2.md\nreference_audit_relwork.md\nreference_audit_results.md\nrelated_work_survey.md\nresidual_dr_error_analysis.md\nreview_issues.yaml\nreview_reports\nrun_constrained_extraction.py\nrun_extraction_docred.py\nruntime_benchmark.json\ntable2_main_results.md\ntable3_composability.md\ntable4_ft_ablation.md\ntable5_posthoc.md\ntable6_latency.md\ntightness_ablation\nunified_et_dr_recalc.md\nviolation_checker_docred.py\nw1_cf_fallback\nw1_cf_fallback_pilot_detailed_analysis.md\nw1_cf_fallback_scierc_pilot\nw4_table1_v2\nw5_docred_sft_data_gen\nw5_llama_docred_lora_constrained_eval.md\nw5_llama_docred_lora_training\nw5_llama_lora_scierc_c\n…[truncated 230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T10:57:52.432414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r4_sf8_reproducibility.md",
+              "content": "# SF8: Reproducibility Details\n\n## LoRA Configuration\n\nAll four fine-tuned models (Qwen3-8B and Llama-3.1-8B-Instruct, on SciERC and DocRED) share the same LoRA hyperparameters.\n\n| Parameter | Value |\n|-----------|-------|\n| Rank (r) | 16 |\n| Alpha | 32 |\n| Dropout | 0.05 |\n| Bias | none |\n| Target modules | q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj |\n| Task type | CAUSAL_LM |\n\n## Training Configuration\n\n| Parameter | SciERC | DocRED |\n|-----------|--------|--------|\n| Base models | Qwen3-8B / Llama-3.1-8B-Instruct | Qwen3-8B / Llama-3.1-8B-Instruct |\n| Train examples | 1,762 | 3,053 |\n| Dev examples | 260 | 998 |\n| Epochs | 3 | 3 |\n| Per-device batch size | 4 | 2 |\n| Gradient accumulation steps | 4 | 8 |\n| Effective batch size | 16 | 16 |\n| Max sequence length | 2,048 | 4,096 |\n| Learning rate | 2e-4 | 2e-4 |\n| LR scheduler | Cosine | Cosine |\n| Warmup ratio | 0.1 | 0.1 |\n| Warmup steps | 33 | 57 |\n| Total training steps | 333 | 573 |\n| Optimizer | AdamW (torch) | AdamW (torch) |\n| Precision | bf16 | bf16 |\n| Gradient checkpointing | Yes | Yes |\n| Loss | Completion-only | Completion-only |\n| Seed | 42 | 42 |\n\n## Hardware\n\n- GPU: 2x NVIDIA RTX PRO 6000 Blackwell Server Edition (98 GB VRAM each); single GPU used per training run\n- Estimated training time (SciERC): ~11 min per model\n- Estimated training time (DocRED): ~1.5 h per model\n\n## Software\n\n| Package | Version |\n|---------|---------|\n| PyTorch | 2.10 |\n| Transformers | 4.57 |\n| PEFT | 0.19 |\n| TRL | 1.1 |\n| Accelerate | 1.13 |\n\n## Inference Time (seconds/document)\n\n### Qwen3-8B (zero-shot, greedy decoding)\n\n| Configuration | SciERC (mean +/- std) | DocRED (mean +/- std) |\n|--------------|----------------------|----------------------|\n| Unconstrained | 8.69 +/- 3.89 | 19.75 +/- 8.99 |\n| Grammar-only | 8.81 +/- 4.51 | 20.58 +/- 10.75 |\n| Semantic-only | 7.23 +/- N/A | 20.53 +/- N/A |\n| Full S1 | 6.76 +/- 3.67 | 20.39 +/- 9.43 |\n| Post-hoc | 8.69 +/- 3.89 | 19.78 +/- 8.99 |\n\n### Llama-3.1-8B-Instruct (zero-shot, greedy decoding)\n\n| Configuration | SciERC (mean +/- std) | DocRED (mean +/- std) |\n|--------------|----------------------|----------------------|\n| Unconstrained | 2.81 +/- 1.65 | 18.16 +/- 12.88 |\n| Full S1 | 4.33 +/- 3.15 | 20.52 +/- 15.62 |\n\n### Beam Search (k=4, Full S1)\n\n| Model | SciERC (mean +/- std, n=551) | DocRED (mean +/- std, n=50) |\n|-------|------------------------------|----------------------------|\n| Qwen3-8B | 5.92 +/- 2.34 | 31.35 +/- 26.09 |\n| Llama-3.1-8B | 4.81 +/- 2.33 | 20.78 +/- 10.08 |\n\n### Constrained Decoding Overhead (Qwen3-8B, vs. Unconstrained)\n\n| Configuration | SciERC overhead | DocRED overhead |\n|--------------|----------------|----------------|\n| Grammar-only | +1.4% | +4.2% |\n| Semantic-only | -16.9% | +3.9% |\n| Full S1 | -22.2% | +3.2% |\n| Post-hoc | ~0% | +0.1% |\n\nNote: Negative overhead on SciERC indicates that constrained decoding reduced generation length (and thus inference time) by suppressing invalid tokens early. On DocRED (longer documents), the masking computation adds a small constant overhead that slightly exceeds any token-savings effect.\n\n## Runtime Summary\n\n| Dataset | Model | Config | Total time (min) | Docs |\n|---------|-------|--------|-----------------|------|\n| SciERC | Qwen3-8B | Unconstrained | 79.8 | 551 |\n| SciERC | Qwen3-8B | Full S1 | 62.1 | 551 |\n| SciERC | Llama-3.1-8B | Unconstrained | 25.8 | 551 |\n| SciERC | Llama-3.1-8B | Full S1 | 39.7 | 550 |\n| DocRED | Qwen3-8B | Unconstrained | 328.6 | 998 |\n| DocRED | Qwen3-8B | Full S1 | 339.2 | 998 |\n| DocRED | Llama-3.1-8B | Unconstrained | 302.1 | 998 |\n| DocRED | Llama-3.1-8B | Full S1 | 341.4 | 998 |\n"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T10:57:52.432584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r4_sf8_reproducibility.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T10:57:52.432756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json, statistics\nfiles = {\n    'Qwen_SciERC_semantic_only': '/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl',\n    'Qwen_DocRED_semantic_only': '/root/schema_semantic_constrained_ie/outputs/docred_semantic_only.jsonl',\n}\nfor name, path in files.items():\n    times = []\n    try:\n        with open(path) as f:\n            for line in f:\n                doc = json.loads(line)\n                for k in ['inference_time_seconds', 'inference_time', 'time_seconds']:\n                    if k in doc:\n                        times.append(doc[k])\n                        break\n        if times:\n            print(f'{name}: n={len(times)}, mean={statistics.mean(times):.2f}, std={statistics.stdev(times):.2f}')\n        else:\n            print(f'{name}: no time field')\n    except Exception as e:\n        print(f'{name}: {e}')\n\"\n"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T10:57:52.432898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen_SciERC_semantic_only: n=551, mean=7.23, std=3.91\\\\nQwen_DocRED_semantic_only: n=998, mean=20.53, std=9.37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T10:57:52.433019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r4_sf8_reproducibility.md",
+              "old_string": "| Semantic-only | 7.23 +/- N/A | 20.53 +/- N/A |",
+              "new_string": "| Semantic-only | 7.23 +/- 3.91 | 20.53 +/- 9.37 |"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-17T10:57:52.433162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r4_sf8_reproducibility.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-17T10:57:52.433328+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/r4_sf8_reproducibility.md`。\n\n关键数据摘要:\n\n**LoRA 配置** (四个模型一致): r=16, alpha=32, dropout=0.05, 7 个 target modules, AdamW, lr=2e-4, cosine schedule, 3 epochs, effective batch size=16\n\n**Training steps**: SciERC 333 步 (warmup 33), DocRED 573 步 (warmup 57)\n\n**GPU**: 2x NVIDIA RTX PRO 6000 Blackwell (98GB); 训练约 SciERC ~11min, DocRED ~1.5h per model\n\n**Inference time (Qwen, sec/doc)**:\n- SciERC: Unconstrained 8.69±3.89, Full S1 6.76±3.67 (-22.2%), Beam k=4 5.92±2.34\n- DocRED: Unconstrained 19.75±8.99, Full S1 20.39±9.43 (+3.2%), Beam k=4 31.35±26.09 (n=50)\n\nDocRED beam search 只有 50 条 pilot 数据，没有全量 998 条的运行结果。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r4_sf8_reproducibility_20260517T105439"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ],
+  "readable_path": "readable/conversations/code-r4-sf8-reproducibility.md"
+}

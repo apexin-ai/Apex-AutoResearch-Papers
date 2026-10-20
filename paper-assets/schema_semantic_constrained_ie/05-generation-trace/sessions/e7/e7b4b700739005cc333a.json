@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7b4b700739005cc333a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit anonymization check",
+  "task_key": "worker_audit_anonymization-check_20260523T162845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_anonymization-check_20260523T162845_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "af8d45fc8104a8c0f2017cf2d4ca13851f53d38ed631a26bfd752d0314eb9595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存至 `artifacts/anonymization_audit.md`（`save_project_file` 不允许写自定义文件名，改用本地 `Write` 写入 artifacts 目录）。\n\n## 核心结论\n\n**无需修复**。代码库不包含作者姓名、邮箱、机构信息、个人 GitHub/W&B/HuggingFace URL。\n\n| 检查项 | 命中数 | 状态 |\n|---|---|---|\n| 邮箱 | 0 | ✅ |\n| `WANDB_ENTITY` | 0 | ✅ |\n| `WANDB_PROJECT` | 10（默认 `\"schema_semantic_constrained_ie\"`，5 个训练脚本各 2 处） | ⚠️ 边缘但安全 |\n| `github.com/` | 0 | ✅ |\n| `huggingface.co/` `wandb.ai/` URL | 0 | ✅ |\n| `author=` / `setup.py` / `pyproject.toml` | 0 / 不存在 | ✅ |\n| Copyright / Affiliation / University 字符串 | 1（`ontology_scalability_benchmark.py:41` 中 `'University'` 是本体实体类型标签） | ✅ |\n| `.env` / `.ini` / `.gitconfig` | 不存在 | ✅ |\n\n唯一边缘项：`WANDB_PROJECT` 默认值 `\"schema_semantic_constrained_ie\"` 是仓库/课题名，不暴露作者。由于未硬编码 entity，账户取决于运行时 `wandb login` 身份，符合 ARR 匿名要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-anonymization-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c051e883209b8166dea1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze docred full s1 metrics",
+  "task_key": "worker_analyze_docred_full_s1_metrics_20260514T083246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_docred_full_s1_metrics_20260514T083246_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "0225384798d4273875cda05e175f599de065862de4f1c3a70192d1ceca4a3430"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是 **phase2_docred_full_s1** 的完整结果：\n\n## DocRED Full S1 结果\n\n| 指标 | Phase 0 Unconstrained | Grammar-only | **Full S1** | 变化 (vs grammar_only) |\n|------|----------------------|--------------|-------------|----------------------|\n| **DR** | 18.7%* | 26.17% | **10.19%** | **↓61.1%** |\n| **RV** | 28.9% | 0.03% | **0.03%** | = |\n| **ET** | 7.5% | 0% | **0%** | = |\n| **R-F1** | ~8.2% | 8.24% | **8.17%** | -0.07pp |\n| Entity-F1 | — | 58.90% | **58.96%** | +0.06pp |\n\n*Phase 0 DR=18.7% 被 RV=28.9% 掩盖了部分 DR violations，实际可比基线是 grammar_only 的 26.17%\n\n### 关键发现\n\n1. **DR ↓61% (vs grammar_only)**：显著降低但未达 SciERC 的 94%，按标准属 **partial success** (50-80%)\n2. **RV/ET 完全消除**：grammar 层有效\n3. **R-F1 基本持平**：semantic 约束未损害 extraction quality\n4. **跨数据集递减效应**：SciERC (7 rels) → 94% | DocRED (96 rels) → 61%\n\n### 论文 Framing 建议\n不能 claim \"cross-dataset generalization\"，需 nuanced framing：semantic constraint 效果随 schema 复杂度递减，但在 96-relation 复杂 schema 上仍实现 61% DR 降低。\n\n### Unconstrained 进度\nPID 170502 仍在运行（58min），181/998 docs 完成。预计还需 ~4.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-docred-full-s1-metrics.md"
+}

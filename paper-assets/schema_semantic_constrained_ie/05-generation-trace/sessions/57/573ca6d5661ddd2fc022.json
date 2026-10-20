@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "573ca6d5661ddd2fc022",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper figure fig2 per relation dr",
+  "task_key": "worker_paper_figure_fig2_per_relation_dr_20260514T032128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_per_relation_dr_20260514T032128_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "ac8cba5ca1805397938ad1a3566e6702137d163437cdb1a30494e29707944a00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，验证通过：\n\n- PDF (18KB) 和 PNG (149KB) 均已输出\n- 7 个 relation types 按 unconstrained 降序排列\n- 4 种 decoding mode 颜色区分清晰（粉紫/天蓝/橙黄/绿）\n- 5% 虚线可见，\"≈ unconstrained\" 标注在 Evaluate-for 的 Semantic-only bar 上方\n- 文字无重叠\n\n视觉故事清晰可读：Grammar-only 几乎不降 DR violation，Semantic-only 部分降低但残余仍高，Full S1 几乎将所有 relation 的 violation 压到 5% 线以下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-per-relation-dr.md"
+}

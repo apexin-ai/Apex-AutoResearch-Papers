@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82e3efdc5a66db0b811d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor westd 16980 gpu status",
+  "task_key": "worker_monitor_westd-16980-gpu-status_20260522T052000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-16980-gpu-status_20260522T052000_result.json",
+    "occurrence": 1,
+    "bytes": 1617,
+    "sha256": "6d7a9344e12c716747081a5aa803334216679c22513659d1bde0b9babf398efa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | PID |\n|-----|------|----------|--------|-----|\n| cuda:0 | RTX PRO 6000 Blackwell (96GB) | 39.6GB / 96GB | 78% | 892263 |\n| cuda:1 | RTX PRO 6000 Blackwell (96GB) | 40.9GB / 96GB | 82% | 881090 |\n\n### cuda:0 — SciERC 70B LoRA S1 constrained\n\n- **命令**: `run_constrained_extraction.py --mode full_s1 --dataset scierc --lora_path 70b_lora_scierc/checkpoint-663`\n- **输出路径**: `/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl`\n- **进度**: **34 / 551**（6.2%）\n- 文件创建于 13:16，~5分钟完成34样本，约 **9s/样本**\n- **预估剩余**: 517 × 9s ≈ **78分钟**，约 **14:40** 完成\n- 同目录 `scierc_unconstrained.jsonl`（551行）已于 12:34 完成\n\n### cuda:1 — DocRED 70B LoRA unconstrained\n\n- **命令**: `run_constrained_extraction.py --mode unconstrained --dataset docred --lora_path 70b_lora_docred/checkpoint-1146`\n- **输出路径**: `/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_unconstrained.jsonl`\n- **进度**: **117 / 200**（58.5%），从之前的 105 增加了 12 条\n- 文件创建于 10:33，~2h49m 完成 117 样本，约 **87s/样本**（DocRED 文档长）\n- **预估剩余**: 83 × 87s ≈ **120分钟**，约 **15:22** 完成\n\n### 注意\n\n- PID 892263（非 892258）在 cuda:0 上跑 SciERC S1，进程正常\n- 两个任务的输出写到了 `/root/autodl-tmp/schema_outputs/r16_70b_lora_*/`，不是之前的 `outputs/` 目录\n- `tmux ls` 和 `ps aux | grep` 被 ssh_read_only 白名单拦截，无法执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-16980-gpu-status.md"
+}

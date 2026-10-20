@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7080ef9e8fd6bc20e6c6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code p1 ee ft composability prep",
+  "task_key": "worker_code_p1_ee_ft_composability_prep_20260518T190505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p1_ee_ft_composability_prep_20260518T190505_result.json",
+    "occurrence": 1,
+    "bytes": 2653,
+    "sha256": "9f893d04f77294f7d2f89b18815e187d1ae2b6f8dd43395bbad9ab83251185b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## P1 EE FT Composability 实验准备汇报\n\n```\n数据位置：/root/schema_semantic_constrained_ie/data/wikievents/\n  all.jsonl: 246 docs (全量)\n  test.jsonl: 20 docs\n  SFT train: data/sft/wikievents_sft_train.jsonl (214 docs, 3586 events)\n  SFT dev:   data/sft/wikievents_sft_dev.jsonl (19 docs, 365 events)\n\nEE schema：27 entity types, 56 event types, 80 argument roles\n\nLoRA 训练脚本：scripts/train_lora_wikievents.py\n  dry-run loss: step1=0.5483, step2=0.5844\n  mean token accuracy: 92.6%\n  grad_norm: ~1.05\n\n推理脚本：run_constrained_extraction.py --dataset wikievents (已有)\n  dry-run 输出格式确认 ✓ (events + arguments)\n  eval_event_extraction.py 兼容 ✓\n  violation_checker_wikievents.py 兼容 ✓\n\nDry-run 状态：PASS\n  训练: 2 steps OK (loss 正常, gradient 稳定)\n  推理: 2 docs OK (1 parsed, 1 parse fail on long doc)\n  评估: pipeline 全通\n\n预估训练时间：~16 min (3 epochs, ~39 steps @ 24s/step)\n预估推理时间：~25 min/mode (20 test docs × ~75s avg)\n\n硬件：westd-21461 cuda:0 (RTX PRO 6000 98GB, 当前空闲)\n模型：Qwen3-8B (HF cache: /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/...)\nLoRA: r=16, alpha=32, dropout=0.05, max_length=4096 (6.5% truncation)\n\n实验已注册：p1_ee_ft_composability (PREPARING)\n```\n\n**待 APPROVAL 后执行命令：**\n```bash\n# 1. Full training (~16 min)\nCUDA_VISIBLE_DEVICES=0 python scripts/train_lora_wikievents.py \\\n  --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218\n\n# 2. Unconstrained inference\npython run_constrained_extraction.py --dataset wikievents --mode unconstrained \\\n  --model_path checkpoints/qwen3_8b_lora_wikievents_merged \\\n  --data_path data/wikievents/test.jsonl \\\n  --output_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl --device cuda:0\n\n# 3. Constrained inference\npython run_constrained_extraction.py --dataset wikievents --mode full_s1 \\\n  --model_path checkpoints/qwen3_8b_lora_wikievents_merged \\\n  --data_path data/wikievents/test.jsonl \\\n  --output_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl --device cuda:0\n\n# 4. Evaluate + violation check\npython eval_event_extraction.py --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl\npython eval_event_extraction.py --input_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl\npython violation_checker_wikievents.py --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl \\\n  --constraints_path data/wikievents/ontology_constraints_wikievents.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p1-ee-ft-composability-prep.md"
+}

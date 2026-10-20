@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1c1bf7ef87d9445d28e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code schema informed prompt",
+  "task_key": "worker_code_schema_informed_prompt_20260513T180437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_schema_informed_prompt_20260513T180437_result.json",
+    "occurrence": 1,
+    "bytes": 2140,
+    "sha256": "d84273034713eb6f7362d6416adebbe843fb47237b2e6d0a3a5346a49ec93443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both dry-runs completed successfully. Here's a summary:\n\n## 产出\n\n### 1. 修改后的脚本\n- **`run_extraction.py`** (SciERC): 新增 `--prompt_mode minimal|schema_informed` 和 `--constraints_path` 参数。`build_schema_informed_system_prompt()` 函数读取 `ontology_constraints.json`，为每个 relation 列出 top-5 最高频 (head→tail) type pairs。\n- **`run_extraction_docred.py`** (DocRED): 同样新增 `--prompt_mode` 和 `--max_relations` 参数。`build_schema_informed_relation_str()` 按训练频率排序 relation，列出所有 valid (head→tail) pairs，默认 top-50 relations。\n\n### 2. Prompt 预览\n\n**SciERC schema-informed** (480 tokens, +353 vs minimal):\n```\n- Used-for: valid (head→tail) pairs: (Method→Task), (Generic→Task), (Method→OtherScientificTerm), (Method→Method), (Method→Generic), and 30 more\n- Feature-of: valid (head→tail) pairs: (OtherScientificTerm→OtherScientificTerm), (OtherScientificTerm→Method), ...\n- Evaluate-for: valid (head→tail) pairs: (Metric→Generic), (Metric→Method), (Task→Generic), ...\n```\n\n**DocRED schema-informed** (2354 tokens, top-50):\n```\n- country: valid pairs: (LOC→LOC), (LOC→MISC), (LOC→ORG), ..., (TIME→LOC)\n- sister city: valid pairs: (LOC→LOC)\n- sibling: valid pairs: (PER→PER)\n```\n\n### 3. Token 统计\n| | Minimal | Schema-informed | 需要截断? |\n|---|---|---|---|\n| SciERC | 127 tok | 480 tok | NO |\n| DocRED (top-50) | 514 tok | 2354 tok | NO |\n| DocRED (all 96) | 514 tok | 3816 tok | NO |\n\n即使 all-96 + 最长文档也只有 ~4.3k tokens，远低于 32k 限制。\n\n### 4. Dry-run 结果\n- **SciERC**: 1/1 parsed OK. 模型输出了有效的 entities + relations JSON。\n- **DocRED**: 1/1 parsed OK. 2554 input tokens, 35.3s generation time.\n\n### 关键发现\nSciERC 的 type 约束非常松散（Used-for 有 35/36 种 pair 都合法），所以改用 top-K 频率 pair 展示分布特征，而非简单列出所有 valid types（那样每种 relation 的约束都一样）。DocRED 约束紧凑（平均 5.7 pairs/relation），直接列出所有 valid pairs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-schema-informed-prompt.md"
+}

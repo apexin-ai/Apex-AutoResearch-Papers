@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ee50e3a732f5f0c891",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra docred restart fix",
+  "task_key": "worker_infra_docred_restart_fix_20260513T193319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_docred_restart_fix_20260513T193319_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "432471ebae4eaef3d271477a1565e0909f0ee4e67c0677bfe6d5ed39435e22d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程状态正常，无需清理或重新提交。**\n\n| 项目 | 状态 |\n|------|------|\n| **PID 113148** (wrapper bash) | **ALIVE**, 运行 3 分钟 |\n| **PID 113153** (python3 run_extraction_docred.py) | **ALIVE**, GPU 1 上占用 18262 MiB，正在提取 |\n| **PID 112577** (旧 dry-run) | **DEAD**，已自行退出，无需清理 |\n| **PID 110681** (run_extraction.py schema) | **ALIVE**, GPU 0 上占用 16516 MiB，独立任务 |\n\n**进度**:\n- Resume 起点: 265 docs\n- 当前已处理: **281 docs**（3 分钟内新增 16 条）\n- 剩余: **717 docs** (总目标 998)\n- 速率约 ~5 docs/min，预计还需 ~2.5 小时完成\n\n**GPU 分配**:\n- GPU 0: 16525/97887 MiB — PID 110681 (schema extraction)\n- GPU 1: 18553/97887 MiB — PID 113153 (DocRED extraction) ✅\n\n**结论**: 之前的 PID 113148 并没有被 SIGHUP kill，它是一个新提交的进程（只跑了 3 分钟）。DocRED 全量提取正在正常运行，使用 `--device cuda:0` + `CUDA_VISIBLE_DEVICES=1`，参数正确。无需任何操作，等待完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-docred-restart-fix.md"
+}

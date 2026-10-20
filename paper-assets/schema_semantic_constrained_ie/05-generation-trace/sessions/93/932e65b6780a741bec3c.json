@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "932e65b6780a741bec3c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp 70b beam ablation",
+  "task_key": "worker_exp_70b-beam-ablation_20260522T143155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_70b-beam-ablation_20260522T143155_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "b41565e2db5539ccfc113873134897df0f65eb30d658ffc0c9625d4ef0d3b882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已确认正常运行，输出格式正确。\n\n**状态汇总：**\n\n| 实验 | 服务器 | GPU | 模式 | 速度 | 预计耗时 |\n|------|--------|-----|------|------|----------|\n| **A**: 70B LoRA beam k=4 full_s1 | westd-16980 | cuda:0 (58.7GB) | beam search | ~21s/sample | ~3h |\n| **B-1**: 70B ZS grammar_only | westd-21461 | cuda:0 (39.3GB) | greedy | ~6s/sample | ~55min |\n| **B-2**: 70B ZS semantic_only | westd-21461 | cuda:0 | greedy | ~6s/sample | 待 B-1 完成后串行 |\n\n**调整说明：** 70B scierc LoRA adapter 仅在 westd-16980 上，跨 AutoDL 容器无法直接互传文件。故 Exp A 改在 westd-16980 运行（两台服务器代码版本一致）。\n\n**待做：** grammar_only 预计 ~55 分钟后完成，届时需在 westd-21461 上启动 semantic_only。需要后续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-70b-beam-ablation.md"
+}

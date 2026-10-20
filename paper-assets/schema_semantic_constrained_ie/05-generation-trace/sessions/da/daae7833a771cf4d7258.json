@@ -1,0 +1,1413 @@
+{
+  "schema_version": "1.0",
+  "id": "daae7833a771cf4d7258",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "fix appendix table overflow and compile",
+  "task_key": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_appendix_table_overflow_and_compile_20260515T053111.jsonl",
+    "occurrence": 1,
+    "bytes": 58218,
+    "sha256": "7ba939d86f5b30f9fe275867d67898db72def8b4a0e08869e97c211808b149b5"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:34:08.016206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T05:34:08.016599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T05:34:08.016834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T05:34:08.016998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"abstract.tex\\\\nacl.sty\\\\nappendix_discussion.tex\\\\nappendix_llama_per_relation.tex\\\\nappendix_related_work.tex\\\\nfigures\\\\nmain.aux\\\\nmain.bbl\\\\nmain.log\\\\nmain.out\\\\nmain.pdf\\\\nmain.tex\\\\nrelwork_new_entries.bib\\\\nsection1_introduction_draft.tex\\\\nsection2_background.tex\\\\nsection3_method_draft.tex\\\\nsection3_violation_landscape.tex\\\\nsection4_composition_draft.tex\\\\nsection5_crossmodel_draft.tex\\\\nsection5_docred_draft.tex\\\\nsection5_scierc_draft.tex\\\\nsection6_related_work.tex\\\\nsection7_conclusion_compressed.tex\\\\ntexput.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T05:34:08.017132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_llama_per_relation.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:34:08.017307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)\\\\n% exp_ids: llama_docred_unconstrained, llama_docred_full_s1\\\\n\\\\n\\\\\\\\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\\\\\\\\label{app:llama-per-relation}\\\\n\\\\nTable~\\\\\\\\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.\\\\nThe Llama baseline exhibits an RV rate of 16.03\\\\\\\\%, substantially lower than Qwen's 29.66\\\\\\\\%, indicating stronger baseline vocabulary compliance.\\\\n% exp_ids: llama_docred_unconstrained (RV=16.03%), qwen_docred_unconstrained (RV=29.66%)\\\\nFull S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\\\\\\\\% (418/16{,}368 triples), with only three relations exceeding 10\\\\\\\\%.\\\\n% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\\\\\\\\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}\\\\n\\\\\\\\label{tab:llama-per-relation-dr}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}llrrr@{}}\\\\n\\\\\\\\toprule\\\\nRelation & PID & Triples & DR Violations & DR Rate (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\ndissolved/demolished & P576 & 73 & 24 & 32.9 \\\\\\\\\\\\\\\\\\\\nfollowed by          & P156 & 117 & 24 & 20.5 \\\\\\\\\\\\\\\\\\\\nunemployment rate    & P1198 & 15 & 3 & 20.0 \\\\\\\\\\\\\\\\\\\\nend time             & P582 & 130 & 21 & 16.2 \\\\\\\\\\\\\\\\\\\\ninstance of          & P31  & 290 & 37 & 12.8 \\\\\\\\\\\\\\\\\\\\nproduct/material produced & P1056 & 98 & 11 & 11.2 \\\\\\\\\\\\\\\\\\\\nlocation of formation & P740 & 81 & 8 & 9.9 \\\\\\\\\\\\\\\\\\\\nhead of state        & P35  & 41  & 3  & 7.3 \\\\\\\\\\\\\\\\\\\\napplies to jurisdiction & P1001 & 637 & 45 & 7.1 \\\\\\\\\\\\\\\\\\\\nconflict             & P607 & 453 & 30 & 6.6 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n% exp_ids: llama_docred_f\n…[truncated 801 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T05:34:08.017468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_discussion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:34:08.017641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix B — Extended Discussion\\\\n% Contains discussion paragraphs moved from the main text during compression.\\\\n\\\\n\\\\\\\\section{Extended Discussion}\\\\\\\\label{app:discussion}\\\\n\\\\n%%% Paragraph 1: Low F1 Practical Significance %%%\\\\n% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),\\\\n%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)\\\\n\\\\n\\\\\\\\paragraph{Practical Significance of Zero-Shot F1.}\\\\nOur reported relation F1 of approximately 8\\\\\\\\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.\\\\nFor reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\\\\\\\\% relation F1 with full training data~\\\\\\\\citep{zhong2021frustratingly,ye2022packed}.\\\\nConstraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.\\\\nWhen applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\\\\\\\\% DR on SciERC, 18.46\\\\\\\\% on DocRED).\\\\n% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained\\\\nIn our evaluation, F1 serves as a \\\\\\\\emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.\\\\nThe contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.\\\\n\\\\n%%% Paragraph 4: Decoding-Time vs. Post-Hoc Enforcement %%%\\\\n% exp_ids: posthoc_filtering_baseline, phase2_scierc_full_s1 (R-F1=8.36%),\\\\n%          phase2_docred_full_s1 (R-F1=8.23%, ET=0%)\\\\n\\\\n\\\\\\\\paragraph{D\n…[truncated 1410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T05:34:08.017815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_related_work.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:34:08.018023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Extended Related Work}\\\\n\\\\\\\\label{app:related_work}\\\\n\\\\n\\\\\\\\paragraph{Grammar-Constrained Decoding.}\\\\nRecent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, making grammar-constrained decoding the de facto standard for obtaining structured output from language models.\\\\nXGrammar~\\\\\\\\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens and maintains persistent pushdown automata across decoding steps, achieving up to 100$\\\\\\\\times$ speedup over prior CFG-constrained decoding methods.\\\\nOutlines~\\\\\\\\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, enabling efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.\\\\nLMQL~\\\\\\\\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks, providing a programmable interface for specifying multi-variable output structures.\\\\nThese systems ensure that every generated token belongs to a grammar-valid continuation, but they do not address the \\\\\\\\emph{distribution distortion} introduced by naive token masking.\\\\nA parallel line of work tackles this problem directly: DOMINO~\\\\\\\\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement by formulating mask selection as an optimization problem, and ASAp~\\\\\\\\cite{park2024grammar} provides a provably unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.\\\\nTogether, these advances have made grammar-constrained decoding both fast and statistically principled, establishing a robust foundation for structured generation.\\\\nHowever, all of these methods operate exclusively at the syntactic level---they ensure format validity (e\n…[truncated 6401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T05:34:08.018180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"\\\\\\\\begin{table\\|\\\\\\\\begin{tabular\\|\\\\\\\\resizebox\\|\\\\\\\\adjustbox\\|graphicx\" /root/schema_semantic_constrained_ie/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:34:08.018308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T05:34:08.018442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"\\\\\\\\begin{table\\|\\\\\\\\begin{tabular\\|\\\\\\\\resizebox\\|\\\\\\\\adjustbox\\|graphicx\" /root/schema_semantic_constrained_ie/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T05:34:08.018562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T05:34:08.018695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"\\\\\\\\begin{table\\|\\\\\\\\begin{tabular\\|\\\\\\\\resizebox\\|\\\\\\\\adjustbox\" /root/schema_semantic_constrained_ie/paper/appendix_related_work.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:34:08.018826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:34:08.018944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"\\\\\\\\begin{table\\|\\\\\\\\begin{tabular\\|\\\\\\\\resizebox\\|\\\\\\\\adjustbox\" /root/schema_semantic_constrained_ie/paper/appendix_discussion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T05:34:08.019058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T05:34:08.019172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"\\\\\\\\begin{table\\|\\\\\\\\begin{tabular\" /root/schema_semantic_constrained_ie/paper/section3_method_draft.tex /root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex /root/schema_semantic_constrained_ie/paper/section4_composition_draft.tex /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T05:34:08.019288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T05:34:08.019424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn -e \"\\\\\\\\begin{table\" -e \"\\\\\\\\begin{tabular\" -e \"\\\\\\\\resizebox\" -e \"\\\\\\\\adjustbox\" -e \"graphicx\" /root/schema_semantic_constrained_ie/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:34:08.019553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10:\\\\\\\\usepackage{graphicx}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T05:34:08.019689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn -e \"\\\\\\\\begin{table\" -e \"\\\\\\\\begin{tabular\" -e \"\\\\\\\\resizebox\" -e \"\\\\\\\\adjustbox\" /root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex /root/schema_semantic_constrained_ie/paper/section4_composition_draft.tex /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex /root/schema_semantic_constrained_ie/paper/section3_method_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T05:34:08.019834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex:20:\\\\\\\\begin{table}[t]\\\\n/root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex:24:\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n/root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex:25:\\\\\\\\begin{tabular}{ll cccc}\\\\n/root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex:13:\\\\\\\\begin{table}[t]\\\\n/root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex:17:\\\\\\\\begin{tabular}{@{}ll rrrr rr@{}}\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex:13:\\\\\\\\begin{table}[t]\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex:17:\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}\\\\n/root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex:17:\\\\\\\\begin{table}[t]\\\\n/root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex:21:\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}\\\\n/root/schema_semantic_constrained_ie/paper/section3_method_draft.tex:21:\\\\\\\\resizebox{.88\\\\\\\\columnwidth}{!}{$\\\\\\\\displaystyle\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T05:34:08.019996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T05:34:08.020154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage[T1]{fontenc}\\\\n\\\\\\\\usepackage[utf8]{inputenc}\\\\n\\\\\\\\usepackage{microtype}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{multirow}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{amssymb}\\\\n\\\\\\\\usepackage{enumitem}\\\\n\\\\\\\\usepackage{xcolor}\\\\n\\\\n\\\\\\\\title{OntoCoDec: Type-Valid Information Extraction\\\\\\\\\\\\\\\\via Compiled Ontology Constraints}\\\\n\\\\n\\\\\\\\author{Anonymous ACL submission}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n% === Abstract ===\\\\n\\\\\\\\input{abstract}\\\\n\\\\n% === §1 Introduction ===\\\\n\\\\\\\\input{section1_introduction_draft}\\\\n\\\\n% === §2 Background ===\\\\n\\\\\\\\input{section2_background}\\\\n\\\\n% === §3 Method ===\\\\n\\\\\\\\input{section3_method_draft}\\\\n\\\\n% === §4 Constraint Composition ===\\\\n\\\\\\\\section{Constraint Composition}\\\\n\\\\\\\\label{sec:composition}\\\\n\\\\\\\\input{section4_composition_draft}\\\\n\\\\n% === §5 Experiments ===\\\\n\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\n\\\\\\\\subsection{Violation Landscape}\\\\n\\\\\\\\input{section3_violation_landscape}\\\\n\\\\n\\\\\\\\input{section5_scierc_draft}\\\\n\\\\\\\\input{section5_docred_draft}\\\\n\\\\\\\\input{section5_crossmodel_draft}\\\\n\\\\n% === §6 Related Work ===\\\\n\\\\\\\\input{section6_related_work}\\\\n\\\\n% === §7 Discussion and Conclusion ===\\\\n\\\\\\\\section{Discussion and Conclusion}\\\\n\\\\\\\\label{sec:discussion}\\\\n\\\\\\\\input{section7_conclusion_compressed}\\\\n\\\\n% === Bibliography ===\\\\n\\\\\\\\bibliography{relwork_new_entries}\\\\n\\\\n% === Appendix ===\\\\n\\\\\\\\appendix\\\\n\\\\n\\\\\\\\input{appendix_related_work}\\\\n\\\\\\\\input{appendix_discussion}\\\\n\\\\\\\\input{appendix_llama_per_relation}\\\\n\\\\n\\\\\\\\end{document}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T05:34:08.020294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T05:34:08.020525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Section 5 — Cross-Model Validation (compressed, 830→~400 words)\\\\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\\\\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\\\\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\\\\n%          llama_docred_unconstrained, llama_docred_full_s1\\\\n\\\\n\\\\\\\\subsection{Cross-Model Validation}\\\\n\\\\\\\\label{sec:cross-model}\\\\n\\\\nWe replicate the full S1 configuration with Llama-3.1-8B-Instruct under identical prompts, decoding parameters, and evaluation.\\\\nTable~\\\\\\\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\\\n\\\\\\\\begin{tabular}{@{}ll rrrr rr@{}}\\\\n\\\\\\\\toprule\\\\n& & \\\\\\\\multicolumn{4}{c}{\\\\\\\\textbf{Violation Rates (\\\\\\\\%)}}\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){3-6} \\\\\\\\cmidrule(l){7-8}\\\\n\\\\\\\\textbf{Dataset} & \\\\\\\\textbf{Model}\\\\n  & DR\\\\\\\\,$\\\\\\\\downarrow$ & RV\\\\\\\\,$\\\\\\\\downarrow$ & ET\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n  & Rel. & Ent. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{SciERC}\\\\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\\\\\\\\\\\\\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\\\\\\\\\\\\\\\\n  \\\\\\\\cmidrule(l){2-8}\\\\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\\\\\\\\\\\\\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{DocRED}\\\\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\\\\\\\\\\\\\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\\\\\\\\\\\\\\\\n  \\\\\\\\cmidrule(l){2-8}\\\\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\\\\\\\\\\\\\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{Cross-model validation. U: unconstrained; S1: full two-layer.\\\\nParse failures (U$\\\\\\\\to$S1): Qwen DocRED 12$\\\\\\\\to$11, Llama DocRED 68$\\\\\\\\\n…[truncated 2986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T05:34:08.020730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:34:08.020948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Section 5 — DocRED Results (compressed, 1450→~600 words)\\\\n% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\\\\n%          phase2_docred_semantic_only, phase2_docred_full_s1\\\\n% All numbers verified against registry 2026-05-14.\\\\n\\\\n\\\\\\\\subsection{Cross-Dataset Validation on DocRED}\\\\n\\\\\\\\label{sec:docred-results}\\\\n\\\\nTable~\\\\\\\\ref{tab:docred-ablation} presents the four-way ablation on DocRED, a document-level RE benchmark with 96 Wikidata relation types---14$\\\\\\\\times$ the ontology size of SciERC.\\\\nAll experiments use Qwen3-8B zero-shot on 998 documents.\\\\n\\\\n% Table: DocRED four-way ablation\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.6pt}\\\\n\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}\\\\n\\\\\\\\toprule\\\\n& \\\\\\\\multicolumn{5}{c}{\\\\\\\\textbf{Violation Rates (\\\\\\\\%)}}\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-6} \\\\\\\\cmidrule(l){7-8}\\\\n\\\\\\\\textbf{Mode}\\\\n  & DR\\\\\\\\,$\\\\\\\\downarrow$ & $\\\\\\\\Delta$DR\\\\n  & RV\\\\\\\\,$\\\\\\\\downarrow$ & ET\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n  & Rel.\\\\\\\\,$\\\\\\\\uparrow$ & Ent.\\\\\\\\,$\\\\\\\\uparrow$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nUnconstrained\\\\n  & 18.46 & ---\\\\n  & 29.66 & 2.48\\\\n  & 0.10\\\\n  & 7.74  & 58.15 \\\\\\\\\\\\\\\\\\\\nGrammar\\\\n  & 26.17 & $\\\\\\\\uparrow$42\\\\\\\\%\\\\n  & \\\\\\\\textbf{0.03} & \\\\\\\\textbf{0}\\\\n  & 0.07\\\\n  & \\\\\\\\textbf{8.31}  & \\\\\\\\textbf{59.38} \\\\\\\\\\\\\\\\\\\\nSemantic\\\\n  & 13.84 & $\\\\\\\\downarrow$25\\\\\\\\%\\\\n  & 29.87 & 4.22\\\\n  & 1.05\\\\n  & 7.70  & 57.81 \\\\\\\\\\\\\\\\\\\\nFull (S1)\\\\n  & \\\\\\\\textbf{10.21} & $\\\\\\\\downarrow$\\\\\\\\textbf{45\\\\\\\\%}\\\\n  & \\\\\\\\textbf{0.03} & \\\\\\\\textbf{0}\\\\n  & 2.57\\\\n  & 8.23  & 59.37 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\\\\n$\\\\\\\\Delta$DR: relative change vs.\\\\\\\\ unconstrained.\\\\nBest per column in \\\\\\\\textbf{bold} (CF excluded).\\\\nF1 $\\\\\\\\times$100. Bootstrap significance: R-F1 $+$0.50\\\\\\\\,pp ($p < 0.001$).}\\\\n\\\\\\\\label{tab:\n…[truncated 3114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T05:34:08.021098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T05:34:08.021311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Section 5 — SciERC Results (Draft)\\\\n% Data source: Phase 2 SciERC registry experiments\\\\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\\\\n%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\\\\n% All numbers verified against registry 2026-05-14.\\\\n\\\\n\\\\\\\\subsection{Results on SciERC}\\\\n\\\\\\\\label{sec:scierc-results}\\\\n\\\\nTable~\\\\\\\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,\\\\nevaluating each constraint layer independently and in combination.\\\\nAll experiments use Qwen3-8B in a zero-shot setting on 551 test documents\\\\nwith identical prompts and decoding parameters;\\\\nonly the active constraint layers differ.\\\\n\\\\n% Table: SciERC five-way ablation\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.6pt}\\\\n\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}\\\\n\\\\\\\\toprule\\\\n& \\\\\\\\multicolumn{5}{c}{\\\\\\\\textbf{Violation Rates (\\\\\\\\%)}}\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-6} \\\\\\\\cmidrule(l){7-8}\\\\n\\\\\\\\textbf{Mode}\\\\n  & DR\\\\\\\\,$\\\\\\\\downarrow$ & $\\\\\\\\Delta$DR\\\\n  & RV\\\\\\\\,$\\\\\\\\downarrow$ & ET\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n  & Rel.\\\\\\\\,$\\\\\\\\uparrow$ & Ent.\\\\\\\\,$\\\\\\\\uparrow$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nUnconstrained\\\\n  & 15.37 & ---\\\\n  & 1.39  & 0.40\\\\n  & 0.08\\\\n  & 8.23  & 31.01 \\\\\\\\\\\\\\\\\\\\nGrammar\\\\n  & 14.84 & $\\\\\\\\downarrow$3\\\\\\\\%\\\\n  & \\\\\\\\textbf{0} & \\\\\\\\textbf{0}\\\\n  & 0.08\\\\n  & 8.23  & 30.98 \\\\\\\\\\\\\\\\\\\\nSemantic\\\\n  & 11.65 & $\\\\\\\\downarrow$24\\\\\\\\%\\\\n  & 1.51  & 0.40\\\\n  & 2.71\\\\n  & 8.15  & 31.01 \\\\\\\\\\\\\\\\\\\\nFull (S1)\\\\n  & \\\\\\\\textbf{0.93} & $\\\\\\\\downarrow$\\\\\\\\textbf{94\\\\\\\\%}\\\\n  & \\\\\\\\textbf{0} & \\\\\\\\textbf{0}\\\\n  & 9.90\\\\n  & \\\\\\\\textbf{8.36} & 30.98 \\\\\\\\\\\\\\\\\\\\nFull (S2)\\\\n  & 0.97  & $\\\\\\\\downarrow$94\\\\\\\\%\\\\n  & \\\\\\\\textbf{0} & \\\\\\\\textbf{0}\\\\n  & 8.03\\\\n  & 8.03  & \\\\\\\\textbf{31.90} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{Five-way ablation on SciERC (551 documents, \n…[truncated 5098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T05:34:08.021508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie/paper && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T05:34:08.021664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) ity, par-tic-u-larly for reasoning-intensive tasks\\\\n[14]) (./appendix_discussion.tex\\\\nUnderfull \\\\\\\\hbox (badness 1286) in paragraph at lines 85--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) de-cod-ing from syn-tac-tic to se-man-tic en-force-\\\\n) (./appendix_llama_per_relation.tex\\\\nUnderfull \\\\\\\\hbox (badness 6188) in paragraph at lines 24--3\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Decoding-Time vs. Post-Hoc En-force-ment.[]\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3449) in paragraph at lines 24--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Post-hoc filtering---generating triples with-out\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 5970) in paragraph at lines 24--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) con-straints, then re-mov-ing schema-violating\\\\n[15]) [16] (./main.aux) )\\\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\\\nist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\\\\nfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\\\ncm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\\\\n0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></\\\\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar\\\\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/tex\\\\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist\\\\n/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/\\\\nurw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut\\\\nmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/\\\\nshare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (16 pages, 295287 bytes).\\\\nTransc\n…[truncated 132 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T05:34:08.021912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -c \"Overfull\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T05:34:08.022044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep \"Overfull\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T05:34:08.022166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T05:34:08.022288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Overfull \\\\\\\\hbox (19.20825pt too wide) in paragraph at lines 21--67\\\\nOverfull \\\\\\\\hbox (21.552pt too wide) in paragraph at lines 17--52\\\\nOverfull \\\\\\\\hbox (16.12347pt too wide) in paragraph at lines 17--43\\\\nOverfull \\\\\\\\hbox (1.44084pt too wide) in paragraph at lines 16--28\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T05:34:08.022430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -B5 \"Overfull\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T05:34:08.022565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" []\\\\\\\\T1/ptm/b/n/10.95 (+20) Prompt in-suf-fi-ciency.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) S\\\\nchema-informed\\\\n []\\\\n\\\\n(./section5_scierc_draft.tex\\\\nOverfull \\\\\\\\hbox (19.20825pt too wide) in paragraph at lines 21--67\\\\n--\\\\nUnderfull \\\\\\\\hbox (badness 2781) in paragraph at lines 112--128\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) con-straints alone re-duces DR by only 24%\\\\n []\\\\n\\\\n[5 <./figures/fig2_per_relation_dr.pdf>]) (./section5_docred_draft.tex\\\\nOverfull \\\\\\\\hbox (21.552pt too wide) in paragraph at lines 17--52\\\\n--\\\\n\\\\n) (./section5_crossmodel_draft.tex\\\\nUnderfull \\\\\\\\vbox (badness 2980) has occurred while \\\\\\\\output is active []\\\\n\\\\n [6]\\\\nOverfull \\\\\\\\hbox (16.12347pt too wide) in paragraph at lines 17--43\\\\n--\\\\nUnderfull \\\\\\\\hbox (badness 1742) in paragraph at lines 381--386\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) mon D. Rihm, Thi-tikarn Angkana-porn, Jethro\\\\n []\\\\n\\\\n) (./appendix_related_work.tex\\\\nOverfull \\\\\\\\hbox (1.44084pt too wide) in paragraph at lines 16--28\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T05:34:08.022753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"\\[\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T05:34:08.022940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"405:LaTeX Info: Redefining \\\\\\\\[ on input line 2938.\\\\n455:[Loading MPS to PDF converter (version 2006.09.02).]\\\\n478:*geometry* verbose mode - [ preamble ] result:\\\\n582: []\\\\n587: []\\\\n589:) (./section1_introduction_draft.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/\\\\n597: []\\\\n601:\\\\\\\\OMS/cmsy/m/n/10.95 f[]\\\\\\\\OML/cmm/m/it/10.95 ; []\\\\\\\\OMS/cmsy/m/n/10.95 g$\\\\\\\\T1/ptm/m/\\\\n603: []\\\\n618: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Ontology schema.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) An on-tol\\\\n620: []\\\\n622:[2]\\\\n625: []\\\\n627:[3]) (./section4_composition_draft.tex\\\\n630: []\\\\n632:) (./section3_violation_landscape.tex [4]\\\\n641: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Prompt in-suf-fi-ciency.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) S\\\\n643: []\\\\n647: [][] \\\\n648: []\\\\n651:Underfull \\\\\\\\vbox (badness 1281) has occurred while \\\\\\\\output is active []\\\\n655: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Enabling de-pen-dency: gram-mar en-ables\\\\n656: []\\\\n660:\\\\\\\\T1/ptm/b/n/10.95 (+20) se-man-tic en-force-ment.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) Ap-\\\\n662: []\\\\n667: []\\\\n669:[5 <./figures/fig2_per_relation_dr.pdf>]) (./section5_docred_draft.tex\\\\n671: [][] \\\\n672: []\\\\n676: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Grammar layer sur-faces la-tent vi-o-la-tions.[]\\\\n677: []\\\\n681: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Enabling de-pen-dency.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) Sem\\\\n683: []\\\\n688: []\\\\n694: []\\\\n699: []\\\\n705: []\\\\n710: []\\\\n713:Underfull \\\\\\\\vbox (badness 2980) has occurred while \\\\\\\\output is active []\\\\n715: [6]\\\\n717: [][] \\\\n718: []\\\\n722: []\\\\\\\\T1/ptm/b/n/10.95 (+20) DR re-duc-tion gen-er-al-izes but varies by\\\\n723: []\\\\n727:\\\\\\\\T1/ptm/b/n/10.95 (+20) model.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) Sci-ERC DR drops 94% f\\\\n729: []\\\\n735: []\\\\n740:p, $\\\\\\\\OML/cmm/m/it/10.95 p[]\\\\\\\\OT1/cmr/m/n/10.95 0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/\\\\n742: []\\\\n746: []\\\\\\\\T1/ptm/b/n/10.95 (+20) Tightness $\\\\\\\\OMS/cmsy/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/b/n/10.9\\\\n748: []\\\\n752: []\\\\\\\\T1/ptm/b/n/10.95 (+20) CF trade\n…[truncated 1866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T05:34:08.023130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie/paper && sed -i 's/\\\\begin{tabular}{@{}l rrrrr rr@{}}/\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}l rrrrr rr@{}}/' section5_scierc_draft.tex",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T05:34:08.023262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T05:34:08.023412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -30 /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T05:34:08.023563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Section 5 — SciERC Results (Draft)\\\\n% Data source: Phase 2 SciERC registry experiments\\\\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\\\\n%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\\\\n% All numbers verified against registry 2026-05-14.\\\\n\\\\n\\\\\\\\subsection{Results on SciERC}\\\\n\\\\\\\\label{sec:scierc-results}\\\\n\\\\nTable~\\\\\\\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,\\\\nevaluating each constraint layer independently and in combination.\\\\nAll experiments use Qwen3-8B in a zero-shot setting on 551 test documents\\\\nwith identical prompts and decoding parameters;\\\\nonly the active constraint layers differ.\\\\n\\\\n% Table: SciERC five-way ablation\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.6pt}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}\\\\n\\\\\\\\toprule\\\\n& \\\\\\\\multicolumn{5}{c}{\\\\\\\\textbf{Violation Rates (\\\\\\\\%)}}\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-6} \\\\\\\\cmidrule(l){7-8}\\\\n\\\\\\\\textbf{Mode}\\\\n  & DR\\\\\\\\,$\\\\\\\\downarrow$ & $\\\\\\\\Delta$DR\\\\n  & RV\\\\\\\\,$\\\\\\\\downarrow$ & ET\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n  & Rel.\\\\\\\\,$\\\\\\\\uparrow$ & Ent.\\\\\\\\,$\\\\\\\\uparrow$ \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T05:34:08.023741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"end{tabular}\" /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T05:34:08.023874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"58:\\\\\\\\end{tabular}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T05:34:08.023991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"end{tabular}\" /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T05:34:08.024107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"end{tabular}\" /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T05:34:08.024229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"48:\\\\\\\\end{tabular}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T05:34:08.024347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"40:\\\\\\\\end{tabular}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T05:34:08.024535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie/paper && sed -i '58s/\\\\end{tabular}/\\\\end{tabular}}/' section5_scierc_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T05:34:08.024662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T05:34:08.024819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie/paper && python3 -c \"\nimport re\n\n# Fix section5_docred_draft.tex\nwith open('section5_docred_draft.tex', 'r') as f:\n    content = f.read()\ncontent = content.replace(\n    '\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.6pt}\\n\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}',\n    '\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.6pt}\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\n\\\\\\\\begin{tabular}{@{}l rrrrr rr@{}}'\n)\ncontent = content.replace('\\\\\\\\end{tabular}\\n\\\\\\\\caption', '\\\\\\\\end{tabular}}\\n\\\\\\\\caption')\nwith open('section5_docred_draft.tex', 'w') as f:\n    f.write(content)\nprint('docred done')\n\n# Fix section5_crossmodel_draft.tex\nwith open('section5_crossmodel_draft.tex', 'r') as f:\n    content = f.read()\ncontent = content.replace(\n    '\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\n\\\\\\\\begin{tabular}{@{}ll rrrr rr@{}}',\n    '\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\n\\\\\\\\begin{tabular}{@{}ll rrrr rr@{}}'\n)\ncontent = content.replace('\\\\\\\\end{tabular}\\n\\\\\\\\caption', '\\\\\\\\end{tabular}}\\n\\\\\\\\caption')\nwith open('section5_crossmodel_draft.tex', 'w') as f:\n    f.write(content)\nprint('crossmodel done')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T05:34:08.024948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"docred done\\\\ncrossmodel done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T05:34:08.025074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n -e \"resizebox\" -e \"end{tabular}\" /root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T05:34:08.025240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex:21:\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n/root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex:58:\\\\\\\\end{tabular}}\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex:17:\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex:49:\\\\\\\\end{tabular}}\\\\n/root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex:17:\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n/root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex:41:\\\\\\\\end{tabular}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T05:34:08.025381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T05:34:08.025514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nUnderfull \\\\\\\\hbox (badness 5970) in paragraph at lines 24--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) con-straints, then re-mov-ing schema-violating\\\\n[15]) [16] (./main.aux) )\\\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\\\nist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\\\\nfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\\\ncm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\\\\n0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></\\\\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar\\\\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/tex\\\\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist\\\\n/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/\\\\nurw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut\\\\nmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/\\\\nshare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (16 pages, 295375 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T05:34:08.025637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -c \"Overfull\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T05:34:08.025952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T05:34:08.026094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep \"Overfull\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T05:34:08.026226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Overfull \\\\\\\\hbox (1.44084pt too wide) in paragraph at lines 16--28\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T05:34:08.026356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -30 /root/schema_semantic_constrained_ie/paper/appendix_related_work.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T05:34:08.026524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Extended Related Work}\\\\n\\\\\\\\label{app:related_work}\\\\n\\\\n\\\\\\\\paragraph{Grammar-Constrained Decoding.}\\\\nRecent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, making grammar-constrained decoding the de facto standard for obtaining structured output from language models.\\\\nXGrammar~\\\\\\\\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens and maintains persistent pushdown automata across decoding steps, achieving up to 100$\\\\\\\\times$ speedup over prior CFG-constrained decoding methods.\\\\nOutlines~\\\\\\\\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, enabling efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.\\\\nLMQL~\\\\\\\\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks, providing a programmable interface for specifying multi-variable output structures.\\\\nThese systems ensure that every generated token belongs to a grammar-valid continuation, but they do not address the \\\\\\\\emph{distribution distortion} introduced by naive token masking.\\\\nA parallel line of work tackles this problem directly: DOMINO~\\\\\\\\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement by formulating mask selection as an optimization problem, and ASAp~\\\\\\\\cite{park2024grammar} provides a provably unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.\\\\nTogether, these advances have made grammar-constrained decoding both fast and statistically principled, establishing a robust foundation for structured generation.\\\\nHowever, all of these methods operate exclusively at the syntactic level---they ensure format validity (e\n…[truncated 4048 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T05:34:08.026711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -c \"Error\" /root/schema_semantic_constrained_ie/paper/main.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T05:34:08.026853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T05:34:08.027014+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译无错误。结果汇总：\n\n**修复的表格（3个，均在正文 Section 5）：**\n- `section5_scierc_draft.tex` — SciERC 5-way ablation table，溢出 19.2pt → 已加 `\\resizebox{\\columnwidth}{!}`\n- `section5_docred_draft.tex` — DocRED 4-way ablation table，溢出 21.6pt → 已加 `\\resizebox{\\columnwidth}{!}`\n- `section5_crossmodel_draft.tex` — Cross-model table，溢出 16.1pt → 已加 `\\resizebox{\\columnwidth}{!}`\n\n**Appendix 表格：**\n- `appendix_llama_per_relation.tex` 中的表格已有 `\\resizebox`，无需修改\n\n**编译结果：**\n- 0 errors，overfull hbox 从 4 个降至 1 个（`appendix_related_work.tex` 中一段文字溢出 1.44pt，可忽略）\n- 总页数 16 页\n- 正文（§1–§7）= **8 页**（恰好达到上限），bibliography 从第 8 页末开始\n\n**正文刚好 8 页，无需压缩。**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_table_overflow_and_compile_20260515T053111"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ],
+  "readable_path": "readable/conversations/fix-appendix-table-overflow-and-compile.md"
+}

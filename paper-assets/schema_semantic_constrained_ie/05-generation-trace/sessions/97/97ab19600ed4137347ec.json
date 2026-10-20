@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ab19600ed4137347ec",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops constrained eval prep",
+  "task_key": "worker_ops_constrained_eval_prep_20260515T230314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_constrained_eval_prep_20260515T230314_result.json",
+    "occurrence": 1,
+    "bytes": 2663,
+    "sha256": "d545a9462bccd591be277a453700d1469d1384b7c9aeb9682363327ce09e4ae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## DocRED Constrained Eval 准备就绪报告\n\n### 检查清单\n\n| # | 检查项 | 状态 |\n|---|--------|------|\n| 1 | Qwen merged model (`qwen_lora_docred_merged`) | **PASS** — 4 shards, ~15.2GB, config/tokenizer 完整 |\n| 2 | Llama merged model (`llama_lora_docred_merged`) | **PASS** — 4 shards, ~14.9GB, config/tokenizer 完整 |\n| 3 | 约束文件 (`ontology_constraints_docred.json`) | **PASS** — 63KB, keys: `entity_types`(6), `relation_types`(96), `relation_constraints`(96 relations with valid_pairs), `summary` |\n| 4 | 脚本 `--mode` 选项 | **PASS** — choices: `unconstrained`, `grammar_only`, `semantic_only`, `full_s1`, `full_s2` |\n| 5 | SciERC hardcode 检查 | **PASS** — SciERC 逻辑在 lines 65/160/186/216/636-637，均有 `if dataset == \"scierc\"` 分支保护，不影响 docred 路径 |\n\n### 当前 Unconstrained Eval 进度\n\n| 模型 | 日志进度 | JSONL 行数 | 完成度 |\n|------|---------|-----------|--------|\n| **Qwen** | 487/998 | 525 | ~49% |\n| **Llama** | 659/998 | 739 | ~66% |\n\nLlama 预计 ~1-1.5h 完成，Qwen 预计 ~2h 完成。\n\n### Constrained Eval 提交命令\n\n**Qwen constrained (full_s1):**\n```bash\ncd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset docred \\\n  --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/w5_qwen_docred_lora_full_s1_eval.jsonl \\\n  --max_new_tokens 2048 \\\n  > ~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_constrained_eval.log 2>&1 &\n```\n\n**Llama constrained (full_s1):**\n```bash\ncd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset docred \\\n  --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/w5_llama_docred_lora_full_s1_eval.jsonl \\\n  --max_new_tokens 2048 \\\n  > ~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_constrained_eval.log 2>&1 &\n```\n\n**注意**: 两个 constrained eval 需在对应 unconstrained eval 完成后启动（释放 GPU 显存）。如需顺序执行两个 constrained，可在第一个命令后加 `wait` 再启动第二个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-constrained-eval-prep.md"
+}

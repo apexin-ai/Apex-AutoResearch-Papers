@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-05-21T14:30:00Z",
+  "note": "v2: Fresh run on latest .tex files after Paper Agent R15 Patch",
+  "checks": [
+    {
+      "id": 1,
+      "name": "no_formal_guarantee_in_contributions",
+      "status": "PASS",
+      "evidence": "grep -ri 'formal guarantee' across all .tex files: 0 matches. Paper Agent changed 'formal guarantees at each level' to 'pair-based sequential enforcement at each level' in section1_introduction_draft.tex:27."
+    },
+    {
+      "id": 2,
+      "name": "no_kappa_bar_in_contributions",
+      "status": "FAIL",
+      "evidence": "section1_introduction_draft.tex:27 (contributions block): '$\\bar{\\kappa}$ characterizes enforcement outcomes (94--99% DR reduction at $\\bar{\\kappa}{<}0.5$ vs. 42--90% at $\\bar{\\kappa}{>}0.8$; Appendix M)' — \\bar{\\kappa} appears twice with specific numbers in contribution item 1."
+    },
+    {
+      "id": 3,
+      "name": "zero_orphan_bib",
+      "status": "PASS",
+      "evidence": "Scanned 60 bib keys in relwork_new_entries.bib; all 60 are cited in at least one .tex file. 0 orphans."
+    },
+    {
+      "id": 4,
+      "name": "main_text_8pages",
+      "status": "FAIL",
+      "evidence": "PDF visual inspection: §7 Discussion and Conclusion starts on p8 (line 640) but spills 2 lines onto p9 (lines 652-653: 'primarily 7-8B models with preliminary 70B results.'). Remainder of p9 is blank (\\clearpage before Limitations). Main text = 9 pages, exceeds 8-page limit by ~2 lines."
+    },
+    {
+      "id": 5,
+      "name": "dr_cf_parallel_reporting",
+      "status": "PASS",
+      "evidence": "abstract.tex:6 DR and CF reported together ('near-eliminates DR...but introduces cross-field (CF) violations as a trade-off'). section1_introduction_draft.tex:21 DR and CF together ('DR enforcement is precision-preserving...but introduces CF side-effects'). All DR claims have CF context nearby."
+    },
+    {
+      "id": 6,
+      "name": "no_any_autoregressive_lm",
+      "status": "PASS",
+      "evidence": "grep -ri 'any autoregressive' across all .tex files: 0 matches. appendix_related_work.tex:108 now reads 'applicable to autoregressive LMs with logits access without model modification or additional training (evaluated on 7B--70B models across three tokenizer families)'."
+    },
+    {
+      "id": 7,
+      "name": "no_formally_compiles",
+      "status": "PASS",
+      "evidence": "grep -ri 'formally compiles' across all .tex files: 0 matches."
+    },
+    {
+      "id": 8,
+      "name": "MF1_constrained_baselines_paragraph",
+      "status": "PASS",
+      "evidence": "section5_runtime.tex:21-26: 'Comparison with grammar-constrained approaches' paragraph present. Contains GCD (\\cite{geng2023gcd}) and BoostCD (\\cite{boostcd2025}) citations. Line 25: '70 pp gap demonstrates that Level 1 constraints alone are insufficient'. Line 24: 'RV/ET→0% but only 24% DR reduction on SciERC, compared to Full S1's 94%'."
+    },
+    {
+      "id": 9,
+      "name": "MF2_abstract_no_guarantee_overclaim",
+      "status": "PASS",
+      "evidence": "abstract.tex: 0 occurrences of 'guarantee'. Uses 'ensuring' (line 2), 'formal enabling dependency' (line 4). No overclaim detected."
+    },
+    {
+      "id": 10,
+      "name": "W7_cross_language_limitation",
+      "status": "PASS",
+      "evidence": "main.tex:94 (Limitations section): 'Our evaluation is limited to English-language datasets; the continuation masking mechanism may behave differently for languages without whitespace-delimited tokenization (e.g., Chinese, Japanese), which we leave to future work.'"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "pass": 8,
+    "fail": 2,
+    "fail_items": [2, 4],
+    "overall": "FAIL"
+  },
+  "remaining_issues": [
+    {
+      "check": 2,
+      "description": "κ̄ with specific numbers (94-99% / 42-90%) still in contributions paragraph",
+      "fix": "Move κ̄ detail to body text or appendix reference; keep contributions to framework + evaluation summary"
+    },
+    {
+      "check": 4,
+      "description": "§7 spills 2 lines onto page 9",
+      "fix": "Compress §7 conclusion by ~2 lines, or tighten §6 Related Work to free space on p8"
+    }
+  ]
+}

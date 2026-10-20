@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af3cd30617b48c871478",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops eval status check and fill",
+  "task_key": "worker_ops_eval_status_check_and_fill_20260515T225859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_status_check_and_fill_20260515T225859_result.json",
+    "occurrence": 1,
+    "bytes": 1530,
+    "sha256": "2ddf277a75d34f845e3e0f3a37f964c71db5bc47ab5eeec6aae3cdb0d603d38c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## 报告\n\n### 1. nvidia-smi 实际状态\n\n| GPU | 显存占用 | 总显存 | GPU 利用率 | 进程 PID | 进程显存 |\n|-----|---------|--------|-----------|---------|---------|\n| cuda:0 | 16921 MiB | 97887 MiB | 89% | 303530 | 16912 MiB |\n| cuda:1 | 17343 MiB | 97887 MiB | 88% | 304011 | 17334 MiB |\n\n**双卡满载运行中。**\n\n### 2. 每个 eval 实验的实际情况\n\n| exp_id | 状态 | PID | 运行时间 | 进度 | 备注 |\n|--------|------|-----|---------|------|------|\n| w5_llama_docred_lora_unconstrained_eval | **RUNNING** | 303525 | 3h01m | 721/998 (72%) | Registry 已从 PREPARING 修正为 RUNNING |\n| w5_qwen_docred_lora_unconstrained_eval | **RUNNING** | 304006 | 2h55m | 487/998 (49%) | 状态正确 |\n| w5_llama_docred_lora_constrained_eval | PREPARING | — | — | 等待 cuda:0 | 待 Llama unconstrained 完成后提交 |\n| w5_qwen_docred_lora_constrained_eval | PREPARING | — | — | 等待 cuda:1 | 待 Qwen unconstrained 完成后提交 |\n\n### 3. 已完成实验的 metrics\n\n无新完成的实验。Llama ETA ~1.5h（剩余 277 样本），Qwen ETA ~3h（剩余 511 样本）。\n\n### 4. 填 GPU 操作\n\n**无法填充** — 双卡均被 unconstrained eval 占满。Constrained eval 需等各自 unconstrained 完成后提交。\n\n### 5. 最终状态\n\n双卡 89%/88% GPU 利用率，满负荷运行。Llama 预计先完成（~72% vs ~49%），届时 cuda:0 空出可立即提交 `w5_llama_docred_lora_constrained_eval`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-status-check-and-fill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e72f5cdddbb6454e9fb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check quick harvest docred lora",
+  "task_key": "worker_check_quick-harvest-docred-lora_20260523T015230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_quick-harvest-docred-lora_20260523T015230_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "51122427de8cf948e4b540fd1303ce3c08631744a140f98234492fe0192f16bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态 (westd-16980)\n- GPU 0 & 1: **空闲** (0% utilization, 0 MiB)，无 Python 进程\n\n### 实验结果\n\n| 指标 | Unconstrained | Grammar-only | Semantic-only | Full S1 |\n|------|:---:|:---:|:---:|:---:|\n| **R-F1** | — (0.88% DR baseline) | **43.96** | **43.61** | **43.95** |\n| **E-F1** | — | 80.13 | 80.06 | 79.38 |\n| **DR%** | 0.88% | **0.38%** | **0%** | **0%** |\n| **RV%** | — | **0%** | 0.51% | **0%** |\n| **CF%** | — | 0.06% | 0.21% | 0.18% |\n| Parse fail | — | 10.5% | 11% | 12.5% |\n\n### 关键发现\n\n**grammar_only 结论标记为 negative**：假设预测 grammar 层对 DR 零贡献（与 SciERC 一致），但实际 DR 从 0.88% 降到 0.38%——grammar 在 DocRED LoRA 上有部分 DR 贡献，与 SciERC 模式不同。\n\n- Grammar 层：消除了 RV（→0%），部分降低 DR（0.88%→0.38%）\n- Semantic 层：完全消除 DR（→0%），但保留了部分 RV（0.51%）\n- 两层互补：grammar 管 RV，semantic 管 DR，组合后 S1 全清零\n\n### Registry 更新\n- `eval_70b_lora_docred_200_grammar_only`: RUNNING → **DONE** (negative)\n- `eval_70b_lora_docred_200_semantic_only`: 已是 DONE (success)\n- westd-21461 上还有 2 个 RUNNING：`full_s2` 和 `zs_full_s1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-quick-harvest-docred-lora.md"
+}

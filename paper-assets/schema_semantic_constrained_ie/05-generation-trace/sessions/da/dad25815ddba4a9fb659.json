@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dad25815ddba4a9fb659",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis wikievents power",
+  "task_key": "worker_analysis_wikievents-power_20260522T140423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wikievents-power_20260522T140423_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "7091e6bfe40b5cacca4fa09e21e883b5beab05d9d45be837c50157d8cb61d1cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/_project/paper/appendix_power_analysis.tex`。\n\n**数据来源和计算方法：**\n\n| Dataset | n | 95% CI (F1) | MDE (F1) | 数据来源 |\n|---------|---|-------------|----------|----------|\n| SciERC | 551 | ±1.8pp | 1.2pp | `bootstrap_ci_results_v2.json` (10k resamples) |\n| DocRED | 998 | ±0.8pp | 0.5pp | 同上 |\n| DocRED (70B) | 200 | ±3.3pp | 2.1pp | 已有 appendix 文本 (5k resamples) |\n| WikiEvents | 20 | ±3.0pp | 2.0pp | `r12_wikievents_bootstrap.json` (1k resamples) |\n\nMDE 使用 σ\\_diff = σ × √(2(1−ρ)), ρ=0.9, 80% power, α=0.05。WikiEvents n=20 用 t 分布 (df=19)，其余用 z。\n\n**关键论点：**\n- WikiEvents Arg-F1 的 ±3.0pp CI 实际上比 DocRED 70B 200-doc 的 ±3.3pp 更窄（因为 Arg-F1 绝对水平低，per-doc σ 小）\n- RoV 从 8.8–38.3% 降到精确 0%，bootstrap CI 完全不重叠，power ≈ 1.0\n- n=20 的限制是检测不了 <2pp 的 F1 差异，但论文的核心声明是 violation elimination 而非 F1 提升\n\n用 `\\input{appendix_power_analysis}` 在 appendix 中引入，label 为 `app:power-analysis-full`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wikievents-power.md"
+}

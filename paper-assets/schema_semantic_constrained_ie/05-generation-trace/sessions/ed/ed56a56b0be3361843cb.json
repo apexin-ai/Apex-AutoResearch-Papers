@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ed56a56b0be3361843cb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "gpu d066 docred beam sweep v2",
+  "task_key": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d066_docred_beam_sweep_v2_20260520T025208.log",
+    "occurrence": 1,
+    "bytes": 731896,
+    "sha256": "65a1b0fd0461832644631f1d0c9acd6d578851356104c9e08596c39f066faab3"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "ed56a56b0be3361843cb-part-0001.json",
+          "message_count": 95
+        },
+        {
+          "path": "ed56a56b0be3361843cb-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-d066-docred-beam-sweep-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db21de6c49e6188b3824",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "viz fig1 paperbanana",
+  "task_key": "worker_viz_fig1_paperbanana_20260521T112804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_paperbanana_20260521T112804_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "d81d860866d0158cc1085eb5b87ae1ece88f93fd631d7ca5950db3bee03bf725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完成。\n\n**输出路径：**\n- PNG: `artifacts/_project/paper/figures/fig1_framework.png` (437 KB, 300 DPI)\n- PDF: `artifacts/_project/paper/figures/fig1_framework.pdf` (52 KB)\n- 源码: `artifacts/_project/paper/figures/gen_fig1.py`\n\n**过程说明：**\n- PaperBanana 的 methodology 图路径需要原生图像生成 API（Gemini Imagen/DALL-E），TUM proxy 只提供 OpenAI text 模型，不兼容\n- 改用 matplotlib 手写方案直接生成，三面板布局（Schema Compilation → Constraint Layers → Token Masking），蓝色系=Grammar 组件，橙色系=Semantic 组件\n- 如需修改任何布局/文字/颜色，编辑 `gen_fig1.py` 重新运行即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-paperbanana.md"
+}

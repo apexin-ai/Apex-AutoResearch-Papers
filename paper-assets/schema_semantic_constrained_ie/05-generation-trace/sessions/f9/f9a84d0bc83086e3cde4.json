@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a84d0bc83086e3cde4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops kill dup and submit docred constrained",
+  "task_key": "worker_ops_kill_dup_and_submit_docred_constrained_20260516T053534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_dup_and_submit_docred_constrained_20260516T053534_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "6f1d2fd100e22c1a7088ad298d119d5d1ed0c944e977b5ecff124d317a0e80bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| 步骤 | 结果 |\n|------|------|\n| Kill PID 7813 (重复 SciERC) | ✅ SIGTERM 成功 |\n| 清理残留 jsonl | ✅ 已删除 |\n| 提交 DocRED constrained | ✅ PID **8347**, tmux `w6_mistral_docred_constrained` |\n| xgrammar 版本 | **0.1.33** ✅ |\n| 错误检查 | **0 errors** ✅ |\n| GPU 1 占用 | 15282MiB, 86% util ✅ |\n\n当前 westd-21461 两块 GPU 满载：\n- **GPU 0**: PID 7740 — docred unconstrained\n- **GPU 1**: PID 8347 — docred constrained (grammar compilation 中，~96 relations，首条输出预计 ~10min)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-and-submit-docred-constrained.md"
+}

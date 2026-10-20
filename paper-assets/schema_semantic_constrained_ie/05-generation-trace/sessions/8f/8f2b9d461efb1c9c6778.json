@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f2b9d461efb1c9c6778",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper docred ft ablation patch",
+  "task_key": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_docred_ft_ablation_patch_20260516T205702_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "684ebf3d3af9eceac8bfb521bf142aaef2dda3c28be5e20bed19b3aa3084bb99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of changes:\n\n**1. `artifacts/_project/report/ft_ablation_analysis.md`** — Fixed SciERC Table 1 values:\n- Qwen Unconstrained/Grammar Only DR: 1.95% → 1.90%\n- Qwen Semantic Only DR: 0.62% → 0.60%\n- Updated corresponding mentions in Key Findings (68% reduction text and residual DR text)\n\n**2. `artifacts/_project/paper/section5_scierc_draft.tex`** — Two changes:\n- Fixed all `1.95%` references to `1.90%` (narrative text + composability table)\n- Expanded the one-line DocRED FT mention into a full paragraph covering the four-way ablation: grammar layer eliminates RV but not DR, semantic layer reduces DR 72%/39%, full system achieves near-zero DR, parse failure context\n\n**3. `artifacts/_project/paper/appendix_discussion.tex`** — Fixed:\n- FT ablation table: SciERC Qwen Unconstrained DR 1.95 → 1.90\n- Narrative: Qwen SciERC semantic reduction 69% → 68%\n- Post-hoc comparison table: Qwen SciERC FT Reject% 1.95 → 1.90"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-docred-ft-ablation-patch.md"
+}

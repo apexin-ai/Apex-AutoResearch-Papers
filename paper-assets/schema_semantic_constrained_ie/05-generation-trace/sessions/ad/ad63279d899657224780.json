@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad63279d899657224780",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze w8 qwen docred ft semantic only",
+  "task_key": "worker_analyze_w8_qwen_docred_ft_semantic_only_20260516T161925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_w8_qwen_docred_ft_semantic_only_20260516T161925_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "81a71ae975b925dcc46e5e5d6c1dd98cf37ad2f56822a6babd0fa660cd7e683a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总结果：\n\n## w8_qwen_docred_ft_semantic_only — ✓ SUCCESS\n\n| 指标 | 值 | 对比 grammar_only | 对比 unconstrained baseline |\n|------|------|---|---|\n| **DR_pct** | **0.21%** | 0.61% | 0.76% |\n| E_F1 | 82.15 | 82.19 | — |\n| R_F1 | 40.89 | 40.85 | — |\n| ET_pct | 0% | — | — |\n| RV_pct | 0.23% | ��� | — |\n| CF_pct | 0.27% | — | ��� |\n| parse_fail | 7.52% | 7.01% | — |\n\n**关键发现**：\n- DR 从 baseline 0.76% → 0.21%，降幅 **72%**，超出预期（假设 0.3-0.5%）\n- 与 SciERC 上 semantic_only 降 DR 68% 的模式高度一致\n- F1 指标与 grammar_only 几乎完全一致（E_F1 差 0.04pp, R_F1 差 0.04pp），说明 semantic 约束不损害抽取质量\n- semantic_only 在 DR 降幅上显著优于 grammar_only（0.21% vs 0.61%），确认 **semantic 层是 DR 降低的主要贡献者**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-w8-qwen-docred-ft-semantic-only.md"
+}

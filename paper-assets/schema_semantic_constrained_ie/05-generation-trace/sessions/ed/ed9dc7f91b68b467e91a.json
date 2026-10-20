@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9dc7f91b68b467e91a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix llama bootstrap v2",
+  "task_key": "worker_fix_llama_bootstrap_v2_20260514T224058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_bootstrap_v2_20260514T224058_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "b61bd30e9dc3470dabcb60d4ade6099a8cca44259be57ea84a1d1f32a325ee87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查结果清楚了。按照任务要求，registry alignment 失败，停下来报告。\n\n---\n\n## Registry Alignment 报告\n\n### 问题 1: SciERC unconstrained E-F1 不对齐\n\n| 指标 | 计算值 | Registry 值 | Delta |\n|------|--------|------------|-------|\n| SciERC U E-F1 | **23.5294%** (TP=484, Gold=1673, Pred=2441) | 23.56% | **0.0306pp > 0.01pp** |\n| SciERC U R-F1 | 2.67% | 2.68% | 0.0086pp PASS |\n| SciERC S1 E-F1 | 23.4867% | 23.49% | 0.0033pp PASS |\n| SciERC S1 R-F1 | 2.54% | 2.54% | 0.0005pp PASS |\n\n只有 SciERC unconstrained 的 E-F1 超出容差，差 0.03pp。可能原因：\n- Registry 值由不同的评估脚本计算（D012 fix 前？）\n- Entity type normalization 边界 case 差异\n\n### 问题 2: DocRED unconstrained 有 10 条记录 entity text 是 int\n\n```\nrec 115: {'text': 1945, 'type': 'TIME'}\nrec 393: {'text': 1970, 'type': 'NUM'}\n```\n\nLlama 输出年份/数字为 int 而非 string，导致 `docred_sample_stats` 在 `.lower()` 时崩溃。DocRED full_s1 无此问题。\n\n### 需要你决定\n\n1. **SciERC 0.03pp delta**: 放宽容差到 0.05pp 继续跑？还是需要追查 registry 值来源？\n2. **DocRED int entities**: 在 Llama 脚本中加 `str()` 转换预处理（不改 compute_bootstrap_ci.py 核心逻辑），是否可以？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-bootstrap-v2.md"
+}

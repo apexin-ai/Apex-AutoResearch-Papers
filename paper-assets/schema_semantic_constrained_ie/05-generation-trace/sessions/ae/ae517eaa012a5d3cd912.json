@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae517eaa012a5d3cd912",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w7 qwen tokenizer regex",
+  "task_key": "worker_analysis_w7_qwen_tokenizer_regex_20260516T063043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w7_qwen_tokenizer_regex_20260516T063043_result.json",
+    "occurrence": 1,
+    "bytes": 3136,
+    "sha256": "3e6bd60bea6b345a48e1100b1481cda442c593ada6b6bd10a46063f0a67e9549"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有调查完成。\n\n---\n\n## 报告：w7_qwen_scierc_ft_grammar_only tokenizer regex 警告\n\n### 1. 完整警告文本\n\n```\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged'\nwith an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e.\nThis will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag\nwhen loading this tokenizer to fix this issue.\n```\n\n### 2. Regex pattern 差异\n\n**merged checkpoint 与原始 Qwen3-8B 的 tokenizer.json 完全一致**——pre_tokenizer、normalizer、vocab (151643)、merges (151387) 全部相同。\n\nRegex pattern（两者相同）：\n```\n(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\\r\\n\\p{L}\\p{N}]?\\p{L}+|\\p{N}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+\n```\n\n### 3. Tokenizer 输出一致性\n\n| 测试字符串 | token 数 | 匹配 |\n|---|---|---|\n| `{\"entities\": [{\"text\": \"BERT\"...}]}` | 17 | MATCH |\n| `{\"relations\": [{\"head\": \"CNN\"...}]}` | 24 | MATCH |\n| OtherScientificTerm | 4 | MATCH |\n| Evaluate-for | 2 | MATCH |\n| Feature-of / Part-of / Hyponym-of | 2/2/4 | MATCH |\n| `<think>...\\n</think>\\n\\n{\"entities\":...}` | 26 | MATCH |\n| 含缩写的句子（It's, we've, they'll） | - | MATCH |\n\n**All match: True**。vocab size 均为 151669。\n\n### 4. fix_mistral_regex 适用性\n\n- `fix_mistral_regex=True` 被接受，但**会把正确的 Qwen regex 替换成 Mistral regex**\n- 碰巧对 IE 测试字符串输出一致，但 regex 完全不同（Mistral regex 无 contraction 分支、分大小写字母类别），存在边界 case 风险\n- **不应使用**\n\n### 5. 触发原因（transformers 4.57.6 bug）\n\n源码 `tokenization_utils_base.py:2466`：\n\n```python\nif transformers_version and version.parse(transformers_version) <= version.parse(\"4.57.2\"):\n    if _is_local and model_type not in [\"mistral\", \"mistral3\", ...]:\n        return tokenizer  # 正确跳过非 Mistral 模型\nelif transformers_version and version.parse(transformers_version) >= version.parse(\"5.0.0\"):\n    return tokenizer  # 新版本直接跳过\n# 4.57.3 ~ 4.57.x 的模型掉进间隙 → 误触发 warning\nmistral_config_detected = True\n```\n\nmerged checkpoint 的 config.json：`transformers_version: 4.57.6`、`model_type: qwen3`。4.57.6 落入 `(4.57.2, 5.0.0)` 间隙，model_type 检查被跳过。原始 Qwen3-8B 因路径不同（无 config.json 或版本不在范围内）未触发。\n\n### 6. w5 系列情况\n\n**w5 Qwen 和 w5 Llama 均有完全相同的警告**，结果已验证合理。\n\n### 7. 结论：**无影响，无需重跑**\n\n- tokenizer.json 字节级一致\n- 所有 token IDs 完全匹配\n- 警告是 transformers 4.57.6 的已知 false positive\n- w5/w7 使用同一 tokenizer，DR 对比有效\n- 实验分析中可注明：`\"Warning is a false positive in transformers 4.57.6 (_maybe_fix_mistral_regex version gap bug); tokenizer files are identical to the original Qwen3-8B, verified by token ID comparison.\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w7-qwen-tokenizer-regex.md"
+}

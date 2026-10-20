@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b776de704d3c6dd9171",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper w5 composability w1 analytical",
+  "task_key": "worker_paper_w5_composability_w1_analytical_20260515T170813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w5_composability_w1_analytical_20260515T170813_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "0a766743ec6ed712a13e590fb973ce3103e6b399a2b40b2f65be187ac492bc1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX compiles cleanly (20 pages, 0 errors).\n\n## 完成内容\n\n**Task 1 — Composability 2×2 Matrix** (`section5_scierc_draft.tex` §5.5)\n- 扩展 `tab:composability`：增加 E-F1 列 + ΔDR 列（-94% / -100%）\n- 重写 prose：分两段，第一段陈述 Claim 3（fine-tuning 与 OntoCoDec orthogonal axes），第二段两个 secondary observations (CF 88% drop + 1 个 Evaluate-for→Used-for redirection)\n- 标注 exp_ids: `w5_lora_scierc_unconstrained_eval`, `w5_lora_scierc_constrained_eval`, `phase2_scierc_unconstrained`, `phase2_scierc_full_s1`\n- 强度限制：\"This validates Claim 3 **on SciERC**\"，明确 \"one dataset and one fine-tuning method\"，未声明 \"consistently\"\n- 残余 DR per-relation (Evaluate-for 13.13%, Part-of 5.77%, Compare 5.00%) 保留并指向 `app:lora-per-relation`\n\n**Task 2 — CF Fallback Analytical Finding** (`appendix_discussion.tex` `app:cf-dr-tradeoff`)\n- 第 1 段：承认 CF 是 OntoCoDec 当前最突出残余局限（zero-shot 9.90% on SciERC, up to 12.02% on Llama DocRED）\n- 第 2 段：pilot 表格 + 数据（DR 0.93→14.78pp, CF 9.90→0.04pp, 净增 +3.99pp, $f_{gf}$=36.64%），明确 \"re-routing\" 不是 reduction\n- 第 3 段：解释 CF↔DR 根本张力机制（per-relation independent enforcement 只能 allocate priority），并指出 full S1 sits near Pareto frontier；63.3% CF 来自 Generic catch-all 是 schema-level ambiguity\n- 第 4 段：新增**两条 alternative paths** — (i) 降低 baseline conflict rate（LoRA composition 在 SciERC 上 CF -88%，empirically validated on one dataset），(ii) global type consensus（future work）\n- 标注 pilot exp_id `w1_cf_fallback_scierc_pilot`，未来路径数据 `w5_lora_scierc_constrained_eval`\n- 未 cherry-pick：明示 LoRA 路径仅在 SciERC 单数据集验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w5-composability-w1-analytical.md"
+}

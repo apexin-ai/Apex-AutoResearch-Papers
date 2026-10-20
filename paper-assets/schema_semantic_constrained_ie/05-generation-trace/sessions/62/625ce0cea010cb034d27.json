@@ -1,0 +1,1474 @@
+{
+  "schema_version": "1.0",
+  "id": "625ce0cea010cb034d27",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "ops llama constrained done and mistral submit",
+  "task_key": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111.jsonl",
+    "occurrence": 1,
+    "bytes": 65934,
+    "sha256": "5d64924eb39cfb542026641e3bef817cbe1a67c42bfbef39687ce139a76154e3"
+  },
+  "statistics": {
+    "messages": 73,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "tool_call": 36,
+      "tool_result": 36,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:54:37.486149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:54:37.486517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:54:37.486728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:54:37.486907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ps -p 317469 -o pid,etime,cmd"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:54:37.487054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"998 /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T04:54:37.487185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T04:54:37.487393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \\\"\nimport json\n\nwith open('outputs/w5_llama_docred_lora_constrained_eval.jsonl') as f:\n    lines = [json.loads(l) for l in f]\n\ntotal = len(lines)\nsuccess = [l for l in lines if l.get('parsed_output') and l['parsed_output'].get('entities')]\nfail = total - len(success)\nprint(f'Total: {total}, Success: {len(success)}, Fail: {fail}, Parse fail rate: {fail/total*100:.2f}%')\n\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    constraints = json.load(f)\n\nvalid_pairs = {}\nfor rel_name, rel_info in constraints.get('relations', {}).items():\n    pairs = set()\n    for p in rel_info.get('valid_subject_object_types', []):\n        pairs.add((p['subject_type'], p['object_type']))\n    valid_pairs[rel_name] = pairs\n\nvalid_relations = set(constraints.get('relations', {}).keys())\nvalid_entity_types = set(constraints.get('entity_types', []))\n\net_violations = 0\nrv_violations = 0\ndr_violations = 0\ndr_eligible = 0\ntotal_entities = 0\ntotal_relations = 0\n\nfor line in success:\n    parsed = line['parsed_output']\n    entities = parsed.get('entities', [])\n    relations = parsed.get('relations', [])\n    \n    entity_type_map = {}\n    for e in entities:\n        etype = e.get('type', '')\n        entity_type_map[e.get('name', '')] = etype\n        total_entities += 1\n        if etype and etype not in valid_entity_types:\n            et_violations += 1\n    \n    for r in relations:\n        total_relations += 1\n        rel_name = r.get('type', r.get('relation', ''))\n        \n        if rel_name not in valid_relations:\n            rv_violations += 1\n            continue\n        \n        head_type = entity_type_map.get(r.get('head', ''), '')\n        tail_type = entity_type_map.get(r.get('tail', ''), '')\n        \n        if head_type and tail_type and rel_name in valid_pairs:\n            dr_eligible += 1\n            if (head_type, tail_type) not in valid_pairs[rel_name]:\n                dr_violations += 1\n\nprint(f'Entities: {total_entities}, Relations: {total_relations}')\nprint(f'ET violations: {et_violations} ({et_violations/max(total_entities,1)*100:.2f}%)')\nprint(f'RV violations: {rv_violations} ({rv_violations/max(total_relations,1)*100:.2f}%)')\nprint(f'DR violations: {dr_violations}/{dr_eligible} ({dr_violations/max(dr_eligible,1)*100:.2f}%)')\n\\\"\"\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T04:54:37.487612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/*.py"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T04:54:37.487784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total: 998, Success: 973, Fail: 25, Parse fail rate: 2.51%\\\\nEntities: 19077, Relations: 16074\\\\nET violations: 0 (0.00%)\\\\nRV violations: 16074 (100.00%)\\\\nDR violations: 0/0 (0.00%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T04:54:37.487937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\\\n/root/schema_semantic_constrained_ie/analyze_cf_violations.py\\\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\\\n/root/schema_semantic_constrained_ie/analyze_dr_residual_v2.py\\\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_full_s1_mt6144.py\\\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\\\n/root/schema_semantic_constrained_ie/analyze_ontology.py\\\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\\\n/root/schema_semantic_constrained_ie/estimate_fallback_rate.py\\\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\\\n/root/schema_semantic_constrained_ie/run_extraction.py\\\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\\\n/root/schema_semantic_constrained_ie/unified_f1_eval.py\\\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\\\n/root/schema_semantic_constrained_ie/violation_checker.py\\\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T04:54:37.488114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \\\"\nimport json\n\n# Check what relation types are in output\nwith open('outputs/w5_llama_docred_lora_constrained_eval.jsonl') as f:\n    lines = [json.loads(l) for l in f]\n\nrel_types = set()\nrel_keys = set()\nfor l in lines[:50]:\n    parsed = l.get('parsed_output', {})\n    if parsed:\n        for r in parsed.get('relations', []):\n            rel_keys.update(r.keys())\n            rel_types.add(r.get('type', r.get('relation', 'NONE')))\n\nprint('Relation keys:', rel_keys)\nprint('Sample relation types (first 20):', sorted(list(rel_types))[:20])\n\n# Check constraint relation names\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    c = json.load(f)\nprint('Constraint relation names (first 20):', sorted(list(c.get('relations', {}).keys()))[:20])\n\\\"\"\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T04:54:37.488259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Relation keys: {'tail_type', 'head_type', 'head', 'tail', 'type'}\\\\nSample relation types (first 20): ['applies to jurisdiction', 'award received', 'capital', 'capital of', 'cast member', 'child', 'conflict', 'contains administrative territorial entity', 'continent', 'country', 'country of citizenship', 'country of origin', 'date of birth', 'date of death', 'director', 'educated at', 'end time', 'ethnic group', 'father', 'founded by']\\\\nConstraint relation names (first 20): []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T04:54:37.488444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -2 /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T04:54:37.489006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Skai TV is a Greek free - to - air television network based in Piraeus . It is part of the Skai Group , one of the largest media groups in the country . It was relaunched in its present form on 1st of April 2006 in the Athens metropolitan area , and gradually spread its coverage nationwide . Besides digital terrestrial transmission , it is available on the subscription - based encrypted services of Nova and Cosmote TV . Skai TV is also a member of Digea , a consortium of private television networks introducing digital terrestrial transmission in Greece . At launch , Skai TV opted for dubbing all foreign language content into Greek , instead of using subtitles . This is very uncommon in Greece for anything except documentaries ( using voiceover dubbing ) and children 's programmes ( using lip - synced dubbing ) , so after intense criticism the station switched to using subtitles for almost all foreign shows .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greek\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"1st of April 2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"TIME\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greek\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\n…[truncated 11237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T04:54:37.489237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -50 /root/schema_semantic_constrained_ie/violation_checker_docred.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T04:54:37.489403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Check ontology constraint violations in DocRED extraction outputs.\\\\n\\\\nViolation types (mutually exclusive per triple):\\\\n1. entity_type_violations      - entity type not in {PER, ORG, LOC, TIME, NUM, MISC}\\\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport argparse\\\\nfrom collections import defaultdict, Counter\\\\nfrom pathlib import Path\\\\n\\\\n\\\\nVALID_ENTITY_TYPES = {\\\\\\\"PER\\\\\\\", \\\\\\\"ORG\\\\\\\", \\\\\\\"LOC\\\\\\\", \\\\\\\"TIME\\\\\\\", \\\\\\\"NUM\\\\\\\", \\\\\\\"MISC\\\\\\\"}\\\\n\\\\n\\\\n# DocRED uses abbreviated types; models sometimes generate full forms\\\\nENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER',\\\\n    'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG',\\\\n    'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC',\\\\n    'NUMBER': 'NUM',\\\\n    'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\n\\\\ndef normalize_entity_type(raw_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip whitespace, uppercase, and apply alias mapping.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    t = raw_type.strip().upper()\\\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\n\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2):\\\\n        return _levenshtein(s2, s1)\\\\n    if len(s2) == 0:\\\\n        return len(s1)\\\\n    prev_row = range(len(s2) + 1)\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            insertions = prev_row[j + 1] + 1\\\\n            deletions = curr_row[j] + 1\\\\n            substitutions = prev_row[j] + (c1 != c2)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T04:54:37.489547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -50 /root/schema_semantic_constrained_ie/unified_f1_eval.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T04:54:37.489723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified F1 evaluation for DocRED - investigates discrepancy between two evaluation approaches.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2):\\\\n        return _levenshtein(s2, s1)\\\\n    if len(s2) == 0:\\\\n        return len(s1)\\\\n    prev_row = range(len(s2) + 1)\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            insertions = prev_row[j + 1] + 1\\\\n            deletions = curr_row[j] + 1\\\\n            substitutions = prev_row[j] + (c1 != c2)\\\\n            curr_row.append(min(insertions, deletions, substitutions))\\\\n        prev_row = curr_row\\\\n    return prev_row[-1]\\\\n\\\\ndef load_constraints(path):\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\ndef build_relation_name_to_id(rel_types):\\\\n    name_to_id = {}\\\\n    for rid, rname in rel_types.items():\\\\n        name_to_id[rname.lower().strip()] = rid\\\\n        name_to_id[rid.lower()] = rid\\\\n    return name_to_id\\\\n\\\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\\\n    if rel_key:\\\\n        return rel_key, rel_types.get(rel_key, rel_name), False\\\\n\\\\n    rel_tokens = set(rel_name.strip().lower().split())\\\\n    best_pid, best_name = None, None\\\\n    best_overlap = 0.0\\\\n    for rid, rname in rel_types.items():\\\\n        rname_tokens = set(rname.lower().split())\\\\n        if rel_tokens and rname_tokens:\\\\n            overlap = len(rel_tokens & rname_tokens)\\\\n            union = len(rel_tokens | rname_tokens)\\\\n            ratio = overlap / union\\\\n            if ratio > 0.8 and ratio > best_overlap:\\\\n                best_overlap = ratio\\\\n                best_pid, best_name = rid, rname\\\\n    if best_pid:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.\n…[truncated 6 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T04:54:37.489884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \\\"\nimport json\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    c = json.load(f)\nprint('Top-level keys:', list(c.keys()))\nfor k, v in c.items():\n    if isinstance(v, dict):\n        print(f'{k}: {len(v)} items, sample keys: {list(v.keys())[:5]}')\n    elif isinstance(v, list):\n        print(f'{k}: {len(v)} items, sample: {v[:5]}')\n    else:\n        print(f'{k}: {v}')\n\\\"\"\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T04:54:37.490019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top-level keys: ['entity_types', 'relation_types', 'relation_constraints', 'summary']\\\\nentity_types: 6 items, sample: ['LOC', 'MISC', 'NUM', 'ORG', 'PER']\\\\nrelation_types: 96 items, sample keys: ['P6', 'P17', 'P19', 'P20', 'P22']\\\\nrelation_constraints: 96 items, sample keys: ['P1001', 'P102', 'P1056', 'P108', 'P112']\\\\nsummary: 7 items, sample keys: ['total_triples', 'total_relation_types_in_data', 'total_relation_types_defined', 'unseen_relation_types', 'avg_valid_pairs_per_relation']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T04:54:37.490179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker_docred.py --help\""
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T04:54:37.490315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: violation_checker_docred.py [-h] [--input_path INPUT_PATH]\\\\n                                   [--constraints_path CONSTRAINTS_PATH]\\\\n                                   [--output_path OUTPUT_PATH]\\\\n\\\\nCheck ontology constraint violations (DocRED)\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --input_path INPUT_PATH\\\\n  --constraints_path CONSTRAINTS_PATH\\\\n  --output_path OUTPUT_PATH\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T04:54:37.490440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 unified_f1_eval.py --help\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T04:54:37.490590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nFile: outputs/docred_unconstrained.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 12\\\\nTotal raw relations: 17497\\\\nTotal unique relations (raw type): 17355\\\\nTotal recognized (normalized to PID): 12214\\\\nTotal unrecognized relations: 5189\\\\n\\\\nEntity F1: P=0.5726 R=0.5907 F1=0.5815 (tp=11356, gold=19225, pred=19832)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.0650 R=0.0946 F1=0.0770\\\\n  tp=1137, gold=12021, pred=17497\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\\\n  tp=1137, gold=12021, pred=17355\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.0931 R=0.0946 F1=0.0938\\\\n  tp=1137, gold=12021, pred=12214\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\\\n  tp=1137, gold=12021, pred=17355\\\\n\\\\n======================================================================\\\\nFile: outputs/docred_full_s1.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 11\\\\nTotal raw relations: 17341\\\\nTotal unique relations (raw type): 17227\\\\nTotal recognized (normalized to PID): 17222\\\\nTotal unrecognized relations: 5\\\\n\\\\nEntity F1: P=0.5848 R=0.6031 F1=0.5938 (tp=11613, gold=19254, pred=19859)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.0695 R=0.1002 F1=0.0821\\\\n  tp=1205, gold=12031, pred=17341\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17227\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.0700 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17222\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17227\\\\n\\\\n======================================================================\\\\nDELTA: unconstrained vs full_s1\\\\n======================================================================\\\\n\\\\nmethod_all_raw: unconstrained=0.0770 full_s1=\n…[truncated 395 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T04:54:37.490789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker_docred.py --input_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --constraints_path data/docred/ontology_constraints_docred.json\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T04:54:37.490920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"def main\\|argparse\\|input_path\\|file_path\\|jsonl\" /root/schema_semantic_constrained_ie/unified_f1_eval.py"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T04:54:37.491047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (DocRED) ===\\\\nDocuments: 973 checked, 25 parse failures\\\\nEntities: 19077, Triples: 16074\\\\n\\\\nEntity type violations: 0 (0.0%)\\\\nRelation vocab violations: 0/16074 (0.0%)\\\\nDomain/range violations: 33/16074 (0.2%)\\\\nCross-field consistency violations: 41\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.0021\\\\nOutput: outputs/violation_report_docred.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T04:54:37.491168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T04:54:37.491313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"def main\\|argparse\\|input_path\\|file_path\\|jsonl\\|FILES\" /root/schema_semantic_constrained_ie/unified_f1_eval.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T04:54:37.491435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T04:54:37.491586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"FILES\\|jsonl\\|argparse\\|def main\" /root/schema_semantic_constrained_ie/unified_f1_eval.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T04:54:37.491739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T04:54:37.491863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -80 /root/schema_semantic_constrained_ie/unified_f1_eval.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T04:54:37.492051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            if t in gold_rel_set:\\\\n                raw_tp += 1\\\\n        # But this double-counts duplicates. Actually for raw, use set for tp but len for pred\\\\n        raw_tp_set = len(raw_normalized_set & gold_rel_set)\\\\n        stats[\\\\\\\"method_all_raw\\\\\\\"][\\\\\\\"tp\\\\\\\"] += raw_tp_set\\\\n        stats[\\\\\\\"method_all_raw\\\\\\\"][\\\\\\\"gold\\\\\\\"] += len(gold_rel_set)\\\\n        stats[\\\\\\\"method_all_raw\\\\\\\"][\\\\\\\"pred\\\\\\\"] += len(relations)  # raw count\\\\n        \\\\n        # all_set: dedup, then compute\\\\n        stats[\\\\\\\"method_all_set\\\\\\\"][\\\\\\\"tp\\\\\\\"] += len(raw_normalized_set & gold_rel_set)\\\\n        stats[\\\\\\\"method_all_set\\\\\\\"][\\\\\\\"gold\\\\\\\"] += len(gold_rel_set)\\\\n        stats[\\\\\\\"method_all_set\\\\\\\"][\\\\\\\"pred\\\\\\\"] += len(raw_normalized_set)\\\\n        \\\\n        # recognized_set: only recognized relations\\\\n        stats[\\\\\\\"method_recognized_set\\\\\\\"][\\\\\\\"tp\\\\\\\"] += len(pred_recognized_set & gold_rel_set)\\\\n        stats[\\\\\\\"method_recognized_set\\\\\\\"][\\\\\\\"gold\\\\\\\"] += len(gold_rel_set)\\\\n        stats[\\\\\\\"method_recognized_set\\\\\\\"][\\\\\\\"pred\\\\\\\"] += len(pred_recognized_set)\\\\n        \\\\n        # normalized_set: all normalized (recognized get PID, unrecognized keep original)\\\\n        stats[\\\\\\\"method_normalized_set\\\\\\\"][\\\\\\\"tp\\\\\\\"] += len(pred_normalized_set & gold_rel_set)\\\\n        stats[\\\\\\\"method_normalized_set\\\\\\\"][\\\\\\\"gold\\\\\\\"] += len(gold_rel_set)\\\\n        stats[\\\\\\\"method_normalized_set\\\\\\\"][\\\\\\\"pred\\\\\\\"] += len(pred_normalized_set)\\\\n    \\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"File: {input_path}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"Total records: {len(records)}, Parse failures: {parse_failures}\\\\\\\")\\\\n    print(f\\\\\\\"Total raw relations: {total_raw_relations}\\\\\\\")\\\\n    print(f\\\\\\\"Total unique relations (raw type): {total_unique_relations}\\\\\\\")\\\\n    print(f\\\\\\\"Total recognized (normalized to PID): {total_recognized_relations}\\\\\\\")\\\\n    print(f\\\\\\\"Total unrecognized relati\n…[truncated 2570 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T04:54:37.492232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \\\"\nfrom unified_f1_eval import evaluate_file\nresult = evaluate_file('outputs/w5_llama_docred_lora_constrained_eval.jsonl', 'data/docred/ontology_constraints_docred.json')\n\\\"\""
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T04:54:37.492365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora*"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T04:54:37.492501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nFile: outputs/w5_llama_docred_lora_constrained_eval.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 25\\\\nTotal raw relations: 16074\\\\nTotal unique relations (raw type): 15753\\\\nTotal recognized (normalized to PID): 15753\\\\nTotal unrecognized relations: 0\\\\n\\\\nEntity F1: P=0.8504 R=0.8541 F1=0.8523 (tp=16161, gold=18921, pred=19003)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.3804 R=0.5140 F1=0.4372\\\\n  tp=6115, gold=11897, pred=16074\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.3882 R=0.5140 F1=0.4423\\\\n  tp=6115, gold=11897, pred=15753\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.3882 R=0.5140 F1=0.4423\\\\n  tp=6115, gold=11897, pred=15753\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.3882 R=0.5140 F1=0.4423\\\\n  tp=6115, gold=11897, pred=15753\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T04:54:37.492629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_unconstrained_eval.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T04:54:37.492800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \\\"\nfrom unified_f1_eval import evaluate_file\nresult = evaluate_file('outputs/w5_llama_docred_lora_unconstrained_eval.jsonl', 'data/docred/ontology_constraints_docred.json')\n\\\"\""
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T04:54:37.492937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nFile: outputs/w5_llama_docred_lora_unconstrained_eval.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 23\\\\nTotal raw relations: 16171\\\\nTotal unique relations (raw type): 15887\\\\nTotal recognized (normalized to PID): 15863\\\\nTotal unrecognized relations: 24\\\\n\\\\nEntity F1: P=0.8498 R=0.8535 F1=0.8517 (tp=16173, gold=18948, pred=19032)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.3794 R=0.5152 F1=0.4370\\\\n  tp=6136, gold=11911, pred=16171\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.3862 R=0.5152 F1=0.4415\\\\n  tp=6136, gold=11911, pred=15887\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.3868 R=0.5152 F1=0.4419\\\\n  tp=6136, gold=11911, pred=15863\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.3862 R=0.5152 F1=0.4415\\\\n  tp=6136, gold=11911, pred=15887\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T04:54:37.493078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker_docred.py --input_path outputs/w5_llama_docred_lora_unconstrained_eval.jsonl --constraints_path data/docred/ontology_constraints_docred.json\""
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T04:54:37.493204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (DocRED) ===\\\\nDocuments: 975 checked, 23 parse failures\\\\nEntities: 19106, Triples: 16171\\\\n\\\\nEntity type violations: 0 (0.0%)\\\\nRelation vocab violations: 24/16171 (0.1%)\\\\nDomain/range violations: 80/16171 (0.5%)\\\\nCross-field consistency violations: 16\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.0049\\\\nOutput: outputs/violation_report_docred.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T04:54:37.493367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_constrained_eval",
+              "field": "metrics",
+              "value": "{'total': 998, 'parse_failures': 25, 'parse_fail_rate': 2.51, 'entities': 19077, 'relations': 16074, 'entity_f1': 85.23, 'entity_precision': 85.04, 'entity_recall': 85.41, 'relation_f1_all_set': 44.23, 'relation_precision_all_set': 38.82, 'relation_recall_all_set': 51.4, 'et_violations': 0, 'et_violation_rate': 0, 'rv_violations': 0, 'rv_violation_rate': 0, 'dr_violations': 33, 'dr_violation_rate': 0.2, 'cross_field_consistency_violations': 41, 'delta_vs_unconstrained': {'delta_dr': -0.3, 'delta_rv': -0.1, 'delta_e_f1': 0.06, 'delta_r_f1': 0.08}}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T04:54:37.493578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_constrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T19:58:10.837Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:53:35.845Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1\\\", \\\"parent\\\": \\\"w5_llama_docred_lora_training\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-16T00:22:01.892Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-16T04:51:37.138Z\\\", \\\"training_hours\\\": 4.49}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"completed_at\\\": \\\"2026-05-16T00:26:15.420Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T00:26:16.832346+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T04:51:38.893721+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \n…[truncated 1281 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T04:54:37.493752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T04:54:37.493905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 12:53:36 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   34C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   69C    P0            317W /  600W |   17343MiB /  97887MiB |     83%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    1   N/A  N/A          \n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T04:54:37.494063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_constrained_eval",
+              "field": "conclusion",
+              "value": "success",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T04:54:37.494250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_constrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T19:58:10.837Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:53:41.088Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1\\\", \\\"parent\\\": \\\"w5_llama_docred_lora_training\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-16T00:22:01.892Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-16T04:51:37.138Z\\\", \\\"training_hours\\\": 4.49}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"completed_at\\\": \\\"2026-05-16T00:26:15.420Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T00:26:16.832346+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T04:51:38.893721+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \n…[truncated 1310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T04:54:37.494396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/data/processed_data/test.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T04:54:37.494520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T04:54:37.494636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/ontology_constraints.json"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T04:54:37.494777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/ontology_constraints.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T04:54:37.494927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/data/processed_data/test.json"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T04:54:37.495048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"100 /root/schema_semantic_constrained_ie/data/processed_data/test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T04:54:37.495163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T04:54:37.495278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lrwxrwxrwx 1 root root 88 May 16 12:46 /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 -> /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3-ms/mistralai/Mistral-7B-Instruct-v0___3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T04:54:37.495409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-16980",
+              "gpu_ids": "['cuda:0']",
+              "exp_id": "w6_mistral_scierc_unconstrained",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\"",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T04:54:37.495574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"332151\\\", \\\"log_file\\\": \\\"~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-16980\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"w6_mistral_scierc_unconstrained\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T04:54:37.495739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T04:54:37.495887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 12:54:00 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   35C    P0             56W /  600W |   14131MiB /  97887MiB |      8%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   69C    P0            321W /  600W |   17343MiB /  97887MiB |     84%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T04:54:37.496067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w6_mistral_scierc_unconstrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096', 'server': 'westd-16980', 'gpu': 0, 'pid': 332156, 'log_path': '~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log', 'model_name': 'Mistral-7B-Instruct-v0.3', 'data_path': 'data/processed_data/test.json', 'data_count': 100, 'seed': 42}"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T04:54:37.496213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.171}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T04:54:37.496335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T04:54:37.496450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T04:54:37.496568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'w6_mistral_scierc_unconstrained'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T04:54:37.496708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.166}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T04:54:37.496841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['status', 'spec']"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T04:54:37.496996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w6_mistral_scierc_unconstrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"332151\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T04:53:56.502Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"w6_mistral_docred_constrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w6_mistral_docred_constrained.jsonl --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"gpu\\\": 1, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"data_path\\\": \\\"data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"seed\\\": 42}}, \\\"w6_mistral_docred_unconstrained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w6_mistral_docred_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-21461\\\", \\\"gpu\\\": 0, \\\"model_name\\\": \\\"Mistral-7B-Instruct-\n…[truncated 779 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T04:54:37.497153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w6_mistral_scierc_unconstrained",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T04:54:37.497301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w6_mistral_scierc_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T02:59:02.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:54:21.007Z\\\", \\\"hypothesis\\\": \\\"Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"332151\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T04:53:56.502Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7154}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T04:54:37.497476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w6_mistral_scierc_unconstrained",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096', 'server': 'westd-16980', 'gpu': 0, 'pid': 332156, 'log_path': '~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log', 'model_name': 'Mistral-7B-Instruct-v0.3', 'data_path': 'data/processed_data/test.json', 'data_count': 100, 'seed': 42}"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T04:54:37.497726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w6_mistral_scierc_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T02:59:02.565Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:54:26.463Z\\\", \\\"hypothesis\\\": \\\"Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": 0, \\\"pid\\\": 332156, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T04:53:56.502Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 100, \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7462}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T04:54:37.497974+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## Llama FT Constrained Eval Metrics\n\n| 指标 | Constrained | Unconstrained | Delta |\n|---|---|---|---|\n| E-F1 | **85.23%** | 85.17% | +0.06pp |\n| R-F1 (all_set) | **44.23%** | 44.15% | +0.08pp |\n| ET violations | 0 (0%) | 0 (0%) | — |\n| RV violations | 0 (0%) | 24 (0.1%) | **-0.1pp** |\n| DR violations | 33 (0.2%) | 80 (0.5%) | **-0.3pp** |\n| Parse fail | 25 (2.51%) | 23 (2.30%) | +0.21pp |\n\n**结论**：constrained 解码在 fine-tuned Llama DocRED 上将 DR 从 0.5%→0.2%（降 60%），RV 从 0.1%→0%（完全消除），同时 E-F1 和 R-F1 均微升，无性能损失。Composability 验证通过。\n\n## Mistral SciERC Unconstrained 提交状态\n\n- **exp_id**: w6_mistral_scierc_unconstrained\n- **GPU**: cuda:0 @ westd-16980\n- **PID**: 332156（GPU 子进程）\n- **数据量**: 100 条 SciERC test\n- **Registry**: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111"
+          },
+          "id": "event-000073"
+        }
+      ],
+      "message_count": 73
+    }
+  ],
+  "readable_path": "readable/conversations/ops-llama-constrained-done-and-mistral-submit.md"
+}

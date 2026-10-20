@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4d040236222db308bfd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code p8 latency overhead",
+  "task_key": "worker_code_p8_latency_overhead_20260518T133749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p8_latency_overhead_20260518T133749_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "0593d2e8760c1d982b11e64b56b75d3f12dbbb6f5c5110b92fdecebe6dd8adb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理正常，第一个 doc 3.4 秒。按 ~3-5s/doc 估算，551 docs unconstrained 约 30-45 分钟，constrained 可能稍长。总计约 1.5-2 小时完成。\n\n当前状态：\n- **P8 实验已启动**，westd-21461 cuda:1\n- **Unconstrained 阶段**正在运行，13/551 docs 完成\n- 完成 unconstrained 后自动跑 constrained (full_s1)，最后自动运行 `analyze_latency.py` 计算 overhead ratio\n- 输出文件：\n  - `/root/autodl-tmp/schema_outputs/p8_timing_unconstrained.jsonl`\n  - `/root/autodl-tmp/schema_outputs/p8_timing_constrained.jsonl`\n  - `/root/autodl-tmp/schema_outputs/p8_latency_report.json`（最终统计）\n- Registry: `p8_latency_overhead` → RUNNING\n\n预计 1.5-2 小时后全部完成。需要我定期检查进度还是完成后通知你？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p8-latency-overhead.md"
+}

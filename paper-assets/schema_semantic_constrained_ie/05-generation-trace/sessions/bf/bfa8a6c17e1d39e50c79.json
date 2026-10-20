@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa8a6c17e1d39e50c79",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research bib verification",
+  "task_key": "worker_research_bib_verification_20260514T183737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib_verification_20260514T183737_result.json",
+    "occurrence": 1,
+    "bytes": 2871,
+    "sha256": "5ba1090f3b4c3f58d4ead2d1bd5a68f0f0f7376210bd1ceb035249781da05e1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n---\n\n### 1. zhong2021frustratingly — ✅ 真实\n\n- **标题**: A Frustratingly Easy Approach for Entity and Relation Extraction\n- **作者**: Zexuan Zhong, Danqi Chen (Princeton)\n- **Venue**: NAACL 2021, pages 50–61\n- **ACL Anthology**: https://aclanthology.org/2021.naacl-main.5/\n- **SciERC Rel F1**: ~48.6% (boundaries), ~35.7% (strict/Rel+)\n\n```bibtex\n@inproceedings{zhong2021frustratingly,\n  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},\n  author    = {Zhong, Zexuan and Chen, Danqi},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n  pages     = {50--61},\n  year      = {2021},\n  address   = {Online},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2021.naacl-main.5}\n}\n```\n\n### 2. ye2022packed — ✅ 真实\n\n- **标题**: Packed Levitated Marker for Entity and Relation Extraction\n- **作者**: Deming Ye, Yankai Lin, Peng Li, Maosong Sun (Tsinghua/THUNLP)\n- **Venue**: ACL 2022, pages 4904–4917\n- **ACL Anthology**: https://aclanthology.org/2022.acl-long.337/\n- **SciERC Rel F1**: ~53.2% (boundaries), improvement over PURE by ~2.8–4.0%\n\n```bibtex\n@inproceedings{ye2022packed,\n  title     = {Packed Levitated Marker for Entity and Relation Extraction},\n  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {4904--4917},\n  year      = {2022},\n  address   = {Dublin, Ireland},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2022.acl-long.337}\n}\n```\n\n---\n\n### Claim 校验: \"40–50% F1\"\n\n| 模型 | Rel F1 (boundaries) | Rel+ F1 (strict) |\n|------|---------------------|-------------------|\n| PURE | ~48.6% | ~35.7% |\n| PL-Marker | ~53.2% | ~38% |\n\n**问题**: claim 说 \"40–50% F1\"，但 PL-Marker 的 Rel F1 达到 ~53%，超出了 50% 上界。两个修正方案：\n\n1. **调整范围**: 改为 `\"achieve approximately 49--53\\% relation F1\"` \n2. **如果有意指 strict Rel+**: 两者都在 35–38%，低于 40%\n\n建议改为 `\"achieve 48--53\\% relation F1 (boundaries evaluation)\"` 或更宽泛的 `\"achieve roughly 50\\% F1\"`，这样更准确地覆盖两篇论文的实际数字。\n\nSources:\n- [PURE - ACL Anthology](https://aclanthology.org/2021.naacl-main.5/)\n- [PURE - GitHub](https://github.com/princeton-nlp/PURE)\n- [PL-Marker - ACL Anthology](https://aclanthology.org/2022.acl-long.337/)\n- [PL-Marker - GitHub](https://github.com/thunlp/PL-Marker)\n- [PL-Marker - ar5iv](https://ar5iv.labs.arxiv.org/html/2109.06067)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-verification.md"
+}

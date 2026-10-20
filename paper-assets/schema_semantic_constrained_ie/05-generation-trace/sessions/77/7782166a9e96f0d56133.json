@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7782166a9e96f0d56133",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "cleanup two experiments",
+  "task_key": "worker_cleanup_two-experiments_20260522T103256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_two-experiments_20260522T103256_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "e0aa97ac5bf9626a11c479bfa8adf7e96cb1b7817d22017527f696aa341625ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态清理完成：\n\n| 实验 | 状态 | conclusion |\n|------|------|------------|\n| `eval_70b_lora_docred_200_s1_constrained` | RUNNING → DONE | success，metrics 已写入 |\n| `d066_beam_sweep` | ANALYZING → DONE | success（11 个子实验全部 DONE） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-two-experiments.md"
+}

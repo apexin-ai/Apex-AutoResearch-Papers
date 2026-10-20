@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b9a57997adf17919dc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code prepare v3 eval pipeline",
+  "task_key": "worker_code_prepare_v3_eval_pipeline_20260518T080405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_v3_eval_pipeline_20260518T080405_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "fa7e5a5949f1ec83e38c277aacbe902e8a81466aa4f73300e2b0046af8255f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 脚本文件和参数\n\n| 项目 | 值 |\n|---|---|\n| violation checker | `violation_checker_wikievents.py` |\n| 参数 | `--input_path <file> --constraints_path data/wikievents/ontology_constraints_wikievents.json` |\n| eval 脚本 | `eval_event_extraction.py` |\n| 参数 | `--input_path <file>` |\n\n### run_v3_eval.sh\n\n已部署到两台服务器 `/root/schema_semantic_constrained_ie/run_v3_eval.sh`，内容已确认正确。\n\n### v3 当前进度 (目标 246 lines)\n\n**westd-16980:**\n\n| 实验 | 行数 | 进度 |\n|---|---|---|\n| qwen v3 constrained full | 98/246 | 39.8% |\n| mistral v3 constrained full | 6/246 | 2.4% |\n| mistral grammar_only v3 | 68/246 | 27.6% |\n\n**westd-21461:**\n\n| 实验 | 行数 | 进度 |\n|---|---|---|\n| llama v3 constrained full | 51/246 | 20.7% |\n| mistral v3 constrained full | 66/246 | 26.8% |\n| qwen v3 constrained full | 6/246 | 2.4% |\n\n注意：mistral v3 constrained full 在两台机器上都有输出（16980: 6 行, 21461: 66 行），可能存在重复运行或分配问题，需要确认哪台是主跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-v3-eval-pipeline.md"
+}

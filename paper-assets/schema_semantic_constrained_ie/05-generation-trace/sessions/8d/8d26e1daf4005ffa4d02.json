@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d26e1daf4005ffa4d02",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code add resume support",
+  "task_key": "worker_code_add_resume_support_20260513T224311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add_resume_support_20260513T224311_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "ed34f4f2bb1055f646100a9d82859b3e442c739faeb9f85402fb88529175603c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全符合预期：\n\n- **Resume 检测**: 正确识别 3 个已处理 sample\n- **日志输出**: `Resuming from 3 processed samples, 2 remaining`\n- **跳过逻辑**: 只跑了 sent3 和 sent4（编号 [4/5] 和 [5/5]）\n- **输出文件**: 5 行（3 原有 + 2 新增）\n- **完成信息**: `Done: 2 new samples, success=2, fail=0 (skipped 3 already processed)`\n\n修改完成。变更摘要：\n\n| 修改 | 位置 |\n|------|------|\n| `import os` | 第 16 行 |\n| `load_processed_ids()` 函数 | 第 521 行，S2 模式特殊处理（检查 parsed_output 中有 relations） |\n| `--resume` 参数 | 第 567 行 |\n| 主循环改造 | 第 640-695 行：resume 时读已有 ID → 构建 todo 列表 → append 模式写文件 → 计数器含 skipped 偏移 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-resume-support.md"
+}

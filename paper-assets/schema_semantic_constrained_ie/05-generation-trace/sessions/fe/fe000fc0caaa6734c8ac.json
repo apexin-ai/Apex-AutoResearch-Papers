@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe000fc0caaa6734c8ac",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze llama per relation violation",
+  "task_key": "worker_analyze_llama_per_relation_violation_20260514T222402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llama_per_relation_violation_20260514T222402_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "5cb0cbb8ccb3bbd0f83bb72773430be9d7c3c362fdabf27fb3cf1b0bb69f5f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/llama_docred_per_relation_dr_analysis.md`。\n\n核心发现：\n\n**Aggregate:**\n| | Unconstrained | Full_S1 |\n|---|---|---|\n| OOV (RV) | 2,756 (16.8%) | 0 (0.0%) |\n| DR (of mapped) | 4,221 (30.9%) | 418 (2.6%) |\n\n**Per-relation DR（unconstrained top 3）：** P1198 unemployment_rate 92.3%, P156 followed_by 83.3%, P35 head_of_state 82.4%\n\n**Per-relation DR（full_s1 top 3）：** P576 dissolved 32.9%, P156 followed_by 20.5%, P1198 unemployment_rate 20.0%\n\n**OOV：** 625 unique OOV names（unconstrained），最多的是 \"located in\"(405)、\"date of event\"(93)。Full_s1 完全消除 OOV。\n\n**Fallback：** 57,825 token-level fallback 集中在仅 7/998 个文档中（等间距分布，每~166个文档），全部解析成功。这是 token-level 指标，不可直接与 Qwen 的 triple-level 10.2% 比较。\n\n**与 Qwen 对比 & D014 叙事验证：**\n- Llama unconstrained OOV 16.8% 远低于 Qwen ~30% → Llama 基线 schema adherence 更好\n- Llama full_s1 residual DR 2.6% 很低，仅 3 个 relation >10%\n- **支持 \"低 RV → 低 residual DR\" 叙事**：两因素（RV/DR）独立；full_s1 完全消除 RV，大幅降低 DR；基线 OOV 越低的模型，constrained decoding 后残留 DR 越少\n- 残留 DR 热点（P576=32.9%, P156=20.5%）显示某些 relation 的 domain-range 模式本身模糊，即使语义约束也无法完全解决"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-llama-per-relation-violation.md"
+}

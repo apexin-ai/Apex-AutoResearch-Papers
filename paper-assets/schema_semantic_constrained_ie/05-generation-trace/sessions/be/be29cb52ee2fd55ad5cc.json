@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "be29cb52ee2fd55ad5cc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis w1 cf fallback scierc pilot",
+  "task_key": "worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938.jsonl",
+    "occurrence": 1,
+    "bytes": 193,
+    "sha256": "0d59bbbcac45a4b4d7a72f2b5f6b222705206b633f4cd7196ccd99194be0bcf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:49:45.893380+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-w1-cf-fallback-scierc-pilot.md"
+}

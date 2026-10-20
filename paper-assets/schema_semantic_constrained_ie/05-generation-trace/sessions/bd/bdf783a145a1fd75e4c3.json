@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf783a145a1fd75e4c3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents flatten redryrun",
+  "task_key": "worker_code_wikievents_flatten_redryrun_20260517T153849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_flatten_redryrun_20260517T153849_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "e96ceae88149551b1349a025b8084a912c674dab48d8a7cb287acbb1ad86390e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n## 完成情况\n\n### Step 1: 碰撞率验证 ✓\n- 全名 baseline: 96.1% → **最终方案 3.9%** (< 10% 目标)\n- 策略: leaf (非 Unspecified) + Mid.Unspecified + 6 个手动 override\n- 残余碰撞: 仅 `Infection.Unspecified` / `Injury.Unspecified` 共享首 token \"In\"\n\n### Step 2: 更新文件 ✓\n- `ontology_constraints_wikievents.json`: event_types 和 event_constraints key 改为短名，保留 `event_type_mapping` (full→short)\n- `run_constrained_extraction.py`: load_wikievents_data 加载时映射 gold event types\n- prompt (无需改): `event_extraction.py` 已从 spec 读取 event_types\n- violation_checker (无需改): 直接读 ontology JSON 中的短名\n\n### Step 3: Parse Fix ✓\n- WikiEvents default `max_new_tokens` 改为 4096\n\n### Step 4: Dry Run 结果\n\n| Metric | Unconstrained | Constrained |\n|--------|:---:|:---:|\n| Parse success | 90% | **100%** |\n| EV | 38.5% | **0%** |\n| RoV | 59.8% | 55.5% |\n| AC | 0% | 12.2% |\n\n### 门控判断: **CONDITIONAL PASS**\n\n- ✓ EV → 0%, Parse → 100%\n- ✗ RoV 未大幅下降 (55.5% vs 59.8%)\n\n**原因**: XGrammar `accept_token` assertion failure 导致 fallback 到 grammar-only 模式，semantic role masking 未生效。这是 constraint processor 状态同步问题，非 flatten 引起。\n\n**建议**: 不宜直接上全量。下一步需修复 semantic masking 与 XGrammar 的状态同步问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-flatten-redryrun.md"
+}

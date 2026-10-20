@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89f900efd7cad3cdc04d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper bib entries new papers",
+  "task_key": "worker_paper_bib_entries_new_papers_20260514T061236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_entries_new_papers_20260514T061236_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "aa7f0f33ced50080e86ebbbaaa89bc7a671e330db2cac0336130a9624a48b9d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/new_references.bib` 并注册到 manifest。\n\n**9 个条目验证摘要：**\n\n| cite key | 类型 | 实际 venue | 备注 |\n|---|---|---|---|\n| `synchromesh_neurips2022` | @inproceedings | **ICLR 2022**（非 NeurIPS） | WARNING 已标注 |\n| `mgd_neurips2023` | @inproceedings | NeurIPS 2023 | Agrawal, Kanade et al. |\n| `pldi2025_type_constrained_codegen` | @article | PACMPL (PLDI) 2025 | Mündler, He, Vechev et al. |\n| `roth_yih_2004` | @inproceedings | **CoNLL 2004**（非 AAAI） | WARNING 已标注 |\n| `adakgc_emnlp2023` | @inproceedings | Findings of EMNLP 2023 | Ye, Gui, Zhang et al. |\n| `knowcoder_acl2024` | @inproceedings | ACL 2024 Long Papers | Li, Zeng et al. (17 authors) |\n| `spires_2024` | @article | Bioinformatics 40(3) 2024 | Caufield, Mungall et al. |\n| `ontologx_2025` | @misc | arXiv:2510.01409 | Cotti et al., eprint 格式 |\n| `ekaw2024_ontology_beam` | @inproceedings | LNCS 15370, EKAW 2024 | Mehenni & Zouaq |\n\n两处 venue 不一致（Synchromesh 和 Roth&Yih）已在 bib 文件中用 WARNING 注释标注，cite key 保持用户指定值不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-entries-new-papers.md"
+}

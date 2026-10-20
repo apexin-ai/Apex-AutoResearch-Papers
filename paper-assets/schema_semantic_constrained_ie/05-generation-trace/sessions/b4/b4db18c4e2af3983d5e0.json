@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "b4db18c4e2af3983d5e0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis llama lora unconstrained violations",
+  "task_key": "worker_analysis_llama_lora_unconstrained_violations_20260515T174449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_llama_lora_unconstrained_violations_20260515T174449.jsonl",
+    "occurrence": 1,
+    "bytes": 201,
+    "sha256": "2c11a6e3c34402cd2790b145a6a1bbd61d64688c2e48c0907d50a5fa9e356fbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:44:56.730118+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_llama_lora_unconstrained_violations_20260515T174449"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-llama-lora-unconstrained-violations.md"
+}

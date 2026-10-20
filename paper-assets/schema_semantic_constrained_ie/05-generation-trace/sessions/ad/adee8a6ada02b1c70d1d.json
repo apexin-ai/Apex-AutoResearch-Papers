@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adee8a6ada02b1c70d1d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4067,
+    "sha256": "3a1a572f6931942f8713edcd6ac1abee4694294f409ad3660959631ce35b2ace"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T09:41:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-16980 双卡项目，gpu_ids 未在 constraints.yaml 中显式限定，但当前实验分配 cuda:0 + cuda:1 各一个，不可交叉占用\n- submit_training_job 用 CUDA_VISIBLE_DEVICES 映射设备号，命令内必须用 `--device cuda:0`（映射后的逻辑设备），不能用物理设备号（之前 mt6144 实验因 `--device cuda:1` + `CUDA_VISIBLE_DEVICES=1` 导致 invalid device ordinal 崩溃）\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 论文数字必须用 v2 checker（`fixed_20260514_v2 (strip + alias + unique_et)`），v1 数字不可引用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980 (root)，代码：`/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python3`，conda base 环境\n- 模型：Qwen3-8B `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，Llama-3.1-8B `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据：SciERC `data/processed_data/test.json` (551)，DocRED `data/docred/dev.json` (998)\n- 活跃进程（截至 handoff）：\n  - llama_docred_unconstrained_mt6144: PID 246947, cuda:0, ~22% done, ETA ~4-5h\n  - llama_docred_full_s1_mt6144: PID 247487, cuda:1, ~19% done, ETA ~5-6h\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/`\n- 论文目录：`artifacts/_project/paper/`\n\n### 3. 📊 当前状态\n**我刚做完的工作**：完成了 Round 1 Weak Reject Action Matrix 全部独立审查（W1-W14 + Q1-Q8），共发出 8 条 reviewer_post_to_director：\n1. Action Matrix 综合评估（W1-W14 可行性/风险/优先级）\n2. W9 tokenizer first-token — PASS\n3. W3/W6 runtime — PASS（注意 Qwen SciERC -22% speedup 归因）\n4. Q7 CF 分布 — PASS（发现 §7 \"60→85\" 数据错误）\n5. W2 rectangularity — PASS（代码比论文更严格）\n6. W4 table inconsistency — PASS（v1/v2 checker + 旧推理覆盖）\n7. ROADMAP 审查 — PASS\n8. W4 schema-informed v2 re-eval — PASS（ET 0.61→0.19%）\n\n**等待中**：\n- P1 两个 mt6144 实验完成（RUNNING，~5h 后）→ 需审查结果\n- Paper Agent 8 项写作修复完成 → 需审查\n- W1 CF fallback 实现 + ablation → urgent，P1 完成后立即启动，需审查\n\n### 4. 📋 待办\n- P1 mt6144 实验完成 → 审查 parse failure 是否下降（success criteria: full_s1 91→≤70），核对 violation rates\n- Paper Agent 写作修复完成 → 按 §5.2 维度审查（claim 可信度、数字与 registry 一致性、§7 \"85 of 245\" 是否修正）\n- W1 CF fallback ablation 完成 → **关键审查**：CF↓ vs DR↑ 净效果，如果净负则建议改 framing 为 \"explored complementary trade-off\"\n- Round 2 review 触发 → 按 review-reviewer-session-start skill 初始化\n- §7 \"60 of 245\" 修正确认 → 检查 Paper Agent 输出是否包含此修正\n\n### 5. 🎯 战略上下文\n- **项目阶段**：Round 1 Weak Reject → 目标 Borderline Accept+，EMNLP ARR May 25 提交\n- **W2 是最强 rebuttal 项**：代码已 pair-based（`valid_tail_types_for_head`），论文 §3 只需写作修复，0 GPU 成本。SciERC 0/7 rectangular，DocRED 23/96 rectangular\n- **W1 是最大风险**：registry-consistent fallback 的 CF/DR 净效果不确定。建议先 SciERC pilot\n- **易错点**：\n  - DR residual 报告 (`dr_residual_analysis.md`) 的聚合数字 (30.80%) 与 registry (26.07%) 不一致——报告用了 document-matched subset。per-relation 分析可用，聚合数字不可引用\n  - SciERC bootstrap CI 有内部不一致（per_config -0.14pp vs paired delta -0.044pp），未 resolve\n  - 论文中残留旧数字位置：`section1_introduction_draft.tex:8` (18.7%)、旧 abstract 文件（`abstract_fd4b26.tex` 等）\n- **决策链关键节点**：D011 推翻 ET 计数口径（triple-count→unique），D013 post-hoc framing（不以 F1 论高低），D014 tightness 改为双因素\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-3.md"
+}

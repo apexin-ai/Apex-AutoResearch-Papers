@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b84ce807a58a26d6ddea",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check p1 ee ft completion",
+  "task_key": "worker_check_p1_ee_ft_completion_20260518T194115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_p1_ee_ft_completion_20260518T194115_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "238331d7380d8d8bd08f9b6287ace3f6321b8364fca370881bd4d1c9673fd3ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态机不允许 PREPARING→DONE 直接跳转，但 conclusion=failed 和 notes 已记录。无 cron 需要删除。\n\n```\nPipeline 状态：完全未启动（卡在 PREPARING，从未进入 RUNNING）\n训练：未执行（无日志、无 checkpoint）\n推理 unconstrained：未执行\n推理 constrained：未执行\n评估 F1：无\nViolation rates：无\n\n诊断：\n  - westd-21461 上无任何 p1_ee_ft 相关文件（日志/输出/checkpoint/完成标记均不存在）\n  - /root/schema_semantic_constrained_ie/checkpoints/ 目录为空\n  - 仅存在旧 checkpoint: qwen_lora_docred_merged, qwen3_8b_lora_scierc_merged\n  - 训练脚本 train_lora_wikievents.py 存在，但 pipeline 未被调用\n  - 进程在启动脚本生成或环境准备阶段就退出了\n\nRegistry：PREPARING (conclusion=failed, notes 已更新)\n  注：PREPARING→DONE 跳转被状态机拒绝，需先经过 RUNNING\nCron：当前 session 无 cron 任务\n```\n\n需要手动重新启动整个 pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-p1-ee-ft-completion.md"
+}

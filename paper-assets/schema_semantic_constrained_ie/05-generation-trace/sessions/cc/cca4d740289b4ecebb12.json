@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cca4d740289b4ecebb12",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred lora eval prep",
+  "task_key": "worker_code_docred_lora_eval_prep_20260515T192805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_lora_eval_prep_20260515T192805_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "bbc4d2e5c1f4dc8a397f292c949cfb18b4e6039cc177bab0074aaff9985cfecf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**训练状态**: 两个 DocRED LoRA 训练均在 step 382/573 (epoch 2/3)，还剩 ~191 steps。\n\n**关键发现**:\n- Checkpoint 路径与预期略有不同：Qwen 目录是 `qwen_lora_docred`（非 `qwen3_8b_lora_docred`）\n- 训练脚本**自带 merge 步骤**，训练完成后会自动合并到 `/root/autodl-tmp/checkpoints/{qwen,llama}_lora_docred_merged/`\n- **eval 脚本已存在**: `scripts/run_docred_lora_eval.sh`，包含 4 条 eval 命令（Qwen/Llama × unconstrained/constrained），路径已正确\n- 磁盘 162GB 可用，足够两个 merged 模型 (~16GB each)\n\n**输出**: `artifacts/docred_lora_eval_commands.md`，包含:\n- 2 条备用手动 merge 命令（Qwen + Llama，仅在自动 merge 失败时用）\n- 4 条 eval 命令（含 `run_docred_lora_eval.sh` 快捷方式）\n- 建议执行顺序和 DocRED 特有注意事项（max_new_tokens=4096, 96 relation types）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-lora-eval-prep.md"
+}

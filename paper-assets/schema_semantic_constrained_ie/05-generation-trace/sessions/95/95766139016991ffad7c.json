@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95766139016991ffad7c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check 70b scierc done",
+  "task_key": "worker_check_70b_scierc_done_20260521T065916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_70b_scierc_done_20260521T065916_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "8bf32b9aaf8dba2e79d2b87f0d58e8d9013277c4f864174a7560f6cef73c887c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 r16_70b_scierc_zs_s1 完成，registry 已更新为 DONE/success。\n\n**结果摘要：**\n\n| | Unconstrained | S1 Constrained | Δ |\n|---|---|---|---|\n| **E_F1** | 35.21 | 35.19 | -0.02 |\n| **R_F1** | 11.15 | 11.24 | +0.09 |\n| **DR%** | 6.41% | **0.00%** | -6.41pp |\n| **RV%** | 0.61% | **0.00%** | -0.61pp |\n| **CF%** | 0.00% | 3.50% | +3.50pp |\n| **Parse fail** | 0% | 0% | — |\n\n**vs 8B Qwen ZS S1：** 70B E_F1 35.19 vs 31.45 (+3.74)，R_F1 11.24 vs 8.38 (+2.86)，DR 0% vs 0.93%。70B 在 F1 和约束遵守上均优于 8B。\n\nS1 constrained 成功消除所有 DR/RV 违规，F1 无损失。CF 从 0→3.50% 是因为 constrained 模式下 cross-field 检测更严格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-70b-scierc-done.md"
+}

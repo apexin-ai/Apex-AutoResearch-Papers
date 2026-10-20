@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e23683c97705e5cb03dc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops gpu status check all",
+  "task_key": "worker_ops_gpu_status_check_all_20260520T142451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_all_20260520T142451_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "07358f7e666f4574cc33615f43e50947aa92c4a5e1508bdfb3f9548d589811dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n### westd-21461\n\n| GPU | 任务 | 进程 | 利用率 | 显存 | 进度 | 预估剩余 |\n|-----|------|------|--------|------|------|----------|\n| GPU0 | d065 Qwen DocRED greedy con rerun | PID 194615 | 83% | 18.9 GB | **823/998** (log), jsonl 726行 | ~50 min |\n| GPU1 | d066 LLaMA SciERC beam2 unc | PID 213209 | 87% | 18.4 GB | **242/551** (44%) | 运行中，无时间戳估算 |\n\n- d065: 从上次 714 推进到 823，约 12% 的 FAIL（超时 ~77s），OK 样本 ~15s 均值。175 个剩余样本估算 ~50 min。\n\n### westd-16980\n\n| GPU | 任务 | 进程 | 利用率 | 显存 | 进度 | 预估剩余 |\n|-----|------|------|--------|------|------|----------|\n| GPU0 | d066 LLaMA DocRED beam4 s1 (constrained) | PID 763083 | 81% | 21.5 GB | **95/200** (47.5%) | ~8 min |\n| GPU1 | 空闲 | 无 | 0% | 0 MB | — | — |\n\n- beam4 unc 阶段已完成（200/200，22:18 结束），constrained 阶段 22:18 起跑，7 分钟完成 95 个样本，约 4.4s/样本，剩余 ~105 个 → **~8 min 完成**。\n- westd-16980 已完成的 d066 beam sweep 文件：beam2 unc/s1, beam8 unc/s1, beam4 unc 均已跑完（都是 200 行），当前是最后一个 beam4 s1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-all.md"
+}

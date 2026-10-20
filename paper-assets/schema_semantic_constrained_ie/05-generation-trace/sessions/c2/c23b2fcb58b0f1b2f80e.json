@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c23b2fcb58b0f1b2f80e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check w9 processes",
+  "task_key": "worker_ops_check_w9_processes_20260516T202422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_w9_processes_20260516T202422_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "1720897d05bb608db87d05f7c4cc52e6955b96e70051c3c8d6358c489c08325a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## W9 Sampling 实验状态报告\n\n| 实验 | 状态 | 已处理 | GPU 占用 | 运行时间 | 预估剩余 |\n|------|------|--------|----------|----------|----------|\n| w9_qwen_scierc_zs_sampling (PID 382074) | **已完成** | 551/551 (100%) | 无 | — | — |\n| w9_qwen_docred_zs_sampling_r3 (PID 384608) | **运行中** | 36/998 (3.6%) | cuda:1, 16786 MiB | 11h16m | ~约 300h (13天) |\n\n**详细说明：**\n\n- **SciERC**: 已正常结束，EXIT_CODE=0，551 样本全部成功，无失败。进程已退出。\n- **DocRED r3**: 正在运行，11小时16分钟处理了36个样本，平均 ~18.8 min/sample。按此速度 (998-36)×18.8min ≈ 301 小时。日志只记录到模型加载阶段，实际输出文件最后修改时间为 05-17 04:24（刚刚），确认仍在活跃写入。\n\nDocRED 的速度异常慢（SciERC 551 样本也才用了若干小时），可能是 DocRED 文档更长、关系类型更多（96 types）导致生成 token 数远大于 SciERC。按当前速度完成全部 998 样本需要约 13 天。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-w9-processes.md"
+}

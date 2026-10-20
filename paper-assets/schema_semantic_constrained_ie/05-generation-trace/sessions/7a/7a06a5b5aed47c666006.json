@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a06a5b5aed47c666006",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code phase2 dryrun verify",
+  "task_key": "worker_code_phase2_dryrun_verify_20260513T233402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_dryrun_verify_20260513T233402_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "bcc91070de31fed2495ddc857777ea388a38f51f5729a8e464a4ee8089a1c9e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n## 验证结果\n\n### 1. 代码支持状态\n`run_constrained_extraction.py` 完整支持 `semantic_only` 和 `full_s1`：\n- **semantic_only**: 仅加载 `TypeConstraintProcessor`（domain/range 语义约束），不编译 grammar\n- **full_s1**: 同时加载 XGrammar LogitsProcessor + TypeConstraintProcessor，单 pass 生成\n- 两个模式都走 `run_single_pass()` 函数（非 two-pass 路径）\n\n### 2. Dry-run 结果\n\n| 模式 | 结果 | 实体数 | 关系数 | 耗时 |\n|------|------|--------|--------|------|\n| semantic_only | **成功** | E=4 | R=1 | 6.7s |\n| full_s1 | **成功** | E=4 | R=1 | 7.4s |\n\n两个模式输出了合法的 JSONL，parsed_output 包含正确结构的 entities 和 relations。full_s1 额外多了 grammar 编译步骤（\"Grammar compiled (full schema)\"），符合预期。\n\n### 3. violation_checker.py\n- 位置：`/root/schema_semantic_constrained_ie/violation_checker.py`（14KB，SciERC 专用）\n- DocRED 版本：`violation_checker_docred.py`\n- 用法：\n  ```bash\n  python3 violation_checker.py \\\n    --input_path outputs/<mode>_scierc.jsonl \\\n    --constraints_path ontology_constraints.json \\\n    --output_path outputs/violation_report_<mode>.json\n  ```\n- 检查 4 类违规：entity_type、relation_vocabulary、domain_range、cross_field_consistency\n\n### 注意事项\n- 参数名是 `--max_samples`（非 `--num_samples`）\n- `torch_dtype` 弃用警告可忽略（不影响运行）\n\n**结论：semantic_only 和 full_s1 代码就绪，可以在 grammar_only/unconstrained 完成后立即提交。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-dryrun-verify.md"
+}

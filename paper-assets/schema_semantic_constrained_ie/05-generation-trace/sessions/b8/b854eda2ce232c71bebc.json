@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b854eda2ce232c71bebc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops submit w6 mistral docred constrained 21461",
+  "task_key": "worker_ops_submit_w6_mistral_docred_constrained_21461_20260516T053245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_w6_mistral_docred_constrained_21461_20260516T053245_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "a38650c6be7969c8d14e518dd2eafc07b7672e668186582c46dd81d431f36828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 不空闲。当前占用情况：\n\n| GPU | PID | 运行时间 | 实验 |\n|-----|-----|---------|------|\n| 0 | 7740 | 2h37m | `w6_mistral_docred_unconstrained` |\n| 1 | 7813 | 2h35m | `w6_mistral_scierc_constrained` |\n\n两块 GPU 都在跑实验。需要等其中一个结束，或者手动 kill PID 7813 释放 cuda:1。\n\n要怎么处理？选项：\n1. 等 scierc_constrained 跑完再提交\n2. Kill 7813 腾出 cuda:1 立即提交\n3. 查一下两个实验的进度再决定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-w6-mistral-docred-constrained-21461.md"
+}

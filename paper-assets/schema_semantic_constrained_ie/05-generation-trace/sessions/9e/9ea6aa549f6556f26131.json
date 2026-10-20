@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea6aa549f6556f26131",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research llama compatibility",
+  "task_key": "worker_research_llama-compatibility_20260514T073500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_llama-compatibility_20260514T073500_result.json",
+    "occurrence": 1,
+    "bytes": 2425,
+    "sha256": "e8d2494d6f40904a8b5e7d26f6efc3ac0b3c332095bce815a76a9323084ab39e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Llama-3.1-8B 兼容性报告\n\n### 结论：开箱即用，零代码修改\n\n只需传 `--model_path` 指向 Llama 路径即可。\n\n---\n\n### 逐项检查结果\n\n**1. 模型加载 ✅**\n- `--model_path` 是 CLI 参数，不是硬编码。默认值 fallback 到 Qwen 路径，但传参即覆盖\n- 使用 `AutoTokenizer` + `AutoModelForCausalLM`，模型无关\n\n**2. Prompt 模板 ✅**\n- 全部通过 `tokenizer.apply_chat_template()` 构造，自动适配模型格式\n- Qwen 特有逻辑仅在 `_chat_template_kwargs()` 中：检测到 `'qwen' in name` 时传 `enable_thinking=False`，非 Qwen 模型返回空 dict，不影响\n\n**3. Constrained Decoding ✅**\n\n| 组件 | 兼容性 | 原因 |\n|------|--------|------|\n| XGrammar | ✅ | `xgr.TokenizerInfo.from_huggingface()` 是 tokenizer 无关的 |\n| TypeConstraintProcessor (first-token masking) | ✅ | 已验证 Llama-3.1-8B tokenizer 对所有 entity type 名称的 first token 唯一 |\n\nLlama-3.1-8B first-token 验证结果：\n```\nSciERC:  Task=6396, Method=3607, Material=13721, Metric=55410, OtherScientificTerm=11663, Generic=20560  — 全部唯一 ✅\nDocRED:  PER=9851, ORG=46027, LOC=12321, TIME=18621, NUM=17946, MISC=44  — 全部唯一 ✅\n```\n\n**4. pad_token ✅**\n- Llama `pad_token=None`，代码已处理：`if tokenizer.pad_token is None: tokenizer.pad_token = tokenizer.eos_token`\n\n**5. 配置文件 ✅**\n- `ontology_constraints.json` 定义的是 schema 约束（entity types, relation types, valid pairs），与模型无关\n\n---\n\n### 推理命令模板\n\nLlama-3.1-8B-Instruct 已在服务器上：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n\n```bash\n# SciERC — 5种模式任选\nMODEL=/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\n\npython3 run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset scierc \\\n  --model_path $MODEL \\\n  --data_path data/processed_data/test.json \\\n  --constraints_path ontology_constraints.json \\\n  --output_path outputs/phase2_scierc_full_s1_llama.jsonl \\\n  --device cuda:0\n\n# DocRED\npython3 run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset docred \\\n  --model_path $MODEL \\\n  --data_path data/docred/dev.json \\\n  --constraints_path data/docred/ontology_constraints_docred.json \\\n  --output_path outputs/phase2_docred_full_s1_llama.jsonl \\\n  --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-llama-compatibility.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b0945d4b7649e983256",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops 16980 gpu0 check docred relay",
+  "task_key": "worker_ops_16980_gpu0_check_docred_relay_20260520T121442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_16980_gpu0_check_docred_relay_20260520T121442_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "85bd072d1542bdef653104673c36010d8b97b2bcc4364b9cfea17ca1fd6e4c17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已加载，正在推理。\n\n## 报告\n\n**1. GPU 状态**\n| GPU | 进程 | VRAM | 任务 |\n|-----|-------|------|------|\n| GPU0 | PID 756540 | 18270 MiB | **Llama beam8 s1** (刚启动) |\n| GPU1 | PID 755449 | 21122 MiB | Llama beam8 unc (31/200) |\n\n**2. DocRED d066 beam sweep 完成清单**\n\n| 配置 | 状态 |\n|------|------|\n| Llama beam2 unc | ✅ 200/200 |\n| Llama beam2 s1 | ✅ 200/200 |\n| Llama beam8 unc | ⏳ 31/200 (GPU1) |\n| **Llama beam8 s1** | **⏳ 刚启动 (GPU0, PID 756540)** |\n| Llama beam1 unc | ❌ 待跑 |\n| Llama beam1 s1 | ❌ 待跑 |\n| Llama beam4 unc | ❌ 待跑 |\n| Llama beam4 s1 | ❌ 待跑 |\n| Qwen beam2 unc | ✅ 200/200 |\n| Qwen beam2 s1 | ✅ 200/200 |\n| Qwen beam8 unc | ✅ 200/200 |\n| Qwen beam8 s1 | ✅ 200/200 |\n| Qwen greedy unc | ✅ 200/200 |\n| Qwen greedy s1 | ✅ 200/200 |\n\n**3. 新启动**: Llama beam8 s1, PID 756540, GPU0\n\n**4. 磁盘**: /root/autodl-tmp 171G/250G used (80G free, 69%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-16980-gpu0-check-docred-relay.md"
+}

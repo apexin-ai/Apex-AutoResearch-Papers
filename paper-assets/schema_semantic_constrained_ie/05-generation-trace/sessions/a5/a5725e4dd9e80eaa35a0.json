@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5725e4dd9e80eaa35a0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd16980 status",
+  "task_key": "worker_check_westd16980-status_20260522T162404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd16980-status_20260522T162404_result.json",
+    "occurrence": 1,
+    "bytes": 1504,
+    "sha256": "e1171afd2a6d94672781f2f094e24ec50609b04a3d975eda0649277050d7fa48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存 | 利用率 | 进程 |\n|-----|------|------|--------|------|\n| 0 | RTX PRO 6000 Black (98GB) | 40873/97887 MiB | 75% | PID 957041 — 70B LoRA beam4 S1 eval |\n| 1 | RTX PRO 6000 Black (98GB) | 0/97887 MiB | 0% | **空闲** |\n\n### 实验状态\n\n| 实验 | 状态 | 进度 | 结果 |\n|------|------|------|------|\n| **tcr_beam4_llama_scierc** | **DONE (negative)** | 551/551 | TCR changed selection = **0/551 (0%)**。E_F1=68.02, R_F1=46.05, DR=1.1% — 与 vanilla beam4 (68.06/46.18) 几乎相同。TCR 对 fine-tuned LLaMA+beam4 完全无效。 |\n| **eval_70b_lora_scierc_beam4_s1** | **RUNNING** | 338/551 (61%) | GPU 0 上跑，预计还需 ~1-2 小时完成 |\n| eval_70b_zs_scierc_semantic_only | Registry RUNNING | 无输出文件 | **Stale** — 无进程、无输出，可能上个 session 未完成 |\n| eval_70b_zs_scierc_grammar_only | Registry RUNNING | 无输出文件 | **Stale** — 同上 |\n\n### 关键发现\n\n**TCR 对 LLaMA SciERC beam4 的 negative 结论**与 Qwen 版本一致（tcr_beam4_qwen_scierc 也是 negative）。原因：fine-tuned 模型 + beam4 constrained decoding 已经把 DR violation 压到 ~1%，beam candidates 之间几乎没有 constraint violation 差异，TCR 无法产生 reranking 效果。\n\n### 未启动的实验\n- **70b_lora_scierc_beam4_unconstrained baseline** — 尚无输出文件。GPU 1 空闲可用，但按要求暂不启动，等 Agent 决定下一步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd16980-status.md"
+}

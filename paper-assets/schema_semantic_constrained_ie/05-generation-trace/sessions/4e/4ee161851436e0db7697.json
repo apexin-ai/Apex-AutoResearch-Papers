@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4ee161851436e0db7697",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix violation checker parse fail bug",
+  "task_key": "worker_fix_violation-checker-parse-fail-bug_20260522T072733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_violation-checker-parse-fail-bug_20260522T072733.log",
+    "occurrence": 1,
+    "bytes": 951718,
+    "sha256": "b622d28b2fde88c30a0910121f4c64e651c408153a879a5b70b2ce926ff80b67"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 238,
+      "chunks": [
+        {
+          "path": "4ee161851436e0db7697-part-0001.json",
+          "message_count": 101
+        },
+        {
+          "path": "4ee161851436e0db7697-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-violation-checker-parse-fail-bug.md"
+}

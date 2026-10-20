@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f14a4341907007b908f6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 unconstrained done",
+  "task_key": "worker_analysis_phase2_unconstrained_done_20260513T234549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_unconstrained_done_20260513T234549_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "8dda25db78be2cb90e83a2d01b29e54d7dea41ebfae99a6921908a5539341ec4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n## Phase 2 Unconstrained Baseline 结果\n\n### Metrics 总表\n\n| Metric | Phase 2 Unconstrained | Phase 0 Unconstrained | Δ |\n|--------|----------------------|----------------------|---|\n| Entity F1 | 0.3101 | 0.3101 | **0** |\n| Relation F1 | 0.0823 | 0.0823 | **0** |\n| Entity Type VR | 0.40% | 0.40% | 0 |\n| Relation Vocab VR | 1.39% | 1.39% | 0 |\n| Domain/Range VR | 15.37% | 15.37% | 0 |\n| Cross-field VR | 0.08% | 0.08% | 0 |\n| Total Triples | 1724 | 1724 | 0 |\n| Total Entities | 2474 | 2474 | 0 |\n\n**与 Phase 0 完全一致** — 相同 prompt + 相同代码路径 + 相同 seed 产生确定性结果，可作为 Phase 2 constrained 实验的公平对比基线。\n\n### 与 Grammar-only 对比\n\n| Metric | Unconstrained | Grammar-only | Δ |\n|--------|--------------|-------------|---|\n| Entity F1 | 0.3101 | 0.3098 | -0.03pp |\n| Relation F1 | 0.0823 | 0.0823 | 0 |\n| ET Violation | 0.40% | **0%** | -0.40pp ✓ |\n| RV Violation | 1.39% | **0%** | -1.39pp ✓ |\n| DR Violation | 15.37% | 14.84% | -0.53pp |\n\nGrammar-only 完全消除了 ET 和 RV violations，F1 基本无损（entity_f1 仅降 0.03pp）。DR violations 仍高达 14.84%，需要 semantic 层约束来解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-unconstrained-done.md"
+}

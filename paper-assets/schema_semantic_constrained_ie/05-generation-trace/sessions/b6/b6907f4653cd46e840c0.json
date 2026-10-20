@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6907f4653cd46e840c0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis q8 fp paired analysis",
+  "task_key": "worker_analysis_q8_fp_paired_analysis_20260515T110950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q8_fp_paired_analysis_20260515T110950_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "2953ab0cb1e00efd97cfdf2dc6d4cd4105b9862730e12ea2bf5a323ad5896ec5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/rebuttal/q8_fp_analysis_report.md`。\n\n核心发现：\n\n- **净 FP 变化几乎为零**：constrained 仅比 unconstrained 多 3 个 FP（1613 → 1616，+0.2%）\n- **FP 是\"置换\"而非\"累积\"**：constraint 移除了 68 个 FP（主要是无效 relation type），同时引入 71 个新 FP（Type C = 4.4%）\n- **Type C 主要机制**：59.2% 是 relation reassignment（无效 relation 被强制映射到最近的 valid relation），40.8% 是 novel pair（概率重分配导致新预测）\n- **Type C 集中在高频 relation**：Feature-of / Used-for / Evaluate-for 占 73.2%，充当了 invalid relation 重定向的\"catch-all\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q8-fp-paired-analysis.md"
+}

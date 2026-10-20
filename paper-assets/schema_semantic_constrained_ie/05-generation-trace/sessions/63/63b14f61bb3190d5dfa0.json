@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63b14f61bb3190d5dfa0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code bug doc and semantic only check",
+  "task_key": "worker_code_bug_doc_and_semantic_only_check_20260514T043417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bug_doc_and_semantic_only_check_20260514T043417_result.json",
+    "occurrence": 1,
+    "bytes": 2084,
+    "sha256": "255195ebebf0b1a786b3e029af2149abdb4afdccd3b2bae960f60f12afd6fa96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成，结果如下：\n\n---\n\n## Task 1: Bug 文档化 ✅\n\n注释已插入 `compiler/type_mask_processor.py:336`，替换了原有的 2 行简短注释。完整的 Grammar-First Invariant 注释块现在位于 `_GRAMMAR_MASK_THRESHOLD` 定义之前。模块导入验证通过，代码逻辑未受影响。\n\n---\n\n## Task 2: DocRED semantic_only 兼容性 ✅ 完全兼容\n\n- `semantic_only` 模式是 dataset-agnostic 的，mode 选择逻辑（line 425: `if mode in (\"semantic_only\", \"full_s1\")`）与 dataset 参数无关\n- `build_messages()` 函数（line 152）根据 dataset 分支构建 prompt，与 mode 独立\n- **Dry-run 结果**：1 sample 成功，15 entities / 14 relations，耗时 29.5s（含 CUDA 首次 warmup）\n- **预估 998 docs 耗时**：~18-25s/doc（warmup 后），约 **5-7 小时**\n- **无需代码修改**\n\n---\n\n## Task 3: Phase 0 vs Phase 2 评估一致性 ❌ 不可直接复用\n\n| 维度 | Phase 0 (`raw_outputs_docred.jsonl`) | Phase 2 (`docred_grammar_only.jsonl`) |\n|------|------|------|\n| JSONL 字段名 | `document`, `model_output`, `elapsed_seconds` | `input_text`, `raw_output`, `inference_time_seconds`, `mode` |\n| 报告字段 | `total_documents`, `parse_failures` | `total_samples`, `json_parse_failures` |\n| 样本数 | 998 | 998 |\n| JSON 解析率 | 96.4%（36 parse failures） | 100% (grammar_only) |\n| Phase 2 DocRED unconstrained | **不存在** | — |\n\n**关键差异**：\n1. **输出格式不同** — 字段名变了，说明是不同版本的 `run_constrained_extraction.py` 生成\n2. **Checker 版本不同** — 报告 schema 不一致（`total_documents` vs `total_samples`）\n3. **Phase 2 没有 DocRED unconstrained 跑** — `violation_report_phase2_unconstrained.json` 是 SciERC 的（551 samples）\n4. **无法确认 prompt template 一致** — Phase 0 可能用了旧版 prompt\n\n**结论**：需要用当前 Phase 2 pipeline 补跑 `--mode unconstrained --dataset docred`，不能直接复用 Phase 0 数据作为消融表的 unconstrained 行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bug-doc-and-semantic-only-check.md"
+}

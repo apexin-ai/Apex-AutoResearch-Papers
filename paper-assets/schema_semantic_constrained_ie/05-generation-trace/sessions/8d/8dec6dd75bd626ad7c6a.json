@@ -1,0 +1,2358 @@
+{
+  "schema_version": "1.0",
+  "id": "8dec6dd75bd626ad7c6a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "research new citations bibtex",
+  "task_key": "worker_research_new_citations_bibtex_20260518T162455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_new_citations_bibtex_20260518T162455.log",
+    "occurrence": 1,
+    "bytes": 103713,
+    "sha256": "ae9a5d146df0be5b7bca4d3979c435d51cca13ab58690ce2bce3ec2003fea5b8"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 17,
+      "tool_result": 17
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4b71c29b-a80b-4c9e-be3a-0d7f08827187",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779138600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "38ac973e-11e0-45d2-9c52-eecf3062900f",
+                "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for BibTeX entries for all 9 papers. Let me start by searching for them in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "c92b3c38-0380-497b-aea8-af74e89b9c66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMCDfEhoHxdWvDcZiwtBPT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13023,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13023
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y69vUakFx2R7xiWaETCvMz",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "ff888b9d-b12e-4e25-9206-6bf6a5a8c989",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMCDfEhoHxdWvDcZiwtBPT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13023,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13023
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T16:25:09.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Y69vUakFx2R7xiWaETCvMz",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "4ac05b56-d1aa-46d7-9849-a9f2dca9ece1",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch",
+                "mcp__agent-ml-research__register_artifact",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me search for all 9 papers in parallel to get their BibTeX entries.",
+              "signature": "EoICClkIDRgCKkBTmBEYMzg91eS1g8wcYlSkE3joMCkdsU1JhMOI5sceuBzdLkK6tQm7Kg2lb0wtfeFRlcSWTD8PxLKxMz3d1ITDMg9jbGF1ZGUtb3B1cy00LTY4ABIMzP2CJAPuPqKfJQ3JGgy9Cj4auRlnfQq4q6EiMPfrVJEywfXEVnsdiL/TzKH+QTTW4+Q2S3pKu9P4Z6X16djA2u5kb5adzSfBJh6msypXtK4nd02tsGzdP94OJXqdU88wYe+eajnIct/giFC6eeXM0Upi8XuYhbMBHSkgmNDQqCC4nmUyDMX2nF5r2PZo1FYqwdVXSyyYL02idKN6t5D2m5PyVQf7GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "7d8def0b-e83b-49d8-b36f-c7f9a4608ccf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Starting parallel searches for all 9 papers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "1017871e-5c3c-4dd5-a756-7df592597b51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MhzR4TMvMcQoMKwzZFYh6V",
+              "name": "WebSearch",
+              "input": {
+                "query": "BoostCD BoostIE EMNLP 2025 constrained decoding boosting closed IE bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "6893b5fe-757f-4712-9201-5ba64aa1f2e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UZEmverxfDsZfxdkvvPs5H",
+              "name": "WebSearch",
+              "input": {
+                "query": "Grammar-Aligned Decoding ASAp NeurIPS 2024 bibtex citation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "92dd0c80-e502-4f1f-a741-1eb70f6693b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FQtEg56ZhGWVJ2kHR7YRsZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2604.03616 \"The Format Tax\" structured output bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "2248bff0-b112-4772-96d7-8134c483dbe7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J11Dsass5m3jvoU4NmN1jB",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"The Hidden Cost of Structure\" RANLP 2025 bibtex citation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "60910050-7b06-4ced-ac90-57cd2d8d330f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D4W88QNqSGhLskYbha4csu",
+              "name": "WebSearch",
+              "input": {
+                "query": "DCCD Draft-Conditioned Constrained Decoding arXiv 2603.03305 bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "a6f8ad41-9c54-4324-9d3b-8a9efdd41e33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qykbjp3uLHFFuaPpCaQauv",
+              "name": "WebSearch",
+              "input": {
+                "query": "SLOT Structuring Output Large Language Models EMNLP 2025 Industry bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "d884abb9-89a7-4157-8ce2-275078a0a69b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018rnKxjDHK8WF1KNtkH6Xqo",
+              "name": "WebSearch",
+              "input": {
+                "query": "GUIDEX Guided Synthetic Data Zero-Shot IE ACL 2025 Findings bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "49381ba6-256c-478b-b56b-eb8df3bb09b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018esZyEJmHAAG95Ugb56g57",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Schema Reinforcement Learning\" ACL 2025 Main bibtex information extraction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "bb0018cf-afb8-48a2-998e-9f5a000fce66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LnyQVbGUyAGTUZENBroZb6",
+              "name": "WebSearch",
+              "input": {
+                "query": "JSONSchemaBench arXiv 2501.10868 bibtex citation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "1171835f-2cbe-4bbd-b1af-ddeefb881913",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLh2mq4rAioyTgYh8Jb7rd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1506,
+                "cache_read_input_tokens": 24864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1506
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T16:25:18.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FQtEg56ZhGWVJ2kHR7YRsZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2604.03616 \"The Format Tax\" structured output bibtex\"\n\nLinks: [{\"title\":\"[2604.03616] The Format Tax\",\"url\":\"https://arxiv.org/abs/2604.03616\"},{\"title\":\"[2604.03616v1] The Format Tax\",\"url\":\"https://arxiv.org/abs/2604.03616v1\"},{\"title\":\"The Format Tax\",\"url\":\"https://arxiv.org/html/2604.03616\"},{\"title\":\"The Format Tax\",\"url\":\"https://arxiv.org/pdf/2604.03616\"},{\"title\":\"The Format Tax | Trending arXiv papers – Ribbit Ribbit\",\"url\":\"https://ribbitribbit.co/paper/arxiv.2604.03616-The-Format-Tax\"}]\n\nI found the paper! The paper is \"The Format Tax\" by Ivan Yee Lee, Loris D'Antoni, and Taylor Berg-Kirkpatrick from UC San Diego, submitted on April 4, 2026.\n\nThe research finds that structured output requirements like JSON, XML, LaTeX, and Markdown substantially degrade reasoning and writing performance, with format-requesting instructions alone causing most of the accuracy loss before any decoder constraint is applied. The authors propose decoupling reasoning from formatting—either by generating freeform first and reformatting in a second pass or by enabling extended thinking within a single generation—which recovers most lost accuracy across open-weight and API models.\n\nThe paper is available at: https://arxiv.org/abs/2604.03616\n\nFor a BibTeX citation, you can use:\n```\n@article{lee2026format,\n  title={The Format Tax},\n  author={Lee, Ivan Yee and D'Antoni, Loris and Berg-Kirkpatrick, Taylor},\n  journal={arXiv preprint arXiv:2604.03616},\n  year={2026}\n}\n```\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "d3e9b9b7-a66d-422a-8f22-b66b23b00195",
+            "tool_use_result": {
+              "query": "arXiv 2604.03616 \"The Format Tax\" structured output bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_012mnc25E64XGaR2S877aRqZ",
+                  "content": [
+                    {
+                      "title": "[2604.03616] The Format Tax",
+                      "url": "https://arxiv.org/abs/2604.03616"
+                    },
+                    {
+                      "title": "[2604.03616v1] The Format Tax",
+                      "url": "https://arxiv.org/abs/2604.03616v1"
+                    },
+                    {
+                      "title": "The Format Tax",
+                      "url": "https://arxiv.org/html/2604.03616"
+                    },
+                    {
+                      "title": "The Format Tax",
+                      "url": "https://arxiv.org/pdf/2604.03616"
+                    },
+                    {
+                      "title": "The Format Tax | Trending arXiv papers – Ribbit Ribbit",
+                      "url": "https://ribbitribbit.co/paper/arxiv.2604.03616-The-Format-Tax"
+                    }
+                  ]
+                },
+                "I found the paper! The paper is \"The Format Tax\" by Ivan Yee Lee, Loris D'Antoni, and Taylor Berg-Kirkpatrick from UC San Diego, submitted on April 4, 2026.\n\nThe research finds that structured output requirements like JSON, XML, LaTeX, and Markdown substantially degrade reasoning and writing performance, with format-requesting instructions alone causing most of the accuracy loss before any decoder constraint is applied. The authors propose decoupling reasoning from formatting—either by generating freeform first and reformatting in a second pass or by enabling extended thinking within a single generation—which recovers most lost accuracy across open-weight and API models.\n\nThe paper is available at: https://arxiv.org/abs/2604.03616\n\nFor a BibTeX citation, you can use:\n```\n@article{lee2026format,\n  title={The Format Tax},\n  author={Lee, Ivan Yee and D'Antoni, Loris and Berg-Kirkpatrick, Taylor},\n  journal={arXiv preprint arXiv:2604.03616},\n  year={2026}\n}\n```"
+              ],
+              "durationSeconds": 4.770236949000002
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T16:25:18.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UZEmverxfDsZfxdkvvPs5H",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Grammar-Aligned Decoding ASAp NeurIPS 2024 bibtex citation\"\n\nLinks: [{\"title\":\"[2405.21047] Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/abs/2405.21047\"},{\"title\":\"Grammar-Aligned Decoding - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240521047P/abstract\"},{\"title\":\"Grammar-Aligned Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=5G7ve8E1Lu\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"[Quick Review] Grammar-Aligned Decoding\",\"url\":\"https://liner.com/review/grammaraligned-decoding\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3737916.3738690\"},{\"title\":\"NeurIPS Poster Grammar-Aligned Decoding\",\"url\":\"https://neurips.cc/virtual/2024/poster/96599\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/html/2405.21047v3\"}]\n\nBased on the search results, I found information about the \"Grammar-Aligned Decoding\" paper with the ASAp algorithm from NeurIPS 2024. The paper is indexed as arXiv:2405.21047 and was published as a NeurIPS 2024 poster.\n\nWhile the search results confirm the paper's existence and its acceptance to NeurIPS 2024, they don't display the complete BibTeX citation in the snippets. However, you can find the official BibTeX citation in several ways:\n\n1. **arXiv page**: Visit https://arxiv.org/abs/2405.21047 and look for the \"BibTeX\" export option\n2. **OpenReview**: Visit https://openreview.net/forum?id=5G7ve8E1Lu which has a \"BibTeXCC BY 4.0\" option\n3. **NeurIPS proceedings**: Check the official NeurIPS 2024 proceedings page at papers.nips.cc\n\nThe paper's key details are: DOI: 10.48550/arXiv.2405.21047, and it was published in May 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "e488d4c7-c7c3-48a9-8e9c-c43796269785",
+            "tool_use_result": {
+              "query": "Grammar-Aligned Decoding ASAp NeurIPS 2024 bibtex citation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019KsFf6bJJqX1UHbErN2H7T",
+                  "content": [
+                    {
+                      "title": "[2405.21047] Grammar-Aligned Decoding",
+                      "url": "https://arxiv.org/abs/2405.21047"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240521047P/abstract"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding | OpenReview",
+                      "url": "https://openreview.net/forum?id=5G7ve8E1Lu"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "[Quick Review] Grammar-Aligned Decoding",
+                      "url": "https://liner.com/review/grammaraligned-decoding"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+                      "url": "https://dl.acm.org/doi/10.5555/3737916.3738690"
+                    },
+                    {
+                      "title": "NeurIPS Poster Grammar-Aligned Decoding",
+                      "url": "https://neurips.cc/virtual/2024/poster/96599"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://arxiv.org/html/2405.21047v3"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the \"Grammar-Aligned Decoding\" paper with the ASAp algorithm from NeurIPS 2024. The paper is indexed as arXiv:2405.21047 and was published as a NeurIPS 2024 poster.\n\nWhile the search results confirm the paper's existence and its acceptance to NeurIPS 2024, they don't display the complete BibTeX citation in the snippets. However, you can find the official BibTeX citation in several ways:\n\n1. **arXiv page**: Visit https://arxiv.org/abs/2405.21047 and look for the \"BibTeX\" export option\n2. **OpenReview**: Visit https://openreview.net/forum?id=5G7ve8E1Lu which has a \"BibTeXCC BY 4.0\" option\n3. **NeurIPS proceedings**: Check the official NeurIPS 2024 proceedings page at papers.nips.cc\n\nThe paper's key details are: DOI: 10.48550/arXiv.2405.21047, and it was published in May 2024."
+              ],
+              "durationSeconds": 5.378932537999999
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T16:25:20.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MhzR4TMvMcQoMKwzZFYh6V",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BoostCD BoostIE EMNLP 2025 constrained decoding boosting closed IE bibtex\"\n\nLinks: [{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/html/2506.14901v1\"},{\"title\":\"[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/abs/2506.14901\"},{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/pdf/2506.14901\"},{\"title\":\"Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164\"},{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting:\",\"url\":\"https://openreview.net/pdf?id=3Qbw5Ja6Sc\"}]\n\nI found relevant information about BoostCD and BoostIE. Here are the key findings:\n\nBoostCD is a new method for training autoregressive language models for structured NLP tasks. BoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model twice, in constrained and unconstrained mode, obtaining two weak predictions, and in phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction. The mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance.\n\nBoostCD is applied to closed information extraction (cIE) as an example of a structured task with constraints defined by the content of the knowledge base that tend to change dynamically in real-life settings. The resulting cIE model, BoostIE, is further enhanced with Direct Preference Optimization (DPO) for improving performance on out-of-distribution data. BoostIE outperforms previous methods both in-distribution (on synthetic data it was trained on) and out-of-distribution (on random Wikipedia paragraphs).\n\nThe paper appears to be published on arXiv (2506.14901) and is available through OpenReview, suggesting it may be submitted to or accepted at a conference like EMNLP 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "f828feca-b1d5-4d4d-8f90-176392e0b4f3",
+            "tool_use_result": {
+              "query": "BoostCD BoostIE EMNLP 2025 constrained decoding boosting closed IE bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Dhv2nxbTSRedimfATkzUw3",
+                  "content": [
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/html/2506.14901v1"
+                    },
+                    {
+                      "title": "[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/abs/2506.14901"
+                    },
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/pdf/2506.14901"
+                    },
+                    {
+                      "title": "Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places",
+                      "url": "https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164"
+                    },
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting:",
+                      "url": "https://openreview.net/pdf?id=3Qbw5Ja6Sc"
+                    }
+                  ]
+                },
+                "I found relevant information about BoostCD and BoostIE. Here are the key findings:\n\nBoostCD is a new method for training autoregressive language models for structured NLP tasks. BoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model twice, in constrained and unconstrained mode, obtaining two weak predictions, and in phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction. The mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance.\n\nBoostCD is applied to closed information extraction (cIE) as an example of a structured task with constraints defined by the content of the knowledge base that tend to change dynamically in real-life settings. The resulting cIE model, BoostIE, is further enhanced with Direct Preference Optimization (DPO) for improving performance on out-of-distribution data. BoostIE outperforms previous methods both in-distribution (on synthetic data it was trained on) and out-of-distribution (on random Wikipedia paragraphs).\n\nThe paper appears to be published on arXiv (2506.14901) and is available through OpenReview, suggesting it may be submitted to or accepted at a conference like EMNLP 2025."
+              ],
+              "durationSeconds": 7.059419779999998
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T16:25:20.596Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018rnKxjDHK8WF1KNtkH6Xqo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GUIDEX Guided Synthetic Data Zero-Shot IE ACL 2025 Findings bibtex\"\n\nLinks: [{\"title\":\"GUIDEX – ACL Findings 2025\",\"url\":\"https://neilus03.github.io/guidex.com/\"},{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.1245/\"},{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.1245.pdf\"},{\"title\":\"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/pdf/2506.00649\"},{\"title\":\"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/abs/2506.00649\"},{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://openreview.net/pdf?id=OBJSRNVYS5\"},{\"title\":\"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/html/2506.00649\"}]\n\nBased on the search results, I found the BibTeX citation for the GUIDEX paper. Here it is:\n\n@misc{delafuente2025guidexguidedsyntheticdata, title={GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction}, author={Neil De La Fuente and Oscar Sainz and Iker García-Ferrero and Eneko Agirre}, year={2025}, eprint={2506.00649}, archivePrefix={arXiv}, primaryClass={cs.CL}, url={https://arxiv.org/abs/2506.00649}, }\n\nAdditionally, the paper was published in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria, by the Association for Computational Linguistics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "84566d78-9052-433f-b455-1ba6eb26f837",
+            "tool_use_result": {
+              "query": "GUIDEX Guided Synthetic Data Zero-Shot IE ACL 2025 Findings bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01QcB3NsmYbnFxqMC8FxNdsP",
+                  "content": [
+                    {
+                      "title": "GUIDEX – ACL Findings 2025",
+                      "url": "https://neilus03.github.io/guidex.com/"
+                    },
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-acl.1245/"
+                    },
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+                      "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+                    },
+                    {
+                      "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/pdf/2506.00649"
+                    },
+                    {
+                      "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/abs/2506.00649"
+                    },
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://openreview.net/pdf?id=OBJSRNVYS5"
+                    },
+                    {
+                      "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/html/2506.00649"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the BibTeX citation for the GUIDEX paper. Here it is:\n\n@misc{delafuente2025guidexguidedsyntheticdata, title={GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction}, author={Neil De La Fuente and Oscar Sainz and Iker García-Ferrero and Eneko Agirre}, year={2025}, eprint={2506.00649}, archivePrefix={arXiv}, primaryClass={cs.CL}, url={https://arxiv.org/abs/2506.00649}, }\n\nAdditionally, the paper was published in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria, by the Association for Computational Linguistics."
+              ],
+              "durationSeconds": 4.742317533000001
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T16:25:21.637Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LnyQVbGUyAGTUZENBroZb6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"JSONSchemaBench arXiv 2501.10868 bibtex citation\"\n\nLinks: [{\"title\":\"[2501.10868] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://arxiv.org/abs/2501.10868\"},{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250110868G/abstract\"},{\"title\":\"epfl-dlab/JSONSchemaBench · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench\"},{\"title\":\"GitHub - guidance-ai/jsonschemabench · GitHub\",\"url\":\"https://github.com/guidance-ai/jsonschemabench\"},{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://arxiv.org/html/2501.10868v3\"},{\"title\":\"(PDF) Generating Structured Outputs from Language Models: Benchmark and Studies\",\"url\":\"https://www.researchgate.net/publication/388231978_Generating_Structured_Outputs_from_Language_Models_Benchmark_and_Studies\"},{\"title\":\"epfl-dlab/JSONSchemaBench · Add paper link and GitHub link, specify task category and license\",\"url\":\"https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench/discussions/2/files\"},{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language   Models\",\"url\":\"https://arxiv.org/pdf/2501.10868\"},{\"title\":\"[Literature Review] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://www.themoonlight.io/en/review/jsonschemabench-a-rigorous-benchmark-of-structured-outputs-for-language-models\"}]\n\nBased on the search results, here is the BibTeX citation for the JSONSchemaBench paper (arXiv 2501.10868):\n\n```bibtex\n@misc{geng2025jsonschemabench,\n  title={Generating Structured Outputs from Language Models: Benchmark and Studies},\n  author={Saibo Geng and Hudson Cooper and Michał Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n  year={2025},\n  eprint={2501.10868},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2501.10868}\n}\n```\n\nThis paper presents JSONSchemaBench, a benchmark for evaluating constrained decoding approaches for structured output generation in language models, comprising 10,000 real-world JSON schemas.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "13b26f2a-826f-44fd-bd2c-77ee4c6346f0",
+            "tool_use_result": {
+              "query": "JSONSchemaBench arXiv 2501.10868 bibtex citation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01TyzHHvViWVfsVUBXL4AhqQ",
+                  "content": [
+                    {
+                      "title": "[2501.10868] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://arxiv.org/abs/2501.10868"
+                    },
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250110868G/abstract"
+                    },
+                    {
+                      "title": "epfl-dlab/JSONSchemaBench · Datasets at Hugging Face",
+                      "url": "https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench"
+                    },
+                    {
+                      "title": "GitHub - guidance-ai/jsonschemabench · GitHub",
+                      "url": "https://github.com/guidance-ai/jsonschemabench"
+                    },
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://arxiv.org/html/2501.10868v3"
+                    },
+                    {
+                      "title": "(PDF) Generating Structured Outputs from Language Models: Benchmark and Studies",
+                      "url": "https://www.researchgate.net/publication/388231978_Generating_Structured_Outputs_from_Language_Models_Benchmark_and_Studies"
+                    },
+                    {
+                      "title": "epfl-dlab/JSONSchemaBench · Add paper link and GitHub link, specify task category and license",
+                      "url": "https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench/discussions/2/files"
+                    },
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language   Models",
+                      "url": "https://arxiv.org/pdf/2501.10868"
+                    },
+                    {
+                      "title": "[Literature Review] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://www.themoonlight.io/en/review/jsonschemabench-a-rigorous-benchmark-of-structured-outputs-for-language-models"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the BibTeX citation for the JSONSchemaBench paper (arXiv 2501.10868):\n\n```bibtex\n@misc{geng2025jsonschemabench,\n  title={Generating Structured Outputs from Language Models: Benchmark and Studies},\n  author={Saibo Geng and Hudson Cooper and Michał Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n  year={2025},\n  eprint={2501.10868},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2501.10868}\n}\n```\n\nThis paper presents JSONSchemaBench, a benchmark for evaluating constrained decoding approaches for structured output generation in language models, comprising 10,000 real-world JSON schemas."
+              ],
+              "durationSeconds": 5.151659168999998
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T16:25:21.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qykbjp3uLHFFuaPpCaQauv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SLOT Structuring Output Large Language Models EMNLP 2025 Industry bibtex\"\n\nLinks: [{\"title\":\"SLOT: Structuring the Output of Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.32/\"},{\"title\":\"SLOT: Structuring the Output of Large Language Models\",\"url\":\"https://arxiv.org/html/2505.04016v1\"},{\"title\":\"SLOT: Structuring the Output of Large Language Models\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.32.pdf\"},{\"title\":\"2025.emnlp-industry.0.pdf\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.0.pdf\"},{\"title\":\"SLOT: Structuring the Output of Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397423713_SLOT_Structuring_the_Output_of_Large_Language_Models\"},{\"title\":\"Accepted Industry Track Papers - EMNLP 2025\",\"url\":\"https://2025.emnlp.org/program/ind_papers/\"},{\"title\":\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.emnlp-industry/\"},{\"title\":\"(PDF) SLOT: Structuring the Output of Large Language Models\",\"url\":\"https://www.researchgate.net/publication/391530964_SLOT_Structuring_the_Output_of_Large_Language_Models\"}]\n\nBased on the search results, I found the bibtex citation for the SLOT paper from EMNLP 2025 Industry Track:\n\n@inproceedings{shen-etal-2025-slot,\ntitle = \"{SLOT}: Structuring the Output of Large Language Models\",\nauthor = \"Shen, Zhengyuan and Wang, Darren Yow-Bang and Mishra, Soumya Smruti and Xu, Zhichao and Teng, Yifei and Ding, Haibo\",\neditor = \"Potdar, Saloni and Rojas-Barahona, Lina and Montella, Sebastien\",\nbooktitle = \"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track\",\nmonth = nov,\nyear = \"2025\",\naddress = \"Suzhou (China)\",\npublisher = \"Association for Computational Linguistics\",\nurl = \"https://aclanthology.org/2025.emnlp-industry.32/\",\ndoi = \"10.18653/v1/2025.emnlp-industry.32\",\npages = \"472--491\",\nISBN = \"979-8-89176-333-3\"\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "a6d4cdb6-d240-44ee-9af6-8772f11cac83",
+            "tool_use_result": {
+              "query": "SLOT Structuring Output Large Language Models EMNLP 2025 Industry bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LfkFMrMF9iaxcz7JwpESVA",
+                  "content": [
+                    {
+                      "title": "SLOT: Structuring the Output of Large Language Models - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.emnlp-industry.32/"
+                    },
+                    {
+                      "title": "SLOT: Structuring the Output of Large Language Models",
+                      "url": "https://arxiv.org/html/2505.04016v1"
+                    },
+                    {
+                      "title": "SLOT: Structuring the Output of Large Language Models",
+                      "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+                    },
+                    {
+                      "title": "2025.emnlp-industry.0.pdf",
+                      "url": "https://aclanthology.org/2025.emnlp-industry.0.pdf"
+                    },
+                    {
+                      "title": "SLOT: Structuring the Output of Large Language Models | Request PDF",
+                      "url": "https://www.researchgate.net/publication/397423713_SLOT_Structuring_the_Output_of_Large_Language_Models"
+                    },
+                    {
+                      "title": "Accepted Industry Track Papers - EMNLP 2025",
+                      "url": "https://2025.emnlp.org/program/ind_papers/"
+                    },
+                    {
+                      "title": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track - ACL Anthology",
+                      "url": "https://aclanthology.org/volumes/2025.emnlp-industry/"
+                    },
+                    {
+                      "title": "(PDF) SLOT: Structuring the Output of Large Language Models",
+                      "url": "https://www.researchgate.net/publication/391530964_SLOT_Structuring_the_Output_of_Large_Language_Models"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the bibtex citation for the SLOT paper from EMNLP 2025 Industry Track:\n\n@inproceedings{shen-etal-2025-slot,\ntitle = \"{SLOT}: Structuring the Output of Large Language Models\",\nauthor = \"Shen, Zhengyuan and Wang, Darren Yow-Bang and Mishra, Soumya Smruti and Xu, Zhichao and Teng, Yifei and Ding, Haibo\",\neditor = \"Potdar, Saloni and Rojas-Barahona, Lina and Montella, Sebastien\",\nbooktitle = \"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track\",\nmonth = nov,\nyear = \"2025\",\naddress = \"Suzhou (China)\",\npublisher = \"Association for Computational Linguistics\",\nurl = \"https://aclanthology.org/2025.emnlp-industry.32/\",\ndoi = \"10.18653/v1/2025.emnlp-industry.32\",\npages = \"472--491\",\nISBN = \"979-8-89176-333-3\""
+              ],
+              "durationSeconds": 6.556440593000001
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T16:25:22.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D4W88QNqSGhLskYbha4csu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DCCD Draft-Conditioned Constrained Decoding arXiv 2603.03305 bibtex\"\n\nLinks: [{\"title\":\"[2603.03305] Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\",\"url\":\"https://arxiv.org/abs/2603.03305\"},{\"title\":\"Appendix\",\"url\":\"https://arxiv.org/html/2603.03305\"},{\"title\":\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\",\"url\":\"https://arxiv.org/pdf/2603.03305\"},{\"title\":\"Constrained Decoding Mechanism\",\"url\":\"https://www.emergentmind.com/topics/constrained-decoding-mechanism\"},{\"title\":\"Efficient and Asymptotically Unbiased Constrained Decoding for Large   Language Models\",\"url\":\"https://arxiv.org/pdf/2504.09135\"},{\"title\":\"Constrained Decoding with Speculative Lookaheads\",\"url\":\"https://arxiv.org/pdf/2412.10418\"}]\n\nBased on the search results, I found the paper you're looking for. Here's the information about Draft-Conditioned Constrained Decoding (DCCD), a simple two-step, training-free inference procedure that decouples semantic planning from structural enforcement: an unconstrained draft is generated first, and constrained decoding is then applied, conditioned on this draft, to guarantee validity.\n\nThe paper is available on arXiv with ID **2603.03305**. It was submitted on February 8, 2026, and was authored by Avinash Reddy, Thayne T. Walker, James S. Ide, and Amrit Singh Bedi.\n\nYou can access the paper at:\n- **Abstract**: https://arxiv.org/abs/2603.03305\n- **PDF**: https://arxiv.org/pdf/2603.03305\n- **HTML**: https://arxiv.org/html/2603.03305\n\nFor the BibTeX citation, you can typically find it on the arXiv abstract page by clicking the \"BibTeX\" link in the sidebar, or it would follow this format:\n\n```\n@article{reddy2026dccd,\n  title={Draft-Conditioned Constrained Decoding for Structured Generation in LLMs},\n  author={Reddy, Avinash and Walker, Thayne T. and Ide, James S. and Bedi, Amrit Singh},\n  journal={arXiv preprint arXiv:2603.03305},\n  year={2026}\n}\n```\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "a64d1422-8af1-4e69-8d25-af3e1bcb1c1b",
+            "tool_use_result": {
+              "query": "DCCD Draft-Conditioned Constrained Decoding arXiv 2603.03305 bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01J6tMCeN5SqKqK4LML19gWp",
+                  "content": [
+                    {
+                      "title": "[2603.03305] Draft-Conditioned Constrained Decoding for Structured Generation in LLMs",
+                      "url": "https://arxiv.org/abs/2603.03305"
+                    },
+                    {
+                      "title": "Appendix",
+                      "url": "https://arxiv.org/html/2603.03305"
+                    },
+                    {
+                      "title": "Draft-Conditioned Constrained Decoding for Structured Generation in LLMs",
+                      "url": "https://arxiv.org/pdf/2603.03305"
+                    },
+                    {
+                      "title": "Constrained Decoding Mechanism",
+                      "url": "https://www.emergentmind.com/topics/constrained-decoding-mechanism"
+                    },
+                    {
+                      "title": "Efficient and Asymptotically Unbiased Constrained Decoding for Large   Language Models",
+                      "url": "https://arxiv.org/pdf/2504.09135"
+                    },
+                    {
+                      "title": "Constrained Decoding with Speculative Lookaheads",
+                      "url": "https://arxiv.org/pdf/2412.10418"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for. Here's the information about Draft-Conditioned Constrained Decoding (DCCD), a simple two-step, training-free inference procedure that decouples semantic planning from structural enforcement: an unconstrained draft is generated first, and constrained decoding is then applied, conditioned on this draft, to guarantee validity.\n\nThe paper is available on arXiv with ID **2603.03305**. It was submitted on February 8, 2026, and was authored by Avinash Reddy, Thayne T. Walker, James S. Ide, and Amrit Singh Bedi.\n\nYou can access the paper at:\n- **Abstract**: https://arxiv.org/abs/2603.03305\n- **PDF**: https://arxiv.org/pdf/2603.03305\n- **HTML**: https://arxiv.org/html/2603.03305\n\nFor the BibTeX citation, you can typically find it on the arXiv abstract page by clicking the \"BibTeX\" link in the sidebar, or it would follow this format:\n\n```\n@article{reddy2026dccd,\n  title={Draft-Conditioned Constrained Decoding for Structured Generation in LLMs},\n  author={Reddy, Avinash and Walker, Thayne T. and Ide, James S. and Bedi, Amrit Singh},\n  journal={arXiv preprint arXiv:2603.03305},\n  year={2026}\n}\n```"
+              ],
+              "durationSeconds": 7.110622648999999
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T16:25:22.607Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018esZyEJmHAAG95Ugb56g57",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Schema Reinforcement Learning\" ACL 2025 Main bibtex information extraction\"\n\nLinks: [{\"title\":\"Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.243/\"},{\"title\":\"Accepted Main Conference Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/main_papers/\"},{\"title\":\"[2502.18878] Learning to Generate Structured Output with Schema Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2502.18878\"},{\"title\":\"GitHub - thunlp/SchemaReinforcementLearning: Learning to Generate STRUCTURED Output with Schema Reinforcement Learning\",\"url\":\"https://github.com/thunlp/SchemaReinforcementLearning\"},{\"title\":\"Reinforcement Learning with Supervised Alignment - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.378/\"},{\"title\":\"Improving the Language Understanding Capabilities of Large Language Models Using Reinforcement Learning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.1392/\"},{\"title\":\"REARANK: Reasoning Re-ranking Agent via Reinforcement Learning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.125/\"}]\n\nBased on the search results, I found the BibTeX information for the \"Schema Reinforcement Learning\" paper presented at ACL 2025:\n\n## BibTeX Entry (ACL Main Conference)\n\nThe complete BibTeX entry for the ACL 2025 main conference paper is:\n\n```bibtex\n@inproceedings{lu-etal-2025-learning,\n  title = \"Learning to Generate Structured Output with Schema Reinforcement Learning\",\n  author = \"Lu, Yaxi and Li, Haolun and Cong, Xin and Zhang, Zhong and Wu, Yesai and Lin, Yankai and Liu, Zhiyuan and Liu, Fangming and Sun, Maosong\",\n  editor = \"Che, Wanxiang and Nabende, Joyce and Shutova, Ekaterina and Pilehvar, Mohammad Taher\",\n  booktitle = \"Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)\",\n  month = jul,\n  year = \"2025\",\n  address = \"Vienna, Austria\",\n  publisher = \"Association for Computational Linguistics\",\n  url = \"https://aclanthology.org/2025.acl-long.243/\",\n  doi = \"10.18653/v1/2025.acl-long.243\",\n  pages = \"4905--4918\",\n  ISBN = \"979-8-89176-251-0\"\n}\n```\n\nThe paper focuses on the structured generation capabilities of large language models (LLMs), focusing on producing valid JSON outputs against a given schema.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "1281efba-d6b5-4bbd-af5b-b0446f150e38",
+            "tool_use_result": {
+              "query": "\"Schema Reinforcement Learning\" ACL 2025 Main bibtex information extraction",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0143ivahK5fUMMxQuT1NJ234",
+                  "content": [
+                    {
+                      "title": "Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.acl-long.243/"
+                    },
+                    {
+                      "title": "Accepted Main Conference Papers - ACL 2025",
+                      "url": "https://2025.aclweb.org/program/main_papers/"
+                    },
+                    {
+                      "title": "[2502.18878] Learning to Generate Structured Output with Schema Reinforcement Learning",
+                      "url": "https://arxiv.org/abs/2502.18878"
+                    },
+                    {
+                      "title": "GitHub - thunlp/SchemaReinforcementLearning: Learning to Generate STRUCTURED Output with Schema Reinforcement Learning",
+                      "url": "https://github.com/thunlp/SchemaReinforcementLearning"
+                    },
+                    {
+                      "title": "Reinforcement Learning with Supervised Alignment - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-emnlp.378/"
+                    },
+                    {
+                      "title": "Improving the Language Understanding Capabilities of Large Language Models Using Reinforcement Learning - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-emnlp.1392/"
+                    },
+                    {
+                      "title": "REARANK: Reasoning Re-ranking Agent via Reinforcement Learning - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.emnlp-main.125/"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the BibTeX information for the \"Schema Reinforcement Learning\" paper presented at ACL 2025:\n\n## BibTeX Entry (ACL Main Conference)\n\nThe complete BibTeX entry for the ACL 2025 main conference paper is:\n\n```bibtex\n@inproceedings{lu-etal-2025-learning,\n  title = \"Learning to Generate Structured Output with Schema Reinforcement Learning\",\n  author = \"Lu, Yaxi and Li, Haolun and Cong, Xin and Zhang, Zhong and Wu, Yesai and Lin, Yankai and Liu, Zhiyuan and Liu, Fangming and Sun, Maosong\",\n  editor = \"Che, Wanxiang and Nabende, Joyce and Shutova, Ekaterina and Pilehvar, Mohammad Taher\",\n  booktitle = \"Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)\",\n  month = jul,\n  year = \"2025\",\n  address = \"Vienna, Austria\",\n  publisher = \"Association for Computational Linguistics\",\n  url = \"https://aclanthology.org/2025.acl-long.243/\",\n  doi = \"10.18653/v1/2025.acl-long.243\",\n  pages = \"4905--4918\",\n  ISBN = \"979-8-89176-251-0\"\n}\n```\n\nThe paper focuses on the structured generation capabilities of large language models (LLMs), focusing on producing valid JSON outputs against a given schema."
+              ],
+              "durationSeconds": 6.271470808000002
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T16:25:22.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J11Dsass5m3jvoU4NmN1jB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"The Hidden Cost of Structure\" RANLP 2025 bibtex citation\"\n\nLinks: [{\"title\":\"Accepted papers\",\"url\":\"https://ranlp.org/ranlp2025/index.php/accepted-papers/\"},{\"title\":\"RANLP 2025 Natural Language Processing in the Generative ...\",\"url\":\"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.0.pdf\"},{\"title\":\"Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084\",\"url\":\"https://aclanthology.org/2025.ranlp-1.124.pdf\"},{\"title\":\"A Study to Assess the Safety and Immune Response to Env-C DNA and Protein Vaccines in Kenya\",\"url\":\"https://cdn.clinicaltrials.gov/large-docs/94/NCT04826094/SAP_001.pdf\"},{\"title\":\"An active inference approach to modeling structure learning: concept learning as an example case\",\"url\":\"https://www.biorxiv.org/content/10.1101/633677.full.pdf\"},{\"title\":\"Low-Rank Constraints for Fast Inference in Structured Models\",\"url\":\"https://arxiv.org/pdf/2201.02715\"},{\"title\":\"Finding Structure in Language Models\",\"url\":\"https://arxiv.org/pdf/2411.16433\"},{\"title\":\"Decoding the Neural Dynamics of Headed Syntactic Structure Building\",\"url\":\"https://www.biorxiv.org/content/10.1101/2024.11.07.622560.full.pdf\"}]\n\nBased on the search results, I found the paper \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\" by Maximilian Schall and Gerard de Melo, published at RANLP 2025. However, the search results do not contain the complete BibTeX citation. \n\nTo provide you with the BibTeX citation, let me search for more specific information:\n\nLinks: [{\"title\":\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.ranlp-1.124/\"},{\"title\":\"Accepted papers\",\"url\":\"https://ranlp.org/ranlp2025/index.php/accepted-papers/\"},{\"title\":\"Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084\",\"url\":\"https://aclanthology.org/2025.ranlp-1.124.pdf\"},{\"title\":\"Ranlp\",\"url\":\"https://ranlp.org/ranlp2025/wp-content/uploads/2025/05/ranlp2025-word.docx\"},{\"title\":\"RANLP 2025 Natural Language Processing in the ...\",\"url\":\"https://aclanthology.org/2025.ranlp-1.0.pdf\"},{\"title\":\"dblp: RANLP 2025\",\"url\":\"https://dblp.org/db/conf/ranlp/ranlp2025.html\"},{\"title\":\"RANLP 2025 Programme\",\"url\":\"https://ranlp.org/ranlp2025/wp-content/uploads/2025/10/Full_RANLP_2025_Programme.pdf\"},{\"title\":\"dblp: BibTeX records: Gerard de Melo\",\"url\":\"https://dblp.org/pid/86/1747.html?view=bibtex\"}]\n\nPerfect! I found the complete BibTeX citation. The BibTeX citation for \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\" by Schall and de Melo at RANLP 2025 is:\n\n```\n@inproceedings{schall-de-melo-2025-hidden,\n  title = \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\",\n  author = \"Schall, Maximilian and de Melo, Gerard\",\n  editor = \"Angelova, Galia and Kunilovskaya, Maria and Escribe, Marie and Mitkov, Ruslan\",\n  booktitle = \"Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing - Natural Language Processing in the Generative AI Era\",\n  month = sep,\n  year = \"2025\",\n  address = \"Varna, Bulgaria\",\n  publisher = \"INCOMA Ltd., Shoumen, Bulgaria\",\n  url = \"https://aclanthology.org/2025.ranlp-1.124/\",\n  pages = \"1074--1084\"\n}\n```\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "fd47529b-623f-420f-a089-bc3f03860366",
+            "tool_use_result": {
+              "query": "\"The Hidden Cost of Structure\" RANLP 2025 bibtex citation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VZDUZiknjNpsoiQJAS1xNT",
+                  "content": [
+                    {
+                      "title": "Accepted papers",
+                      "url": "https://ranlp.org/ranlp2025/index.php/accepted-papers/"
+                    },
+                    {
+                      "title": "RANLP 2025 Natural Language Processing in the Generative ...",
+                      "url": "https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.0.pdf"
+                    },
+                    {
+                      "title": "Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084",
+                      "url": "https://aclanthology.org/2025.ranlp-1.124.pdf"
+                    },
+                    {
+                      "title": "A Study to Assess the Safety and Immune Response to Env-C DNA and Protein Vaccines in Kenya",
+                      "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT04826094/SAP_001.pdf"
+                    },
+                    {
+                      "title": "An active inference approach to modeling structure learning: concept learning as an example case",
+                      "url": "https://www.biorxiv.org/content/10.1101/633677.full.pdf"
+                    },
+                    {
+                      "title": "Low-Rank Constraints for Fast Inference in Structured Models",
+                      "url": "https://arxiv.org/pdf/2201.02715"
+                    },
+                    {
+                      "title": "Finding Structure in Language Models",
+                      "url": "https://arxiv.org/pdf/2411.16433"
+                    },
+                    {
+                      "title": "Decoding the Neural Dynamics of Headed Syntactic Structure Building",
+                      "url": "https://www.biorxiv.org/content/10.1101/2024.11.07.622560.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\" by Maximilian Schall and Gerard de Melo, published at RANLP 2025. However, the search results do not contain the complete BibTeX citation. \n\nTo provide you with the BibTeX citation, let me search for more specific information:",
+                {
+                  "tool_use_id": "srvtoolu_01LtzwWy11MkEkMBVVAwPWei",
+                  "content": [
+                    {
+                      "title": "The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.ranlp-1.124/"
+                    },
+                    {
+                      "title": "Accepted papers",
+                      "url": "https://ranlp.org/ranlp2025/index.php/accepted-papers/"
+                    },
+                    {
+                      "title": "Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084",
+                      "url": "https://aclanthology.org/2025.ranlp-1.124.pdf"
+                    },
+                    {
+                      "title": "Ranlp",
+                      "url": "https://ranlp.org/ranlp2025/wp-content/uploads/2025/05/ranlp2025-word.docx"
+                    },
+                    {
+                      "title": "RANLP 2025 Natural Language Processing in the ...",
+                      "url": "https://aclanthology.org/2025.ranlp-1.0.pdf"
+                    },
+                    {
+                      "title": "dblp: RANLP 2025",
+                      "url": "https://dblp.org/db/conf/ranlp/ranlp2025.html"
+                    },
+                    {
+                      "title": "RANLP 2025 Programme",
+                      "url": "https://ranlp.org/ranlp2025/wp-content/uploads/2025/10/Full_RANLP_2025_Programme.pdf"
+                    },
+                    {
+                      "title": "dblp: BibTeX records: Gerard de Melo",
+                      "url": "https://dblp.org/pid/86/1747.html?view=bibtex"
+                    }
+                  ]
+                },
+                "Perfect! I found the complete BibTeX citation. The BibTeX citation for \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\" by Schall and de Melo at RANLP 2025 is:\n\n```\n@inproceedings{schall-de-melo-2025-hidden,\n  title = \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\",\n  author = \"Schall, Maximilian and de Melo, Gerard\",\n  editor = \"Angelova, Galia and Kunilovskaya, Maria and Escribe, Marie and Mitkov, Ruslan\",\n  booktitle = \"Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing - Natural Language Processing in the Generative AI Era\",\n  month = sep,\n  year = \"2025\",\n  address = \"Varna, Bulgaria\",\n  publisher = \"INCOMA Ltd., Shoumen, Bulgaria\",\n  url = \"https://aclanthology.org/2025.ranlp-1.124/\",\n  pages = \"1074--1084\"\n}\n```"
+              ],
+              "durationSeconds": 8.323588412000001
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have most of the information. Let me now get more details for a few papers where I need more complete information:\n\n1. **BoostCD** - I need full author list and venue details. Let me fetch the arXiv page.\n2. **Grammar-Aligned Decoding (ASAp)** - I need full author list and NeurIPS proceedings details. Let me fetch the proceedings page.\n3. **The Format Tax** - I have basic info but need to verify full author list.\n4. **The Hidden Cost of Structure** - I have the complete BibTeX from ACL Anthology.\n\n\n5. **DCCD** - I need to verify the full author list.\n6. **SLOT** - I have the complete BibTeX from ACL Anthology.\n7. **GUIDEX** - I need to find the ACL Anthology BibTeX.\n8. **Schema Reinforcement Learning** - I have the complete BibTeX from ACL Anthology.\n9. **JSONSchemaBench** - I need to note that the paper appears to have been renamed from its original title.\n\nLet me search for the missing details on these papers.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "e8177d09-a442-442e-98cc-714d6952bdc2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good results for most papers. Let me get more details for BoostCD, Grammar-Aligned Decoding, and GUIDEX from their official sources."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "c5047e0c-38cc-4da9-943a-f47396f8db95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014w37DEENpjGjnF5AZBVyxJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "BoostCD \"Combining Constrained and Unconstrained Decoding via Boosting\" authors Marija Sakota EMNLP 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "6407e612-c4d5-421a-b93a-575ec9cbd37a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LYKCMVfjoeMddGDfadNnmp",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:proceedings.neurips.cc \"Grammar-Aligned Decoding\" 2024 authors bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "3fd714b7-baa1-40ac-b180-13d1e9a099b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PQRBuLqcans3jKtXrwvfkS",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:aclanthology.org \"GUIDEX\" \"Guided Synthetic Data\" 2025 findings ACL bibtex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "cdf642d7-3acd-4e7c-baab-c9977fb45867",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P7cCCcGeoJrBnCsDT25Mox",
+              "name": "WebSearch",
+              "input": {
+                "query": "JSONSchemaBench \"JSONSchemaBench: A Rigorous Benchmark\" authors Geng Cooper Moskal bibtex 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "a1d2738d-a9e8-4068-9f0c-adcab9188aa8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JeMchX8v9jGBLMQydD8SQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3520,
+                "cache_creation_input_tokens": 3732,
+                "cache_read_input_tokens": 26370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3732
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T16:25:37.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014w37DEENpjGjnF5AZBVyxJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BoostCD \"Combining Constrained and Unconstrained Decoding via Boosting\" authors Marija Sakota EMNLP 2025\"\n\nLinks: [{\"title\":\"[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/abs/2506.14901\"},{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/html/2506.14901v1\"},{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting:\",\"url\":\"https://openreview.net/pdf?id=3Qbw5Ja6Sc\"},{\"title\":\"Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164\"},{\"title\":\"Combining Constrained and Unconstrained Decoding via ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.926.pdf\"},{\"title\":\"Constrained Decoding Mechanism\",\"url\":\"https://www.emergentmind.com/topics/constrained-decoding-mechanism\"},{\"title\":\"Constrained Decoding in Sequence Generation\",\"url\":\"https://www.emergentmind.com/topics/constrained-decoding\"}]\n\nI found the paper you're looking for! Here's what I found:\n\nThe paper \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\" is by Marija Šakota and 1 other author. The paper is available on arXiv (paper ID 2506.14901) and appears to have been published in EMNLP 2025, as indicated by the link to the ACL Anthology (2025.emnlp-main.926).\n\nBoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model twice, in constrained and unconstrained mode, obtaining two weak predictions. In phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction.\n\nThe mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "e59a18dd-6c7a-4257-a160-8a52b700b075",
+            "tool_use_result": {
+              "query": "BoostCD \"Combining Constrained and Unconstrained Decoding via Boosting\" authors Marija Sakota EMNLP 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018w1UxYDBtU3AWx16ptouxN",
+                  "content": [
+                    {
+                      "title": "[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/abs/2506.14901"
+                    },
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/html/2506.14901v1"
+                    },
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting:",
+                      "url": "https://openreview.net/pdf?id=3Qbw5Ja6Sc"
+                    },
+                    {
+                      "title": "Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places",
+                      "url": "https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164"
+                    },
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via ...",
+                      "url": "https://aclanthology.org/2025.emnlp-main.926.pdf"
+                    },
+                    {
+                      "title": "Constrained Decoding Mechanism",
+                      "url": "https://www.emergentmind.com/topics/constrained-decoding-mechanism"
+                    },
+                    {
+                      "title": "Constrained Decoding in Sequence Generation",
+                      "url": "https://www.emergentmind.com/topics/constrained-decoding"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here's what I found:\n\nThe paper \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\" is by Marija Šakota and 1 other author. The paper is available on arXiv (paper ID 2506.14901) and appears to have been published in EMNLP 2025, as indicated by the link to the ACL Anthology (2025.emnlp-main.926).\n\nBoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model twice, in constrained and unconstrained mode, obtaining two weak predictions. In phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction.\n\nThe mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance."
+              ],
+              "durationSeconds": 5.665151210000004
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T16:25:38.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LYKCMVfjoeMddGDfadNnmp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:proceedings.neurips.cc \"Grammar-Aligned Decoding\" 2024 authors bibtex\"\n\nLinks: [{\"title\":\"Grammar-Aligned Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=5G7ve8E1Lu\"},{\"title\":\"[Quick Review] Grammar-Aligned Decoding\",\"url\":\"https://liner.com/review/grammaraligned-decoding\"},{\"title\":\"NeurIPS Poster Grammar-Aligned Decoding\",\"url\":\"https://neurips.cc/virtual/2024/poster/96599\"},{\"title\":\"Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3737916.3738690\"},{\"title\":\"(PDF) Grammar-Aligned Decoding\",\"url\":\"https://www.researchgate.net/publication/381108984_Grammar-Aligned_Decoding\"},{\"title\":\"[2405.21047] Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/abs/2405.21047\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/html/2405.21047v3\"}]\n\nI found information about the \"Grammar-Aligned Decoding\" paper from NeurIPS 2024. Here's what I found:\n\nThe paper is titled \"Grammar-Aligned Decoding\" by Kanghee Park and 4 other authors. The paper was published on September 25, 2024 as a NeurIPS 2024 poster.\n\nThe paper is available on the NeurIPS proceedings at `proceedings.neurips.cc`, and you can also find it on arXiv (paper 2405.21047).\n\nTo get the complete bibtex citation and full author list, you can access:\n- The NeurIPS proceedings page at proceedings.neurips.cc\n- The OpenReview page (which has a BibTeX option listed)\n- The arXiv page with export BibTeX citation option\n\nThese sources should provide you with the complete bibtex entry and all author names for proper citation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "25a47078-7144-4b4b-ab61-f88583f0b067",
+            "tool_use_result": {
+              "query": "site:proceedings.neurips.cc \"Grammar-Aligned Decoding\" 2024 authors bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Xwnh3QXJGEzKSCa5ssMrDf",
+                  "content": [
+                    {
+                      "title": "Grammar-Aligned Decoding | OpenReview",
+                      "url": "https://openreview.net/forum?id=5G7ve8E1Lu"
+                    },
+                    {
+                      "title": "[Quick Review] Grammar-Aligned Decoding",
+                      "url": "https://liner.com/review/grammaraligned-decoding"
+                    },
+                    {
+                      "title": "NeurIPS Poster Grammar-Aligned Decoding",
+                      "url": "https://neurips.cc/virtual/2024/poster/96599"
+                    },
+                    {
+                      "title": "Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+                      "url": "https://dl.acm.org/doi/10.5555/3737916.3738690"
+                    },
+                    {
+                      "title": "(PDF) Grammar-Aligned Decoding",
+                      "url": "https://www.researchgate.net/publication/381108984_Grammar-Aligned_Decoding"
+                    },
+                    {
+                      "title": "[2405.21047] Grammar-Aligned Decoding",
+                      "url": "https://arxiv.org/abs/2405.21047"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://arxiv.org/html/2405.21047v3"
+                    }
+                  ]
+                },
+                "I found information about the \"Grammar-Aligned Decoding\" paper from NeurIPS 2024. Here's what I found:\n\nThe paper is titled \"Grammar-Aligned Decoding\" by Kanghee Park and 4 other authors. The paper was published on September 25, 2024 as a NeurIPS 2024 poster.\n\nThe paper is available on the NeurIPS proceedings at `proceedings.neurips.cc`, and you can also find it on arXiv (paper 2405.21047).\n\nTo get the complete bibtex citation and full author list, you can access:\n- The NeurIPS proceedings page at proceedings.neurips.cc\n- The OpenReview page (which has a BibTeX option listed)\n- The arXiv page with export BibTeX citation option\n\nThese sources should provide you with the complete bibtex entry and all author names for proper citation."
+              ],
+              "durationSeconds": 5.421700970999998
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T16:25:40.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P7cCCcGeoJrBnCsDT25Mox",
+              "type": "tool_result",
+              "content": "Web search results for query: \"JSONSchemaBench \"JSONSchemaBench: A Rigorous Benchmark\" authors Geng Cooper Moskal bibtex 2025\"\n\nLinks: [{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://arxiv.org/html/2501.10868v3\"},{\"title\":\"Learning to Generate Structured Output with Schema ...\",\"url\":\"https://aclanthology.org/2025.acl-long.243.pdf\"},{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250110868G/abstract\"},{\"title\":\"DeepJSONEval: Benchmarking Complex Nested JSON Data Mining for Large Language Models\",\"url\":\"https://arxiv.org/html/2509.25922v1\"},{\"title\":\"GitHub - epfl-dlab/jsonschemabench\",\"url\":\"https://github.com/epfl-dlab/jsonschemabench\"},{\"title\":\"[2501.10868] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://arxiv.org/abs/2501.10868\"},{\"title\":\"GitHub - guidance-ai/jsonschemabench · GitHub\",\"url\":\"https://github.com/guidance-ai/jsonschemabench\"},{\"title\":\"[Literature Review] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\",\"url\":\"https://www.themoonlight.io/en/review/jsonschemabench-a-rigorous-benchmark-of-structured-outputs-for-language-models\"},{\"title\":\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language   Models\",\"url\":\"https://arxiv.org/pdf/2501.10868\"},{\"title\":\"1 LLMStructBench: Benchmarking Large Language Model Structured Data Extraction\",\"url\":\"https://arxiv.org/pdf/2602.14743\"}]\n\nBased on the search results, I found the information about the JSONSchemaBench paper and its BibTeX entry.\n\n## Paper Details\n\n**Title:** JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\n\n**Authors:** Saibo Geng, Hudson Cooper, Michał Moskal, Samuel Jenkins, Julian Berman, Nathan Ranchin, Robert West, Eric Horvitz, Harsha Nori\n\n**Published:** 2025 (arXiv preprint)\n\n## BibTeX Entry\n\n\n```\n@misc{geng2025jsonschemabench,\n  title={Generating Structured Outputs from Language Models: Benchmark and Studies},\n  author={Saibo Geng and Hudson Cooper and Michał Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n  year={2025},\n  eprint={2501.10868},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2501.10868},\n}\n```\n\n\nThe paper presents a systematic evaluation framework for constrained decoding in language models using JSON Schema as a structured data format, aimed at ensuring that language models can produce valid structured outputs that comply with predefined constraints.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "29d2c783-2cde-48b4-9c1e-0df264481631",
+            "tool_use_result": {
+              "query": "JSONSchemaBench \"JSONSchemaBench: A Rigorous Benchmark\" authors Geng Cooper Moskal bibtex 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Kiy2V1bFqu5b3ArmH3zQHZ",
+                  "content": [
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://arxiv.org/html/2501.10868v3"
+                    },
+                    {
+                      "title": "Learning to Generate Structured Output with Schema ...",
+                      "url": "https://aclanthology.org/2025.acl-long.243.pdf"
+                    },
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250110868G/abstract"
+                    },
+                    {
+                      "title": "DeepJSONEval: Benchmarking Complex Nested JSON Data Mining for Large Language Models",
+                      "url": "https://arxiv.org/html/2509.25922v1"
+                    },
+                    {
+                      "title": "GitHub - epfl-dlab/jsonschemabench",
+                      "url": "https://github.com/epfl-dlab/jsonschemabench"
+                    },
+                    {
+                      "title": "[2501.10868] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://arxiv.org/abs/2501.10868"
+                    },
+                    {
+                      "title": "GitHub - guidance-ai/jsonschemabench · GitHub",
+                      "url": "https://github.com/guidance-ai/jsonschemabench"
+                    },
+                    {
+                      "title": "[Literature Review] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models",
+                      "url": "https://www.themoonlight.io/en/review/jsonschemabench-a-rigorous-benchmark-of-structured-outputs-for-language-models"
+                    },
+                    {
+                      "title": "JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language   Models",
+                      "url": "https://arxiv.org/pdf/2501.10868"
+                    },
+                    {
+                      "title": "1 LLMStructBench: Benchmarking Large Language Model Structured Data Extraction",
+                      "url": "https://arxiv.org/pdf/2602.14743"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the information about the JSONSchemaBench paper and its BibTeX entry.\n\n## Paper Details\n\n**Title:** JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\n\n**Authors:** Saibo Geng, Hudson Cooper, Michał Moskal, Samuel Jenkins, Julian Berman, Nathan Ranchin, Robert West, Eric Horvitz, Harsha Nori\n\n**Published:** 2025 (arXiv preprint)\n\n## BibTeX Entry\n\n\n```\n@misc{geng2025jsonschemabench,\n  title={Generating Structured Outputs from Language Models: Benchmark and Studies},\n  author={Saibo Geng and Hudson Cooper and Michał Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n  year={2025},\n  eprint={2501.10868},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2501.10868},\n}\n```\n\n\nThe paper presents a systematic evaluation framework for constrained decoding in language models using JSON Schema as a structured data format, aimed at ensuring that language models can produce valid structured outputs that comply with predefined constraints."
+              ],
+              "durationSeconds": 5.753490706999997
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T16:25:40.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PQRBuLqcans3jKtXrwvfkS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:aclanthology.org \"GUIDEX\" \"Guided Synthetic Data\" 2025 findings ACL bibtex\"\n\nLinks: [{\"title\":\"GUIDEX – ACL Findings 2025\",\"url\":\"https://neilus03.github.io/guidex.com/\"},{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.1245/\"},{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.1245.pdf\"},{\"title\":\"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/html/2506.00649\"},{\"title\":\"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/abs/2506.00649\"},{\"title\":\"Accepted Findings Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/find_papers/\"},{\"title\":\"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\"url\":\"https://arxiv.org/pdf/2506.00649\"}]\n\nBased on the search results, I found information about GUIDEX (Guided Synthetic Data Generation for Zero-Shot Information Extraction) published in ACL Findings 2025.\n\n## Key Findings\n\nGUIDEX is a method by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre published in ACL Findings 2025 that addresses the problem that Information Extraction systems are traditionally domain-specific, requiring costly adaptation.\n\nThe method automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\n### Performance Results\n\nFine-tuning LLaMa 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks, with models trained with GUIDEX gaining up to 7 F1 points over previous methods without human-labeled data, and nearly 3 F1 points higher when combined with it.\n\nModels trained on GUIDEX demonstrate enhanced comprehension of complex, domain-specific annotation schemas.\n\n## BibTeX Citation\n\nThe paper is available on ACL Anthology at: https://aclanthology.org/2025.findings-acl.1245/\n\nYou can access the full BibTeX citation directly from the ACL Anthology page or the associated arXiv entry (2506.00649).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "8d25630f-645f-4a6e-99c3-6e82b0a6a459",
+            "tool_use_result": {
+              "query": "site:aclanthology.org \"GUIDEX\" \"Guided Synthetic Data\" 2025 findings ACL bibtex",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01NK5yQX3ptMcFs4vds5CwNp",
+                  "content": [
+                    {
+                      "title": "GUIDEX – ACL Findings 2025",
+                      "url": "https://neilus03.github.io/guidex.com/"
+                    },
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-acl.1245/"
+                    },
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+                      "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+                    },
+                    {
+                      "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/html/2506.00649"
+                    },
+                    {
+                      "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/abs/2506.00649"
+                    },
+                    {
+                      "title": "Accepted Findings Papers - ACL 2025",
+                      "url": "https://2025.aclweb.org/program/find_papers/"
+                    },
+                    {
+                      "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+                      "url": "https://arxiv.org/pdf/2506.00649"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about GUIDEX (Guided Synthetic Data Generation for Zero-Shot Information Extraction) published in ACL Findings 2025.\n\n## Key Findings\n\nGUIDEX is a method by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre published in ACL Findings 2025 that addresses the problem that Information Extraction systems are traditionally domain-specific, requiring costly adaptation.\n\nThe method automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\n### Performance Results\n\nFine-tuning LLaMa 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks, with models trained with GUIDEX gaining up to 7 F1 points over previous methods without human-labeled data, and nearly 3 F1 points higher when combined with it.\n\nModels trained on GUIDEX demonstrate enhanced comprehension of complex, domain-specific annotation schemas.\n\n## BibTeX Citation\n\nThe paper is available on ACL Anthology at: https://aclanthology.org/2025.findings-acl.1245/\n\nYou can access the full BibTeX citation directly from the ACL Anthology page or the associated arXiv entry (2506.00649)."
+              ],
+              "durationSeconds": 6.956753204000001
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me get the remaining details I need:\n\n1. **BoostCD** - I found it's at ACL Anthology 2025.emnlp-main.926. Let me fetch the full BibTeX from the ACL Anthology page.\n2. **Grammar-Aligned Decoding** - I need the full author list. Let me fetch from the NeurIPS proceedings or ACM DL page.\n3. **GUIDEX** - I need the ACL Anthology BibTeX.\n\nLet me fetch these pages for complete details.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "d59fc9c1-bf52-4b4a-af8a-8fd488bd33dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2J4crysdWN6cdFdbhTp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 862,
+                "cache_creation_input_tokens": 6138,
+                "cache_read_input_tokens": 30102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6138
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get the exact BibTeX entries from the official sources for the remaining papers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "fb9855b3-6711-4409-98dd-37b818582fdc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2J4crysdWN6cdFdbhTp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 862,
+                "cache_creation_input_tokens": 6138,
+                "cache_read_input_tokens": 30102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6138
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LifLNauD12AUiUWsNu5fyz",
+              "name": "WebSearch",
+              "input": {
+                "query": "aclanthology.org 2025.emnlp-main.926 BoostCD bibtex Sakota"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "548713ba-680b-4096-b022-64243a5571b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2J4crysdWN6cdFdbhTp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 862,
+                "cache_creation_input_tokens": 6138,
+                "cache_read_input_tokens": 30102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6138
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0135Sy3tEEo41ti5tzbxt9kB",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Grammar-Aligned Decoding\" \"Kanghee Park\" authors NeurIPS 2024 Jiayi Wei Loris D'Antoni full author list"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "a77ef3df-f77e-4f4a-9ce0-190a061cce5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2J4crysdWN6cdFdbhTp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 862,
+                "cache_creation_input_tokens": 6138,
+                "cache_read_input_tokens": 30102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6138
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ezn4zyCsSU117c6NQTGJJp",
+              "name": "WebSearch",
+              "input": {
+                "query": "aclanthology.org 2025.findings-acl.1245 GUIDEX bibtex \"De La Fuente\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "341c23c6-e208-4c09-ac5e-e97b3a9b0097",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2J4crysdWN6cdFdbhTp4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 862,
+                "cache_creation_input_tokens": 6138,
+                "cache_read_input_tokens": 30102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6138
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T16:25:51.675Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LifLNauD12AUiUWsNu5fyz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"aclanthology.org 2025.emnlp-main.926 BoostCD bibtex Sakota\"\n\nLinks: [{\"title\":\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\",\"url\":\"https://arxiv.org/pdf/2506.14901\"},{\"title\":\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.0/\"},{\"title\":\"Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.findings-emnlp/\"},{\"title\":\"Probing Semantic Routing in Large Mixture-of-Expert Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.991/\"},{\"title\":\"Beyond Seen Data: Improving KBQA Generalization Through Schema-Guided Logical Form Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.442/\"},{\"title\":\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.emnlp-industry/\"},{\"title\":\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.emnlp-demos/\"}]\n\nBased on the search results, I found information about the BoostCD paper. The paper \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\" is by Marija Šakota and Robert West from EPFL and Microsoft.\n\nHowever, the search results don't show the specific ACL Anthology page for the paper with ID 2025.emnlp-main.926 or its BibTeX citation. The first result shows the ArXiv version of the paper (arxiv.org/pdf/2506.14901), but I wasn't able to retrieve the exact BibTeX citation from aclanthology.org/2025.emnlp-main.926 through this search.\n\nIf you need the specific BibTeX citation for this paper, you could visit the ACL Anthology page directly at https://aclanthology.org/2025.emnlp-main.926/, which should have the BibTeX export option available.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "ace8fc3c-629b-4aa2-a005-1a1970a7a255",
+            "tool_use_result": {
+              "query": "aclanthology.org 2025.emnlp-main.926 BoostCD bibtex Sakota",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01UAsg8pKNosUC2GTXBHeYbV",
+                  "content": [
+                    {
+                      "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+                      "url": "https://arxiv.org/pdf/2506.14901"
+                    },
+                    {
+                      "title": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.emnlp-main.0/"
+                    },
+                    {
+                      "title": "Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology",
+                      "url": "https://aclanthology.org/volumes/2025.findings-emnlp/"
+                    },
+                    {
+                      "title": "Probing Semantic Routing in Large Mixture-of-Expert Models - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-emnlp.991/"
+                    },
+                    {
+                      "title": "Beyond Seen Data: Improving KBQA Generalization Through Schema-Guided Logical Form Generation - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.emnlp-main.442/"
+                    },
+                    {
+                      "title": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track - ACL Anthology",
+                      "url": "https://aclanthology.org/volumes/2025.emnlp-industry/"
+                    },
+                    {
+                      "title": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations - ACL Anthology",
+                      "url": "https://aclanthology.org/volumes/2025.emnlp-demos/"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the BoostCD paper. The paper \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\" is by Marija Šakota and Robert West from EPFL and Microsoft.\n\nHowever, the search results don't show the specific ACL Anthology page for the paper with ID 2025.emnlp-main.926 or its BibTeX citation. The first result shows the ArXiv version of the paper (arxiv.org/pdf/2506.14901), but I wasn't able to retrieve the exact BibTeX citation from aclanthology.org/2025.emnlp-main.926 through this search.\n\nIf you need the specific BibTeX citation for this paper, you could visit the ACL Anthology page directly at https://aclanthology.org/2025.emnlp-main.926/, which should have the BibTeX export option available."
+              ],
+              "durationSeconds": 4.874549408999999
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T16:25:52.618Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0135Sy3tEEo41ti5tzbxt9kB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Grammar-Aligned Decoding\" \"Kanghee Park\" authors NeurIPS 2024 Jiayi Wei Loris D'Antoni full author list\"\n\nLinks: [{\"title\":\"[Quick Review] Grammar-Aligned Decoding\",\"url\":\"https://liner.com/review/grammaraligned-decoding\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-Aligned Decoding Kanghee Park1∗ Jiayu Wang1∗ Taylor Berg-Kirkpatrick2\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/2bdc2267c3d7d01523e2e17ac0a754f3-Paper-Conference.pdf\"},{\"title\":\"Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, Loris D'Antoni · Grammar-Aligned Decoding\",\"url\":\"https://slideslive.com/39028324/grammaraligned-decoding\"},{\"title\":\"NeurIPS Poster Grammar-Aligned Decoding\",\"url\":\"https://nips.cc/virtual/2024/poster/96599\"},{\"title\":\"NeurIPS Poster Grammar-Aligned Decoding\",\"url\":\"https://neurips.cc/virtual/2024/poster/96599\"},{\"title\":\"Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3737916.3738690\"},{\"title\":\"[2405.21047] Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/abs/2405.21047\"},{\"title\":\"Grammar-Aligned Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=5G7ve8E1Lu\"}]\n\nBased on the search results, here is the information about the \"Grammar-Aligned Decoding\" paper:\n\n**Full Author List:**\nKanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, and Loris D'Antoni\n\n**Conference and Details:**\nThe paper was published at Advances in Neural Information Processing Systems 37 (NeurIPS 2024) on the Main Conference Track\n\n**Affiliations:**\nKanghee Park, Jiayu Wang, and Loris D'Antoni are from University of Wisconsin-Madison, while Taylor Berg-Kirkpatrick and Nadia Polikarpova are from University of California San Diego\n\n**Key Contribution:**\nThe authors propose Adaptive Sampling with Approximate Expected Futures (ASAp), a novel decoding algorithm that iteratively refines expected future grammaticality estimates\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "6dc9a665-727f-467f-b016-ff4828821de9",
+            "tool_use_result": {
+              "query": "\"Grammar-Aligned Decoding\" \"Kanghee Park\" authors NeurIPS 2024 Jiayi Wei Loris D'Antoni full author list",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01CdGwzauFMEw5qCM3uA6Hg5",
+                  "content": [
+                    {
+                      "title": "[Quick Review] Grammar-Aligned Decoding",
+                      "url": "https://liner.com/review/grammaraligned-decoding"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding",
+                      "url": "https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding Kanghee Park1∗ Jiayu Wang1∗ Taylor Berg-Kirkpatrick2",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/2bdc2267c3d7d01523e2e17ac0a754f3-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, Loris D'Antoni · Grammar-Aligned Decoding",
+                      "url": "https://slideslive.com/39028324/grammaraligned-decoding"
+                    },
+                    {
+                      "title": "NeurIPS Poster Grammar-Aligned Decoding",
+                      "url": "https://nips.cc/virtual/2024/poster/96599"
+                    },
+                    {
+                      "title": "NeurIPS Poster Grammar-Aligned Decoding",
+                      "url": "https://neurips.cc/virtual/2024/poster/96599"
+                    },
+                    {
+                      "title": "Grammar-aligned decoding | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+                      "url": "https://dl.acm.org/doi/10.5555/3737916.3738690"
+                    },
+                    {
+                      "title": "[2405.21047] Grammar-Aligned Decoding",
+                      "url": "https://arxiv.org/abs/2405.21047"
+                    },
+                    {
+                      "title": "Grammar-Aligned Decoding | OpenReview",
+                      "url": "https://openreview.net/forum?id=5G7ve8E1Lu"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the information about the \"Grammar-Aligned Decoding\" paper:\n\n**Full Author List:**\nKanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, and Loris D'Antoni\n\n**Conference and Details:**\nThe paper was published at Advances in Neural Information Processing Systems 37 (NeurIPS 2024) on the Main Conference Track\n\n**Affiliations:**\nKanghee Park, Jiayu Wang, and Loris D'Antoni are from University of Wisconsin-Madison, while Taylor Berg-Kirkpatrick and Nadia Polikarpova are from University of California San Diego\n\n**Key Contribution:**\nThe authors propose Adaptive Sampling with Approximate Expected Futures (ASAp), a novel decoding algorithm that iteratively refines expected future grammaticality estimates"
+              ],
+              "durationSeconds": 4.896273829999998
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T16:25:57.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ezn4zyCsSU117c6NQTGJJp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"aclanthology.org 2025.findings-acl.1245 GUIDEX bibtex \"De La Fuente\"\"\n\nLinks: [{\"title\":\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.1245/\"},{\"title\":\"HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences\",\"url\":\"https://arxiv.org/pdf/2601.18724\"},{\"title\":\"Has ACL Lost Its Crown? A Decade-Long Quantitative Analysis of Scale and Impact Across Leading AI Conferences\",\"url\":\"https://arxiv.org/pdf/2512.04448\"},{\"title\":\"Exploring the Landscape of Natural Language Processing Research\",\"url\":\"https://arxiv.org/pdf/2307.10652\"},{\"title\":\"The Silent Author in Urology: Quantifying Large Language Model Influence at the Corpus Level\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.07.21.25331681.full.pdf\"}]\n\nPerfect! I found the paper you're looking for. Here's the information from the ACL Anthology:\n\nThe paper is \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\" by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre, published in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria.\n\nGUIDEX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances for better out-of-domain generalization. Fine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks.\n\nThe complete bibtex entry from the page is:\n```\n@inproceedings{fuente-etal-2025-guidex,\n  title = \"{GUIDEX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\n  author = \"Fuente, Neil De La and Sainz, Oscar and García-Ferrero, Iker and Agirre, Eneko\",\n  ...\n}\n```\n\nYou can access the full paper and bibtex citation at: https://aclanthology.org/2025.findings-acl.1245/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "359195d3-c58a-4c25-b67d-3dd5a6fe38c8",
+            "uuid": "8d0b196f-e04e-4fa8-9a30-484991bf11c8",
+            "tool_use_result": {
+              "query": "aclanthology.org 2025.findings-acl.1245 GUIDEX bibtex \"De La Fuente\"",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01YXrLaPYudA2jiyzL4H8HPC",
+                  "content": [
+                    {
+                      "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-acl.1245/"
+                    },
+                    {
+                      "title": "HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences",
+                      "url": "https://arxiv.org/pdf/2601.18724"
+                    },
+                    {
+                      "title": "Has ACL Lost Its Crown? A Decade-Long Quantitative Analysis of Scale and Impact Across Leading AI Conferences",
+                      "url": "https://arxiv.org/pdf/2512.04448"
+                    },
+                    {
+                      "title": "Exploring the Landscape of Natural Language Processing Research",
+                      "url": "https://arxiv.org/pdf/2307.10652"
+                    },
+                    {
+                      "title": "The Silent Author in Urology: Quantifying Large Language Model Influence at the Corpus Level",
+                      "url": "https://www.medrxiv.org/content/10.1101/2025.07.21.25331681.full.pdf"
+                    }
+                  ]
+                },
+                "Perfect! I found the paper you're looking for. Here's the information from the ACL Anthology:\n\nThe paper is \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\" by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre, published in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria.\n\nGUIDEX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances for better out-of-domain generalization. Fine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks.\n\nThe complete bibtex entry from the page is:\n```\n@inproceedings{fuente-etal-2025-guidex,\n  title = \"{GUIDEX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction\",\n  author = \"Fuente, Neil De La and Sainz, Oscar and García-Ferrero, Iker and Agirre, Eneko\",\n  ...\n}\n```\n\nYou can access the full paper and bibtex citation at: https://aclanthology.org/2025.findings-acl.1245/"
+              ],
+              "durationSeconds": 8.955243804000006
+            }
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-new-citations-bibtex.md"
+}

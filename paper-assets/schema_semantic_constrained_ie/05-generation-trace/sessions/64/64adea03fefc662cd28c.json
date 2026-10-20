@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64adea03fefc662cd28c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis qwen tokenizer regex 20260516",
+  "task_key": "worker_analysis_qwen_tokenizer_regex_20260516_20260516T115345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen_tokenizer_regex_20260516_20260516T115345_result.json",
+    "occurrence": 1,
+    "bytes": 2244,
+    "sha256": "861b0ba7921741d8e5d29994837833c136ae04533065dc3f17d1aa65c03644b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**无影响** — Warning 是 transformers 4.57.6 的 false positive\n\n### Warning 完整内容\n\n```\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/qwen_lora_docred_merged' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\n```\n\n### 根因分析\n\n`transformers/tokenization_utils_base.py:2466-2483` 的版本检查逻辑有 gap：\n\n- `transformers_version <= 4.57.2` → 进入 model_type 检查，非 Mistral 系列直接跳过（正确路径）\n- `transformers_version >= 5.0.0` → 直接跳过\n- **4.57.3 ~ 4.99.x 之间** → 落入 else，无条件设置 `mistral_config_detected = True`，触发 warning\n\n模型 config.json 中 `transformers_version: 4.57.6`、`model_type: qwen3`，恰好命中这个 gap。**Llama 的 checkpoint 同样中招**，证明这是版本检查的 bug，不是 Qwen 特有问题。\n\n### 对 Constrained Decoding 的影响：零\n\n1. **XGrammar 不使用 pre-tokenizer regex**。它只读取 vocab（token→bytes 映射）来构建约束 mask。pre-tokenizer regex 只在 encode 新文本时用到，与 decode-time 的 token constraint 无关。\n\n2. **实际验证通过**：\n   - `xgr.TokenizerInfo.from_huggingface(tokenizer)` 成功，vocab_size=151669\n   - JSON schema grammar 编译正常\n   - Bitmask 生成正确（初始状态仅允许 5 个 token，即 `{` 及其变体）\n\n3. **Qwen 的 pre-tokenizer regex 本身是正确的**（标准 tiktoken/GPT-4o pattern）。如果错误地设置 `fix_mistral_regex=True`，反而会把 Qwen 的正确 regex 替换成 Mistral 的 tekken regex，造成真正的问题。\n\n4. **两个模型条件一致**：Qwen 和 Llama 都产生同一 warning，实验间结果可比性不受影响。\n\n### 建议\n\n无需修复。如果想消除 warning 噪音，可以在加载时显式传 `fix_mistral_regex=False`（明确告诉 transformers 不需要修正），或等待 transformers 下个版本修复此 bug。**绝对不要设置 `fix_mistral_regex=True`**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-tokenizer-regex-20260516.md"
+}

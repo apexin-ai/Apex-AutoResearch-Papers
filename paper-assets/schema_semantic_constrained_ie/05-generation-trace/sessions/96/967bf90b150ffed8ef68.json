@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "967bf90b150ffed8ef68",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval 70b lora docred inference",
+  "task_key": "worker_eval_70b_lora_docred_inference_20260522T023202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_70b_lora_docred_inference_20260522T023202_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "789bf6bbc4e7015626eae723a1a8ac0cd19d51712ac11c33715de7fef0e4682f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理正常运行中。汇报：\n\n**70B LoRA DocRED Unconstrained 推理状态**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 881085 |\n| GPU | cuda:1, VRAM 39.8GB / 97.9GB, 利用率 ~80% |\n| 已完成 | 2 / 998 样本 |\n| 样本 1 耗时 | 29.6s |\n| 样本 2 耗时 | 57.7s |\n| 平均速度 | ~0.023 样本/秒（~43.6s/样本） |\n| 预计总时间 | **~12 小时**（按均值 43.6s/样本算，998 样本 ≈ 12.1h） |\n| 预计完成时间 | ~明天上午（5月23日早上） |\n\n输出质量初看正常：模型生成了合理的实体和关系抽取结果（使用自然语言关系名如 \"country\"、\"inception\"、\"headquarters location\" 等）。\n\nDocRED 文档比 SciERC 长很多，加上 `max_new_tokens=4096`，每个样本需要生成大量 token，所以速度比 SciERC 慢得多。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-70b-lora-docred-inference.md"
+}

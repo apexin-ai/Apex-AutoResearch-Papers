@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6744e684a6e4e0d9f78",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose server status 21461",
+  "task_key": "worker_diagnose_server_status_21461_20260520T033143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server_status_21461_20260520T033143_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "0eb96001c2b57a59dea056fca4e2ec84f6ef56461e1b3cd27fe3e6d8c67ab9ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态汇报\n\n### 1. d066_beam_sweep k=8 con (SciERC)\n\n| 项目 | 值 |\n|------|-----|\n| PID | 165391 |\n| GPU | **GPU1** — 18912MiB, 82% util |\n| 进度 | **355/551** (64.4%) |\n| 速率 | ~5.2s/doc |\n| 剩余 | ~17 min |\n| 预计完成 | **~11:49** |\n| 输出文件 | `/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam8_full_s1.jsonl` (724KB, 369行) |\n\n当前是 beam sweep 的**最后一个配置** (beam8_full_s1)。beam1/2/4 的 con+unc 和 beam8_unc 均已完成，eval 文件已生成。整个脚本从 07:23 开始运行。\n\n### 2. d065_qwen_greedy_4096 unc (DocRED)\n\n| 项目 | 值 |\n|------|-----|\n| PID | 167691 |\n| GPU | **GPU0** — 18910MiB, 87% util |\n| 进度 | **55/998** (5.5%) |\n| 速率 | ~16.4s/doc |\n| 剩余 | ~4.3 hours |\n| 预计完成 | **~15:50** |\n| 输出文件 | `/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_unc_4096.jsonl` (564KB, 55行) |\n\nDocRED 文档长、token 多 (max_new_tokens=4096)，推理慢是正常的。\n\n### 额外发现\n\n**d065_block_con** (PID 169446) 在 pts/2 上以 `sleep 30` 循环等待，运行脚本 `d065_block_con_21461.sh`，可能在排队等 GPU 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-status-21461.md"
+}

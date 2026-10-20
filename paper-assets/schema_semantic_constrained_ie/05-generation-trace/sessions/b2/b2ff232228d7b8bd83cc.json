@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b2ff232228d7b8bd83cc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code collision group continuation mask",
+  "task_key": "worker_code_collision_group_continuation_mask_20260518T025425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collision_group_continuation_mask_20260518T025425.log",
+    "occurrence": 1,
+    "bytes": 686833,
+    "sha256": "06be5a782dddf65be0d895b13249ee1e3c0809d287c04fe9e1d26444eda47282"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "b2ff232228d7b8bd83cc-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "b2ff232228d7b8bd83cc-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-collision-group-continuation-mask.md"
+}

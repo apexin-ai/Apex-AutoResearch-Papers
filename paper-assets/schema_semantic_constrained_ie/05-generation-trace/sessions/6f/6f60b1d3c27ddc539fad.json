@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f60b1d3c27ddc539fad",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r12 task4 dr f1 impact",
+  "task_key": "worker_analysis_r12_task4_dr_f1_impact_20260520T174639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_task4_dr_f1_impact_20260520T174639_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "6d0f977c61dc4c9a5abeeb333b96af540f07c0afbb20de2ad1bfa57ff365810e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `westd-16980:/root/autodl-tmp/schema_outputs/r12_dr_f1_impact.json`。\n\n## 核心发现\n\nConstrained decoding 通过**两种机制**消除 DR violations，两者都不损害 R-F1：\n\n### 机制 1：Type Correction（主导 SciERC）\n\n| Setting | DR Violations | Type Corrected | Removed | Still Violating |\n|---------|:---:|:---:|:---:|:---:|\n| SciERC Qwen FT | 22 | **22 (100%)** | 0 | 0 |\n| SciERC Llama FT | 12 | **11 (91.7%)** | 0 | 1 |\n\n同一个 triple `(head, tail, relation)` 保留不变，只修正了 `head_type`/`tail_type` 到合法组合。R-F1 按 `(head, tail, relation)` 计算，因此完全不受影响。\n\n### 机制 2：Triple Removal（DocRED 部分）\n\n| Setting | DR Violations | Type Corrected | Removed | FP | TP Wrong | TP Correct |\n|---------|:---:|:---:|:---:|:---:|:---:|:---:|\n| DocRED Qwen FT | 164 | 80 (48.8%) | **83** | 81 (97.6%) | 2 (2.4%) | **0** |\n| DocRED Llama FT | 104 | 37 (35.6%) | **42** | 42 (100%) | 0 | **0** |\n\n被移除的 DR-violating triples 中 **97.6–100% 是 false positives**（gold 中完全不存在），0 个正确 triple 被误删。移除 FP 不降 recall。\n\n### 结论\n\nDR constraint enforcement 是 \"free lunch\"：SciERC 靠 type correction 保留全部 triple；DocRED 靠移除几乎纯粹的 hallucinated triples。这解释了 Table 2 中 constrained 消除 DR violations 但 R-F1 ±0.5pp 的现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-task4-dr-f1-impact.md"
+}

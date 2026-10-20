@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aed6c0629c36f34b8124",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis 70b docred constrained",
+  "task_key": "worker_analysis_70b_docred_constrained_20260518T214345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_70b_docred_constrained_20260518T214345_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "a0e35be8421adcb4cc488d0f245354ab04530c3f0abce936d994de40b0f5176a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 70B DocRED 结果汇总\n\n| Metric | Constrained (full_s1) | Unconstrained | Delta |\n|--------|----------------------|---------------|-------|\n| **ET violation** | **0.00%** | 0.02% | -0.02pp |\n| **RV violation** | **0.00%** | 7.81% | -7.81pp |\n| **DR violation** | **0.00%** | 14.99% | -14.99pp |\n| CF violation | 7.01% | 0.10% | +6.91pp |\n| Entity F1 | 69.05% | 69.03% | +0.02pp |\n| Relation F1 | 13.07% | 13.03% | +0.04pp |\n| Parse failures | 1 | 0 | — |\n| Docs processed | 997/998 | 998/998 | — |\n\n**核心结论：**\n- ET/RV/DR 三项 violation 全部归零，constrained decoding 在 70B + DocRED 上完美工作\n- F1 几乎无损（甚至微升 +0.04pp），确认约束不损害抽取质量\n- CF violation（跨字段一致性）从 0.10% 升至 7.01%，这是因为 constrained 模式强制修正单个 relation 的 entity type 时，可能导致同一 entity 在不同 relation 中被分配不同的合法 type\n- 与 SciERC 70B 结果一致：OntoCoDec 在跨句 RE 数据集上同样有效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-70b-docred-constrained.md"
+}

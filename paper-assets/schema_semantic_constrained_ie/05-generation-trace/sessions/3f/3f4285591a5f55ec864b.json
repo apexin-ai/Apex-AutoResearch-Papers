@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f4285591a5f55ec864b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents llama unconstrained full",
+  "task_key": "worker_code_wikievents_llama_unconstrained_full_20260517T174529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_llama_unconstrained_full_20260517T174529_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "50947b90f8e4ebace01417080faef35c4c093e74d595c5e9dda84c8ff848ff41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行确认完毕。\n\n**状态总结：**\n\n1. **tmux session `llama_wikievents_full` 正常运行**\n   - GPU 0 (16610 MiB)，Llama-3.1-8B-Instruct\n   - 已完成 8/246 docs，进度正常\n\n2. **命令**：\n   ```\n   CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\n     --dataset wikievents --mode unconstrained \\\n     --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n     --data_path data/wikievents/all.jsonl \\\n     --output_path outputs/wikievents_llama_unconstrained_full.jsonl \\\n     --max_new_tokens 4096\n   ```\n\n3. **预估完成时间**：基于 pilot run 平均 ~17s/doc（短文档 4-10s，长文档 40-50s），246 docs 预计 **1-1.5 小时**，约在 UTC 03:00-03:30 完成。\n\n4. **输出文件**：`outputs/wikievents_llama_unconstrained_full.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-llama-unconstrained-full.md"
+}

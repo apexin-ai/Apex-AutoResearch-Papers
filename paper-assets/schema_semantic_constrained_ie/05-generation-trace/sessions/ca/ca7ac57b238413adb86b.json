@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca7ac57b238413adb86b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "reviewer / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_15.md",
+    "occurrence": 1,
+    "bytes": 3839,
+    "sha256": "b26489137aee83da5f7fa777e3320c50783e9c0695933f9ca108381ca16418b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-17T20:53:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-16980: cuda:0 = Qwen constrained, cuda:1 = Llama constrained（不得干扰正在运行的实验）\n- westd-21461: cuda:1 = Mistral constrained（语义层失效但仍在跑，Director 未回复是否 kill）\n- westd-21461:cuda:0 = 空闲，已报告 Director，等指令后方可使用\n- Mistral 模型路径含下划线转义：`/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/`\n- 本项目只有 read-only 权限，不可执行实验/修改文件，只能通过 `reviewer_post_to_director` 输出\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: `/root/schema_semantic_constrained_ie`\n  - Python: `/root/miniconda3/bin/python`\n  - Qwen: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - PID 493759 (Qwen constrained, cuda:0), PID 493830 (Llama constrained, cuda:1)\n  - 输出: `outputs/wikievents_qwen_constrained_full.jsonl`, `outputs/wikievents_llama_constrained_full.jsonl`\n- **westd-21461**: `/root/schema_semantic_constrained_ie`\n  - Mistral: `/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/`\n  - Log: `logs/mistral_constrained_full.log`\n  - 输出: `outputs/mistral_constrained_full.jsonl`\n- **数据**: `data/wikievents/all.jsonl` (246 docs), `data/wikievents/ontology_constraints_wikievents.json`\n- **关键代码**: `compiler/type_mask_processor.py` (796 行), `run_constrained_extraction.py` (1008 行), `violation_checker_wikievents.py` (396 行)\n\n### 3. 📊 当前状态\n**刚完成**: 发现并报告 Mistral constrained 语义约束层完全失效（[critical]已发 Director）。同时确认 Qwen/Llama RoV 合规。\n\n**运行中实验进度（~20:50 UTC 快照）**:\n- Qwen constrained: 97/246 (39%), ~1.33 doc/min, ETA ~22:30 UTC\n- Llama constrained: 121/246 (49%), ~1.61 doc/min, ETA ~22:00 UTC\n- Mistral constrained: 15/246 (6%), **语义层失效** — 输出等同 grammar_only\n\n**Unconstrained baselines（全部完成）**:\n- Qwen: EV=24.0%, RoV=74.9%, Parse=88.6%, Trigger F1=11.8%\n- Llama: EV=10.5%, RoV=88.8%, Parse=91.9%, Trigger F1=5.7%\n- Mistral: EV=37.3%, RoV=63.9%, Parse=78.9%, Trigger F1=2.4%\n\n**等待中**: Director 回复 Mistral 处置决策（kill/继续/修复重跑）\n\n### 4. 📋 待办\n- Llama constrained 完成 → 运行 violation_checker_wikievents.py 验证 RoV=0%，检查 CF/AC 率，登记 registry\n- Qwen constrained 完成 → 同上验证流程\n- Director 回复 Mistral 决策 → 若修复重跑，需验证新输出的 RoV 合规性\n- 全量实验完成后 → 检查 parse failure rate（预期~30%因 max_new_tokens=4096），推动 max_new_tokens=8192 补充 pass\n- 结果注册 registry 后 → 审查 cross-model claim \"RoV=0% across all models\" 是否成立\n\n### 5. 🎯 战略上下文\n- **核心 claim**: OntoCoDec 两层约束（grammar+semantic）在 WikiEvents EE 上实现 EV=0% + RoV=0%\n- **Mistral 是唯一阻断点**: Qwen/Llama RoV=0% 已确认，但 Mistral 的 TypeConstraintProcessor 对其 tokenizer 的 continuation masking 失效。根因推测：`_build_role_continuation_tokens` 中 BPE 切分 tokenizer-dependent，Mistral tokenizer 产生不同 subword 导致 mask 未命中\n- **CF 22.3% 已知根因**: 模型 hallucination 把 PER/ORG 放入 Place role → grammar 强制 entity_type 为 FAC/GPE → 与 entities[] 冲突。需 Layer 3 TypeConsensusProcessor 扩展到 EE 格式\n- **Parse failure 30%**: 全部因 max_new_tokens=4096 截断长文档，非代码 bug。需补充 8192 pass\n- **易错点**: 不要把 Mistral 当前输出当作\"constrained\"结果引用——它实质是 grammar_only。不要假设 Qwen dry-run (20 doc) 的 RoV=0% 自动推广到全量——需等 246 doc violation check 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-copy-2.md"
+}

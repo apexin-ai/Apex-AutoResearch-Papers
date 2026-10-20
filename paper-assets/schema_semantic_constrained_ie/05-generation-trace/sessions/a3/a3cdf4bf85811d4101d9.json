@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3cdf4bf85811d4101d9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents mistral investigate",
+  "task_key": "worker_code_wikievents_mistral_investigate_20260517T190323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_mistral_investigate_20260517T190323_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "4707068ab8a25a67f724aaffc54c6499fdb05ea0312e387fe0cabf5142f40432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度日志没在 tmux 可见区域（可能被 transformers 警告覆盖了 buffer），但文件行数在稳定增长。\n\n**总结：**\n\n- 原始 Mistral unconstrained 进程 (PID 28658) 已 crash，crash 原因无法追溯（tmux buffer 被覆盖）\n- 输出停在 93/246 docs\n- 已用正确 CLI 参数重启：`--mode unconstrained --resume`，tmux session = `mistral_restart`\n- GPU 0 正常运行：16.5GB VRAM / 90% 利用率 / 53°C\n- 文件已从 93 增长到 96 行，confirmed 稳定推理中\n- 剩余 150 docs，每 doc 约 15-60s，预计 **1.5-3 小时**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-mistral-investigate.md"
+}

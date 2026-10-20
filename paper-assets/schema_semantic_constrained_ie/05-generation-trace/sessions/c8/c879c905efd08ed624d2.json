@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c879c905efd08ed624d2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp sf2 quant llama int4",
+  "task_key": "worker_exp_sf2-quant-llama-int4_20260523T044741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sf2-quant-llama-int4_20260523T044741_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "788e5260d2b5ef84334425523ef64da406162fc76eafe8ca4b6bea361ec4823a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference running on westd-16980 GPU 1 — 167/551 done. Will check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sf2-quant-llama-int4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dad25b6d1e11ea9188d8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "status 21461 progress",
+  "task_key": "worker_status_21461_progress_20260520T010644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_21461_progress_20260520T010644_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "5dafcb1490951ac30f392cf954577fcdb613551bba2ae18f0ef4f1785a3071e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇报\n\n### d066 beam sweep (GPU 1)\n**3/8 configs 完成，当前跑 beam2_full_s1 (465/551 samples)**\n\n| Config | 状态 | 行数 |\n|--------|------|------|\n| beam1_unconstrained | ✅ | 551/551 |\n| beam1_full_s1 | ✅ | 551/551 |\n| beam2_unconstrained | ✅ | 551/551 |\n| beam2_full_s1 | 🔄 运行中 | 465/551 (84%) |\n| beam4_unconstrained | ⏳ | - |\n| beam4_full_s1 | ⏳ | - |\n| beam8_unconstrained | ⏳ | - |\n| beam8_full_s1 | ⏳ | - |\n\n当前 config 约 5 分钟内完成。beam4/beam8 每 sample 推理时间会随 beam width 增长，剩余 4 configs 预计 **3-5 小时**。\n\n### d067 seed variance (GPU 0)\n**4/12 configs 完成，当前跑 llama_scierc_seed123_unconstrained (5/551 samples)**\n\n| Config | 状态 | 行数 |\n|--------|------|------|\n| qwen_scierc seed123 unc | ✅ | 551/551 |\n| qwen_scierc seed123 con | ✅ | 551/551 |\n| qwen_scierc seed456 unc | ✅ | 551/551 |\n| qwen_scierc seed456 con | ✅ | 551/551 |\n| llama_scierc seed123 unc | 🔄 刚启动 | 5/551 |\n| llama_scierc seed123 con | ⏳ | - |\n| llama_scierc seed456 unc | ⏳ | - |\n| llama_scierc seed456 con | ⏳ | - |\n| qwen_docred seed123 unc | ⏳ | - |\n| qwen_docred seed123 con | ⏳ | - |\n| qwen_docred seed456 unc | ⏳ | - |\n| qwen_docred seed456 con | ⏳ | - |\n\n刚加载完 llama 模型开始推理。每 config ~30 min，剩余 8 configs 预计 **~4 小时**。\n\n### GPU 利用率\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 (d067) | 77% | 19.0 / 95.6 GB |\n| GPU 1 (d066) | 80% | 19.0 / 95.6 GB |\n\n两块 GPU 都在正常工作，显存占用约 20%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-21461-progress.md"
+}

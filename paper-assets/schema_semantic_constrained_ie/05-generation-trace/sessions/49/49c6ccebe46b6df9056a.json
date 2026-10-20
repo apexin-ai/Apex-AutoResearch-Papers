@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49c6ccebe46b6df9056a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis llama docred unconstrained mt6144",
+  "task_key": "worker_analysis_llama_docred_unconstrained_mt6144_20260515T140054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_docred_unconstrained_mt6144_20260515T140054_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "bf40e7e275a87c425ef036156ae5be86881168f42c94d0580371f52eee282b29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## mt6144 vs mt4096 对比结果\n\n| 指标 | mt4096 | mt6144 | Delta |\n|------|--------|--------|-------|\n| parse_failures | 68 | 67 | -1 |\n| unique_entities | 11,525 | 11,534 | +9 |\n| total_triples | 16,437 | 16,584 | +147 |\n| RV (%) | 16.03 | 15.89 | -0.14pp |\n| DR (%) | 26.07 | 26.18 | +0.11pp |\n| E-F1 (%) | 55.65 | 55.67 | +0.02pp |\n| R-F1 (%) | 5.98 | 5.95 | -0.03pp |\n| Wall clock | ~5h 02m | ~5h 39m | +37min |\n\n**Negative result.** max_new_tokens 4096→6144 对 unconstrained 生成无实质影响。parse failure 仅减少 1 例（68→67），所有 F1 和违规率差异 <0.15pp，属统计噪声。67 个 parse failure 主要是模型陷入退化循环（每个耗时 ~96s 达到 token cap），而非文档过长导致截断。代价是多 12% 推理时间。\n\nRegistry 已更新（conclusion=negative），分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-docred-unconstrained-mt6144.md"
+}

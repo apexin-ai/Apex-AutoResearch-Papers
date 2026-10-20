@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7674374426d4decfab",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "verify docred s1 lora effectiveness",
+  "task_key": "worker_verify_docred-s1-lora-effectiveness_20260522T060809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_docred-s1-lora-effectiveness_20260522T060809_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "7cd95a2f5cbdb5358a3bb5f83b26cb93d2d162cd2e1d142d760879178e6af99f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：LoRA **已生效**\n\n三路对比（同一个 Skai TV 样本）：\n\n| 维度 | LoRA S1 constrained (21461) | LoRA unconstrained (16980) | ZS S1 (21461) |\n|------|---|---|---|\n| Entities | 10 | 10 | 10 |\n| Relations | **8** | **8** | 8 |\n| 日期实体 | `1st of April 2006` (TIME) | `1st of April 2006` (TIME) | `April` (TIME) + `2006` (NUM) ← 拆碎了 |\n| \"Greek\" 实体 | ✅ 提取 (LOC) | ✅ 提取 (LOC) | ❌ 漏掉 |\n| Relation type 风格 | `country`, `parent organization`, `official language` | 完全一致 | `location`, `part of`, `country of origin`, `operator` |\n| 多实体对关系 | Piraeus→Greece, Athens→Greece, Skai Group→Greece, Digea→Greece 都提取 | 完全一致 | 只有 Skai TV 为 head 的关系 |\n\n**关键证据：**\n\n1. **westd-21461 S1 constrained 与 westd-16980 unconstrained 输出逐字一致**——相同 entities、相同 relations、相同 relation type 命名。两者都是 LoRA 模型的输出。\n\n2. **两者与 ZS 有显著差异**：\n   - LoRA 使用 DocRED 训练 schema 对齐的 relation names（`country` vs `country of origin`，`parent organization` vs `part of`）\n   - LoRA 提取多实体对关系（不仅仅以主实体为 head），ZS 只做单主体关系\n   - LoRA 正确处理复合日期实体，ZS 拆碎\n\n3. **日志确认**：PEFT warning `Unsupported layer type AwqMarlinLinear` 只是 warning，不是 error。monkey-patch 方式绑定的 LoRA 仍然在权重层面生效了（跳过的只是 PEFT 的层类型检查，不是实际的权重合并）。\n\n4. **推理已完成 25/200 样本**，正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-docred-s1-lora-effectiveness.md"
+}

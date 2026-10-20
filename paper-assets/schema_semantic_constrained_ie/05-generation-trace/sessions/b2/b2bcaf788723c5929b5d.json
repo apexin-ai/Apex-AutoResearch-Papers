@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2bcaf788723c5929b5d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred lora eval prep",
+  "task_key": "worker_code_docred_lora_eval_prep_20260515T181757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_lora_eval_prep_20260515T181757_result.json",
+    "occurrence": 1,
+    "bytes": 3241,
+    "sha256": "d5a5967729c75588b8f33b1c8324246fa8644b9756f68d22c64a89b3b8f14a60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数解析通过。以下是 4 个完整的 submit 命令和分析。\n\n---\n\n## 4 个 Eval 命令\n\n### 1. Qwen DocRED LoRA — unconstrained\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES={GPU} python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_lora_docred_unconstrained.jsonl --max_new_tokens 2048 --resume\"\n```\n\n### 2. Qwen DocRED LoRA — constrained (full_s1)\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES={GPU} python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_lora_docred_constrained.jsonl --max_new_tokens 2048 --resume\"\n```\n\n### 3. Llama DocRED LoRA — unconstrained\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES={GPU} python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_lora_docred_unconstrained.jsonl --max_new_tokens 2048 --resume\"\n```\n\n### 4. Llama DocRED LoRA — constrained (full_s1)\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES={GPU} python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_lora_docred_constrained.jsonl --max_new_tokens 2048 --resume\"\n```\n\n---\n\n## 预估运行时间\n\n| Eval | 样本数 | 参考 avg/sample | 预估总时间 |\n|------|--------|-----------------|-----------|\n| unconstrained | 998 | ~13s | ~3.5h |\n| full_s1 (constrained) | 998 | ~18s | ~5h |\n\n参考来源：zero-shot DocRED eval 的历史日志（Llama unconstrained ~7-18s/sample, Qwen full_s1 ~10-28s/sample）。LoRA 模型同架构同大小，推理速度应一致。\n\n## 注意事项\n\n1. **参数名是 `--constraints_path`（有 s）**，不是 `--constraint_path`\n2. **必须传 `--dataset docred`**，脚本靠这个参数选数据加载函数和 prompt 模板\n3. **max_new_tokens=2048 够用**——历史对比：mt6144 vs 默认 2048 的成功率几乎相同（unconstrained 931 vs 930, full_s1 908 vs 907）\n4. **加了 `--resume`**——万一中断可断点续跑\n5. **每个 eval 占 1 张 GPU ~16GB 显存**（8B 模型 bf16），可在不同 GPU 上并行跑 2 个"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-lora-eval-prep-copy-2.md"
+}

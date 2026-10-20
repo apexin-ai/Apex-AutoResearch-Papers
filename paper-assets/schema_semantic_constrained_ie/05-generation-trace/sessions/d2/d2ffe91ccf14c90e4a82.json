@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2ffe91ccf14c90e4a82",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops progress check 20260516T114",
+  "task_key": "worker_ops_progress_check_20260516T114_20260516T115330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress_check_20260516T114_20260516T115330_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "47fb6183bb4bdc669c2aa620d1c02aa0d72b485cbcc9f9edd54f6d8e5ecb0b58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-16980 ===\nw8_llama_docred_ft_grammar_only: 880/998 (88.2%) [PID 345222 alive, running 3h42m]\nDocRED latency benchmark: PID 351214 alive (running 2h16m), 结果文件尚未生成，日志文件不存在\n\n=== westd-21461 ===\nw8_qwen_docred_ft_grammar_only: 409/998 (41.0%) [PID 18555 alive, running 2h25m]\nw8_qwen_docred_ft_semantic_only: 294/998 (29.5%) [PID 20035 alive, running 1h44m]\n```\n\n所有进程均存活。westd-16980 上的 llama grammar_only 接近完成，预计再 ~30-40 分钟跑完。DocRED latency benchmark 仍在运行中但尚无输出文件。westd-21461 两个 qwen 任务还需较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-20260516t114.md"
+}

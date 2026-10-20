@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92a8d926ae013be85b0c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix p0 tightness scaling claim",
+  "task_key": "worker_fix_p0_tightness_scaling_claim_20260514T210017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_p0_tightness_scaling_claim_20260514T210017_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "d5f533c75916519c495dfd71f2c7fb411a8d94cc62986f09b958fd3fbab64ff0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **section5_docred_draft.tex L220-222** — 替换了旧的 single-factor tightness scaling claim，改为 tightness × RV 交互叙事：RV 高的 Qwen 因 grammar 层强制匹配导致 latent DR 浮出，残余 DR 10.21%；RV 低的 Llama 达到 2.55%（DR↓90.2%）。保留了 L223-227 的 grammar R-F1 vs full S1 观察（无矛盾）。\n\n2. **section5_crossmodel_draft.tex L102-108** — `[TIGHTNESS-NARRATIVE-TBD]` 替换为 3 句 tightness × RV 交互解释，引用 §5 tightness 段落，附 exp_id 注释追溯。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-p0-tightness-scaling-claim.md"
+}

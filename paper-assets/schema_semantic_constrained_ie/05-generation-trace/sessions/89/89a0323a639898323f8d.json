@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89a0323a639898323f8d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval unified scierc w5",
+  "task_key": "worker_eval_unified-scierc-w5_20260520T083447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_unified-scierc-w5_20260520T083447_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "6b3849a7cc7744e0d9e53046943f1b6c2bdcafb0b294fccf322433170a228632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| Model | Mode | E-F1 | R-F1 | DR% | CF% | ET% | RV% | PF% |\n|-------|------|------|------|-----|-----|-----|-----|-----|\n| Qwen | unc | 67.05 | 43.86 | 1.95 | 0.00 | 0.00 | 0.00 | 0.0 |\n| Qwen | con | 67.05 | 43.77 | 0.00 | 0.45 | 0.00 | 0.00 | 0.0 |\n| Llama | unc | 67.76 | 45.45 | 1.11 | 0.00 | 0.00 | 0.00 | 0.0 |\n| Llama | con | 67.76 | 45.47 | 0.09 | 0.23 | 0.00 | 0.00 | 0.0 |\n| Qwen | con+cfcorr | 67.00 | 43.77 | 0.71 | 0.00 | 0.00 | 0.00 | 0.0 |\n| Llama | con+cfcorr | 67.82 | 45.47 | 0.37 | 0.00 | 0.00 | 0.00 | 0.0 |\n\n**关键说明**：eval_d064.py 硬编码 DocRED ontology，无法直接跑 SciERC。实际使用了 eval_d066_unified.py——同一套 PF-as-FN 逻辑，仅将 ontology 参数化。所有 6 个 w5 文件 PF%=0，PF-as-FN 处理对本批结果无数值影响。结果已写入 `artifacts/d065/unified_eval/scierc_unified_eval.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-unified-scierc-w5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3994b4ddfe6b9906bdec",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778764676.md",
+  "task_key": "loop_4_1778764676",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778764676.md",
+    "occurrence": 1,
+    "bytes": 4080,
+    "sha256": "91a90b8dc26dac2d291a6f4dbaf6bef37374ca7b299d8d89fbf5c04507cdf8c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-14T13:17:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-16980 cuda:0 + cuda:1，禁止用其他 GPU\n- submit 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，否则 python3 not found (EXIT_CODE=127，已踩过 3 次)\n- `--device cuda:0` 固定写 0，框架通过 CUDA_VISIBLE_DEVICES 映射物理 GPU\n- DocRED 约束文件路径: `data/docred/ontology_constraints_docred.json`（不是根目录的 `ontology_constraints.json`，那个是 SciERC 的）\n- type_mask_processor.py 已打补丁（semantic mask safety check），full_s1 的 --resume 依赖这个修复，不要回滚\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-16980，工作目录 `/root/schema_semantic_constrained_ie`\n- Python: `/root/miniconda3/bin/python3`（conda base 环境，无 venv）\n- 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- 数据: SciERC `data/processed_data/test.json` (551 docs) / DocRED `data/docred/dev.json` (998 docs)\n- 输出目录: `outputs/` 下各 JSONL\n- 活跃进程:\n  - `phase2_docred_unconstrained` — PID 170502, tmux=phase2_docred_unconstrained, cuda:0, cron 监控中\n  - `phase2_docred_semantic_only` — PID 172859, tmux=phase2_docred_semantic_only, cuda:1, cron 监控中（刚提交）\n- Worker: `worker_analysis_phase2_docred_full_s1_20260514T083040` 正在分析 full_s1 结果\n\n### 3. 📊 当前状态\n**刚做完**: 收到 phase2_docred_full_s1 CRON 完成回调 → 派 Worker 分析结果 → 立即提交 phase2_docred_semantic_only 填满 cuda:1。\n\n**Registry 关键状态**:\n- `phase2_docred_full_s1` — ANALYZING，Worker 正在 SSH 读 output 算 metrics\n- `phase2_docred_unconstrained` — RUNNING cuda:0\n- `phase2_docred_semantic_only` — RUNNING cuda:1（刚提交）\n- DocRED grammar_only + SciERC 全部 6 个 — DONE (success)\n\n**等待中**:\n- Worker 回调: `analysis:phase2_docred_full_s1` → 拿到 metrics 后 update_registry → DONE，汇报 Director\n- CRON 回调: unconstrained + semantic_only 完成（预计各 5-7 小时，998 docs ~20s/doc）\n- 注意: 收到了 2 次重复的 full_s1 CRON 回调（同一实验），第二次可忽略\n\n### 4. 📋 待办\n- Worker `analysis:phase2_docred_full_s1` 回调 → 读 metrics → update_registry(status=DONE) → 汇报 Director（含 vs baseline 对比 + vs SciERC full_s1 泛化性判断）\n- `phase2_docred_unconstrained` CRON 完成 → spawn 分析 Worker → metrics → DONE\n- `phase2_docred_semantic_only` CRON 完成 → spawn 分析 Worker → metrics → DONE\n- DocRED 4 实验全部 DONE → 汇总消融表 → 填 §5 DocRED subsection placeholder → 汇报 Director\n- DocRED 全部完成后 → 启动 D009 cross-model (Llama-3.1-8B SciERC unconstrained + full_s1)，需向 Director 确认 GPU 分配\n- §5 DocRED 写完 → §5 Cross-model（等 Llama 结果）→ Abstract/Conclusion 填 placeholder → 全文校对\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，内部初稿 DDL May 19（距今 5 天）\n- **核心结论**: SciERC full_s1 DR 15.37%→0.93% (↓94%) 且 F1 无损 → grammar+semantic 双层约束有效。S2 降级为 ablation (D007)，S1 为主推策略\n- **DocRED 是泛化性验证**: 96 relation types vs SciERC 7 types，约束空间大 10x+。如果 full_s1 DR 也大幅下降 = 强 generalization claim；如果效果弱 = 需要讨论 schema 复杂度边界\n- **已知 DocRED grammar_only DR=26.17%**（比 unconstrained baseline 18.7% 还高！），这是因为 grammar 约束消除了 RV/ET 后剩余 triples 中 DR 占比上升。汇报时注意区分 absolute count vs rate\n- **决策链**: D001(EMNLP目标) → D003(MVP GO) → D006(SciERC核心确认) → D007(S2降级) → D008(DocRED消融+论文并行) → D009(Llama cross-model should-have)\n- **易踩坑**: grammar_only 的 DR rate 上升不是 regression——是分母变了（RV/ET triples 被消除后，剩余 triples 里 DR 比例自然升高）。per-relation absolute count 才是公平对比\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778764676.md"
+}

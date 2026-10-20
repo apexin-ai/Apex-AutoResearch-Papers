@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "778506860c0943b8fefc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred semantic only",
+  "task_key": "worker_analysis_docred_semantic_only_20260514T143526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_semantic_only_20260514T143526_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "590f869c965e0d56eef80d73602790a62bf0e27a3821d49ebaf26b4b3fc7cfc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总如下：\n\n## DocRED semantic_only vs unconstrained 对比（all_set 方法）\n\n| Metric | unconstrained | semantic_only | Δ |\n|--------|:---:|:---:|:---:|\n| **DR%** | 18.46% | **14.83%** | **-3.63pp (↓19.7%)** |\n| **RV%** | 29.66% | 29.87% | ≈不变 |\n| **ET%** | 8.18% | **2.47%** | **-5.71pp (↓69.8%)** |\n| CF% | — | 3.47% | — |\n| R-F1 | 7.74% | 7.70% | ≈持平 |\n| E-F1 | 58.15% | 57.81% | ≈持平 |\n\n**关键结论：**\n1. **DR↓19.7%**，与 SciERC 的↓24.1% 接近但更温和，符合 DocRED 96 relations 约束空间更大的预期\n2. **ET↓69.8%** 降幅显著，semantic 约束对 entity type 合法性有强约束效果\n3. **RV 完全不变**——验证 Claim 3：semantic 层无法消除 relation vocabulary 违规，需 grammar 层配合\n4. **F1 无损**——semantic 约束不牺牲抽取质量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-semantic-only.md"
+}

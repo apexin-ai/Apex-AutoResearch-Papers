@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539287e5f47d1e75e682",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code urgent 16980 status and v3 launch",
+  "task_key": "worker_code_urgent_16980_status_and_v3_launch_20260518T063805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_16980_status_and_v3_launch_20260518T063805_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "7af517bd89a0010623b8fef7fa02f724bf142c6c403445eb140174256539f41f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen v3 全量已正确启动（Samples: 246），GPU 0 占用 16676MiB，PID 534706。\n\n---\n\n## 汇总\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 状态 |\n|-----|------|----------|------|\n| 0 | RTX PRO 6000 (96GB) | 16676MiB | Qwen v3 full 运行中 (PID 534706) |\n| 1 | RTX PRO 6000 (96GB) | 0MiB | 空闲 |\n\n### 已完成实验结果\n\n**Qwen 16K retry** (`wikievents_qwen_constrained_full.jsonl`, 246 行):\n\n| 指标 | 值 |\n|------|-----|\n| Parse failures | 37/209 |\n| RoV violations | 0.3% |\n| AC violations | 1.8% |\n| CF violations | 22.5% |\n| **Go/No-go (RoV+AC)** | **2.16%** |\n| Entity F1 | 0.1427 (P=0.39, R=0.09) |\n| Trigger F1 | 0.1360 (P=0.12, R=0.15) |\n| Argument F1 | 0.0176 (P=0.01, R=0.02) |\n\n**Llama grammar_only** (`ee_llama_wikievents_grammar_only.jsonl`, 246 行):\n\n| 指标 | 值 |\n|------|-----|\n| Parse failures | 27/219 |\n| RoV violations | **77.0%** |\n| AC violations | 8.8% |\n| CF violations | 0.1% |\n| **Go/No-go (RoV+AC)** | **85.89%** |\n| Entity F1 | 0.1773 (P=0.39, R=0.11) |\n| Trigger F1 | 0.0883 (P=0.10, R=0.08) |\n| Argument F1 | 0.0058 (P=0.006, R=0.006) |\n\n### Qwen v3 启动确认\n- Session: `qwen_v3_full`\n- PID: 534706\n- GPU: cuda:0, 16676MiB\n- Samples: 246 (全量)\n- 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B` (本地，HF 网络不通)\n- Mode: `full_s1`\n- 输出: `outputs/ee_qwen_wikievents_constrained_v3_full.jsonl`\n- 注意事项：需要加 `--data_path data/wikievents/all.jsonl`，默认 data_path 是 train.jsonl（仅 12 条）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-16980-status-and-v3-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea0440bedd441c72d6a4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r12 task1 fallback cascade",
+  "task_key": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_task1_fallback_cascade_20260520T174540_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "fe95e5c67e97a8aeacea1e23c22ee1f76b635be47690b0d53dcc96e580362ec8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Layer 1 — S1 诱导的 fallback 极小**\n- Qwen: 仅 3 个 entity 因 S1 fallback 到 Generic（unc 中 type 为 \"Feature-of\"，一个不合法的类型名），涉及 2 个 relation 被弱化\n- Llama: 仅 1 个 entity（unc 中 Material → con 中 Generic），0 个 relation 弱化\n- S1 在 SciERC 的 6 种 entity type 上覆盖几乎完美\n\n**Layer 2 — Generic wildcard 级联效应（真正的发现）**\n\n| | Qwen | Llama |\n|---|---|---|\n| Generic entity 占比 | 10.2% (con) vs 10.1% (unc) | 14.6% vs 14.4% |\n| 涉及 Generic 的 relation | 235 (13.6%) | 237 (18.0%) |\n| DR 被 Generic 弱化的 relation | 109 (6.3%) | 123 (9.4%) |\n| 弱化占涉及的比例 | 46.4% | 51.9% |\n\n**Per-relation 分析**：Hyponym-of 和 Compare 100% 弱化（DR 表窄）；Used-for 0% 弱化（DR 表最宽，35 对 valid pairs）。Generic 平均参与每种 relation 38% 的 valid pairs。\n\n输出文件在 westd-16980 上：\n- JSON：`/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json`\n- LaTeX：`/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt`\n- 脚本：`/root/schema_semantic_constrained_ie/r12_fallback_cascade_v2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-task1-fallback-cascade.md"
+}

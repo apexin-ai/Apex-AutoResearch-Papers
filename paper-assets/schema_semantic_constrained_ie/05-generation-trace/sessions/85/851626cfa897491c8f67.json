@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "851626cfa897491c8f67",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w5 lora constrained eval dryrun",
+  "task_key": "worker_code_w5_lora_constrained_eval_dryrun_20260515T154837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5_lora_constrained_eval_dryrun_20260515T154837_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "f9de11172387dc0d9bcb033f60a114c7c1ae372ea102497347439f5bb7cfefc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-Run 结果\n\n| 项目 | 结果 |\n|------|------|\n| **状态** | 成功，2/2 samples，0 failures |\n| **模型加载** | ~3s（4 shards） |\n| **推理时间** | Sample 1: 4.1s（E=4, R=3），Sample 2: 1.3s（E=2, R=1） |\n| **Grammar** | XGrammar + TypeConstraintProcessor 正常编译（\"Grammar compiled (full schema)\"） |\n| **GPU 0 显存** | 已释放（0 MiB），进程退出即自动清理 |\n\n**Warnings**（均无影响）：\n- Mistral regex pattern warning（Qwen tokenizer 的已知误报）\n- `torch_dtype` deprecated 提示\n- generation flags `['temperature', 'top_p', 'top_k']` may be ignored\n\n**注意**：实际执行用的 GPU 0（因为 GPU 1 被 DocRED constrained eval PID 276937 占用）。原 unconstrained eval PID 278385 已不存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-lora-constrained-eval-dryrun.md"
+}

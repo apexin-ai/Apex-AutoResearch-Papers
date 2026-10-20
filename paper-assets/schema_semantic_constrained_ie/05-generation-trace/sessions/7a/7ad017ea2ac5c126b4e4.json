@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad017ea2ac5c126b4e4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper writing compress related work",
+  "task_key": "worker_paper_writing_compress_related_work_20260514T212724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_compress_related_work_20260514T212724_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "c7fc7c90a76c144ef78eed8bd35c23bb0f540df8f4b8da2c59b8bcf4136f5332"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "420 words, within the 400–450 target. All 6 paragraphs present with required citations, plus the final positioning sentence.\n\nWritten to `section6_related_work.tex` — 420 words (down from 2441), 6 `\\paragraph{}` sections + closing positioning statement. All specified citations retained, no new citations added."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-compress-related-work.md"
+}

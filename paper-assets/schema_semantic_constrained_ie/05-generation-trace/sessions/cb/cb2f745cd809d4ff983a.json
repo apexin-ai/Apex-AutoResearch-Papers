@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb2f745cd809d4ff983a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d065 qwen con rerun progress",
+  "task_key": "worker_ops_d065_qwen_con_rerun_progress_20260520T154035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d065_qwen_con_rerun_progress_20260520T154035_result.json",
+    "occurrence": 1,
+    "bytes": 277,
+    "sha256": "09ec48099764006ab4dc4e9567957797f29501e296ad70171409947347d96b0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行。932/998，还剩 66 个文档。\n\n进程已运行 348 分钟处理 932 个文档，平均 ~0.37 min/doc，预估剩余 **~25 分钟**。\n\n完成后需要立即 eval。建议等 25 分钟后再查。要我设一个定时回来检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d065-qwen-con-rerun-progress.md"
+}

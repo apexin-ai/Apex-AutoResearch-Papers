@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "845a0b65b57f9a3405f5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_3_1778747597.md",
+  "task_key": "loop_3_1778747597",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778747597.md",
+    "occurrence": 1,
+    "bytes": 4617,
+    "sha256": "960dcc57444e3f08b3cd53182d779d3f10ce9cafcf0708e569a8ca5104778b01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T07:32:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **仅 cuda:0 + cuda:1 on westd-16980**，无其他服务器/GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 重提交前必须单独清理旧 tmux session（**禁止**在 allocate_and_submit 命令内放 `tmux kill-session`，会自杀）\n- `_apply_type_mask` 已修复 grammar-semantic 交互 bug（allowed_types 与 grammar-valid 无交集时跳过 semantic masking）——DocRED full_s1 正在用修复后的代码跑，**不要回滚这个修复**\n- 孤儿进程清理前必须查 registry 所有 RUNNING PID 全部加白名单（上次误杀了 3 个实验）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980，2× NVIDIA RTX PRO 6000 Blackwell (94GB each)，CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python`（conda base），torch 2.10.0+cu128，transformers 4.57.6\n- **模型**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- **数据**: SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- **约束文件**: SciERC `ontology_constraints.json`, DocRED `data/docred/ontology_constraints_docred.json`\n- **活跃进程**:\n  - `phase2_docred_grammar_only`: PID 150766, tmux=phase2_docred_grammar_only, cuda:0, ~653/998\n  - `phase2_docred_full_s1`: PID 157042, tmux=phase2_docred_full_s1, cuda:1, ~568/998 (--resume from 87, bug fix applied)\n- **Cron**: 2 个活跃，分别监控上述两个实验\n\n### 3. 📊 当前状态\n**SciERC Phase 2 全部完成**，核心结果: full_s1 DR 15.37%→0.93% (↓94%), R-F1 +0.13pp, ET/RV→0%。S2 降级为 ablation (D007)。\n\n**DocRED Phase 2 四实验消融进行中**:\n| exp_id | status | GPU | 进度 | 预计完成 |\n|--------|--------|-----|------|---------|\n| phase2_docred_grammar_only | RUNNING | cuda:0 | ~653/998 | May 14 ~17:00 UTC |\n| phase2_docred_full_s1 | RUNNING | cuda:1 | ~568/998 | May 14 ~16:30 UTC |\n| phase2_docred_semantic_only | QUEUED | — | — | GPU 释放后立即提交 |\n| phase2_docred_unconstrained | QUEUED | — | — | GPU 释放后立即提交 |\n\n**论文写作**: §1/§2/§3/§4/§6/§7/Abstract/Tables×4/Figs×3/.bib 全部完成。缺 §5 DocRED subsection（等实验结果填 placeholder）和 §5 Cross-model subsection。\n\n**等待中**: 2 个 cron 回调（grammar_only + full_s1 完成）。无待处理 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- grammar_only 或 full_s1 cron 回调到达 → spawn Worker 分析结果（violation_checker_docred.py）→ update_registry metrics → 释放的 GPU 立即提交 QUEUED 实验（semantic_only 和 unconstrained 各占一张卡）\n- DocRED 4 实验全部完成 → spawn Worker 写 §5 DocRED subsection（填 placeholder）→ 汇报 Director\n- DocRED 完成后 → 准备 Llama-3.1-8B cross-model 验证 (D009, should-have): 需要下载 Llama-3.1-8B 到 westd-16980，跑 SciERC unconstrained + full_s1 两组\n- 全部实验完成 → §5 Cross-model subsection → Abstract/Conclusion 更新 DocRED 数据 → 全文校对 → May 19 内部稿\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，内部初稿 DDL May 19（距今 5 天）\n- **核心 narrative**: OntoCoDec = grammar + semantic 双层约束解码，编译 IE ontology 为解码时 logits mask。Claim: \"near-elimination of type violations at zero F1 cost\"\n- **决策链**: D001(EMNLP target) → D002(GO) → D003(Phase2) → D004-D006(SciERC 核心结果确认) → D007(S2 降级) → D008(DocRED 消融+写作并行) → D009(Llama cross-model should-have)\n- **易错点**:\n  - DocRED full_s1 用了 `--resume` 从 doc 87 继续（之前 doc 88 触发 grammar-semantic 交互 bug 已修复），输出文件前 87 行 + 后续行拼接，分析时注意不要重复计数\n  - CF violation (cross-field consistency) 是 semantic 层的已知副作用 (S1=9.90%)，论文定位为 limitation，不要试图修复\n  - QUEUED 的两个实验 hypothesis 已写好，提交时直接用 registry 里的 hypothesis，不要改\n  - DocRED 约束比 SciERC 紧很多 (avg 5.68 vs 26.1 valid pairs)，full_s1 的 DR 消除效果可能不如 SciERC 那么极端——如果 DR 残留较高（如 >3%），不是 bug，是约束空间紧导致的 semantic-grammar 交互频率更高\n  - Cron PID 追踪历史上不可靠（4 次假失败），如果 cron 报 failed 但 `wc -l` 显示输出文件行数 = 998 则实际成功\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778747597.md"
+}

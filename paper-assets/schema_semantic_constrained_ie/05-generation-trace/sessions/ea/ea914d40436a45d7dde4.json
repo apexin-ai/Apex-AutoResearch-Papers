@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea914d40436a45d7dde4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d065 qwen con rerun final",
+  "task_key": "worker_ops_d065_qwen_con_rerun_final_20260520T161012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d065_qwen_con_rerun_final_20260520T161012_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "f9f4ad152ea27b2151259349951cf04653514ea0d137a3fd6b2bd5eaeac441ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。d065 Qwen DocRED constrained rerun eval 结果：\n\n| 指标 | 值 |\n|------|-----|\n| **E-F1** | 81.87 (P=85.50, R=78.53) |\n| **R-F1** | 40.79 (P=36.34, R=46.50) |\n| **ET%** | **0.00** |\n| **RV%** | **0.00** |\n| **DR%** | **0.00** |\n| **CF%** | 0.22 |\n| **PF%** | 7.8% (78/998) |\n\n**关键结论：DR% = 0%**。Constrained decoding 在 Qwen + DocRED 上完全消除了 domain-range 违规（ET、RV、DR 全部归零）。Table 2 措辞可以用 **\"eliminates\"**，不需要 \"near-eliminates\" 的让步。\n\nRegistry 已更新（conclusion=success + 完整 metrics），cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d065-qwen-con-rerun-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cf4dc1ff31e798304bc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents baseline status check",
+  "task_key": "worker_code_wikievents_baseline_status_check_20260517T181006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_baseline_status_check_20260517T181006_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "84f86700d168755edfc5e7ffbf9bc463cabe94ea8312cdf299a1c04e3a56a731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status summary:\n\n| Model | Server | GPU | Status | Docs Completed | Notes |\n|-------|--------|-----|--------|----------------|-------|\n| Qwen3-8B | westd-16980 | 1 | **Running** | 67/246 | Active, ~2.3 docs/min, ETA ~80 min |\n| Llama-3.1-8B | westd-16980 | 0 | **CRASHED** | 52/246 | AttributeError at doc 52 |\n| Mistral-7B | westd-21461 | 0 | **Running** | 27/246 | Active, GPU 90% util |\n\n**Llama crash details:**\n\n`run_constrained_extraction.py:985` — `parsed` is a `list` instead of `dict`, causing `parsed.get(\"entities\", [])` to fail. The crash happened on sample 52 (`scenario_en_kairos_50`). The fix should be:\n\n```python\nn_ents = len(parsed.get(\"entities\", [])) if parsed else 0\n# → needs to handle case where parsed is a list, not dict\n```\n\nOptions:\n1. Fix the bug and restart Llama with `--skip_existing` to resume from doc 52\n2. Wait for Qwen/Mistral to finish first, then fix and rerun Llama\n\nWant me to fix and restart Llama now?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-baseline-status-check.md"
+}

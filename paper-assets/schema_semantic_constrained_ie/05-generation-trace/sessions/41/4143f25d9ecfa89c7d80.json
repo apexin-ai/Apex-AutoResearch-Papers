@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4143f25d9ecfa89c7d80",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama beam2 s1 check relay",
+  "task_key": "worker_ops_d066_llama_beam2_s1_check_relay_20260520T120336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_beam2_s1_check_relay_20260520T120336_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "39e8f8f29e99281de47425a5edd120778be173c288e6f361ef86b1ba77571594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，模型已加载到 GPU1。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **Llama beam2 s1** | 完成。`llama_docred_200_beam2_full_s1.jsonl`，200行，199成功/1失败 |\n| **Llama beam8 unc** | 已启动，PID 755444 |\n| **GPU0** | Qwen beam8 s1 运行中（PID 748197，68134 MiB） |\n| **GPU1** | Llama beam8 unc 运行中（PID 755449，18270 MiB，模型加载中） |\n\n注：首次启动缺少 `--data_path` 和 `--constraints_path` 参数导致报错，已补全重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-beam2-s1-check-relay.md"
+}

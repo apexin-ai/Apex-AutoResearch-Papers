@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87fbfd86881ae4ef9081",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 mistral docred beam registry",
+  "task_key": "worker_code_w10_mistral_docred_beam_registry_20260517T093814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_mistral_docred_beam_registry_20260517T093814_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "1a5c8bec6cb25032b01fe822f7ebe7eaa07c10eaf536bb6534cb495cc8aa2ee3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## Violation Checker（DocRED 版）\n\n| 指标 | Beam (w9) | Greedy baseline (w6) |\n|------|-----------|---------------------|\n| ET violation | 0% | — |\n| RV violation | 0% | — |\n| **DR violation** | **21.37%** | 33.21% |\n| CF violation | 1 | — |\n| Triples | 524 | — |\n\n**DR=21.37% 与 appendix 表格值完全一致。** Beam search 相比 greedy 降低了 11.84pp 的 domain/range 违规率。\n\n## F1 评估\n\n| 指标 | Beam (w9) | Greedy baseline (w6) |\n|------|-----------|---------------------|\n| E_F1 | 51.78 | 50.59 |\n| R_F1 | 5.70 | 5.52 |\n\nEntity F1 和 Relation F1 与 greedy 基本持平，小幅提升。\n\n## 产出\n\n- Violation report JSON: `outputs/w9_mistral_docred_beam4_violation_report.json`\n- Violation report TXT: `outputs/w9_mistral_docred_beam4_violation_report.txt`\n- Registry: `w9_mistral_docred_beam_50` 已注册，status=RUNNING → conclusion=success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-mistral-docred-beam-registry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ddc3b828000e04f3ded",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code mvp docred",
+  "task_key": "worker_code_mvp_docred_20260513T173912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_docred_20260513T173912_result.json",
+    "occurrence": 1,
+    "bytes": 2237,
+    "sha256": "59e5bf191d9802c5d7fb7d390064e393527383a973a80885406b8cc1ea7da2f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n---\n\n## DocRED 数据集 + 本体约束 + 适配代码 — 完成\n\n### 1. DocRED Dev Set 统计\n- **样本数**: 998 个文档\n- **平均文档长度**: 200.5 词 (median=181, min=129, max=510)\n- **平均实体数/文档**: 19.6\n- **平均关系数/文档**: 12.3\n- **总关系数**: 12,275\n\n### 2. Entity Type 分布 (Dev Set)\n| Type | Count | % |\n|------|-------|---|\n| LOC | 8,168 | 31.2% |\n| PER | 4,797 | 18.4% |\n| TIME | 4,044 | 15.5% |\n| MISC | 3,913 | 15.0% |\n| ORG | 3,900 | 14.9% |\n| NUM | 1,319 | 5.0% |\n\n### 3. Ontology Constraints 统计\n- **训练集 triples**: 38,180\n- **Relation types with data**: 96/96 (全覆盖)\n- **每 relation 的合法 (head_type, tail_type) pair 数**: avg=5.68, min=1, max=15\n- 分布: 1 pair (4 types), 2-5 pairs (46), 6-10 pairs (43), 11-15 pairs (3)\n- 最受约束: P190(sister city), P205(basin country), P3373(sibling) 都只有 1 个合法 pair\n- 最宽松: P527(has part) 15 pairs, P361(part of) 14 pairs, P17(country) 13 pairs\n\n### 4. 代码文件\n服务器 `/root/schema_semantic_constrained_ie/`:\n- `analyze_ontology_docred.py` — 从训练数据提取本体约束\n- `run_extraction_docred.py` — Qwen3-8B zero-shot extraction (cuda:1)\n- `violation_checker_docred.py` — 三类违规检查\n\n数据:\n- `data/docred/{train_annotated.json, dev.json, rel_info.json}`\n- `data/docred/ontology_constraints_docred.json`\n\n本地 artifacts 同步在 `artifacts/` 目录。\n\n### 5. Dry-Run 结果 (2 samples)\n- 模型加载: 4 秒 (bfloat16, cuda:1)\n- 推理速度: ~15 秒/文档 (~700 input tokens)\n- JSON 解析成功率: 2/2 (100%)\n- **Per-triple violation rate: 66.67%** (30 triples, 20 violated)\n- 主要违规来源: 模型输出 DocRED schema 中不存在的 relation types (如 \"available on\", \"uses\", \"built by\")\n- 少量 entity type violations (2 个)\n\n### 6. 问题\n- DocRED 原始 GitHub raw URLs 全部 404，改用 HuggingFace Hub 的 .gz 文件下载\n- Qwen3-8B 模型权重未预装完成，通过 ModelScope 重新下载 (~15min)\n- 模型实际路径嵌套在 `Qwen3-8B-ms/Qwen/Qwen3-8B/`（ModelScope 目录结构）\n- `torch_dtype` 参数 deprecation warning（不影响运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-docred.md"
+}

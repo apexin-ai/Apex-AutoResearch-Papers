@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa766d7d30a349cf304",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 m3q3 semantic only et",
+  "task_key": "worker_code_r4_m3q3_semantic_only_et_20260517T110021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_m3q3_semantic_only_et_20260517T110021_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "6a3981007e823b6f1899dce05fc5a870cea2cbe16a0cf1222ac13a8db4754844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。写入 `artifacts/r4_m3q3_semantic_et_analysis.md`。\n\n核心发现：\n\n1. **851 中的 355 个额外 ET 违规全部来自 relation 的 head_type/tail_type 字段**，entity list 的违规数量（496）与 unconstrained 完全一致。\n\n2. **机制**：`_apply_type_mask` 只屏蔽 6 个 entity type 的 first token，剩余 ~150k vocab token 不受影响。在 full_s1 中 XGrammar 的 enum 约束保证输出只能是合法类型；semantic-only 没有 grammar 层，模型在被 D/R mask 屏蔽掉正确 type token 后会逃逸到 OOV 类型（如 \"ORGB\"=57, \"OR\"=48, \"EVENT\"=55）。\n\n3. **SciERC 不受影响的原因**：SciERC 每个 entity type 在所有 7 个 relation 中都是合法的 head 和 tail（type-level blocking = 0%），D/R mask 从未真正屏蔽任何 token。DocRED 则相反：NUM 在 92% 的 relation 中被屏蔽，TIME 在 88% 中被屏蔽——高屏蔽率 + 无 grammar = 频繁 OOV 逃逸。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-m3q3-semantic-only-et.md"
+}

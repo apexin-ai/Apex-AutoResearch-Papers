@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71987f13a91c219649ce",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 type consensus impl",
+  "task_key": "worker_code_w10_type_consensus_impl_20260517T050801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_type_consensus_impl_20260517T050801_result.json",
+    "occurrence": 1,
+    "bytes": 2072,
+    "sha256": "4d41f392970857921d4816849ec37b315d557c605d24159547867583410964b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "551 samples confirmed. Here's the summary:\n\n---\n\n## Step 1-4 完成\n\n### 代码结构分析\n- `TypeConstraintProcessor.__call__` 每步 decode generated text → `PositionDetector.detect()` 判断当前在 entity_type / head_type / tail_type 位置 → 应用 domain/range mask\n- `EntityRegistry` 已经追踪 `{text: type}` 从 entities section，但当 D/R constraint 与 registry 冲突时，原版 processor 不强制 registry type → CF violation 产生\n\n### 实现\n新建 `/root/schema_semantic_constrained_ie/compiler/type_consensus_processor.py` (Layer 3):\n- 维护 `ConsensusRegistry`，从 entities section + 已完成的 relation 字段收集 `{text: first_type}`\n- 在 head_type/tail_type 生成位置，如果 entity text 已在 registry 中，**无条件**强制该 type（即使 Layer 2 已经 mask 掉了它，也恢复 logit 到 0.0）\n- 对 `run_constrained_extraction.py` 最小化修改：加 `--type_consensus` flag，在 `run_single_pass` 的 processors 列表末尾追加\n\n### Dry-run 结果 (10 docs)\n| 指标 | Before (v1) | After (v2) |\n|------|------------|------------|\n| Success rate | 10/10 | 10/10 |\n| JSON valid | 100% | 100% |\n| CF violations | 4 (7.69%) | **0 (0.00%)** |\n| Relations corrected | - | 6 |\n\n被修正的典型案例：`\"MET\"` 在 entities 中标为 `OtherScientificTerm`，但 D/R constraint 允许 `Generic` 作为 `Hyponym-of` 的 tail → Layer 2 选了 `Generic` → Layer 3 强制回 `OtherScientificTerm`。\n\n### Full eval 命令（551 docs，未启动）\n\n```bash\ncd /root/schema_semantic_constrained_ie && source /root/miniconda3/bin/activate && \\\npython run_constrained_extraction.py \\\n  --mode full_s1 \\\n  --dataset scierc \\\n  --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B \\\n  --data_path data/processed_data/test.json \\\n  --constraints_path ontology_constraints.json \\\n  --output_path outputs/scierc_full_s1_consensus_551.jsonl \\\n  --type_consensus \\\n  --device cuda:0\n```\n\n预计耗时 ~35min（3.6s/sample × 551 samples）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-type-consensus-impl.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a04db05818795fc7b537",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d049 70b download",
+  "task_key": "worker_code_d049_70b_download_20260518T102121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d049_70b_download_20260518T102121_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "ee6f7768f6dd3598a3159df6fad884500c3694a4afc826cae521f09b3e6c1142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已启动。50 个文件正在下载，包括 8 个 ~16.4GB 的 consolidated.XX.pth 分片。\n\n汇报：\n\n- **下载已启动** — tmux session `model_download` 在 westd-21461 后台运行\n- **磁盘空间** — /root/autodl-tmp 有 207GB 可用，够 FP16\n- **版本** — FP16 全量（LLM-Research/Meta-Llama-3.1-70B-Instruct）\n- **模型路径** — `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct`\n- **bitsandbytes** — 0.49.2 已安装验证通过\n- **ModelScope** — 1.37.0 已预装可用\n- **预计下载时间** — 按 ~1.4MB/s 速度，~140GB 需要约 28 小时（速度较慢，可能后续会加速）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d049-70b-download.md"
+}

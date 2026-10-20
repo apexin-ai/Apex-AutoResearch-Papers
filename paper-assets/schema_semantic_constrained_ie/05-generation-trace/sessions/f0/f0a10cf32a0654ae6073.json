@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0a10cf32a0654ae6073",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code verify collision fix state",
+  "task_key": "worker_code_verify_collision_fix_state_20260518T033040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_collision_fix_state_20260518T033040_result.json",
+    "occurrence": 1,
+    "bytes": 1651,
+    "sha256": "e2d216953efafe8ec782b72ffc2bfa9de5ef1c091997a71be61690f0c89afdd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 文件行数\n| 服务器 | 当前文件 | .bak | .bak_before_grammar_fix |\n|--------|---------|------|------------------------|\n| westd-21461 | **816 行** (32428 bytes, May 18 11:25) | 796 行 (May 18 05:01) | 544 行 (May 18 00:05) |\n| westd-16980 | **816 行** | — | — |\n\n两台服务器文件一致（816 行）。\n\n### Fix 1: 碰撞组 continuation mask — **不存在**\n\n在 westd-21461 的三个版本（当前、.bak、.bak_before_grammar_fix）和 westd-16980 上，以下关键词全部零匹配：\n- `collision_group`\n- `_build_entity_type_collision`\n- `_apply_entity_type_continuation`\n- `in_entity_type_value`\n\n**碰撞组代码从未被写入文件。** 不是丢失，是从未存在。\n\n### Fix 2: Qwen RoV exact-match fix — **存在**\n\n两台服务器均在第 672、680 行找到 `exact_match`：\n- L672: `exact_match = partial in still_reachable`\n- L680: `if exact_match and text.startswith('\"'):`\n\n.bak（796 行）中 `exact_match` 匹配数为 0，说明此 fix 是 .bak → 当前版本期间新增的（+20 行，796→816）。\n\n### 结论\n\n| Fix | westd-21461 | westd-16980 |\n|-----|-------------|-------------|\n| 碰撞组 continuation mask | **缺失（从未写入）** | **缺失** |\n| Qwen RoV exact-match | **存在** (L672, L680) | **存在** (L672, L680) |\n\n**可能原因**：碰撞组 fix 的 worker 可能只做了分析/规划，没有实际执行文件写入；或者写入被回滚。文件变化轨迹（544 → 796 → 816）只体现了 grammar fix 和 Qwen RoV fix 两次修改，碰撞组代码从未出现在任何版本中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-collision-fix-state.md"
+}

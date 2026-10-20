@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faf21d9e15b9b3f3e9fd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code fix s2 pass2 semantic",
+  "task_key": "worker_code_fix_s2_pass2_semantic_20260513T213645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_s2_pass2_semantic_20260513T213645_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "fc6bf921cd5664c3e6a5bbc7a07aa1058e27140b95999271e0a6122944511bd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**D/R violations: 0/8 (0.0%)**\n\nBug 修复成功。总结：\n\n### 发现的 Bug（共 2 个）\n\n**Bug 1**: `_mask_head_type()` / `_mask_tail_type()` 从不查 EntityRegistry，只走 D/R 约束路径。同时 `_RE_TAIL_TEXT_VAL` 正则缺失导致 `current_tail_text` 永远为 None。（上一轮已修复）\n\n**Bug 2**（本轮定位）: `PositionDetector.detect()` 用 `rfind('{\"head\"')` 定位 relation 对象起始位置，但 XGrammar 生成的 JSON 是 pretty-printed 的（`{\\n      \"head\"`），`rfind` 匹配不到。导致 `current_relation_type`/`current_head_type` 始终为 None，D/R 约束永远不会被应用。\n\n**修复**: 将 `rfind` 替换为正则 `_RE_REL_START = re.compile(r'\\{\\s*\"head\"')`，用 `finditer` 取最后一个匹配。\n\n### 验证结果\n- 3 样本 dry-run: 3/3 成功，8 个 relation 全部通过 D/R 检查\n- D/R violation rate: **0.0000**（从 25% 降为 0%）\n- 剩余 1 个 cross-field consistency violation 不在本次修复范围内"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-s2-pass2-semantic.md"
+}

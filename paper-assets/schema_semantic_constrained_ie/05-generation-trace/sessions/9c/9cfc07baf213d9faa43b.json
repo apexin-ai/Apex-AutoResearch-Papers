@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cfc07baf213d9faa43b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose scierc s1 exit status",
+  "task_key": "worker_diagnose_scierc-s1-exit-status_20260522T064605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scierc-s1-exit-status_20260522T064605_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "bd71276a3597e3652327ade06fc318718618d97d68fdcb701c5e894f57493590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE/success。\n\n**结果摘要：**\n\n| 指标 | Constrained (S1) | 假设验证 |\n|------|------------------|----------|\n| **R-F1** | **44.53%** | vs unconstrained 44.73% → 仅降 0.20pp，几乎无损 |\n| **E-F1** | 64.76% | — |\n| **DR%** | **0.0%** | 目标 DR→0% ✓ |\n| **RV%** | 0.0% | ✓ |\n| **ET%** | 0.0% | ✓ |\n| **Parse Fail** | 0.0% | ✓ |\n\n假设验证通过：70B LoRA + S1 constrained decoding 将所有约束违反清零，R-F1 仅从 44.73→44.53（-0.45%），确认约束有效性在 70B fine-tuned 模型上 scale-independent。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scierc-s1-exit-status.md"
+}

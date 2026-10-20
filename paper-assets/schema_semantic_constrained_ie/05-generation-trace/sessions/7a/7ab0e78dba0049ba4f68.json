@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab0e78dba0049ba4f68",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "check all experiments status",
+  "task_key": "worker_check_all-experiments-status_20260522T202624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all-experiments-status_20260522T202624.log",
+    "occurrence": 1,
+    "bytes": 761973,
+    "sha256": "17469b7c8af556df590c237d7359bd29d6e5aef8404ec7d80566604efb9d695c"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "7ab0e78dba0049ba4f68-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "7ab0e78dba0049ba4f68-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-all-experiments-status.md"
+}

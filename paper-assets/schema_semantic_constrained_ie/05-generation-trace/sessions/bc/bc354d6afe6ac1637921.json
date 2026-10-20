@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc354d6afe6ac1637921",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research paper consistency check",
+  "task_key": "worker_research_paper-consistency-check_20260514T094622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-consistency-check_20260514T094622_result.json",
+    "occurrence": 1,
+    "bytes": 4753,
+    "sha256": "c63731e3d48b70a02d8b60d77825fd65b92418143576c44ef48b0d2ae07af24a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've collected all registry data and read all paper sections. Now compiling the cross-check report.\n\n---\n\n## 数字一致性检查报告\n\n### ✅ 一致的数字\n\n**SciERC 主表 (§5 inline table + paper_tables_draft Table 1)**：所有 20 个单元格与 registry 完全一致。\n\n| 指标 | Unconstrained | Grammar | Semantic | Full S1 | Full S2 |\n|------|:-:|:-:|:-:|:-:|:-:|\n| DR | 15.37% ✅ | 14.84% ✅ | 11.65% ✅ | 0.93% ✅ | 0.97% ✅ |\n| RV | 1.39% ✅ | 0% ✅ | 1.51% ✅ | 0% ✅ | 0% ✅ |\n| ET | 0.40% ✅ | 0% ✅ | 0.40% ✅ | 0% ✅ | 0% ✅ |\n| CF | 0.08% ✅ | 0.08% ✅ | 2.71% ✅ | 9.90% ✅ | 8.03% ✅ |\n| R-F1 | 8.23 ✅ | 8.23 ✅ | 8.15 ✅ | 8.36 ✅ | 8.03 ✅ |\n| E-F1 | 31.01 ✅ | 30.98 ✅ | 31.01 ✅ | 30.98 ✅ | 31.90 ✅ |\n\n**Per-relation DR (Table 2)**：7 行全部一致 (Compare 42.4→2.8, Feature-of 33.5→1.2, Part-of 25.0→0, Evaluate-for 24.1→5.8, Hyponym-of 14.5→0, Used-for 0.8→0, Conjunction 0→0) ✅\n\n**DocRED Phase 0 (Table 3)**：Minimal(18.7/28.9/7.5/96.4) 和 Schema-informed(12.8/18.4/0.6/94.5) 1dp 四舍五入均正确 ✅\n\n**跨章节一致性**：\n- Abstract \"15.37%→0.93% (↓94%)\" = §5 = §7 Conclusion ✅\n- Abstract \"+0.13pp\" = §5 = §7 ✅\n- Abstract \"CF 0.08%→9.9%\" = §5 \"0.08%→9.90%\" = §7 ✅\n- §1 Intro \"15.4%→0.9% (↓94%)\" 与 §5 一致（不同精度）✅\n- §6 Related Work \"15.37%→0.93%\", \"R-F1 8.36 vs 8.23, +0.13pp\" = §5 ✅\n- §3 Violation Landscape per-relation 分子分母 (28/66, 163/486, 18/72, 32/133, 6/787, 0/32) 全部 = registry ✅\n\n**派生数字**：\n- ΔDR(S1) = 93.9% → paper 说 \"94%\" (合理四舍五入) ✅\n- Semantic-only DR reduction = 24.2% → paper 说 \"24%\" ✅\n- Schema prompt SciERC reduction = 62.4% → paper 说 \"62%\" ✅\n- Schema prompt DocRED reduction = 31.3% ✅\n\n---\n\n### ❌ 不一致的数字\n\n**1. §3 Violation Landscape line 52: DocRED schema-informed DR**\n\n| | 论文中 | Registry 正确值 |\n|--|--------|----------------|\n| DR (2dp) | **12.80%** | **12.84%** |\n\n文件：`section3_violation_landscape.tex:52`\n原文：`DR drops from 18.70\\% to 12.80\\% ($-$31.3\\%)`\n问题：12.80% 应为 12.84%。31.3% 的相对降幅也验证了 12.84% 才对 ((18.70−12.84)/18.70 = 31.3%)，12.80% 得出的是 31.6%。\n\n**2. §2 Background 内部矛盾：SciERC valid pairs 数值**\n\n| | Line 11 | Line 14 |\n|--|---------|---------|\n| SciERC avg valid pairs | **3.73** | **26.1** |\n\n文件：`section2_background.tex:11` vs `section2_background.tex:14`\n- Line 11: \"|σ(r)| ranges from 3 (Part-of) to 6 (Used-for) valid pairs per relation, with an average of 3.73 pairs\"\n- Line 14: \"SciERC relations average 26.1 valid pairs (out of 36)\"\n\n两个数字用不同方式度量同一概念。3.73 来自显式列出的合法 type pair 集合 |σ(r)|；26.1 来自 |dom(r)| × |range(r)| 的独立乘积（Method §4 使用此定义）。论文需要统一——Method 用的是 dom/range 独立定义，所以 26.1 是对的，3.73 应该删除或注明不同度量。\n\n---\n\n### 📝 Placeholder 列表\n\n| # | 文件 | 位置 | 内容 | 可用数据 |\n|---|------|------|------|----------|\n| 1 | `abstract.tex:15` | Abstract | `\\placeholder{DocRED results.}` | DR 18.70%→10.19% (↓45.5%), RV 28.90%→0.03% (↓99.9%), ET 7.50%→0% (↓100%), R-F1 8.17 |\n| 2 | `section7_conclusion.tex:20` | Conclusion | `\\placeholder{DocRED DR result...}` | 同上 |\n| 3 | `paper_tables_draft.tex:119` | Table 4 Cross-dataset | DocRED S1 = *TBD* | DR\\_S1=10.19%, ΔDR=−8.5pp |\n\n**注意**：`phase2_docred_full_s1` 和 `phase2_docred_grammar_only` 均已 DONE，placeholder 数据已就绪。`phase2_docred_unconstrained` 和 `phase2_docred_semantic_only` 仍 RUNNING——DocRED 完整消融表还差这 2 个实验。\n\n---\n\n### 建议修复清单\n\n1. **`section3_violation_landscape.tex:52`**：`12.80\\%` → `12.84\\%`\n\n2. **`section2_background.tex:11`**：要么删除 \"with an average of 3.73 pairs\"，要么加注释说明这是 joint pair 定义 vs §3 的 independent domain/range 定义 (26.1)。建议统一到 26.1（与 Method 一致）。\n\n3. **填充 3 个 placeholder**（DocRED full\\_s1 数据已就绪）：\n   - Abstract: \"On DocRED, OntoCoDec reduces DR from 18.70% to 10.19% (↓45%), with RV 28.90%→0.03% and ET 7.50%→0%.\"\n   - Conclusion: 同上\n   - Table 4: DR\\_S1 = 10.2, ΔDR = −8.5\n\n4. **DocRED 消融结果**：等 `phase2_docred_unconstrained` 和 `phase2_docred_semantic_only` 跑完后，补 DocRED 消融表。注意 DocRED grammar\\_only DR=26.17% 高于 Phase 0 unconstrained 的 18.7%——公平对比需要 Phase 2 unconstrained baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-consistency-check.md"
+}

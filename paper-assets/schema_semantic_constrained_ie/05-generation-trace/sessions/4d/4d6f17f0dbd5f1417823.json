@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4d6f17f0dbd5f1417823",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code mvp docred",
+  "task_key": "worker_code_mvp_docred_20260513T173912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_docred_20260513T173912.log",
+    "occurrence": 1,
+    "bytes": 521600,
+    "sha256": "7e5d52bad8fe158078517c65ac50f0cffbe8b7030bd0bd07091700ae86dd3e7d"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "4d6f17f0dbd5f1417823-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d6f17f0dbd5f1417823-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-docred.md"
+}

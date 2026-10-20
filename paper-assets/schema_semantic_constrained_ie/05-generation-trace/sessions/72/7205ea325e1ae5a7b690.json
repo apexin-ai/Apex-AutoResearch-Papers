@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7205ea325e1ae5a7b690",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama docred beam4 s1 check",
+  "task_key": "worker_ops_d066_llama_docred_beam4_s1_check_20260520T150055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_docred_beam4_s1_check_20260520T150055_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "37db355542c183e46755c2f248d0e66f2a32562e7ee78e52adb874a62c7fe50b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d066_sweep_llama_docred_beam4_s1 完成。**\n\n| 指标 | 值 |\n|------|-----|\n| E-F1 | 85.61 (P=85.48, R=85.73) |\n| R-F1 | 51.89 (P=51.59, R=52.20) |\n| DR% | 0.00 |\n| CF% | 0.00 |\n| PF% | 0.5% (1/200 parse fail) |\n\nRegistry 已更新（conclusion=success），cron 已删除。GPU0 已释放。DocRED Llama beam sweep 最后一个空位（k=4 constrained）填入完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-docred-beam4-s1-check.md"
+}

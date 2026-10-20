@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "eba52c3090f3175281e7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "submit prep code anonymization",
+  "task_key": "worker_submit-prep_code-anonymization_20260523T162021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit-prep_code-anonymization_20260523T162021_result.json",
+    "occurrence": 1,
+    "bytes": 3121897,
+    "sha256": "2b8ccf5fb7a5d0ee72f09586d2d945ebad123936b4561543ae102e15adeb01bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 3121917,
+                "serialized_sha256": "8a86764f8e7bc6c406dcb7fdecd5f40fee6296d14a4f963bffd8c52cfc859886",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-prep-code-anonymization.md"
+}

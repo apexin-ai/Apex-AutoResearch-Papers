@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d6861cf2ba035147dae",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "figure fix fig1 v5 orange arrow",
+  "task_key": "worker_figure_fix-fig1-v5-orange-arrow_20260522T065118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix-fig1-v5-orange-arrow_20260522T065118_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "585fb5dbaf2ce8bb0f74a5c9d63cb5cb908ee28bd25faf1606fb79b4f0bb00ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。查看生成的图像：\n\n**改动：**\n- **蓝色箭头**：`rad=0.25` → `rad=-0.2`，弧线改为向下弯曲，避开了 TC Processor 区域\n- **橙色箭头**：`rad=0.15` → `rad=-0.15`，弧线向下弯曲，远离 Semantic Rules 文字\n\n**已知限制：** 蓝色箭头从 Grammar Automaton 右侧 (x=2.65) 到 Grammar Layer 左侧 (x=5.9) 的任何路径，都会经过 TC Processor (x: 2.95–5.05, y: 3.25–3.67) 或 Semantic Rules (x: 2.95–5.05, y: 2.35–2.77) 的区域——这两个方框填满了两端之间的空间。当前 `rad=-0.2` 选择了经过 Semantic Rules 上方边缘的路径（白色描边保持可辨识度），完全避开了 TC Processor。\n\n**产出文件：**\n- `gen_fig1.py`（本地已更新）\n- `fig1_framework.png` + `.pdf`（本地 artifacts 目录已更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-fig1-v5-orange-arrow.md"
+}

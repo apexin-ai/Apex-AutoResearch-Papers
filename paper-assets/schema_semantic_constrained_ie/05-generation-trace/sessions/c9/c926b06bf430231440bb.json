@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c926b06bf430231440bb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis d066 beam sweep summary",
+  "task_key": "worker_analysis_d066-beam-sweep-summary_20260520T035505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d066-beam-sweep-summary_20260520T035505_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "deabe57c14f729f65fadba6c0192952faa40348d165c480138f9f55516693cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总写入 `artifacts/d066_beam_sweep_final_summary.md`。核心结论：\n\n**k=2 是 F1 最优点**（R-F1=44.75 unc / 44.60 con），超过 k=2 后 precision 下降抵消 recall 收益。\n\n**Constrained decoding 以极低代价消除 DR violations**：DR 从 1.5–2.1% → 0%，R-F1 损失仅 0.15 pts（k=2），时间开销 ~17%。k=8 时 constrained 甚至反超 unc 的 R-F1（+0.48）。\n\n**推荐配置：k=2 con** — 接近最佳 F1，零 DR 违规，仅 0.11% CF 残余（2/1798 triples），比 k=8 con 快 46%。若需绝对零违规，k=4 con 可选（代价 −1.15 R-F1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d066-beam-sweep-summary.md"
+}

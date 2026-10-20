@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6233e0ef472835051b8f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "gpu d066 beam sweep scierc analysis",
+  "task_key": "worker_gpu_d066_beam_sweep_scierc_analysis_20260520T030447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d066_beam_sweep_scierc_analysis_20260520T030447_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "5d145b94de351cd113351f434ce1cb80d8c296616078d990af329f44accd0849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d066 SciERC Beam Sweep 状态\n\n**k=8 constrained 仍在运行**（66/551, ~12%），ETA 约 11:50 CST（~43 分钟后）。其余 7/8 configs 全部完成。\n\n### 7/8 Results Summary\n\n| Config | E-F1 | R-F1 | DR% | CF% | Avg Time |\n|--------|------|------|-----|-----|----------|\n| k=1 unc | 66.88 | 42.95 | 2.11 | 0.0 | 2.49s |\n| k=1 con | 66.88 | 42.95 | 0.0 | 0.5 | 2.93s |\n| **k=2 unc** | **67.79** | **44.75** | 1.54 | 0.0 | 2.95s |\n| k=2 con | 67.71 | 44.60 | 0.0 | 0.11 | 3.46s |\n| k=4 unc | 67.49 | 43.72 | 1.89 | 0.0 | 3.49s |\n| k=4 con | 67.22 | 43.60 | 0.0 | 0.0 | 4.07s |\n| k=8 unc | 66.40 | 43.17 | 1.77 | 0.0 | 4.19s |\n| k=8 con | — | — | — | — | IN PROGRESS |\n\n### 核心发现\n- **F1 呈倒 U 型**：k=2 是峰值（E-F1=67.79, R-F1=44.75），k=4/k=8 逐步下降\n- **ET%=0, RV%=0**：模型已完全内化 schema 词表\n- **DR% 1.5–2.1% unc → 0% con**：constrained decoding 消除所有 domain restriction 违规\n- **Constrained F1 成本 ≤0.27pp**，延迟开销 ~17%\n- **Pareto optimal: k=2 constrained**\n\n已更新 registry notes + metrics，artifact 已注册。k=8 con 完成后需补充最后一行数据并将 status 改为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-d066-beam-sweep-scierc-analysis.md"
+}

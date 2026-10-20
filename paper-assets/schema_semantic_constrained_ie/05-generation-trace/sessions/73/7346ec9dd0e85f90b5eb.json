@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7346ec9dd0e85f90b5eb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis p3 error analysis case study",
+  "task_key": "worker_analysis_p3_error_analysis_case_study_20260518T142239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p3_error_analysis_case_study_20260518T142239.log",
+    "occurrence": 1,
+    "bytes": 905584,
+    "sha256": "76e91c87b8abe972dd0b4042f6b560eda4431385d91274134e17a9380eba8ce6"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "7346ec9dd0e85f90b5eb-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "7346ec9dd0e85f90b5eb-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-p3-error-analysis-case-study.md"
+}

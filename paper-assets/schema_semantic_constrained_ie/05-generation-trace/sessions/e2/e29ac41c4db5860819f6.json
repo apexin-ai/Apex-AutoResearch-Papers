@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e29ac41c4db5860819f6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check docred s1 progress",
+  "task_key": "worker_check_docred-s1-progress_20260522T075841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_docred-s1-progress_20260522T075841_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "cc5a8c0c849dafb4882cefb3d9a51ee92260cd33481c54d79f8ee9729268f83e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DocRED S1 Constrained 实验状态\n\n| 指标 | 值 |\n|------|-----|\n| 进程 | PID 11466 存活，已运行 **2h26m** |\n| 进度 | **101/200**（50.5%，较上次 64 增加 37） |\n| 速率 | ~0.69 doc/min（约 1.45 min/doc） |\n| 预计剩余 | **~2h23m**（99 docs remaining） |\n| GPU 0 | 利用率 75%，显存 40857/97887 MiB（42%） |\n| GPU 1 | 空闲 |\n| 错误 | 无，日志仅有 pad_token_id 常规警告 |\n\n正常运行中，预计约 4 小时后完成全部 200 个文档。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-docred-s1-progress.md"
+}

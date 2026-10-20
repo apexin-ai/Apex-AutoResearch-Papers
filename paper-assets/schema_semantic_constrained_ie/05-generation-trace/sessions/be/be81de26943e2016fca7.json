@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be81de26943e2016fca7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis 70b scierc results collect",
+  "task_key": "worker_analysis_70b_scierc_results_collect_20260518T132952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_70b_scierc_results_collect_20260518T132952_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "939edf0932233e4d184890721525c50cdab95845c8400b5454a9e02321800bf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。汇总：\n\n## 70B SciERC 结果\n\n| 指标 | Unconstrained | Constrained (OntoCoDec) |\n|------|:---:|:---:|\n| ET_pct | 0% | 0% |\n| RV_pct | 0.6% | **0%** |\n| DR_pct | 6.5% | **0%** |\n| CF_count | 0 | 86 (3.66%) |\n| E_F1 | 0.3517 | 0.3514 |\n| E_P | 0.3009 | 0.3007 |\n| E_R | 0.4232 | 0.4226 |\n| R_F1 | 0.1122 | 0.1124 |\n| R_P | 0.0929 | 0.0932 |\n| R_R | 0.1417 | 0.1417 |\n| Parse failures | 0/551 | 0/551 |\n\n**关键发现：**\n- OntoCoDec 在 70B 上完全消除了 RV 和 DR 违规（6.5% → 0%），F1 几乎无损（差异 < 0.001）\n- 70B 模型 scale 本身已消除 ET 违规（unconstrained 也是 0%），但 DR 仍有 6.5%\n- Constrained 引入了 86 个 CF (cross-field consistency) 违规\n\n## Registry 更新完成\n\n- **spec.command 修复**：4 个实验全部已补齐 `--data_path`, `--constraints_path`, `--output_path`, `--skip_on_error`\n- **SciERC 状态**：两个实验均已 → DONE (success)，metrics 和 notes 已录入\n- **DocRED**：westd-16980 仍在运行（~42min elapsed），spec 已修复，等完成后再收集结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-70b-scierc-results-collect.md"
+}

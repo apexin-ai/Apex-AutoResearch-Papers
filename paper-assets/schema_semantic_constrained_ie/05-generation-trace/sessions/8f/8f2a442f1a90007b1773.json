@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f2a442f1a90007b1773",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r14 taskA ft fallback rate",
+  "task_key": "worker_analysis_r14_taskA_ft_fallback_rate_20260520T201621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_taskA_ft_fallback_rate_20260520T201621_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "ac77de3a97640ef7193fe1d98c8ab1e8643b3a5acf0d628ea0e2429e86afe80b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n## R14 FT Fallback Rate 分析结果\n\n### FT Fallback Rate（DR-constrained positions）\n\n| Config | ZS | FT | Reduction |\n|--------|------|------|-----------|\n| SciERC Qwen | 0.46% (16/3458) | **0.00%** (0/2256) | -100% |\n| SciERC Llama | 0.04% (1/2630) | 0.05% (1/2162) | ~0 (noise) |\n| DocRED Qwen | 5.68% (1970/34682) | **0.01%** (2/31126) | -99.9% |\n| DocRED Llama | 1.41% (461/32736) | **0.11%** (34/32148) | -92.5% |\n\n### 关键发现\n\n1. **FT 几乎消除了所有 DR fallback**：Qwen FT 在 SciERC 上零违反，DocRED 上仅 2 个（31126 个位置）\n2. **根因分析**：ZS 违反 100% 是 model preference（模型不了解 relation-specific DR 约束），0% tokenizer collision，0% schema coverage gap\n3. **Token-level 36.6% 的真实含义**：该数字被多 token type 名称（如 \"OtherScientificTerm\"）的续写 token 位置膨胀。在语义上有意义的 first-token 位置，ZS DR 违反率仅 ~0.5%（SciERC）和 ~5.7%（DocRED）。FT 将其降至接近零\n\n### 输出\n\n完整 JSON：`westd-16980:/root/autodl-tmp/schema_outputs/r14_ft_fallback_rate.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-taska-ft-fallback-rate.md"
+}

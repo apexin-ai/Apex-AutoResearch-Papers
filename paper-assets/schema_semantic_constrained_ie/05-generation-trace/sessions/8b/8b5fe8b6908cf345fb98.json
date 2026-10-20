@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b5fe8b6908cf345fb98",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "cleanup cuda1 and check 190246",
+  "task_key": "worker_cleanup_cuda1_and_check_190246_20260514T141603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_cuda1_and_check_190246_20260514T141603_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "32c28cca4987889abc659a16a431f06e345fd7076c691693bf110d7b09a84237"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 190246** | 存活，运行 28 分钟，状态 `Rl`（运行中） |\n| **JSONL 行数** | **355/551**（进度 ~64%） |\n| **cuda:1** | 已完全释放，无 python 进程占用 |\n| **tmux** | 无残留 session（`phase2_docred_semantic_only` 已清理） |\n| **其他残留进程** | 无。仅 PID 190246 及其父进程（190241 wrapper、190245 timeout），全属于 `llama_scierc_full_s1` 任务 |\n\ncuda:1 已干净可用，cuda:0 上的 `llama_scierc_full_s1` 正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-cuda1-and-check-190246.md"
+}

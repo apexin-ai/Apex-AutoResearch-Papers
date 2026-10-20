@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41867d93f3099cd2be5a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r15 taskC fallback causal trace",
+  "task_key": "worker_analysis_r15_taskC_fallback_causal_trace_20260521T014700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15_taskC_fallback_causal_trace_20260521T014700_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "23da08aee395220972c12f186681f812e009ff5914e0023f62be28e85e3ee62c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Config | Triples | Fallback Positions | DR Violations | Caused by Fallback | Independent |\n|--------|---------|-------------------|---------------|-------------------|-------------|\n| Qwen FT S1 | 1128 | 0/2256 (0%) | 0 | 0 | 0 |\n| Qwen ZS S1 | 1729 | 16/3458 (0.46%) | 16 | 16 | 0 |\n| LLaMA FT S1 | 1081 | 1/2162 (0.05%) | 1 | 1 | 0 |\n| LLaMA ZS S1 | 1315 | 1/2630 (0.04%) | 1 | 1 | 0 |\n\n关键发现：\n- **SciERC Qwen FT S1: 零 fallback，零 DR violation** — fine-tuning 完全消除了 fallback\n- 所有 DR violations 100% 由 fallback 导致（`dr_independent = 0`），因为活跃的 semantic mask 在构造上不可能产生 DR violation\n- 所有 fallback 都发生在 **tail_type** 位置（head_type fallback = 0），pattern 一致：relation 的 valid_tails_for_head 约束比 valid_heads 约束更窄，更容易触发 S∩G=∅\n- ZS→FT 使 Qwen 的 fallback rate 从 0.46% 降到 0%（100% reduction）\n\n输出已保存到服务器 `/root/autodl-tmp/schema_outputs/r15_verification/task_c_fallback_trace.json` 和本地 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r15-taskc-fallback-causal-trace.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f022bd5e04653e531a1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code 70b dryrun prep",
+  "task_key": "worker_code_70b_dryrun_prep_20260518T105458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_70b_dryrun_prep_20260518T105458_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "488f52a42556ae0b1acd545342f5238476c29a0833e9758ad3df0335c8fb0aaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载进行中，尚未完成。不做 dry-run。**\n\ntmux session `model_download` 状态：\n\n- 从 ModelScope 下载到 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4`\n- 共 19 个文件，4 个小文件已完成（LICENSE, config 等）\n- 8 个 safetensors 文件并行下载中（model-00009 尚未开始），已跑 ~21 分钟：\n\n| 文件 | 进度 | 已下载/总大小 |\n|------|------|---------------|\n| model-00001 | 29% | 1.33G / 4.63G |\n| model-00002 | 41% | 1.86G / 4.55G |\n| model-00003 | 46% | 2.08G / 4.55G |\n| model-00004 | 33% | 1.52G / 4.55G |\n| model-00005 | 45% | 2.06G / 4.55G |\n| model-00006 | 32% | 1.45G / 4.55G |\n| model-00007 | 31% | 1.39G / 4.55G |\n| model-00008 | 43% | 1.35G / 3.13G |\n\n**预计剩余时间：~30-50 分钟**（最慢的 model-00001 显示 ~50 min remaining）。model-00009 还在排队，但较小文件可能很快开始。总模型大小约 ~39G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-70b-dryrun-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d5ec3c3b1338ae72a4b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "retry phase2 scierc full s1 semantic only",
+  "task_key": "worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "6fbb6ad74689e4a705c83053f95fde6bad52c7902024efdcd12002684c5bd9a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已成功提交并正在运行：\n\n| 实验 | PID | 状态 | 日志 |\n|------|-----|------|------|\n| phase2_scierc_semantic_only | 134445 | 模型加载完成，开始推理 | `/tmp/phase2_scierc_semantic_only.log` |\n| phase2_scierc_full_s1 | 134881 | 模型加载完成，开始推理 | `/tmp/phase2_scierc_full_s1.log` |\n\n两个进程都在 `CUDA_VISIBLE_DEVICES=1`（物理 GPU 1）上运行，模型 checkpoint 已加载完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/retry-phase2-scierc-full-s1-semantic-only.md"
+}

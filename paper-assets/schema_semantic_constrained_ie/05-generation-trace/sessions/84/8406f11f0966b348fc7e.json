@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8406f11f0966b348fc7e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code urgent full status and v3 launch 21461",
+  "task_key": "worker_code_urgent_full_status_and_v3_launch_21461_20260518T070516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_full_status_and_v3_launch_21461_20260518T070516_result.json",
+    "occurrence": 1,
+    "bytes": 2211,
+    "sha256": "4646eff25870ed175127d0692613c88201eb6522018587eaff9d56d6683cebb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both GPUs on westd-21461 are now fully loaded and generating outputs. Here's the full report:\n\n---\n\n## westd-21461 状态报告\n\n### nvidia-smi\n| GPU | Model | Memory | Util | Process |\n|-----|-------|--------|------|---------|\n| 0 | RTX PRO 6000 Black | 16121/97887 MiB | 85% | Mistral v3 full_s1 (PID 5971) |\n| 1 | RTX PRO 6000 Black | 18919/97887 MiB | 82% | Qwen v3 full_s1 (PID 6529) |\n\n### 脚本参数（--help 确认）\n`--model_path`, `--data_path`, `--constraints_path`, `--output_path`, `--mode`, `--max_new_tokens`, `--max_samples`, `--skip_on_error`, `--resume`\n\n### 代码版本验证 ✅\n- `type_mask_processor.py`: **938 行** ✓\n- `collision` 出现: **7 次** ✓\n- `exact_match` 出现: **4 次** ✓\n\n### Mistral v3 启动确认 ✅\n- 模型路径: `/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/`\n- Samples: **246**, 无 `--resume`\n- 进度: 5/246 已处理\n\n### Qwen v3 启动确认 ✅\n- 模型路径: `/root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/`\n- Samples: **246**, 无 `--resume`\n- 进度: 1/246 已处理\n\n### Qwen grammar_only 结果（已完成，246/246）\n\n**Violation Report:**\n| 违规类型 | 数量 | 比率 |\n|----------|------|------|\n| ET (Entity Type) | 0 | 0.0% |\n| EV (Event Vocab) | 0 | 0.0% |\n| RoV (Role Vocab) | 4441 | **76.1%** |\n| AC (Arg Constraint) | 479 | 8.2% |\n| CF (Cross-Field) | 8 | 0.3% |\n\n**Eval (F1):**\n| Metric | P | R | F1 |\n|--------|---|---|-----|\n| Entity F1 | 0.4257 | 0.0871 | 0.1446 |\n| Trigger ID F1 | 0.1263 | 0.1554 | 0.1393 |\n| Argument F1 | 0.0081 | 0.0113 | 0.0094 |\n\n35 parse failures, RoV=76.1% 证明 grammar 层无法控制 role vocab → semantic layer 必要性。\n\n### 最终 GPU 分配表（4卡全满）\n| 服务器 | GPU | 任务 | 状态 |\n|--------|-----|------|------|\n| westd-16980:0 | Qwen v3 full_s1 | 运行中 (~24min) |\n| westd-16980:1 | Mistral v3 full_s1 | 运行中 (~2min) |\n| westd-21461:0 | Mistral v3 full_s1 | 运行中 (~4min, 5/246) |\n| westd-21461:1 | Qwen v3 full_s1 | 运行中 (刚启动, 1/246) |\n\n4 张 GPU 全部跑满，两台服务器互为冗余。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-full-status-and-v3-launch-21461.md"
+}

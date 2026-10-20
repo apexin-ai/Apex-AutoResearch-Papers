@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9392385c1017be766913",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w7 qwen scierc ft grammar only",
+  "task_key": "worker_diagnose_w7_qwen_scierc_ft_grammar_only_20260516T064258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w7_qwen_scierc_ft_grammar_only_20260516T064258_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "21b406c4bc8ce2c6f0e8984693e563247f1fbc74c7c5d617fcaef71d49666f52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：实验成功，监控误报。** 551 个样本全部正确处理，输出文件完整。cron 监控误判原因是 grammar_only 模式为纯 inference，不上报 W&B metrics，且进程正常退出后被当作\"死亡\"。\n\n报告已写入 `artifacts/w7_qwen_grammar_only_failure_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w7-qwen-scierc-ft-grammar-only.md"
+}

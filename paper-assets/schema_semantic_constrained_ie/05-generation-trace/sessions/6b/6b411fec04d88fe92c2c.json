@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b411fec04d88fe92c2c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check docred s1 completion",
+  "task_key": "worker_check_docred-s1-completion_20260522T101851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_docred-s1-completion_20260522T101851_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "b9650f610f94b8d86773c88163f2766e65865f2626aa85c042e22deb8d5ba0e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中创建，当前 session 无需删除）。\n\n**实验完成总结：**\n\n| 指标 | 值 |\n|------|-----|\n| E-F1 | 79.38 (P=85.24, R=74.28) |\n| R-F1 | 43.95 (P=40.48, R=48.08) |\n| DR% | 0.00 |\n| RV% | 0.00 |\n| ET% | 0.00 |\n| CF% | 0.18 |\n| parse_fail% | 12.5 (25/200 FAIL) |\n\nRegistry 已更新为 DONE/success。三类 schema 违规（DR/RV/ET）全部为零，S1 约束解码有效。parse_fail 12.5% 来自 25 个超时文档（E=0 R=0），CF% 仅 0.18%。这些数值可直接填入 section5_runtime.tex L18 的占位符。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-docred-s1-completion.md"
+}

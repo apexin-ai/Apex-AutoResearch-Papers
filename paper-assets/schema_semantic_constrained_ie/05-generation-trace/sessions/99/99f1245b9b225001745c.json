@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99f1245b9b225001745c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 qwen merge and infer",
+  "task_key": "worker_ssh_p1_qwen_merge_and_infer_20260518T221937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_qwen_merge_and_infer_20260518T221937_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "8d97f87a548577d96e63717f202102ea725e8641096400d759e776b1f38602e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## P1 EE FT Pipeline 执行结果\n\n| Step | Status |\n|------|--------|\n| 0. 清理磁盘 | OK (11G 可用) |\n| 1. Merge adapter | OK (16G → /root/autodl-tmp/) |\n| 2. Unconstrained inference | OK (5/20 parsed) |\n| 3. Full_s1 constrained inference | OK (2/20 parsed) |\n| 4. Eval | OK |\n| 5. Violation check | OK |\n\n### Eval F1\n\n| Metric | Unconstrained | Full_s1 |\n|--------|--------------|---------|\n| Entity F1 | 0.0000 | **0.5823** |\n| Trigger F1 | 0.4598 | **0.6000** |\n| Argument F1 | 0.1581 | **0.4667** |\n\n### Violation Rates\n\n| Type | Unconstrained | Full_s1 |\n|------|--------------|---------|\n| RoV | 25.1% | **0.0%** |\n| AC | 6.0% | **0.0%** |\n| CF | 0.0% | 3.0% |\n| Go/No-go (RoV+AC) | 0.3115 | **0.0000** |\n\n**关键发现：** constrained decoding (full_s1) 将 RoV+AC 违规率从 31.15% 降至 0%，且在成功解析的样本上 F1 全面高于 unconstrained。但 parse failure rate 很高（unconstrained 75%, full_s1 90%），这是主要瓶颈。\n\nRegistry `p1_ee_ft_composability_r4` 已更新 metrics，artifact 已注册 (art_20260518_1a2da2)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-qwen-merge-and-infer.md"
+}

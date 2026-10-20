@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fea50107c9f88781fd0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778886065.md",
+  "task_key": "loop_10_1778886065",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778886065.md",
+    "occurrence": 1,
+    "bytes": 6020,
+    "sha256": "e118b359b537044c6ddf215a78c0c6b58851e4a41c6ce39ae958ff069241c6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-15T23:00:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 仅 cuda:0 + cuda:1 on westd-16980，不可用其他卡\n- **CUDA_VISIBLE_DEVICES 禁止在 spec.command 中硬编码**——必须由 submit_training_job 的 gpu 参数注入。之前因内层 `CUDA_VISIBLE_DEVICES=0` 覆盖外层导致级联 OOM 故障（D029 教训）\n- **训练/推理命令必须单卡固定**，禁止 `device_map=\"auto\"`——会跨卡分配冲突\n- **SciERC 数据路径是 `data/processed_data/test.json`**，不是 `data/scierc/test.json`；约束文件在项目根目录 `ontology_constraints.json`\n- **DocRED 数据**: `data/docred/dev.json`，约束: `data/docred/ontology_constraints_docred.json`\n- **大 checkpoint 必须存数据盘** `/root/autodl-tmp/checkpoints/`，根分区仅 30G\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, account=root\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), torch 2.10.0+cu128, transformers 4.57.6\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **模型路径**:\n  - Qwen3-8B base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama-3.1-8B-Instruct base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen LoRA SciERC merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama LoRA SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - Qwen LoRA DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama LoRA DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/`\n- **活跃进程**: w5_qwen_docred_lora_unconstrained_eval (PID 304006, tmux, cuda:1, submitted 20:03 UTC)\n- **Cron**: reconcile 返回 0 active — 需要确认 w5_qwen_docred_lora_unconstrained_eval 是否有 cron 监控，若无需手动 poll 或注册\n- **WANDB**: disabled（项目未配 wandb key）\n\n### 3. 📊 当前状态\n\n**刚完成**: Qwen + Llama DocRED LoRA 训练（D029 重提交后成功）。两个 SciERC 2×2 matrix 已完整。\n\n**RUNNING (1)**:\n- `w5_qwen_docred_lora_unconstrained_eval` — cuda:1, PID 304006 — Qwen DocRED FT unconstrained eval（998 docs, batch_size=1, max_tokens=4096）。DocRED eval 比 SciERC 慢很多（998 docs × 长文档），可能需 2-4h\n\n**PREPARING (6)**:\n- `w5_qwen_docred_lora_constrained_eval` — 等 unconstrained eval 完成后跑（需对比 DR delta）\n- `w5_llama_docred_lora_unconstrained_eval` — cuda:0 待提交，Llama DocRED FT unconstrained eval\n- `w5_llama_docred_lora_constrained_eval` — 等 Llama unconstrained 完成后跑\n- `w5_llama_docred_sft_data_gen` — Llama DocRED SFT 数据已生成（metrics 显示 3053 train / 998 dev），但状态仍 PREPARING（可能需更新为 DONE）\n- `w1_cf_fallback_llama_scierc` — CF fallback Llama SciERC（低优先级，D020 定位为 analytical finding）\n- `w1_cf_fallback_llama_docred` — CF fallback Llama DocRED（低优先级）\n\n**Worker 池**: 0 running — **空！** 需要立即 spawn workers\n\n**关键遗漏**: cuda:0 当前空闲！应立即提交 `w5_llama_docred_lora_unconstrained_eval`\n\n### 4. 📋 待办（条件触发式）\n\n- **立即** → spawn worker 提交 `w5_llama_docred_lora_unconstrained_eval` 到 cuda:0（checkpoint 已就绪 `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/`）\n- `w5_qwen_docred_lora_unconstrained_eval` cron 回调到达 → 分析 DR%/R-F1，更新 registry → 立即提交 `w5_qwen_docred_lora_constrained_eval` 到 cuda:1\n- `w5_llama_docred_lora_unconstrained_eval` 完成 → 分析 → 提交 `w5_llama_docred_lora_constrained_eval` 到 cuda:0\n- DocRED 4 格全部完成 → 汇总 2×2 matrix（Qwen×DocRED + Llama×DocRED）→ 更新 Table 3/5 + §5.4/5.5 → 全文数字一致性审查\n- 所有 4 个 2×2 matrix 完成 → 向 Director 汇报\"composability claim 全面支撑\"，建议进入 Round 2 review 准备\n- `w5_llama_docred_sft_data_gen` 状态异常（conclusion=success 但 status=PREPARING）→ 更新为 DONE\n- W1 CF fallback (Llama SciERC/DocRED) → 低优先级，等 DocRED composability 全完成后再跑；D020 已定为 analytical finding，SciERC pilot 数据充分\n\n### 5. 🎯 战略上下文\n\n**项目核心**: OntoCoDec = 编译 IE ontology schema 为解码时 token-level 约束，消除 LLM-based IE 的 schema violations。两层：grammar（消除 RV/ET）+ semantic（消除 DR）。\n\n**当前阶段**: Round 1 审稿应对，扩展 composability matrix 证明 OntoCoDec 与 fine-tuning 正交可组合。\n\n**已确认 claims**:\n- Claim 1 (effectiveness): SciERC DR -94%/+0.13pp, DocRED DR -45%/+0.50pp ✅\n- Claim 3 (composability): SciERC 两模型 2×2 完整 ✅ (Qwen DR=0.0%, Llama DR=0.09%)\n- **DocRED composability 是最后一块拼图** — 完成后 = 4.25/5 very strong\n\n**决策链关键点**:\n- D020: CF fallback = analytical finding（CF↔DR 根本性张力，budget 净增，非 paper 实验）\n- D023: Reframe Claim 3 从\"FT后仍需OntoCoDec\"到\"FT+OntoCoDec正交互补\"\n- D025/D028: Qwen/Llama SciERC composability 双确认\n- D029: Kill 并重提交 DocRED training（CUDA_VISIBLE_DEVICES 硬编码导致级联故障）\n\n**Deadline**: May 19 内部稿交付 → May 25 EMNLP ARR 提交\n\n**易错点**:\n- DocRED eval 每个样本是多段文档（5-20 sentences），比 SciERC 慢 5-10x，不要以为卡住了就 kill\n- DocRED 的 DR% baseline 较低（ZS constrained = 10.19%），FT 后可能更低——这不是 negative，说明 DocRED schema 本身 tightness 高（avg=0.842），关键看 constrained 是否仍能进一步压低且不损 F1\n- `w5_llama_docred_sft_data_gen` 的 conclusion=success 但 status=PREPARING 是状态不一致，需修正\n- CF fallback 代码在服务器上有 3 个版本并存（clean/cf_fallback/backup），当前 clean 版本已恢复，不要误用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778886065.md"
+}

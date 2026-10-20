@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1942b9ddfddf443e84",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd 16980 status",
+  "task_key": "worker_check_westd_16980_status_20260521T045600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_16980_status_20260521T045600_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "5cc389cb82849a724998dbddb2b2c78aebb741f418321bc412ba04e36703b49c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：运行中**\n\n| 指标 | 值 |\n|------|-----|\n| PID 808988 | 存活，已运行 ~47 分钟 |\n| Step 1 (unconstrained) | **326/551** (59.2%)，预计还需 ~30 分钟 |\n| Step 2 (constrained full_s1) | 未开始 |\n| 实际速率 | ~8.6s/样本（比预估的 5.8s 慢 48%） |\n| 预计总剩余 | ~110 分钟（~1h50m） |\n\n注意：输出路径是 `outputs/r16_70b_scierc_zs_unconstrained.jsonl`（项目目录下），不是用户描述中的 `/root/autodl-tmp/schema_outputs/r16_70b_scierc_zs_unc.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-16980-status.md"
+}

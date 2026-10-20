@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "582dc2d3d2906d121f20",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh confirm gpu release",
+  "task_key": "worker_ssh_confirm_gpu_release_20260518T232402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_confirm_gpu_release_20260518T232402_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "ce4d4f2c2baa4aa2f4143dca3d8b98173bde4b3c4888b0100bc009be4bcdc5b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### westd-21461\n- **GPU**: 2× RTX PRO 6000 Black，0MiB 占用，无活跃进程 ✓\n- **tmux**: 2 个会话 — `model_download`、`p8b_docred_latency`\n- **P1 残留进程**: **有**\n  - **PID 5964** — `tmux new-session -d -s mistral_v3_full ... python run_constrained_extraction.py --dataset wikievents ... --mode full_s1`（tmux server 进程仍存活，但 GPU 无占用，说明 Python 子进程可能已退出，仅 tmux session 壳残留）\n\n### westd-16980\n- **GPU**: 2× RTX PRO 6000 Black，0MiB 占用，无活跃进程 ✓\n- **tmux**: 4 个会话 — `llama_beam`、`llama_wikievents`、`llama_wikievents_full`、`qwen_wikievents`\n- **P1 残留进程**: 无 ✓\n\n**总结**: 两台服务器 GPU 均空闲。westd-21461 上 PID 5964 是 `mistral_v3_full` 的 tmux server 进程（`run_constrained_extraction.py`），GPU 无占用说明 Python 进程已结束，仅 tmux 会话壳残留。等 Director 指示是否清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-confirm-gpu-release.md"
+}

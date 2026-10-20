@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ae982db244fb134a7ea",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16.md",
+    "occurrence": 1,
+    "bytes": 3009,
+    "sha256": "62468e83a7d475e01854f10d0fc3c92955f2b7998d783b62187cd5dd36dfedae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-17T11:07:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文所有 .tex 文件在 `artifacts/_project/paper/` 目录下，不是项目根目录\n- Beam search 表格中 DocRED greedy 行已改为 matched 50-doc 数据（SF1），不要再用 998-doc 全集数据\n- appendix_discussion.tex 中 R²=0.99 仅适用于 calibrated models (Qwen+Llama, n=4)，Mistral 需单独说明偏差原因（ET>5%）\n- 不要在论文正文中使用 em-dash（— 或 –），已全文清零，新增文本也禁止\n\n### 2. 🖥️ 基础设施快照\n- 实验服务器：westd-16980（Qwen + Llama 推理）、westd-21461（Mistral 推理）\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/`\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/`\n- GPU：2x NVIDIA RTX PRO 6000 Blackwell 98GB（训练用单卡）\n- 无活跃训练进程，当前只有 2 个 Worker 在做代码分析（非 GPU 任务）\n\n### 3. 📊 当前状态\n正在执行 Director 的 Round 4 审稿修改清单（~20 项，分 3 批）。\n\n**已完成**：\n- Batch 1+2 全部文本编辑（MF1-2, SF2-4/6/9, M1-2/4-5/7/9-10, Q1, 全文 em-dash 清零, References 补充）\n- Batch 3 中 3 项：SF1（beam 表 matched greedy 已更新）、SF8（reproducibility appendix 已创建）、M6+Q4（CF-DR 转移性论证已写入 appendix_discussion.tex）\n\n**等待中的 Worker**：\n- `worker_code_r4_sf5_sf7_llama_docred_20260517T105428`（RUNNING, turn 8）：Llama DocRED parse-failure 分析 + 全模型 DocRED fallback coverage 数据\n- `worker_code_r4_m3q3_semantic_only_et_20260517T110021`（RUNNING, turn 7）：semantic-only 配置为何增加 ET 违规的机制解释\n\n### 4. 📋 待办\n- SF5+SF7 Worker 回调 → 读产出 → 将 Llama parse-failure 解释写入 §5 DocRED 或 appendix；将 fallback coverage 数据写入 appendix_discussion.tex 对应段落\n- M3+Q3 Worker 回调 → 读产出 → 将 semantic-only ET 增加的机制解释写入 §5 SciERC 的 semantic-only 段落或 appendix\n- 两个 Worker 都完成 → 向 Director 汇报 Batch 3 全部完成，附完整修改清单勾选状态\n\n### 5. 🎯 战略上下文\n- 这是 EMNLP 2026 ARR 投稿的 Round 4 审稿修改，目标是堵住审稿人攻击面\n- 核心 narrative：OntoCoDec 两层约束（grammar + semantic）对 IE 的 DR 违规减少 42-99%，零 F1 降级；dual-factor pattern（schema tightness × baseline violation rate）解释残余 DR\n- R² 从 0.886 改为 0.99（排除 Mistral 后 calibrated models only），这是 MF1 关键修改\n- 易踩坑：DocRED 数据有两套——998-doc 全集（主表用）和 50-doc 子集（beam 表用，现在已 matched）。不要混用。SF1 matched greedy 的具体数值见 `artifacts/r4_sf1_matched_greedy_results.md`\n- 新创建的文件：`appendix_reproducibility.tex`（已加入 main.tex \\input）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16.md"
+}

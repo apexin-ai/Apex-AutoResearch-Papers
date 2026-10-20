@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fd84fefc9c062ef7927",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze llama docred full s1 mt6144",
+  "task_key": "worker_analyze_llama_docred_full_s1_mt6144_20260515T150034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llama_docred_full_s1_mt6144_20260515T150034_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "594931f2256ed358bf067a96323188d27daa656aab17bc67c0da8c018cdb580f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 关键发现\n\n**vs unconstrained_mt6144 基线**（核心结论）：\n- DR: 26.18% → **2.57%**，相对下降 **−90.2%**（与 mt4096 的 −90.2% 完全一致）\n- RV / ET: 全部清零\n- R-F1: 5.95 → **6.25%**，**+0.30pp**（mt4096 是 +0.29pp，几乎相同）\n- E-F1: 55.67 → 55.04%，−0.63pp\n\n**vs full_s1 (mt4096)**（mt6144 vs mt4096 增量）：\n- DR Δ +0.02pp，R-F1 Δ −0.02pp，E-F1 Δ +0.03pp，parse-fail 91→90 — **全部在噪声范围内**\n- mt6144 并未带来任何可测量的改进；90 个 parse failure 都是 ~102s 单样本超时（非 token 预算瓶颈）\n\n**Fallback 统计**：grammar-first fallback 触发 67911 次（约每 emitted triple 4 次），说明 grammar∩semantic 经常为空、fallback 路径被大量使用。\n\n**CF 注意**：此实验混淆了 CF fallback 代码 + mt6144 两个变量；CF 12.13% (vs mt4096 12.02%) 看起来 fallback 代码并未压低 CF，但不能在此独立归因，需要 mt4096+fallback 的对照。\n\n## 产出\n- `artifacts/llama_docred_full_s1_mt6144/report/analysis.md` 已写入并注册（art_20260515_702ab3）\n- Registry: status → **DONE**, conclusion → **success**, metrics 完整登记\n\n## 对论文的影响\n论文继续以 mt4096 结果为主，mt6144 在附录里作为 max-tokens 鲁棒性检查；不需要重算 bootstrap CI（Δ ≤ 0.03pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-llama-docred-full-s1-mt6144.md"
+}

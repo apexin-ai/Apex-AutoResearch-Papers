@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56c7ed5ecbb1aa9da80e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "investigate docred semantic only et spike",
+  "task_key": "worker_investigate_docred_semantic_only_et_spike_20260514T143836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_docred_semantic_only_et_spike_20260514T143836_result.json",
+    "occurrence": 1,
+    "bytes": 3763,
+    "sha256": "2c19a31fa8be5f8683690d7d678932b2a486b912e6b43b9ece08289581a64bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完全清晰了。以下是完整排查结论。\n\n---\n\n## 排查结论：DocRED semantic_only ET violation 暴涨\n\n### 数字分解\n\n| 层级 | semantic_only ET | 与 unconstrained 差值 |\n|------|------------------|-----------------------|\n| 当前 checker (`.upper()`) | **18.44%** (3722) | +10.26pp (+2072) |\n| Fix1: 加 `.strip()` | **15.93%** (3215) | +7.75pp (+1565) |\n| Fix2: strip + PERSON→PER alias | **10.57%** (2134) | +2.40pp (+484) |\n| unconstrained 基线 | **8.18%** (1650) | — |\n\n### 三层归因\n\n**1. Checker bug：缺 `.strip()` — 贡献 2.51pp (507 violations)**\n- `violation_checker_docred.py:104-106` 对 head_type/tail_type 做 `h_type.upper()` 判断，但**没有 `.strip()`**\n- TypeConstraintProcessor 的 logit masking 在 token 边界引入前导空格：` TIME`(180), ` LOC`(114), ` MISC`(99), ` PER`(69), ` NUM`(42)\n- unconstrained 输出中无此问题（零个带空格的类型）\n- **修复：`h_type.strip().upper()`**\n\n**2. 缺 PERSON→PER alias — 贡献 5.36pp (1081 violations)**\n- TypeConstraintProcessor 把模型从生成 \"PER\" 推向了完整英文 \"PERSON\"\n- unconstrained 零个 PERSON，semantic_only 有 1081 个（head 710 + tail 371）\n- 这是最大单一贡献因素。是否算 checker 缺陷有争议——严格来说 DocRED schema 就是 PER 不是 PERSON\n- **如果要修 checker：加 `{'PERSON': 'PER'}` alias map**\n\n**3. 真实退化 — 贡献 2.40pp (484 violations)**\n- 即使 checker 完全 normalize 后，semantic_only 仍比 unconstrained 高 2.40pp\n- 具体来源：\n  - **截断类型** (token masking 切断生成)：`ORGB` 85 次, `OR` 62 次 = 147\n  - **非标类型频率上升**：WORK +218, EVENT +65, ETHNIC_GROUP +6, 新增 ENTITY_TYPE(26)/JOB(22)/GENRE(21) 等\n- 这是 TypeConstraintProcessor 的 logit masking 对 relation 字段中 entity type token 的干扰，**真实退化**\n\n### Top 15 semantic_only 违规类型\n\n| 类型 | 次数 | 分类 |\n|------|------|------|\n| `PERSON` | 1081 | alias 缺失 |\n| `WORK` | 823 | 非标类型 (unconstrained ~605) |\n| `EVENT` | 743 | 非标类型 (unconstrained ~678) |\n| ` TIME` | 180 | 前导空格 |\n| `ETHNIC_GROUP` | 137 | 非标类型 |\n| ` LOC` | 114 | 前导空格 |\n| ` MISC` | 99 | 前导空格 |\n| `ORGB` | 85 | 截断 |\n| ` PER` | 69 | 前导空格 |\n| `OR` | 62 | 截断 |\n| ` NUM` | 42 | 前导空格 |\n| `SERIES` | 32 | 非标类型 |\n| `ENTITY_TYPE` | 26 | 非标类型 |\n| `JOB` | 22 | 非标类型 |\n| `GENRE` | 21 | 非标类型 |\n\n### 判定\n\n**混合问题：77% 是 checker normalization 不足，23% 是真实退化。**\n\n- checker 加 `.strip()` + PERSON alias 后，semantic_only ET 从 18.44% 降到 10.57%\n- 残余 2.40pp 高于 unconstrained 的 8.18%，是 TypeConstraintProcessor 的 logit masking 副作用（截断类型 + 非标类型频率上升）\n- SciERC 上无此问题因为 SciERC entity types 是多 token 长词（Task, Method, Material, OtherScientificTerm），token masking 影响较小；DocRED 用 2-4 字符缩写（PER, ORG, LOC），对 token 边界更敏感\n\n### 建议修复方案\n\n1. **Checker 修复**（不改变实验结果，只修正度量）：\n   - `violation_checker_docred.py` 中所有 `.upper()` 改为 `.strip().upper()`\n   - 添加 alias map `PERSON→PER`（可选，取决于严格程度）\n\n2. **TypeConstraintProcessor 修复**（解决真实退化）：\n   - 排查为什么 logit masking 影响 relation JSON 中的 entity type 字段——TypeConstraintProcessor 应只约束 relation type 的 head/tail type pair，但似乎在更广泛的范围内干扰了 token 概率\n   - 可能需要让 masking 只在特定 JSON 字段位置激活，而不是全局影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-docred-semantic-only-et-spike.md"
+}

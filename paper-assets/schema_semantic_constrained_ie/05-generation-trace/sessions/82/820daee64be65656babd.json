@@ -1,0 +1,459 @@
+{
+  "schema_version": "1.0",
+  "id": "820daee64be65656babd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "eval qwen docred lora eval",
+  "task_key": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_qwen_docred_lora_eval_20260515T200302.jsonl",
+    "occurrence": 1,
+    "bytes": 12232,
+    "sha256": "f2521af93af16bbcb660daaa13e0b472607bf19eb7e2311561d6ca15573cf456"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T20:04:01.103891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T20:04:01.104249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T20:04:01.104451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/checkpoints/qwen_lora_docred_merged/ | head -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T20:04:01.104602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T20:04:01.104756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:04:01.104888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"303530, 16442 MiB, python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T20:04:01.105027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/checkpoints/qwen_lora_docred_merged/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:04:01.105166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013160\\\\ndrwxr-xr-x 2 root root       4096 May 16 04:01 .\\\\ndrwxr-xr-x 7 root root        184 May 16 04:01 ..\\\\n-rw-r--r-- 1 root root        707 May 16 04:01 added_tokens.json\\\\n-rw-r--r-- 1 root root       4168 May 16 04:01 chat_template.jinja\\\\n-rw-r--r-- 1 root root       1538 May 16 04:01 config.json\\\\n-rw-r--r-- 1 root root        214 May 16 04:01 generation_config.json\\\\n-rw-r--r-- 1 root root    1671853 May 16 04:01 merges.txt\\\\n-rw-r--r-- 1 root root 4902257696 May 16 04:01 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4915960368 May 16 04:01 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4983068496 May 16 04:01 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 1580230264 May 16 04:01 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      32914 May 16 04:01 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root        613 May 16 04:01 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   11422654 May 16 04:01 tokenizer.json\\\\n-rw-r--r-- 1 root root       5404 May 16 04:01 tokenizer_config.json\\\\n-rw-r--r-- 1 root root    2776833 May 16 04:01 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T20:04:01.105327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_unconstrained_eval",
+              "field": "hypothesis",
+              "value": "Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:04:01.105475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_unconstrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:03:32.625Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:03:32.625Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2203}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T20:04:01.105606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_constrained_eval",
+              "field": "hypothesis",
+              "value": "Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:04:01.105772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_constrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:03:33.642Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:03:33.642Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2459}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T20:04:01.105926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_unconstrained_eval",
+              "field": "parent",
+              "value": "w5_qwen_docred_lora_training",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:04:01.106065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_unconstrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:03:32.625Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:03:40.607Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta\\\", \\\"parent\\\": \\\"w5_qwen_docred_lora_training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2313}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T20:04:01.106193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_constrained_eval",
+              "field": "parent",
+              "value": "w5_qwen_docred_lora_training",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T20:04:01.106334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_constrained_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:03:33.642Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:03:41.365Z\\\", \\\"hypothesis\\\": \\\"Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1\\\", \\\"parent\\\": \\\"w5_qwen_docred_lora_training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.253}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:04:01.106481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-16980",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+              "exp_id": "w5_qwen_docred_lora_unconstrained_eval",
+              "account": "root",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T20:04:01.106617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"304006\\\", \\\"log_file\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_unconstrained_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-16980\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"w5_qwen_docred_lora_unconstrained_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:04:01.106780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T20:04:01.106906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"303530, GPU-0ce19412-d126-ec05-795b-3fddc575596a, 16442 MiB, python3\\\\n304011, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178, 14988 MiB, python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:04:01.107063+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认两张 GPU 都在工作：\n\n| GPU | PID | 显存 | 任务 |\n|-----|-----|------|------|\n| cuda:0 | 303530 | 16442 MiB | Llama DocRED unconstrained eval |\n| cuda:1 | 304011 | 14988 MiB | **Qwen DocRED LoRA unconstrained eval** ✓ |\n\nQwen eval 已成功提交到 cuda:1，模型已加载（~15GB 显存）。日志文件：`~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_unconstrained_eval.log`。预计 1-2h 完成（998 条 DocRED dev）。constrained eval 已预注册，等本次完成后再提交。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen_docred_lora_eval_20260515T200302"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/eval-qwen-docred-lora-eval.md"
+}

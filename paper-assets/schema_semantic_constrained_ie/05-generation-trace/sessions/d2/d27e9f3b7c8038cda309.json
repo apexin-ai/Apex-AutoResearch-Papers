@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d27e9f3b7c8038cda309",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section1 intro fixes",
+  "task_key": "worker_paper_section1_intro_fixes_20260514T054752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section1_intro_fixes_20260514T054752_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "5eb22b3c65f1b1fced47fa8aeec15f8b420ea273f4c7ca39d75bd55f9b5f7756"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 处修正全部完成：\n\n1. **L17**: \"62% on average\" → \"62% on SciERC (7 relations) but only 31% on DocRED (96 relations)\"\n2. **L34**: Contribution 4 末尾 \"with cross-dataset generalization\" → \"and evaluate on two datasets of different ontology scales (7 vs 96 relation types)\"\n3. **L27**: F1-neutral 后补充 cross-field consistency trade-off 披露，指向 §5\n4. **L19**: \"wastes 14–15% of generation compute on outputs that are discarded\" → \"discards 14–15% of generated triples, reducing effective recall\"\n5. **数字精度**: 15.37%→15.4%, 0.93%→0.9%, 0.13pp→0.1pp，全文行内百分比已统一为 1dp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section1-intro-fixes.md"
+}

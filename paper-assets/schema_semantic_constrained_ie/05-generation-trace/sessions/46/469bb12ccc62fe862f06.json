@@ -1,0 +1,1286 @@
+{
+  "schema_version": "1.0",
+  "id": "469bb12ccc62fe862f06",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "paper docred ft ablation patch",
+  "task_key": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_docred_ft_ablation_patch_20260516T205702.jsonl",
+    "occurrence": 1,
+    "bytes": 57446,
+    "sha256": "b3fd71e32efb1541fd6808f968c9783de4e9de4cba30cbf0da44a9575e10cdc5"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T21:02:05.876211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T21:02:05.876806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# FT-Regime Ablation: Complete Results\n2\t\n3\tGenerated: 2026-05-16\n4\t\n5\t## Table 1: SciERC FT Ablation\n6\t\n7\t| Model | Mode | ET% | RV% | DR% | CF% | E_F1 | R_F1 |\n8\t|-------|------|-----|-----|-----|-----|------|------|\n9\t| Qwen3-8B | Unconstrained | 0 | 0 | 1.95 | 0 | 67.05 | 43.86 |\n10\t| Qwen3-8B | Grammar Only | 0 | 0 | 1.95 | 0 | 67.05 | 43.86 |\n11\t| Qwen3-8B | Semantic Only | 0 | 0 | 0.62 | 0.84 | 67.05 | 43.69 |\n12\t| Qwen3-8B | Full (G+S) | 0 | 0 | 0 | 1.18 | 67.05 | 43.77 |\n13\t| Llama-3.1-8B | Unconstrained | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n14\t| Llama-3.1-8B | Grammar Only | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n15\t| Llama-3.1-8B | Semantic Only | 0 | 0 | 0.65 | 0.11 | 67.76 | 45.47 |\n16\t| Llama-3.1-8B | Full (G+S) | 0 | 0 | 0.09 | 0.46 | 67.76 | 45.47 |\n17\t\n18\tNotes:\n19\t- ET = Entity Type violation, RV = Relation Vocabulary violation, DR = Domain-Range violation, CF = Cross-Field consistency violation\n20\t- Grammar layer constrains ET and RV; Semantic layer constrains DR\n21\t- Grammar Only = grammar constraints active, semantic off; Semantic Only = semantic constraints active, grammar off\n22\t- All values from registry metrics; DR% for grammar_only computed as violations/total_relations×100\n23\t\n24\t## Table 2: DocRED FT Ablation\n25\t\n26\t| Model | Mode | ET% | RV% | DR% | CF% | E_F1 | R_F1 | Parse Fail% |\n27\t|-------|------|-----|-----|-----|-----|------|------|-------------|\n28\t| Qwen3-8B | Unconstrained | 0 | 0.27 | 0.76 | 0.12 | 82.15 | 40.86 | 7.11 |\n29\t| Qwen3-8B | Grammar Only | 0 | 0 | 0.61 | 0.11 | 82.19 | 40.85 | 7.01 |\n30\t| Qwen3-8B | Semantic Only | 0 | 0.23 | 0.21 | 0.27 | 82.15 | 40.89 | 7.52 |\n31\t| Qwen3-8B | Full (G+S) | 0 | 0 | 0.01 | 0.41 | 81.43 | 40.56 | 8.52 |\n32\t| Llama-3.1-8B | Unconstrained | 0 | 0.15 | 0.49 | — | 83.93 | 43.72 | 2.30 |\n33\t| Llama-3.1-8B | Grammar Only | 0 | 0 | 0.51 | 0.12 | 84.04 | 43.77 | 2.30 |\n34\t| Llama-3.1-8B | Semantic Only | 0 | 0.15 | 0.30 | 0.16 | 84.02 | 43.90 | 2.40 |\n35\t| Llama-3.1-8B | Full (G+S) | 0 | 0 | 0.\n…[truncated 3689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T21:02:05.877139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/ft_ablation_analysis.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T21:02:05.877462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# FT-Regime Ablation: Complete Results\n2\t\n3\tGenerated: 2026-05-16 (updated: all 8 experiments complete)\n4\t\n5\t## Table 1: SciERC FT Ablation\n6\t\n7\t| Model | Mode | ET% | RV% | DR% | CF% | E_F1 | R_F1 |\n8\t|-------|------|-----|-----|-----|-----|------|------|\n9\t| Qwen3-8B | Unconstrained | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n10\t| Qwen3-8B | Grammar Only | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n11\t| Qwen3-8B | Semantic Only | 0 | 0 | 0.60 | 0.84 | 67.05 | 43.69 |\n12\t| Qwen3-8B | Full (G+S) | 0 | 0 | 0 | 1.18 | 67.05 | 43.77 |\n13\t| Llama-3.1-8B | Unconstrained | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n14\t| Llama-3.1-8B | Grammar Only | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n15\t| Llama-3.1-8B | Semantic Only | 0 | 0 | 0.65 | 0.11 | 67.76 | 45.47 |\n16\t| Llama-3.1-8B | Full (G+S) | 0 | 0 | 0.09 | 0.46 | 67.76 | 45.47 |\n17\t\n18\tNotes:\n19\t- ET = Entity Type violation, RV = Relation Vocabulary violation, DR = Domain-Range violation, CF = Cross-Field consistency violation\n20\t- Grammar layer constrains ET and RV; Semantic layer constrains DR\n21\t- Grammar Only = grammar constraints active, semantic off; Semantic Only = semantic constraints active, grammar off\n22\t- All values from registry metrics; DR% for grammar_only computed as violations/total_relations×100\n23\t\n24\t## Table 2: DocRED FT Ablation\n25\t\n26\t| Model | Mode | ET% | RV% | DR% | CF% | E_F1 | R_F1 | Parse Fail% |\n27\t|-------|------|-----|-----|-----|-----|------|------|-------------|\n28\t| Qwen3-8B | Unconstrained | 0 | 0.27 | 0.76 | 0.12 | 82.15 | 40.86 | 7.11 |\n29\t| Qwen3-8B | Grammar Only | 0 | 0 | 0.61 | 0.11 | 82.19 | 40.85 | 7.01 |\n30\t| Qwen3-8B | Semantic Only | 0 | 0.23 | 0.21 | 0.27 | 82.15 | 40.89 | 7.52 |\n31\t| Qwen3-8B | Full (G+S) | 0 | 0 | 0.01 | 0.41 | 81.43 | 40.56 | 8.52 |\n32\t| Llama-3.1-8B | Unconstrained | 0 | 0.15 | 0.49 | — | 83.93 | 43.72 | 2.30 |\n33\t| Llama-3.1-8B | Grammar Only | 0 | 0 | 0.51 | 0.12 | 84.04 | 43.77 | 2.30 |\n34\t| Llama-3.1-8B | Semantic Only | 0 | 0.15 | 0.30 | 0.16 | 84.02 | 43.90 | 2.40 |\n35\t| \n…[truncated 4985 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T21:02:05.877752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/section*draft*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T21:02:05.877958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/section1_introduction_draft.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T21:02:05.878173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T21:02:05.878445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\tso a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$, reflecting the enabling dependency (\\S\\ref{sec:method})---the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property guaranteed only by the grammar layer.\n12\t\n13\t\\paragraph{Grammar-First Fallback.}\n14\tWhen $S(t) \\cap G(t) = \\emptyset$---tight constraints leave no token that is both grammar-valid and semantically valid---na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n15\tWe enforce a \\emph{grammar-first fallback}: if no semantically valid token survives grammar filtering, semantic masking is skipped and the grammar layer alone controls selection.\n16\tStructural integrity is a hard constraint; a type violation is a soft error detectable by downstream validation.\n17\t\n18\t\\paragraph{Constraint Tightness.}\n19\tWe define the tightness of relation $r$ as:\n20\t%\n21\t\\begin{equation}\\label{eq:tightness}\n22\t  \\kappa(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n23\t\\end{equation}\n24\t%\n25\twhere $\\mathcal{V}(r)$ is the set of valid type pairs and $\\mathcal{T}$ the entity type vocabulary.\n26\tThe mean tightness $\\bar{\\kappa} = \\frac{1}{|\\mathcal{R}|}\\sum_{r} \\kappa(r)$ characterizes ontology restrictiveness.\n27\tTighter constraints eliminate more grammar-valid tokens at type-bearing positions, increasing fallback frequency and residual DR.\n28\tThis dual-factor pattern---tightness $\\times$ baseline model violation rate---is consistent with the cros\n…[truncated 1970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T21:02:05.878732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T21:02:05.879043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — DocRED Results (compressed, 1450→~600 words)\n2\t% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n3\t%          phase2_docred_semantic_only, phase2_docred_full_s1\n4\t% All numbers verified against registry 2026-05-14.\n5\t\n6\t\\subsection{Cross-Dataset Validation on DocRED}\n7\t\\label{sec:docred-results}\n8\t\n9\tTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED, a document-level RE benchmark with 96 Wikidata relation types---14$\\times$ the ontology size of SciERC.\n10\tAll experiments use Qwen3-8B zero-shot on 998 documents.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: DocRED four-way ablation\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.6pt}\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{@{}l rrrrr rr@{}}\n21\t\\toprule\n22\t& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n23\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n24\t\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n25\t\\textbf{Mode}\n26\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n27\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n28\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n29\t\\midrule\n30\tUnconstrained\n31\t  & 18.46 & ---\n32\t  & 29.66 & 2.48\n33\t  & 0.10\n34\t  & 7.74  & 58.15 \\\\\n35\tGrammar\n36\t  & 26.17 & $\\uparrow$42\\%\n37\t  & \\textbf{0.03} & \\textbf{0}\n38\t  & 0.07\n39\t  & \\textbf{8.31}  & \\textbf{59.38} \\\\\n40\tSemantic\n41\t  & 13.84 & $\\downarrow$25\\%\n42\t  & 29.87 & 4.22\n43\t  & 1.05\n44\t  & 7.70  & 57.81 \\\\\n45\tFull (S1)\n46\t  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n47\t  & \\textbf{0.03} & \\textbf{0}\n48\t  & 2.57\n49\t  & 8.23  & 59.37 \\\\\n50\t\\bottomrule\n51\t\\end{tabular}}%\n52\t\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\n53\t$\\Delta$DR: relative change vs.\\ unconstrained.\n54\tBest per column in \\textbf{bold} (CF excluded).\n55\tF1 $\\times$100. Bootstrap significance: R-F1 $+$0.50\\,pp ($p < 0.001$).}\n56\t\\label{tab:docred-ablation}\n57\t\\end{table}\n58\t\n59\t% exp_ids: phase2_docred_unconstraine\n…[truncated 3449 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T21:02:05.879306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper_tables_draft*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T21:02:05.879542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/paper_tables_draft.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T21:02:05.879778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/paper_tables_draft.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T21:02:05.880071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% =============================================================\n2\t% Paper Tables Draft — Schema-Semantic Constrained IE\n3\t% Generated from experiment registry, 2026-05-14\n4\t% Model: Qwen3-8B (zero-shot), all percentages to 1 d.p.\n5\t% =============================================================\n6\t\n7\t% ------------------------------------------------------------\n8\t% Table 1: SciERC 5-way Ablation\n9\t% ------------------------------------------------------------\n10\t\\begin{table}[t]\n11\t\\centering\n12\t\\caption{Ablation study on SciERC test set (551 samples, Qwen3-8B zero-shot).\n13\tDR = Domain/Range violation rate, RV = Relation Vocabulary violation rate,\n14\tET = Entity Type violation rate, CF = Cross-Field consistency violation rate.\n15\t$\\downarrow$: lower is better; $\\uparrow$: higher is better.\n16\t$\\Delta$DR shows the absolute change (pp) relative to the unconstrained baseline.}\n17\t\\label{tab:scierc-ablation}\n18\t\\resizebox{\\columnwidth}{!}{%\n19\t\\begin{tabular}{l cccc cc c}\n20\t\\toprule\n21\tMode & DR$\\downarrow$ & RV$\\downarrow$ & ET$\\downarrow$ & CF$\\downarrow$ & R-F1$\\uparrow$ & E-F1$\\uparrow$ & $\\Delta$DR (pp) \\\\\n22\t\\midrule\n23\tUnconstrained      & 15.4 & 1.4          & 0.4          & \\textbf{0.1} & 8.2          & 31.0          & ---                    \\\\\n24\tGrammar-only       & 14.8 & \\textbf{0.0} & \\textbf{0.0} & \\textbf{0.1} & 8.2          & 31.0          & $-$0.5                 \\\\\n25\tSemantic-only      & 11.7 & 1.5          & 0.4          & 2.7          & 8.2          & 31.0          & $-$3.7                 \\\\\n26\tFull (S1)          & \\textbf{0.9} & \\textbf{0.0} & \\textbf{0.0} & 9.9  & \\textbf{8.4} & 31.0          & \\textbf{$-$14.4}       \\\\\n27\tFull (S2)          & 1.0  & \\textbf{0.0} & \\textbf{0.0} & 8.0          & 8.0          & \\textbf{31.9} & $-$14.4                \\\\\n28\t\\bottomrule\n29\t\\end{tabular}%\n30\t}\n31\t\\vspace{2pt}\n32\t{\\footnotesize\n33\t\\textit{Exp IDs:}\n34\t\\texttt{phase2\\_scierc\\_unconstrained},\n35\t\\texttt{phase2\\_scierc\\_grammar\\_only},\n36\t\\texttt{phas\n…[truncated 3661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T21:02:05.880313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T21:02:05.880691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — SciERC Results (Draft)\n2\t% Data source: Phase 2 SciERC registry experiments\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\n4\t%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\n5\t% All numbers verified against registry 2026-05-14.\n6\t\n7\t\\subsection{Results on SciERC}\n8\t\\label{sec:scierc-results}\n9\t\n10\tTable~\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,\n11\tevaluating each constraint layer independently and in combination.\n12\tAll experiments use Qwen3-8B in a zero-shot setting on 551 test documents\n13\twith identical prompts and decoding parameters;\n14\tonly the active constraint layers differ.\n15\t\n16\t% ──────────────────────────────────────────\n17\t%  Table: SciERC five-way ablation\n18\t% ──────────────────────────────────────────\n19\t\\begin{table}[t]\n20\t\\centering\n21\t\\small\n22\t\\setlength{\\tabcolsep}{3.6pt}\n23\t\\resizebox{\\columnwidth}{!}{%\n24\t\\begin{tabular}{@{}l rrrrr rr@{}}\n25\t\\toprule\n26\t& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n27\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n28\t\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n29\t\\textbf{Mode}\n30\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n31\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n32\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n33\t\\midrule\n34\tUnconstrained\n35\t  & 15.37 & ---\n36\t  & 1.39  & 0.40\n37\t  & 0.08\n38\t  & 8.23  & 31.01 \\\\\n39\tGrammar\n40\t  & 14.84 & $\\downarrow$3\\%\n41\t  & \\textbf{0} & \\textbf{0}\n42\t  & 0.08\n43\t  & 8.23  & 30.98 \\\\\n44\tSemantic\n45\t  & 11.65 & $\\downarrow$24\\%\n46\t  & 1.51  & 0.40\n47\t  & 2.71\n48\t  & 8.15  & 31.01 \\\\\n49\tFull (S1)\n50\t  & \\textbf{0.93} & $\\downarrow$\\textbf{94\\%}\n51\t  & \\textbf{0} & \\textbf{0}\n52\t  & 9.90\n53\t  & \\textbf{8.36} & 30.98 \\\\\n54\tFull (S2)\n55\t  & 0.97  & $\\downarrow$94\\%\n56\t  & \\textbf{0} & \\textbf{0}\n57\t  & 8.03\n58\t  & 8.03  & \\textbf{31.90} \\\\\n59\t\\bottomrule\n60\t\\end{tabular}}%\n61\t\\caption{Five-way ablation on SciERC (551 documents, Qwen3-8B, zero-shot).\n62\tDR: domain/range violation rate;\n63\tRV: rel\n…[truncated 9811 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T21:02:05.880963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T21:02:05.881240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — Cross-Model Validation (compressed, 830→~400 words)\n2\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n3\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\n4\t%          llama_scierc_unconstrained, llama_scierc_full_s1,\n5\t%          llama_docred_unconstrained, llama_docred_full_s1\n6\t\n7\t\\subsection{Cross-Model Validation}\n8\t\\label{sec:cross-model}\n9\t\n10\tWe replicate the full S1 configuration with Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3 under identical prompts, decoding parameters, and evaluation.\n11\tTable~\\ref{tab:cross-model} summarizes results across all three models.\n12\tMistral serves as a third zero-shot verification point confirming model-agnosticism; composability evaluation (\\S\\ref{sec:composability}) uses LoRA fine-tuning which requires domain-specific training data available only for Qwen and Llama.\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\setlength{\\tabcolsep}{3.4pt}\n18\t\\resizebox{\\columnwidth}{!}{%\n19\t\\begin{tabular}{@{}ll rrrr r@{}}\n20\t\\toprule\n21\t& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n22\t& \\textbf{R-F1} \\\\\n23\t\\cmidrule(lr){3-6} \\cmidrule(l){7-7}\n24\t\\textbf{Dataset} & \\textbf{Model}\n25\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n26\t  & $\\uparrow$ \\\\\n27\t\\midrule\n28\t\\multirow{6}{*}{SciERC}\n29\t  & Qwen (U)    & 15.37 & 1.39  & 0.40 & 0.08 & 8.23 \\\\\n30\t  & Qwen (S1)   &  0.93 & 0     & 0    & 9.90 & 8.36 \\\\\n31\t  \\cmidrule(l){2-7}\n32\t  & Llama (U)   & 13.34 & 0.55  & 0    & 0.24 & 2.68 \\\\\n33\t  & Llama (S1)  &  0.08 & 0     & 0    & 6.56 & 2.54 \\\\\n34\t  \\cmidrule(l){2-7}\n35\t  & Mistral (U) & 56.94 & 0     & 1.50 & 56.87$^\\dagger$ & 3.66 \\\\\n36\t  & Mistral (S1)& 13.40 & 0     & 0    & 1.27  & 3.67 \\\\\n37\t\\midrule\n38\t\\multirow{6}{*}{DocRED}\n39\t  & Qwen (U)    & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 \\\\\n40\t  & Qwen (S1)   & 10.21 &  0.03 & 0    & 2.57 & 8.23 \\\\\n41\t  \\cmidrule(l){2-7}\n42\t  & Llama (U)   & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 \\\\\n43\t  & Llama (S1)  &  2.55 &  0  \n…[truncated 2202 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T21:02:05.881578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/appendix*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T21:02:05.881818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_llama_per_relation.tex\nartifacts/_project/paper/appendix_prompts.tex\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/appendix_related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T21:02:05.882005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ft.ablation|ft_ablation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T21:02:05.882183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\nartifacts/_project/paper/main.aux\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/section5_scierc_draft.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T21:02:05.882353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ft.ablation|ft_ablation|app:ft-ablation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "output_mode": "content",
+              "-C": "5"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T21:02:05.882550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "212-\n213-%%% Fine-Tuned Four-Way Ablation %%%\n214-% exp_ids: w5_lora_scierc_*, w5_llama_lora_scierc_*, w5_qwen_docred_*, w5_llama_docred_*, w8_*\n215-\n216-\\paragraph{Fine-Tuned Four-Way Ablation.}\n217:\\label{app:ft-ablation}\n218-\n219:Table~\\ref{tab:ft-ablation} presents the four-way constraint ablation on fine-tuned models across both datasets, isolating each layer's contribution when the base model has already internalized schema knowledge.\n220-\n221-\\begin{table}[t]\n222-\\centering\n223-\\small\n224-\\setlength{\\tabcolsep}{3pt}\n--\n257-\\caption{Four-way constraint ablation on fine-tuned models (LoRA, 2 models $\\times$ 2 datasets).\n258-DR/RV/ET/CF: violation rates (\\%); PF: parse failure rate (\\%); F1 $\\times$100.\n259-Grammar layer is a no-op post-fine-tuning (DR change $<$0.2\\,pp in all 4 settings; RV and ET already 0\\% without constraints).\n260-Semantic layer is the sole effective DR defense, providing 39--72\\% reduction.\n261-F1 cost is negligible: max $\\Delta$R-F1 = $-$0.30\\,pp (Qwen DocRED full vs.\\ unconstrained).}\n262:\\label{tab:ft-ablation}\n263-\\end{table}\n264-\n265-The grammar layer is effectively a no-op for fine-tuned models across all four settings: RV and ET are already 0\\% without constraints, and grammar-only DR change is $<$0.2\\,pp (4/4 settings).\n266-The semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 39--72\\% across all settings (SciERC: Qwen $-$69\\%, Llama $-$41\\%; DocRED: Qwen $-$72\\%, Llama $-$39\\%).\n267-Adding both layers achieves near-complete elimination (DR\\,$\\leq$\\,0.20\\% in all 4 settings), confirming that even after fine-tuning, the semantic layer's pair-based enforcement captures violations that training alone cannot eliminate---specifically on tight-constraint relations where the valid type-pair space is small."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T21:02:05.882788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "212",
+              "limit": "80"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T21:02:05.883050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "212\t\n213\t%%% Fine-Tuned Four-Way Ablation %%%\n214\t% exp_ids: w5_lora_scierc_*, w5_llama_lora_scierc_*, w5_qwen_docred_*, w5_llama_docred_*, w8_*\n215\t\n216\t\\paragraph{Fine-Tuned Four-Way Ablation.}\n217\t\\label{app:ft-ablation}\n218\t\n219\tTable~\\ref{tab:ft-ablation} presents the four-way constraint ablation on fine-tuned models across both datasets, isolating each layer's contribution when the base model has already internalized schema knowledge.\n220\t\n221\t\\begin{table}[t]\n222\t\\centering\n223\t\\small\n224\t\\setlength{\\tabcolsep}{3pt}\n225\t\\resizebox{\\columnwidth}{!}{%\n226\t\\begin{tabular}{@{}lll rrrrr rr@{}}\n227\t\\toprule\n228\t\\textbf{Dataset} & \\textbf{Model} & \\textbf{Mode} & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF} & \\textbf{PF} & \\textbf{E-F1\\,$\\uparrow$} & \\textbf{R-F1\\,$\\uparrow$} \\\\\n229\t\\midrule\n230\t\\multirow{8}{*}{SciERC}\n231\t  & \\multirow{4}{*}{Qwen3-8B}\n232\t    & Unconstrained & 1.95 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\\n233\t  & & Grammar       & 1.90 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\\n234\t  & & Semantic      & 0.60 & 0.00 & 0.00 & 0.18 & 0.00 & 67.05 & 43.69 \\\\\n235\t  & & Full S1       & \\textbf{0}    & 0.00 & 0.00 & 1.18 & 0.00 & 67.05 & 43.77 \\\\\n236\t  \\cmidrule(l){2-10}\n237\t  & \\multirow{4}{*}{Llama-3.1-8B}\n238\t    & Unconstrained & 1.11 & 0.00 & 0.00 & 0.00 & 0.00 & 67.76 & 45.45 \\\\\n239\t  & & Grammar       & 1.11 & 0.00 & 0.00 & 0.00 & 0.00 & 67.76 & 45.45 \\\\\n240\t  & & Semantic      & 0.65 & 0.00 & 0.00 & 0.10 & 0.00 & 67.76 & 45.47 \\\\\n241\t  & & Full S1       & \\textbf{0.09} & 0.00 & 0.00 & 0.46 & 0.00 & 67.76 & 45.47 \\\\\n242\t\\midrule\n243\t\\multirow{8}{*}{DocRED}\n244\t  & \\multirow{4}{*}{Qwen3-8B}\n245\t    & Unconstrained & 0.76 & 0.27 & 0.00 & 0.12 & 7.11 & 82.15 & 40.86 \\\\\n246\t  & & Grammar       & 0.61 & 0.00 & 0.00 & 0.11 & 7.01 & 82.19 & 40.85 \\\\\n247\t  & & Semantic      & 0.21 & 0.23 & 0.00 & 0.27 & 7.52 & 82.15 & 40.89 \\\\\n248\t  & & Full S1       & \\textbf{0.01} & 0.00 & 0.00 & 0.41 & 8.52 & \n…[truncated 4462 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T21:02:05.883370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md",
+              "old_string": "| Qwen3-8B | Unconstrained | 0 | 0 | 1.95 | 0 | 67.05 | 43.86 |\n| Qwen3-8B | Grammar Only | 0 | 0 | 1.95 | 0 | 67.05 | 43.86 |\n| Qwen3-8B | Semantic Only | 0 | 0 | 0.62 | 0.84 | 67.05 | 43.69 |",
+              "new_string": "| Qwen3-8B | Unconstrained | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n| Qwen3-8B | Grammar Only | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n| Qwen3-8B | Semantic Only | 0 | 0 | 0.60 | 0.84 | 67.05 | 43.69 |"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T21:02:05.883642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T21:02:05.883884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md",
+              "old_string": "2. **Semantic layer provides the marginal value in FT**: The semantic constraint reduces DR violations by 68% (Qwen: 1.95→0.62%) and 41% (Llama: 1.11→0.65%) in semantic-only mode. The full system achieves near-complete DR elimination (Qwen: 0%, Llama: 0.09%), demonstrating that some DR violations require both layers cooperating.\n\n3. **Two layers are complementary, not redundant**: Semantic-only reduces DR substantially but not to zero. The residual DR (0.62% Qwen, 0.65% Llama) is eliminated only when grammar constraints co-operate with semantic constraints in full mode.",
+              "new_string": "2. **Semantic layer provides the marginal value in FT**: The semantic constraint reduces DR violations by 68% (Qwen: 1.90→0.60%) and 41% (Llama: 1.11→0.65%) in semantic-only mode. The full system achieves near-complete DR elimination (Qwen: 0%, Llama: 0.09%), demonstrating that some DR violations require both layers cooperating.\n\n3. **Two layers are complementary, not redundant**: Semantic-only reduces DR substantially but not to zero. The residual DR (0.60% Qwen, 0.65% Llama) is eliminated only when grammar constraints co-operate with semantic constraints in full mode."
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T21:02:05.884162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T21:02:05.884375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": "    & Unconstrained & 1.95 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\",
+              "new_string": "    & Unconstrained & 1.90 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T21:02:05.884746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T21:02:05.884990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": "The semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 39--72\\% across all settings (SciERC: Qwen $-$69\\%, Llama $-$41\\%; DocRED: Qwen $-$72\\%, Llama $-$39\\%).",
+              "new_string": "The semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 39--72\\% across all settings (SciERC: Qwen $-$68\\%, Llama $-$41\\%; DocRED: Qwen $-$72\\%, Llama $-$39\\%)."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T21:02:05.885365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T21:02:05.885639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "old_string": "For Qwen3-8B, fine-tuning alone raises R-F1 from 8.23 to 43.86 ($+$35.63\\,pp) and E-F1 from 31.01 to 67.05 ($+$36.04\\,pp), while reducing DR from 15.37\\% to 1.95\\% (87\\% relative reduction).\n% w5_lora_scierc_unconstrained_eval: DR=0.0195, R-F1=0.4386, E-F1=0.6705\nThe residual 1.95\\% DR concentrates on tight-constraint relations: \\textsc{Evaluate-for} (13.13\\%), \\textsc{Part-of} (5.77\\%), and \\textsc{Compare} (5.00\\%) (per-relation breakdown in Appendix~\\ref{app:lora-per-relation}).\nAdding OntoCoDec eliminates the remaining DR entirely (1.95\\%\\,$\\to$\\,0\\%) with R-F1 cost of $-$0.09\\,pp (43.86\\,$\\to$\\,43.77) and unchanged E-F1 (67.05).",
+              "new_string": "For Qwen3-8B, fine-tuning alone raises R-F1 from 8.23 to 43.86 ($+$35.63\\,pp) and E-F1 from 31.01 to 67.05 ($+$36.04\\,pp), while reducing DR from 15.37\\% to 1.90\\% (88\\% relative reduction).\n% w5_lora_scierc_unconstrained_eval: DR=0.0190, R-F1=0.4386, E-F1=0.6705\nThe residual 1.90\\% DR concentrates on tight-constraint relations: \\textsc{Evaluate-for} (13.13\\%), \\textsc{Part-of} (5.77\\%), and \\textsc{Compare} (5.00\\%) (per-relation breakdown in Appendix~\\ref{app:lora-per-relation}).\nAdding OntoCoDec eliminates the remaining DR entirely (1.90\\%\\,$\\to$\\,0\\%) with R-F1 cost of $-$0.09\\,pp (43.86\\,$\\to$\\,43.77) and unchanged E-F1 (67.05)."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T21:02:05.886776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T21:02:05.887039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "old_string": "On DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%, R-F1 $-$0.30\\,pp)\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents ($+$1.4\\,pp increase, 7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.} and to Llama DR 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%, R-F1 $+$0.51\\,pp).\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nFour-way ablation (Appendix~\\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%, making it the sole effective constraint defense in fine-tuned regimes.",
+              "new_string": "On DocRED (96 relation types, document-level), the four-way ablation (Table~\\ref{tab:ft-ablation}) reveals a nuanced pattern.\nUnlike SciERC, unconstrained fine-tuned models retain non-zero RV violations (Qwen 0.27\\%, Llama 0.15\\%), indicating that the larger relation vocabulary is not fully internalized through training alone; the grammar layer eliminates these (RV\\,$\\to$\\,0\\%).\nHowever, the grammar layer remains ineffective against DR: grammar-only DR is indistinguishable from unconstrained (Qwen 0.61\\% vs.\\ 0.76\\%, Llama 0.51\\% vs.\\ 0.49\\%; $|\\Delta| < 0.2$\\,pp).\nThe semantic layer provides the effective DR defense, reducing violations by 72\\% for Qwen (0.76\\%\\,$\\to$\\,0.21\\%) and 39\\% for Llama (0.49\\%\\,$\\to$\\,0.30\\%) in isolation.\nThe full system achieves near-complete DR elimination: Qwen 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%), Llama 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%), with R-F1 changes of $-$0.30\\,pp and $+$0.51\\,pp respectively.\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents (7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.}\nParse failure rates on DocRED are non-trivial (7--8.5\\%) due to document length but do not differentially affect constraint modes: excluding failed documents, $\\Delta$R-F1 is within $\\pm$0.1\\,pp across all configurations.\n% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nThe four-way ablation consistently shows across all four model$\\times$dataset settings (Appendix~\\ref{app:ft-ablation}): grammar is a no-op for DR post-fine-tuning ($|\\Delta\\text{DR}| < 0.2$\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%; and full constraint enforcement drives DR to near-zero while preserving R-F1."
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T21:02:05.887293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: On DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%, R-F1 $-$0.30\\,pp)\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents ($+$1.4\\,pp increase, 7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.} and to Llama DR 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%, R-F1 $+$0.51\\,pp).\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nFour-way ablation (Appendix~\\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%, making it the sole effective constraint defense in fine-tuned regimes.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T21:02:05.887527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "offset": "145",
+              "limit": "15"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T21:02:05.887758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "145\t% w5_llama_lora_scierc_constrained_eval: DR=0.0009, R-F1=0.4547, E-F1=0.6776, CF=0.0046\n146\t\n147\tOn DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%, R-F1 $-$0.30\\,pp)\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents ($+$1.4\\,pp increase, 7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.} and to Llama DR 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%, R-F1 $+$0.51\\,pp).\n148\t% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23\n149\t\n150\tAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\n151\tFour-way ablation (Appendix~\\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%, making it the sole effective constraint defense in fine-tuned regimes.\n152\t\n153\tTwo secondary observations support this interpretation.\n154\tFirst, CF interference drops substantially under fine-tuning for both models: Qwen from $+$9.82\\,pp to $+$1.18\\,pp, Llama from $+$6.32\\,pp to $+$0.46\\,pp,\n155\t% Qwen: ZS CF delta = 9.90-0.08 = 9.82pp, FT CF delta = 1.18-0 = 1.18pp\n156\t% Llama: ZS CF delta = 6.56-0.24 = 6.32pp, FT CF delta = 0.46-0 = 0.46pp\n157\tbecause fine-tuned per-slot type predictions are more consistent with the entity registry;\n158\tfor Qwen, the residual 1.18\\% traces to \\textsc{Generic}$\\leftrightarrow$X schema-level ambiguity (Appendix~\\ref{app:cf-distribution}) rather than enforcement failure.\n159\tSecond, in the zero-shot setting, S1 R-F1 impact is negligible for both models (Qwen $+$0.13\\,pp, Llama $-$0.14\\,pp),"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T21:02:05.887996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "old_string": "On DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%, R-F1 $-$0.30\\,pp)\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents ($+$1.4\\,pp increase, 7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.} and to Llama DR 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%, R-F1 $+$0.51\\,pp).\n% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nFour-way ablation (Appendix~\\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%, making it the sole effective constraint defense in fine-tuned regimes.",
+              "new_string": "On DocRED (96 relation types, document-level), the four-way ablation (Table~\\ref{tab:ft-ablation}) reveals a nuanced pattern.\nUnlike SciERC, unconstrained fine-tuned models retain non-zero RV violations (Qwen 0.27\\%, Llama 0.15\\%), indicating that the larger relation vocabulary is not fully internalized through training alone; the grammar layer eliminates these (RV\\,$\\to$\\,0\\%).\nHowever, the grammar layer remains ineffective against DR: grammar-only DR is indistinguishable from unconstrained (Qwen 0.61\\% vs.\\ 0.76\\%, Llama 0.51\\% vs.\\ 0.49\\%; $|\\Delta| < 0.2$\\,pp).\nThe semantic layer provides the effective DR defense, reducing violations by 72\\% for Qwen (0.76\\%\\,$\\to$\\,0.21\\%) and 39\\% for Llama (0.49\\%\\,$\\to$\\,0.30\\%) in isolation.\nThe full system achieves near-complete DR elimination: Qwen 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%), Llama 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%), with R-F1 changes of $-$0.30\\,pp and $+$0.51\\,pp respectively.\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents (7.1\\%\\,$\\to$\\,8.5\\%) yields $\\Delta$R-F1 $+$0.03\\,pp. We report all-set as primary.}\nParse failure rates on DocRED are non-trivial (7--8.5\\%) due to document length but do not differentially affect constraint modes: excluding failed documents, $\\Delta$R-F1 is within $\\pm$0.1\\,pp across all configurations.\n% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nThe four-way ablation consistently shows across all four model$\\times$dataset settings (Appendix~\\ref{app:ft-ablation}): grammar is a no-op for DR post-fine-tuning ($|\\Delta\\text{DR}| < 0.2$\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%; and full constraint enforcement drives DR to near-zero while preserving R-F1."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T21:02:05.888338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T21:02:05.888574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "offset": "178",
+              "limit": "10"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T21:02:05.888813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "178\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$}\n179\t  & \\textbf{$\\Delta$DR} \\\\\n180\t\\midrule\n181\t\\multirow{4}{*}{Qwen3-8B}\n182\t  & \\multirow{2}{*}{Zero-shot}\n183\t    & Unconstr.\\ & 15.37 & 0.08 & 8.23  & 31.01 & --- \\\\\n184\t  & & Full S1    &  0.93 & 9.90 & 8.36  & 30.98 & $\\downarrow$94\\% \\\\\n185\t\\cmidrule(l){2-8}\n186\t  & \\multirow{2}{*}{LoRA}\n187\t    & Unconstr.\\ &  1.95 & 0    & 43.86 & 67.05 & --- \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T21:02:05.889011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "old_string": "    & Unconstr.\\ &  1.95 & 0    & 43.86 & 67.05 & --- \\\\",
+              "new_string": "    & Unconstr.\\ &  1.90 & 0    & 43.86 & 67.05 & --- \\\\"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T21:02:05.889293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T21:02:05.889530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "1\\.95",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T21:02:05.889764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/main.log:689:\\T1/ptm/m/n/10.95 (+20) re-duc-tion). The resid-ual 1.95% DR con-cen-\nartifacts/_project/paper/appendix_discussion.tex:318:  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T21:02:05.889942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "314",
+              "limit": "10"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T21:02:05.890129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "314\t  & Llama   & DocRED & 42.2 & 7.44  & 6.27  & ph \\\\\n315\t  & Mistral & DocRED & \\textbf{73.7} & 3.85  & \\textbf{5.52} & cd \\\\\n316\t\\midrule\n317\t\\multirow{4}{*}{FT}\n318\t  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\\n319\t  & Llama   & SciERC & 1.11 & 45.23 & 45.47 & cd \\\\\n320\t  & Qwen    & DocRED & 1.03 & 41.11 & 40.56 & ph \\\\\n321\t  & Llama   & DocRED & 0.64 & 43.92 & 44.23 & cd \\\\\n322\t\\bottomrule\n323\t\\end{tabular}}%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T21:02:05.890342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "293",
+              "limit": "35"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T21:02:05.890566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "293\t% exp_ids: posthoc_*_zs, posthoc_*_ft\n294\t\n295\t\\paragraph{Post-Hoc Filtering: Extended Comparison.}\n296\t\\label{app:posthoc-extended}\n297\t\n298\tTable~\\ref{tab:posthoc-extended} presents the full comparison across all six zero-shot and four fine-tuned configurations.\n299\t\n300\t\\begin{table}[t]\n301\t\\centering\n302\t\\small\n303\t\\setlength{\\tabcolsep}{3pt}\n304\t\\resizebox{\\columnwidth}{!}{%\n305\t\\begin{tabular}{@{}lll rrr l@{}}\n306\t\\toprule\n307\t\\textbf{Setting} & \\textbf{Model} & \\textbf{Dataset} & \\textbf{Reject\\%} & \\textbf{R-F1$_{\\text{ph}}$} & \\textbf{R-F1$_{\\text{cd}}$} & \\textbf{Winner} \\\\\n308\t\\midrule\n309\t\\multirow{6}{*}{ZS}\n310\t  & Qwen    & SciERC & 16.8 & 8.63  & 8.36  & ph \\\\\n311\t  & Llama   & SciERC & 13.9 & 2.71  & 2.54  & ph \\\\\n312\t  & Mistral & SciERC & 20.3 & 3.94  & 3.67  & ph \\\\\n313\t  & Qwen    & DocRED & 48.1 & 9.61  & 8.23  & ph \\\\\n314\t  & Llama   & DocRED & 42.2 & 7.44  & 6.27  & ph \\\\\n315\t  & Mistral & DocRED & \\textbf{73.7} & 3.85  & \\textbf{5.52} & cd \\\\\n316\t\\midrule\n317\t\\multirow{4}{*}{FT}\n318\t  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\\n319\t  & Llama   & SciERC & 1.11 & 45.23 & 45.47 & cd \\\\\n320\t  & Qwen    & DocRED & 1.03 & 41.11 & 40.56 & ph \\\\\n321\t  & Llama   & DocRED & 0.64 & 43.92 & 44.23 & cd \\\\\n322\t\\bottomrule\n323\t\\end{tabular}}%\n324\t\\caption{Post-hoc filtering (ph) vs.\\ constrained decoding (cd).\n325\tIn zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.\n326\tAt reject rate $>$70\\% (Mistral DocRED), post-hoc F1 collapses below constrained.\n327\tUnder fine-tuning, rejection rates drop to 0.6--2.0\\% and the two strategies are equivalent ($\\Delta \\leq 0.55$\\,pp; each wins two groups)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T21:02:05.890887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": "  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\",
+              "new_string": "  & Qwen    & SciERC & 1.90 & 43.94 & 43.77 & ph \\\\"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T21:02:05.891247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T21:02:05.891514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "1\\.95",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T21:02:05.891750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T21:02:05.891970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md",
+              "offset": "8",
+              "limit": "12"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T21:02:05.892179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8\t|-------|------|-----|-----|-----|-----|------|------|\n9\t| Qwen3-8B | Unconstrained | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n10\t| Qwen3-8B | Grammar Only | 0 | 0 | 1.90 | 0 | 67.05 | 43.86 |\n11\t| Qwen3-8B | Semantic Only | 0 | 0 | 0.60 | 0.84 | 67.05 | 43.69 |\n12\t| Qwen3-8B | Full (G+S) | 0 | 0 | 0 | 1.18 | 67.05 | 43.77 |\n13\t| Llama-3.1-8B | Unconstrained | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n14\t| Llama-3.1-8B | Grammar Only | 0 | 0 | 1.11 | 0 | 67.76 | 45.45 |\n15\t| Llama-3.1-8B | Semantic Only | 0 | 0 | 0.65 | 0.11 | 67.76 | 45.47 |\n16\t| Llama-3.1-8B | Full (G+S) | 0 | 0 | 0.09 | 0.46 | 67.76 | 45.47 |\n17\t\n18\tNotes:\n19\t- ET = Entity Type violation, RV = Relation Vocabulary violation, DR = Domain-Range violation, CF = Cross-Field consistency violation"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T21:02:05.892398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+              "offset": "135",
+              "limit": "25"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T21:02:05.892659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "135\tFor Qwen3-8B, fine-tuning alone raises R-F1 from 8.23 to 43.86 ($+$35.63\\,pp) and E-F1 from 31.01 to 67.05 ($+$36.04\\,pp), while reducing DR from 15.37\\% to 1.90\\% (88\\% relative reduction).\n136\t% w5_lora_scierc_unconstrained_eval: DR=0.0190, R-F1=0.4386, E-F1=0.6705\n137\tThe residual 1.90\\% DR concentrates on tight-constraint relations: \\textsc{Evaluate-for} (13.13\\%), \\textsc{Part-of} (5.77\\%), and \\textsc{Compare} (5.00\\%) (per-relation breakdown in Appendix~\\ref{app:lora-per-relation}).\n138\tAdding OntoCoDec eliminates the remaining DR entirely (1.90\\%\\,$\\to$\\,0\\%) with R-F1 cost of $-$0.09\\,pp (43.86\\,$\\to$\\,43.77) and unchanged E-F1 (67.05).\n139\t% w5_lora_scierc_constrained_eval: DR=0, R-F1=0.4377, E-F1=0.6705, CF=0.0118\n140\t\n141\tLlama-3.1-8B exhibits the same pattern.\n142\tFine-tuning raises R-F1 from 2.68 to 45.45 ($+$42.77\\,pp) and E-F1 from 23.56 to 67.76 ($+$44.20\\,pp), while reducing DR from 13.34\\% to 1.11\\%.\n143\t% w5_llama_lora_scierc_unconstrained_eval: DR=0.0111, R-F1=0.4545, E-F1=0.6776\n144\tAdding OntoCoDec reduces DR by 92\\% (1.11\\%\\,$\\to$\\,0.09\\%) with R-F1 change of $+$0.02\\,pp (45.45\\,$\\to$\\,45.47) and unchanged E-F1 (67.76).\n145\t% w5_llama_lora_scierc_constrained_eval: DR=0.0009, R-F1=0.4547, E-F1=0.6776, CF=0.0046\n146\t\n147\tOn DocRED (96 relation types, document-level), the four-way ablation (Table~\\ref{tab:ft-ablation}) reveals a nuanced pattern.\n148\tUnlike SciERC, unconstrained fine-tuned models retain non-zero RV violations (Qwen 0.27\\%, Llama 0.15\\%), indicating that the larger relation vocabulary is not fully internalized through training alone; the grammar layer eliminates these (RV\\,$\\to$\\,0\\%).\n149\tHowever, the grammar layer remains ineffective against DR: grammar-only DR is indistinguishable from unconstrained (Qwen 0.61\\% vs.\\ 0.76\\%, Llama 0.51\\% vs.\\ 0.49\\%; $|\\Delta| < 0.2$\\,pp).\n150\tThe semantic layer provides the effective DR defense, reducing violations by 72\\% for Qwen (0.76\\%\\,$\\to$\\,0.21\\%) and 39\\% for Llama (0.49\\%\\,$\\to$\\\n…[truncated 1546 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T21:02:05.892953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.62",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T21:02:05.893165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T21:02:05.893429+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of changes:\n\n**1. `artifacts/_project/report/ft_ablation_analysis.md`** — Fixed SciERC Table 1 values:\n- Qwen Unconstrained/Grammar Only DR: 1.95% → 1.90%\n- Qwen Semantic Only DR: 0.62% → 0.60%\n- Updated corresponding mentions in Key Findings (68% reduction text and residual DR text)\n\n**2. `artifacts/_project/paper/section5_scierc_draft.tex`** — Two changes:\n- Fixed all `1.95%` references to `1.90%` (narrative text + composability table)\n- Expanded the one-line DocRED FT mention into a full paragraph covering the four-way ablation: grammar layer eliminates RV but not DR, semantic layer reduces DR 72%/39%, full system achieves near-zero DR, parse failure context\n\n**3. `artifacts/_project/paper/appendix_discussion.tex`** — Fixed:\n- FT ablation table: SciERC Qwen Unconstrained DR 1.95 → 1.90\n- Narrative: Qwen SciERC semantic reduction 69% → 68%\n- Post-hoc comparison table: Qwen SciERC FT Reject% 1.95 → 1.90"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_docred_ft_ablation_patch_20260516T205702"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ],
+  "readable_path": "readable/conversations/paper-docred-ft-ablation-patch.md"
+}

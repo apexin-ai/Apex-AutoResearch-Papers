@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0f7ac0af203673a5068",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper reference audit relwork",
+  "task_key": "worker_paper_reference_audit_relwork_20260514T054544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_relwork_20260514T054544_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "1dec226c5ebf872da735387ce128978616099043fe6290f9cd0ab12ef225162e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**审计结果：4/4 引用全部真实存在，无幻觉。**\n\n| Bib Key | 状态 | 备注 |\n|---------|------|------|\n| `zhou2026snowballing` | ✅ | 2026 年 arXiv preprint，确实关于 constrained decoding 的 \"structure snowballing\" 失败模式 |\n| `upadhyay2023openie` | ✅ | Findings of EACL 2023，entity-focused constraints for OpenIE |\n| `regino2025kgcurator` | ✅ | GenAIK 2025 Workshop (COLING)，LLM 验证 KG triple 插入 |\n| `qi2024adelie` | ✅ | EMNLP 2024 main，IE 对齐训练框架 |\n\n唯一需要注意的小问题：\n- `zhou2026snowballing` 的 bib 条目应标注为 `@article` + `journal = {arXiv preprint arXiv:2604.06066}`，不要写错 venue\n- `regino2025kgcurator` 的 booktitle 应为完整的 workshop 名称 `Proceedings of the Workshop on Generative AI and Knowledge Graphs (GenAIK)`\n\n报告已写入 `artifacts/reference_audit_relwork.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-relwork-copy-2.md"
+}

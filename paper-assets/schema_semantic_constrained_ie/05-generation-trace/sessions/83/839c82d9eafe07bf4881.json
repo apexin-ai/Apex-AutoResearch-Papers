@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "839c82d9eafe07bf4881",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check all experiments status",
+  "task_key": "worker_check_all-experiments-status_20260522T202624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all-experiments-status_20260522T202624_result.json",
+    "occurrence": 1,
+    "bytes": 1980,
+    "sha256": "cc4b65b77f68dfd53a5c5b3ab888aeca4b39e5505150b346e739a6a5b50ff367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已设置。汇总当前状态：\n\n---\n\n## 已完成实验评估结果\n\n| 实验 | DR% | RV% | ET% | CF | R-F1 | E-F1 | Parse% | 状态 |\n|------|-----|-----|-----|-----|------|------|--------|------|\n| **70B LoRA SciERC unconstrained** | 1.5 | 0 | 0 | 0 | 44.73 | 64.86 | 100 | DONE |\n| **70B LoRA SciERC beam4_s1 (full)** | 0 | 0 | 0 | 0 | 44.81 | 64.89 | 100 | DONE |\n| **70B LoRA SciERC grammar_only** | 1.5 | 0 | 0 | 0 | 44.63 | 64.82 | 100 | DONE (negative) |\n| **70B LoRA SciERC semantic_only** | **0.6** | 0 | 0 | 9 | **44.73** | 64.86 | 100 | DONE (new) |\n| **70B LoRA SciERC full_s2** | **0** | 0 | 0 | 18 | **36.28** | 62.35 | 100 | DONE (negative) |\n| **70B ZS SciERC unconstrained** | 6.4 | 0.6 | 0 | 0 | 11.23 | 35.22 | 100 | DONE (new) |\n\n### 关键发现\n\n- **semantic_only**: DR 从 1.5%→0.6%，R-F1 不变（44.73）。语义层单独贡献 DR 下降，无 F1 损失。\n- **grammar_only**: DR 仍 1.5%，与 unconstrained 一致 → grammar 层对 DR 零贡献。conclusion 已修正为 negative。\n- **full_s2**: DR=0% 但 R-F1 暴跌至 36.28（-8.5pp），E-F1 也降到 62.35。S2 模式过度约束导致 recall 大幅下降。\n\n## GPU 使用状态\n\n| 服务器 | GPU 0 | GPU 1 |\n|--------|-------|-------|\n| **westd-16980** | eval_70b_lora_docred_200_semantic_only (新启动) | eval_70b_lora_docred_200_grammar_only (新启动) |\n| **westd-21461** | eval_70b_zs_docred_200_semantic_only (新启动) | eval_70b_lora_docred_200_beam4_s1 (160/200) |\n\n## Registry 修复\n\n- `eval_70b_lora_scierc_grammar_only` conclusion: success → **negative** (已修复)\n\n## 新启动实验 (3个)\n\n1. **eval_70b_lora_docred_200_semantic_only** — westd-16980 GPU 0, PID 983803\n2. **eval_70b_lora_docred_200_grammar_only** — westd-16980 GPU 1, PID 984253\n3. **eval_70b_zs_docred_200_semantic_only** — westd-21461 GPU 0, PID 78742\n\nCron 每 12 分钟轮询进度，完成后自动评估并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-experiments-status-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b244befb05c18e5b579c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "prep llama readiness check",
+  "task_key": "worker_prep_llama_readiness_check_20260514T094746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_llama_readiness_check_20260514T094746_result.json",
+    "occurrence": 1,
+    "bytes": 2285,
+    "sha256": "12daa129907a880dee8a922868b2622673af5d426d90ba3d481c673cf5c97992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是结果：\n\n---\n\n## 1. 模型就绪状态：✅ 就绪\n\n| 项目 | 状态 |\n|---|---|\n| 模型文件完整性 | ✅ config.json, tokenizer.json, 4x safetensors (~15GB) |\n| 架构 | `LlamaForCausalLM`, vocab_size=128256, bf16 |\n| pad_token 处理 | ✅ 代码已有 `if pad_token is None: pad_token = eos_token`（Llama pad_token=None → 设为 `<|eot_id|>`）|\n| chat_template | ✅ Llama-3.1-Instruct 内置 chat template，`_chat_template_kwargs` 对非 Qwen 返回 `{}` |\n| XGrammar | ✅ `TokenizerInfo.from_huggingface` 是通用 API，已安装 |\n| First-token 唯一性 | ✅ Task=6396, Method=3607, Material=13721, Metric=55410, OtherScientificTerm=11663, Generic=20560（全部唯一）|\n| 数据文件 | ✅ `data/processed_data/test.json` + `ontology_constraints.json` 存在 |\n\n## 2. 兼容性问题：无\n\n代码完全使用 HF 通用 API（`AutoModelForCausalLM`、`AutoTokenizer`、`tokenizer.encode`），无 Qwen 特有依赖。唯一的 Qwen 特殊逻辑是 `enable_thinking=False`，仅在 model name 包含 'qwen' 时触发。\n\n## 3. 实验命令\n\n**Experiment 1: `llama_scierc_unconstrained`**（无约束 baseline）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"\n```\n\n**Experiment 2: `llama_scierc_full_s1`**（grammar+semantic 双层约束）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"\n```\n\n## 4. 需要修改的代码：无"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-llama-readiness-check.md"
+}

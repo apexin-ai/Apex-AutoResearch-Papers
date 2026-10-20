@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caf6d3d55c4c7e86c2ae",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops westd37397 diag 20260516",
+  "task_key": "worker_ops_westd37397_diag_20260516_20260516T115320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd37397_diag_20260516_20260516T115320_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "3d840e429b43e36ae00126432788cf7a4b7260be1a44e50b90852ca247cdf827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 项目 | 状态 |\n|------|------|\n| 连接 | **失败** — `Connection refused` (port 37397 on 36.103.198.204) |\n| 失败原因 | 端口拒绝连接，实例已关机或已释放 |\n| SSH 配置 | 配置存在，别名为 `autodl-rtxpro6000`，不是 `westd-37397` |\n\n**原因分析**：AutoDL 实例关机/重启后端口会变，当前 37397 端口已不可用。实例可能已关机、释放、或重启后分配了新端口。\n\n**建议**：\n- 如果实例仍需要 → 去 AutoDL 控制台确认实例状态，若已开机则更新 SSH config 中的端口号\n- 如果实例已不再使用 → 从 GPU 调度中移除 `westd-37397` / `autodl-rtxpro6000`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd37397-diag-20260516.md"
+}

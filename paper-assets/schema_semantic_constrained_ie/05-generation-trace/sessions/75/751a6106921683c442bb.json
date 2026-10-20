@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "751a6106921683c442bb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code fix grammar semantic interaction",
+  "task_key": "worker_code_fix_grammar_semantic_interaction_20260514T025632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_grammar_semantic_interaction_20260514T025632.log",
+    "occurrence": 1,
+    "bytes": 728464,
+    "sha256": "10b7a13ee0fbdd997f6754e00cc64da08b17faee90e3c654cb986be778d30f9f"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "751a6106921683c442bb-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "751a6106921683c442bb-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-grammar-semantic-interaction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b26097d27d7a7dc62aca",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis llama scierc unconstrained",
+  "task_key": "worker_analysis_llama_scierc_unconstrained_20260514T134815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_scierc_unconstrained_20260514T134815_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "59802eee3ef2d2bdc8ba7961adc89b69b5c1a60e718207e935b193da53a484f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总结果：\n\n## llama_scierc_unconstrained 实验结果\n\n| 指标 | Llama-3.1-8B | Qwen3-8B | 差异 |\n|------|-------------|----------|------|\n| Entity Type Violation | **0.0%** | 0.4% | Llama 更好 |\n| Relation Vocab Violation | **0.5%** | 1.39% | Llama 更好 |\n| Domain/Range Violation | **13.3%** | 15.37% | Llama 略好 |\n| Entity F1 | 23.56% | **31.01%** | Llama 低 7.5pp |\n| Relation F1 | 2.68% | **8.23%** | Llama 低 5.5pp |\n\n**结论**：Llama-3.1-8B 在 unconstrained 设定下 violation rate 全面低于 Qwen3-8B，但 F1 显著更差。原因是 Llama 提取更保守（2451 entities / 1274 relations vs Qwen3 更多的提取量），violation 自然少，但 recall 也随之下降。Qwen3 在 SciERC 上作为 unconstrained baseline 质量优于 Llama，后续 OntoCoDec constrained 实验中 Llama 有更大的 violation 压缩空间（DR 从 13.3% 降至 ~0）但 F1 提升潜力需要验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-scierc-unconstrained.md"
+}

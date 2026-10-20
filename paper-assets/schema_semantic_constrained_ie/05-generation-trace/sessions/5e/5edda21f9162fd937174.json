@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5edda21f9162fd937174",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis update ft ablation final",
+  "task_key": "worker_analysis_update_ft_ablation_final_20260516T165551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_update_ft_ablation_final_20260516T165551_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "3ef7510a2e94b227e4af98325391574c9fed7e503c2502920bf67c0b3d4f1868"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件更新完成。所有改动：\n\n1. **DocRED 表格**：填入 Qwen grammar_only/semantic_only 和 Llama grammar_only/semantic_only 全部数据，去掉 TBD/RUNNING 标记\n2. **SciERC 表格**：DR 数值修正为 registry 一致（Qwen: 1.90/0.60）\n3. **Key Findings**：新增第 6 条 Claim 2 证据链总结；更新数值；确认 4/4 settings 一致性\n4. **Paper-Ready Narrative**：扩展为跨数据集版本，包含 DocRED 结论\n5. 模型名已确认为 Qwen3-8B（全文一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-update-ft-ablation-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7ceaefb27d9174554e7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check running experiments 20260516",
+  "task_key": "worker_ops_check_running_experiments_20260516_20260516T105323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_running_experiments_20260516_20260516T105323_result.json",
+    "occurrence": 1,
+    "bytes": 2018,
+    "sha256": "df353aad6895a3c3a3c26b3ad292770c9d72ad5680b75b89fb7da143afbac2ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n---\n\n## 实验状态报告\n\n### westd-16980 (2× RTX PRO 6000 Black, 98GB)\n\n| GPU | PID | 实验 | 进度 | 状态 |\n|-----|-----|------|------|------|\n| 0 | 351214 | `benchmark_latency_docred.py` | 未知 | ⚠️ **不在预期列表中** |\n| 1 | 345222 | **w8_llama_docred_ft_grammar_only** | 643/998 (64.4%) | ✅ 正常运行 |\n\n- w8_llama 日志: `/tmp/w8_llama_docred_ft_grammar_only.log`\n- 输出文件最后修改: 18:54:57 CST (刚刚)，持续写入中\n\n**空闲 GPU: 无** (GPU 0 被 benchmark 脚本占用)\n\n---\n\n### westd-21461 (2× RTX PRO 6000 Black, 98GB)\n\n| GPU | PID | 实验 | 进度 | 状态 |\n|-----|-----|------|------|------|\n| 0 | 18555 | **w8_qwen_docred_ft_grammar_only** | 254/998 (25.5%) | ✅ 正常运行 |\n| 1 | 20040 | **w8_qwen_docred_ft_semantic_only** | 128/998 (12.8%) | ✅ 正常运行 |\n\n- grammar_only 日志: `/root/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_grammar_only.log` — 显示 [166/998]\n- semantic_only 日志: `/root/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_semantic_only.log` — 模型已加载完毕，开始推理\n- 两个输出文件均在最近30s内被修改，持续写入\n\n**空闲 GPU: 无**\n\n---\n\n### 已完成的 w7 实验 (westd-16980)\n\n- w7_qwen_scierc_ft_semantic_only: ✅ 551/551 完成\n- w7_llama_scierc_ft_grammar_only: ✅ 551/551 完成\n- w7_llama_scierc_ft_semantic_only: ✅ 551/551 完成\n\n---\n\n### 汇总与建议\n\n**3个 RUNNING 实验全部确认在跑，进程正常，GPU 利用率 83-89%。** Cron 监控显示 0 可能是注册/检测逻辑问题，不是实验本身的问题。\n\n**需要操作：**\n1. 3个 w8 实验需重新注册 cron 监控（进程实际在跑但 cron 检测不到）\n2. westd-16980 GPU 0 上的 `benchmark_latency_docred.py` (PID 351214) 不在 registry 中——确认是否是你手动启动的，是否还需要\n\n**空闲 GPU: 0** — 两台服务器4块GPU全部占满。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-experiments-20260516.md"
+}

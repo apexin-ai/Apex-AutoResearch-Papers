@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51b3c52f96c9241f7ee6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d068 pilot collect r2",
+  "task_key": "worker_ssh_d068_pilot_collect_r2_20260519T163624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d068_pilot_collect_r2_20260519T163624_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "54b3f00edbef8b81be4faeb0a1e1f6e41cf20467cd65fd39e8b87af69652e9fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验进度：\n- **westd-16980**: β=0.0 (54/100), β=0.5 (75/100)\n- **westd-21461**: β=1.0 (47/100), β=2.0 (47/100)\n\n所有 GPU 利用率 90%+，实验正常推进中。90 秒后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d068-pilot-collect-r2.md"
+}

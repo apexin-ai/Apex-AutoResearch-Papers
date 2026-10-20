@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a033a891b4848caa260b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check westd 16980",
+  "task_key": "worker_ops_check-westd-16980_20260520T035053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd-16980_20260520T035053_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "ec67787e4352f1f1ad809f39d4dd094f6efdca85f4b6ac0804046fb7bd40315b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：两个进程均存活，推理正常进行。**\n\n| 进程 | PID | GPU | 进度 | GPU利用率 |\n|------|-----|-----|------|-----------|\n| unconstrained | 697390 | GPU0 (90%) | **554/998 (55.5%)** | 18.3GB/97.9GB |\n| constrained (full_s1) | 698086 | GPU1 (86%) | **511/998 (51.2%)** | 18.3GB/97.9GB |\n\n相比之前（unc 37%, con 34%），两个任务都在正常推进。日志无报错，输出文件持续写入中（最后更新 11:51）。报告已写入 `artifacts/server_check_16980.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-16980.md"
+}

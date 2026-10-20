@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "565ce65740a44b6a6c79",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code beam search dryrun",
+  "task_key": "worker_code_beam_search_dryrun_20260517T002228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_search_dryrun_20260517T002228_result.json",
+    "occurrence": 1,
+    "bytes": 2161,
+    "sha256": "1a8535b33c56139221fd0735c5cf77700e5b237f85e25fd77b182e550b938892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Beam search 竟然比 greedy 更快（0.77x），这是因为 `early_stopping=True` 让 beam search 在找到完整序列后提前终止。两者可能在不同时间运行（服务器负载差异），但速度完全可接受（50 samples 4.9 分钟）。\n\n最终对比汇总：\n\n```\n=== Beam Search vs Greedy (full_s1, SciERC, 50 samples) ===\n\n                    Beam (4)    Greedy\nET violations:      0/218 (0%)  0/219 (0%)\nRV violations:      0/149 (0%)  0/158 (0%)\nDR violations:      0/149 (0%)  1/158 (0.6%)\nCF violations:      3           25\nJSON failures:      0 (0%)      0 (0%)\n\nEntity F1:          0.3367      0.3096\nRelation F1:        0.1303      0.1185\n\nTotal time:         291.6s      379.0s\nMean per sample:    5.83s       7.58s\n```\n\nBeam search 在所有指标上优于或等于 greedy：\n- **DR violation 下降**：0.6% → 0%\n- **CF violation 大幅下降**：25 → 3\n- **Entity F1 提升**：+2.7pp\n- **Relation F1 提升**：+1.2pp\n- **速度更快**（可能因 early stopping）\n\n## 产出总结\n\n**修改的代码文件：**\n1. `compiler/beam_aware_processor.py`（新建）— 修复 TypeConstraintProcessor 的 per-beam state 隔离问题\n2. `compiler/beam_grammar_processor.py`（新建）— 实现 replay-from-scratch 策略的 XGrammar beam search 兼容 processor\n3. `run_constrained_extraction.py`（修改）— 添加 `--decoding_strategy beam --num_beams N` 参数和 `run_single_pass_beam()` 函数\n\n**关键设计决策：**\n- XGrammar 的默认 HF LogitsProcessor 不支持 beam search（内部 state 无法处理 beam reordering）。解决方案：每步每 beam 重建 GrammarMatcher 并 replay 全部已生成 token。O(seq_len) per beam per step，对 IE 输出长度可接受。\n- TypeConstraintProcessor 共享单一 state 导致 beam 间污染。解决方案：子类 override `__call__`，每个 beam 处理前 reset state（detect() 从全文重建所有状态）。\n\n**10-doc dry run：** 全部成功，无报错，constraint 完全生效（DR=0%），耗时 62s。\n\n**50-doc 结果：** 全部成功，constraint 生效，F1 优于 greedy baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beam-search-dryrun.md"
+}

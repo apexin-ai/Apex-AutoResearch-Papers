@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73a8caa3eea4ce9c38be",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh w1c wikievents kappa",
+  "task_key": "worker_ssh_w1c_wikievents_kappa_20260519T064540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w1c_wikievents_kappa_20260519T064540_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "3ff00c217f27c7bb08931575f349ec3db1bf430b98df1ec04d8714f3495763ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**κ 分布**：245 个 role，κ mean=0.8204，median=0.8889。84% 的 role κ≥0.80（仅允许 4 种或更少 entity type）。分布强烈右偏，41 个 role 只允许 1 种 type (κ=0.9630)。\n\n**κ vs AC violation 率**：\n- **Tight (κ≥0.90)**: 50% AC violation rate — 最高\n- **Medium (0.80-0.90)**: 21% — 最低\n- **Loose (κ<0.80)**: 30% — 中间\n- Pearson r = 0.31（弱正相关）\n\n**关键发现**：κ 与 AC violation 率正相关但非线性。高 κ 角色（如 Crime, Sentence, BodyPart）几乎 100% 违反约束，因为 LLM 倾向于生成 PER/ORG 等高频类型而非 CRM/SEN/BOD 等细粒度 KAIROS 类型。但部分高 κ 角色（Vehicle）因语义直觉性强而 0% 违反。**tightness + 类型非典型性的交互**才是真正决定 violation 率的因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w1c-wikievents-kappa.md"
+}

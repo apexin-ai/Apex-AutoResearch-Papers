@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1a5775d844d42ae6533",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops status check westd16980",
+  "task_key": "worker_ops_status_check_westd16980_20260516T104956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_westd16980_20260516T104956_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "3255e5def7347a47fc4462328d02663c218a1f93c7def93817f5f9010d7aa715"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. w8_llama_docred_ft_grammar_only (cuda:1) — **RUNNING**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 625/998 samples (**62.6%**) |\n| PID | 345222 (CPU time: 159min) |\n| tmux | `w8_llama_docred_grammar` |\n| GPU 1 | 16,921 / 97,887 MiB, 89% util |\n\n日志路径: `/tmp/w8_llama_docred_ft_grammar_only.log`（`~/runs/` 下的路径不存在）\n\n---\n\n### 2. DocRED latency benchmark (cuda:0) — **RUNNING**\n\n| 阶段 | 状态 | mean | median | std |\n|------|------|------|--------|-----|\n| unconstrained | DONE | 21.023s | 15.588s | 17.729s |\n| grammar_only | DONE | 21.366s | 15.793s | 17.990s |\n| semantic_only | IN PROGRESS | — | — | — |\n\nPID 351214 (CPU time: 73min), 结果文件尚未写入。\n\n---\n\n### 3. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|----------|--------|\n| 0 | RTX PRO 6000 Blackwell | 17,343 / 97,887 MiB | 85% |\n| 1 | RTX PRO 6000 Blackwell | 16,921 / 97,887 MiB | 89% |\n\n---\n\n两个实验都在正常运行，无需干预。grammar_only 按当前速率预估还需约 1-1.5 小时完成剩余 373 samples；latency benchmark 还有 semantic_only 剩余 samples + 可能的后续模式要跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-westd16980.md"
+}

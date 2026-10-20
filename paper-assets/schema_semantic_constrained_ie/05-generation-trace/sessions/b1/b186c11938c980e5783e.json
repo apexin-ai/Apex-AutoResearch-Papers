@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b186c11938c980e5783e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops progress check semantic only 20260516T16",
+  "task_key": "worker_ops_progress_check_semantic_only_20260516T16_20260516T153344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress_check_semantic_only_20260516T16_20260516T153344_result.json",
+    "occurrence": 1,
+    "bytes": 1437,
+    "sha256": "1a2f82962b8e7a61bd3be816ac76a11b11315723d69260d566e94aadaed07eaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 实验 1: w8_qwen_docred_ft_semantic_only (westd-21461)\n\n| 检查项 | 结果 |\n|--------|------|\n| PID 存活 | ✅ Yes (运行 5h24m) |\n| GPU 内存 | cuda:1: 18919/97887 MiB, utilization 85% |\n| 输出行数 | **886/998** |\n| 最后活动 | 2026-05-16 23:33:51 CST (刚刚) |\n| 日志状态 | 正常推进，当前处理 [823/998]，无 error（有 1 个 FAIL 但正常跳过） |\n| 预估剩余 | ~112 samples，按平均速率 ~22s/sample，**约 40 分钟完成** |\n\n### 实验 2: w8_llama_docred_ft_semantic_only (westd-16980)\n\n| 检查项 | 结果 |\n|--------|------|\n| PID 存活 | ✅ Yes (运行 3h01m) |\n| GPU 内存 | cuda:1: 16921/97887 MiB, utilization 87% |\n| 输出行数 | **711/998** |\n| 最后活动 | 2026-05-16 23:34:01 CST (刚刚) |\n| 日志状态 | 正常运行，pad_token_id 警告无害。最后一个样本 inference 65.5s（parsed_output=null，模型生成了大量重复 relations 导致解析失败） |\n| 预估剩余 | ~287 samples，按平均速率 ~15.3s/sample，**约 1h15m 完成** |\n\n### cuda:0 状态\n\n| 服务器 | cuda:0 |\n|--------|--------|\n| westd-21461 | ✅ 空闲 (0 MiB, 0%) |\n| westd-16980 | ✅ 空闲 (0 MiB, 0%) |\n\n### 结论\n\n两个实验都正常推进，未卡住。Qwen 进度领先（89%），预计 ~40 分钟跑完；Llama 进度 71%，预计 ~1h15m 跑完。两台服务器 cuda:0 均空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-semantic-only-20260516t16.md"
+}

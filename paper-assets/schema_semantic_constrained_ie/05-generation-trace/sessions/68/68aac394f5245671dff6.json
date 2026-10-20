@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "68aac394f5245671dff6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis cf fallback code diff",
+  "task_key": "worker_analysis_cf_fallback_code_diff_20260515T154255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cf_fallback_code_diff_20260515T154255_result.json",
+    "occurrence": 1,
+    "bytes": 2835896,
+    "sha256": "f7e68941c698cf2d616aa303d2e13c9394976b332dc87c13c6041794f5a51f92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2835916,
+                "serialized_sha256": "b5465126dd3f0ae7bfaafa4c69dd5bb5241b5f93699782b9b6e3f973fbb5615a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cf-fallback-code-diff.md"
+}

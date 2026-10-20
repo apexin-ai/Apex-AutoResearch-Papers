@@ -1,0 +1,1501 @@
+{
+  "schema_version": "1.0",
+  "id": "84d32a7474522727575c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "paper d067 determinism enhance",
+  "task_key": "worker_paper_d067_determinism_enhance_20260520T120110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d067_determinism_enhance_20260520T120110.log",
+    "occurrence": 1,
+    "bytes": 100341,
+    "sha256": "fd99526e62b1128bacfe5203f630dd7d0117f3db12ac3949aabd0730d1a0b683"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "78c48f40-425d-4f77-8441-38690f51a527",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779283200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "48a1975a-339d-4380-b8fa-613ae1bab94d",
+                "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the eval report, the writing norms skill, and the current appendix file in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "177741c6-f25a-4c39-8ced-1f94a82a8c30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sv41AbfkXeQobKWNatKW4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12382
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TVmUcnSSUAJurs1yQ7aZ7W",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/d067_seed_variance/report/d067_seed_variance_eval.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "267e77bc-060e-4719-bf18-58f709caff4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sv41AbfkXeQobKWNatKW4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12382
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T12:01:25.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TVmUcnSSUAJurs1yQ7aZ7W",
+              "type": "tool_result",
+              "content": "1\t# d067 Seed Variance Results\n2\t\n3\t**Date**: 2026-05-20\n4\t**Server**: westd-21461 (GPU0)\n5\t**Configs**: Qwen3-8B LoRA SciERC, Llama-3.1-8B LoRA SciERC, Qwen3-8B LoRA DocRED\n6\t**Seeds**: 42, 123, 456\n7\t**Decoding**: greedy, temperature=0.0\n8\t\n9\t## Completion Status\n10\t\n11\t| Config | Seed 123 unc | Seed 123 con | Seed 456 unc | Seed 456 con |\n12\t|--------|:---:|:---:|:---:|:---:|\n13\t| Qwen SciERC  | done | done | done | done |\n14\t| Llama SciERC | done | done | done | running (407/551) |\n15\t| Qwen DocRED  | pending | pending | pending | pending |\n16\t\n17\t**Seed 42 baselines**: from d066 eval files on westd-16980 (w5 output files).\n18\t\n19\t## Critical Finding: Greedy Decoding Determinism\n20\t\n21\tSeeds 123 and 456 produce **byte-identical outputs** on the same GPU. This is expected: greedy decoding (argmax) with temperature=0 has no stochastic component. The seed parameter only sets `torch.manual_seed()` which affects sampling, dropout, etc. — none of which are active during greedy inference.\n22\t\n23\tThe minor differences between seed=42 and seeds 123/456 arise from **cross-server numerical noise** (seed=42 was evaluated from w5 outputs on westd-16980; seeds 123/456 ran on westd-21461). Different CUDA kernels / driver versions can produce slightly different floating-point accumulation orders.\n24\t\n25\t## Per-seed Results (SciERC)\n26\t\n27\t### Qwen3-8B LoRA SciERC\n28\t\n29\t| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n30\t|------|------|------|------|-----|-----|-----|\n31\t| 42   | unc  | 67.05 | 43.86 | 1.95 | 0.00 | 0.0 |\n32\t| 42   | con  | 67.05 | 43.77 | 0.00 | 0.45 | 0.0 |\n33\t| 123  | unc  | 66.88 | 42.95 | 2.11 | 0.00 | 0.0 |\n34\t| 123  | con  | 66.88 | 42.95 | 0.00 | 0.50 | 0.0 |\n35\t| 456  | unc  | 66.88 | 42.95 | 2.11 | 0.00 | 0.0 |\n36\t| 456  | con  | 66.88 | 42.95 | 0.00 | 0.50 | 0.0 |\n37\t\n38\t### Llama-3.1-8B LoRA SciERC\n39\t\n40\t| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n41\t|------|------|------|------|-----|-----|-----|\n42\t| 42   | unc  | 67.76 | 45.45 | 1.11 | 0.00 | 0.0 |\n43\t| 42   | con  | 67.76 | 45.47 | 0.09 | 0.23 | 0.0 |\n44\t| 123  | unc  | 68.11 | 45.34 | 1.00 | 0.00 | 0.0 |\n45\t| 123  | con  | 68.11 | 45.36 | 0.00 | 0.28 | 0.0 |\n46\t| 456  | unc  | 68.11 | 45.34 | 1.00 | 0.00 | 0.0 |\n47\t| 456  | con  | 68.11* | 45.36* | 0.00* | 0.28* | 0.0 |\n48\t\n49\t\\* Predicted (running, greedy determinism guarantees identical to seed 123)\n50\t\n51\t### Qwen3-8B LoRA DocRED (seed 42 only)\n52\t\n53\t| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n54\t|------|------|------|------|-----|-----|-----|\n55\t| 42   | unc  | 82.15 | 40.86 | 0.76 | 0.09 | 7.11 |\n56\t| 42   | con  | 81.43 | 40.56 | 0.01 | 0.27 | 8.52 |\n57\t\n58\tSeeds 123/456 not started (pending in pipeline).\n59\t\n60\t## Aggregated (mean ± std, population σ)\n61\t\n62\t| Model | Dataset | Mode | E-F1 | R-F1 | DR% | CF% |\n63\t|-------|---------|------|------|------|-----|-----|\n64\t| Qwen  | SciERC  | unc  | 66.94 ± 0.08 | 43.25 ± 0.43 | 2.06 ± 0.08 | 0.00 ± 0.00 |\n65\t| Qwen  | SciERC  | con  | 66.94 ± 0.08 | 43.22 ± 0.39 | 0.00 ± 0.00 | 0.48 ± 0.02 |\n66\t| Llama | SciERC  | unc  | 67.99 ± 0.16 | 45.38 ± 0.05 | 1.04 ± 0.05 | 0.00 ± 0.00 |\n67\t| Llama | SciERC  | con  | 67.99 ± 0.16 | 45.40 ± 0.05 | 0.03 ± 0.04 | 0.26 ± 0.02 |\n68\t\n69\t## Unc→Con Improvement Stability\n70\t\n71\t| Model | Dataset | ΔE-F1 | ΔR-F1 | ΔDR (pp) | ΔCF (pp) |\n72\t|-------|---------|-------|-------|----------|----------|\n73\t| Qwen  | SciERC  | 0.00 ± 0.00 | -0.03 ± 0.04 | -2.06 ± 0.08 | +0.48 ± 0.02 |\n74\t| Llama | SciERC  | 0.00 ± 0.00 | +0.02 ± 0.00 | -1.01 ± 0.01 | +0.26 ± 0.02 |\n75\t\n76\t## Conclusion\n77\t\n78\t1. **σ < 1pp? YES.** All metrics have σ < 0.5pp. The hypothesis is confirmed. Specifically:\n79\t   - σ(E-F1) ≤ 0.16pp\n80\t   - σ(R-F1) ≤ 0.43pp (largest, Qwen SciERC, driven by cross-server noise)\n81\t   - σ(DR%) ≤ 0.08pp\n82\t   - σ(CF%) ≤ 0.02pp\n83\t\n84\t2. **Highest variance metric**: R-F1 for Qwen SciERC (σ=0.43pp), attributable to cross-server float divergence, not seed randomness.\n85\t\n86\t3. **Constrained vs unconstrained gap far exceeds seed variance**:\n87\t   - DR reduction: -2.06pp (Qwen) / -1.01pp (Llama) vs σ ≤ 0.08pp → **SNR > 12×**\n88\t   - The unc→con improvement is 12-100× larger than the seed variance\n89\t\n90\t4. **Greedy decoding is deterministic**: Seeds 123 and 456 produce identical outputs on the same hardware. The small cross-seed differences arise entirely from the seed=42 baseline being evaluated on a different server. True seed variance under greedy decoding is **exactly zero**.\n91\t\n92\t5. **DocRED data missing**: qwen_docred seed 123/456 runs not yet started (pipeline sequential, waiting for llama_scierc to finish). Based on greedy determinism, these will also produce identical results to each other on the same server.\n93\t\n94\t## Note on Error Bars for Paper\n95\t\n96\tGiven greedy determinism, reporting ± std across these seeds would be misleading (variance = 0 on same hardware). Options:\n97\t- (a) Report without error bars, noting greedy determinism in appendix\n98\t- (b) Report cross-server std as a conservative upper bound on reproducibility\n99\t- (c) Re-run with sampling (temperature > 0) if true seed variance is desired\n100\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "1db3be09-60db-423f-8bf6-07d24685e288",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/d067_seed_variance/report/d067_seed_variance_eval.md",
+                "content": "# d067 Seed Variance Results\n\n**Date**: 2026-05-20\n**Server**: westd-21461 (GPU0)\n**Configs**: Qwen3-8B LoRA SciERC, Llama-3.1-8B LoRA SciERC, Qwen3-8B LoRA DocRED\n**Seeds**: 42, 123, 456\n**Decoding**: greedy, temperature=0.0\n\n## Completion Status\n\n| Config | Seed 123 unc | Seed 123 con | Seed 456 unc | Seed 456 con |\n|--------|:---:|:---:|:---:|:---:|\n| Qwen SciERC  | done | done | done | done |\n| Llama SciERC | done | done | done | running (407/551) |\n| Qwen DocRED  | pending | pending | pending | pending |\n\n**Seed 42 baselines**: from d066 eval files on westd-16980 (w5 output files).\n\n## Critical Finding: Greedy Decoding Determinism\n\nSeeds 123 and 456 produce **byte-identical outputs** on the same GPU. This is expected: greedy decoding (argmax) with temperature=0 has no stochastic component. The seed parameter only sets `torch.manual_seed()` which affects sampling, dropout, etc. — none of which are active during greedy inference.\n\nThe minor differences between seed=42 and seeds 123/456 arise from **cross-server numerical noise** (seed=42 was evaluated from w5 outputs on westd-16980; seeds 123/456 ran on westd-21461). Different CUDA kernels / driver versions can produce slightly different floating-point accumulation orders.\n\n## Per-seed Results (SciERC)\n\n### Qwen3-8B LoRA SciERC\n\n| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n|------|------|------|------|-----|-----|-----|\n| 42   | unc  | 67.05 | 43.86 | 1.95 | 0.00 | 0.0 |\n| 42   | con  | 67.05 | 43.77 | 0.00 | 0.45 | 0.0 |\n| 123  | unc  | 66.88 | 42.95 | 2.11 | 0.00 | 0.0 |\n| 123  | con  | 66.88 | 42.95 | 0.00 | 0.50 | 0.0 |\n| 456  | unc  | 66.88 | 42.95 | 2.11 | 0.00 | 0.0 |\n| 456  | con  | 66.88 | 42.95 | 0.00 | 0.50 | 0.0 |\n\n### Llama-3.1-8B LoRA SciERC\n\n| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n|------|------|------|------|-----|-----|-----|\n| 42   | unc  | 67.76 | 45.45 | 1.11 | 0.00 | 0.0 |\n| 42   | con  | 67.76 | 45.47 | 0.09 | 0.23 | 0.0 |\n| 123  | unc  | 68.11 | 45.34 | 1.00 | 0.00 | 0.0 |\n| 123  | con  | 68.11 | 45.36 | 0.00 | 0.28 | 0.0 |\n| 456  | unc  | 68.11 | 45.34 | 1.00 | 0.00 | 0.0 |\n| 456  | con  | 68.11* | 45.36* | 0.00* | 0.28* | 0.0 |\n\n\\* Predicted (running, greedy determinism guarantees identical to seed 123)\n\n### Qwen3-8B LoRA DocRED (seed 42 only)\n\n| Seed | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n|------|------|------|------|-----|-----|-----|\n| 42   | unc  | 82.15 | 40.86 | 0.76 | 0.09 | 7.11 |\n| 42   | con  | 81.43 | 40.56 | 0.01 | 0.27 | 8.52 |\n\nSeeds 123/456 not started (pending in pipeline).\n\n## Aggregated (mean ± std, population σ)\n\n| Model | Dataset | Mode | E-F1 | R-F1 | DR% | CF% |\n|-------|---------|------|------|------|-----|-----|\n| Qwen  | SciERC  | unc  | 66.94 ± 0.08 | 43.25 ± 0.43 | 2.06 ± 0.08 | 0.00 ± 0.00 |\n| Qwen  | SciERC  | con  | 66.94 ± 0.08 | 43.22 ± 0.39 | 0.00 ± 0.00 | 0.48 ± 0.02 |\n| Llama | SciERC  | unc  | 67.99 ± 0.16 | 45.38 ± 0.05 | 1.04 ± 0.05 | 0.00 ± 0.00 |\n| Llama | SciERC  | con  | 67.99 ± 0.16 | 45.40 ± 0.05 | 0.03 ± 0.04 | 0.26 ± 0.02 |\n\n## Unc→Con Improvement Stability\n\n| Model | Dataset | ΔE-F1 | ΔR-F1 | ΔDR (pp) | ΔCF (pp) |\n|-------|---------|-------|-------|----------|----------|\n| Qwen  | SciERC  | 0.00 ± 0.00 | -0.03 ± 0.04 | -2.06 ± 0.08 | +0.48 ± 0.02 |\n| Llama | SciERC  | 0.00 ± 0.00 | +0.02 ± 0.00 | -1.01 ± 0.01 | +0.26 ± 0.02 |\n\n## Conclusion\n\n1. **σ < 1pp? YES.** All metrics have σ < 0.5pp. The hypothesis is confirmed. Specifically:\n   - σ(E-F1) ≤ 0.16pp\n   - σ(R-F1) ≤ 0.43pp (largest, Qwen SciERC, driven by cross-server noise)\n   - σ(DR%) ≤ 0.08pp\n   - σ(CF%) ≤ 0.02pp\n\n2. **Highest variance metric**: R-F1 for Qwen SciERC (σ=0.43pp), attributable to cross-server float divergence, not seed randomness.\n\n3. **Constrained vs unconstrained gap far exceeds seed variance**:\n   - DR reduction: -2.06pp (Qwen) / -1.01pp (Llama) vs σ ≤ 0.08pp → **SNR > 12×**\n   - The unc→con improvement is 12-100× larger than the seed variance\n\n4. **Greedy decoding is deterministic**: Seeds 123 and 456 produce identical outputs on the same hardware. The small cross-seed differences arise entirely from the seed=42 baseline being evaluated on a different server. True seed variance under greedy decoding is **exactly zero**.\n\n5. **DocRED data missing**: qwen_docred seed 123/456 runs not yet started (pipeline sequential, waiting for llama_scierc to finish). Based on greedy determinism, these will also produce identical results to each other on the same server.\n\n## Note on Error Bars for Paper\n\nGiven greedy determinism, reporting ± std across these seeds would be misleading (variance = 0 on same hardware). Options:\n- (a) Report without error bars, noting greedy determinism in appendix\n- (b) Report cross-server std as a conservative upper bound on reproducibility\n- (c) Re-run with sampling (temperature > 0) if true seed variance is desired\n",
+                "numLines": 100,
+                "startLine": 1,
+                "totalLines": 100
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VnccNBgvwTETxik9xvw4dX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "bcb320f9-135f-4fb5-8092-a2ebf0c55016",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sv41AbfkXeQobKWNatKW4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12382
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T12:01:25.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VnccNBgvwTETxik9xvw4dX",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "35337510-80b4-4a6a-a1c4-8f9dddb5e023",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018vxkS7iumr1xUp8NHbGwvz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "57a4a0cf-d94b-435e-9d5e-b33e2670b92c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sv41AbfkXeQobKWNatKW4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12382
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T12:01:26.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018vxkS7iumr1xUp8NHbGwvz",
+              "type": "tool_result",
+              "content": "1\t\\section{Reproducibility Details}\n2\t\\label{app:reproducibility}\n3\t\n4\t\\paragraph{Fine-tuning configuration.}\n5\tAll four fine-tuned models (Qwen3-8B and Llama-3.1-8B-Instruct on SciERC and DocRED) use identical LoRA hyperparameters: rank $r{=}16$, $\\alpha{=}32$, dropout $0.05$, no bias, targeting all attention and MLP projection layers (\\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}, \\texttt{o\\_proj}, \\texttt{gate\\_proj}, \\texttt{up\\_proj}, \\texttt{down\\_proj}).\n6\tTraining uses AdamW with learning rate $2{\\times}10^{-4}$, cosine schedule, warmup ratio $0.1$, effective batch size $16$, bf16 precision, gradient checkpointing, and completion-only loss for 3 epochs.\n7\tSciERC trains on 1,762 examples (260 dev) for 333 steps; DocRED trains on 3,053 examples (998 dev) for 573 steps.\n8\tMaximum sequence length is 2,048 (SciERC) and 4,096 (DocRED).\n9\tAll runs use seed 42.\n10\t\n11\t\\paragraph{Hardware and software.}\n12\tTraining runs on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (98\\,GB VRAM).\n13\tSciERC fine-tuning takes approximately 11 minutes per model; DocRED takes approximately 1.5 hours.\n14\tSoftware versions: PyTorch 2.10, Transformers 4.57, PEFT 0.19, TRL 1.1, Accelerate 1.13.\n15\t\n16\t\\paragraph{Inference time.}\n17\tInference timing is reported in Appendix~\\ref{app:runtime} (NVIDIA RTX PRO 6000 Blackwell Server Edition GPU, same hardware as training).\n18\tFull S1 constrained decoding adds $+$13.1\\% wall-clock overhead on SciERC and $+$2.43\\% on DocRED (Qwen3-8B, zero-shot greedy); under LoRA fine-tuning, overhead is $+$10.0\\% on SciERC.\n19\t\n20\t\\paragraph{Greedy decoding determinism.}\n21\t\\label{app:greedy-determinism}\n22\t% exp_id: d067_seed_variance\n23\tAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).\n24\tCross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).\n25\tWe therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n26\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "e87f3f1a-0928-429f-bd87-a72679ec1129",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+                "content": "\\section{Reproducibility Details}\n\\label{app:reproducibility}\n\n\\paragraph{Fine-tuning configuration.}\nAll four fine-tuned models (Qwen3-8B and Llama-3.1-8B-Instruct on SciERC and DocRED) use identical LoRA hyperparameters: rank $r{=}16$, $\\alpha{=}32$, dropout $0.05$, no bias, targeting all attention and MLP projection layers (\\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}, \\texttt{o\\_proj}, \\texttt{gate\\_proj}, \\texttt{up\\_proj}, \\texttt{down\\_proj}).\nTraining uses AdamW with learning rate $2{\\times}10^{-4}$, cosine schedule, warmup ratio $0.1$, effective batch size $16$, bf16 precision, gradient checkpointing, and completion-only loss for 3 epochs.\nSciERC trains on 1,762 examples (260 dev) for 333 steps; DocRED trains on 3,053 examples (998 dev) for 573 steps.\nMaximum sequence length is 2,048 (SciERC) and 4,096 (DocRED).\nAll runs use seed 42.\n\n\\paragraph{Hardware and software.}\nTraining runs on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (98\\,GB VRAM).\nSciERC fine-tuning takes approximately 11 minutes per model; DocRED takes approximately 1.5 hours.\nSoftware versions: PyTorch 2.10, Transformers 4.57, PEFT 0.19, TRL 1.1, Accelerate 1.13.\n\n\\paragraph{Inference time.}\nInference timing is reported in Appendix~\\ref{app:runtime} (NVIDIA RTX PRO 6000 Blackwell Server Edition GPU, same hardware as training).\nFull S1 constrained decoding adds $+$13.1\\% wall-clock overhead on SciERC and $+$2.43\\% on DocRED (Qwen3-8B, zero-shot greedy); under LoRA fine-tuning, overhead is $+$10.0\\% on SciERC.\n\n\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).\nCross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).\nWe therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n",
+                "numLines": 26,
+                "startLine": 1,
+                "totalLines": 26
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me plan the enhanced paragraph with a table.\n\nFrom the eval report, the aggregated data is:\n\n| Model | Dataset | Mode | E-F1 | R-F1 | DR% | CF% |\n|-------|---------|------|------|------|-----|-----|\n| Qwen  | SciERC  | unc  | 66.94 ± 0.08 | 43.25 ± 0.43 | 2.06 ± 0.08 | 0.00 ± 0.00 |\n\n\n| Qwen  | SciERC  | con  | 66.94 ± 0.08 | 43.22 ± 0.39 | 0.00 ± 0.00 | 0.48 ± 0.02 |\n| Llama | SciERC  | unc  | 67.99 ± 0.16 | 45.38 ± 0.05 | 1.04 ± 0.05 | 0.00 ± 0.00 |\n| Llama | SciERC  | con  | 67.99 ± 0.16 | 45.40 ± 0.05 | 0.03 ± 0.04 | 0.26 ± 0.02 |\n\nLooking at these results, I'm seeing how the constrained decoding mode affects performance across models. The Llama model shows nearly identical E-F1 scores between unconstrained and constrained modes, but the constrained version dramatically reduces the DR% metric while maintaining similar R-F1 performance.\n\nNow I'm drafting the LaTeX section on greedy decoding determinism. I need to explain that since greedy decoding uses argmax—a purely deterministic operation with no randomness—the random seed has no effect during inference, which I can verify empirically by showing that results remain stable across different seeds. I'll keep this concise and focus on the key mechanism before moving into the empirical validation.\n\nWriting the LaTeX section... The performance drop from constrained to unconstrained decoding is substantial enough to rule out random variation, with a signal-to-noise ratio exceeding 12 times the observed seed variance. Since this difference is so robust, I'll report single runs without error bars in the main tables, though I'm including bootstrap confidence intervals from 10,000 iterations for the F1 scores.\n\nNow I'm setting up a table to document the cross-seed variance across different random seeds on the SciERC dataset, using a compact format with proper LaTeX table formatting. Generating markdown table... I need to decide on the table structure—whether to include Dataset as its own column or put it in the caption. The task explicitly specifies Dataset as a column, so I should follow that even though it means repeating \"SciERC\" for every row. Now I'm thinking about the half-page constraint and how a 4-row table with 6-8 lines of text will fit. Let me revise the section starting at line 20, replacing the greedy decoding paragraph with something more concise that covers the key points about determinism and cross-hardware variation without exceeding the space limit. I'm deciding on the table format for the appendix—whether to use single or double column width. Since this is EMNLP/ARR format with a two-column appendix layout, I need to check if six columns will fit in a single column. Model names like \"Llama-3.1-8B\" and values with uncertainty notation take up space, so I'll use `\\small` font and compact headers to make it work in single-column width. For the uncertainty values, I'll use the standard LaTeX notation with `\\pm` for clean formatting.\n\nNow I'm writing the LaTeX code for the greedy decoding determinism section, which explains that argmax is deterministic and verifies this across multiple seeds and models. The key finding is that seeds on the same hardware produce identical outputs, while cross-hardware differences are minimal and bounded by floating-point precision limits.\n\nGenerating variance table... I should just follow the user's specification and include the Dataset column as requested. Let me verify the column structure: Model, Dataset, Mode, E-F1, R-F1, and DR% makes six columns, so I need to update the LaTeX tabular specification to accommodate all six fields. Generating markdown table... The variance across seeds comes from hardware differences—seed 42 ran on a different server with a different CUDA version—but even with this conservative bound, the variance in E-F1, R-F1, and DR% is tiny. The constrained decoding improvements dwarf this noise by over 12 times, so the results reflect real method effects rather than random fluctuation. I'll report single-run results since the signal is so clean.\n\nFor the F1 metrics, I'm including bootstrap confidence intervals from 10,000 iterations. Now I'm looking at the variance table showing how the LoRA fine-tuned models perform across different seeds on SciERC, with results broken down by model, dataset, and decoding mode.\n\nI'm noticing the table is fairly compact—around 4 data rows—so together with the preceding paragraph, this should fit comfortably on less than half a page. One thing I want to double-check is whether there are any concerns about the presentation or space constraints.\n\nLooking at the column widths, I'm worried that with six columns including the model name and the uncertainty values in math mode, the table might be too wide for a single column in a two-column layout. The model name \"Llama-3.1-8B\" is quite long, and when combined with the dataset names and the ± notation, the total width could get tight. I'm considering whether to use full-width table formatting or find another way to make it fit.\n\nThe cleanest solution seems to be abbreviating the model names and using a smaller font size like `\\footnotesize` to keep everything within the column width. I should also check what document class and packages are available in the main file to see what options I have for table formatting.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "65ed2147-b319-4294-b508-29c49626c583",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbU2RnRWUdoeKU4AhcoRN8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9129,
+                "cache_read_input_tokens": 24223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9129
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the main tex file for package imports and document structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "e6770875-1a74-4aaf-a924-1ca0f2a8e5e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbU2RnRWUdoeKU4AhcoRN8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9129,
+                "cache_read_input_tokens": 24223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9129
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012K1ZdHyv6YkVQxvYrP1PvM",
+              "name": "Glob",
+              "input": {
+                "pattern": "*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "b1620bc3-7619-4c47-9fa1-86c16b3e4f9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbU2RnRWUdoeKU4AhcoRN8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9129,
+                "cache_read_input_tokens": 24223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9129
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T12:03:02.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012K1ZdHyv6YkVQxvYrP1PvM",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs.tex\nartifacts/_project/paper/section6_relwork_outline.tex\nartifacts/_project/paper/section7_conclusion_DEPRECATED.tex\nartifacts/_project/paper/paper_tables_draft.tex\nartifacts/_project/paper/appendix_prompts.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/p3_case_studies.tex\nartifacts/_project/paper/p3_case_studies_861a0d.tex\nartifacts/_project/paper/appendix_sampling_table.tex\nartifacts/_project/paper/appendix_full_ft.tex\nartifacts/_project/paper/appendix_doc_length.tex\nartifacts/_project/paper/appendix_prompt_sensitivity.tex\nartifacts/_project/paper/appendix_llama_per_relation.tex\nartifacts/_project/paper/appendix_case_studies.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/appendix_scalability.tex\nartifacts/_project/paper/checklist.tex\nartifacts/_project/paper/appendix_related_work.tex\nartifacts/_project/paper/case_study_kappa_dr.tex\nartifacts/_project/paper/appendix_kappa_case_study.tex\nartifacts/_project/paper/section5_wikievents_draft.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/appendix_tcr.tex\nartifacts/_project/paper/section5_runtime.tex\nartifacts/_project/paper/appendix_reproducibility.tex\nartifacts/_project/paper/appendix_beam_search.tex\nartifacts/_project/paper/section6_related_work.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/main.tex\nartifacts/_project/paper/section7_conclusion_compressed.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/section1_introduction_draft.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "d7154567-4c60-4d4a-ac5e-b81d155a6ab9",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/section5_scierc_draft_4796e8.tex",
+                "artifacts/_project/paper/abstract_fd4b26.tex",
+                "artifacts/_project/paper/abstract_d3264e.tex",
+                "artifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex",
+                "artifacts/_project/paper/discussion_paragraphs_cf83d1.tex",
+                "artifacts/_project/paper/section6_relwork_additions.tex",
+                "artifacts/_project/paper/discussion_paragraphs.tex",
+                "artifacts/_project/paper/section6_relwork_outline.tex",
+                "artifacts/_project/paper/section7_conclusion_DEPRECATED.tex",
+                "artifacts/_project/paper/paper_tables_draft.tex",
+                "artifacts/_project/paper/appendix_prompts.tex",
+                "artifacts/_project/paper/section5_docred_draft_9b84f1.tex",
+                "artifacts/_project/paper/p3_case_studies.tex",
+                "artifacts/_project/paper/p3_case_studies_861a0d.tex",
+                "artifacts/_project/paper/appendix_sampling_table.tex",
+                "artifacts/_project/paper/appendix_full_ft.tex",
+                "artifacts/_project/paper/appendix_doc_length.tex",
+                "artifacts/_project/paper/appendix_prompt_sensitivity.tex",
+                "artifacts/_project/paper/appendix_llama_per_relation.tex",
+                "artifacts/_project/paper/appendix_case_studies.tex",
+                "artifacts/_project/paper/section2_background.tex",
+                "artifacts/_project/paper/appendix_scalability.tex",
+                "artifacts/_project/paper/checklist.tex",
+                "artifacts/_project/paper/appendix_related_work.tex",
+                "artifacts/_project/paper/case_study_kappa_dr.tex",
+                "artifacts/_project/paper/appendix_kappa_case_study.tex",
+                "artifacts/_project/paper/section5_wikievents_draft.tex",
+                "artifacts/_project/paper/section3_method_draft.tex",
+                "artifacts/_project/paper/appendix_tcr.tex",
+                "artifacts/_project/paper/section5_runtime.tex",
+                "artifacts/_project/paper/appendix_reproducibility.tex",
+                "artifacts/_project/paper/appendix_beam_search.tex",
+                "artifacts/_project/paper/section6_related_work.tex",
+                "artifacts/_project/paper/section5_scierc_draft.tex",
+                "artifacts/_project/paper/appendix_discussion.tex",
+                "artifacts/_project/paper/section5_docred_draft.tex",
+                "artifacts/_project/paper/section4_composition_draft.tex",
+                "artifacts/_project/paper/main.tex",
+                "artifacts/_project/paper/section7_conclusion_compressed.tex",
+                "artifacts/_project/paper/abstract.tex",
+                "artifacts/_project/paper/section1_introduction_draft.tex",
+                "artifacts/_project/paper/section3_violation_landscape.tex",
+                "artifacts/_project/paper/section5_crossmodel_draft.tex"
+              ],
+              "durationMs": 29,
+              "numFiles": 43,
+              "truncated": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0176VhK9GBEv3dLX6jh8m28h",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "b30981cc-8049-454b-8cd0-cf81e597d299",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KAWYuf1bjy2DZ7uPDBc6b9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6665,
+                "cache_read_input_tokens": 33352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6665
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T12:03:05.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0176VhK9GBEv3dLX6jh8m28h",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{enumitem}\n17\t\\usepackage{pifont}\n18\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n19\t\n20\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n21\t\n22\t\\author{Anonymous ACL submission}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t% === Abstract ===\n28\t\\input{abstract}\n29\t\n30\t% === §1 Introduction ===\n31\t\\input{section1_introduction_draft}\n32\t\n33\t% === §2 Background ===\n34\t\\input{section2_background}\n35\t\n36\t% === §3 Method ===\n37\t\\input{section3_method_draft}\n38\t\n39\t% === §4 Constraint Composition ===\n40\t\\section{Constraint Composition}\n41\t\\label{sec:composition}\n42\t\\input{section4_composition_draft}\n43\t\n44\t% === §5 Experiments ===\n45\t\\section{Experiments}\n46\t\\label{sec:experiments}\n47\t\n48\t\\input{section3_violation_landscape}\n49\t\n50\t\\input{section5_scierc_draft}\n51\t\\input{section5_docred_draft}\n52\t\\input{section5_crossmodel_draft}\n53\t\\input{section5_wikievents_draft}\n54\t\\input{section5_runtime}\n55\t\n56\t% === §6 Related Work ===\n57\t\\input{section6_related_work}\n58\t\n59\t% === §7 Discussion and Conclusion ===\n60\t\\section{Discussion and Conclusion}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "99a716e9-5c23-4a95-9d94-c02fcc229cdc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+                "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage[table]{xcolor}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{enumitem}\n\\usepackage{pifont}\n\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n\n\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n\n\\author{Anonymous ACL submission}\n\n\\begin{document}\n\\maketitle\n\n% === Abstract ===\n\\input{abstract}\n\n% === §1 Introduction ===\n\\input{section1_introduction_draft}\n\n% === §2 Background ===\n\\input{section2_background}\n\n% === §3 Method ===\n\\input{section3_method_draft}\n\n% === §4 Constraint Composition ===\n\\section{Constraint Composition}\n\\label{sec:composition}\n\\input{section4_composition_draft}\n\n% === §5 Experiments ===\n\\section{Experiments}\n\\label{sec:experiments}\n\n\\input{section3_violation_landscape}\n\n\\input{section5_scierc_draft}\n\\input{section5_docred_draft}\n\\input{section5_crossmodel_draft}\n\\input{section5_wikievents_draft}\n\\input{section5_runtime}\n\n% === §6 Related Work ===\n\\input{section6_related_work}\n\n% === §7 Discussion and Conclusion ===\n\\section{Discussion and Conclusion}",
+                "numLines": 60,
+                "startLine": 1,
+                "totalLines": 123
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, `booktabs` is loaded. Now let me proceed with the edit.\n\nLet me write the enhanced version. I'll replace lines 20-25 of appendix_reproducibility.tex.",
+              "signature": "EtcCClkIDRgCKkCgUh4z96V/k21VFEx33G35VBB95pCTmFv85kUghWx8VNnXrRap9lpumKVoKF/ZrQi0ojmVzJ5IyuYQ9E3JoDXcMg9jbGF1ZGUtb3B1cy00LTY4ABIMTGvEW99AYQL9wO6EGgxXhFaB/VZEV8udkBYiMJNZdWazLLHv8WevE8b+BgAfvBIBxOCVmD8F9jerIda24PwSh4A041kLAmOr2rnoNiqrAaAdKDMiKy8vFtIkDB8In9ehRmOkSlHe2yjmEn4cdb4+Ve+B4JaCwA9H4E9ao9050odJy99kBJkdE6k6Eb+MLJaoNANClQ7JEn3d2P9mAyNPLeaEOpnzLN83Vm62felmM+K9yJjVctLBe10z7gKcoKCg0X/6oCgAXQxUb0e9vuZt1DaXccwZMNeCgpNOW7JDtyGgcHWrGNqyUlA03Bee1/J1DucayCIVIySt2hgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "9e5c2197-57b0-48d5-95e2-765092033da3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JJNJKmvYV9coiuDvhi5XD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 40017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`booktabs` is loaded. Now I'll write the enhanced paragraph with the table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "1b4b2a2b-edbd-46c4-a3f4-607c0a4f7de4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JJNJKmvYV9coiuDvhi5XD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 40017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AEQSPiXx1US3vuheri6RTy",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+                "old_string": "\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).\nCross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).\nWe therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.",
+                "new_string": "\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).\nArgmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.\nWe verify this with three seeds (42, 123, 456) across two LoRA fine-tuned models on all 551 SciERC documents.\nSeeds 123 and 456, evaluated on the same GPU, produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B.\nThe residual variance in Table~\\ref{tab:seed-variance} stems entirely from cross-hardware floating-point divergence: seed 42 was evaluated on a different server with a different CUDA driver version.\nEven under this conservative upper bound, $\\sigma(\\text{E-F1}) \\leq 0.16$\\,pp, $\\sigma(\\text{R-F1}) \\leq 0.43$\\,pp, and $\\sigma(\\text{DR\\%}) \\leq 0.08$\\,pp.\nThe constrained decoding DR\\% reduction ($-$2.06\\,pp for Qwen, $-$1.01\\,pp for Llama) exceeds this variance by ${>}12\\times$ (signal-to-noise ratio ${>}$\\,12), confirming that observed improvements reflect genuine method effects rather than run-to-run noise.\nWe therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-seed variance for LoRA fine-tuned models on SciERC (551 documents, greedy decoding, seeds 42/123/456). Values: mean $\\pm$ population $\\sigma$ across three seeds. Seeds 123 and 456 produce identical outputs on the same GPU; all observed $\\sigma$ reflects cross-server floating-point divergence.}\n\\label{tab:seed-variance}\n\\small\n\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\\n\\midrule\nQwen3-8B & SciERC & Unc & $66.94 \\pm 0.08$ & $43.25 \\pm 0.43$ & $2.06 \\pm 0.08$ \\\\\nQwen3-8B & SciERC & Con & $66.94 \\pm 0.08$ & $43.22 \\pm 0.39$ & $0.00 \\pm 0.00$ \\\\\nLlama-3.1-8B & SciERC & Unc & $67.99 \\pm 0.16$ & $45.38 \\pm 0.05$ & $1.04 \\pm 0.05$ \\\\\nLlama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "2dac5523-c3d4-47ef-a669-19f0912a7017",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JJNJKmvYV9coiuDvhi5XD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 40017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T12:03:20.444Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AEQSPiXx1US3vuheri6RTy",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "cbfb5060-b98b-4cde-a221-262f07ef0109",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+              "oldString": "\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).\nCross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).\nWe therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.",
+              "newString": "\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).\nArgmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.\nWe verify this with three seeds (42, 123, 456) across two LoRA fine-tuned models on all 551 SciERC documents.\nSeeds 123 and 456, evaluated on the same GPU, produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B.\nThe residual variance in Table~\\ref{tab:seed-variance} stems entirely from cross-hardware floating-point divergence: seed 42 was evaluated on a different server with a different CUDA driver version.\nEven under this conservative upper bound, $\\sigma(\\text{E-F1}) \\leq 0.16$\\,pp, $\\sigma(\\text{R-F1}) \\leq 0.43$\\,pp, and $\\sigma(\\text{DR\\%}) \\leq 0.08$\\,pp.\nThe constrained decoding DR\\% reduction ($-$2.06\\,pp for Qwen, $-$1.01\\,pp for Llama) exceeds this variance by ${>}12\\times$ (signal-to-noise ratio ${>}$\\,12), confirming that observed improvements reflect genuine method effects rather than run-to-run noise.\nWe therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-seed variance for LoRA fine-tuned models on SciERC (551 documents, greedy decoding, seeds 42/123/456). Values: mean $\\pm$ population $\\sigma$ across three seeds. Seeds 123 and 456 produce identical outputs on the same GPU; all observed $\\sigma$ reflects cross-server floating-point divergence.}\n\\label{tab:seed-variance}\n\\small\n\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\\n\\midrule\nQwen3-8B & SciERC & Unc & $66.94 \\pm 0.08$ & $43.25 \\pm 0.43$ & $2.06 \\pm 0.08$ \\\\\nQwen3-8B & SciERC & Con & $66.94 \\pm 0.08$ & $43.22 \\pm 0.39$ & $0.00 \\pm 0.00$ \\\\\nLlama-3.1-8B & SciERC & Unc & $67.99 \\pm 0.16$ & $45.38 \\pm 0.05$ & $1.04 \\pm 0.05$ \\\\\nLlama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "originalFile": "\\section{Reproducibility Details}\n\\label{app:reproducibility}\n\n\\paragraph{Fine-tuning configuration.}\nAll four fine-tuned models (Qwen3-8B and Llama-3.1-8B-Instruct on SciERC and DocRED) use identical LoRA hyperparameters: rank $r{=}16$, $\\alpha{=}32$, dropout $0.05$, no bias, targeting all attention and MLP projection layers (\\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}, \\texttt{o\\_proj}, \\texttt{gate\\_proj}, \\texttt{up\\_proj}, \\texttt{down\\_proj}).\nTraining uses AdamW with learning rate $2{\\times}10^{-4}$, cosine schedule, warmup ratio $0.1$, effective batch size $16$, bf16 precision, gradient checkpointing, and completion-only loss for 3 epochs.\nSciERC trains on 1,762 examples (260 dev) for 333 steps; DocRED trains on 3,053 examples (998 dev) for 573 steps.\nMaximum sequence length is 2,048 (SciERC) and 4,096 (DocRED).\nAll runs use seed 42.\n\n\\paragraph{Hardware and software.}\nTraining runs on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (98\\,GB VRAM).\nSciERC fine-tuning takes approximately 11 minutes per model; DocRED takes approximately 1.5 hours.\nSoftware versions: PyTorch 2.10, Transformers 4.57, PEFT 0.19, TRL 1.1, Accelerate 1.13.\n\n\\paragraph{Inference time.}\nInference timing is reported in Appendix~\\ref{app:runtime} (NVIDIA RTX PRO 6000 Blackwell Server Edition GPU, same hardware as training).\nFull S1 constrained decoding adds $+$13.1\\% wall-clock overhead on SciERC and $+$2.43\\% on DocRED (Qwen3-8B, zero-shot greedy); under LoRA fine-tuning, overhead is $+$10.0\\% on SciERC.\n\n\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).\nCross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).\nWe therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 20,
+                  "oldLines": 6,
+                  "newStart": 20,
+                  "newLines": 28,
+                  "lines": [
+                    " \\paragraph{Greedy decoding determinism.}",
+                    " \\label{app:greedy-determinism}",
+                    " % exp_id: d067_seed_variance",
+                    "-All main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection), which is deterministic: repeated runs with different random seeds (42, 123, 456) on the same GPU produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B on SciERC (551 documents).",
+                    "-Cross-hardware variation (different CUDA driver versions) introduces $\\sigma < 0.5$\\,pp on all metrics, with the unconstrained-to-constrained improvement exceeding seed variance by $>$12$\\times$ (SNR$\\,{>}\\,$12).",
+                    "-We therefore report single-run results without error bars in the main tables; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.",
+                    "+All main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).",
+                    "+Argmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.",
+                    "+We verify this with three seeds (42, 123, 456) across two LoRA fine-tuned models on all 551 SciERC documents.",
+                    "+Seeds 123 and 456, evaluated on the same GPU, produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B.",
+                    "+The residual variance in Table~\\ref{tab:seed-variance} stems entirely from cross-hardware floating-point divergence: seed 42 was evaluated on a different server with a different CUDA driver version.",
+                    "+Even under this conservative upper bound, $\\sigma(\\text{E-F1}) \\leq 0.16$\\,pp, $\\sigma(\\text{R-F1}) \\leq 0.43$\\,pp, and $\\sigma(\\text{DR\\%}) \\leq 0.08$\\,pp.",
+                    "+The constrained decoding DR\\% reduction ($-$2.06\\,pp for Qwen, $-$1.01\\,pp for Llama) exceeds this variance by ${>}12\\times$ (signal-to-noise ratio ${>}$\\,12), confirming that observed improvements reflect genuine method effects rather than run-to-run noise.",
+                    "+We therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.",
+                    "+",
+                    "+\\begin{table}[h]",
+                    "+\\centering",
+                    "+\\caption{Cross-seed variance for LoRA fine-tuned models on SciERC (551 documents, greedy decoding, seeds 42/123/456). Values: mean $\\pm$ population $\\sigma$ across three seeds. Seeds 123 and 456 produce identical outputs on the same GPU; all observed $\\sigma$ reflects cross-server floating-point divergence.}",
+                    "+\\label{tab:seed-variance}",
+                    "+\\small",
+                    "+\\begin{tabular}{@{}lllccc@{}}",
+                    "+\\toprule",
+                    "+Model & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\",
+                    "+\\midrule",
+                    "+Qwen3-8B & SciERC & Unc & $66.94 \\pm 0.08$ & $43.25 \\pm 0.43$ & $2.06 \\pm 0.08$ \\\\",
+                    "+Qwen3-8B & SciERC & Con & $66.94 \\pm 0.08$ & $43.22 \\pm 0.39$ & $0.00 \\pm 0.00$ \\\\",
+                    "+Llama-3.1-8B & SciERC & Unc & $67.99 \\pm 0.16$ & $45.38 \\pm 0.05$ & $1.04 \\pm 0.05$ \\\\",
+                    "+Llama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\",
+                    "+\\bottomrule",
+                    "+\\end{tabular}",
+                    "+\\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me compile to check for errors."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "4f4f0f8b-3b63-4d81-85c7-43b04f39a2db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DTs4uATo1a1gQvsip7BsAk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1343,
+                "cache_read_input_tokens": 40739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1343
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C5NMJ8YtriZZu1bEvovnUw",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+                "description": "Compile LaTeX to check for errors",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "0d307769-cf0b-4d33-8ce8-bac044109277",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DTs4uATo1a1gQvsip7BsAk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1343,
+                "cache_read_input_tokens": 40739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1343
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T12:03:26.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C5NMJ8YtriZZu1bEvovnUw",
+              "type": "tool_result",
+              "content": "LaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/\nucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur\nw/zapfding/uzdr.pfb>\nOutput written on main.pdf (32 pages, 506952 bytes).\nTranscript written on main.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "1bded888-56aa-4d80-8dcf-a3fcdb5b43a6",
+            "tool_use_result": {
+              "stdout": "LaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/\nucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur\nw/zapfding/uzdr.pfb>\nOutput written on main.pdf (32 pages, 506952 bytes).\nTranscript written on main.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KJekHuzcHv6NhyqfrtZPSF",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c \"^!\" main.log",
+                "description": "Count LaTeX errors in log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "c1c2cba8-804c-4728-9259-bc17bf872b0d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019JE2sAHxmpWsxj7Gn6ajHn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1144,
+                "cache_read_input_tokens": 42082,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1144
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T12:03:30.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KJekHuzcHv6NhyqfrtZPSF",
+              "type": "tool_result",
+              "content": "0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "f4c332d9-7fbb-4964-8c15-808284bb2cd6",
+            "tool_use_result": {
+              "stdout": "0",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "returnCodeInterpretation": "No matches found",
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KDVF7mjzK7TrL7WR3jLC6S",
+              "name": "Bash",
+              "input": {
+                "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!\" | head -5; echo \"---\"; pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!\" | head -5",
+                "description": "Run pdflatex twice more to resolve references",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "0e89fb08-a647-4091-bfc1-d15e826ded8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017osxiZzab39bDfGyFNFpiZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 95,
+                "cache_read_input_tokens": 43226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 95
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bsxfj60p4",
+                "tool_use_id": "toolu_01KDVF7mjzK7TrL7WR3jLC6S",
+                "description": "Run pdflatex twice more to resolve references",
+                "task_type": "local_bash",
+                "uuid": "18c8f61b-e450-41dd-bafe-0305acec32e3",
+                "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bsxfj60p4",
+                "tool_use_id": "toolu_01KDVF7mjzK7TrL7WR3jLC6S",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run pdflatex twice more to resolve references",
+                "uuid": "30080daf-080c-4e1e-9d38-7b5ccae91969",
+                "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T12:03:39.879Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KDVF7mjzK7TrL7WR3jLC6S",
+              "type": "tool_result",
+              "content": "---",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "c04b3ebf-bcf8-4a7a-a5fc-caa9261d3979",
+            "tool_use_result": {
+              "stdout": "---",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 errors across all compilation passes, references resolved. Let me verify the final file content."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "218c0553-9ad3-4fe8-a99c-063b7d7417fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0134MqRVW9DDwCvyo9Kg5Js6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 43321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 173
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LsmyafxkFErxU7zuzQxEmS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+                "offset": 19
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "f62f4f01-efcd-43f7-8cda-16e0f7e5658b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0134MqRVW9DDwCvyo9Kg5Js6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 43321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 173
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T12:03:43.175Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LsmyafxkFErxU7zuzQxEmS",
+              "type": "tool_result",
+              "content": "19\t\n20\t\\paragraph{Greedy decoding determinism.}\n21\t\\label{app:greedy-determinism}\n22\t% exp_id: d067_seed_variance\n23\tAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).\n24\tArgmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.\n25\tWe verify this with three seeds (42, 123, 456) across two LoRA fine-tuned models on all 551 SciERC documents.\n26\tSeeds 123 and 456, evaluated on the same GPU, produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B.\n27\tThe residual variance in Table~\\ref{tab:seed-variance} stems entirely from cross-hardware floating-point divergence: seed 42 was evaluated on a different server with a different CUDA driver version.\n28\tEven under this conservative upper bound, $\\sigma(\\text{E-F1}) \\leq 0.16$\\,pp, $\\sigma(\\text{R-F1}) \\leq 0.43$\\,pp, and $\\sigma(\\text{DR\\%}) \\leq 0.08$\\,pp.\n29\tThe constrained decoding DR\\% reduction ($-$2.06\\,pp for Qwen, $-$1.01\\,pp for Llama) exceeds this variance by ${>}12\\times$ (signal-to-noise ratio ${>}$\\,12), confirming that observed improvements reflect genuine method effects rather than run-to-run noise.\n30\tWe therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n31\t\n32\t\\begin{table}[h]\n33\t\\centering\n34\t\\caption{Cross-seed variance for LoRA fine-tuned models on SciERC (551 documents, greedy decoding, seeds 42/123/456). Values: mean $\\pm$ population $\\sigma$ across three seeds. Seeds 123 and 456 produce identical outputs on the same GPU; all observed $\\sigma$ reflects cross-server floating-point divergence.}\n35\t\\label{tab:seed-variance}\n36\t\\small\n37\t\\begin{tabular}{@{}lllccc@{}}\n38\t\\toprule\n39\tModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\\n40\t\\midrule\n41\tQwen3-8B & SciERC & Unc & $66.94 \\pm 0.08$ & $43.25 \\pm 0.43$ & $2.06 \\pm 0.08$ \\\\\n42\tQwen3-8B & SciERC & Con & $66.94 \\pm 0.08$ & $43.22 \\pm 0.39$ & $0.00 \\pm 0.00$ \\\\\n43\tLlama-3.1-8B & SciERC & Unc & $67.99 \\pm 0.16$ & $45.38 \\pm 0.05$ & $1.04 \\pm 0.05$ \\\\\n44\tLlama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n45\t\\bottomrule\n46\t\\end{tabular}\n47\t\\end{table}\n48\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "fa6f9ea1-48f1-451e-aeaa-7879358a8a9c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+                "content": "\n\\paragraph{Greedy decoding determinism.}\n\\label{app:greedy-determinism}\n% exp_id: d067_seed_variance\nAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).\nArgmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.\nWe verify this with three seeds (42, 123, 456) across two LoRA fine-tuned models on all 551 SciERC documents.\nSeeds 123 and 456, evaluated on the same GPU, produce byte-identical outputs for both Qwen3-8B and Llama-3.1-8B.\nThe residual variance in Table~\\ref{tab:seed-variance} stems entirely from cross-hardware floating-point divergence: seed 42 was evaluated on a different server with a different CUDA driver version.\nEven under this conservative upper bound, $\\sigma(\\text{E-F1}) \\leq 0.16$\\,pp, $\\sigma(\\text{R-F1}) \\leq 0.43$\\,pp, and $\\sigma(\\text{DR\\%}) \\leq 0.08$\\,pp.\nThe constrained decoding DR\\% reduction ($-$2.06\\,pp for Qwen, $-$1.01\\,pp for Llama) exceeds this variance by ${>}12\\times$ (signal-to-noise ratio ${>}$\\,12), confirming that observed improvements reflect genuine method effects rather than run-to-run noise.\nWe therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-seed variance for LoRA fine-tuned models on SciERC (551 documents, greedy decoding, seeds 42/123/456). Values: mean $\\pm$ population $\\sigma$ across three seeds. Seeds 123 and 456 produce identical outputs on the same GPU; all observed $\\sigma$ reflects cross-server floating-point divergence.}\n\\label{tab:seed-variance}\n\\small\n\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\\n\\midrule\nQwen3-8B & SciERC & Unc & $66.94 \\pm 0.08$ & $43.25 \\pm 0.43$ & $2.06 \\pm 0.08$ \\\\\nQwen3-8B & SciERC & Con & $66.94 \\pm 0.08$ & $43.22 \\pm 0.39$ & $0.00 \\pm 0.00$ \\\\\nLlama-3.1-8B & SciERC & Unc & $67.99 \\pm 0.16$ & $45.38 \\pm 0.05$ & $1.04 \\pm 0.05$ \\\\\nLlama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+                "numLines": 30,
+                "startLine": 19,
+                "totalLines": 48
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，32 pages。\n\n更新内容：\n- **正文段落**（8 句）：解释 argmax 无随机成分的机制 → byte-identical 实验验证 → cross-server float divergence 是唯一 variance 来源 → σ 上界数值 → SNR > 12× 含义 → 结论 single-run justified\n- **Table \\ref{tab:seed-variance}**：4 行数据（Qwen/Llama × Unc/Con），列为 Model/Dataset/Mode/E-F1/R-F1/DR%，caption 自包含\n- 所有数字与 d067 eval 报告一致"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "uuid": "d352e923-c7a3-4e2f-9f88-a9e790a88e90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015CvYdJ5oH7xqu4rRYPecB2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 43494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1040
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，32 pages。\n\n更新内容：\n- **正文段落**（8 句）：解释 argmax 无随机成分的机制 → byte-identical 实验验证 → cross-server float divergence 是唯一 variance 来源 → σ 上界数值 → SNR > 12× 含义 → 结论 single-run justified\n- **Table \\ref{tab:seed-variance}**：4 行数据（Qwen/Llama × Unc/Con），列为 Model/Dataset/Mode/E-F1/R-F1/DR%，caption 自包含\n- 所有数字与 d067 eval 报告一致"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 149266,
+            "duration_api_ms": 143353,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "7f194381-7e34-4bbf-a4e1-7a0c624bbc21",
+            "total_cost_usd": 0.57822975,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 32693,
+              "cache_read_input_tokens": 322295,
+              "output_tokens": 8442,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32693,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 186,
+                  "cache_read_input_tokens": 43494,
+                  "cache_creation_input_tokens": 1040,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1040
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1556,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016460000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 8442,
+                "cacheReadInputTokens": 322295,
+                "cacheCreationInputTokens": 32693,
+                "webSearchRequests": 0,
+                "costUSD": 0.57658375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "69b53355-0a77-4c0b-9dbc-3fb80f70ff73"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d067-determinism-enhance.md"
+}

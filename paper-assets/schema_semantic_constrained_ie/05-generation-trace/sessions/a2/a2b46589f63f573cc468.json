@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b46589f63f573cc468",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w6 mistral docred constrained exit check",
+  "task_key": "worker_ops_w6_mistral_docred_constrained_exit_check_20260516T090813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w6_mistral_docred_constrained_exit_check_20260516T090813_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "1218f74406e8a7f37c396b44546f769241e83b708c5f339a4dc86efac2364dc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新完成。\n\n---\n\n## Metrics 完整表格\n\n| Metric | Constrained | Unconstrained | Delta |\n|--------|------------|---------------|-------|\n| **ET_pct** | 0.00% | 7.58% | **-7.58pp** |\n| **RV_pct** | 0.00% | 42.35% | **-42.35pp** |\n| **DR_pct** | 33.20% | 57.42% | **-24.22pp** |\n| **CF_pct** | 0.19% | 24.78% | **-24.59pp** |\n| **E_F1** | 50.59% | 48.51% | **+2.08pp** |\n| **E_P** | 65.02% | — | — |\n| **E_R** | 41.40% | — | — |\n| **R_F1** | 5.52% | 3.50% | **+2.02pp** |\n| **R_P** | 5.67% | — | — |\n| **R_R** | 5.37% | — | — |\n| parse_fail_rate | 0.80% | — | — |\n| total_samples | 998 | — | — |\n| total_pred_entities | 12,535 | — | — |\n| total_pred_relations | 11,554 | — | — |\n\n## 结论\n\nGrammar+Semantic 双层约束 (full_s1) 在 Mistral-7B + DocRED 上：\n- **完全消除** ET 和 RV violations（0%）\n- **DR 降幅 24.22pp**（57.42%→33.20%），残余 33% 为 semantic constraint 覆盖范围外的 domain-range 组合\n- F1 无损反而微升（E_F1 +2.08pp, R_F1 +2.02pp），约束解码未牺牲质量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w6-mistral-docred-constrained-exit-check.md"
+}

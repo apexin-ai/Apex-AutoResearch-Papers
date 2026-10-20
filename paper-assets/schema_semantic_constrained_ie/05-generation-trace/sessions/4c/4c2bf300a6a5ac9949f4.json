@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c2bf300a6a5ac9949f4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp tcr beam integration",
+  "task_key": "worker_exp_tcr-beam-integration_20260522T143221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_tcr-beam-integration_20260522T143221_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "2634dd1737535ea8bf024ebac74b86ccecd5dc2ad09d629c317b826b7d81d69c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已设置，会在实验到达里程碑或完成时通知我。当前 196/551，预计约 40 分钟后完成。等通知到了我继续做 violation_checker 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-tcr-beam-integration.md"
+}

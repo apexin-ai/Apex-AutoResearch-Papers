@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbfd6c3c08a792cc7ef0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis scaling figure",
+  "task_key": "worker_analysis_scaling_figure_20260519T151243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scaling_figure_20260519T151243_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "0a69426528bcd231f53840764da4a7ec8d7df391ac867efac3c6c74e171c79c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个产出文件全部生成：\n\n| 产出 | 路径 | 大小 |\n|------|------|------|\n| PDF | `artifacts/figures/scaling_analysis.pdf` | 28 KB |\n| PNG | `artifacts/figures/scaling_analysis.png` | 225 KB |\n| 数据表 | `artifacts/_project/report/scaling_analysis_data.md` | 3.5 KB |\n| 脚本 | `artifacts/figures/plot_scaling_analysis.py` | 3.3 KB |\n\n图表结构：2×2 子图\n\n- **(a) SciERC ZS**: Unconstrained DR 从 15.4% (7B) → 13.3% (8B) → 6.5% (70B)；+ OntoCoDec 降至 0.93% → 0.08% → 0.0%\n- **(b) DocRED ZS**: Unconstrained DR 从 18.5% (7B) → 26.1% (8B) → 13.1% (70B)；+ OntoCoDec 降至 10.2% → 2.6% → 0.0%\n- **(c) SciERC LoRA**: 残余 DR 1-2%，OntoCoDec 进一步降至 ~0%\n- **(d) DocRED LoRA**: 残余 DR < 1%，OntoCoDec 进一步降至 ~0.01-0.2%\n\nMistral-7B 因 BPE collision 问题从图中排除（数据保留在数据表中）。70B CF 值为估算值（~标记），数据表已注明来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scaling-figure.md"
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "id": "8df3e705eca49d34125c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis latency profiling docred",
+  "task_key": "worker_analysis_latency_profiling_docred_20260516T091743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latency_profiling_docred_20260516T091743.log",
+    "occurrence": 1,
+    "bytes": 2265942,
+    "sha256": "15cc29406718a01ab5d6e2bdf99630bf68f8b1b527d9d4c97091a4872a2ffdbe"
+  },
+  "statistics": {
+    "messages": 1857,
+    "user_turns": 1,
+    "tool_calls": 817,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 215,
+      "tool_call": 817,
+      "tool_result": 817,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 945,
+      "chunks": [
+        {
+          "path": "8df3e705eca49d34125c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0006.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 912,
+      "chunks": [
+        {
+          "path": "8df3e705eca49d34125c-part-0006.json",
+          "message_count": 135
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "8df3e705eca49d34125c-part-0011.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-latency-profiling-docred.md"
+}

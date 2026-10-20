@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70bdf7518a41a6f8dab4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778896994.md",
+  "task_key": "loop_9_1778896994",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778896994.md",
+    "occurrence": 1,
+    "bytes": 4650,
+    "sha256": "b360f8497be6cb2e870cd7f5c6de4cbe57e4ad3f7db6ece300daf28924807ad5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-16T00:15:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 + cuda:1 on westd-16980，不得用其他设备\n- spec.command 禁止包含 CUDA_VISIBLE_DEVICES 硬编码——GPU 分配由 submit_training_job 的 gpu 参数统一控制（2026-05-15 级联故障教训：内层覆盖外层导致幽灵进程+OOM）\n- timeout wrapper kill 会传播 SIGTERM 到整个子进程组——如需解除 timeout，先 disown 子进程或用 setsid 隔离，不能直接 kill timeout PID\n- Qwen3-8B 有 thinking mode，eval 时需确认脚本已处理（关闭 thinking 或设 thinking_budget=0）\n- 大 checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区只有 30G\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，工作目录 `/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- torch 2.10.0+cu128, transformers 4.57.6, CUDA 12.8, 2× RTX PRO 6000 (94GB each)\n- Qwen 模型：`/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- Llama 模型：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- LoRA merged checkpoints：\n  - Qwen SciERC: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama SciERC: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - Qwen DocRED: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama DocRED: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n- 活跃进程（handoff 时刻）：\n  - cuda:1: Qwen DocRED unconstrained eval (PID 304006/304011, ~582/998, ~2.5h remaining)\n  - cuda:0: Worker `eval:llama_docred_unconstrained_done` 正在处理 Llama 完成后逻辑（metrics提取+constrained eval提交）\n\n### 3. 📊 当前状态\n**刚做完**：Llama DocRED unconstrained eval 998/998 完成（含一次 timeout kill + nohup resume）。已派 Worker 提取 metrics、分析 FAIL 案例、提交 Llama constrained eval 到 cuda:0。\n\n**Registry RUNNING/PREPARING**：\n- `w5_qwen_docred_lora_unconstrained_eval`: RUNNING, cuda:1, ~49-58% 进度\n- `w5_llama_docred_lora_unconstrained_eval`: RUNNING（实际已完成 998/998，Worker 正在处理后续）\n- `w5_llama_docred_lora_constrained_eval`: PREPARING（Worker 即将提交到 cuda:0）\n- `w5_qwen_docred_lora_constrained_eval`: PREPARING（等 Qwen unconstrained 完成后提交到 cuda:1）\n\n**等待中**：\n- Worker `eval:llama_docred_unconstrained_done` 回调 → metrics + FAIL 分析 + constrained eval 提交结果\n- Qwen unconstrained eval cron 回调 → 提取 metrics + 提交 Qwen constrained eval\n\n### 4. 📋 待办\n- Worker `eval:llama_docred_unconstrained_done` 回调 → 更新 registry metrics、向 Director 汇报 FAIL 分析结果（Director 特别关注 Qwen 7% FAIL 率的系统性偏差），确认 constrained eval 已提交\n- Qwen unconstrained eval cron 完成 → 提取 metrics + FAIL 分析（Director 指令：37/527=7% FAIL，需分析 doc 特征判断是否高估 R-F1）→ 提交 Qwen constrained eval 到 cuda:1\n- Llama constrained eval 完成 → 提取 DR/R-F1/E-F1，更新 Llama DocRED 2×2 matrix\n- Qwen constrained eval 完成 → 提取 DR/R-F1/E-F1，更新 Qwen DocRED 2×2 matrix\n- 4 个 DocRED FT eval 全部完成 → 汇总完整 composability matrix，更新论文 Table 5 + §5.4，向 Director 汇报\n- 论文数字一致性：paper_number_consistency Worker 已发现 Llama FT 数据完全缺失（Table 3 无 Llama 行，§5.2 只讨论 Qwen LoRA）→ DocRED 结果出齐后需全面更新论文\n\n### 5. 🎯 战略上下文\n- **核心方向**：OntoCoDec（grammar + semantic 两层约束解码）消除 LLM IE 的 ontology violations，冲 EMNLP ARR May 25 提交\n- **Claim 3 composability** 是审稿回应核心：Fine-tuning + OntoCoDec 正交互补。SciERC 2×2 已完成（Qwen DR=0.0%, Llama DR=0.09%）。DocRED 2×2 是最后一块拼图\n- **Qwen DocRED zero-shot DR reduction 仅 44.7%**（vs SciERC 94%），论文已用 constraint tightness 论点解释（DocRED avg tightness=0.842 vs SciERC=0.333）\n- **关键时间线**：May 19 内部稿 → May 25 EMNLP ARR 提交\n- **易错点**：\n  - Qwen eval 输出文件可能有残留数据（之前运行 append），日志进度和 JSONL 行数不一致时以日志 `[N/998]` 为准\n  - constrained eval 用 `--mode full_s1`（不是 `constrained`）\n  - DocRED 数据路径是 `data/docred/dev.json`，约束文件是 `data/docred/ontology_constraints_docred.json`（不是 SciERC 的）\n  - Llama unconstrained eval JSONL 是 append 模式续跑的，可能需要去重检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778896994.md"
+}

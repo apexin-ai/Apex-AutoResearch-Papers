@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a5be341784d2031a113",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analyze p8 latency overhead",
+  "task_key": "worker_analyze_p8_latency_overhead_20260518T150838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_p8_latency_overhead_20260518T150838_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "e4e514b2e770b13a0b86bd862ff84226518585ad58a643b98a8e7a281e051ac6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## P8 Latency Overhead 结果\n\n- 样本数: 551\n- **Unconstrained**: mean=4.163s, median=4.106s, p5=1.756s, p95=7.562s, std=1.735s, total=2293.7s\n- **Constrained (full_s1)**: mean=4.710s, median=4.644s, p5=2.173s, p95=8.136s, std=1.814s, total=2595.0s\n- **Overhead ratio (aggregate)**: mean=1.131x, median=1.131x, p95=1.076x\n- **Overhead ratio (per-doc)**: mean=1.151x, median=1.137x, p5=1.082x, p95=1.262x\n- **结论**: Constrained decoding overhead 约 **13%**，远低于 2x 阈值。即使在 p95 最差情况下，per-doc overhead 也仅 1.26x。开销可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-p8-latency-overhead.md"
+}

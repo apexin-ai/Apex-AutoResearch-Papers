@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "438b0925129a70b55dd6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "urgent launch scierc s1 70b",
+  "task_key": "worker_urgent_launch_scierc_s1_70b_20260522T051503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_launch_scierc_s1_70b_20260522T051503_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "202dd5c0d7230013df6f8957fe28b370e14a4d1fa53de24c2495cd2df45ae8c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "S1 constrained 推理已成功启动并正在运行：\n\n- **PID**: 892258（bash wrapper），实际 python 子进程已在推理中\n- **GPU 状态**: cuda:0 占用 82%, 39597 MiB — 模型已加载完毕，正在生成\n- **进度**: 模型权重加载完成（1843/1843），LoRA 已挂载，已开始生成（日志中可见多次 `pad_token_id` 设置，说明正在逐样本推理）\n- **模式**: `full_s1`（monitor 脚本用了无效的 `s1`，这是它启动失败的原因）\n\nMonitor 脚本失败原因：`--mode s1` 不是合法选项（应为 `full_s1`），且脚本内未激活 conda 导致可能找不到正确 python。已手动修正并成功启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-launch-scierc-s1-70b.md"
+}

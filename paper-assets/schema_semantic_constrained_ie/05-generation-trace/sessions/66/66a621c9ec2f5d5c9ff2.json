@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66a621c9ec2f5d5c9ff2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778886026.md",
+  "task_key": "loop_10_1778886026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778886026.md",
+    "occurrence": 1,
+    "bytes": 4468,
+    "sha256": "81dee7ced56df321116604739ea861bb0b97c983ec0e01c7cda5d5ceae44d11e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:00:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-16980 的 cuda:0 和 cuda:1（通过 `get_project_status` 的 `execution.gpu_ids` 确认）\n- CUDA_VISIBLE_DEVICES 不能硬编码在 spec.command 里——框架自动注入映射，脚本内始终用 `--gpu 0`\n- SciERC 数据路径是 `data/processed_data/test.json`（不是 `data/scierc/`），约束文件在项目根目录 `ontology_constraints.json`\n- DocRED 数据路径是 `data/docred/dev.json`，约束文件 `data/docred/ontology_constraints_docred.json`\n- 服务器用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建或假设 .venv\n- 大 checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区空间有限\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980，2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- **工作目录**: `/root/schema_semantic_constrained_ie/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **模型路径**:\n  - Qwen3-8B base: `/root/autodl-tmp/.hf_cache/Qwen3-8B`（推测）\n  - Qwen DocRED LoRA merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama3.1-8B base: 需确认路径\n  - Llama SciERC LoRA merged: 需确认路径（SciERC 已跑完）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **输出目录**: `outputs/` 下按实验命名\n- **日志**: `~/runs/schema_semantic_constrained_ie/` 下\n- **活跃进程**: w5_qwen_docred_lora_unconstrained_eval (PID 304006, tmux, cuda:1)\n- **Cron**: 50+ 历史 cron，最近一条 w5_qwen_docred_lora_training 于 20:01 完成\n\n### 3. 📊 当前状态\n**刚完成**: Qwen DocRED LoRA 训练 (w5_qwen_docred_lora_training) DONE，立即提交了 unconstrained eval。\n\n**RUNNING**:\n- `w5_qwen_docred_lora_unconstrained_eval` — Qwen DocRED LoRA 无约束评估 (PID 304006, cuda:1)\n\n**PREPARING**（等待前序完成）:\n- `w5_qwen_docred_lora_constrained_eval` — 等 unconstrained eval 完成后提交\n- `w5_llama_docred_sft_data_gen` — Llama DocRED SFT 训练数据生成（应在 cuda:0 上）\n- `w5_llama_docred_lora_unconstrained_eval` / `w5_llama_docred_lora_constrained_eval` — 等 Llama DocRED LoRA 训练完成\n- `w1_cf_fallback_llama_scierc` / `w1_cf_fallback_llama_docred` — CF fallback 消融（优先级低于 composability matrix）\n\n**SciERC 2×2 全部完成**: Qwen ✅ Llama ✅。DocRED 2×2 是最后的关键路径。\n\n**等待中**: w5_qwen_docred_lora_unconstrained_eval 的 cron 回调 → 触发 constrained eval 提交。\n\n### 4. 📋 待办（条件触发式）\n- `w5_qwen_docred_lora_unconstrained_eval` cron 回调到达 → 记录 DR/R-F1 baseline → 立即提交 `w5_qwen_docred_lora_constrained_eval` (cuda:1)\n- `w5_qwen_docred_lora_constrained_eval` 完成 → Qwen DocRED 2×2 matrix 补完 → 更新 Table 3/5 / ROADMAP\n- cuda:0 空闲（当前应空闲）→ 立即推进 `w5_llama_docred_sft_data_gen`（生成 SFT 数据）→ 训练 → eval chain\n- Llama DocRED 2×2 全部完成 → 4 个 matrix 全补完 → 全文数字一致性审查 → May 19 内部稿\n- 所有 composability 实验 DONE → 向 Director 汇报最终 matrix + 论文就绪状态\n\n### 5. 🎯 战略上下文\n- **核心发现**: OntoCoDec 两层约束解码（grammar + semantic）能近乎消除 IE ontology violations（DR↓94-100%），且与 LoRA fine-tuning 正交可组合\n- **论文 narrative**: 从 \"violation 严重\" → \"prompt 不够\" → \"编译约束近乎完美\" → \"跨模型/跨数据集/跨训练方式均成立\"\n- **决策链**: D025 确认 Qwen SciERC composability → D028 确认 Llama SciERC composability → D029 重启 DocRED 训练 → 当前补完 DocRED 2×2\n- **投稿时间线**: May 19 内部稿 → May 25 EMNLP ARR，还剩 10 天\n- **目标分数**: 当前估 4.0/5（strong accept），DocRED LoRA 全补完可达 4.25/5\n- **易错点**:\n  - CF violation 是已知 trade-off（per-relation 独立约束的固有限制），不要试图修复，已定位为 limitation + future work\n  - 不要混淆 Qwen 和 Llama 的 checkpoint 路径——两个模型的 merged LoRA 在不同目录\n  - Llama DocRED 的 SFT 数据生成是 pipeline 第一步（不是训练本身），需要先跑数据生成再训练\n  - DocRED fallback 频率高（Llama ~57/doc），这是已知现象不是 bug\n  - `w1_cf_fallback_*` 实验优先级低于 composability matrix，别让它抢 GPU\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778886026.md"
+}

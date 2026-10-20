@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7980e3d9529ad5f4e6b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exec docred unc check and complete",
+  "task_key": "worker_exec_docred-unc-check-and-complete_20260522T070142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_docred-unc-check-and-complete_20260522T070142_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "2254f2f921ced0be537779b8dabb88c7eb9f4c9705d0188502380159275b3424"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## DocRED 200-doc Unconstrained 结果\n\n| 项目 | 值 |\n|------|-----|\n| 行数 | 200 ✓ |\n| Kill | 进程 881090 已终止 ✓ |\n| Truncate | 200 行，最后一行 valid JSON ✓ |\n| GPU | 双卡 0% / 0 MiB ✓ |\n| Parse Fail | 20/200 (10.0%) |\n\n### 指标\n\n| Metric | Value |\n|--------|-------|\n| **E-F1** | **80.34** (P=85.13, R=76.05) |\n| **R-F1** | **43.80** (P=39.60, R=48.99) |\n| ET% | 0.00 |\n| RV% | 0.57 |\n| DR% | 0.22 |\n| CF% | 0.06 |\n\nViolation 详情：entity type 0，relation vocab 18/3159 (0.6%)，domain/range 7/3159 (0.2%)，cross-field 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-docred-unc-check-and-complete.md"
+}

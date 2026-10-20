@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db1258cf814928f6fea5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research paper update mapping",
+  "task_key": "worker_research_paper_update_mapping_20260516T001755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_update_mapping_20260516T001755_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "2d1921b4bff3851bf2257f1525df5590074e129585fc247033f59f4724d3c40d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 artifact `art_20260516_d100d9`。\n\n**共发现 13 个需更新的位置**，按优先级：\n\n**必须更新（6处）**：\n- **U1** `section5_composability.tex` Table `tab:composability` — 加 8 行 DocRED FT 数据（最复杂，需重构表格加 Dataset 列）\n- **U2–U5** 同文件 3 个段落 + 表标题 — 当前所有讨论只覆盖 SciERC FT，需补 DocRED FT 数字和分析\n- **U6** `main.tex:69` Limitations — 删除 \"DocRED fine-tuning is not reported\" 声明\n\n**需要更新数字（3处）**：\n- **U7** `main.tex:65` — CF 上界 \"≤1.18%\" 可能需根据 DocRED FT CF 调整\n- **U8** `main.tex:68` — Entity F1 在 FT 下的行为需扩展到 DocRED\n- **U9** `section7_conclusion_compressed.tex` — \"45–99% DR reduction\" 范围可能需更新\n\n**建议更新（4处）**：\n- **U10** `section1_introduction_draft.tex:27` — Contribution #3 可加 \"both ZS and FT\"\n- **U11** `abstract.tex` — 加一句 composability 结论\n- **U12** `appendix_discussion.tex` — 将前瞻性声明替换为直接 FT 证据\n- **U13** `paper_tables_draft.tex` Table 4 TBD — 仅参考文件，低优先级\n\n**关键分析点**：DocRED FT 的 CF 行为和 tightness × FT 交互效应，可能产生新发现值得讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-update-mapping.md"
+}

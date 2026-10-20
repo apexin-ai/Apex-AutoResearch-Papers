@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4921f36f21a1b4332e6c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper table2 llama fix",
+  "task_key": "worker_paper_table2_llama_fix_20260520T111247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2_llama_fix_20260520T111247_result.json",
+    "occurrence": 1,
+    "bytes": 1625,
+    "sha256": "ec6e7ea0305c47aeab5d948e772a99a40a64761c2c084bd947405c7ffdf7b04f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table 2 验证通过，与 eval 结果完全一致：\n\n| | E-F1 | R-F1 | DR% | CF% |\n|---|------|------|-----|-----|\n| Qwen unc | 82.15 | 40.86 | 0.76 | 0.09 |\n| Qwen con | 81.43 | 40.56 | 0.01 | 0.27 |\n| Llama unc | 83.93 | 43.72 | 0.49 | 0.08 |\n| Llama con | 83.94 | 43.78 | 0.21 | 0.21 |\n\n## 修改汇总\n\n### Table 2 (section5_scierc_draft.tex:139-140)\n| 位置 | 旧值 | 新值 |\n|------|------|------|\n| Llama unc CF | `---` | `0.08` |\n| Llama con DR | `0.20` | `0.21` |\n| Llama con CF | `0.26` | `0.21` |\n| Llama con R-F1 | `44.23` | `43.78` |\n| Llama con ΔDR | `59%` | `57%` |\n\n### 正文连带修改 (section5_scierc_draft.tex)\n- L105: DR `0.20→0.21`, ΔDR `59%→57%`, R-F1变化 `+0.51pp→+0.06pp`\n- L106: `59%→57%`\n- L107, L109, L144: `DR≤0.20%→DR≤0.21%`\n\n### Appendix 连带修改 (appendix_discussion.tex)\n- L259: Llama DocRED unc CF `---→0.08`\n- L262: DR `0.20→0.21`, CF `0.26→0.21`, R-F1 `44.23→43.78`\n- L275: `DR≤0.20%→DR≤0.21%`\n- L329: post-hoc表 R-F1_cd `44.23→43.78`\n\n### 其他文件连带修改\n- section5_docred_draft.tex L71: `0.01--0.20%→0.01--0.21%`\n- section4_composition_draft.tex L31, L40: `0.20%→0.21%`\n- main.tex L81: `DR≤0.20%→DR≤0.21%`\n- section7_conclusion_compressed.tex L4: `DR≤0.20%→DR≤0.21%`\n\n### 未修改（非 Llama DocRED con 数据）\n- appendix_beam_search.tex L135 `R-F1=44.23` — Qwen SciERC beam 结果\n- appendix_beam_search.tex L161 `CF=0.26` — d065 4096-context 独立实验\n- appendix_tcr.tex L63 `0.21/0.20` — TCR 独立指标\n\n编译通过，31 pages，0 errors。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table2-llama-fix.md"
+}

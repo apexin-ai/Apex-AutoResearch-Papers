@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4375bd9ad32649b4a88b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama retry check and qwen status",
+  "task_key": "worker_code_llama_retry_check_and_qwen_status_20260517T235409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_retry_check_and_qwen_status_20260517T235409_result.json",
+    "occurrence": 1,
+    "bytes": 2779,
+    "sha256": "1f1625076d69e77ba99b8693408f51b811d5d7ced62b043c15949622d3847079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## Llama Retry 验证\n\n**--resume 逻辑**：对 non-`full_s2` 模式，resume 仅检查 `doc_id` 是否存在于输出文件中（不检查 parse_success）。Worker 正确地在 retry 前删除了 34 条 failure 行，使 resume 识别出 212 已处理、34 待重跑。\n\n**Retry 执行结果**：\n- 重跑了全部 34 个 failure docs\n- 成功恢复 3 个 → 总 parse OK: 215/246 (87.4%)\n- 仍然失败 31 个\n\n**31 docs 失败根因**：全部是 JSON 截断（mid-output truncation），不是 parse error。每个 failure doc 的 raw_output 为 23K-34K chars，生成时间一致为 ~143s（成功 docs ~75s），说明都 hit 了 max_new_tokens 上限。\n\n**关键疑问**：`max_new_tokens` 的 **默认值是 2048**（代码中 `default=2048`）。Log 中没有记录实际使用的值，bash history 不存在。如果 retry 未显式传 `--max_new_tokens 8192`，则用的是默认 2048——和第一次跑一模一样，retry 等于白跑。\n\n**建议**：确认后用 `--max_new_tokens 8192`（甚至 16384）重新 retry 这 31 docs。或者接受 215/246 = 87.4% parse rate。\n\n---\n\n## Qwen Retry 状态\n\n**运行中**：234/246 完成，parse OK: 203/234 so far。GPU cuda:0 active (27GB, 84% utilization)。预计还需跑 12 个 docs。\n\n---\n\n## Grammar_only 完整报告 (Mistral, westd-21461)\n\n**Parse**: 184/246 (74.8%)，62 parse failures\n\n**Violation 汇总** (基于 184 个 parsed docs):\n\n| 类型 | 数量 | 比例 |\n|------|------|------|\n| ET (Entity Type) | 0 | 0.0% |\n| EV (Event Vocab) | 0 | 0.0% |\n| **RoV (Role Vocab)** | **2314** | **54.8%** |\n| **AC (Arg Constraint)** | **813** | **19.2%** |\n| CF (Cross-Field) | 33 | 0.7% |\n| **Go/No-go (RoV+AC)** | — | **74.1%** |\n\n**RoV 违规最严重的 event types**：\n- ArrestJailDetain.Unspecified: 97.2% 违规率 (136 RoV / 143 args)\n- EndPosition.Unspecified: 98.6% (118 RoV / 140 args)\n- StartPosition.Unspecified: 96.2% (91 RoV / 104 args)\n- FireExplosion.Unspecified: 91.5% (97 RoV / 117 args)\n- ImpedeInterfereWith.Unspecified: 91.9% (113 RoV / 197 args)\n- Contact.Unspecified: 89.4% (126 RoV / 141 args)\n\n**所有 54 个 event types 都有违规**，0 个 clean。核心问题：grammar-only 约束只保证 JSON 格式合法，不限制 role 名称是否属于对应 event type 的合法 role 集合。模型自由生成了大量无效 role（如对 Broadcast 用了 Target/Source）。\n\n**RoV 典型案例**：`role 'Target' not valid for 'Broadcast'`, `role 'Source' not valid for 'Contact.Unspecified'`——模型在用语义上\"合理\"但 ontology 不认可的 role 名。\n\n---\n\n## Mistral v2 进度\n\n**199/246**，parse OK: 144/199 (72.4%)。仍在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-retry-check-and-qwen-status.md"
+}

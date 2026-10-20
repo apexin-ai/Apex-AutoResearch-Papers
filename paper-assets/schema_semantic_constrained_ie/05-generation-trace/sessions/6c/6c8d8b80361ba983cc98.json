@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c8d8b80361ba983cc98",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen v3 full eval",
+  "task_key": "worker_code_qwen_v3_full_eval_20260518T102559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_v3_full_eval_20260518T102559_result.json",
+    "occurrence": 1,
+    "bytes": 2184,
+    "sha256": "a720b06042b52fdb434ebeeb25252fd0f36e5c32f8613aab51964e2d0eee37ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full summary:\n\n---\n\n## Violation Report — Qwen v3 Constrained\n\n| Violation | Count | Rate |\n|---|---|---|\n| ET (Entity Type) | 0 | 0.0% |\n| EV (Event Vocab) | 0 | 0.0% |\n| RoV (Role Vocab) | 0 | 0.0% |\n| AC (Arg Constraint) | 109 | 2.1% |\n| CF (Cross-Field) | 593 | 21.1% |\n| **Go/No-go (RoV+AC)** | — | **2.05%** |\n\n## Parse Failures\n\n- **40/246 docs** (16.3%) failed to parse\n- All 40 are **output truncation** — raw_output ranges 25.8k–34.8k chars, valid JSON that gets cut off at the token limit\n- No structural/format errors; the model generates correct JSON but the documents are too long for the max token budget\n\n## F1 Comparison\n\n| Config | Entity F1 | Trigger F1 | Argument F1 |\n|---|---|---|---|\n| **Unconstrained** | 0.0000 | 0.1184 | 0.0009 |\n| **Constrained v3** | 0.1409 | 0.1339 | 0.0168 |\n| **v3 + Post-hoc** | 0.1409 | 0.1339 | 0.0170 |\n| **v3 + CF Voting** | 0.1352 | 0.1339 | 0.0168 |\n\n## Post-hoc Filtering\n\n| | Constrained v3 | Unconstrained |\n|---|---|---|\n| Events before→after | 2835→2835 | 3013→2291 |\n| Args before→after | 5330→5221 | 5467→23 |\n| Removed | 109 (AC only) | 4834 (722 EV + 4094 RoV + 18 AC) |\n\nUnconstrained post-hoc is devastating — 99.6% of arguments removed because the model uses out-of-vocabulary role names.\n\n## CF Majority Voting\n\n- CF violations: 593 → 499 (fix rate 15.9%, 110 corrections)\n- 563 corrections blocked by AC constraints\n- Top corrections: PER→FAC (20), PER→GPE (10), ORG→GPE (7)\n- Entity F1 slightly **decreased** (0.1409→0.1352) — the voting re-types some entities incorrectly\n- Argument F1 unchanged (0.0168)\n\n## Key Takeaways\n\n1. Constrained v3 massively outperforms unconstrained (Arg F1 0.0168 vs 0.0009) — schema constraints work\n2. Post-hoc on v3 is near-no-op (only 109 AC removals, +0.0002 Arg F1) — constraints already did the job at generation time\n3. CF voting hurts entity F1 — AC constraints block most corrections, and the unblocked ones are often wrong\n4. 16.3% parse failure rate from truncation is the main bottleneck — those 40 long docs contribute zero to F1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-v3-full-eval.md"
+}

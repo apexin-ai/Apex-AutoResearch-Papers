@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c2a00bd201db47c67b5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code check stability pid",
+  "task_key": "worker_code_check_stability_pid_20260517T031858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_stability_pid_20260517T031858_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "a6c378a4748148ff452f7d0e2c80304bd75934694079f1fd221a1ead2b0e04fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**Stability test 进程：**\n- **PID: 406717**\n- 命令: `python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path .../Qwen3-8B --output_path outputs/stability_seed123.jsonl --device cuda:0 --seed 123 --decoding_strategy greedy --temperature 0.0`\n- 父进程 PID 406710 (`bash run_stability_test.sh`)，由 PID 406709 启动\n\n**Tmux session：**\n- `llama_beam` — 这个跑的是另一个任务（Llama beam search，PID 406047）\n\n**注意：** Stability test 实际运行在 **cuda:0** 而非 cuda:1，且当前只跑了 seed 123（第一个 seed）。它没有在 tmux 里，是通过 nohup 后台启动的，日志在 `outputs/stability_test.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-stability-pid.md"
+}

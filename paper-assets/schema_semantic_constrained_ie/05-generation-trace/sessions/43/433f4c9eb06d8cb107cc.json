@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "433f4c9eb06d8cb107cc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 d066 progress check",
+  "task_key": "worker_ssh_d064_d066_progress_check_20260520T003742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_d066_progress_check_20260520T003742_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "f6d8531e56070096e78416650852adf01d249b001dce6e8a52dd7862299b75e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/d064_d066_progress.md`。\n\n**摘要：**\n\n**d064 (16980):** Llama greedy 两组全部完成 (998/998)。Qwen greedy unc 在 171/998 (17%)，Qwen greedy con 由 cascade 自动启动，已输出 34 行。两个 Qwen 任务分别跑在两张 GPU 上，预计 2-3h 完成。\n\n**d066 (21461):** beam sweep 完成 2/8 configs（beam1 unc + con 各 551 行），beam2 unc 在 506/551 接近完成。GPU1 log 显示另一个 config 在 356/551。剩余 5 configs，总 ETA ~2-3h。\n\n**d067 (21461):** 529/551 (96%)，~5min 内完成当前 seed。暂无 jsonl 输出文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-d066-progress-check.md"
+}

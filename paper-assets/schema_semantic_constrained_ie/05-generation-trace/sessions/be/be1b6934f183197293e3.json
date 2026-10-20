@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be1b6934f183197293e3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest qwen int4 docred",
+  "task_key": "worker_check_harvest-qwen-int4-docred_20260523T075546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-qwen-int4-docred_20260523T075546_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "f30070d89b6cdba5afac02cbc282c563b3833030279d8b1e578a208b05fb94c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session，可能已在之前的 session 中清理。Registry 已更新为 DONE。\n\n## sf2_qwen_int4_docred_s1 完整指标\n\n| 指标 | 值 |\n|------|-----|\n| **DR%** | 0.00 |\n| **RV%** | 0.00 |\n| **ET%** | 0.00 |\n| **CF%** | 0.10 (3 violations) |\n| **R-F1** | 40.07 |\n| **R-P** | 41.59 |\n| **R-R** | 38.65 |\n| **E-F1** | 74.84 |\n| **E-P** | 84.87 |\n| **E-R** | 66.93 |\n| **#pred_entities** | 2,985 |\n| **#pred_relations** | 2,385 |\n| **parse_fail_pct** | 18.5% (37/200) |\n\n约束执行近乎完美（DR/RV/ET=0%，CF 仅 0.1%）。18.5% parse fail 是超时导致（94s timeout，均为 E=0 R=0 的 FAIL），这些 FAIL 样本拉低了 recall。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-qwen-int4-docred.md"
+}

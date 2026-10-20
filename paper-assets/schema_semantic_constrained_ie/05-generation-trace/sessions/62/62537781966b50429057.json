@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62537781966b50429057",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops docred eval progress check",
+  "task_key": "worker_ops_docred_eval_progress_check_20260515T230301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_docred_eval_progress_check_20260515T230301_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "bd630b16bd613aef466f200efe0f77beabc72e92597dbd501c8ca1c068020ee7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DocRED Unconstrained Eval 进度\n\n### 1. Llama (PID 303525) — cuda:0\n| 指标 | 值 |\n|------|-----|\n| 状态 | **运行中** |\n| 运行时间 | 3h05m |\n| 进度 | **734 / 998** (73.5%) — 基于输出文件行数 |\n| 速率 | ~15.1 sec/sample |\n| 预估剩余 | **~66 min (~1h06m)** |\n| 异常 | 无（日志中 1 个 grep 命中是误报，\"Terror\" 包含子串 \"error\"） |\n\n### 2. Qwen (PID 304006) — cuda:1\n| 指标 | 值 |\n|------|-----|\n| 状态 | **运行中** |\n| 运行时间 | 2h59m |\n| 进度（日志）| **[487/998]** (48.8%) — 日志最新条目 |\n| 进度（输出）| 522 行 — 可能包含之前运行的残留数据 |\n| 速率 | ~17-22 sec/sample（近期样本 7-32 秒不等） |\n| 预估剩余 | **~3h00m** (按 ~22 sec/sample × 511 remaining) |\n| 异常 | 无（同样误报） |\n\n### 注意\n- Qwen 输出文件行数 (522) > 日志进度 (487)，可能是之前运行的文件未清理、当前 append 导致。以日志 [487/998] 为准。\n- Llama 日志全是 `pad_token_id` warning，进度行被淹没，只能依赖输出文件计数。\n- 两个日志中的 tokenizer regex warning 是已知问题，不影响推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-docred-eval-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "654dded638cf4b122cf5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r2n3 llama docred parse excluded",
+  "task_key": "worker_analysis_r2n3_llama_docred_parse_excluded_20260518T120615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r2n3_llama_docred_parse_excluded_20260518T120615_result.json",
+    "occurrence": 1,
+    "bytes": 2062,
+    "sha256": "610096c8fed648f2ce3ec92fe80c9d102102ecad01fbe8f698dffebcb41ec74a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Constrained 的数据和官方 violation checker 完全吻合 (ET=0, RV=0, DR=424/16471=2.6%, CF=1371)。unconstrained 因为数据里有 int 类型的 entity text 导致 checker 报错，但我的脚本已做 `str()` 转换，结果可靠。\n\n结果已保存到服务器 `outputs/r2n3_parse_excluded_analysis.json`。\n\n---\n\n## R2-N3 分析结果\n\n### Parse Failure 统计\n\n| | Unconstrained | Constrained |\n|---|---|---|\n| Total docs | 998 | 998 |\n| Parse failures | 67 (6.7%) | 90 (9.0%) |\n| Valid docs | 931 | 908 |\n\nParse failure 重叠：45 共有，45 仅 constrained，22 仅 unconstrained。\n\n### Violation Rates（排除 parse failures 后，仅 valid docs）\n\n| Metric | Unconstrained | Constrained | Delta |\n|---|---|---|---|\n| ET% | 0.13% | 0.00% | -0.13pp |\n| RV% | 15.89% | 0.00% | -15.89pp |\n| **DR% (eligible)** | **31.21%** | **2.57%** | **-28.64pp** |\n| DR% (all triples) | 26.25% | 2.57% | -23.68pp |\n| CF% | 0.17% | 9.40% | +9.23pp |\n\n### F1（all docs vs parse-excluded）\n\n| Metric | Uncon (all) | Con (all) | Uncon (excl) | Con (excl) |\n|---|---|---|---|---|\n| E-F1 | 55.67% | 55.04% | 57.89% | 58.18% |\n| R-F1 | 6.55% | 6.25% | 6.74% | 6.48% |\n\n### 结论\n\n1. **Constrained 的 parse failure 数量更多** (90 vs 67)，所以排除 parse failures 对 unconstrained 更有利，但 constrained 的 violation 依然大幅更低。\n2. **DR violation 从 31.21% 降到 2.57%（-28.64pp）**，这是在仅计算成功解析文档的条件下，完全排除了 parse failure 的影响。\n3. **RV 从 15.89% 降到 0.00%（-15.89pp）**，语法约束完全消除了词汇外的关系类型。\n4. **F1 基本持平**：E-F1 排除 parse failures 后 constrained 略高 (+0.29pp)，R-F1 略低 (-0.26pp)，都在噪声范围内。\n5. **CF 上升 (+9.23pp)** 是已知 trade-off：constrained 模式下同一实体在不同关系中的类型一致性下降。\n\n**核心论点：violation 下降不是 parse failure 被排除的副产物，而是 constrained decoding 的真实效果。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r2n3-llama-docred-parse-excluded.md"
+}

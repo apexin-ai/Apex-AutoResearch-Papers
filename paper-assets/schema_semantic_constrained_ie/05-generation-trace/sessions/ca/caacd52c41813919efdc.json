@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caacd52c41813919efdc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra gpu1 emergency cleanup",
+  "task_key": "worker_infra_gpu1_emergency_cleanup_20260513T221548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu1_emergency_cleanup_20260513T221548_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "1b145a044de7f95c3314f6a2d259098a56c767721a9fae7bdc587dfa58569fa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已确认删除。\n\n---\n\n### 清理完成汇总\n\n| Step | 结果 |\n|------|------|\n| 1. Kill 进程树 123425/123430/123435 | 全部 DEAD |\n| 2. GPU 1 验证 | 只剩 123833 |\n| 3. 删除损坏文件 | 已删除 |\n| 4. Kill PID 123833 | DEAD |\n| 5. GPU 最终状态 | **GPU 0**: PID 116365 (23.6GB, DocRED schema) / **GPU 1**: 空 |\n| 6. 文件确认 | FILE_DELETED |\n\nGPU 1 已完全释放，可以重新启动 grammar_only 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu1-emergency-cleanup.md"
+}

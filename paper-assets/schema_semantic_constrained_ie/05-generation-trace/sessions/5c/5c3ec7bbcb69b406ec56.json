@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c3ec7bbcb69b406ec56",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 status check r4",
+  "task_key": "worker_ssh_d064_status_check_r4_20260519T143915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_status_check_r4_20260519T143915_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "7e5e18ac5acbaedd2d45dedf08e1bee28f92a3b13b4d4fa4a926b7ee1d86157d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。核心发现：\n\n**westd-21461**:\n- GPU 0: Llama 级联正常工作。Greedy unc 已完成 (998/998)，greedy con 正在运行 (20/998)，beam 阶段待启动\n- GPU 1: Qwen beam-4 unc 即将完成 (929/998)，~25 分钟后 cascade 自动启动 Qwen beam-4 con\n\n**westd-16980**:\n- GPU 0: Llama beam-4 unc 48/998，预计 ~4h 完成\n- GPU 1: Llama beam-4 con 41/998，预计 ~4.3h 完成\n- 两个任务均在 22:27-22:28 重新启动（之前的进程似乎被重启了）\n\n**注意事项**:\n1. 21461 级联脚本的 beam-4 阶段会与 16980 上的任务重复（输出路径不同，不会互相覆盖）\n2. 16980 GPU 1 采样时 GPU 利用率为 0%，可能是瞬时现象，建议稍后再看一眼确认在正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-status-check-r4.md"
+}

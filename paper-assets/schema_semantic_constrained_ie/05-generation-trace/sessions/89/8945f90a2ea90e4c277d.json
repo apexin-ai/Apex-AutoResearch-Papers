@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8945f90a2ea90e4c277d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra cleanup zombies",
+  "task_key": "worker_infra_cleanup_zombies_20260513T205848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup_zombies_20260513T205848_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "76b7b1b296c82627fc4968911a99a7fdbdb86a76b80e71f24c4e16d956130ab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**清理报告：**\n\n| 任务 | 结果 |\n|------|------|\n| Zombie 进程 (5个 PID) | 已自行退出，无需处理 |\n| `/root/autodl-tmp/models/Qwen3-8B/` | 已删除，释放 **7.7GB** |\n| 数据盘当前状态 | 250GB 总量，已用 58GB，剩余 193GB (24%) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-zombies.md"
+}

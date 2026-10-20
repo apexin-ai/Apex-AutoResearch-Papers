@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de06a0905cda52c70e49",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix p8c finalize",
+  "task_key": "worker_fix_p8c_finalize_20260518T184341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_p8c_finalize_20260518T184341_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "9d0caae51100f8d50347845d03cc1557a2c24853e4d6a42242b32f1de7b40bb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron list already shows no jobs in this session — the cron was likely in a previous session and already expired.\n\n```\nunconstrained: mean=2.612s/doc, median=2.355s/doc\nconstrained:   mean=2.873s/doc, median=2.624s/doc\noverhead:      mean=10%, median=11.42%\nregistry:      DONE(success)\ncron:          none active (already cleared)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-p8c-finalize.md"
+}

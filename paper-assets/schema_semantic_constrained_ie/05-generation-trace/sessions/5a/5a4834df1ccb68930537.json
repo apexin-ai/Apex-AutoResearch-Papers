@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a4834df1ccb68930537",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check ft latency provenance",
+  "task_key": "worker_check_ft_latency_provenance_20260518T173414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ft_latency_provenance_20260518T173414_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "a5d2f2cc99bbc52032218d5773aad63ae12b8aa37f26a69d2da69efae5cb2e37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. \"+2.3% (61 ms/doc)\" 的确切来源\n\n**数据来源不明。** 在两台服务器上均未找到产生这个数字的实验数据文件。\n\n唯一相关的 FT latency 数据是 westd-16980 上的 Qwen LoRA SciERC 实验（`outputs/w5_lora_scierc_*.jsonl`，551 docs），实际测量结果为 **overhead = -1.04%**（constrained 反而略快 26.7 ms/doc），与 +2.3% 不符。\n\n两台服务器上均不存在 `*ft_timing*`、`*lora_timing*`、`*ft_latency*`、`*lora_latency*` 等文件。\n\n注：2.3% 和 61 ms 在数学上自洽（61ms / 2.56s baseline ≈ 2.4%），但没有实验文件产出这组数字。\n\n### 2. 已验证的零射 latency 数据（对比参考）\n\n| 实验 | 服务器 | 文件 | 文档数 | Overhead |\n|------|--------|------|--------|----------|\n| P8 SciERC (zero-shot) | westd-21461 | `p8_timing_*.jsonl` | 551 | **+13.13%** (546.7 ms/doc) |\n| P8b DocRED (zero-shot) | westd-21461 | `p8b_timing_docred_*.jsonl` | 200 | **+2.43%** (470.0 ms/doc) |\n\n两者均在 **RTX PRO 6000 Blackwell** 上运行，与 tex 中声称的 GPU 一致，数值也吻合（tex 写 13.1% 和 2.43%）。\n\n注意：westd-16980 的 `runtime_benchmark.json`（也标注为 Blackwell）给出 Qwen SciERC full_s1 overhead = -22.2%，与 P8 的 +13.13% 矛盾。两份数据来自不同实验 run。\n\n### 3. FT latency 实验的 GPU\n\n无法确定，因为不存在对应的实验数据。tex 中声明 GPU 为\"RTX PRO 6000 Blackwell\"，但仅零射实验可验证这一点。w5 LoRA 数据在 westd-16980（也是 Blackwell）上运行但结果不匹配。\n\n### 4. westd-21461 cuda:0 状态\n\n**空闲。** 0MiB 显存占用，0% 利用率。cuda:1 被 python3 占用（18914MiB，83% util）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ft-latency-provenance.md"
+}

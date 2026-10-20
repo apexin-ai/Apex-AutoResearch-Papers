@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90e4424b54879da78c88",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 beam ablation k8 collect",
+  "task_key": "worker_code_w10_beam_ablation_k8_collect_20260517T094149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_beam_ablation_k8_collect_20260517T094149_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "c609de02c0090e0bfc3aeadd017e4121fefd252370f153db4c8fcda0c1b6fd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron不存在（可能已在之前session中删除或未创建）。任务完成，以下是完整结果报告。\n\n---\n\n## w10_beam_ablation_k8 实验结果 (Qwen3-8B, SciERC 551 docs, beam k=8, full_s1)\n\n### Violation Metrics\n| 指标 | 值 |\n|------|-----|\n| DR (Domain/Range) | **0.00%** (0/1744) |\n| CF (Cross-field consistency) | **0.08%** (2/2483) |\n| Entity type violations | 0.00% |\n| Relation vocab violations | 0.00% |\n| JSON parse failures | 0 |\n\n### F1 Metrics\n| 指标 | P | R | F1 |\n|------|------|------|------|\n| Entity | 26.95 | 39.93 | **32.18** |\n| Relation | 6.54 | 11.70 | **8.39** |\n\n### Beam Width Ablation 完整对比\n\n| Metric | Greedy | k=2 | k=4 | **k=8** |\n|--------|--------|-----|-----|---------|\n| DR | 0.93% | 0.35% | 0% | **0%** |\n| CF | 9.90% | 4.12% | 0.53% | **0.08%** |\n| E_F1 | 30.98 | 31.54 | 32.00 | **32.18** |\n| R_F1 | 8.36 | 8.75 | 8.56 | 8.39 |\n\n### 关键发现\n- **DR = 0%**，与k=4一致，beam k≥4即可完全消除domain/range violations\n- **CF从0.53%降至0.08%**（仅剩2个冲突），k=8进一步压低cross-field violations至近零\n- **E_F1达到全系列最高32.18**，beam width越大entity抽取越准\n- **R_F1=8.39**，略低于k=2的峰值8.75，但高于greedy的8.36；R_F1在k=2后有轻微下降趋势\n- 整体趋势：更大beam width持续改善constraint satisfaction和entity F1，但relation F1在k=2达到峰值后有diminishing/slight negative returns\n\n**Conclusion: success** — hypothesis confirmed，更宽的beam search有效减少violations且不损害整体F1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-beam-ablation-k8-collect.md"
+}

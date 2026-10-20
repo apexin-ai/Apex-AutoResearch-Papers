@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8a262ad50d1f6166327",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops p0 d065 conflict fix",
+  "task_key": "worker_ops_p0_d065_conflict_fix_20260520T094321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_d065_conflict_fix_20260520T094321_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "b7c00d8c14c6bb47e95bde57685d99b26a9be30a3ee827d8aa8603d5fad34d61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 项目 | 结果 |\n|------|------|\n| **1. PID 190489 kill** | **DEAD** — SIGTERM 成功终止 |\n| **2. PID 174618 状态** | **ALIVE** — 已运行 5h47m，CPU 100%，CUDA_VISIBLE_DEVICES=1，在 GPU1 上跑 |\n| **3. 输出文件** | **230 行**，最后 doc_id=`Janaka`，实际路径 `/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl` |\n| **4. 文件增长** | **10秒内未增长**（230→230），可能正在处理一个耗时长的 doc |\n| **5. GPU 状态** | GPU0: 0% util, 0 MiB（已释放）；GPU1: 86% util, 18919/97887 MiB（174618 在用） |\n| **6. 所有 python 进程** | tensorboard(906), jupyter(918), tensorboard_data_server(1001), mistral_v3_full tmux session(5964, 闲置), **174612/174618**(d065 con 进程) |\n\n**关键发现**：注意 174618 的启动命令用了 `CUDA_VISIBLE_DEVICES=1` 但 `--device cuda:0`（这是正确的——CVDS=1 把物理 GPU1 映射为逻辑 cuda:0）。GPU0 现在完全空闲，可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-d065-conflict-fix.md"
+}

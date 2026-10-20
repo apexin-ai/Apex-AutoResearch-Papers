@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43f7daedd26eddba9f47",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp gollie scierc violation",
+  "task_key": "worker_exp_gollie-scierc-violation_20260523T051232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gollie-scierc-violation_20260523T051232_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "0b46cfcdc90cbe38a25e6fa8e6425b8a229df79bfe2b9a18e18fff2406fcba5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册。以下是完整对比结果：\n\n## GoLLIE vs OntoCoDec — SciERC Violation Rate 对比\n\n### Doc-level 评估（100 docs）\n\n| Method | DR% | RV% | ET% | CF% | E-F1 | R-F1 | #Pred Ent | #Pred Rel |\n|---|---|---|---|---|---|---|---|---|\n| **GoLLIE-7B (ZS)** | 0 | 0 | 0 | 0.83 | 9.17 | 0.0 | 241 | 5 |\n| OntoCoDec Qwen ZS unc | — | — | 0.43 | 2.95 | 31.39 | 8.25 | 2342 | 1721 |\n| OntoCoDec Qwen ZS S1 | — | — | 0 | 2.95 | 31.45 | 8.38 | 2342 | 1726 |\n| **OntoCoDec Qwen FT S1** | 0 | 0 | 0 | 0.61 | 66.43 | 43.69 | 1639 | 1121 |\n| **OntoCoDec Llama FT S1** | 0 | 0 | 0 | 0.62 | 67.09 | 45.47 | 1605 | 1070 |\n\n### 关键发现\n\n1. **GoLLIE 的低 violation rate 是 trivial 的**：只有 54/100 docs 产生了输出，仅预测 241 个 entity（gold 1525）和 5 个 relation（gold 971）。几乎不输出自然不会犯错。\n\n2. **OntoCoDec FT+S1 的 violation rate 更低且有意义**：CF 仅 0.61-0.62%（低于 GoLLIE 的 0.83%），同时 E-F1 高 7x（67 vs 9），R-F1 从 0 提升到 43-45。\n\n3. **对 R1 D4 的回应要点**：GoLLIE 通过 code-style schema 约束确实能避免 ET/RV 类 violation，但代价是极低的 recall。OntoCoDec 的约束解码在保持高 F1 的同时实现了同等甚至更低的 violation rate，证明了 decode-time 约束的有效性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gollie-scierc-violation.md"
+}

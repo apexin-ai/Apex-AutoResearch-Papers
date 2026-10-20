@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8ba7002f7f773e7e708f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ssh d062 ontology scalability",
+  "task_key": "worker_ssh_d062_ontology_scalability_20260519T041125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_ontology_scalability_20260519T041125.log",
+    "occurrence": 1,
+    "bytes": 784583,
+    "sha256": "c644820d65ee78722f21922a71670894c3bb4a21e6e45fdbb5964f68a7b29564"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "8ba7002f7f773e7e708f-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "8ba7002f7f773e7e708f-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d062-ontology-scalability.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc03e8a7d9ba23b920fc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check post restart status",
+  "task_key": "worker_check_post_restart_status_20260522T020902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_post_restart_status_20260522T020902_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "c6f3d5b56cdad1f3cb546bf145d97505fbe5a327231ac8f2fcbbcfca17a9106a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-16980 ===\nGPU0: 0/97887 MiB, 0%\nGPU1: 0/97887 MiB, 0%\nr16_70b_lora_scierc: 死亡（已完成）, checkpoint: checkpoint-663 ✅, 最后 step: 663/663, eval_loss=0.0611, token_acc=97.78%\nr16_70b_lora_docred: 死亡（已完成）, checkpoint: checkpoint-1146 ✅, 最后 step: 1146/1146, eval_loss=0.0635, token_acc=97.94%\n\n=== westd-21461 ===\n⚠️ SSH 连接失败: Unable to connect to port 21461 — 实例重启后端口已变更\n\n需要重启的实验: 无（两个 LoRA 训练都已正常跑完）\n```\n\nwestd-16980 两个 70B LoRA 训练都已完成 3 epoch，adapter 已保存，无需重启。GPU 空闲。\n\nwestd-21461 连不上，AutoDL 实例重启后 SSH 端口会变，需要去 AutoDL 控制台查看新端口并更新 `~/.ssh/config`。之前的 70B DocRED ZS 推理状态需要等连接恢复后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-post-restart-status.md"
+}

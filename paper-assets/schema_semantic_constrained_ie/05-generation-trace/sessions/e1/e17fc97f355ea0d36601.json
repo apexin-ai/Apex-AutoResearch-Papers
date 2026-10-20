@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e17fc97f355ea0d36601",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama scierc beam2 unc 551",
+  "task_key": "worker_ops_d066_llama_scierc_beam2_unc_551_20260520T141357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_scierc_beam2_unc_551_20260520T141357_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "092883435d60ba1bc81abb0bee1921ecf79c9a6d9aca6cd2a88cc7199db51acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**汇报：**\n- **PID**: 213203 @ westd-21461 GPU1\n- **状态**: RUNNING，GPU1 占用 18.4 GB / 89% utilization，模型已加载并在推理\n- **数据路径**: `data/processed_data/test.json` — **100 docs**（SciERC test set）\n- **输出**: `/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_unconstrained.jsonl`\n- **Cron 监控已注册**\n\n**⚠️ 数据量修正**: 任务描述说 551 docs，实际 SciERC test set 是 **100 docs**（train=350, dev=50, test=100）。已有的 beam1 unc 输出是 275 行（100 docs 的多行输出，非 275 个 doc）。数据路径 `data/processed_data/test.json` 确认是正确的 test set。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-scierc-beam2-unc-551.md"
+}

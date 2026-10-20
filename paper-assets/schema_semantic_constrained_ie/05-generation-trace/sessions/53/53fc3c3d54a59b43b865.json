@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53fc3c3d54a59b43b865",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check completed results extraction",
+  "task_key": "worker_check_completed_results_extraction_20260522T034317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_completed_results_extraction_20260522T034317_result.json",
+    "occurrence": 1,
+    "bytes": 1697,
+    "sha256": "c401aa04bd8beff7446138438b2a780d7ec21f40b4114d594572021f4356b3c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 推理进度 ===\nSciERC: 287/551 样本 (52%), PID 879994 存活 (运行 1h24m)\nDocRED: 52/998 样本 (5.2%), PID 881085 存活 (运行 1h11m)\nGPU 0: 79190 MiB, 94% util | GPU 1: 40921 MiB, 82% util\n\n=== Trie Baseline ===\n未找到。服务器上无任何 trie 相关结果文件。\n\n=== GoLLIE (SciERC ZS, 100 docs) ===\nGoLLIE-7B:  E_F1=9.17  R_F1=0.00  | ET=0% RV=0% DR=0% CF=0.83%\n对比:\n  Llama_FT_S1:  E_F1=67.09  R_F1=45.47\n  Qwen_FT_S1:   E_F1=66.43  R_F1=43.69\n  Qwen_ZS_S1:   E_F1=31.45  R_F1=8.38\nGoLLIE 作为 ZS baseline 极弱，远低于 FT 和同规模 ZS。\n\n=== Beam Sweep (d066) — 全部完成 ===\nDocRED (200 samples):\n  qwen_greedy_unc/s1         200/200\n  qwen_beam2_unc/s1          200/200\n  qwen_beam8_unc/s1          200/200\n  llama_beam2_unc/s1         200/200\n  llama_beam4_unc/con        200/200\n  llama_beam8_unc/s1         200/200\nSciERC (551 samples):\n  llama_beam2_s1             551/551\n  llama_beam4_s1             551/551\n  llama_beam8_unc/s1         551/551\n\nViolations (Qwen DocRED):\n  beam2_unc: RV=3 DR=12 total_rate=0.23%\n  beam2_s1:  DR=0 CF=3  total_rate=0.05%\n  beam8_unc: RV=3 DR=9  total_rate=0.19%\n  beam8_s1:  全零违规     total_rate=0.00%\n\n=== 70B ZS (SciERC 551, r16) ===\nUnconstrained: E_F1=35.21 R_F1=11.15 | RV=9 DR=95 (6.41%)\nConstrained S1: E_F1=35.19 R_F1=11.24 | DR=0 CF=82 (3.5%)\n→ S1 约束消除了全部 DR 违规，F1 几乎不变\n\n=== 其他近期结果 (3天内) ===\noutputs/: 36 个 json 文件，包括 d066 各配置 eval、r16 70B ZS 报告、TCR 报告等\nautodl-tmp/schema_outputs/: beam sweep violations、unified_eval 全套、r12-r16 分析文件\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-completed-results-extraction.md"
+}

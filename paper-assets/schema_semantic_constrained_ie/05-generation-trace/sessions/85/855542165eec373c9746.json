@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "855542165eec373c9746",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 sf1 matched greedy",
+  "task_key": "worker_code_r4_sf1_matched_greedy_20260517T105411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_sf1_matched_greedy_20260517T105411_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "64174b81c86e9d4cb7e55e3e88a6e7be9d116c0097a838a443f68bdf28811adb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Model | Metric | Greedy (matched 50) | Beam k=4 | Delta |\n|-------|--------|-------------------|-----------|-------|\n| **Qwen** | DR | 8.69 | 0 | -8.69 |\n| | CF | 2.08 | 0.55 | -1.53 |\n| | R-F1 | 8.33 | 9.37 | +1.04 |\n| **Llama** | DR | 1.58 | 0 | -1.58 |\n| | CF | 6.85 | 0.94 | -5.91 |\n| | R-F1 | 6.12 | 9.47 | +3.35 |\n| **Mistral** | DR | 28.37 | 21.37 | -7.00 |\n| | CF | 0.34 | 0.19 | -0.15 |\n| | R-F1 | 4.19 | 5.70 | +1.51 |\n\nBeam search 在 matched comparison 下对所有模型均展示了 violation rate 降低和 R-F1 提升。Llama 的改善最显著（DR 完全消除, CF 从 6.85→0.94, R-F1 +3.35pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-sf1-matched-greedy.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b646f6a91bbff2ae99ea",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code fix xgrammar assertion",
+  "task_key": "worker_code_fix_xgrammar_assertion_20260514T025531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_xgrammar_assertion_20260514T025531.log",
+    "occurrence": 1,
+    "bytes": 891393,
+    "sha256": "e495fb36ab4d9e0c45f98aa3e07a31e611738ea40cda6db2516f6037fb7a0f6f"
+  },
+  "statistics": {
+    "messages": 312,
+    "user_turns": 0,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 70,
+      "tool_call": 119,
+      "tool_result": 119,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "b646f6a91bbff2ae99ea-part-0001.json",
+          "message_count": 131
+        },
+        {
+          "path": "b646f6a91bbff2ae99ea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b646f6a91bbff2ae99ea-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-xgrammar-assertion.md"
+}

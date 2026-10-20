@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ca74c8fe0d4099905991",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix bootstrap ci entity filter",
+  "task_key": "worker_fix_bootstrap_ci_entity_filter_20260514T184012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_ci_entity_filter_20260514T184012.log",
+    "occurrence": 1,
+    "bytes": 717921,
+    "sha256": "4810f07fc8f6c1345ab7625074d11e3881fde7ef4dc0fa41bd8d216d3a344429"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "ca74c8fe0d4099905991-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "ca74c8fe0d4099905991-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-bootstrap-ci-entity-filter.md"
+}

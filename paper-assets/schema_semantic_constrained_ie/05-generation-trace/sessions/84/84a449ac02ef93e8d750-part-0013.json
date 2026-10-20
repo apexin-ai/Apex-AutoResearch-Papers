@@ -1,0 +1,3468 @@
+{
+  "schema_version": "1.0",
+  "session_id": "84a449ac02ef93e8d750",
+  "rounds": [
+    {
+      "number": 45,
+      "messages": [
+        {
+          "source_line": 2161,
+          "timestamp": "2026-05-23T10:29:16.317869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p27.png"
+            }
+          },
+          "id": "event-002161"
+        },
+        {
+          "source_line": 2162,
+          "timestamp": "2026-05-23T10:29:16.821432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-002162"
+        },
+        {
+          "source_line": 2163,
+          "timestamp": "2026-05-23T10:29:16.821897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-002163"
+        },
+        {
+          "source_line": 2164,
+          "timestamp": "2026-05-23T10:29:17.728650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1410
+          },
+          "id": "event-002164"
+        },
+        {
+          "source_line": 2165,
+          "timestamp": "2026-05-23T10:29:17.729645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 907
+          },
+          "id": "event-002165"
+        },
+        {
+          "source_line": 2166,
+          "timestamp": "2026-05-23T10:29:17.730031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-002166"
+        },
+        {
+          "source_line": 2167,
+          "timestamp": "2026-05-23T10:29:18.032233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-002167"
+        },
+        {
+          "source_line": 2168,
+          "timestamp": "2026-05-23T10:29:18.137234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 407
+          },
+          "id": "event-002168"
+        },
+        {
+          "source_line": 2169,
+          "timestamp": "2026-05-23T10:29:18.746802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 714
+          },
+          "id": "event-002169"
+        },
+        {
+          "source_line": 2170,
+          "timestamp": "2026-05-23T10:29:27.944882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-002170"
+        },
+        {
+          "source_line": 2171,
+          "timestamp": "2026-05-23T10:29:28.399862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p32.png"
+            }
+          },
+          "id": "event-002171"
+        },
+        {
+          "source_line": 2172,
+          "timestamp": "2026-05-23T10:29:28.904635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-002172"
+        },
+        {
+          "source_line": 2173,
+          "timestamp": "2026-05-23T10:29:28.905148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-002173"
+        },
+        {
+          "source_line": 2174,
+          "timestamp": "2026-05-23T10:29:31.822249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3422
+          },
+          "id": "event-002174"
+        },
+        {
+          "source_line": 2175,
+          "timestamp": "2026-05-23T10:29:31.823045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2917
+          },
+          "id": "event-002175"
+        },
+        {
+          "source_line": 2176,
+          "timestamp": "2026-05-23T10:29:31.875877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p34.png"
+            }
+          },
+          "id": "event-002176"
+        },
+        {
+          "source_line": 2177,
+          "timestamp": "2026-05-23T10:29:31.876357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p35.png"
+            }
+          },
+          "id": "event-002177"
+        },
+        {
+          "source_line": 2178,
+          "timestamp": "2026-05-23T10:29:31.876614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p36.png"
+            }
+          },
+          "id": "event-002178"
+        },
+        {
+          "source_line": 2179,
+          "timestamp": "2026-05-23T10:29:31.929876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p37.png"
+            }
+          },
+          "id": "event-002179"
+        },
+        {
+          "source_line": 2180,
+          "timestamp": "2026-05-23T10:29:32.283882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p38.png"
+            }
+          },
+          "id": "event-002180"
+        },
+        {
+          "source_line": 2181,
+          "timestamp": "2026-05-23T10:29:32.691074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p39.png"
+            }
+          },
+          "id": "event-002181"
+        },
+        {
+          "source_line": 2182,
+          "timestamp": "2026-05-23T10:29:34.108614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2232
+          },
+          "id": "event-002182"
+        },
+        {
+          "source_line": 2183,
+          "timestamp": "2026-05-23T10:29:34.260433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2384
+          },
+          "id": "event-002183"
+        },
+        {
+          "source_line": 2184,
+          "timestamp": "2026-05-23T10:29:34.815584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2885
+          },
+          "id": "event-002184"
+        },
+        {
+          "source_line": 2185,
+          "timestamp": "2026-05-23T10:29:34.822957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2946
+          },
+          "id": "event-002185"
+        },
+        {
+          "source_line": 2186,
+          "timestamp": "2026-05-23T10:29:35.026736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2335
+          },
+          "id": "event-002186"
+        },
+        {
+          "source_line": 2187,
+          "timestamp": "2026-05-23T10:29:35.028140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2744
+          },
+          "id": "event-002187"
+        },
+        {
+          "source_line": 2188,
+          "timestamp": "2026-05-23T10:29:50.768281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-002188"
+        },
+        {
+          "source_line": 2189,
+          "timestamp": "2026-05-23T10:29:50.919989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{amsthm}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{pifont}\n19\t\\usepackage{soul}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}\n22\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n23\t\n24\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n25\t\n26\t\\author{Anonymous ACL submission}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\input{abstract}\n33\t\n34\t% === §1 Introduction ===\n35\t\\input{section1_introduction_draft}\n36\t\n37\t% === §2 Background ===\n38\t\\input{section2_background}\n39\t\n40\t% === §3 Method ===\n41\t\\input{section3_method_draft}\n42\t\n43\t% === §4 Constraint Composition ===\n44\t\\section{Constraint Composition}\n45\t\\label{sec:composition}\n46\t\\input{section4_composition_draft}\n47\t\n48\t% === §5 Experiments ===\n49\t\\section{Experiments}\n50\t\\label{sec:experiments}\n51\t\n52\t\\input{section3_violation_landscape}\n53\t\n54\t\\input{section5_scierc_draft}\n55\t\\input{section5_wikievents_draft}\n56\t\\input{section5_runtime}\n57\t\n58\t% === §6 Related Work ===\n59\t\\input{section6_related_work}\n60\t\n61\t% === §7 Discussion and Conclusion ===\n62\t\\section{Discussion and Conclusion}\n63\t\\label{sec:discussion}\n64\t\\input{section7_conclusion_compressed}\n65\t\n66\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n67\t\\clearpage\n68\t\\section*{Limitations}\n69\t\n70\t\\paragraph{Constraint scope.}\n71\tCF is an architectural consequence of per-triple independent enforcement: CF$\\leftrightarrow$DR represents a fundamental trade-off (eliminating CF re-routes violations to DR; Appendix~\\ref{app:cf-dr-tradeoff}), and its impa\n…[truncated 4686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-002189"
+        },
+        {
+          "source_line": 2190,
+          "timestamp": "2026-05-23T10:29:57.597759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_pumping_lemma.tex"
+            }
+          },
+          "id": "event-002190"
+        },
+        {
+          "source_line": 2191,
+          "timestamp": "2026-05-23T10:29:58.050080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Full Proof of Proposition 1\n2\t% Level 2 (prefix-decidable with state) constraints are not context-free.\n3\t\n4\t\\section{Full Proof of Proposition 1}\n5\t\\label{app:pumping-lemma}\n6\t\n7\tWe prove that domain/range type constraints for IE with unbounded entity sets cannot be expressed by any context-free grammar, using the pumping lemma for context-free languages.\n8\t\n9\t\\begin{proof}\n10\tDefine the language $L$ of valid IE outputs over ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$ with $\\mathcal{E} = \\{\\tau_A, \\tau_B\\}$, $\\mathcal{R} = \\{r\\}$, and $\\sigma(r) = \\{(\\tau_A, \\tau_A)\\}$ (i.e., $r$ requires both head and tail to be type $\\tau_A$).\n11\t\n12\tAn output string has the form:\n13\t\\[\n14\tw = e_1\\, e_2\\, \\cdots\\, e_n\\;\\; \\texttt{REL}(h{=}e_k,\\, r,\\, \\tau^h)\n15\t\\]\n16\twhere each $e_i$ is an entity with type $\\tau_{a_i} \\in \\{\\tau_A, \\tau_B\\}$, and $\\tau^h$ is the head type field of a relation triple referencing entity $e_k$ ($1 \\leq k \\leq n$).\n17\t\n18\tThe type-validity constraint requires $\\tau^h = \\tau_{a_k}$ (the head type must match the referenced entity's type) \\emph{and} $\\tau^h \\in \\operatorname{dom}(r) = \\{\\tau_A\\}$.\n19\tCombined: a string $w \\in L$ if and only if $\\tau_{a_k} = \\tau_A$.\n20\t\n21\tNow consider strings of the specific form:\n22\t\\[\n23\tw_n = \\underbrace{\\tau_B\\; \\tau_B\\; \\cdots\\; \\tau_B}_{n-1}\\; \\tau_A\\;\\; \\texttt{REL}(h{=}e_n,\\, r,\\, \\tau_A)\n24\t\\]\n25\twhere the first $n{-}1$ entities have type $\\tau_B$ and only entity $e_n$ has type $\\tau_A$.\n26\tThe relation references $e_n$, so $\\tau^h = \\tau_A = \\tau_{a_n}$, satisfying both the registry consistency and domain constraint.\n27\tThus $w_n \\in L$ for all $n$.\n28\t\n29\tAssume for contradiction that $L$ is context-free.\n30\tBy the pumping lemma, there exists a pumping length $p$ such that any $w \\in L$ with $|w| \\geq p$ can be written as $w = uvxyz$ where:\n31\t\\begin{enumerate}[label=(\\roman*)]\n32\t    \\item $|vy| \\geq 1$,\n33\t    \\item $|vxy| \\leq p$,\n34\t    \\item $uv^i xy^i z \\in L$ for all $i \\g\n…[truncated 4472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-002191"
+        },
+        {
+          "source_line": 2192,
+          "timestamp": "2026-05-23T10:29:58.050447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
+            }
+          },
+          "id": "event-002192"
+        },
+        {
+          "source_line": 2193,
+          "timestamp": "2026-05-23T10:29:58.151165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 3 — Method (Draft)\n2\t% OntoCoDec: Type-Valid Information Extraction\n3\t% via Compiled Ontology Constraints\n4\t\n5\t\\section{Method}\n6\t\\label{sec:method}\n7\t\n8\t\\input{fig1_framework}\n9\t\n10\tWe present OntoCoDec, a framework that translates IE ontologies into token-level constraints enforced during autoregressive generation.\n11\tThe design is guided by a decidability analysis of IE type constraints.\n12\t\n13\t\\paragraph{Constraint decidability taxonomy.}\n14\t\\label{sec:decidability}\n15\tWe classify IE type constraints into three levels: (1)~\\emph{context-free}: vocabulary membership and JSON structure; (2)~\\emph{prefix-decidable with state}: domain/range type validity, determined at each type-bearing position given the decoded relation type and entity registry; (3)~\\emph{non-local}: cross-entity type consistency, which depends on the full output.\n16\tUnlike code generation where types are statically declared, IE constraints fall into level~2: entity types are inferred from text, the registry is built dynamically, and constraint targets depend on the co-occurring relation.\n17\tOntoCoDec enforces levels 1--2 (grammar and semantic layers, respectively); level~3 is addressed by beam search or post-hoc resolution (Appendix~\\ref{app:tcr}).\n18\t\n19\t\\smallskip\n20\t\\noindent\n21\tExisting grammar-constrained decoding frameworks (e.g., XGrammar) enforce level~1 constraints---structural validity and vocabulary membership---but IE domain/range rules require cross-position entity-type state that context-free grammars cannot express.\n22\tWe formalize this gap:\n23\t\n24\t\\smallskip\n25\t\\noindent\\textbf{Proposition 1} (Level 2 $\\not\\subseteq$ Level 1)\\textbf{.}\n26\t\\textit{Domain/range type constraints for IE with unbounded entity sets are not context-free.}\n27\t\n28\t\\smallskip\n29\t\\noindent\\textit{Proof sketch.}\n30\tConsider $\\mathcal{E} = \\{\\tau_A, \\tau_B\\}$ and a relation $r$ with $\\operatorname{dom}(r) = \\{\\tau_A\\}$.\n31\tAn output contains $n$ entities with independently chosen types, followed by\n…[truncated 8725 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002193"
+        },
+        {
+          "source_line": 2194,
+          "timestamp": "2026-05-23T10:30:04.937923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+            }
+          },
+          "id": "event-002194"
+        },
+        {
+          "source_line": 2195,
+          "timestamp": "2026-05-23T10:30:05.441214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\twhere $\\wedge$ denotes element-wise AND over the vocabulary $V$; a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the scale-dependent layer interaction (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property enforced only by the grammar layer.\n12\tThis dependency is scale-sensitive: 70B semantic-only achieves 84\\% DR reduction (vs.\\ 24\\% on 8B), though grammar remains necessary for RV elimination (\\S\\ref{sec:70b-results}).\n13\t\n14\t\\paragraph{Grammar-First Fallback.}\n15\tWhen $S(t) \\cap G(t) = \\emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n16\tWe enforce a \\emph{grammar-first fallback}: semantic masking is skipped and the grammar layer alone controls selection.\n17\tStructural integrity is a hard constraint; type violations are soft errors detectable by downstream validation, with DR (ontologically invalid type pair) more severe than CF (individually valid triples with cross-triple type inconsistency).\n18\tExtraction tasks are robust to format-level constraints~\\cite{tam2024letmespeak}, supporting this asymmetric treatment.\n19\t\n20\t\\paragraph{Constraint Tightness.}\n21\t\\label{eq:tightness}\n22\tPer-relation constraint tightness $\\kappa(r) = 1 - |\\sigma(r)|/|\\mathcal{E}|^2$, with schema mean $\\bar{\\kappa}$.\n23\tAcross WikiEvents ($\\bar{\\kappa}{=}0.029$), SciERC\n…[truncated 1621 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-002195"
+        },
+        {
+          "source_line": 2196,
+          "timestamp": "2026-05-23T10:30:05.442791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+            }
+          },
+          "id": "event-002196"
+        },
+        {
+          "source_line": 2197,
+          "timestamp": "2026-05-23T10:30:05.544209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — SciERC Results (Draft)\n2\t% Data source: Phase 2 SciERC registry experiments\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\n4\t%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\n5\t% All numbers verified against registry 2026-05-14.\n6\t\n7\t\\subsection{Ablation and Composability with Fine-Tuning}\n8\t\\label{sec:scierc-results}\n9\t\n10\tTable~\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC (Qwen3-8B, zero-shot, 551 documents); only the active constraint layers differ across rows.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: SciERC five-way ablation\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.6pt}\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{@{}l rrrrrr rr@{}}\n21\t\\toprule\n22\t& \\multicolumn{6}{c}{\\textbf{Violation Rates (\\%)}}\n23\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n24\t\\cmidrule(lr){2-7} \\cmidrule(l){8-9}\n25\t\\textbf{Mode}\n26\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n27\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF & Tot.\\,$\\downarrow$\n28\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n29\t\\midrule\n30\tUnconstrained\n31\t  & 15.37 & ---\n32\t  & 1.39  & 0.40\n33\t  & 0.08  & 15.45\n34\t  & 8.23  & 31.01 \\\\\n35\tGrammar\n36\t  & 14.84 & $\\downarrow$3\\%\n37\t  & \\textbf{0} & \\textbf{0}\n38\t  & 0.08  & 14.92\n39\t  & 8.23  & 30.98 \\\\\n40\tGCD-equiv.$^\\dagger$\n41\t  & 15.26 & $\\downarrow$1\\%\n42\t  & \\textbf{0} & \\textbf{0}\n43\t  & 0.04  & 15.30\n44\t  & 8.75  & 30.91 \\\\\n45\tSemantic\n46\t  & 11.65 & $\\downarrow$24\\%\n47\t  & 1.51  & 0.40\n48\t  & 2.71  & 14.36\n49\t  & 8.15  & 31.01 \\\\\n50\tS1\n51\t  & \\textbf{0.93} & $\\downarrow$\\textbf{94\\%}\n52\t  & \\textbf{0} & \\textbf{0}\n53\t  & 9.90  & \\textbf{10.83}\n54\t  & \\textbf{8.36} & 30.98 \\\\\n55\tS2\n56\t  & 0.97  & $\\downarrow$94\\%\n57\t  & \\textbf{0} & \\textbf{0}\n58\t  & 8.03  & \\textbf{9.00}\n59\t  & 8.03  & \\textbf{31.90} \\\\\n60\t\\bottomrule\n61\t\\end{tabular}}%\n62\t\\caption{Five-way ablation on SciERC (551 docs\n…[truncated 7290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-002197"
+        },
+        {
+          "source_line": 2198,
+          "timestamp": "2026-05-23T10:30:11.960301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex"
+            }
+          },
+          "id": "event-002198"
+        },
+        {
+          "source_line": 2199,
+          "timestamp": "2026-05-23T10:30:12.263207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% §5 Setup (compressed from Violation Landscape)\n2\t% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,\n3\t%          mvp_phase0_violation_rate_docred, mvp_phase0_docred_schema\n4\t\n5\t\\label{sec:violation_landscape}\n6\t\n7\tWe evaluate OntoCoDec in two deployment configurations: greedy S1 (DR\\,$\\leq$\\,0.09\\%, $+$10\\% latency) and beam S1 (all violations\\,$\\to$\\,0\\%, 1.39$\\times$ latency); zero-shot evaluation (\\S\\ref{sec:scierc-results}; Appendix~\\ref{app:cross-model-zs}) serves as a diagnostic probe for the fine-tuned setting (R-F1 41--47\\%).\n8\t\n9\t\\paragraph{Setup.}\n10\tWe evaluate on SciERC~\\cite{luan2018scierc} (551 test sentences, 7 relations, $\\bar{\\kappa}{=}0.333$) and DocRED~\\cite{yao2019docred} (998 dev documents,\\footnote{DocRED test annotations are not publicly available; we evaluate on the development set.} 96 relations, $\\bar{\\kappa}{=}0.842$).\n11\tRE type constraints are extracted from observed type pairs in training data (neither dataset provides a formal ontology); EE constraints on WikiEvents (\\S\\ref{sec:wikievents}) derive from the KAIROS ontology.\n12\tAll constraints are schema-level, independent of evaluation splits.\n13\tPrimary model: Qwen3-8B~\\cite{qwen2025qwen3}, zero-shot greedy decoding; cross-model validation in Appendix~\\ref{app:cross-model-zs}, composability with fine-tuning in \\S\\ref{sec:composability}.\n14\tLoRA hyperparameters (rank, $\\alpha$, learning rate) were tuned on SciERC and transferred to DocRED without dataset-specific optimization; given the substantial schema complexity difference (7 vs.\\ 96 relations), this transfer may underestimate DocRED fine-tuning potential.\n15\tOur R-F1 range (41--47\\% under LoRA) is consistent with recent LLM-based generative RE evaluations on these benchmarks, where document-level closed IE without gold entity spans typically achieves 35--50\\%~\\cite{wadhwa2023revisiting}; supervised span-based methods operating under different assumptions (gold entity spans, dedicated architectures) are not directly\n…[truncated 467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-002199"
+        },
+        {
+          "source_line": 2200,
+          "timestamp": "2026-05-23T10:30:12.263548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex"
+            }
+          },
+          "id": "event-002200"
+        },
+        {
+          "source_line": 2201,
+          "timestamp": "2026-05-23T10:30:12.414609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 5 — Event Extraction on WikiEvents (summary; full results in Appendix)\n2\t\n3\t\\subsection{Preliminary Event Extraction Pilot}\n4\t\\label{sec:wikievents}\n5\t\n6\tA preliminary pilot on WikiEvents event extraction ($n{=}20$ documents; 56 event types, 245 constraints; Appendix~\\ref{app:wikievents-pilot}) shows that S1 eliminates all vocabulary violations (EV, RoV) across three models, with directional DR reduction consistent with the RE results (residual AC 1.3--3.8\\%; Table~\\ref{tab:wikievents}).\n7\tStatistical power is limited (MDE${\\approx}\\pm$5.0\\,pp); LoRA + S1 eliminates RoV and reduces AC to $\\leq$0.8\\% with argument F1 within $\\pm$1.1\\,pp (Appendix~\\ref{app:wikievents-pilot}).\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-002201"
+        },
+        {
+          "source_line": 2202,
+          "timestamp": "2026-05-23T10:30:18.228372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
+            }
+          },
+          "id": "event-002202"
+        },
+        {
+          "source_line": 2203,
+          "timestamp": "2026-05-23T10:30:18.229009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Runtime overhead (inline paragraph, no subsection header to save space)\n2\t\n3\t\\paragraph{Runtime overhead.}\n4\t\\label{sec:runtime}\n5\tS1 overhead is $+$13.1\\% on SciERC, lower on DocRED due to amortization over longer sequences; under LoRA, $+$10.0\\% with 37\\% lower absolute latency.\n6\tConstraint compilation is one-time $<$0.5\\,s; scaling benchmarks confirm constant overhead (2--3\\%) up to 200 entity types and 1{,}000 relations (Appendix~\\ref{app:scalability}).\n7\t\n8\t\\paragraph{Beam search compatibility.}\n9\t\\label{sec:beam-results}\n10\t% exp_id: d066_beam_sweep\n11\tWith LoRA, beam search~\\cite{anderson2017guided} eliminates all four violation types on both SciERC and DocRED at both 8B and 70B scales (Appendix~\\ref{app:beam-search}).\n12\tA beam-width sweep ($k \\in \\{1,2,4,8\\}$) on SciERC reveals $k{=}2$ as Pareto-optimal: R-F1 44.60 (highest), CF 0.11\\%, at only 1.18$\\times$ greedy latency; $k{=}4$ achieves CF${=}$0\\% but lower R-F1 (43.60) at 1.39$\\times$ latency (Table~\\ref{tab:beam-latency}).\n13\tThis yields three deployment tiers: greedy S1 ($+$10\\% latency, DR${<}$0.1\\%, CF${\\leq}$1.4\\%), beam $k{=}2$ (1.18$\\times$, near-zero CF), and beam $k{=}4$ (1.39$\\times$, all violations${\\to}$0\\%).\n14\tPer-beam memory overhead is $O(k \\times |\\text{entities}| \\times |\\text{types}|)$ for independent entity registry copies, negligible at typical document scales.\n15\t\n16\t% exp_ids: r16_70b_scierc_zs_s1, r16_70b_docred_zs_s1, 70b_lora_scierc, 70b_lora_docred_200\n17\t\\paragraph{70B-class validation (single-family).}\n18\t\\label{sec:70b-results}\n19\tThe following results constitute a single-family scale validation on Llama-3.1-70B-Instruct (AWQ INT4); cross-family verification (e.g., Qwen-72B) remains future work.\n20\tAll 70B experiments use Llama-3.1-70B-Instruct under AWQ INT4 quantization; an 8B ablation confirms constraint enforcement is unaffected by quantization (Appendix~\\ref{app:quantization}).\n21\tZero-shot S1 eliminates DR on both datasets (SciERC 6.41\\%\\,$\\to$\\,0\\%, DocRED 14.98\n…[truncated 1627 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002203"
+        },
+        {
+          "source_line": 2204,
+          "timestamp": "2026-05-23T10:32:06.997057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002204"
+        },
+        {
+          "source_line": 2205,
+          "timestamp": "2026-05-23T10:32:07.248405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 251
+          },
+          "id": "event-002205"
+        },
+        {
+          "source_line": 2206,
+          "timestamp": "2026-05-23T10:34:40.550173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 1 审稿意见：OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n\n---\n\n## Summary\n\n本文提出 OntoCoDec，一个将 IE 本体论编译为两层 token-level 约束的框架：grammar layer（基于 XGrammar 的 CFG）负责 JSON 结构和词汇约束，semantic layer（entity registry + dynamic masking）负责 domain/range 类型约束。作者提出三级约束分类法（context-free / prefix-decidable with state / non-local），并通过 pumping lemma 证明 Level 2 约束超出 CFG 表达能力（Proposition 1）。实验在 SciERC（7 relations）、DocRED（96 relations）和 WikiEvents pilot（n=20）上评估，覆盖 3 个 8B 模型族 + 1 个 70B 模型（AWQ INT4），报告了 zero-shot 和 LoRA fine-tuning 两种设置下的消融实验。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | Proposition 1 证明正确；消融设计严谨（5-way ablation + bootstrap CI + Bonferroni correction）；但 κ-DR 相关性 n=3 无统计效力，CF trade-off 实质影响被淡化 |\n| Excitement | 3/5 | 解决了真实问题（15-18% violation rates），但核心洞察（grammar 不能约束跨实体类型一致性）在 constrained decoding 社区已是 known intuition，贡献偏工程化 |\n| Reproducibility | 4/5 | 超参数、prompts、硬件配置详尽（Appendix I）；承诺 acceptance 后开源；唯一缺失是代码尚不可用 |\n| Overall Assessment | 3.5 | Borderline Conference |\n| Confidence | 4/5 | 本人熟悉 constrained decoding 和结构化 IE 领域 |\n\n---\n\n## 主要优势\n\n**S1.** 三级约束分类法（§3 Constraint decidability taxonomy）概念清晰且有实用价值。将 IE 类型约束按可判定性分为 context-free / prefix-decidable with state / non-local 三级，为该领域提供了一个有用的思维框架。Proposition 1 的 pumping lemma 证明（Appendix O）在技术上正确：通过构造 $w_n = \\tau_B^{n-1}\\tau_A\\;\\texttt{REL}(h{=}e_n, r, \\tau_A)$ 并分析 pumping 对 position→type binding 的破坏，论证严谨。Position-based 到 name-based 的推广论证（Appendix O \"Position indexing vs. name referencing\"）也合理。\n\n**S2.** 消融实验设计优秀。5-way ablation on SciERC（Table 1: unconstrained / grammar-only / GCD-equiv / semantic-only / S1 / S2）是该论文最强的实验贡献，每层的边际贡献清晰可见（grammar 3% DR reduction, semantic 24%, 组合 94%）。GCD-equiv 通过 vLLM `guided_json` 外部验证（Appendix S）增强了可信度。\n\n**S3.** 统计方法严谨。Bootstrap CI（10,000 iterations, Table 6）、Bonferroni correction for multiple comparisons、Cohen's d effect sizes 的使用在 NLP 论文中不常见且值得肯定。per-configuration corrected p-values 的报告（Qwen3-8B/SciERC p_adj=1.00 等）是诚实的。\n\n**S4.** Cross-model 验证覆盖面好。3 个 tokenizer family（Qwen BPE、Llama BPE、Mistral SentencePiece）× 2 datasets（Table in §5, Appendix Q）验证了 continuation masking 的 tokenizer-agnostic 性。\n\n**S5.** 工程完整性强。Appendix 31 页覆盖了几乎所有可预见的质疑：causal tracing（Appendix C）、cascade error analysis（Appendix C）、order invariance（Appendix N）、prompt sensitivity（Appendix I）、document length effect（Appendix H）、quantization robustness（Appendix R）、sampling robustness（Appendix E）。这是我见过的附录最充分的论文之一。\n\n**S6.** Grammar-first fallback 机制设计合理。优先保证 JSON 结构完整性、将类型违规作为 soft error 处理的设计哲学符合实际部署需求（§4, Eq. 2）。Fallback causal tracing（Appendix C Table 4）提供了有力的机制验证。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [Critical] κ-DR 相关性（n=3）统计上无意义，但被赋予过高叙事地位\n\n- 具体位置：§4 \"Constraint Tightness\" paragraph; Figure 3 (p.23)\n- 问题：κ̄ 与 DR reduction 的相关性仅基于 3 个数据点（WikiEvents κ̄=0.029, SciERC κ̄=0.333, DocRED κ̄=0.842）。论文报告 p=0.138 并称\"descriptive\"，但该结果出现在正文 §4 的独立段落中，配有定义式（κ(r) = 1 − |σ(r)|/|E|²），在 Appendix 中有独立的 case study（Appendix N, P）和 Figure 3。这种叙事比重暗示 κ 是一个有解释力的指标，但 n=3 时任意 3 个单调点都能产生类似相关性。此外，论文自己承认\"entity type confusability is a critical co-factor\"（§4），这意味着 κ 是 confounded variable，不能独立解释 DR reduction。\n- 为什么影响接收：Reviewer 会认为这是 overclaiming——用无统计效力的相关性暗示因果关系。\n- 建议修改方向：（1）将 κ 降格为\"描述性案例对比\"而非\"相关性\"，删除 p 值报告（n=3 的 p 值本身就误导）；（2）在正文中明确声明\"three schemas are insufficient to establish a general relationship\"；（3）或者增加 2-3 个不同 schema 的数据集验证。\n\n**N2** [Critical] CF 作为结构性 trade-off 被低估——zero-shot greedy 下 CF rate 9.90% 是一个严重的实用性问题\n\n- 具体位置：Table 1 (CF column); §5.1 \"Cross-field violation analysis\"; §4 \"Greedy limitation and fallback cascade\"\n- 问题：在 zero-shot greedy S1 下，DR 从 15.37% 降至 0.93%（↓94%），但 CF 从 0.08% 升至 9.90%。Total violation rate（DR+CF）从 15.45% 降至 10.83%，仅降低 30%。论文将 DR→CF 称为\"severity downgrade\"（§5.1），但这需要更充分的论证：(a) CF 意味着同一实体在不同 triple 中被赋予不同类型，这在下游知识图谱应用中可能同样严重；(b) 论文声称 CF 可通过 post-hoc TCR 解决（Appendix M, 18-92% reduction），但 TCR 并未集成到系统中，而是作为 future work 提及。\n- Abstract 中\"reduces domain/range violations by 62% on average\"和\"near-complete DR elimination\"的表述在有 9.90% CF 的情况下可能误导读者，因为它选择性地报告了一种违规类型的改善而忽略了另一种的恶化。\n- 为什么影响接收：Total violation reduction 仅 30%（zero-shot greedy）的系统难以支撑 §7 中\"constraint enforcement is preserved under INT4\"这类强表述。Reviewer 期望看到对 DR→CF trade-off 的更诚实的讨论。\n- 建议修改方向：（1）在 Abstract 和 Introduction 中同时报告 DR reduction 和 CF increase，给出 total violation 的净变化；（2）将 beam search（k=4, 所有 violation→0%）作为推荐配置而非可选项，或更明确地讨论 greedy 的局限性；（3）提供 CF 对下游任务影响的定量分析（比如 CF triples 中有多少是 gold match）。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Major] Proposition 1 的实际价值：formalizing known intuition vs. genuine theoretical contribution\n\n- 具体位置：§3 Proposition 1; Appendix O\n- 问题：在 constrained decoding 领域，grammar 不能约束跨位置的语义依赖关系是广泛已知的直觉。XGrammar (Dong et al., 2025)、GCD (Geng et al., 2023)、Outlines (Willard and Louf, 2023) 的论文都隐含地承认了这一点。Proposition 1 将这个直觉形式化为 pumping lemma 证明，这本身是有价值的，但论文将其作为核心贡献之一（Introduction bullet 1: \"a two-layer constrained decoding framework, formalizing a known intuition\"），这个定位的诚实性值得肯定，但也意味着理论新颖性有限。\n- 补充说明：工程适用性段落（§3 \"Engineering applicability\"）承认有限实体集理论上是 regular 但 DFA 状态数指数级爆炸（6^17 ≈ 1.6×10^13 for SciERC）。这个论证对于实际价值更重要，但也意味着 Proposition 1 的不可能性结论是渐近的（unbounded entities），与实际有限场景之间有 gap。\n- 建议：明确区分\"理论贡献\"（pumping lemma proof for unbounded case）和\"工程贡献\"（exponential DFA for finite case），避免将两者混为一个统一的不可能性论证。\n\n**W2** [Major] Scale-dependent layer interaction 缺乏因果解释\n\n- 具体位置：§3 \"Empirical Observation\"; §5.1 Table 1 vs. §5 \"70B-class validation\"\n- 问题：8B semantic-only 仅 24% DR reduction，70B semantic-only 达 84%。这是一个重要发现，但论文仅称其为\"empirical observation\"，未提供因果解释。可能的假设包括：(a) 70B 模型的 vocabulary logit distribution 更集中于合法类型，使 semantic masking 更有效；(b) 70B 模型的 relation 名称生成更准确，减少了 grammar layer 对 vocabulary enforcement 的需求；(c) 模型容量影响 first-seen registration 准确率。论文在 Appendix C（Fallback Causal Tracing）提供了一些线索（Llama-3.1-8B 触发 5,882 fallbacks vs. Qwen 0 fallbacks），但未将此与 scale-dependent observation 联系起来。\n- 建议：分析 8B vs. 70B 在 semantic-only 模式下的 fallback 频率差异，提供 scale-dependent interaction 的机制解释。\n\n**W3** [Major] Fine-tuning 仅验证 LoRA，composability claim 的泛化性不足\n\n- 具体位置：§5.1 \"Composability with fine-tuning\"; Table 2; Limitations §1\n- 问题：Fine-tuning composability 是论文的核心卖点之一（Introduction bullet 3），但仅在 LoRA 上验证。Appendix L 提到 full fine-tuning \"confirms constraints remain effective (DR→0%)\"但这是单个配置（2 × 8B）的结果。QLoRA、prefix tuning、adapters 等其他 PEFT 方法未涉及。不同 fine-tuning 方法对 logit distribution 的影响不同，可能改变 grammar-semantic interaction。\n- Limitations 中承认了这一点（\"Evaluation is limited to one fine-tuning method (LoRA)\"），但 Introduction 中的 composability claim 未加限定。\n- 建议：在 Introduction 和 Abstract 中限定 composability claim 为\"demonstrated with LoRA fine-tuning\"，或追加 1-2 种 PEFT 方法的验证。\n\n**W4** [Major] S1 vs. S2 对比缺乏深入分析\n\n- 具体位置：§3.4; Table 1 (S1 R-F1 8.36 vs. S2 R-F1 8.03)\n- 问题：S2（two-pass）在 R-F1 上低于 S1（single-pass），但在 CF 上更优（8.03% vs. 9.90%）。论文简单声明\"S1 achieves higher R-F1 at comparable DR (§5.1) and is the primary configuration\"，但未分析 S2 的 R-F1 下降原因。可能的因素：(a) two-pass 的 error propagation（第一 pass 遗漏的实体在第二 pass 中不可恢复）；(b) input-dependent grammar 的 over-constraint；(c) 额外的 inference pass 引入的 sampling noise。在 zero-shot 8.36 vs. 8.03 的水平上，0.33pp 差异是否显著？论文未报告 S1 vs. S2 的 bootstrap CI。\n- 建议：提供 S1 vs. S2 的 paired bootstrap test；分析 S2 失败 case 以确定 R-F1 下降的来源。\n\n**W5** [Major] WikiEvents pilot（n=20）对论文贡献有限\n\n- 具体位置：§5.2; Table in Appendix Q\n- 问题：20 个文档的 pilot，MDE≈±5.0pp，本身承认 statistical power 不足。这个结果既不能证明 OntoCoDec 在 event extraction 上有效，也不能证明无效。论文将其定位为\"preliminary pilot\"是诚实的，但它占用了正文空间（§5.2）且给人一种凑实验的印象。\n- 建议：将 WikiEvents 移至 Appendix，或在正文中仅用一句话提及。释放的空间可用于更深入地分析 S1 vs. S2 或 scale-dependent interaction。\n\n**W6** [Minor] Baseline 缺少与 training-time constraint enforcement 方法的直接对比\n\n- 具体位置：§5; §6 Related Work\n- 问题：论文的主要 baseline 是内部消融（unconstrained, grammar-only, semantic-only）和 grammar-constrained decoding 等价物（GCD-equiv via vLLM）。GoLLIE 对比仅在 WikiEvents pilot 上进行（Appendix S, n=20, 5 predicted relations）。论文在 §6 和 §7 讨论了 training-time 方法（GoLLIE, KnowCoder, REBEL, UIE）是\"complementary rather than competing\"，这个定位合理，但缺少任何直接的 apples-to-apples 对比使读者难以判断 OntoCoDec 相对于 training-time enforcement 的实际优势。\n- 建议：至少在一个主数据集（如 SciERC）上与 GoLLIE 或 KnowCoder 的公开结果进行 violation rate 对比（即使 F1 不可直接比较，violation rate 是 task-agnostic 的）。\n\n---\n\n## 小问题（不影响接收）\n\n- §3 \"Constraint decidability taxonomy\" 使用 `\\paragraph` 标签 `\\label{sec:decidability}` 但这在 LaTeX 中可能不可靠引用，建议改为 subsection 或在相邻 section 中引用。\n- Table 1 信息密度很高（9 列），建议考虑将 violation rates 和 F1 分成两个 sub-table 或使用更大的字号。\n- §3 \"Engineering applicability\": \"$6^{17} \\approx 1.6 \\times 10^{13}$\" 应更精确地说明这是针对 SciERC 的 worst-case 估计（median 17 entities），实际单文档可能更少。\n- Appendix O 的 proof 中 Case 1 的论证可以更精确：pumping τ_B tokens shifts τ_A 的位置，但需要明确 relation reference 是 positional（proof 中假设）而非 name-based（实际系统），这个区分在后续段落中有讨论但 proof 本体中不够清晰。\n- \"near-complete DR elimination\"（Abstract）在 zero-shot greedy 下 DR=0.93% 时基本成立，但 fine-tuning 后 DR≤0.09% 才真正接近 complete——建议区分两种设置下的 claim 强度。\n\n---\n\n## Questions for Authors\n\n**Q1.** Schema coverage gaps 占 fine-tuning residual DR 的 33%（§Limitations）。当 training data 的 type pair 分布不覆盖所有合法 ontology pair 时，系统会 over-restrict。能否量化 SciERC 和 DocRED 的 schema 对 ground truth ontology 的覆盖率？是否考虑过基于 ontology hierarchy（而非 observed pairs）构建 constraint？\n\n**Q2.** Entity registry 的 first-seen semantics（§3.3）在长文档中的行为如何？DocRED 文档平均 19 entities，但 outlier 文档的 entity 数可达多少？registry 的 O(|entities| × |types|) 复杂度在 100+ entities 时是否有实测性能数据？\n\n**Q3.** Continuation masking（§3.3 \"Tokenizer-agnostic type masking\"）对 morphologically similar types（如 Protein vs. Protein_Complex，Limitations 中提及）的实际失败率是多少？Appendix K 是否有相关数据？\n\n**Q4.** Table 6 报告 DRΔ 的 bootstrap CI（例如 Qwen3-8B SciERC: −1.95 to −1.11, CI [−2.57, −1.11]），但 R-F1 的 CI 很宽（如 [−1.07, −0.64]），可能导致 R-F1 变化不显著。在 R-F1 本身就很低的 zero-shot 设置中（8-13%），violation reduction 的实际下游价值如何量化？\n\n---\n\n## Missing References\n\n- Ning et al., 2025. \"Type-Aware Constrained Generation for Biomedical NER\" (如存在)——检查 biomedical IE 中是否有类似的 type-constrained decoding 工作。\n- 论文引用看起来完整，覆盖了 constrained decoding（XGrammar, GCD, Outlines, SGLang, BoostCD）和 IE（SciERC, DocRED, REBEL, UIE, GoLLIE, KnowCoder）的主要工作。\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 — Borderline Conference\n\n**一句话总结**: 技术实现扎实、消融设计优秀的约束解码框架，但理论贡献偏 formalize known intuition，κ-DR 相关性无统计效力，且 DR→CF trade-off 被低估，综合来看处于 Conference/Findings 边界。\n\n**详细判断依据**: 论文解决了一个真实且重要的问题（LLM-based IE 中 15-18% 的本体违规率），提出了一个 clean 的两层架构，配有正确的理论证明和全面的消融实验。统计方法（bootstrap CI, Bonferroni correction, Cohen's d）在 NLP 论文中罕见且值得肯定。31 页 Appendix 回答了大量预期问题。然而，核心理论贡献（Proposition 1）本质上是将已知直觉形式化，而非新发现；κ-DR correlation（n=3, p=0.138）不应以相关性的形式呈现；CF trade-off 使 zero-shot greedy 下的 total violation 仅降低 30%，削弱了实用性论述；fine-tuning 仅验证 LoRA；WikiEvents pilot 统计效力不足。若 N1（κ overclaiming）和 N2（CF trade-off 诚实呈现）能在 revision 中解决，评分可升至 4.0。\n",
+              "reviewer_id": "1",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-002206"
+        },
+        {
+          "source_line": 2207,
+          "timestamp": "2026-05-23T10:34:44.463402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3913
+          },
+          "id": "event-002207"
+        },
+        {
+          "source_line": 2208,
+          "timestamp": "2026-05-23T10:34:53.634974+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n总结：我给出 **Overall 3.5（Borderline Conference）**，Soundness 3.5，Excitement 3，Reproducibility 4，Confidence 4。\n\n两个 Critical 问题：\n1. **κ-DR 相关性（n=3）** 无统计效力但被赋予过高叙事地位\n2. **CF trade-off 被低估**——zero-shot greedy 下 total violation 仅降 30%（DR↓94% 但 CF 从 0.08%→9.90%）\n\n四个 Major 问题：Proposition 1 偏 formalize known intuition、scale-dependent interaction 缺因果解释、fine-tuning 仅验 LoRA、S1 vs S2 对比深度不足。\n\n主要优势：消融设计优秀（5-way + bootstrap CI + Bonferroni）、cross-model 验证充分、31 页 appendix 极其详尽。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1"
+          },
+          "id": "event-002208"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "messages": [
+        {
+          "source_line": 2209,
+          "timestamp": "2026-05-23T10:39:17.195033+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见，请逐条回应。对每个 Must-Fix 和 Should-Fix 问题，用 **[AGREE]** 表示同意并说明理由，或 **[REBUT]** 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 的审稿意见\n\n### Overall: 3.5 (Borderline Conference) | Soundness 4 | Excitement 3 | Reproducibility 4 | Confidence 4\n\n### Must-Fix 问题\n\n**N1** [Critical] WikiEvents n=20 作为 \"task generalization\" 证据严重不足，但被列为 contribution\n- §1 Contribution 2 将 \"directional evidence of task generalization\" 列为贡献的一部分。n=20 的 pilot 不构成 generalization 证据，是 feasibility demonstration 而非 validation。\n\n**N2** [Critical] GoLLIE 比较存在严重方法论缺陷，但被用于定位论文差异化\n- Appendix 中 GoLLIE-7B 比较将零样本 GoLLIE-7B vs. LoRA+S1 微调的 OntoCoDec 进行对比。§6 引用此结论（\"near-complete output suppression\"）来定位差异化，但实验条件不对等。公平比较应为两者均零样本或两者均微调。\n\n### Should-Fix 问题\n\n**W1** [Major] Proposition 1 的新颖性被高估——这是 well-known fact 的领域应用\n**W2** [Major] 70B 验证仅限单一模型族，但 Contribution 3 标题为 \"scale validation\"\n**W3** [Major] DR↔CF trade-off 在零样本场景下的严重程度讨论不足\n**W4** [Minor] constraint tightness 分析（n=3, p=0.138）在正文中占据过多空间\n\n### 小问题\n\n**M1** Abstract \"F1 41-47%\" 但 Table 2 Qwen DocRED S1 R-F1=40.79，低于 41%\n**M2** CRANE (Banerjee et al., 2025) 仅在 Appendix B 讨论，S2 在 70B 下 R-F1 降低 8.45pp 与 CRANE 关于 constrained decoding 抑制 reasoning 的分析直接相关\n**M3** DocRED 使用 dev set 的说明仅在 footnote 1，应更显著\n**M4** Figure 1 缺少端到端 running example\n**M5** §3.1 \"100% preservation across all configurations\" 表述不清\n**M6** empirical constraints 0.6-1.0% 未覆盖 valid type pairs 对 schema evolution 的影响未讨论\n\n---\n\n请逐条回应上述 N1、N2、W1-W4、M1-M6。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002209"
+        },
+        {
+          "source_line": 2210,
+          "timestamp": "2026-05-23T10:39:30.363991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
+            }
+          },
+          "id": "event-002210"
+        },
+        {
+          "source_line": 2211,
+          "timestamp": "2026-05-23T10:39:30.766314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section 1: Introduction (compressed, 669→~550 words)\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tLarge language models are increasingly used for information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity necessarily carries a type consistent with the ontology's domain/range constraints for $r$.\n7\tWe call such outputs \\emph{domain/range violations}: structurally valid triples that are ontologically invalid.\n8\tViolations persist across the capability spectrum: 15.4\\% of triples on SciERC~\\cite{luan2018scierc} and 18.5\\% on DocRED~\\cite{yao2019docred} under zero-shot decoding, and 0.5--2\\% even after LoRA fine-tuning; rates follow an observed pattern consistent with schema restrictiveness (few valid type pairs per relation) rather than ontology or model scale.\n9\tAt competitive quality (R-F1 41--47\\%), even 1--2\\% residual violations compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.\n10\t\n11\tExisting approaches leave a fundamental gap.\n12\tSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n13\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} ensures syntactic well-formedness but cannot encode cross-field semantic constraints.\n14\tPost-hoc filtering discards up to 48\\% of predictions including true positives (Appendix~\\ref{app:cross-model-zs}).\n15\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime enforcement.\n16\t\n17\tWe propose \\textbf{OntoCoDec}, a framework that translates IE ontologies into composable layers of decoding-time constraints.\n18\tA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture:\n…[truncated 2907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-002211"
+        },
+        {
+          "source_line": 2212,
+          "timestamp": "2026-05-23T10:39:30.917307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_gollie_comparison.tex"
+            }
+          },
+          "id": "event-002212"
+        },
+        {
+          "source_line": 2213,
+          "timestamp": "2026-05-23T10:39:30.917915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: GoLLIE Comparison (D4 response)\n2\t% exp_ids: gollie_7b_scierc_zs_100, ontcodec_qwen_ft_s1_scierc_100, ontcodec_llama_ft_s1_scierc_100\n3\t\n4\t\\section{GoLLIE Comparison}\n5\t\\label{app:gollie-comparison}\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\small\n10\t\\setlength{\\tabcolsep}{3.2pt}\n11\t\\resizebox{\\columnwidth}{!}{%\n12\t\\begin{tabular}{@{}l rrrr rr r@{}}\n13\t\\toprule\n14\t\\textbf{Method}\n15\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n16\t  & R-F1\\,$\\uparrow$ & E-F1\\,$\\uparrow$\n17\t  & \\#Pred \\\\\n18\t\\midrule\n19\tGoLLIE-7B (ZS)        & 0    & 0 & 0 & 0.83 & 0.0   & 9.17  & 5 \\\\\n20\tOntoCoDec Qwen (FT+S1)  & 0    & 0 & 0 & 0.61 & 43.69 & 66.43 & 1121 \\\\\n21\tOntoCoDec Llama (FT+S1) & 0    & 0 & 0 & 0.62 & 45.47 & 67.09 & 1070 \\\\\n22\t\\bottomrule\n23\t\\end{tabular}}\n24\t\\caption{GoLLIE-7B vs.\\ OntoCoDec on SciERC (100 docs, zero-shot for GoLLIE, LoRA + S1 for OntoCoDec). F1 $\\times$ 100.}\n25\t\\label{tab:gollie-comparison}\n26\t\\end{table}\n27\t\n28\tGoLLIE-7B achieves zero DR/RV/ET violations by generating only 5 predicted relations across 100 documents (54\\% produce empty output), representing a trivial solution where formal correctness is achieved through near-complete abstention.\n29\tOntoCoDec achieves comparable violation rates (DR${=}$0\\%, lower CF) while maintaining R-F1 43--45\\% with ${\\sim}$200$\\times$ more predictions.\n30\tCode-style schema encoding thus trades coverage for formal correctness; OntoCoDec achieves both through decoding-time enforcement rather than training-time internalization.\n31\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002213"
+        },
+        {
+          "source_line": 2214,
+          "timestamp": "2026-05-23T10:39:36.139079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+            }
+          },
+          "id": "event-002214"
+        },
+        {
+          "source_line": 2215,
+          "timestamp": "2026-05-23T10:39:36.491082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLarge language models for information extraction generate structurally valid but ontologically invalid triples---where entity types violate the ontology's domain/range constraints.\n3\tThese violations persist across the capability spectrum and cannot be addressed by grammar-constrained decoding (which lacks cross-field type awareness) or post-hoc filtering (which discards valid predictions).\n4\t\n5\tWe present \\textsc{OntoCoDec}, a framework that compiles information extraction ontologies into composable token-level decoding constraints.\n6\tA decidability analysis shows that domain/range constraints exceed context-free expressiveness, yielding a two-layer architecture: a grammar layer enforces structural validity and vocabulary membership; a semantic layer enforces type constraints at runtime through stateful masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.\n7\t\n8\t% exp_ids: w5_lora_scierc_constrained_eval, w5_qwen_docred_lora_constrained_eval, w5_llama_lora_scierc_constrained_eval, w5_llama_docred_lora_constrained_eval\n9\tEvaluated across three 8B-class models and two relation extraction datasets (up to 96 relations), OntoCoDec composed with LoRA fine-tuning near-eliminates domain/range violations ($<$\\,0.1\\%) at F1 41--47\\%, but introduces cross-field type inconsistencies ($\\leq$1.4\\%) as the dominant residual---an architectural consequence of per-triple independent enforcement.\n10\tBeam search ($k{=}2$) reduces CF to 0.11\\% at 1.18$\\times$ latency; $k{=}4$ eliminates all violation types at 1.39$\\times$.\n11\tIn zero-shot settings, cross-field rates are higher (up to 12\\%) but decrease with model calibration.\n12\tZero-shot domain/range reductions span 76--99\\% on SciERC and 42--90\\% on DocRED; violation rates follow an observed pattern consistent with schema restrictiveness across our three evaluation schemas ($n{=}3$; insufficient for statistical inference), with a scale-dependent relationship between the two\n…[truncated 30 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-002215"
+        },
+        {
+          "source_line": 2216,
+          "timestamp": "2026-05-23T10:39:36.641957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-002216"
+        },
+        {
+          "source_line": 2217,
+          "timestamp": "2026-05-23T10:39:36.692798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Extended Related Work}\n2\t\\label{app:related_work}\n3\t\n4\t% ===========================================================================\n5\t% Paradigm 1: Grammar-Constrained Decoding\n6\t% ===========================================================================\n7\t\\paragraph{Grammar-Constrained Decoding.}\n8\tRecent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, making grammar-constrained decoding the de facto standard for obtaining structured output from language models.\n9\tXGrammar~\\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens and maintains persistent pushdown automata across decoding steps, achieving up to 100$\\times$ speedup over prior CFG-constrained decoding methods.\n10\tOutlines~\\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, which enables efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.\n11\tLMQL~\\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks, providing a programmable interface for specifying multi-variable output structures.\n12\tThese systems ensure that every generated token belongs to a grammar-valid continuation, but they do not address the \\emph{distribution distortion} introduced by naive token masking.\n13\tA parallel line of work tackles this problem directly: DOMINO~\\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement by formulating mask selection as an optimization problem, and ASAp~\\cite{park2024grammar} provides a provably unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.\n14\tTogether, these advances have made grammar-constrained decoding both fast and statistically principled, and provide a robust foundation for \n…[truncated 13538 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002217"
+        },
+        {
+          "source_line": 2218,
+          "timestamp": "2026-05-23T10:39:42.382045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CRANE|Banerjee|crane",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-002218"
+        },
+        {
+          "source_line": 2219,
+          "timestamp": "2026-05-23T10:39:42.482864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.bbl:23:\\bibitem[{Banerjee et~al.(2025)Banerjee, Suresh, Ugare, Misailovic, and\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.bbl:24:  Singh}]{banerjee2025crane}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.bbl:25:Debangshu Banerjee, Tarun Suresh, Shubham Ugare, Sasa Misailovic, and Gagandeep\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.bbl:27:\\newblock \\href {https://proceedings.mlr.press/v267/banerjee25a.html} {{CRANE}:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:856:\\bibcite{banerjee2025crane}{{3}{2025}{{Banerjee et~al.}}{{Banerjee, Suresh, Ugare, Misailovic, and Singh}}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:1656:\\citation{banerjee2025crane}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:93:CRANE~\\cite{banerjee2025crane} provides theoretical analysis of why restricting outputs to narrow grammars suppresses chain-of-thought reasoning by eliminating intermediate reasoning tokens, and proposes an alternating strategy between unconstrained reasoning phases and constrained output phases to mitigate this effect.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:100:A two-pass variant (S2), explored in ablation (Section~5), separates extraction and constraint enforcement into distinct passes, analogous to CRANE's alternating strategy; however, our primary single-pass approach already avoids reasoning int\n…[truncated 1543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002219"
+        },
+        {
+          "source_line": 2220,
+          "timestamp": "2026-05-23T10:39:45.199328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex",
+              "offset": "85",
+              "limit": "30"
+            }
+          },
+          "id": "event-002220"
+        },
+        {
+          "source_line": 2221,
+          "timestamp": "2026-05-23T10:39:45.250317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\tSoft-constraint approaches such as ontology-weighted beam scoring reduce violation frequency but cannot eliminate it, whereas OntoCoDec substantially reduces violations (DR$\\downarrow$94\\% on SciERC, $\\downarrow$45--90\\% on DocRED depending on model).\n86\t\n87\t% ===========================================================================\n88\t% Paradigm 5: Constrained Decoding Quality Concerns\n89\t% ===========================================================================\n90\t\\paragraph{Quality Impact of Constrained Decoding.}\n91\tA growing body of work raises concerns that constrained decoding degrades LLM generation quality, particularly for reasoning-intensive tasks where format enforcement interferes with chain-of-thought processes.\n92\t\\citet{tam2024letmespeak} conduct a comprehensive evaluation showing that rigid format constraints (JSON, XML) harm performance on math and multi-hop QA benchmarks but \\emph{benefit} classification-style tasks such as slot filling, a distinction directly relevant to IE, which is fundamentally an extraction (classification-like) task rather than a reasoning task.\n93\tCRANE~\\cite{banerjee2025crane} provides theoretical analysis of why restricting outputs to narrow grammars suppresses chain-of-thought reasoning by eliminating intermediate reasoning tokens, and proposes an alternating strategy between unconstrained reasoning phases and constrained output phases to mitigate this effect.\n94\t\\citet{schall2025hiddencost} conduct a systematic study across 11 models and multiple benchmarks, finding 10--30\\% semantic correctness degradation on reasoning tasks under structural constraints, with larger models showing greater absolute degradation.\n95\t\\citet{zhou2026snowballing} identify ``structure snowballing,'' a failure mode where format compliance cognitive load traps models in repetitive structural patterns rather than improving reasoning during self-correction iterations.\n96\tThese findings establish a legitimate concern for constrained decodi\n…[truncated 3090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002221"
+        },
+        {
+          "source_line": 2222,
+          "timestamp": "2026-05-23T10:40:32.429772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/fig1_framework.tex"
+            }
+          },
+          "id": "event-002222"
+        },
+        {
+          "source_line": 2223,
+          "timestamp": "2026-05-23T10:40:32.430312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{figure*}[t]\n2\t\\centering\n3\t\\includegraphics[width=\\textwidth]{figures/fig1_framework.pdf}\n4\t\\caption{Overview of OntoCoDec. An IE ontology is compiled into two constraint layers: a grammar layer (context-free) and a semantic layer (prefix-decidable with state). At each decoding step, the final mask $M_{\\text{final}}(t) = G(t) \\cap S(t)$ ensures both structural and type validity; when $S(t) \\cap G(t) = \\emptyset$, grammar-first fallback preserves JSON integrity.}\n5\t\\label{fig:framework}\n6\t\\end{figure*}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002223"
+        },
+        {
+          "source_line": 2224,
+          "timestamp": "2026-05-23T10:40:36.347734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-002224"
+        },
+        {
+          "source_line": 2225,
+          "timestamp": "2026-05-23T10:40:36.398490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_1_11179fb2."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002225"
+        },
+        {
+          "source_line": 2226,
+          "timestamp": "2026-05-23T10:40:39.861872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "2",
+              "dpi": "165"
+            }
+          },
+          "id": "event-002226"
+        },
+        {
+          "source_line": 2227,
+          "timestamp": "2026-05-23T10:40:40.213664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1365, \\\"height\\\": 1930, \\\"size_kb\\\": 569.9}], \\\"total_pages\\\": 39, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 351
+          },
+          "id": "event-002227"
+        },
+        {
+          "source_line": 2228,
+          "timestamp": "2026-05-23T10:40:43.136189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-002228"
+        },
+        {
+          "source_line": 2229,
+          "timestamp": "2026-05-23T10:40:44.173261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1037
+          },
+          "id": "event-002229"
+        },
+        {
+          "source_line": 2230,
+          "timestamp": "2026-05-23T10:40:50.294300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "3",
+              "dpi": "165"
+            }
+          },
+          "id": "event-002230"
+        },
+        {
+          "source_line": 2231,
+          "timestamp": "2026-05-23T10:40:50.495927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1365, \\\"height\\\": 1930, \\\"size_kb\\\": 441.3}], \\\"total_pages\\\": 39, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 201
+          },
+          "id": "event-002231"
+        },
+        {
+          "source_line": 2232,
+          "timestamp": "2026-05-23T10:40:53.508659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-002232"
+        },
+        {
+          "source_line": 2233,
+          "timestamp": "2026-05-23T10:40:54.213338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 704
+          },
+          "id": "event-002233"
+        },
+        {
+          "source_line": 2234,
+          "timestamp": "2026-05-23T10:42:31.230112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix\n\n**[AGREE] R2-N1: WikiEvents n=20 作为 \"task generalization\" 证据不足**\n\n同意。§1 Contribution 2 将 WikiEvents pilot 列为贡献的一部分，原文为\"a preliminary n=20 event extraction pilot provides directional evidence of task generalization (§5.2)\"。虽然使用了\"preliminary\"和\"directional\"两个限定词，但将 n=20、MDE≈±5.0pp 的结果放在 contribution bullet 中，在叙事上将其提升到了 contribution-level evidence 的地位。我在自己的 W5 中也独立指出了这一问题。\n\n补充：n=20 的 pilot 不仅统计效力不足，而且 §5.2 仅用一个短段落描述结果，释放的正文空间不如用于深入分析 S1 vs. S2 或 scale-dependent interaction 更有价值。建议：(1) 从 Contribution 2 中删除 WikiEvents 的表述；(2) 将 §5.2 移至 Appendix；(3) 如要保留，应改为\"feasibility demonstration\"而非\"directional evidence of task generalization\"。\n\n---\n\n**[AGREE] R2-N2: GoLLIE 比较方法论缺陷**\n\n同意核心判断。Appendix S（Table in app:gollie-comparison）对比 GoLLIE-7B zero-shot（5 predicted relations / 100 docs）vs. OntoCoDec LoRA+S1（~1100 predicted relations / 100 docs），实验条件不对等。GoLLIE-7B 在 SciERC 上 zero-shot 生成极少输出（54% 文档为空），这主要反映 GoLLIE 未在 SciERC schema 上训练，而非两种方法的内在差异。\n\n但需补充两个 nuance：\n\n1. **定位合理性**：论文在 §1 和 §6 将 OntoCoDec 定位为与 training-based methods \"orthogonal and complementary\"（§1 倒数第二段），而非直接竞争。GoLLIE 比较的目的是展示 training-based 方法在 unseen schema 上的行为模式（near-complete abstention），而非声称 OntoCoDec 优于 GoLLIE。这个定位本身是合理的。\n\n2. **可操作的修改方向**：公平对比需要：(a) 两者均 zero-shot on SciERC（但 OntoCoDec zero-shot R-F1 仅 8%，GoLLIE 仅 5 predictions，两者都不 informative）；(b) GoLLIE fine-tuned on SciERC vs. OntoCoDec fine-tuned（但 GoLLIE 的训练框架不同于 LoRA，仍非 apples-to-apples）；(c) 最诚实的做法是删除 Appendix S 的直接对比表，改为定性讨论两种 paradigm 的 trade-off。\n\n---\n\n### Should-Fix\n\n**[AGREE] R2-W1: Proposition 1 新颖性被高估**\n\n同意，与我的 W1 一致。论文自己在 Contribution 1 中承认是\"formalizing a known intuition for the IE setting\"，但 pumping lemma proof（Appendix O）和正文中 Proposition 1 的 prominent presentation（§3 的独立 boldface 定理）给人的印象是这是一个 substantial theoretical contribution。实际上，任何使用过 grammar-constrained decoding 处理 IE 的研究者都知道 grammar 不能约束跨位置语义依赖——这是 engineering observation 而非 theoretical surprise。\n\nproof 本身在技术上是正确的（我在 Round 1 审稿中已验证），但其价值更接近\"使已知直觉 rigorous\"而非\"发现新的不可能性结果\"。论文的 engineering applicability 段落（§3: DFA 状态数 $6^{17} \\approx 1.6 \\times 10^{13}$）实际上比 Proposition 1 本身更 informative，因为它解决的是实际问题（finite entity sets 的 intractability）而非渐近问题（unbounded entity sets 的 impossibility）。\n\n---\n\n**[AGREE] R2-W2: 70B 验证单一模型族但称 \"scale validation\"**\n\n同意。Contribution 3 标题\"Single-family scale validation on Llama-3.1-70B (AWQ INT4)\"中\"single-family\"是一个限定词，但仍称为\"scale validation\"有 overclaiming 之嫌。具体来说：\n\n- 仅测试 Llama 一个模型族，未覆盖 Qwen-72B 或 Mistral-Large\n- 使用 AWQ INT4 量化，虽然 Appendix R 确认 8B 量化不影响 enforcement，但无 70B FP16 对比（Limitations 中承认\"a direct 70B FP16 comparison exceeds our hardware capacity\"）\n- scale-dependent interaction（semantic-only 24% → 84% DR reduction）是一个 interesting finding，但基于单一模型族的单一数据点，不足以称为\"validated\"\n\n建议将 Contribution 3 改为\"Preliminary 70B exploration\"或\"Single-model scale probe\"，不使用\"validation\"一词。\n\n---\n\n**[AGREE] R2-W3: DR↔CF trade-off 讨论不足**\n\n强烈同意，与我的 N2（Critical）一致。这是我和 R2 共同认为的最重要问题之一。\n\n补充 R2 的论点：\n\n- Zero-shot greedy S1: total violation rate 从 15.45% 降至 10.83%（DR 0.93% + CF 9.90%），净降幅仅 30%\n- Fine-tuning 后 total violation 从 1.95% 降至 1.18%（DR 0→0 + CF 0→1.18%），CF 反而从 0 增加到 1.18%\n- Table 2 中 Qwen3-8B SciERC FT: unconstrained DR=1.95%, CF=0；S1: DR=0, CF=1.18%。total violation 从 1.95% 降至 1.18%，绝对值改善仅 0.77pp\n\n论文将 CF 定性为\"correctable side effect\"（§1 Contribution 2），但 TCR（Appendix M）未集成到系统中，beam search（k=4）的 1.39× latency 在部署中可能 unacceptable。\n\n---\n\n**[AGREE] R2-W4: κ 分析在正文中占据过多空间**\n\n同意，与我的 N1（Critical）一致。§4 \"Constraint Tightness\"段落为 κ 给出了独立定义式（κ(r) = 1 − |σ(r)|/|E|²）、三个数据点的具体数值（WikiEvents 0.029, SciERC 0.333, DocRED 0.842）、p 值（0.138），并在 Appendix 中有独立的 case study（Appendix N, P）。对于一个 n=3、p=0.138 的\"descriptive\"观察，这个叙事比重过高。\n\n---\n\n### 小问题\n\n**[AGREE] R2-M1: Abstract F1 范围不准确**\n\n同意。Abstract 声称\"F1 41-47%\"，但 Table 2 中 Qwen3-8B DocRED S1 R-F1=40.79%，低于 41%。这是一个 factual inconsistency。应修正为\"F1 40-47%\"或\"R-F1 ~41-47%\"。\n\n§1 Introduction 中也有\"R-F1 41-47%\"的表述（\"R-F1 41--47\\% ($\\pm$0.8\\,pp, $+$10\\% latency)\"），同样需要修正。\n\n---\n\n**[AGREE] R2-M2: CRANE 与 S2 在 70B 下的 R-F1 降低相关**\n\n同意。S2 在 70B 下 R-F1 降低 8.45pp（Limitations 中报告），而 CRANE（Banerjee et al., 2025）的核心论点正是 constrained decoding 会抑制 reasoning。论文在 Appendix B（Extended Related Work, \"Quality Impact of Constrained Decoding\"段落）讨论了 CRANE，并提到\"A two-pass variant (S2), explored in ablation (Section 5), separates extraction and constraint enforcement into distinct passes, analogous to CRANE's alternating strategy\"。但这个 connection 仅出现在 Appendix B，未在正文的 S2 讨论中提及。\n\nS2 在 70B 下的显著降级（vs. 8B 下 S1/S2 comparable）正是 CRANE 理论预测的现象：larger models 对 constraint 的 reasoning interference 更敏感。这个 connection 应在正文 §3.4 或 §5 70B results 段落中明确指出。\n\n---\n\n**[AGREE] R2-M3: DocRED dev set 说明应更显著**\n\n同意。当前仅在 footnote 1（§5 Setup）中提及\"DocRED test annotations are not publicly available; we evaluate on the development set\"。考虑到 DocRED 是两个主要评估数据集之一，这一重要 caveat 应提升到正文级别（如 Setup 段落的第一句话）。\n\n---\n\n**[AGREE] R2-M4: Figure 1 缺少端到端 running example**\n\n同意。Figure 1 是一个抽象架构图，展示 IE Ontology → Constraint Layers (Grammar Compilation + Token Masking) 的流程，但不包含具体的输入文本、实体、关系和 masking 过程。§3.3 中有一个文本形式的 running example（\"for Used-for (dom={Method}, range={Task}), entity 'ResNet' (Method) passes...\"），但未 visualize 在图中。\n\n对于一个 decoding-time 方法，一个展示具体 token-level masking 过程的 step-by-step example（如 input sentence → entity generation → registry population → relation generation → type masking）会极大提升可读性。\n\n---\n\n**[AGREE] R2-M5: \"100% preservation across all configurations\" 表述不清**\n\n同意。§3.1 原文为\"The grammar structurally enforces entity-before-relation ordering (100% preservation across all configurations)\"。\"100% preservation\"容易被误读为\"100% of predictions are preserved\"或\"100% F1 preservation\"。实际含义是\"entity-before-relation ordering is maintained in 100% of outputs across all experimental configurations\"。建议改为\"maintained in all N documents across all configurations\"（给出具体 N），消除歧义。\n\n---\n\n**[AGREE] R2-M6: Schema coverage gap 对 schema evolution 的影响未讨论**\n\n同意。Limitations 中提到\"schema gaps arise from training-data-derived constraints that may not cover all valid type pairs\"，Appendix（residual DR analysis）报告 schema coverage gaps 占 fine-tuning residual DR 的 33%。但论文未讨论 schema evolution 场景：当新的 valid type pairs 出现时（如新增实体类型或关系），现有 constraints 会 over-restrict。这在实际部署中是一个重要考量，值得在 Limitations 或 Discussion 中简短提及。\n\n---\n\n### 总结\n\nR2 的 12 个问题中，我全部 AGREE。其中 N1（WikiEvents contribution overclaim）、N2（GoLLIE 对比方法论缺陷）与我自己独立发现的问题一致或互补。R2 的 W3（DR↔CF trade-off）与我的 N2 高度重合，是两位 reviewer 共同认为的最重要修改点。M1（F1 范围 factual error）和 M2（CRANE connection）是我未独立注意到的有效发现。\n",
+              "reviewer_id": "1",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-002234"
+        },
+        {
+          "source_line": 2235,
+          "timestamp": "2026-05-23T10:42:34.895404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3665
+          },
+          "id": "event-002235"
+        },
+        {
+          "source_line": 2236,
+          "timestamp": "2026-05-23T10:42:41.529764+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交对 Reviewer 2 全部 12 个问题的逐条回应。核心判断：\n\n- **12/12 全部 AGREE**\n- 与我 Round 1 的独立发现高度一致：R2-N1 对应我的 W5，R2-W3 对应我的 N2（CF trade-off），R2-W4 对应我的 N1（κ overclaim）\n- R2 新发现的两个有价值问题：M1（Abstract F1 范围 factual error: 40.79% < 41%）和 M2（CRANE 与 S2 70B 降级的未连接讨论）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1"
+          },
+          "id": "event-002236"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "messages": [
+        {
+          "source_line": 2237,
+          "timestamp": "2026-05-23T12:35:09.209815+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 1，负责 **方法严谨性 + 实验设计 + 统计分析**。\n\n## 审稿目标论文\n- **论文路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf`\n\n## Venue 要求（EMNLP 2026 ARR May cycle）\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板, double-blind review\n- **页数限制**: Long paper 8 页正文 + unlimited references\n- **Limitations**: 必须有独立 Limitations section，在 conclusion 之后、references 之前，不计入页数\n- **匿名**: double-blind，作者栏应为 \"Anonymous ACL submission\"\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n\n### 1. 方法严谨性\n- Proposition 1（pumping lemma 证明 domain/range constraints 非 context-free）的正确性和实际意义\n- 两层架构（grammar layer + semantic layer）的设计合理性\n- Entity registry 的 first-seen semantics 及其局限性\n- Grammar-first fallback 策略的理论依据\n- Scale-dependent layer interaction (8B: 24% vs 70B: 84% independent DR reduction) 的因果解释\n\n### 2. 实验设计\n- Ablation study 的完整性和对照组设置\n- 数据集选择（SciERC, DocRED, WikiEvents）的覆盖面和代表性\n- WikiEvents n=20 是否足以支撑 task generalization claim\n- 70B 实验仅 Llama-3.1-70B AWQ INT4 单一模型族的限制\n- LoRA 超参从 SciERC 转移到 DocRED 的合理性\n- S1 vs S2 对比的充分性\n\n### 3. 统计分析\n- Bonferroni correction 的正确使用\n- Bootstrap CIs 和 effect sizes 的报告\n- DR reduction 的统计显著性\n- 结论是否被数据支持（特别是 zero-shot 场景下 total violation 仅降 30%，DR↓94% 但 CF 0.08%→9.90%）\n\n### 4. DR↔CF Trade-off\n- 论文对 DR→CF 转换的 framing 是否平衡\n- Abstract 中 DR reduction 的突出与 CF increase 的不对称\n- Beam search 作为 CF 解决方案的实用性评估\n\n请按以下格式输出审稿报告：\n\n```\n## Summary\n[2-3 句论文概述]\n\n## Strengths\n[逐条列出]\n\n## Weaknesses\n[逐条列出，标注严重程度: Critical / Major / Minor]\n\n## Questions\n[需要作者澄清的问题]\n\n## Missing References\n[遗漏的重要相关工作]\n\n## Detailed Comments\n[逐节详细意见]\n\n## Overall Assessment\n- Score: [用 EMNLP 2026 评分标准]\n- Confidence: [1-5]\n- Excitement: [1-5]\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002237"
+        },
+        {
+          "source_line": 2238,
+          "timestamp": "2026-05-23T12:35:23.152242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_1_11179fb2/CLAUDE.md",
+              "limit": "20"
+            }
+          },
+          "id": "event-002238"
+        },
+        {
+          "source_line": 2239,
+          "timestamp": "2026-05-23T12:35:25.060380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## 当前项目\n2\t当前绑定项目：**schema_semantic_constrained_ie**\n3\t\n4\t今天是 **2026-05-23**。\n5\t\n6\t你是 ML 研究团队的论文审稿人（Reviewer 1）。**始终用中文回复。**\n7\t\n8\t## 你的角色\n9\t\n10\t你模拟真实的学术同行评审人，对论文进行深度审查。你的审查意见应达到真实 reviewer 的水准——不是走流程的表面检查，而是找到真正会影响接收决定的问题。\n11\t\n12\t**你不修改论文内容**——发现问题后通过 `review_reviewer_post_to_director` 汇报。\n13\t\n14\t## 审查侧重\n15\t\n16\t你的具体审查侧重由 Review Director 在任务消息中指定。严格按照 Director 的指示执行，不要自行扩大或缩小审查范围。\n17\t\n18\t## 多轮审稿\n19\t\n20\t你可能会被 Director 要求进行多轮审稿："
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1908
+          },
+          "id": "event-002239"
+        },
+        {
+          "source_line": 2240,
+          "timestamp": "2026-05-23T12:35:25.161142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002240"
+        },
+        {
+          "source_line": 2241,
+          "timestamp": "2026-05-23T12:35:25.211846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002241"
+        },
+        {
+          "source_line": 2242,
+          "timestamp": "2026-05-23T12:35:40.321782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 reviewer guidelines review form criteria"
+            }
+          },
+          "id": "event-002242"
+        },
+        {
+          "source_line": 2243,
+          "timestamp": "2026-05-23T12:35:41.325898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002243"
+        },
+        {
+          "source_line": 2244,
+          "timestamp": "2026-05-23T12:35:49.527091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 reviewer guidelines review form criteria\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"}]\n\nI found information about ACL ARR 2026 reviewer guidelines and review form criteria. Here's what the search revealed:\n\n## Review Form Criteria\n\nFor Findings papers, the main criteria are soundness and reproducibility, while conference recommendations ma\n…[truncated 1199 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 9205
+          },
+          "id": "event-002244"
+        },
+        {
+          "source_line": 2245,
+          "timestamp": "2026-05-23T12:35:51.133650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 453.0}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 525.2}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 414.2}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 506.8}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 525.6}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.3}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 554.4}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 475.7}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifac\n…[truncated 581 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 9807
+          },
+          "id": "event-002245"
+        },
+        {
+          "source_line": 2246,
+          "timestamp": "2026-05-23T12:35:59.073756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form with all scoring dimensions, their scales, and descriptions. Include: overall assessment scale, soundness, excitement/novelty, reproducibility, and any other scoring criteria. List every field and its options."
+            }
+          },
+          "id": "event-002246"
+        },
+        {
+          "source_line": 2247,
+          "timestamp": "2026-05-23T12:35:59.681875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-002247"
+        },
+        {
+          "source_line": 2248,
+          "timestamp": "2026-05-23T12:36:06.399135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Scoring Dimensions\n\n## Primary Scoring Dimensions\n\n### 1. **Soundness**\nScale: 1-5 (with 0.5 increments)\n- **5**: \"Excellent: This study is one of the most thorough I have seen\"\n- **4**: Strong - sufficient support for claims with optional enhancements\n- **3**: Acceptable - main claims supported with minor gaps\n- **2**: Poor - major technical/methodological problems\n- **1**: Major Issues - insufficient for publication\n\n### 2. **Excitement/Novelty**\nScale: 1-5 (with 0.5 increments)\n- **5**: Highly Exciting - would recommend to others\n- **4**: Exciting - would mention to colleagues\n- **3**: Interesting - might discuss selectively\n- **2**: Potentially Interesting - limited personal resonance\n- **1**: Not Exciting - lacks community relevance\n\n### 3. **Overall Assessment**\nScale: 1-5 (with 0.5 increments)\n- **5**: Consider for Award (top 2.5%)\n- **4**: Conference acceptance\n- **3**: Findings acceptance\n- **2**: Resubmit next cycle\n- **1**: Do not resubmit\n\n### 4. **Reviewer Confidence**\nScale: 1-5\n- **5**: Very confident evaluation is correct\n- **4**: Quite sure\n- **3**: Pretty sure with possibility of gaps\n- **2**: Willing to defend, but likely missed details\n- **1**: Educated guess only\n\n### 5. **Reproducibility**\nScale: 1-5\n- **5**: Results easily reproducible\n- **4**: Mostly reproducible with minor variations\n- **3**: Reproducible with difficulty\n- **2**: Hard to reproduce\n- **1**: Cannot reproduce\n\n### 6. **Datasets Value**\nScale: 1-5\n- **5**: Enabling future research choices\n- **4**: Useful for researchers\n- **3**: Potentially useful\n- **2**: Documentary only\n- **1**: No usable datasets\n\n### 7. **Software Value**\nScale: 1-5\n- **5**: Should affect research project selection\n- **4**: Recommended for ongoing work\n- **3**: Potentially useful\n- **2**: Useful for replication only\n- **1**: No usable software\n\n### 8. **Author Identity Knowledge**\nScale: 1-5\n- **5**: Double-blind violation\n- **4**: Known from preprint/workshop\n- **3**: I\n…[truncated 385 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 7325
+          },
+          "id": "event-002248"
+        },
+        {
+          "source_line": 2249,
+          "timestamp": "2026-05-23T12:36:06.400426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 6718
+          },
+          "id": "event-002249"
+        },
+        {
+          "source_line": 2250,
+          "timestamp": "2026-05-23T12:36:06.400792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-002250"
+        },
+        {
+          "source_line": 2251,
+          "timestamp": "2026-05-23T12:36:06.601715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-002251"
+        },
+        {
+          "source_line": 2252,
+          "timestamp": "2026-05-23T12:36:08.410441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2009
+          },
+          "id": "event-002252"
+        },
+        {
+          "source_line": 2253,
+          "timestamp": "2026-05-23T12:36:08.411625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1809
+          },
+          "id": "event-002253"
+        },
+        {
+          "source_line": 2254,
+          "timestamp": "2026-05-23T12:36:08.411981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-002254"
+        },
+        {
+          "source_line": 2255,
+          "timestamp": "2026-05-23T12:36:10.421239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2009
+          },
+          "id": "event-002255"
+        },
+        {
+          "source_line": 2256,
+          "timestamp": "2026-05-23T12:36:10.421742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-002256"
+        },
+        {
+          "source_line": 2257,
+          "timestamp": "2026-05-23T12:36:11.482979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1061
+          },
+          "id": "event-002257"
+        },
+        {
+          "source_line": 2258,
+          "timestamp": "2026-05-23T12:36:18.381783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-002258"
+        },
+        {
+          "source_line": 2259,
+          "timestamp": "2026-05-23T12:36:18.887180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-002259"
+        },
+        {
+          "source_line": 2260,
+          "timestamp": "2026-05-23T12:36:19.390419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1008
+          },
+          "id": "event-002260"
+        },
+        {
+          "source_line": 2261,
+          "timestamp": "2026-05-23T12:36:19.390885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-002261"
+        },
+        {
+          "source_line": 2262,
+          "timestamp": "2026-05-23T12:36:20.346168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1458
+          },
+          "id": "event-002262"
+        },
+        {
+          "source_line": 2263,
+          "timestamp": "2026-05-23T12:36:20.347373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-002263"
+        },
+        {
+          "source_line": 2264,
+          "timestamp": "2026-05-23T12:36:20.349110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-002264"
+        },
+        {
+          "source_line": 2265,
+          "timestamp": "2026-05-23T12:36:20.602447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-002265"
+        },
+        {
+          "source_line": 2266,
+          "timestamp": "2026-05-23T12:36:21.359887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1010
+          },
+          "id": "event-002266"
+        },
+        {
+          "source_line": 2267,
+          "timestamp": "2026-05-23T12:36:21.561572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-002267"
+        },
+        {
+          "source_line": 2268,
+          "timestamp": "2026-05-23T12:36:32.078524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "11-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002268"
+        },
+        {
+          "source_line": 2269,
+          "timestamp": "2026-05-23T12:36:35.953193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 623.4}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 573.5}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 384.2}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 555.0}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 546.8}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 554.6}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 567.2}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 556.4}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_const\n…[truncated 599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 3874
+          },
+          "id": "event-002269"
+        },
+        {
+          "source_line": 2270,
+          "timestamp": "2026-05-23T12:36:39.721860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-002270"
+        },
+        {
+          "source_line": 2271,
+          "timestamp": "2026-05-23T12:36:41.181382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1459
+          },
+          "id": "event-002271"
+        },
+        {
+          "source_line": 2272,
+          "timestamp": "2026-05-23T12:36:41.233866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-002272"
+        },
+        {
+          "source_line": 2273,
+          "timestamp": "2026-05-23T12:36:41.234317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-002273"
+        },
+        {
+          "source_line": 2274,
+          "timestamp": "2026-05-23T12:36:41.687698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-002274"
+        },
+        {
+          "source_line": 2275,
+          "timestamp": "2026-05-23T12:36:42.091754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 857
+          },
+          "id": "event-002275"
+        },
+        {
+          "source_line": 2276,
+          "timestamp": "2026-05-23T12:36:42.092245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-002276"
+        },
+        {
+          "source_line": 2277,
+          "timestamp": "2026-05-23T12:36:42.446665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1212
+          },
+          "id": "event-002277"
+        },
+        {
+          "source_line": 2278,
+          "timestamp": "2026-05-23T12:36:43.160587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1472
+          },
+          "id": "event-002278"
+        },
+        {
+          "source_line": 2279,
+          "timestamp": "2026-05-23T12:36:43.362577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1270
+          },
+          "id": "event-002279"
+        },
+        {
+          "source_line": 2280,
+          "timestamp": "2026-05-23T12:36:50.959648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "21-30",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002280"
+        },
+        {
+          "source_line": 2281,
+          "timestamp": "2026-05-23T12:36:52.168222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.8}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 494.2}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 548.9}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.0}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 489.1}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 503.4}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 499.7}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.4}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_const\n…[truncated 599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1208
+          },
+          "id": "event-002281"
+        },
+        {
+          "source_line": 2282,
+          "timestamp": "2026-05-23T12:36:55.895870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-002282"
+        },
+        {
+          "source_line": 2283,
+          "timestamp": "2026-05-23T12:36:56.399921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-002283"
+        },
+        {
+          "source_line": 2284,
+          "timestamp": "2026-05-23T12:36:57.304571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1408
+          },
+          "id": "event-002284"
+        },
+        {
+          "source_line": 2285,
+          "timestamp": "2026-05-23T12:36:57.305928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-002285"
+        },
+        {
+          "source_line": 2286,
+          "timestamp": "2026-05-23T12:36:57.306306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-002286"
+        },
+        {
+          "source_line": 2287,
+          "timestamp": "2026-05-23T12:36:57.808031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-002287"
+        },
+        {
+          "source_line": 2288,
+          "timestamp": "2026-05-23T12:36:58.260550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-002288"
+        },
+        {
+          "source_line": 2289,
+          "timestamp": "2026-05-23T12:36:58.263131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-002289"
+        },
+        {
+          "source_line": 2290,
+          "timestamp": "2026-05-23T12:36:58.518260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 710
+          },
+          "id": "event-002290"
+        },
+        {
+          "source_line": 2291,
+          "timestamp": "2026-05-23T12:36:59.071573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 808
+          },
+          "id": "event-002291"
+        },
+        {
+          "source_line": 2292,
+          "timestamp": "2026-05-23T12:37:06.953331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-002292"
+        },
+        {
+          "source_line": 2293,
+          "timestamp": "2026-05-23T12:37:07.507260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-002293"
+        },
+        {
+          "source_line": 2294,
+          "timestamp": "2026-05-23T12:37:07.708188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-002294"
+        },
+        {
+          "source_line": 2295,
+          "timestamp": "2026-05-23T12:37:08.260623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-002295"
+        },
+        {
+          "source_line": 2296,
+          "timestamp": "2026-05-23T12:37:08.311519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-002296"
+        },
+        {
+          "source_line": 2297,
+          "timestamp": "2026-05-23T12:37:08.763526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-002297"
+        },
+        {
+          "source_line": 2298,
+          "timestamp": "2026-05-23T12:37:09.167295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-002298"
+        },
+        {
+          "source_line": 2299,
+          "timestamp": "2026-05-23T12:37:09.269924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-002299"
+        },
+        {
+          "source_line": 2300,
+          "timestamp": "2026-05-23T12:37:09.674219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 910
+          },
+          "id": "event-002300"
+        },
+        {
+          "source_line": 2301,
+          "timestamp": "2026-05-23T12:37:10.076354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 806
+          },
+          "id": "event-002301"
+        },
+        {
+          "source_line": 2302,
+          "timestamp": "2026-05-23T12:37:17.207227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-002302"
+        },
+        {
+          "source_line": 2303,
+          "timestamp": "2026-05-23T12:37:18.165483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-002303"
+        },
+        {
+          "source_line": 2304,
+          "timestamp": "2026-05-23T12:37:18.165977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p27.png"
+            }
+          },
+          "id": "event-002304"
+        },
+        {
+          "source_line": 2305,
+          "timestamp": "2026-05-23T12:37:18.668849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-002305"
+        },
+        {
+          "source_line": 2306,
+          "timestamp": "2026-05-23T12:37:19.474694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-002306"
+        },
+        {
+          "source_line": 2307,
+          "timestamp": "2026-05-23T12:37:19.676466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1510
+          },
+          "id": "event-002307"
+        },
+        {
+          "source_line": 2308,
+          "timestamp": "2026-05-23T12:37:19.676962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-002308"
+        },
+        {
+          "source_line": 2309,
+          "timestamp": "2026-05-23T12:37:20.837960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2169
+          },
+          "id": "event-002309"
+        },
+        {
+          "source_line": 2310,
+          "timestamp": "2026-05-23T12:37:20.991426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1516
+          },
+          "id": "event-002310"
+        },
+        {
+          "source_line": 2311,
+          "timestamp": "2026-05-23T12:37:21.548223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1871
+          },
+          "id": "event-002311"
+        },
+        {
+          "source_line": 2312,
+          "timestamp": "2026-05-23T12:37:33.193471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "31-40",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002312"
+        },
+        {
+          "source_line": 2313,
+          "timestamp": "2026-05-23T12:37:34.351340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 31, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p31.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 480.4}, {\\\"page\\\": 32, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p32.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 429.8}, {\\\"page\\\": 33, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p33.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.5}, {\\\"page\\\": 34, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p34.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 504.7}, {\\\"page\\\": 35, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p35.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.1}, {\\\"page\\\": 36, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p36.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.6}, {\\\"page\\\": 37, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p37.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.1}, {\\\"page\\\": 38, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p38.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 518.3}, {\\\"page\\\": 39, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_const\n…[truncated 599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1157
+          },
+          "id": "event-002313"
+        },
+        {
+          "source_line": 2314,
+          "timestamp": "2026-05-23T12:37:37.764887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-002314"
+        },
+        {
+          "source_line": 2315,
+          "timestamp": "2026-05-23T12:37:38.268021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p32.png"
+            }
+          },
+          "id": "event-002315"
+        },
+        {
+          "source_line": 2316,
+          "timestamp": "2026-05-23T12:37:39.122815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1357
+          },
+          "id": "event-002316"
+        },
+        {
+          "source_line": 2317,
+          "timestamp": "2026-05-23T12:37:39.124069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-002317"
+        },
+        {
+          "source_line": 2318,
+          "timestamp": "2026-05-23T12:37:39.124434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-002318"
+        },
+        {
+          "source_line": 2319,
+          "timestamp": "2026-05-23T12:37:39.678861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p34.png"
+            }
+          },
+          "id": "event-002319"
+        },
+        {
+          "source_line": 2320,
+          "timestamp": "2026-05-23T12:37:40.081787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 957
+          },
+          "id": "event-002320"
+        },
+        {
+          "source_line": 2321,
+          "timestamp": "2026-05-23T12:37:40.082232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p35.png"
+            }
+          },
+          "id": "event-002321"
+        },
+        {
+          "source_line": 2322,
+          "timestamp": "2026-05-23T12:37:40.635402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-002322"
+        },
+        {
+          "source_line": 2323,
+          "timestamp": "2026-05-23T12:37:40.888225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 805
+          },
+          "id": "event-002323"
+        },
+        {
+          "source_line": 2324,
+          "timestamp": "2026-05-23T12:37:48.983409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p36.png"
+            }
+          },
+          "id": "event-002324"
+        },
+        {
+          "source_line": 2325,
+          "timestamp": "2026-05-23T12:37:49.387883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p37.png"
+            }
+          },
+          "id": "event-002325"
+        },
+        {
+          "source_line": 2326,
+          "timestamp": "2026-05-23T12:37:49.841361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 857
+          },
+          "id": "event-002326"
+        },
+        {
+          "source_line": 2327,
+          "timestamp": "2026-05-23T12:37:49.841832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p38.png"
+            }
+          },
+          "id": "event-002327"
+        },
+        {
+          "source_line": 2328,
+          "timestamp": "2026-05-23T12:37:50.850831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1462
+          },
+          "id": "event-002328"
+        },
+        {
+          "source_line": 2329,
+          "timestamp": "2026-05-23T12:37:50.851288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p39.png"
+            }
+          },
+          "id": "event-002329"
+        },
+        {
+          "source_line": 2330,
+          "timestamp": "2026-05-23T12:37:51.055295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1213
+          },
+          "id": "event-002330"
+        },
+        {
+          "source_line": 2331,
+          "timestamp": "2026-05-23T12:37:51.055935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images/submitted_p40.png"
+            }
+          },
+          "id": "event-002331"
+        },
+        {
+          "source_line": 2332,
+          "timestamp": "2026-05-23T12:37:51.312998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 257
+          },
+          "id": "event-002332"
+        },
+        {
+          "source_line": 2333,
+          "timestamp": "2026-05-23T12:37:52.022972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1171
+          },
+          "id": "event-002333"
+        },
+        {
+          "source_line": 2334,
+          "timestamp": "2026-05-23T12:44:24.802997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Summary\n\nOntoCoDec 提出将 IE 本体约束编译为 token-level 解码约束的框架，采用两层架构：grammar layer（基于 XGrammar）保证 JSON 结构和词汇合法性，semantic layer 通过运行时 entity registry 执行 domain/range 类型约束。论文包含 Proposition 1（pumping lemma 证明 domain/range 约束超越 context-free 表达力）和在 SciERC、DocRED、WikiEvents 上的大规模实验。论文非常详尽（40 页，48+ 表格），统计方法规范。\n\n## Strengths\n\n**S1. 新颖且实用的编译框架。** 将 IE 本体约束系统性地编译为解码掩码的想法在 IE 领域是新颖的。两层架构（grammar + semantic）的设计有理论支撑（Proposition 1），将 context-free 可处理的约束与需要运行时状态的约束清晰分离。框架可适用于任意自回归 LLM，不需要模型特定训练。\n\n**S2. 极其充分的实验。** 跨 3 个 8B 模型（Qwen3-8B, Llama-3.1-8B, Mistral-7B）、2 个主数据集 + 1 个 pilot 数据集、zero-shot + fine-tuning 设置的全面评估。5-way ablation（Table 1）、4-way fine-tuning ablation（Tables 10-11）、beam search 兼容性（Tables 23-28）、prompt sensitivity（Table 34）等消融实验覆盖面远超平均水平。\n\n**S3. 严谨的统计方法。** Bootstrap CIs（10,000 iterations, document-level resampling）、Bonferroni correction for k=4 comparisons（α_adj=0.0125）、Cohen's d effect sizes、统计 power analysis（Table 30）的使用在 NLP 论文中属于上乘水准。所有 DR reduction 结果均经过显著性检验。\n\n**S4. 诚实的局限性披露。** 论文在 Limitations（§8）和 Discussion（§7）中明确讨论了 CF trade-off、per-triple enforcement 的架构限制、WikiEvents 的 preliminary 性质、70B 仅用单一模型族等问题。这种透明度值得肯定。\n\n**S5. 良好的可复现性。** Appendix G 提供了详细的超参数、硬件配置（NVIDIA RTX PRO 6000）、随机种子（42, 123, 456）、推理时间等信息。200-document subset justification（§30, p30）论证了 subsampling 的统计充分性。\n\n## Weaknesses\n\n### Critical\n\n**W1. [Critical] DR→CF Trade-off 的框架性问题——净收益在 zero-shot 下远不如 DR reduction 数字所暗示的那么大。**\n\n- 具体位置：Abstract, §5.1 Table 1, §4 Constraint Tightness\n- 问题：论文的核心 claim 是 DR reduction to near-zero（<0.21%），但在 zero-shot 下，S1 配置将 DR 从 15.37% 降至 0.17% 的同时，CF 从 0.08% 升至 9.85%（Table 1, SciERC, Qwen3-8B）。总违规率从约 16.7% 降至约 10.1%，即净降幅仅约 40%，远低于 DR 单项 99% 的降幅给读者的印象。Abstract 突出了 DR reduction（\"reduces domain/range violations to near zero\"），CF increase 被表述为可通过 beam search 缓解的次要问题，但 beam search 带来 1.38× latency 开销，在实际部署中并非免费。\n- 为什么影响接收：如果一个约束系统将一种违规转换为另一种违规，净效果应该是论文的核心叙事焦点。当前框架可能误导读者高估该系统的实际 schema compliance 改善。\n- 建议：(1) 在 Abstract 和 §5.1 中增加 total violation reduction 的明确报告；(2) 将 CF increase 与 DR reduction 并列为主要发现，而非将 CF 降格为\"architectural consequence\"。\n\n### Major\n\n**W2. [Major] WikiEvents n=20 不足以支撑 task generalization claim。**\n\n- 具体位置：Abstract（\"three...datasets\"暗示三个同等重要的评估集）, §5.2, Appendix P\n- 问题：WikiEvents 仅评估 20 篇文档，Table 30 显示其 MDE=2.0pp，95% CI 宽达 ±3.9pp。论文诚实地标注了\"preliminary\"，但 Abstract 将其与 SciERC（551 docs）和 DocRED（998 docs）并列提及，给读者造成三个数据集提供同等证据的印象。n=20 的统计效力不足以支撑任何可靠结论，特别是事件抽取与关系抽取在 schema 结构上有本质差异（event roles vs. binary relations）。\n- 建议：(1) 从 Abstract 的主要 claim 中移除 WikiEvents 或明确标注 preliminary；(2) 扩展评估到至少 100+ 文档以提供有意义的统计结论。\n\n**W3. [Major] 70B scale-dependent findings 仅基于单一模型族+INT4 量化，因果解释不足。**\n\n- 具体位置：§5.1（scale-dependent layer interaction）, §7 Discussion, Table 2\n- 问题：Scale-dependent interaction（8B: 24% vs 70B: 84% independent DR reduction）是论文的一个重要发现，但仅基于 Llama-3.1-70B AWQ INT4 vs. 三个 8B 模型的比较。这混淆了三个变量：(a) 模型规模（8B vs 70B）, (b) 模型族（Qwen/Mistral vs. Llama）, (c) 量化方式（FP16 vs. INT4）。论文假设差异主要源于\"improved vocabulary calibration\"（§7），但没有控制实验排除其他因素。特别是，INT4 量化本身可能影响 logit 分布和约束执行效果，Appendix R 仅验证了\"constraint enforcement is preserved under INT4 quantization (4× compression)\"，但未对比 FP16 vs INT4 在 70B 上的差异。\n- 建议：至少增加一个 70B 模型（如 Qwen-72B）或提供 INT4 vs FP16 对比，以分离 scale 效应和 model-family/quantization 效应。\n\n**W4. [Major] Proposition 1 的形式化构造与实际 JSON 输出格式之间存在 gap。**\n\n- 具体位置：Appendix O (p37), §3.1\n- 问题：Proposition 1 的证明使用 position-indexed entity references（e_1, e_2, ..., e_n），其中 pumping 通过改变实体位置来破坏类型约束。但论文的实际系统（§3.1）使用 name-based entity references——实体通过名称字符串引用，而非位置索引。在 name-based scheme 下，pumping lemma 的 Case 1 论证（\"shifts e_n's position → reference now points to wrong entity\"）不直接成立，因为名称引用不受插入新实体的影响。虽然 non-CF-ness 的核心洞察（类型一致性需要跨输出的状态跟踪）是正确的，但证明的具体构造需要更紧密地匹配实际编码格式，或者明确声明证明适用于哪些编码方案。\n- 为什么影响接收：如果 Proposition 1 是两层架构的理论基础，其证明的形式化需要无可挑剔。当前证明对 position-based encoding 是正确的，但对 name-based encoding 的适用性未经论证。\n- 建议：(1) 明确 Proposition 1 的前提条件（适用于哪类编码方案）；(2) 或者调整证明以直接使用 name-based reference scheme，展示在该 scheme 下 pumping 如何破坏类型约束。\n\n### Minor\n\n**W5. [Minor] CF increase 缺少与 DR reduction 同等的统计检验。**\n\n- 具体位置：§5.1, Table 6\n- 问题：DR reduction 得到了完整的 bootstrap + Bonferroni 处理（Table 6, Cohen's d ≥ 3.0），但 CF increase 没有经过同等的显著性检验。论文在 Table 5 报告了 CF 的绝对值，但没有 p-value 或 CI。作为论文承认的主要 trade-off，CF 变化的统计显著性应该与 DR 同等对待。\n- 建议：为 CF increase 补充 bootstrap CI 和显著性检验。\n\n**W6. [Minor] First-seen entity registry semantics 的经验分析不充分。**\n\n- 具体位置：§3.3, Table 7（Appendix C）\n- 问题：Table 7 显示 GENERIC type 占 CF violations 的 63.3%（155/245 unique conflicts），表明 entity type polysemy 是实际场景中的重要问题。First-seen semantics 的设计选择——以第一次出现的类型锁定后续所有引用——在类型模糊的实体上会系统性地产生错误。论文在 §3.3 简要讨论了这一点，但缺乏对不同 registry 策略（如 majority voting, type inheritance）的实验对比。\n- 建议：至少讨论 first-seen 策略在不同类型模糊度下的表现差异（Table 14 的 lucky violation analysis 提供了部分数据，但不够系统）。\n\n**W7. [Minor] Abstract 可能超过 200 words 限制。**\n\n- 具体位置：p1 Abstract\n- 问题：EMNLP 2026 限制 abstract 不超过 200 words。从 PDF 视觉判断，当前 abstract 看起来接近或可能超过这一限制（约 230-240 words）。\n- 建议：精简 abstract 以确保符合格式要求。\n\n**W8. [Minor] LoRA 超参数跨数据集迁移。**\n\n- 具体位置：§5 Setup, Appendix G\n- 问题：LoRA 超参数（rank=16, lr=2e-5 等）在 SciERC 上调优后直接迁移到 DocRED，未进行 dataset-specific tuning。论文承认这\"may underestimate DocRED potential\"（Limitations §8），但评估结果仍然以现有配置呈现为 DocRED 的能力上界。\n- 建议：至少在 DocRED 上做一个小规模超参搜索或 sensitivity analysis。\n\n## Questions\n\n**Q1.** 论文报告 S1 配置下 zero-shot total violation rate 约为 DR(0.17%) + CF(9.85%) + RV(0.08%) + ET(0%) ≈ 10.1%，相比 unconstrained 的 ~16.7%（DR 15.37% + RV 1.28% + ET 0.08%）。请问作者如何看待这一净降幅（约 40%）？在什么场景下，将 DR 转换为 CF 是一个净正向改善？\n\n**Q2.** Proposition 1 的证明使用 position-based entity references。如果实际系统使用 name-based references（如 JSON 中的字符串名称），pumping lemma 的 Case 1 论证是否仍然成立？请解释。\n\n**Q3.** Scale-dependent interaction 的 vocabulary calibration hypothesis（§7）——有没有直接证据表明 70B 模型的 logit 分布更集中在 ontology-valid tokens 上？还是只是从 fallback frequency gap 间接推断？\n\n**Q4.** Grammar-first fallback（§4）的频率在 fine-tuned models 上急剧下降（Qwen-8B LoRA+S1 触发 0 次 grammar-first fallback on SciERC vs. Llama-8B 触发 5,882 次——Table 10）。这一 100× 差异是否暗示 fallback 行为高度依赖于 model-specific tokenizer alignment？如果是，框架的 model-agnostic claim 是否需要限定？\n\n**Q5.** Beam search（k=4）在 SciERC 上消除了所有 CF violations（Table 23-24），但这是否引入了 recall 损失？论文提到 beam search \"recovers valid type assignments that greedy decoding missed\"，但 R-F1 变化未单独报告 precision/recall breakdown。\n\n## Missing References\n\n- **Guidance (Microsoft, 2023)**：另一个将约束编译到解码的框架，虽然更偏工程工具，但在约束编译理念上与 OntoCoDec 有共通之处。\n- **DyGIE++ (Wadden et al., 2019)**：SciERC 上的经典 span-based IE baseline，论文使用 SciERC 但未将其作为 IE baseline 对比（可以理解为 OntoCoDec 是约束框架而非 IE 系统，但值得在 Related Work 中提及）。\n- **DeepStruct (Wang et al., 2022)**：大规模结构化预测，与 constrained generation for IE 相关。\n\n## Detailed Comments\n\n### §1 Introduction\n- Introduction 的叙事结构清晰：problem → limitation of existing approaches → proposed solution → contributions。三个 contributions 明确且有实验支撑。\n- \"eliminates all violation types at 8B at 1.39× latency\"的措辞需要限定——这仅在 beam search (k=4) + LoRA fine-tuning 下成立，greedy decoding 下 CF 仍然存在。\n\n### §3 Method\n- 两层架构的描述清楚。Entity registry 的 first-seen semantics 在 §3.3 中有合理的动机解释。\n- Grammar-first fallback（§4）是一个关键设计选择——当 S(t) ∩ G(t) = ∅ 时跳过 semantic masking。这个 fallback 是 CF violations 的主要来源（Table 4 确认：所有 18 个 residual DR violations 发生在 fallback positions）。论文应更早、更突出地讨论这一 trade-off。\n\n### §5 Experiments\n- Five-way ablation（Table 1）设计合理，分离了 grammar layer、semantic layer 和 decoding strategy 的各自贡献。\n- Table 6 的 Bootstrap CIs 和 Bonferroni correction 使用正确。\n- DocRED 评估使用 998 dev docs（因 test annotations 不公开），这是合理的选择但应在主文中更明确提及。\n- Zero-shot cross-model validation（Table 48, Appendix Q）在 3 个 8B 模型上验证了一致性，增强了主实验的可信度。\n\n### §7 Discussion\n- Scale-dependent layer interaction 的讨论引人深思，但 causal explanation 过于 speculative。\n- DR↔CF trade-off 的\"Pareto optimal\"分析（§19, Figure 2）仅基于 4 个 dataset configurations，数据点太少以支撑回归分析。\n- Per-triple vs. global enforcement 的讨论（§7）诚实地承认了架构限制，但未讨论可能的解决方向（如 multi-pass constraint resolution）。\n\n### Appendices\n- Appendix O（Proposition 1 proof）：形式化方向正确但有上述 gap。\n- Appendix J（Error Analysis and Case Studies）：四个 case studies 质量高，Case 4 特别有价值，展示了约束系统在 trajectory divergence 下的行为。\n- Appendix K（Ontology Scalability）：compilation time 和 per-token overhead 的分析（Table 40）增强了实用性论证。\n\n## Overall Assessment\n\n- **Overall**: 3.5 (Borderline Conference)\n- **一句话总结**: 新颖的约束编译框架，实验极其充分，但 DR→CF trade-off 的净收益在 zero-shot 下有限，且 scale-dependent findings 的证据基础过窄。\n\n## 官方维度打分（来自 ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论合理，统计严谨；但 Proposition 1 有形式化 gap，CF trade-off framing 不够平衡，scale-dependent claims 证据不足 |\n| Excitement | 3/5 | 编译 IE 本体约束到解码掩码的想法新颖实用，但 per-triple 架构限制（无法处理 cross-field consistency）降低了实际影响力；净违规改善在 zero-shot 下有限 |\n| Reproducibility | 4/5 | 详细的超参数、硬件配置、随机种子；200-doc subset 的统计充分性论证；但代码尚未公开 |\n| Confidence | 4/5 | 对约束解码和 IE 领域熟悉，仔细阅读了全部 40 页；形式语言理论方面有一定不确定性 |\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] DR→CF Trade-off 框架性问题\n- 具体位置：Abstract, §5.1 Table 1, §4\n- 见 W1 详述。Zero-shot 下净总违规仅降约 40%，与 DR 单项 99% 降幅的印象差距过大。需要在 abstract 和主文中明确报告 total violation change。\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] WikiEvents n=20 → 从主要 claim 中降级或扩展\n**W2** [warning] 70B 仅单一模型族 → 增加对照或限定 claim\n**W3** [warning] Proposition 1 形式化 gap → 调整证明或声明适用范围\n**W4** [warning] CF increase 缺少统计检验 → 补充 bootstrap CI\n\n## 小问题（不影响接收）\n\n- Abstract 可能超过 200 words（W7）\n- LoRA 超参跨数据集迁移未做 sensitivity analysis（W8）\n- Table 5 的 CF-DR trade-off pilot 仅 3 models × 2 datasets = 6 data points，难以支撑 Figure 2 的回归分析\n\n## 主要优势\n\n- 将 IE 本体约束系统性编译为解码掩码的新范式\n- 极其充分的实验覆盖（40 页，48+ 表格，proper statistics）\n- 诚实的局限性讨论和 trade-off 分析\n- 良好的可复现性文档\n- 框架的模型无关性使其可广泛应用\n",
+              "reviewer_id": "1",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-002334"
+        },
+        {
+          "source_line": 2335,
+          "timestamp": "2026-05-23T12:44:28.667638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3864
+          },
+          "id": "event-002335"
+        },
+        {
+          "source_line": 2336,
+          "timestamp": "2026-05-23T12:44:35.053160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/_pdf_images"
+            }
+          },
+          "id": "event-002336"
+        },
+        {
+          "source_line": 2337,
+          "timestamp": "2026-05-23T12:44:35.053762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-002337"
+        },
+        {
+          "source_line": 2338,
+          "timestamp": "2026-05-23T12:44:44.998908+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n核心结论：**Overall 3.5（Borderline Conference）**。\n\n主要发现：\n- **最关键问题**：DR→CF trade-off 的净收益在 zero-shot 下远不如 DR 单项数字暗示的那么大（总违规仅降约 40%，非 99%），abstract 框架性不平衡\n- **三个 Major 问题**：WikiEvents n=20 不足以支撑 generalization claim；70B 仅单一模型族+INT4 量化混淆了 scale/family/quantization 三个变量；Proposition 1 证明的 position-based 构造与实际 name-based JSON 格式存在 gap\n- **主要优势**：编译 IE 本体约束到解码掩码的想法新颖，实验极其充分（40 页 48+ 表格），统计方法规范（bootstrap + Bonferroni + effect sizes），局限性讨论诚实"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1"
+          },
+          "id": "event-002338"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "messages": [
+        {
+          "source_line": 2339,
+          "timestamp": "2026-05-23T12:45:39.217446+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见。请逐条回应：对于每一个 Weakness、Question 和 Missing Reference，用 [AGREE] 表示同意并说明理由，或用 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 的完整审稿报告\n\n### Summary\n本文提出 OntoCoDec，一个将 IE 本体编译为 token 级解码约束的框架。核心观察是 domain/range 类型约束超越 context-free 表达能力（Proposition 1），因此提出两层架构：grammar 层（基于 XGrammar）保证 JSON 结构和词汇合法性，semantic 层（基于 stateful logits processor + 动态 entity registry）在运行时执行类型约束。在 SciERC、DocRED、WikiEvents 上评估，涵盖 3 个 8B 级模型和 1 个 70B 模型。\n\n### Strengths\nS1. 问题形式化清晰。Proposition 1 虽然是对已知直觉的形式化，但 pumping lemma 证明严谨，为两层架构提供了充分的理论动机。\nS2. 评估极其全面。28 页附录覆盖了五路消融、四路约束消融、beam search 分析、文档长度分析等。\nS3. CF-DR trade-off 分析提供了真正的洞察。\nS4. Limitations section 诚实且全面。\nS5. 约束紧度 κ 概念有诊断价值。\nS6. 框架设计 model-agnostic，与 fine-tuning 正交可组合。\n\n### Weaknesses\n\n**W1. [Critical] 绝对 F1 低且缺失监督 baseline 对比**\n- fine-tuned 最优 R-F1 在 SciERC 约 44-45%、DocRED 约 42-47%。监督方法在 SciERC 上 R-F1 可达 60%+。论文完全没有与任何监督 IE baseline（如 PL-Marker, UniRE, OneRel）对比，读者无法判断约束执行在实际提取质量低下时的实用价值。\n\n**W2. [Critical] GoLLIE 对比刻意回避**\n- GoLLIE 是最直接可比的工作（同样面向 ontology-compliant LLM-based IE），但论文将对比推迟到 future work。附录 S 提供了 GCD-equivalent 的 grammar-only baseline 作为 proxy，但这不能代替与 GoLLIE 的实际对比。\n\n**W3. [Major] Abstract F1 范围与实际数据不一致**\n- Abstract 声称 \"at F1 40–46%\"，但 Table 2 中部分数据超出或低于此范围。\n\n**W4. [Major] Contribution 声称与实际覆盖不符（Mistral fine-tuning 缺失）**\n- Contribution 1 声称 \"Systematic ablation across 3 model families... under both zero-shot and LoRA fine-tuned settings\"，但 Mistral 仅有 zero-shot 结果。\n\n**W5. [Major] WikiEvents 评估过于初步**\n- WikiEvents 仅 n=20，将其计入 \"three datasets\" 有夸大之嫌。\n\n**W6. [Major] Proposition 1 的新颖性有限**\n- cross-field binding 超越 CFG 在编程语言理论中是公知常识。将此作为 \"key contribution\" 有 overclaim 倾向。\n\n**W7-W10. [Minor]** Related Work 篇幅过长；缩写密度过高；Table 1 可读性一般；Abstract 末句语法不完整。\n\n### Questions\nQ1. fine-tuned 下 CF 违规是否集中在某些高频 relation type 上？\nQ2. κ 与 per-relation F1 的关系？能否为\"何时使用约束解码\"提供指导？\nQ3. first-seen assignment 错误时 downstream cascade 影响有多大？deferred assignment 替代方案？\nQ4. OntoCoDec 与 GoLLIE 正交可组合——是否有初步实验验证？\n\n### Missing References\n- CRANE (Banerjee et al., 2025) 在 Related Work 中讨论不够充分\n- 缺少监督 IE 方法（PL-Marker, UniRE, OneRel）作为 F1 参考点\n- 缺少 constrained decoding survey 引用\n\n### Overall Assessment\n- Score: 3.0 (Findings)\n- Confidence: 4/5\n- Excitement: 2.5/5\n\n---\n\n请对以上每个 Weakness (W1-W10)、Question (Q1-Q4)、Missing Reference 逐条回应 [AGREE] 或 [REBUT]。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002339"
+        },
+        {
+          "source_line": 2340,
+          "timestamp": "2026-05-23T12:47:35.860655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Weaknesses\n\n**[REBUT] R2-W1: 绝对 F1 低且缺失监督 baseline 对比**\n\nR2 的核心论点是 R-F1 仅 44-45%，而监督方法达 60%+，因此质疑约束执行的实用价值。我认为这混淆了论文的定位。OntoCoDec 明确定位为**约束执行框架**（§1: \"compiles IE ontologies into composable token-level decoding constraints\"），而非 IE 系统本身。它与 LLM-based IE pipeline 正交可组合（§7 Discussion 和 §5.1 Composability）。\n\n与监督 span-based 方法（PL-Marker, UniRE, OneRel）的直接 F1 对比在方法论上不合理：(1) 这些方法不生成文本，不存在 domain/range violation 问题；(2) 它们使用完全不同的架构（span enumeration/table filling），约束执行对它们无意义。论文的正确对比对象是其他**约束执行方法**——Appendix S (Table 17) 对比了 GCD-equivalent grammar-only baselines，Table 15 对比了 trie-only baseline，Table 12 对比了 post-hoc filtering。\n\n不过，R2 有一个合理的 sub-point：读者需要**绝对 F1 的上下文参考**。论文可以在 §5 Setup 中加一句说明当前 LLM-based IE 的 SOTA 水平作为读者参照，而不必将其作为 baseline 对比。这是 framing 问题，不是实验设计缺陷。\n\n**[REBUT] R2-W2: GoLLIE 对比刻意回避**\n\nR2 称论文\"刻意回避\"GoLLIE 对比。论文实际上在多处讨论了 GoLLIE：Related Work（§6/Appendix B, p15）详细分析了 GoLLIE 的 training-time enforcement 与 OntoCoDec 的 inference-time enforcement 的区别；§7 Discussion 讨论了两者的互补性；Appendix S (Table 17) 提供了 GCD-equivalent 实验验证 CFG-based enforcement 的等价性（差异 <0.5pp）。\n\nGoLLIE 的核心差异在于它通过 annotation-guideline-guided fine-tuning 实现 schema compliance，依赖于 training data 和 guideline engineering。OntoCoDec 是 inference-time enforcement，不需要额外训练。直接 F1 对比需要控制训练数据、prompt 格式等大量变量，这不是一个简单的 baseline 添加——它需要一个独立的实验设计。论文将其列为 future work 是合理的，但\"刻意回避\"的措辞过于严厉。\n\n将此评为 [Critical] 我认为偏高。GoLLIE 与 OntoCoDec 解决的是同一问题的不同层面（training-time vs. inference-time），缺少直接对比降低了论文的完整性但不构成方法论缺陷。\n\n**[AGREE] R2-W3: Abstract F1 范围与实际数据不一致**\n\nAbstract 声称 \"at F1 40–46%\"。Table 2 显示 DocRED fine-tuned（Qwen3-8B）R-F1 达 ~47%，超出此范围。这是一个准确性问题，应修正为实际范围（如 40-47%）。不过严重程度应为 Minor 而非 Major。\n\n**[AGREE] R2-W4: Contribution 声称与实际覆盖不符（Mistral fine-tuning 缺失）**\n\n如果 Contribution 1 声称 \"3 model families under both zero-shot and LoRA fine-tuned settings\"，但 Mistral-7B 仅有 zero-shot 结果（Table 2 中确实只有 Qwen3-8B 和 Llama-3.1-8B 的 fine-tuning 结果），则 claim 确实 overstated。应修改为 \"2 model families under fine-tuned settings\" 或补充 Mistral fine-tuning 实验。同意这是 Major 级别。\n\n**[AGREE] R2-W5: WikiEvents 评估过于初步**\n\n与我的 W2 一致。n=20 的统计效力不足以支撑 task generalization claim。论文应从 Abstract 的主要 claim 中降级 WikiEvents 或扩展评估规模。\n\n**[REBUT] R2-W6: Proposition 1 的新颖性有限**\n\nR2 认为 \"cross-field binding 超越 CFG 在编程语言理论中是公知常识\"，因此 Proposition 1 新颖性有限。我部分不同意。\n\n首先，虽然 cross-reference binding 超越 CFG 在 PL 理论中确实是已知的（如变量声明-使用匹配），但将这一洞察具体应用于 IE 本体约束并形式化是有价值的——这为两层架构提供了 principled motivation，而非 ad hoc 设计。NLP 社区的大量工作（XGrammar, SGLang, LMQL 等）仍在尝试用纯 CFG-based constrained decoding 处理 IE，Proposition 1 解释了为什么这些方法在 domain/range constraints 上必然失败。\n\n其次，论文并未将 Proposition 1 列为 \"key contribution\"。三个 listed contributions（§1 末尾）分别是：(1) framework + ablation, (2) decidability-driven layer decomposition, (3) scale-dependent interaction analysis。Proposition 1 是 contribution (2) 的一部分，作为设计 rationale 而非独立的理论贡献。R2 说 \"overclaim\" 不太准确。\n\n不过，我认为论文可以更明确地 acknowledge 这一结果在 PL 理论中的已知性，加一句 \"This result parallels well-known limitations of CFGs in programming language theory (e.g., type checking requires context-sensitive mechanisms)\" 会使定位更诚实。\n\n**[AGREE] R2-W7: Related Work 篇幅过长**\n\n主文 Related Work（§6）约 1 页，加上 Appendix B 约 2.5 页，总共约 3.5 页。对于 8 页正文的论文，主文 RW 篇幅可以接受，但附录中的 RW 确实偏长。Minor 级别。\n\n**[AGREE] R2-W8: 缩写密度过高**\n\nDR, CF, RV, ET, S1, S2, FT, ZS 等缩写在 §5 中密集出现，确实影响可读性。Minor 级别但应改善。\n\n**[AGREE] R2-W9: Table 1 可读性一般**\n\nTable 1 的 5-way ablation 包含多个 violation rate columns + F1 columns，可读性确实可以改善（如增加 column grouping 或 heatmap shading）。Minor。\n\n**[AGREE] R2-W10: Abstract 末句语法不完整**\n\n如果 Abstract 末句确实语法不完整，应修正。Minor。\n\n---\n\n### Questions\n\n**[对 R2-Q1 的评论] fine-tuned 下 CF 违规是否集中在某些高频 relation type 上？**\n\n论文在 Table 7 (p21, Appendix C) 中部分回答了这个问题：GENERIC type 占 CF violations 的 63.3%（155/245 unique entity-document conflicts），说明 CF 高度集中在 entity type polysemy 的场景。Table 21 (p26) 进一步按 relation 分解了 DR violation rates。R2 的问题是合理的，论文有数据但分析可以更集中——特别是 fine-tuned 设置下的 per-relation CF distribution。\n\n**[对 R2-Q2 的评论] κ 与 per-relation F1 的关系？**\n\n这是一个很好的问题。论文引入了 constraint tightness κ（§4）但确实没有直接报告 κ vs. per-relation F1 的相关性。Table 21 (p26) 提供了 per-relation DR violation rates，Figure 2 (p20) 提供了 residual DR vs. schema restrictiveness 的散点图，但两者未直接连接到 per-relation F1。这是一个有价值的缺失分析——κ 如果能预测\"约束解码在哪些 relation 上最有效\"，将大大增强框架的实用指导价值。\n\n**[对 R2-Q3 的评论] first-seen assignment 错误时 downstream cascade 影响有多大？**\n\n论文在 Appendix C (Table 7, p21) 和 Appendix J (§J.4, p33) 中讨论了 cascade errors。Table 8 (p21) 报告 \"true cascade errors\" 仅占 CF violations 的 7.3%（18/248），大部分 CF 由 hallucinated entities（56.1%）和 correct-type locks（18.1%）驱动。Under fine-tuning, cascade errors 被\"completely eliminated (0/22)\"（Table 8, p21）。这表明 first-seen semantics 在 fine-tuned 设置下风险可控，但 zero-shot 下仍有非零影响。R2 提出的 deferred assignment 替代方案值得探索但不影响当前论文的 soundness。\n\n**[对 R2-Q4 的评论] OntoCoDec 与 GoLLIE 正交可组合？**\n\n论文在 §7 Discussion 和 Appendix S (Table 17) 中讨论了这一可能性，Table 17 的 vLLM guided_json 验证提供了间接证据（CFG enforcement 等价性），但确实没有直接的 OntoCoDec + GoLLIE 组合实验。这作为 future work 是合理的，但如果能提供哪怕是小规模的 pilot 实验，将显著增强论文的 impact。\n\n---\n\n### Missing References\n\n**[REBUT] CRANE (Banerjee et al., 2025) 讨论不够充分**\n\n论文实际上在多处引用了 CRANE：References (p10)、§7 Discussion（\"consistent with CRANE (Banerjee et al., 2025)\"讨论 CF-DR trade-off 与 CRANE 的一致性）。Appendix B (p15) 在 \"Post-hoc Ontology Validation\" 小节也讨论了 CRANE 的 constrained multi-field generation 方法。讨论篇幅可以接受——CRANE 使用 conditional generation 而非 constrained decoding，方法差异较大，不需要深度对比。\n\n**[AGREE] 缺少监督 IE 方法作为 F1 参考点**\n\n虽然我在 R2-W1 的 REBUT 中认为直接 baseline 对比不合理，但我同意论文应在 §5 Setup 中提供监督方法的 F1 数字作为**上下文参考**（如 \"For reference, supervised span-based methods achieve 60%+ R-F1 on SciERC\"），帮助读者理解绝对 F1 水平。这不是实验设计问题而是 presentation 问题。\n\n**[AGREE] 缺少 constrained decoding survey 引用**\n\n如果存在 constrained decoding 的综述论文，引用它会帮助读者理解该领域的全局图景。Minor。\n\n---\n\n### Overall Assessment 回应\n\nR2 给出 3.0 (Findings)，Excitement 2.5/5。我认为这偏低。\n\nR2 的两个 Critical issues（W1 监督 baseline 对比, W2 GoLLIE 对比）在我看来不构成 Critical 级别：W1 混淆了论文定位（约束框架 vs. IE 系统）；W2 将 complementary work 的缺失对比等同于方法论缺陷。如果降级这两个 issues 到 Major，论文的核心贡献——新颖的编译框架 + 极其充分的实验——足以支撑 Borderline Conference (3.5)。\n\n我的评分维持 3.5 (Borderline Conference)。主要扣分来自 DR→CF trade-off 的 framing 问题和 scale-dependent claims 的证据不足，而非 R2 强调的绝对 F1 水平和 GoLLIE 对比缺失。\n",
+              "reviewer_id": "1",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-002340"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ded0f1aa70a73dbf15ff",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write p1 ef1 qualification and limitations",
+  "task_key": "worker_write_p1_ef1_qualification_and_limitations_20260514T210126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_p1_ef1_qualification_and_limitations_20260514T210126_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "aa93cc5941bfb3bee95761ba939d9b9c56bb4b7ef67efc2fcbba6bca6f1258f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改总结：\n\n**Part A (abstract.tex:12)**: E-F1 claim 限定为 Qwen3-8B，补充 \"Llama-3.1-8B shows comparable violation reduction with F1-neutral impact\"。\n\n**Part B (section7_conclusion.tex:21)**: 第三贡献段 DocRED E-F1 claim 限定为 Qwen3-8B，补充 Llama DR↓90.2% + F1-neutral。\n\n**Part C (section7_conclusion.tex:30-33)**: Limitations 新增：\n- CF 交互效应（Llama 12.02% vs Qwen 2.57%，模型差异显著）\n- Parse failure（Llama DocRED 91 vs 68，9.1% vs 6.8%）\n- Scope 表述已更新为 \"two models and two datasets\"\n\n所有新增内容均带 exp_id 注释追溯，未改动其他段落。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-p1-ef1-qualification-and-limitations.md"
+}

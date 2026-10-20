@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f3add031eccec1ac9a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 sf5 sf7 llama docred",
+  "task_key": "worker_code_r4_sf5_sf7_llama_docred_20260517T105428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_sf5_sf7_llama_docred_20260517T105428_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "d38a59c2361f018869a3c1d9b2d6642da3657f3c9aac536bacd0f596d4b3b9a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the summary:\n\n**SF5: Llama DocRED Parse-Failure-Excluded**\n- 91/998 (9.1%) documents are parse failures\n- Violations unchanged (already excluded): DR=2.55%, CF=12.02%, ET=0%, RV=0%\n- F1 after exclusion: E-F1=58.18 (+3.17pp), R-F1=6.51 (+0.23pp)\n- Precision stays the same; recall improves because parse failure docs' gold items no longer penalize\n\n**SF7: DocRED Fallback Coverage**\n- DocRED effective semantic constraint coverage = **99.9%** (fallback rate = 0.08%)\n- vs SciERC = 63.4% (fallback rate = 36.6%)\n- The large discrepancy is a tokenization artifact: SciERC has multi-token types (2.87 mask calls per type field) where continuation tokens always conflict with semantic mask. DocRED types are all single-token, eliminating this inflation.\n\nResults written to `artifacts/r4_sf5_sf7_results.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-sf5-sf7-llama-docred.md"
+}

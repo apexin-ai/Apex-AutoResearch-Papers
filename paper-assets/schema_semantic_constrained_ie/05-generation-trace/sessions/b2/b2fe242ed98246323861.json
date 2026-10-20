@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2fe242ed98246323861",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops inventory westd 16980",
+  "task_key": "worker_ops_inventory-westd-16980_20260523T195018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_inventory-westd-16980_20260523T195018_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "d5efdda30def4d09b02d9432aa9cddae1d615da11b2915df669da24e78c509ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16980 数据盘点报告\n\n**项目目录**: 596M（outputs/ 469M, data/ 122M, 其余零散小文件）。无 checkpoint/模型权重文件。\n\n**数据盘 /root/autodl-tmp**: 195G\n- `models/` 103G — 基座模型（Qwen3-8B, Llama-8B, Mistral-7B 及其 AWQ 量化版）\n- `checkpoints/` 79G — LoRA adapter 及 merged 权重（70b_lora_docred/scierc, llama/qwen 各数据集的 merged 模型）\n- `gollie_model/` 13G, `schema_outputs/` 98M\n\n**运行中进程**: 无训练/评估进程。有若干残留 http.server 和一个 tmux session `llama_beam`（idle）。\n\n**缓存**: `.cache/` 243M, 无 autodl-fs。\n\n**判断：无不可替代数据，可安全释放。**\n- 代码已有匿名仓库\n- `models/` 全是公开基座模型，可从 HF/ModelScope 重新下载\n- `checkpoints/` 是 LoRA 微调产物，可重训；merged 权重可从 adapter + 基座重新合并\n- `outputs/` 是实验输出，metrics 已在论文中\n- 无未提交的重要数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-inventory-westd-16980.md"
+}

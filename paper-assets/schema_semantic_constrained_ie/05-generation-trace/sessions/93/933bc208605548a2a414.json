@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "933bc208605548a2a414",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp entity order ablation",
+  "task_key": "worker_exp_entity-order-ablation_20260522T164452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_entity-order-ablation_20260522T164452_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "ef4ac15491990711c18512b45e18decb80b8077123a985a1dfa945b219228b27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并配置完毕：\n\n- **实验 ID**: `entity_order_ablation_qwen_scierc`\n- **PID**: 967058，GPU 1（18999 MiB），正在推理\n- **进度**: 11/551 样本（启动时）\n- **Shuffle 结果**:\n  - Entity types: `[Task, Method, Material, Metric, OtherScientificTerm, Generic]` → `[Metric, Method, Material, OtherScientificTerm, Task, Generic]`\n  - Relation types: `[Used-for, Feature-of, ...]` → `[Conjunction, Evaluate-for, Compare, Part-of, Feature-of, Hyponym-of, Used-for]`\n- **Cron 监控**: 每 8 分钟检查一次，完成后自动跑 evaluation 并对比 original order 结果\n- **Parent**: `w5_lora_scierc_constrained_eval`\n- **输出**: `outputs/entity_order_shuffled_qwen_scierc.jsonl`\n- **日志**: `/tmp/entity_order_shuffled_qwen_scierc.log`\n\nSciERC 551 句 Qwen FT greedy S1 推理预计 30-40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-entity-order-ablation.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "42abfa375c85d419145e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "paper composability llama writeup 20260515T175614 retry1",
+  "task_key": "worker_paper_composability_llama_writeup_20260515T175614_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_composability_llama_writeup_20260515T175614_retry1.log",
+    "occurrence": 1,
+    "bytes": 585873,
+    "sha256": "630c9631f81a0f208df0cdbcf65539bde2fbff961aeaae1720e281dcda552140"
+  },
+  "statistics": {
+    "messages": 179,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 30,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "42abfa375c85d419145e-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "42abfa375c85d419145e-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-composability-llama-writeup-20260515t175614-retry1.md"
+}

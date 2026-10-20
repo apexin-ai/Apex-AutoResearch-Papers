@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f402e12f7d15955fb00",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 progress check r2",
+  "task_key": "worker_ssh_d064_progress_check_r2_20260519T193956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_progress_check_r2_20260519T193956_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "cc1a7e3ceba3b7d07191c9e73e0b55899b895a490f82f82fb4b56246d5126623"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。摘要：\n\n**已完成 (4/8):**\n- Llama greedy unc ✅, greedy con ✅ (21461)\n- Qwen beam-4 unc ✅ (21461)\n- Llama beam-4 unc ✅ (16980)\n\n**运行中 (3):**\n- 16980 GPU1: Llama beam-4 con **901/998 (90%)** → ETA ~04:16 CST（~30min）\n- 21461 GPU1: Qwen beam-4 con **667/998 (67%)** → ETA ~05:58 CST（~2h16m）\n- 21461 GPU0: Llama beam-4 unc **164/998 (16%)** → ETA ~07:43 CST（cascade 中）\n\n**待运行 (1):**\n- 21461 GPU0: Llama beam-4 con（cascade 排队，ETA ~13:30 CST，但 16980 有并行副本快完成）\n\n**⚠️ 需要关注:**\n1. **16980 GPU0 已空闲**，无 cascade 脚本。Option C（w5 checkpoint greedy）需手动启动。\n2. 16980 GPU1 ~30min 后也将空闲，同样无后续自动任务。\n3. 实际瓶颈是 21461 GPU1 的 Qwen beam-4 con（唯一无并行副本），预计 ~06:00 CST 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-progress-check-r2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7ab1b6d44b7dcd8ee70",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis compile paper results tables v2",
+  "task_key": "worker_analysis_compile_paper_results_tables_v2_20260516T164337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_paper_results_tables_v2_20260516T164337_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "ce771a6537c198f78f4a6387486099d1fda948bb3f7d186b2e73c9ddb8247204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个表格全部编译完成并注册：\n\n| 文件 | 内容 |\n|------|------|\n| `table2_main_results.md` | 3 模型 × 2 数据集 × ZS/FT，完整 violation rates |\n| `table3_composability.md` | FT+OntoCoDec 即插即用，Δ metrics |\n| `table4_ft_ablation.md` | 4 modes ablation（Llama DocRED semantic_only 标注 RUNNING） |\n| `table5_posthoc.md` | Post-hoc filtering 对比，ZS+FT |\n| `table6_latency.md` | SciERC +2.3% / DocRED +5.3% overhead |\n\n缺失数据：\n- `latency_profiling_scierc` / `latency_profiling_docred` registry 中无此 ID，数据从 artifacts 文件读取\n- `phase1_scierc_zs_qwen` / `phase1_docred_zs_qwen` 实际 ID 为 `phase2_scierc_unconstrained` / `phase2_docred_unconstrained`\n- `phase2_llama_*` 实际 ID 为 `llama_scierc_full_s1` / `llama_docred_full_s1` 等\n- `w8_llama_docred_ft_semantic_only` 状态 RUNNING，Table 4 中标注\n- `w8_zs_posthoc_baseline` 不存在，数据合并在 `w8_ft_posthoc_baseline` 的 `zs_regime` 字段中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-paper-results-tables-v2.md"
+}

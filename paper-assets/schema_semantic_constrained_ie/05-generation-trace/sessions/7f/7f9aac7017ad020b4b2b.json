@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0",
+  "id": "7f9aac7017ad020b4b2b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "research bib missing entries batch1",
+  "task_key": "worker_research_bib_missing_entries_batch1_20260514T185357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_bib_missing_entries_batch1_20260514T185357.jsonl",
+    "occurrence": 1,
+    "bytes": 39100,
+    "sha256": "68cfa5ef3af9947818be9a6d97cb6313bc5cd9cf59da493348c278462aaf8c25"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T18:56:42.092264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T18:56:42.092670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T18:56:42.092898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "XGrammar Flexible Efficient Structured Generation Engine Large Language Models Dong 2025"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T18:56:42.093038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Outlines structured text generation library Willard 2023 arXiv"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T18:56:42.093160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LMQL Programming Large Language Models Beurer-Kellner 2023 PLDI"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T18:56:42.093279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Beurer-Kellner Domino 2024 constrained decoding LLM"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T18:56:42.093394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Park Grammar-Aligned Decoding 2024 constrained generation"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T18:56:42.093506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GENRE Autoregressive Entity Retrieval De Cao 2021 ICLR"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T18:56:42.093665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"XGrammar Flexible Efficient Structured Generation Engine Large Language Models Dong 2025\"\n\nLinks: [{\"title\":\"[2411.15100] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation ...\",\"url\":\"https://arxiv.org/pdf/2411.15100\"},{\"title\":\"[PDF] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/XGrammar:-Flexible-and-Efficient-Structured-Engine-Dong-Ruan/274ca059ee4997f1e008bc8962aef3d22897f17a\"},{\"title\":\"Catalyst: XGrammar\",\"url\":\"https://catalyst.cs.cmu.edu/projects/xgrammar.html\"},{\"title\":\"GitHub - mlc-ai/xgrammar: Fast, Flexible and Portable Structured Generation · GitHub\",\"url\":\"https://github.com/mlc-ai/xgrammar\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=rjQfX0YgDl\"},{\"title\":\"[2411.15100v1] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100v1\"},{\"title\":\"[Literature Review] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/xgrammar-flexible-and-efficient-structured-generation-engine-for-large-language-models\"},{\"title\":\"MLSys Poster XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://mlsys.org/virtual/2025/poster/3235\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241115100D/abstract\"}]\n\nBased on the search results, here's what I found about XGrammar:\n\n## Overview\n\nXGrammar is a flexible and efficient structured generation engine for Large Language Models, addressing \n…[truncated 1042 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T18:56:42.093857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GenIE Generative Information Extraction Josifoski 2022 NAACL"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T18:56:42.093982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Geng Grammar-Constrained Decoding Structured NLP 2023"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T18:56:42.094128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Outlines structured text generation library Willard 2023 arXiv\"\n\nLinks: [{\"title\":\"GitHub - dottxt-ai/outlines: Structured Outputs · GitHub\",\"url\":\"https://github.com/dottxt-ai/outlines\"},{\"title\":\"[2307.09702] Efficient Guided Generation for Large Language Models\",\"url\":\"https://arxiv.org/abs/2307.09702\"},{\"title\":\"Generating Structured Outputs from Language Models: Benchmark and Studies\",\"url\":\"https://arxiv.org/html/2501.10868v1\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation ...\",\"url\":\"https://arxiv.org/pdf/2411.15100\"},{\"title\":\"Paper page - Efficient Guided Generation for Large Language Models\",\"url\":\"https://huggingface.co/papers/2307.09702\"},{\"title\":\"[2404.13919] Navigating the Path of Writing: Outline-guided Text Generation with Large Language Models\",\"url\":\"https://arxiv.org/abs/2404.13919\"},{\"title\":\"[2404.13919v1] Navigating the Path of Writing: Outline-guided Text Generation with Large Language Models\",\"url\":\"https://arxiv.org/abs/2404.13919v1\"},{\"title\":\"Navigating the Path of Writing: Outline-guided Text Generation with Large Language Models\",\"url\":\"https://arxiv.org/html/2404.13919v1\"},{\"title\":\"SLOT: Structuring the Output of Large Language Models\",\"url\":\"https://arxiv.org/html/2505.04016v1\"},{\"title\":\"(PDF) Generating Structured Outputs from Language Models: Benchmark and Studies\",\"url\":\"https://www.researchgate.net/publication/388231978_Generating_Structured_Outputs_from_Language_Models_Benchmark_and_Studies\"}]\n\nBased on the search results, here's what I found:\n\nThe paper is titled \"Efficient Guided Generation for Large Language Models\" by Brandon T. Willard and Rémi Louf, published on arXiv as preprint arXiv:2307.09702 in 2023.\n\nThe paper shows how the problem of neural text generation can be constructively reformulated in terms of transitions between the states of a finite-state machine.\n\nThe paper describes an efficient method that guides language model text generation using regular expression\n…[truncated 508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T18:56:42.094271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "NeuroLogic Decoding Unsupervised Neural Text Generation Predicate Logic Constraints Lu 2021 NAACL"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T18:56:42.094391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Unified Structure Generation Universal Information Extraction Lu 2022 ACL"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T18:56:42.094537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LMQL Programming Large Language Models Beurer-Kellner 2023 PLDI\"\n\nLinks: [{\"title\":\"Research | LMQL\",\"url\":\"https://lmql.ai/research/index.html\"},{\"title\":\"Prompting Is Programming: A Query Language for Large Language Models | Proceedings of the ACM on Programming Languages\",\"url\":\"https://dl.acm.org/doi/10.1145/3591300\"},{\"title\":\"[2212.06094] Prompting Is Programming: A Query Language for Large Language Models\",\"url\":\"https://arxiv.org/abs/2212.06094\"},{\"title\":\"Prompting Is Programming: A Query Language for Large Language Models (PLDI 2023 - PLDI Research Papers) - PLDI 2023\",\"url\":\"https://pldi23.sigplan.org/details/pldi-2023-pldi/81/Prompting-Is-Programming-A-Query-Language-for-Large-Language-Models\"},{\"title\":\"GitHub - lmql-lang/lmql: A query language for programming (large) language models. · GitHub\",\"url\":\"https://github.com/lmql-lang/lmql\"},{\"title\":\"Prompting Is Programming: A Query Language for Large Language Models 1\",\"url\":\"https://arxiv.org/pdf/2212.06094\"},{\"title\":\"A new form of human-computer interaction | ETH Zurich\",\"url\":\"https://ethz.ch/en/news-and-events/eth-news/news/2023/04/a-new-form-of-human-computer-interaction.html\"},{\"title\":\"Prompting Is Programming: A Query Language for Large Language Models | SRI Lab\",\"url\":\"https://www.sri.inf.ethz.ch/publications/beurerkellner2023prompting\"},{\"title\":\"New platform allows easier, cheaper, and safer interactions with large language models like ChatGPT\",\"url\":\"https://techxplore.com/news/2023-04-platform-easier-cheaper-safer-interactions.html\"},{\"title\":\"LMQL Programming Large Language Models - YouTube\",\"url\":\"https://www.youtube.com/watch?v=G-w8upx6zb4\"}]\n\nBased on the search results, here's information about the LMQL paper by Beurer-Kellner et al. from PLDI 2023:\n\n## Overview\n\nThe paper \"Prompting Is Programming: A Query Language for Large Language Models\" was authored by Luca Beurer-Kellner, Marc Fischer, and Martin Vechev in 2023. It was presented at the 44th ACM SIGP\n…[truncated 1294 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T18:56:42.094750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Park Grammar-Aligned Decoding 2024 constrained generation\"\n\nLinks: [{\"title\":\"Grammar-Aligned Decoding Kanghee Park1∗ Jiayu Wang1∗ Taylor Berg-Kirkpatrick2\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/2bdc2267c3d7d01523e2e17ac0a754f3-Paper-Conference.pdf\"},{\"title\":\"[2405.21047] Grammar-Aligned Decoding\",\"url\":\"https://arxiv.org/abs/2405.21047\"},{\"title\":\"Grammar-Aligned Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=5G7ve8E1Lu\"},{\"title\":\"NeurIPS Poster Grammar-Aligned Decoding\",\"url\":\"https://neurips.cc/virtual/2024/poster/96599\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"AdapTrack: Constrained Decoding without Distorting LLM’s Output Intent\",\"url\":\"https://arxiv.org/html/2510.17376v1\"},{\"title\":\"Grammar-Aligned Decoding\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html\"},{\"title\":\"Grammar-Constrained Decoding Makes Large Language ...\",\"url\":\"https://aclanthology.org/2025.acl-industry.34.pdf\"},{\"title\":\"Approximately Aligned Decoding\",\"url\":\"https://arxiv.org/html/2410.01103v1\"},{\"title\":\"Flexible and Efficient Grammar-Constrained Decoding\",\"url\":\"https://arxiv.org/pdf/2502.05111\"}]\n\nI found comprehensive information about \"Grammar-Aligned Decoding\" by Park and colleagues from 2024. Here's what the research is about:\n\n## Overview\n\nLarge Language Models (LLMs) struggle with reliably generating highly structured outputs, such as program code, mathematical formulas, or well-formed markup. Constrained decoding approaches mitigate this problem by greedily restricting what tokens an LLM can output at each step to guarantee that the output matches a given constraint. Specifically, in grammar-constrained decoding (GCD), the LLM's output must follow a given grammar.\n\n## The Problem GAD Addresses\n\nGCD techniques c\n…[truncated 1130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T18:56:42.094968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GenIE Generative Information Extraction Josifoski 2022 NAACL\"\n\nLinks: [{\"title\":\"GenIE: Generative Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.naacl-main.342/\"},{\"title\":\"GitHub - epfl-dlab/GenIE: The autoregressive information extraction system GenIE (Generative Information Extraction) implemented in PyTorch. · GitHub\",\"url\":\"https://github.com/epfl-dlab/GenIE\"},{\"title\":\"GenIE: Generative Information Extraction\",\"url\":\"https://aclanthology.org/2022.naacl-main.342.pdf\"},{\"title\":\"GenIE: Generative Information Extraction\",\"url\":\"https://infoscience.epfl.ch/entities/publication/ac96118e-64f4-4d05-8461-aa27321afaeb\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=GenIE:+Generative+information+extraction&amp=&author=Martin+Josifoski&amp=&author=Nicola+De+Cao&amp=&author=Maxime+Peyrard&amp=&author=Fabio+Petroni&amp=&author=Robert+West&amp=&publication_year=2022&amp=&pages=4626-4643&amp=&doi=10.18653/v1/2022.naacl-main.342\"},{\"title\":\"[2112.08340] GenIE: Generative Information Extraction\",\"url\":\"https://arxiv.org/abs/2112.08340\"},{\"title\":\"(PDF) GenIE: Generative Information Extraction\",\"url\":\"https://www.researchgate.net/publication/362262820_GenIE_Generative_Information_Extraction\"},{\"title\":\"GenIE: Generative Information Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=HxxjO7zS-c\"},{\"title\":\"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11704-024-40555-y\"},{\"title\":\"GenIE: Generative Information Extraction | Underline\",\"url\":\"https://underline.io/lecture/53770-genie-generative-information-extraction\"}]\n\n## Search Results for GenIE: Generative Information Extraction\n\nHere are the results for your search on GenIE:\n\nGenIE: Generative Information Extraction was published by Josifoski et al. at NAACL 2022 in Seattle, United States. Th\n…[truncated 1182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T18:56:42.095152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GENRE Autoregressive Entity Retrieval De Cao 2021 ICLR\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2021 AUTOREGRESSIVE ENTITY RETRIEVAL\",\"url\":\"https://openreview.net/pdf?id=5k8F6UU39V\"},{\"title\":\"GitHub - facebookresearch/GENRE: Autoregressive Entity Retrieval · GitHub\",\"url\":\"https://github.com/facebookresearch/GENRE\"},{\"title\":\"Autoregressive Entity Retrieval | OpenReview\",\"url\":\"https://openreview.net/forum?id=5k8F6UU39V\"},{\"title\":\"ICLR Spotlight Autoregressive Entity Retrieval\",\"url\":\"https://iclr.cc/virtual/2021/spotlight/3521\"},{\"title\":\"[2010.00904] Autoregressive Entity Retrieval\",\"url\":\"https://arxiv.org/abs/2010.00904\"},{\"title\":\"Autoregressive Entity Retrieval - AI at Meta\",\"url\":\"https://ai.meta.com/research/publications/autoregressive-entry-retrieval/\"},{\"title\":\"(PDF) Autoregressive Entity Retrieval\",\"url\":\"https://www.researchgate.net/publication/344468840_Autoregressive_Entity_Retrieval\"},{\"title\":\"Track: Oral Session 4\",\"url\":\"https://iclr.cc/virtual/2021/session/4331\"},{\"title\":\"Highly Parallel Autoregressive Entity Linking with ...\",\"url\":\"https://aclanthology.org/2021.emnlp-main.604.pdf\"},{\"title\":\"[PDF] Autoregressive Entity Retrieval | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Autoregressive-Entity-Retrieval-Cao-Izacard/572c12e81319ccd47cc0c637c82efadd03fd05ab\"}]\n\nI've found comprehensive information about the GENRE paper. Here's a summary of the search results:\n\n## GENRE: Autoregressive Entity Retrieval\n\nGENRE is a paper by Nicola De Cao, Gautier Izacard, Sebastian Riedel, and Fabio Petroni, published at ICLR 2021.\n\n### Core Innovation\n\nGENRE is the first system that retrieves entities by generating their unique names, left to right, token-by-token in an autoregressive fashion and conditioned on the context.\n\n### Key Advantages\n\nThe autoregressive formulation allows direct capture of relations between context and entity name, effectively cross encoding both; the memory footp\n…[truncated 955 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T18:56:42.095338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Unified Structure Generation Universal Information Extraction Lu 2022 ACL\"\n\nLinks: [{\"title\":\"Unified Structure Generation for Universal Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.acl-long.395/\"},{\"title\":\"[2203.12277] Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2203.12277\"},{\"title\":\"GitHub - universal-ie/UIE: Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://github.com/universal-ie/UIE\"},{\"title\":\"Unified Structure Generation for Universal Information Extraction | universal-ie.github.io\",\"url\":\"https://universal-ie.github.io/\"},{\"title\":\"Unified Structure Generation for Universal Information ...\",\"url\":\"https://aclanthology.org/2022.acl-long.395.pdf\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Unified+structure+generation+for+universal+information+extraction&amp=&author=Yaojie+Lu&amp=&author=Qing+Liu&amp=&author=Dai+Dai&amp=&author=Xinyan+Xiao&amp=&author=Hongyu+Lin&amp=&author=Xianpei+Han&amp=&author=Le+Sun&amp=&author=Hua+Wu&amp=&publication_year=2022&amp=&pages=5755-5772&amp=&doi=10.18653/v1/2022.acl-long.395\"},{\"title\":\"Uniﬁed Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/pdf/2203.12277\"},{\"title\":\"[2203.12277v1] Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2203.12277v1\"},{\"title\":\"Yaojie Lu's Homepage\",\"url\":\"https://luyaojie.github.io/publication.html\"},{\"title\":\"[PDF] Unified Structure Generation for Universal Information Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Unified-Structure-Generation-for-Universal-Lu-Liu/5eb9dad01d9b61947d7a9aae6dfff400d20555b9\"}]\n\nI found comprehensive information about this paper. Here's what I found:\n\n## Paper Overview\n\nThe paper \"Unified Structure Generation for Universal Information Extraction\" was published in the Proceedi\n…[truncated 1335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T18:56:42.095507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Beurer-Kellner Domino 2024 constrained decoding LLM\"\n\nLinks: [{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://files.sri.inf.ethz.ch/website/papers/beurerkellner2024domino.pdf\"},{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://arxiv.org/html/2403.06988v1\"},{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://proceedings.mlr.press/v235/beurer-kellner24a.html\"},{\"title\":\"Fast, Non-Invasive Constrained LLM Generation\",\"url\":\"https://www.emergentmind.com/papers/2403.06988\"},{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation | SRI Lab\",\"url\":\"https://www.sri.inf.ethz.ch/publications/beurerkellner2024domino\"},{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation [Quick Review]\",\"url\":\"https://liner.com/review/guiding-llms-right-way-fast-noninvasive-constrained-generation\"},{\"title\":\"[2403.06988] Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://arxiv.org/abs/2403.06988\"},{\"title\":\"[PDF] Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Guiding-LLMs-The-Right-Way:-Fast,-Non-Invasive-Beurer-Kellner-Fischer/b95ca121a606da32180ab8bb0c0c58bf19b1499b\"},{\"title\":\"Lost in Space: Optimizing Tokens for Grammar-Constrained Decoding\",\"url\":\"https://arxiv.org/html/2502.14969v1\"},{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://paperreading.club/page?id=214665\"}]\n\nBased on the search results, here's what I found about the Beurer-Kellner Domino 2024 constrained decoding approach for LLMs:\n\n## Overview\n\nThe paper \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\" was published by Beurer-Kellner, Fischer, and Vechev in 2024. The work addresses how to ensure that text generated by larg\n…[truncated 1162 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T18:56:42.095710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Geng Grammar-Constrained Decoding Structured NLP 2023\"\n\nLinks: [{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.emnlp-main.674/\"},{\"title\":\"[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\",\"url\":\"https://arxiv.org/abs/2305.13971\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/376402267_Grammar-Constrained_Decoding_for_Structured_NLP_Tasks_without_Finetuning\"},{\"title\":\"[PDF] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Grammar-Constrained-Decoding-for-Structured-NLP-Geng-Josifosky/7e269bfabb451765a16ca0357de6b497cefb60bf\"},{\"title\":\"GitHub - epfl-dlab/GCD · GitHub\",\"url\":\"https://github.com/epfl-dlab/GCD\"},{\"title\":\"Grammar-Aligned Decoding Kanghee Park1∗ Jiayu Wang1∗ Taylor Berg-Kirkpatrick2\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/2bdc2267c3d7d01523e2e17ac0a754f3-Paper-Conference.pdf\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\",\"url\":\"https://arxiv.org/html/2305.13971v6\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks ...\",\"url\":\"https://dlab.epfl.ch/people/west/pub/Geng-Josifoski-Peyrard-West_EMNLP-23.pdf\"},{\"title\":\"The Hidden Cost of Structure: How Constrained Decoding ...\",\"url\":\"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf\"},{\"title\":\"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts\",\"url\":\"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full\"}]\n\n## Search Results\n\nBased on the web search, here's what I found about the research on Grammar-Constrained Decoding\n…[truncated 1224 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T18:56:42.095898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"NeuroLogic Decoding Unsupervised Neural Text Generation Predicate Logic Constraints Lu 2021 NAACL\"\n\nLinks: [{\"title\":\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints - ACL Anthology\",\"url\":\"https://aclanthology.org/2021.naacl-main.339/\"},{\"title\":\"[2010.12884] NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\",\"url\":\"https://arxiv.org/abs/2010.12884\"},{\"title\":\"GitHub - GXimingLu/neurologic_decoding\",\"url\":\"https://github.com/GXimingLu/neurologic_decoding\"},{\"title\":\"NEUROLOGIC DECODING: (Un)supervised Neural Text ...\",\"url\":\"https://aclanthology.org/2021.naacl-main.339.pdf\"},{\"title\":\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Request PDF\",\"url\":\"https://www.researchgate.net/publication/344894390_NeuroLogic_Decoding_Unsupervised_Neural_Text_Generation_with_Predicate_Logic_Constraints\"},{\"title\":\"dblp: NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints.\",\"url\":\"https://dblp.uni-trier.de/rec/conf/naacl/LuWZBBC21.html\"},{\"title\":\"[2010.12884v2] NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\",\"url\":\"https://arxiv.org/abs/2010.12884v2\"},{\"title\":\"[PDF] NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/NeuroLogic-Decoding:-(Un)supervised-Neural-Text-Lu-West/2c5bf29079cd958a2bef150077a02a1deb300652\"},{\"title\":\"arXiv:2210.12365v1 [cs.CL] 22 Oct 2022\",\"url\":\"https://arxiv.org/pdf/2210.12365\"},{\"title\":\"Accepted Papers - NAACL-HLT 2021\",\"url\":\"https://2021.naacl.org/program/accepted/\"}]\n\nI found comprehensive information about the paper you searched for. Here's what I discovered:\n\n## NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\n\nThe paper was authored by Ximing Lu, Peter Wes\n…[truncated 1330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T18:56:42.096095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "XGrammar MLSys 2025 Yixin Dong authors full list"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T18:56:42.096223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:proceedings.mlr.press \"beurer-kellner24a\" Domino ICML 2024 authors"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T18:56:42.096366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"XGrammar MLSys 2025 Yixin Dong authors full list\"\n\nLinks: [{\"title\":\"Proceedings of Machine Learning and Systems 7\",\"url\":\"https://proceedings.mlsys.org/paper_files/paper/2025\"},{\"title\":\"MLSys 2025 Thursday 05/15\",\"url\":\"https://mlsys.org/virtual/2025/day/5/15\"},{\"title\":\"[2411.15100] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100\"},{\"title\":\"Catalyst: XGrammar\",\"url\":\"https://catalyst.cs.cmu.edu/projects/xgrammar.html\"},{\"title\":\"Track: Session 10: LLM and Diffusion Model Serving\",\"url\":\"https://mlsys.org/virtual/2025/session/3161\"},{\"title\":\"MLSys Poster XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://mlsys.org/virtual/2025/poster/3235\"},{\"title\":\"8th MLSys 2025: Santa Clara, CA, USA\",\"url\":\"https://dblp.org/db/conf/mlsys/mlsys2025.html\"},{\"title\":\"GitHub - mlc-ai/xgrammar: Fast, Flexible and Portable Structured Generation · GitHub\",\"url\":\"https://github.com/mlc-ai/xgrammar\"},{\"title\":\"[PDF] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/XGrammar:-Flexible-and-Efficient-Structured-Engine-Dong-Ruan/274ca059ee4997f1e008bc8962aef3d22897f17a\"},{\"title\":\"[2411.15100v1] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100v1\"}]\n\nBased on the search results, here is the full list of authors for the XGrammar paper presented at MLSys 2025:\n\nThe authors are: Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ziyi Xu, Yilong Zhao, Ruihang Lai, and Tianqi Chen.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T18:56:42.096538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:proceedings.mlr.press \"beurer-kellner24a\" Domino ICML 2024 authors\"\n\nLinks: [{\"title\":\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\",\"url\":\"https://proceedings.mlr.press/v235/beurer-kellner24a.html\"},{\"title\":\"Prompt Sketching for Large Language Models\",\"url\":\"https://proceedings.mlr.press/v235/beurer-kellner24b.html\"}]\n\nBased on the search results, I found the paper with ID \"beurer-kellner24a\" from ICML 2024:\n\n**Paper Title:** Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\n\n**Authors:** Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\n\n**Key Details:**\n- Published in Proceedings of the 41st International Conference on Machine Learning, PMLR 235:3658-3673, 2024\n- The paper presents DOMINO, a novel decoding algorithm that can enforce constraints in a fully subword-aligned fashion\n- The code is released as open source at https://github.com/eth-sri/domino\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T18:56:42.096728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2411.15100 XGrammar complete author list"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T18:56:42.096878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2411.15100 XGrammar complete author list\"\n\nLinks: [{\"title\":\"[2411.15100] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation ...\",\"url\":\"https://arxiv.org/pdf/2411.15100\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2411.15100v1\"},{\"title\":\"[2411.15100v1] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://arxiv.org/abs/2411.15100v1\"},{\"title\":\"Paper page - XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\",\"url\":\"https://huggingface.co/papers/2411.15100\"},{\"title\":\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241115100D/abstract\"},{\"title\":\"XGrammar: Efficient Structured Generation Engine\",\"url\":\"https://www.emergentmind.com/papers/2411.15100\"},{\"title\":\"Tianqi Chen on X: \\\"XGrammar arxiv tech report is now up at https://t.co/LByGpDBGnu\\\" / X\",\"url\":\"https://x.com/tqchenml/status/1861031573652430877\"},{\"title\":\"The AI Timeline on X: \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models Author's Explanation: https://t.co/C1byC7zgsA Overview: XGrammar introduces a highly efficient structured generation engine for LLMs by optimizing context-free grammar execution through https://t.co/FCi3yguJms\\\" / X\",\"url\":\"https://x.com/TheAITimeline/status/1863350171909881976\"},{\"title\":\"dblp: XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2411-15100.html\"}]\n\nBased on the search results, the complete author list for arXiv paper 2411.15100 (XGrammar) is: Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, and Tianqi Chen.\n\n\nREMINDER: You MUST include the sourc\n…[truncated 64 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T18:56:42.097054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T18:56:42.097178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T18:56:42.097291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2411.15100",
+              "prompt": "List ALL authors of this paper exactly as they appear, separated by commas."
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T18:56:42.097405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the web page content provided, here are all the authors of this paper exactly as they appear:\n\nYixin Dong, Charlie F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, Tianqi Chen"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T18:56:42.097616+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 papers verified. Here's the complete BibTeX block:\n\n```bibtex\n% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n@inproceedings{dong2025xgrammar,\n  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2411.15100}\n}\n\n% Confirmed via: arXiv 2307.09702\n@article{willard2023outlines,\n  title   = {Efficient Guided Generation for Large Language Models},\n  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2307.09702}\n}\n\n% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n@inproceedings{beurer-kellner2023lmql,\n  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n  year      = {2023},\n  url       = {https://doi.org/10.1145/3591300}\n}\n\n% Confirmed via: PMLR v235, ICML 2024\n@inproceedings{beurer-kellner2024domino,\n  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  pages     = {3658--3673},\n  year      = {2024},\n  series    = {PMLR},\n  volume    = {235},\n  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n}\n\n% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n@inproceedings{park2024grammar,\n  title     = {Grammar-Aligned Decoding},\n  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2405.21047}\n}\n\n% Confirmed via: OpenReview, ICLR 2021\n@inproceedings{decao2021genre,\n  title     = {Autoregressive Entity Retrieval},\n  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n}\n\n% Confirmed via: ACL Anthology 2022.naacl-main.342\n@inproceedings{josifoski2022genie,\n  title     = {{GenIE}: Generative Information Extraction},\n  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4626--4643},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.naacl-main.342/}\n}\n\n% Confirmed via: ACL Anthology 2023.emnlp-main.674\n@inproceedings{geng2023gcd,\n  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2023},\n  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n}\n\n% Confirmed via: ACL Anthology 2021.naacl-main.339\n@inproceedings{lu2021neurologic,\n  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4288--4299},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.naacl-main.339/}\n}\n\n% Confirmed via: ACL Anthology 2022.acl-long.395\n@inproceedings{lu2022uie,\n  title     = {Unified Structure Generation for Universal Information Extraction},\n  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages     = {5755--5772},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.acl-long.395/}\n}\n```\n\n10/10 全部找到，无缺失。验证来源汇总：\n\n| Cite Key | Venue | 验证来源 |\n|---|---|---|\n| dong2025xgrammar | MLSys 2025 | arXiv + MLSys proceedings |\n| willard2023outlines | arXiv 2023 | arXiv 2307.09702 |\n| beurer-kellner2023lmql | PLDI 2023 | ACM DL |\n| beurer-kellner2024domino | ICML 2024 | PMLR v235 |\n| park2024grammar | NeurIPS 2024 | OpenReview + NeurIPS proceedings |\n| decao2021genre | ICLR 2021 | OpenReview |\n| josifoski2022genie | NAACL 2022 | ACL Anthology |\n| geng2023gcd | EMNLP 2023 | ACL Anthology |\n| lu2021neurologic | NAACL 2021 | ACL Anthology |\n| lu2022uie | ACL 2022 | ACL Anthology |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_bib_missing_entries_batch1_20260514T185357"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-bib-missing-entries-batch1.md"
+}

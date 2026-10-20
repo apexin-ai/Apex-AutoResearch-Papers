@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82ab19e12eab338c6f9a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix merge bib files",
+  "task_key": "worker_fix_merge_bib_files_20260514T062532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_merge_bib_files_20260514T062532_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "04eff4d2cb2a5991a7dd4f75e5be496eaa62386ee4caa4942b00832863166580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。合并结果摘要：\n\n| 条目 | 合并决策 |\n|------|---------|\n| `mgd_neurips2023` | 补充 `volume={36}` |\n| `adakgc_emnlp2023` | 补充 `pages={6408--6431}` |\n| `ontologx_2025` | `@article` → `@misc`，添加 `eprint`/`archiveprefix`/`primaryclass` |\n| `ekaw2024_ontology_beam` | 保留未转义 DOI `_23`（new_references 中的 `\\_23` 会破坏超链接） |\n| 所有条目 | 保留 \"Confirmed via\" 验证注释和 WARNING 注释 |\n| cite key | 全部不变 |\n\n9 个条目均有完整必填字段（author, title, year, booktitle/journal）。\n\n输出文件：\n- `artifacts/references_merged.bib` — 权威合并版\n- `artifacts/_project/paper/relwork_new_entries.bib` — 已覆盖为合并版"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-merge-bib-files.md"
+}

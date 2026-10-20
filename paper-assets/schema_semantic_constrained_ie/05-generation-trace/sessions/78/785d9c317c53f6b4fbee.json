@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785d9c317c53f6b4fbee",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section2 background",
+  "task_key": "worker_paper_section2_background_20260514T061320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section2_background_20260514T061320_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "4fb7df2ad787ae03cd1193427f6b1a4fa6d729f746108650cd51746014089f47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section2_background.tex` 并注册。~580 words，3 个 subsection：\n\n- **§2.1 IE Ontology Structure**: 形式化定义 $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$，type validity 条件，constraint tightness 定义，SciERC vs DocRED 对比数据\n- **§2.2 Grammar-Constrained Decoding**: autoregressive generation + token mask $M_g$，XGrammar/Outlines/SGLang 引用，明确指出 CFG 无法表达 cross-field semantic constraints 的局限\n- **§2.3 Problem Statement**: structural validity (a) vs type validity (b)，(a) context-free，(b) context-sensitive but prefix-decidable with state\n\n符号与 Introduction 和 writing_plan notation_table 一致（$\\mathcal{O}, \\mathcal{E}, \\mathcal{R}, \\sigma, M_g$）。引用 key 沿用已有格式。需要 `enumitem` 宏包支持 `[label=(\\alph*)]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section2-background.md"
+}

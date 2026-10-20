@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e4ac55eb9cd78d75d46",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check int4 results quick",
+  "task_key": "worker_check_int4-results-quick_20260523T053356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_int4-results-quick_20260523T053356_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "1d86e5a52da83decb7ee19df73dec9f5a83feee297b5432a65fad99e9e5b19d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments already registered with metrics. Here's the FP16 vs INT4 comparison:\n\n| Model | Precision | DR% | CF% | R-F1 | E-F1 | ΔDR | ΔCF | ΔR-F1 | ΔE-F1 |\n|-------|-----------|-----|-----|------|------|-----|-----|-------|-------|\n| Qwen3-8B | FP16 | 0.00 | 1.18 | 43.77 | 67.05 | — | — | — | — |\n| Qwen3-8B | INT4 | 0.00 | 1.10 | 41.71 | 67.05 | 0.00 | −0.08 | −2.06 | 0.00 |\n| Llama-3.1-8B | FP16 | 0.09 | 0.46 | 45.47 | 67.76 | — | — | — | — |\n| Llama-3.1-8B | INT4 | 0.00 | 0.94 | 43.98 | 67.54 | −0.09 | +0.48 | −1.49 | −0.22 |\n\n**Key findings:**\n\n- **Constraint enforcement preserved**: DR stays at 0% for both INT4 models (Llama even improves from 0.09%→0%). No structural violations introduced by quantization.\n- **R-F1 degradation modest**: Qwen drops 2.06 points, Llama drops 1.49 points — both within acceptable range for 4x compression.\n- **E-F1 nearly unchanged**: Qwen identical (67.05%), Llama −0.22pp.\n- **CF% mixed**: Qwen slightly improves (−0.08pp), Llama slightly worsens (+0.48pp) — both remain low.\n\nHypothesis confirmed for both: INT4 quantization does not significantly affect constraint enforcement."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-int4-results-quick.md"
+}

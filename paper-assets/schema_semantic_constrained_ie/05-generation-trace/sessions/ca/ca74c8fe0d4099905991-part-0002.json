@@ -1,0 +1,1793 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ca74c8fe0d4099905991",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015m9PZr53WM97RMcGXji9cZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && cat > /tmp/fix_bootstrap2.py << 'PYEOF'\nwith open('compute_bootstrap_ci.py', 'r') as f:\n    content = f.read()\n\n# Fix docred_sample_stats: when parsed is None, return all zeros (skip document, matching registry)\nold_parse_none = \"\"\"    if parsed is None:\n        return {\"ent_tp\": 0, \"ent_gold\": len(gold_ent_set), \"ent_pred\": 0,\n                \"rel_tp\": 0, \"rel_gold\": len(gold_rel_set), \"rel_pred\": 0}\n\n    entities = parsed.get(\"entities\", [])\n    relations = parsed.get(\"relations\", [])\n\n    pred_ent_set = set((e.get(\"text\", \"\").lower().strip(), e.get(\"type\", \"\")) for e in entities)\"\"\"\n\nnew_parse_none = \"\"\"    if parsed is None:\n        return {\"ent_tp\": 0, \"ent_gold\": 0, \"ent_pred\": 0,\n                \"rel_tp\": 0, \"rel_gold\": 0, \"rel_pred\": 0}\n\n    entities = parsed.get(\"entities\", [])\n    relations = parsed.get(\"relations\", [])\n\n    pred_ent_set = set((e.get(\"text\", \"\").lower().strip(), e.get(\"type\", \"\")) for e in entities)\"\"\"\n\nassert old_parse_none in content, \"Could not find parse_none pattern in docred_sample_stats\"\ncontent = content.replace(old_parse_none, new_parse_none)\n\nwith open('compute_bootstrap_ci.py', 'w') as f:\n    f.write(content)\n\nprint(\"Fix applied: docred parse failures now return all zeros (matching registry)\")\nPYEOF\npython3 /tmp/fix_bootstrap2.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "b3a30a5f-99aa-4aee-8c30-e9e8cb470e5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q98wesf2qfAgVsZn4bY6GV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3985,
+                "cache_read_input_tokens": 102989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3985
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T18:48:47.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015m9PZr53WM97RMcGXji9cZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix applied: docred parse failures now return all zeros (matching registry)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "672d9d4f-e34b-4ad6-92f1-819f17c6f83d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix applied: docred parse failures now return all zeros (matching registry)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Fix applied: docred parse failures now return all zeros (matching registry)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now re-validate point estimates."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "106b8f8f-4784-42ab-89d0-5949e1cc3325",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ANVCioFq8ViyHcPgsf6G9U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 845,
+                "cache_read_input_tokens": 106974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 845
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FFf7t6yfgqF6icHfewTsK1",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 /tmp/validate_bootstrap.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "fc1d57b1-d429-40a1-8b8c-c4f1e0c97b8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ANVCioFq8ViyHcPgsf6G9U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 845,
+                "cache_read_input_tokens": 106974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 845
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T18:49:09.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FFf7t6yfgqF6icHfewTsK1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DocRED Point Estimate Validation ===\\\\n  unconstrained: Ent F1=58.15% (tp=11356, gold=19225, pred=19832), Rel F1=7.74% (tp=1137, gold=12021, pred=17355)\\\\n  full_s1: Ent F1=59.38% (tp=11613, gold=19254, pred=19859), Rel F1=8.24% (tp=1205, gold=12031, pred=17227)\\\\n\\\\n=== SciERC Point Estimate Validation ===\\\\n  unconstrained: Ent F1=31.01% (tp=641, gold=1673, pred=2461), Rel F1=8.23%\\\\n  full_s1: Ent F1=30.98% (tp=642, gold=1673, pred=2471), Rel F1=8.36%\\\\n\\\\n=== Registry Reference ===\\\\n  DocRED unconstrained: Ent F1=58.15%, Rel F1=7.74%\\\\n  DocRED full_s1:       Ent F1=59.37%, Rel F1=8.23%\\\\n  SciERC unconstrained: Ent F1=31.01%, Rel F1=8.23%\\\\n  SciERC full_s1:       Ent F1=30.98%, Rel F1=8.36%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "41d4636a-5fbf-4e48-9546-aa3d596f77ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DocRED Point Estimate Validation ===\\\\n  unconstrained: Ent F1=58.15% (tp=11356, gold=19225, pred=19832), Rel F1=7.74% (tp=1137, gold=12021, pred=17355)\\\\n  full_s1: Ent F1=59.38% (tp=11613, gold=19254, pred=19859), Rel F1=8.24% (tp=1205, gold=12031, pred=17227)\\\\n\\\\n=== SciERC Point Estimate Validation ===\\\\n  unconstrained: Ent F1=31.01% (tp=641, gold=1673, pred=2461), Rel F1=8.23%\\\\n  full_s1: Ent F1=30.98% (tp=642, gold=1673, pred=2471), Rel F1=8.36%\\\\n\\\\n=== Registry Reference ===\\\\n  DocRED unconstrained: Ent F1=58.15%, Rel F1=7.74%\\\\n  DocRED full_s1:       Ent F1=59.37%, Rel F1=8.23%\\\\n  SciERC unconstrained: Ent F1=31.01%, Rel F1=8.23%\\\\n  SciERC full_s1:       Ent F1=30.98%, Rel F1=8.36%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== DocRED Point Estimate Validation ===\\n  unconstrained: Ent F1=58.15% (tp=11356, gold=19225, pred=19832), Rel F1=7.74% (tp=1137, gold=12021, pred=17355)\\n  full_s1: Ent F1=59.38% (tp=11613, gold=19254, pred=19859), Rel F1=8.24% (tp=1205, gold=12031, pred=17227)\\n\\n=== SciERC Point Estimate Validation ===\\n  unconstrained: Ent F1=31.01% (tp=641, gold=1673, pred=2461), Rel F1=8.23%\\n  full_s1: Ent F1=30.98% (tp=642, gold=1673, pred=2471), Rel F1=8.36%\\n\\n=== Registry Reference ===\\n  DocRED unconstrained: Ent F1=58.15%, Rel F1=7.74%\\n  DocRED full_s1:       Ent F1=59.37%, Rel F1=8.23%\\n  SciERC unconstrained: Ent F1=31.01%, Rel F1=8.23%\\n  SciERC full_s1:       Ent F1=30.98%, Rel F1=8.36%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.46}}"
+              }
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Almost perfect match:\n- DocRED unconstrained: 58.15% vs 58.15% ✓ EXACT MATCH\n- DocRED full_s1: 59.38% vs 59.37% (0.01pp diff due to rounding)\n- DocRED Rel F1: 7.74% vs 7.74% ✓, 8.24% vs 8.23% (0.01pp rounding)\n- SciERC: all exact matches ✓\n\nThe 0.01pp difference in DocRED full_s1 is likely due to rounding differences (the registry rounds at 4 decimal places, the bootstrap at 2). \n\nThe negligible rounding discrepancies are expected. The relation F1 scores still match the registry values, so the parse-failure handling isn't affecting those metrics. I've fixed the bootstrap CI script and verified the point estimates, so I can move forward with the remaining tasks.\n\nNow I need to start the full bootstrap run with 10,000 iterations while also computing the grammar_only Entity F1 separately. I'll need to update the script to save results to a new output file and add the grammar_only entity F1 computation before kicking off the full bootstrap.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "e27c8244-bfa3-4e73-9ade-323248480707",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013e48A7UEWVrD6AubPur6GN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 590,
+                "cache_read_input_tokens": 107819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 590
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Point estimates now match registry within rounding precision:\n- DocRED unconstrained: 58.15% vs 58.15% ✓\n- DocRED full_s1: 59.38% vs 59.37% (~0.01pp rounding)\n- SciERC: exact match ✓\n\nNow let me compute grammar_only Entity F1 and start the full bootstrap run. I'll do both in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "98cd28e9-da80-4fe8-b442-52979c49058d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013e48A7UEWVrD6AubPur6GN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 590,
+                "cache_read_input_tokens": 107819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 590
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLDLNcBzUAg9g8s1vfFRDh",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# Compute grammar_only Entity F1 using same logic as posthoc_filter.py (raw types, no normalization)\nrecords = [json.loads(l) for l in open('outputs/docred_grammar_only.jsonl') if l.strip()]\n\nent_tp = ent_gold = ent_pred = 0\nparse_failures = 0\nfor rec in records:\n    parsed = rec.get('parsed_output')\n    if parsed is None:\n        parse_failures += 1\n        continue\n    gold_ents = rec.get('gold_entities', [])\n    entities = parsed.get('entities', [])\n    \n    gold_ent_set = set((e['text'].lower().strip(), e['type']) for e in gold_ents)\n    pred_ent_set = set((e.get('text', '').lower().strip(), e.get('type', '')) for e in entities)\n    \n    ent_tp += len(gold_ent_set & pred_ent_set)\n    ent_gold += len(gold_ent_set)\n    ent_pred += len(pred_ent_set)\n\np = ent_tp / ent_pred if ent_pred else 0\nr = ent_tp / ent_gold if ent_gold else 0\nf1 = 2*p*r/(p+r) if (p+r) > 0 else 0\n\nprint(f'Grammar-only Entity F1: {f1*100:.2f}%')\nprint(f'  Precision: {p*100:.2f}%, Recall: {r*100:.2f}%')\nprint(f'  TP={ent_tp}, Gold={ent_gold}, Pred={ent_pred}')\nprint(f'  Parse failures: {parse_failures}/{len(records)}')\nprint(f'  Total entities in grammar_only: {sum(len(r.get(\\\"parsed_output\\\", {}).get(\\\"entities\\\", []) if r.get(\\\"parsed_output\\\") else []) for r in records)}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "0995827d-1ba4-4b79-a197-72a0663e4c47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013e48A7UEWVrD6AubPur6GN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 590,
+                "cache_read_input_tokens": 107819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 590
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T18:49:35.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLDLNcBzUAg9g8s1vfFRDh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Grammar-only Entity F1: 59.38%\\\\n  Precision: 58.47%, Recall: 60.32%\\\\n  TP=11590, Gold=19215, Pred=19823\\\\n  Parse failures: 13/998\\\\n  Total entities in grammar_only: 20150\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "ad0657ae-9e47-43eb-b430-a16c54835ff3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Grammar-only Entity F1: 59.38%\\\\n  Precision: 58.47%, Recall: 60.32%\\\\n  TP=11590, Gold=19215, Pred=19823\\\\n  Parse failures: 13/998\\\\n  Total entities in grammar_only: 20150\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Grammar-only Entity F1: 59.38%\\n  Precision: 58.47%, Recall: 60.32%\\n  TP=11590, Gold=19215, Pred=19823\\n  Parse failures: 13/998\\n  Total entities in grammar_only: 20150\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"
+              }
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Grammar-only Entity F1 = 59.38% (precision 58.47%, recall 60.32%).\n\nThis is very close to full_s1's 59.37%. It makes sense: grammar constraint enforces valid entity types via JSON schema enum, which helps entity extraction. The semantic layer doesn't add much for entity F1 (it mainly affects relation DR violations).\n\nNow let me update the bootstrap script to:\n1. Change output path to `bootstrap_ci_results_v2.json`\n2. Run the full 10000 iteration bootstrap\n\nActually, I should also modify the script to include grammar_only Entity F1. But since grammar_only is already included in the docred_configs dict in the main script, it will be computed automatically during the full bootstrap run.\n\n\nI'll update the output path and kick off the full bootstrap run. Since SciERC values matched perfectly, there shouldn't be any parse failures to worry about there. This will take a while with 10000 iterations.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "f50c99f1-cccd-4e1b-aedf-9f9cabc7a4f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4rHDmx5aExZHhe62G5HTB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 108409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1415
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Grammar-only Entity F1 = **59.38%** (precision 58.47%, recall 60.32%). Registry had this as null. Now let me update the output path and run the full 10000× bootstrap."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "6a154850-3f47-4c97-9cfc-57cc7ca546ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4rHDmx5aExZHhe62G5HTB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 108409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1415
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFUR4mfWWUcfLuygrLoUvc",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && cat > /tmp/fix_output_path.py << 'PYEOF'\nwith open('compute_bootstrap_ci.py', 'r') as f:\n    content = f.read()\n\ncontent = content.replace(\n    'output_path = \"outputs/bootstrap_ci_results.json\"',\n    'output_path = \"outputs/bootstrap_ci_results_v2.json\"'\n)\n\nwith open('compute_bootstrap_ci.py', 'w') as f:\n    f.write(content)\n\nprint(\"Output path updated to bootstrap_ci_results_v2.json\")\nPYEOF\npython3 /tmp/fix_output_path.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "4f0cdf09-c4b0-4374-b526-2f812db91f3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4rHDmx5aExZHhe62G5HTB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 108409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1415
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T18:49:48.918Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VFUR4mfWWUcfLuygrLoUvc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Output path updated to bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "6eb2cc97-d03c-49bc-b324-a920a4b986f6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Output path updated to bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Output path updated to bootstrap_ci_results_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me run the full 10000× bootstrap. This will take a few minutes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "d61c68de-33d7-45b3-92fc-6ab1cd5d05f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqvTySruZ78h2BgBbq1HFY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 109824,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E8gzafiCnxnTUKff8MvDxP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && nohup python3 compute_bootstrap_ci.py > /tmp/bootstrap_v2.log 2>&1 &\necho \"PID=$!\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "5b2ac1aa-3d3c-40b2-aff0-039913fd1cae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqvTySruZ78h2BgBbq1HFY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 109824,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T18:50:24.265Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E8gzafiCnxnTUKff8MvDxP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && nohup python3 compute_bootstrap_ci.py > /tmp/bootstrap_v2.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=207319\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "a8dc0bad-eedd-49b0-9138-447cab3b3fdd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && nohup python3 compute_bootstrap_ci.py > /tmp/bootstrap_v2.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=207319\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && nohup python3 compute_bootstrap_ci.py > /tmp/bootstrap_v2.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=207319\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"
+              }
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The process started with PID 207319 but the command timed out. Let me check if it's running and monitor the progress.",
+              "signature": "ErECClkIDRgCKkC05KC1+/UlrpLtZvTg3cNwQGHCfi9n8KrSip1HOLY5ywrwjloybUeGgGvdR+0xWuFHjIYuXcG+IukOf9oEuJ18Mg9jbGF1ZGUtb3B1cy00LTY4ABIMGJSFKV19jJuI9icCGgzlQNwtb07zNVPpU+QiMGWttkPm9pjvqPRtUxJ5Do1SwjU2CG6Q2awPQuoKx1I9DbgYWzJc26ctuHm4jumYliqFAfnOTugKfFGX6cY5xrQf7UWjatMmC16UEp7ouq1o5kYXuo2Egz6vlSc9DMlJ7CDihI+xS/0yssTmYlU7XISEXQT7pDQUjMFJlnai6gdOJ47pYTPrH/YHUzxDDY+af0SWTEI7Xu8tUVfizH7hhRaDYrZH3Nq74KrrgsnXUdunkSCiH52vVqMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "9fd54bf3-dede-47d3-a737-5ca569701a99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bz5RmzuZ9MpcP9Va4TeesP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 110628,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap started (PID 207319). Let me check progress."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "924cb554-76bf-413d-857b-5e05fbfae088",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bz5RmzuZ9MpcP9Va4TeesP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 110628,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZxQNeP9DZi83Zw8ENCJg2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "tail -30 /tmp/bootstrap_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "667198a7-51fa-44b9-a613-90cd0a1c6c65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bz5RmzuZ9MpcP9Va4TeesP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 110628,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T18:50:29.850Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RZxQNeP9DZi83Zw8ENCJg2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==================================================\\\\n  DocRED\\\\n==================================================\\\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\\\n\\\\nResults saved to outputs/bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "0428cdaa-6c98-417e-8570-f587e640c84c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==================================================\\\\n  DocRED\\\\n==================================================\\\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\\\n\\\\nResults saved to outputs/bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"==================================================\\n  DocRED\\n==================================================\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\n\\n  Paired bootstrap tests (B - A):\\n  unconstrained_vs_grammar_only:\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\n  unconstrained_vs_semantic_only:\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\n  unconstrained_vs_full_s1:\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\n  grammar_only_vs_full_s1:\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\n  semantic_only_vs_full_s1:\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\n\\nResults saved to outputs/bootstrap_ci_results_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The full bootstrap completed. Let me parse the results:\n\n**DocRED:**\n- unconstrained: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\n- grammar_only: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\n- semantic_only: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\n\n\n- full_s1: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\n\nNow looking at the comparisons between unconstrained and the constrained variants. Grammar constraints show a statistically significant boost of about 1.23 percentage points for entities and 0.57 for relations, while semantic constraints alone don't provide any meaningful improvement over the baseline.\n\nComparing against the full model, the unconstrained version trails by 1.23 points on entities and 0.50 on relations, both highly significant. Grammar-only and semantic-only variants show different patterns relative to the full model—grammar alone is essentially equivalent while semantic alone matches the full model's performance.\n\nI should also pull the SciERC results to see how these patterns hold across datasets.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "eecadbf5-e1c1-40ad-a705-166d0b7806d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECTKGYWQ7gq226ABK2iCGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 110998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap completed. Let me see the SciERC results too."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "030340c2-0acf-453e-af9c-cf931c10780f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECTKGYWQ7gq226ABK2iCGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 110998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UkhDRUJ1RiSYggzyJCPieo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat /tmp/bootstrap_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "8f3cf028-27eb-4c95-9ea1-8b2ed2ee85d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECTKGYWQ7gq226ABK2iCGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 110998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T18:50:40.423Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UkhDRUJ1RiSYggzyJCPieo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n==================================================\\\\n  SciERC\\\\n==================================================\\\\n  unconstrained: 551 samples, Ent F1=31.01%, Rel F1=8.23%\\\\n  grammar_only: 551 samples, Ent F1=30.98%, Rel F1=8.23%\\\\n  semantic_only: 551 samples, Ent F1=31.01%, Rel F1=8.15%\\\\n  full_s1: 551 samples, Ent F1=30.98%, Rel F1=8.36%\\\\n  unconstrained CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.23% [6.49, 10.09]\\\\n  grammar_only CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.23% [6.49, 10.09]\\\\n  semantic_only CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.15% [6.44, 10.00]\\\\n  full_s1 CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.36% [6.58, 10.27]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=-0.00pp [-0.22, +0.22] p=0.9798\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\\\n    Rel ΔF1=-0.08pp [-0.36, +0.15] p=0.4236\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=+0.13pp [-0.23, +0.58] p=0.5824\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\\\n    Rel ΔF1=+0.14pp [-0.16, +0.54] p=0.5108\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=+0.21pp [-0.21, +0.73] p=0.3930\\\\n\\\\n==================================================\\\\n  DocRED\\\\n==================================================\\\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\\\n\\\\nResults saved to outputs/bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "2b53ac9f-c38c-41c9-af24-cc6b7a0a5d15",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n==================================================\\\\n  SciERC\\\\n==================================================\\\\n  unconstrained: 551 samples, Ent F1=31.01%, Rel F1=8.23%\\\\n  grammar_only: 551 samples, Ent F1=30.98%, Rel F1=8.23%\\\\n  semantic_only: 551 samples, Ent F1=31.01%, Rel F1=8.15%\\\\n  full_s1: 551 samples, Ent F1=30.98%, Rel F1=8.36%\\\\n  unconstrained CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.23% [6.49, 10.09]\\\\n  grammar_only CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.23% [6.49, 10.09]\\\\n  semantic_only CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.15% [6.44, 10.00]\\\\n  full_s1 CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.36% [6.58, 10.27]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=-0.00pp [-0.22, +0.22] p=0.9798\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\\\n    Rel ΔF1=-0.08pp [-0.36, +0.15] p=0.4236\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=+0.13pp [-0.23, +0.58] p=0.5824\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\\\n    Rel ΔF1=+0.14pp [-0.16, +0.54] p=0.5108\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\\\n    Rel ΔF1=+0.21pp [-0.21, +0.73] p=0.3930\\\\n\\\\n==================================================\\\\n  DocRED\\\\n==================================================\\\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\\\n\\\\n  Paired bootstrap tests (B - A):\\\\n  unconstrained_vs_grammar_only:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\\\n  unconstrained_vs_semantic_only:\\\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\\\n  unconstrained_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\\\n  grammar_only_vs_full_s1:\\\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\\\n  semantic_only_vs_full_s1:\\\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\\\n\\\\nResults saved to outputs/bootstrap_ci_results_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n==================================================\\n  SciERC\\n==================================================\\n  unconstrained: 551 samples, Ent F1=31.01%, Rel F1=8.23%\\n  grammar_only: 551 samples, Ent F1=30.98%, Rel F1=8.23%\\n  semantic_only: 551 samples, Ent F1=31.01%, Rel F1=8.15%\\n  full_s1: 551 samples, Ent F1=30.98%, Rel F1=8.36%\\n  unconstrained CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.23% [6.49, 10.09]\\n  grammar_only CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.23% [6.49, 10.09]\\n  semantic_only CI: Ent F1=31.01% [28.83, 33.25], Rel F1=8.15% [6.44, 10.00]\\n  full_s1 CI: Ent F1=30.98% [28.80, 33.21], Rel F1=8.36% [6.58, 10.27]\\n\\n  Paired bootstrap tests (B - A):\\n  unconstrained_vs_grammar_only:\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\n    Rel ΔF1=-0.00pp [-0.22, +0.22] p=0.9798\\n  unconstrained_vs_semantic_only:\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\n    Rel ΔF1=-0.08pp [-0.36, +0.15] p=0.4236\\n  unconstrained_vs_full_s1:\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\n    Rel ΔF1=+0.13pp [-0.23, +0.58] p=0.5824\\n  grammar_only_vs_full_s1:\\n    Ent ΔF1=+0.00pp [+0.00, +0.00] p=1.0000\\n    Rel ΔF1=+0.14pp [-0.16, +0.54] p=0.5108\\n  semantic_only_vs_full_s1:\\n    Ent ΔF1=-0.03pp [-0.11, +0.08] p=0.5266\\n    Rel ΔF1=+0.21pp [-0.21, +0.73] p=0.3930\\n\\n==================================================\\n  DocRED\\n==================================================\\n  unconstrained: 998 samples, Ent F1=58.15%, Rel F1=7.74%\\n  grammar_only: 998 samples, Ent F1=59.38%, Rel F1=8.31%\\n  semantic_only: 998 samples, Ent F1=58.15%, Rel F1=7.73%\\n  full_s1: 998 samples, Ent F1=59.38%, Rel F1=8.24%\\n  unconstrained CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.74% [7.01, 8.51]\\n  grammar_only CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.31% [7.54, 9.13]\\n  semantic_only CI: Ent F1=58.15% [57.10, 59.19], Rel F1=7.73% [7.00, 8.50]\\n  full_s1 CI: Ent F1=59.38% [58.35, 60.40], Rel F1=8.24% [7.47, 9.06]\\n\\n  Paired bootstrap tests (B - A):\\n  unconstrained_vs_grammar_only:\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\n    Rel ΔF1=+0.57pp [+0.32, +0.88] p=0.0000\\n  unconstrained_vs_semantic_only:\\n    Ent ΔF1=+0.00pp [+0.00, +0.01] p=0.7378\\n    Rel ΔF1=-0.01pp [-0.10, +0.09] p=0.8546\\n  unconstrained_vs_full_s1:\\n    Ent ΔF1=+1.23pp [+0.94, +1.55] p=0.0000\\n    Rel ΔF1=+0.50pp [+0.23, +0.81] p=0.0000\\n  grammar_only_vs_full_s1:\\n    Ent ΔF1=+0.00pp [-0.01, +0.02] p=0.6556\\n    Rel ΔF1=-0.08pp [-0.17, +0.02] p=0.1150\\n  semantic_only_vs_full_s1:\\n    Ent ΔF1=+1.23pp [+0.93, +1.55] p=0.0000\\n    Rel ΔF1=+0.50pp [+0.24, +0.81] p=0.0000\\n\\nResults saved to outputs/bootstrap_ci_results_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All results are in. Let me now verify the saved JSON file and add the grammar_only entity F1 and other details.\n\nLet me also check the saved JSON to make sure it has all the data we need.",
+              "signature": "EvcCClkIDRgCKkBXTt1/zv6ZFTfILOViNq0nUrPqRmm0f19cdWPiTf6VcU5HSnENHwTCqwEl6j5jyvXDs7GBj2CI2WMYgwVsYAQ7Mg9jbGF1ZGUtb3B1cy00LTY4ABIMztshB4lD3IcZxokrGgzjr2D0GlyPxM4WPZsiMCcXt+wG7jFmGocoXwIswdDq30QtnL2CeMhoWk/pcG6GRtOywj0nbO/NppxDQvrjRirLAbnkUJM1+en+cgwgqnRD0ryjndc2sk8Wm9+9DaPK885Y8f4sXy6ltNwwzRbxd1wkWA9ODN3bgCdX8LrjzW7poHk6L1Mnu9H+coSnC4Yd/xd4ihIan+Odn17ccQwUBbc3/4i4DssgC7xkq90hVdcvtUUHRARU7XswdiO8BngtxwursmN+q2FXz+e7RZ7kTwignkjWx410j12ERl+BdyUqgHYNm+fGGugwlMD0PvrrTEX0BKIcPSpeNubPtcs7kRnOfYrD7wyQ5dLZz1kpGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "fe610edd-9c0e-4671-8371-717b28dbe089",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NS97sVSxjh8XfrceiCNtBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 111999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2238
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All bootstrap results complete. Let me verify the saved JSON and add supplementary data (grammar_only Entity F1, registry alignment verification)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "13e84114-72b5-444d-94cc-495448d63bc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NS97sVSxjh8XfrceiCNtBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 111999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2238
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015iQEWtdyaJYQGs7QdRmjf7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "29523b3a-5244-42eb-a5a0-f19e3680f95b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NS97sVSxjh8XfrceiCNtBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 111999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2238
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T18:50:48.956Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015iQEWtdyaJYQGs7QdRmjf7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082283,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082357,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064876,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10089,\\\\n          \\\\\\\"std\\\\\\\": 0.009112\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082253,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082321,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064896,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10087,\\\\n          \\\\\\\"std\\\\\\\": 0.009103\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.081481,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.081547,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064367,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.100038,\\\\n          \\\\\\\"std\\\\\\\": 0.009066\\\\n        }\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.083611,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.083708,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.065828,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.102677,\\\\n          \\\\\\\"std\\\\\\\": 0.009354\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"comparisons\\\\\\\": {\\\\n      \\\\\\\"unconstrained_vs_grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -3e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -3.6e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002234,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.002185,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9798\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000802,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000811,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.003592,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.001478,\\\\n          \\\\\\\"p_value\\\\\\\": 0.4236\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001328,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001351,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.00235,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.005828,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5824\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001358,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001387,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.0016,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00536,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5108\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.002129,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.002162,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002094,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00727,\\\\n          \\\\\\\"p_value\\\\\\\": 0.393\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"docred\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 66 字符] ...\\\\n\\\\n     \\\\\\\"bootstrap_mean\\\\\\\": 0.581593,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.570962,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.59193,\\\\n          \\\\\\\"std\\\\\\\": 0.005318\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.07741,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.077385,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.070081,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.085063,\\\\n          \\\\\\\"std\\\\\\\": 0.003871\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.59378,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.593873,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.583454,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.603997,\\\\n          \\\\\\\"std\\\\\\\": 0.005216\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.083128,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.083122,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.075372,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.091261,\\\\n          \\\\\\\"std\\\\\\\": 0.004093\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.581538,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.581622,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.570993,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.591943,\\\\n          \\\\\\\"std\\\\\\\": 0.005315\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.077331,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.077306,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.070045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.084992,\\\\n          \\\\\\\"std\\\\\\\": 0.003861\\\\n        }\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.593818,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.59391,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.58354,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.604034,\\\\n          \\\\\\\"std\\\\\\\": 0.005206\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082371,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082364,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.07466,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.090557,\\\\n          \\\\\\\"std\\\\\\\": 0.004092\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"comparisons\\\\\\\": {\\\\n      \\\\\\\"unconstrained_vs_grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.012271,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.01228,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015463,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.005718,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005738,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.003157,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008757,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0001,\\\\n          \\\\\\\"p_value\\\\\\\": 0.7378\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001015,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000873,\\\\n          \\\\\\\"p_value\\\\\\\": 0.8546\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.012309,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012317,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009362,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015503,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.004961,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.00498,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002276,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00812,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -7.4e-05,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000187,\\\\n          \\\\\\\"p_value\\\\\\\": 0.6556\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000757,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000758,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001706,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000189,\\\\n          \\\\\\\"p_value\\\\\\\": 0.115\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.01228,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012288,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015469,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.00504,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005058,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002408,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008147,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"resample_unit\\\\\\\": \\\\\\\"sentence (SciERC) / document (DocRED)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "1bb166a7-7cf3-4b10-829d-3a574deefc77",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082283,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082357,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064876,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10089,\\\\n          \\\\\\\"std\\\\\\\": 0.009112\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082253,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082321,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064896,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10087,\\\\n          \\\\\\\"std\\\\\\\": 0.009103\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.081481,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.081547,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064367,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.100038,\\\\n          \\\\\\\"std\\\\\\\": 0.009066\\\\n        }\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.083611,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.083708,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.065828,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.102677,\\\\n          \\\\\\\"std\\\\\\\": 0.009354\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"comparisons\\\\\\\": {\\\\n      \\\\\\\"unconstrained_vs_grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -3e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -3.6e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002234,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.002185,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9798\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000802,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000811,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.003592,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.001478,\\\\n          \\\\\\\"p_value\\\\\\\": 0.4236\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001328,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001351,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.00235,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.005828,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5824\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001358,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001387,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.0016,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00536,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5108\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.002129,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.002162,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002094,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00727,\\\\n          \\\\\\\"p_value\\\\\\\": 0.393\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"docred\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 66 字符] ...\\\\n\\\\n     \\\\\\\"bootstrap_mean\\\\\\\": 0.581593,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.570962,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.59193,\\\\n          \\\\\\\"std\\\\\\\": 0.005318\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.07741,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.077385,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.070081,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.085063,\\\\n          \\\\\\\"std\\\\\\\": 0.003871\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.59378,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.593873,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.583454,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.603997,\\\\n          \\\\\\\"std\\\\\\\": 0.005216\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.083128,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.083122,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.075372,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.091261,\\\\n          \\\\\\\"std\\\\\\\": 0.004093\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.581538,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.581622,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.570993,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.591943,\\\\n          \\\\\\\"std\\\\\\\": 0.005315\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.077331,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.077306,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.070045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.084992,\\\\n          \\\\\\\"std\\\\\\\": 0.003861\\\\n        }\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.593818,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.59391,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.58354,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.604034,\\\\n          \\\\\\\"std\\\\\\\": 0.005206\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082371,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082364,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.07466,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.090557,\\\\n          \\\\\\\"std\\\\\\\": 0.004092\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"comparisons\\\\\\\": {\\\\n      \\\\\\\"unconstrained_vs_grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.012271,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.01228,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015463,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.005718,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005738,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.003157,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008757,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0001,\\\\n          \\\\\\\"p_value\\\\\\\": 0.7378\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001015,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000873,\\\\n          \\\\\\\"p_value\\\\\\\": 0.8546\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.012309,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012317,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009362,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015503,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.004961,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.00498,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002276,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00812,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -7.4e-05,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000187,\\\\n          \\\\\\\"p_value\\\\\\\": 0.6556\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000757,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000758,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001706,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000189,\\\\n          \\\\\\\"p_value\\\\\\\": 0.115\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.01228,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012288,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015469,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.00504,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005058,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002408,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008147,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"resample_unit\\\\\\\": \\\\\\\"sentence (SciERC) / document (DocRED)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082283,\\n          \\\"bootstrap_mean\\\": 0.082357,\\n          \\\"ci_lower\\\": 0.064876,\\n          \\\"ci_upper\\\": 0.10089,\\n          \\\"std\\\": 0.009112\\n        }\\n      },\\n      \\\"grammar_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082253,\\n          \\\"bootstrap_mean\\\": 0.082321,\\n          \\\"ci_lower\\\": 0.064896,\\n          \\\"ci_upper\\\": 0.10087,\\n          \\\"std\\\": 0.009103\\n        }\\n      },\\n      \\\"semantic_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.081481,\\n          \\\"bootstrap_mean\\\": 0.081547,\\n          \\\"ci_lower\\\": 0.064367,\\n          \\\"ci_upper\\\": 0.100038,\\n          \\\"std\\\": 0.009066\\n        }\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.083611,\\n          \\\"bootstrap_mean\\\": 0.083708,\\n          \\\"ci_lower\\\": 0.065828,\\n          \\\"ci_upper\\\": 0.102677,\\n          \\\"std\\\": 0.009354\\n        }\\n      }\\n    },\\n    \\\"comparisons\\\": {\\n      \\\"unconstrained_vs_grammar_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -3e-05,\\n          \\\"delta_mean\\\": -3.6e-05,\\n          \\\"ci_lower\\\": -0.002234,\\n          \\\"ci_upper\\\": 0.002185,\\n          \\\"p_value\\\": 0.9798\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000802,\\n          \\\"delta_mean\\\": -0.000811,\\n          \\\"ci_lower\\\": -0.003592,\\n          \\\"ci_upper\\\": 0.001478,\\n          \\\"p_value\\\": 0.4236\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001328,\\n          \\\"delta_mean\\\": 0.001351,\\n          \\\"ci_lower\\\": -0.00235,\\n          \\\"ci_upper\\\": 0.005828,\\n          \\\"p_value\\\": 0.5824\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001358,\\n          \\\"delta_mean\\\": 0.001387,\\n          \\\"ci_lower\\\": -0.0016,\\n          \\\"ci_upper\\\": 0.00536,\\n          \\\"p_value\\\": 0.5108\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.002129,\\n          \\\"delta_mean\\\": 0.002162,\\n          \\\"ci_lower\\\": -0.002094,\\n          \\\"ci_upper\\\": 0.00727,\\n          \\\"p_value\\\": 0.393\\n        }\\n      }\\n    }\\n  },\\n  \\\"docred\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\":\\n\\n... [截断: 输出过长，省略 66 字符] ...\\n\\n     \\\"bootstrap_mean\\\": 0.581593,\\n          \\\"ci_lower\\\": 0.570962,\\n          \\\"ci_upper\\\": 0.59193,\\n          \\\"std\\\": 0.005318\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.07741,\\n          \\\"bootstrap_mean\\\": 0.077385,\\n          \\\"ci_lower\\\": 0.070081,\\n          \\\"ci_upper\\\": 0.085063,\\n          \\\"std\\\": 0.003871\\n        }\\n      },\\n      \\\"grammar_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.59378,\\n          \\\"bootstrap_mean\\\": 0.593873,\\n          \\\"ci_lower\\\": 0.583454,\\n          \\\"ci_upper\\\": 0.603997,\\n          \\\"std\\\": 0.005216\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.083128,\\n          \\\"bootstrap_mean\\\": 0.083122,\\n          \\\"ci_lower\\\": 0.075372,\\n          \\\"ci_upper\\\": 0.091261,\\n          \\\"std\\\": 0.004093\\n        }\\n      },\\n      \\\"semantic_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.581538,\\n          \\\"bootstrap_mean\\\": 0.581622,\\n          \\\"ci_lower\\\": 0.570993,\\n          \\\"ci_upper\\\": 0.591943,\\n          \\\"std\\\": 0.005315\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.077331,\\n          \\\"bootstrap_mean\\\": 0.077306,\\n          \\\"ci_lower\\\": 0.070045,\\n          \\\"ci_upper\\\": 0.084992,\\n          \\\"std\\\": 0.003861\\n        }\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.593818,\\n          \\\"bootstrap_mean\\\": 0.59391,\\n          \\\"ci_lower\\\": 0.58354,\\n          \\\"ci_upper\\\": 0.604034,\\n          \\\"std\\\": 0.005206\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082371,\\n          \\\"bootstrap_mean\\\": 0.082364,\\n          \\\"ci_lower\\\": 0.07466,\\n          \\\"ci_upper\\\": 0.090557,\\n          \\\"std\\\": 0.004092\\n        }\\n      }\\n    },\\n    \\\"comparisons\\\": {\\n      \\\"unconstrained_vs_grammar_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.012271,\\n          \\\"delta_mean\\\": 0.01228,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015463,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.005718,\\n          \\\"delta_mean\\\": 0.005738,\\n          \\\"ci_lower\\\": 0.003157,\\n          \\\"ci_upper\\\": 0.008757,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 2.9e-05,\\n          \\\"delta_mean\\\": 2.9e-05,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0001,\\n          \\\"p_value\\\": 0.7378\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -7.9e-05,\\n          \\\"delta_mean\\\": -7.9e-05,\\n          \\\"ci_lower\\\": -0.001015,\\n          \\\"ci_upper\\\": 0.000873,\\n          \\\"p_value\\\": 0.8546\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.012309,\\n          \\\"delta_mean\\\": 0.012317,\\n          \\\"ci_lower\\\": 0.009362,\\n          \\\"ci_upper\\\": 0.015503,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.004961,\\n          \\\"delta_mean\\\": 0.00498,\\n          \\\"ci_lower\\\": 0.002276,\\n          \\\"ci_upper\\\": 0.00812,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 3.7e-05,\\n          \\\"delta_mean\\\": 3.7e-05,\\n          \\\"ci_lower\\\": -7.4e-05,\\n          \\\"ci_upper\\\": 0.000187,\\n          \\\"p_value\\\": 0.6556\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000757,\\n          \\\"delta_mean\\\": -0.000758,\\n          \\\"ci_lower\\\": -0.001706,\\n          \\\"ci_upper\\\": 0.000189,\\n          \\\"p_value\\\": 0.115\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.01228,\\n          \\\"delta_mean\\\": 0.012288,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015469,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.00504,\\n          \\\"delta_mean\\\": 0.005058,\\n          \\\"ci_lower\\\": 0.002408,\\n          \\\"ci_upper\\\": 0.008147,\\n          \\\"p_value\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"resample_unit\\\": \\\"sentence (SciERC) / document (DocRED)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All results are saved. Now let me add the supplementary data (grammar_only Entity F1, registry alignment verification) to the JSON file.\n\nLet me now also update the registry with the grammar_only entity_f1 value.\n\nLet me first create the enhanced v2 JSON with all the required info, then register it as an artifact.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "d6f45022-51e5-4caf-bdba-566513773932",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013A2CVgf1JFibtJoxNz53LH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4744,
+                "cache_read_input_tokens": 114237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4744
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Let me now add the grammar_only Entity F1 and registry alignment verification to the JSON, then update the registry."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "c1c12dc5-8a94-42e9-8714-910d5d537053",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013A2CVgf1JFibtJoxNz53LH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4744,
+                "cache_read_input_tokens": 114237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4744
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mwq25KMhpwEzg5obRMZEHF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\nwith open('outputs/bootstrap_ci_results_v2.json') as f:\n    results = json.load(f)\n\n# Add supplementary info\nresults['metadata']['fix_applied'] = 'Removed entity type filter (DOCRED_VALID_ENTITY_TYPES) and entity type normalization from docred_sample_stats pred_ent_set. Parse-failure documents now return all zeros (matching registry posthoc_filter.py behavior).'\nresults['metadata']['fix_lines'] = 'compute_bootstrap_ci.py:117 (gold_ent_set), 127 (pred_ent_set), 119-120 (parse failure return)'\n\nresults['registry_alignment'] = {\n    'docred': {\n        'unconstrained': {'registry_ent_f1': 58.15, 'bootstrap_ent_f1': 58.15, 'delta': 0.00, 'registry_rel_f1': 7.74, 'bootstrap_rel_f1': 7.74, 'delta_rel': 0.00},\n        'full_s1': {'registry_ent_f1': 59.37, 'bootstrap_ent_f1': 59.38, 'delta': 0.01, 'registry_rel_f1': 8.23, 'bootstrap_rel_f1': 8.24, 'delta_rel': 0.01},\n    },\n    'scierc': {\n        'unconstrained': {'registry_ent_f1': 31.01, 'bootstrap_ent_f1': 31.01, 'delta': 0.00, 'registry_rel_f1': 8.23, 'bootstrap_rel_f1': 8.23, 'delta_rel': 0.00},\n        'full_s1': {'registry_ent_f1': 30.98, 'bootstrap_ent_f1': 30.98, 'delta': 0.00, 'registry_rel_f1': 8.36, 'bootstrap_rel_f1': 8.36, 'delta_rel': 0.00},\n    },\n    'note': 'All deltas <= 0.01pp (rounding). Registry alignment verified.'\n}\n\nresults['grammar_only_entity_f1'] = {\n    'docred': {\n        'entity_f1': 59.38,\n        'entity_precision': 58.47,\n        'entity_recall': 60.32,\n        'tp': 11590,\n        'gold': 19215,\n        'pred': 19823,\n        'note': 'Previously null in registry. Grammar constraint (JSON schema enum) enforces valid entity types, improving entity F1 by +1.23pp over unconstrained (p<0.001).'\n    }\n}\n\nwith open('outputs/bootstrap_ci_results_v2.json', 'w') as f:\n    json.dump(results, f, indent=2)\n\nprint('Updated bootstrap_ci_results_v2.json with supplementary data')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "903d3f1d-1b65-45c0-9e5b-289f498cec54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013A2CVgf1JFibtJoxNz53LH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4744,
+                "cache_read_input_tokens": 114237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4744
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-14T18:51:10.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mwq25KMhpwEzg5obRMZEHF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated bootstrap_ci_results_v2.json with supplementary data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "c4982045-3092-480a-9901-4eca8bedec3a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated bootstrap_ci_results_v2.json with supplementary data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Updated bootstrap_ci_results_v2.json with supplementary data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me update the registry with the grammar_only entity_f1 and register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "fd60ba2d-af6e-4f7e-96fe-0adff86af967",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JvntPW6TMQK7vnjpjgzbQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1205,
+                "cache_read_input_tokens": 118981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1205
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BF4aUjckadSNasmMbjds8s",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "82e5b4fb-b341-44d8-8320-eec5590c847f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JvntPW6TMQK7vnjpjgzbQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1205,
+                "cache_read_input_tokens": 118981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1205
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T18:51:15.741Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01BF4aUjckadSNasmMbjds8s",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "197974d5-54a2-4ae3-acc8-90b656d6e2a1",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Y2gPvwo7EStWCxZVy5A7S",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_docred_grammar_only",
+                "field": "metrics",
+                "value": {
+                  "documents_checked": 985,
+                  "parse_failures": 13,
+                  "total_entities": 20150,
+                  "total_triples": 17341,
+                  "entity_type_violation_rate": 0,
+                  "relation_vocabulary_violation_rate": 0.0003,
+                  "domain_range_violation_rate": 0.2617,
+                  "cross_field_consistency_violation_rate": 0.0007,
+                  "relation_f1": 8.31,
+                  "relation_precision": 7.06,
+                  "relation_recall": 10.12,
+                  "entity_f1": 59.38,
+                  "entity_precision": 58.47,
+                  "entity_recall": 60.32,
+                  "unrecognized_relations": 5,
+                  "f1_method": "all_set",
+                  "checker_version": "fixed_20260514_v2 (strip + alias + unique_et)"
+                },
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "7da9d07c-a9c9-4222-a975-3cbee29dc9df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQB3WxjikEezZhsakEMeoL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 529,
+                "cache_read_input_tokens": 120186,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 529
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-14T18:51:26.286Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Y2gPvwo7EStWCxZVy5A7S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_docred_grammar_only\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:55:50.031Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:51:26.132Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"150766\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 985, \\\"parse_failures\\\": 13, \\\"total_entities\\\": 20150, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.2617, \\\"cross_field_consistency_violation_rate\\\": 0.0007, \\\"relation_f1\\\": 8.31, \\\"relation_precision\\\": 7.06, \\\"relation_recall\\\": 10.12, \\\"entity_f1\\\": 59.38, \\\"entity_precision\\\": 58.47, \\\"entity_recall\\\": 60.32, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-14T07:40:10.382Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3769}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "9521e5f8-1af5-4e42-acb5-ea8db5080a3c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_docred_grammar_only\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:55:50.031Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:51:26.132Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"150766\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 985, \\\"parse_failures\\\": 13, \\\"total_entities\\\": 20150, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.2617, \\\"cross_field_consistency_violation_rate\\\": 0.0007, \\\"relation_f1\\\": 8.31, \\\"relation_precision\\\": 7.06, \\\"relation_recall\\\": 10.12, \\\"entity_f1\\\": 59.38, \\\"entity_precision\\\": 58.47, \\\"entity_recall\\\": 60.32, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-14T07:40:10.382Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3769}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_docred_grammar_only\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:55:50.031Z\", \"updated_at\": \"2026-05-14T18:51:26.132Z\", \"hypothesis\": \"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"150766\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\"}, \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\", \"completed_at\": \"2026-05-14T07:40:10.382Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3769}}"
+              }
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013VAAGmi9Vb2ctdhXPrLRyV",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bootstrap_ci_results_v2",
+                "type": "data",
+                "description": "Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry alignment verification.",
+                "project": "schema_semantic_constrained_ie",
+                "content_filename": "bootstrap_ci_results_v2.json",
+                "source_path": "/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json",
+                "tags": [
+                  "bootstrap",
+                  "ci",
+                  "entity_f1",
+                  "relation_f1",
+                  "fix"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "18ea7355-e6cf-403d-a3b6-66a66b8e7a22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQB3WxjikEezZhsakEMeoL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 529,
+                "cache_read_input_tokens": 120186,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 529
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-14T18:51:29.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013VAAGmi9Vb2ctdhXPrLRyV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "17f5e938-8ed1-4cb6-90dc-ce4c8b3a3d19",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PXnJFe2rxnFKZmtivXYea9",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bootstrap_ci_results_v2",
+                "type": "data",
+                "description": "Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry alignment verification.",
+                "project": "schema_semantic_constrained_ie",
+                "content_filename": "bootstrap_ci_results_v2.json",
+                "tags": [
+                  "bootstrap",
+                  "ci",
+                  "entity_f1",
+                  "relation_f1",
+                  "fix"
+                ],
+                "url": "westd-16980:/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "52b77081-9855-48b0-9a3b-2b4394500f43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016YJngqNWXLpqG8q7GQ5QXy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1533,
+                "cache_read_input_tokens": 120715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1533
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-14T18:51:35.769Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PXnJFe2rxnFKZmtivXYea9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_33c94a\\\", \\\"name\\\": \\\"bootstrap_ci_results_v2\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry alignment verification.\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-16980:/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T18:51:35.676659+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"ci\\\", \\\"entity_f1\\\", \\\"relation_f1\\\", \\\"fix\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "186b43af-fa0c-4ab2-a5dd-e682fc6f47ca",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_33c94a\\\", \\\"name\\\": \\\"bootstrap_ci_results_v2\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry alignment verification.\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-16980:/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T18:51:35.676659+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"ci\\\", \\\"entity_f1\\\", \\\"relation_f1\\\", \\\"fix\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_33c94a\", \"name\": \"bootstrap_ci_results_v2\", \"type\": \"data\", \"description\": \"Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry alignment verification.\", \"path\": null, \"url\": \"westd-16980:/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\", \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T18:51:35.676659+00:00\", \"tags\": [\"bootstrap\", \"ci\", \"entity_f1\", \"relation_f1\", \"fix\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n## 修复内容\n\n**`compute_bootstrap_ci.py` 的 `docred_sample_stats` 函数（3 处修改）：**\n\n1. **Line 117** — `gold_ent_set`: 移除 `docred_normalize_entity_type()` 调用，使用原始类型（与 registry 的 `posthoc_filter.py` 一致）\n2. **Line 127** — `pred_ent_set`: 移除 `DOCRED_VALID_ENTITY_TYPES` filter 和 `docred_normalize_entity_type()` normalization。改为直接 `set((text, type) for e in entities)`，与 registry 完全一致\n3. **Line 119-120** — `parsed is None` 时返回全零（之前返回 `ent_gold=len(gold_ent_set)`），匹配 registry 跳过 parse-failure 文档的行为\n\nSciERC 无需修复（bootstrap 和 registry 都使用 normalize+filter 逻辑，已一致）。\n\n---\n\n## Bootstrap CI 结果 (B=10,000)\n\n### DocRED (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| **Rel F1** | **+0.50pp** | [+0.23, +0.81] | **<0.001** |\n| **Ent F1** | **+1.23pp** | [+0.94, +1.55] | **<0.001** |\n\n### SciERC (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| Rel F1 | +0.13pp | [-0.23, +0.58] | 0.58 |\n| Ent F1 | -0.03pp | [-0.11, +0.08] | 0.53 |\n\n### Grammar-only Entity F1\n**DocRED grammar_only Entity F1 = 59.38%** (P=58.47%, R=60.32%)\n- 之前 registry 为 null，现已更新\n- grammar_only vs unconstrained: Ent F1 +1.23pp [+0.93, +1.55], p<0.001\n- grammar_only 与 full_s1 的 Entity F1 几乎相同（Δ=+0.00pp, p=0.66），说明 entity F1 的提升完全来自 grammar 层的 JSON schema enum 约束"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "uuid": "3ed82a88-678e-4ae8-83ac-45b1934d247e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CQC2c79nS5DJS9CCGG7Xj9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 594,
+                "cache_read_input_tokens": 122248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 594
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n## 修复内容\n\n**`compute_bootstrap_ci.py` 的 `docred_sample_stats` 函数（3 处修改）：**\n\n1. **Line 117** — `gold_ent_set`: 移除 `docred_normalize_entity_type()` 调用，使用原始类型（与 registry 的 `posthoc_filter.py` 一致）\n2. **Line 127** — `pred_ent_set`: 移除 `DOCRED_VALID_ENTITY_TYPES` filter 和 `docred_normalize_entity_type()` normalization。改为直接 `set((text, type) for e in entities)`，与 registry 完全一致\n3. **Line 119-120** — `parsed is None` 时返回全零（之前返回 `ent_gold=len(gold_ent_set)`），匹配 registry 跳过 parse-failure 文档的行为\n\nSciERC 无需修复（bootstrap 和 registry 都使用 normalize+filter 逻辑，已一致）。\n\n---\n\n## Bootstrap CI 结果 (B=10,000)\n\n### DocRED (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| **Rel F1** | **+0.50pp** | [+0.23, +0.81] | **<0.001** |\n| **Ent F1** | **+1.23pp** | [+0.94, +1.55] | **<0.001** |\n\n### SciERC (unconstrained → full_s1)\n| Metric | Δ | 95% CI | p-value |\n|--------|------|--------|---------|\n| Rel F1 | +0.13pp | [-0.23, +0.58] | 0.58 |\n| Ent F1 | -0.03pp | [-0.11, +0.08] | 0.53 |\n\n### Grammar-only Entity F1\n**DocRED grammar_only Entity F1 = 59.38%** (P=58.47%, R=60.32%)\n- 之前 registry 为 null，现已更新\n- grammar_only vs unconstrained: Ent F1 +1.23pp [+0.93, +1.55], p<0.001\n- grammar_only 与 full_s1 的 Entity F1 几乎相同（Δ=+0.00pp, p=0.66），说明 entity F1 的提升完全来自 grammar 层的 JSON schema enum 约束"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 694798,
+            "duration_api_ms": 629114,
+            "num_turns": 54,
+            "stop_reason": "end_turn",
+            "session_id": "f8c0bd10-f6a5-4a84-ac8b-7f2908b59c5c",
+            "total_cost_usd": 3.113386250000001,
+            "usage": {
+              "input_tokens": 47,
+              "cache_creation_input_tokens": 111395,
+              "cache_read_input_tokens": 3468473,
+              "output_tokens": 27227,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 111395,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 693,
+                  "cache_read_input_tokens": 122248,
+                  "cache_creation_input_tokens": 594,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 594
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1936,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0020210000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 47,
+                "outputTokens": 27227,
+                "cacheReadInputTokens": 3468473,
+                "cacheCreationInputTokens": 111395,
+                "webSearchRequests": 0,
+                "costUSD": 3.111365250000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "762b79f4-66b9-4a19-9f83-58eaa06f132c"
+          },
+          "id": "event-000160"
+        }
+      ]
+    }
+  ]
+}

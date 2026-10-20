@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af551ed3212984213424",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write crossmodel bootstrap ci",
+  "task_key": "worker_write_crossmodel_bootstrap_ci_20260514T223227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_crossmodel_bootstrap_ci_20260514T223227_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "85a04d74a40e0205d98a3d46440079af63282d1909a37664865ad2983da91030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改已合并完成：\n\n- **修改 1+3 合并**（L53-61）：R-F1 改为 \"three of four settings\"，加入四组 bootstrap p-values，Llama SciERC 的 -0.04pp 只描述一次避免重复。\n- **修改 2**（L62-65）：E-F1 bootstrap 方向性结论紧跟 R-F1 讨论之后。\n- exp_id 注释和其他段落（structural guarantees, DR asymmetry, CF）未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-crossmodel-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "412c9c165276c4be63ab",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama beam8 s1 check",
+  "task_key": "worker_ops_d066_llama_beam8_s1_check_20260520T135317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_beam8_s1_check_20260520T135317_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "de40108f93a17997f0342db23592ac6f91a20615945e437a8713a6cb9f72ab82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**d066_sweep_llama_beam8_s1** — 成功\n- 200 samples processed, 199 success, 1 fail\n- 运行时间 ~87 min (20:15→21:42)\n- 输出：`llama_docred_200_beam8_full_s1.jsonl` (200 行, 1.7MB)\n- Registry 已标记 success，cron 已删除\n\n**d066_sweep_llama_docred_beam4_s1** — 已启动\n- PID 763083, westd-16980 GPU0\n- 模型加载完毕，推理进行中\n- Registry RUNNING, cron 已注册\n- 预计 ~60-90 min 完成（beam4 比 beam8 快）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-beam8-s1-check.md"
+}

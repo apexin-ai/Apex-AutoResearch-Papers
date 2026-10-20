@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa0125973593d9d0979f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval llama docred lora eval",
+  "task_key": "worker_eval_llama_docred_lora_eval_20260515T195737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_docred_lora_eval_20260515T195737_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "1d02605e405b48dc0f18ed5ceff7b0c89b904a4cb405fbbb9f92525cd78e7e70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Merged model 确认**：`/root/autodl-tmp/checkpoints/llama_lora_docred_merged/` 存在，4 个 safetensors 分片 (~15GB)\n- **GPU 0 空闲**：0 MiB 占用（GPU 1 被其他任务占用 91757 MiB）\n- **Registry 注册**：`w5_llama_docred_lora_unconstrained_eval` 和 `w5_llama_docred_lora_constrained_eval` 均已注册，parent 指向 `w5_llama_docred_lora_training`\n- **Unconstrained eval 已提交**：cuda:0，tmux session `w5_llama_docred_lora_unconstrained_eval`，日志 `~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_unconstrained_eval.log`\n\nConstrained eval 等 unconstrained 完成后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-docred-lora-eval.md"
+}

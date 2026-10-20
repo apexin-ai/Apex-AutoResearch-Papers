@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b7cd97b7c7a820ccc54",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis lucky violations",
+  "task_key": "worker_analysis_lucky-violations_20260522T141205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lucky-violations_20260522T141205_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "eeaaf0a219fd96cda9921642570334eae5ad4438b0945c92685178d7d5ebae04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**Lucky violations 统计：**\n\n| Config | TP | Lucky DR | % of TP | Recall drop |\n|--------|---:|--------:|--------:|:------------|\n| SciERC Qwen LoRA | 461 | 4 | 0.87% | 0.41pp |\n| SciERC Llama LoRA | 467 | 5 | 1.07% | 0.51pp |\n| DocRED Qwen LoRA | 5746 | 1 | 0.02% | 0.01pp |\n| DocRED Llama LoRA | 6226 | 1 | 0.02% | 0.01pp |\n\n**核心发现：**\n- Lucky violations 占 TP 比例极低（最多 1.07%），recall 损失可忽略（≤0.51pp）\n- 与之对比，constraints 移除的绝大多数 violated triples 是 FP（如 DocRED Qwen 移除 164 个违规预测，仅 1 个是正确的）\n- 案例分析：SciERC 上主要是 Metric 类实体被误用于 Hyponym-of 关系；DocRED 上是 entity type 标注的边界模糊（MISC vs ORG）\n\nLaTeX appendix 已写入 `artifacts/_project/paper/appendix_downstream_analysis.tex`，包含表格、统计分析和定性讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lucky-violations.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53d9c3116fcd42010126",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis residual dr error breakdown",
+  "task_key": "worker_analysis_residual_dr_error_breakdown_20260516T160550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_residual_dr_error_breakdown_20260516T160550_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "b30a8b2d54d06a6606d92963a1452cbc29f903f7d0cab44e447b8d7ad33637b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/residual_dr_error_analysis.md`。\n\n核心发现：\n\n- **36 个残余 DR violation** 分布在 3 个 setting（Llama DocRED 贡献 33 个，占 92%）\n- **4 类根因**：Entity type 错误（39%）> Schema 覆盖不全（33%）> 错误关系选择（17%）> 方向反转（11%）\n- Qwen DocRED 和 Llama SciERC 的残余 violation 全部是 schema long-tail coverage gap，LLM 自身的 typing 已无错误\n- Llama DocRED 的主要问题是 entity type 标注错误（地名/国籍词混淆、人名标为 LOC 等），分布在 16 种不同关系上，无明显集中\n- `P361 part of` (6 个) 和 `P710 participant` (4 个) 是 violation 最多的两个关系，前者集中在 Tolkien 虚构世界语境"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-residual-dr-error-breakdown.md"
+}

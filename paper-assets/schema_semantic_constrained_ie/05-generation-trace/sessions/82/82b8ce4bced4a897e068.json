@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82b8ce4bced4a897e068",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper figure fig1 framework",
+  "task_key": "worker_paper_figure_fig1_framework_20260520T174649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_20260520T174649_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "5cb27f8b66de63dfa056cabdb895f049053831f2e2f15460205a8358359ab9c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No TikZ errors. The figure compiled cleanly into the PDF (539KB, 33 pages).\n\nThe new `fig1_framework.tex` implements a three-section left-to-right layout:\n\n- **Left (Schema Compilation)**: IE Ontology forks into grammar path (JSON Schema → XGrammar → M_g) and semantic path (σ(r) pairs → TypeConstraintProcessor → Semantic Rules)\n- **Middle (Constraint Layers)**: Grammar Layer (blue, L1: Context-Free, G(t)⊆V) and Semantic Layer (orange, L2: Prefix-Decidable, S(t)⊆V) with dashed enabling dependency arrow and Entity Registry D (dashed border, yellow)\n- **Right (Token Masking)**: M_final composition, decision diamond (G∩S=∅?), No→Sample G∩S / Yes→red dashed fallback G(t) with CF risk annotation, autoregressive loop back via t+1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework.md"
+}

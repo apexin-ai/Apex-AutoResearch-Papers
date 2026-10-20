@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffccafbf87c9e2bfc8a9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops launch docred grammar only",
+  "task_key": "worker_ops_launch_docred_grammar_only_20260514T015357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_docred_grammar_only_20260514T015357_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "63845f7642f2b1dd03d8401c346426369c2b73f16a4f794d924661bd11281d5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行。\n\n**DocRED grammar_only 启动确认：**\n- **PID**: 150766（python 进程），cuda:0，显存 16558 MiB\n- 模型已加载，998 docs，96 relation types，正在推理中\n\n**full_s2 进度：**\n- 494/551 行，cuda:1，预计很快完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-docred-grammar-only.md"
+}

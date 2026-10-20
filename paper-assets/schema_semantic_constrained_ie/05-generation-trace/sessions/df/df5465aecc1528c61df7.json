@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df5465aecc1528c61df7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval llama docred unconstrained done",
+  "task_key": "worker_eval_llama_docred_unconstrained_done_20260516T001356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama_docred_unconstrained_done_20260516T001356_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "9d3d9260481239d1616ca891c46c230d0c32f9832e7682e987a845fb7d23d5f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. Llama DocRED LoRA Unconstrained Eval 完整 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| **E-F1** | **83.93%** (P=84.93%, R=82.96%) |\n| **R-F1** | **43.72%** (P=38.59%, R=50.41%) |\n| ET% | 0.00% (0/19106) |\n| RV% | 0.15% (24/16171) |\n| DR% | 0.50% (80/16147 in-vocab) |\n| Parse fail rate | 2.3% (23/998) |\n| Mean inference time | 15.13s/sample |\n\n**注**：gold 用 Wikidata PID（P17），pred 用自然语言名（country）。已通过 ontology 映射后计算 R-F1。RV 违规仅 24 个（organizer、natively spoken in 等不在 96 个 DocRED 关系表中的名称）。\n\n### 2. FAIL 案例分析\n\n- **23 个 parse fail，全部原因：JSON 输出被 max_new_tokens=4096 截断**\n- FAIL 样本 raw_output 平均长度 11707 字符（OK 仅 2830），均在末尾出现截断的不完整 JSON\n- FAIL 样本 inference time 平均 61.6s（OK 14.0s），模型在这些文档上生成了异常长的输出\n- Gold 复杂度：FAIL 样本 gold entities 略多（22.9 vs 19.5），gold relations 反而略少（10.6 vs 12.3）\n- **无系统性偏差**，纯粹是输出长度超限导致\n\n### 3. Constrained Eval 提交确认\n\n- exp_id: `w5_llama_docred_lora_constrained_eval`\n- PID: **316355**\n- GPU: cuda:0 (NVIDIA RTX PRO 6000, 97GB)\n- mode: `full_s1`\n\n### 4. GPU 状态\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| cuda:0 | 14MiB → loading | PID 316355 (constrained eval) |\n| cuda:1 | 17418MiB | PID 304011 (其他任务) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-docred-unconstrained-done.md"
+}

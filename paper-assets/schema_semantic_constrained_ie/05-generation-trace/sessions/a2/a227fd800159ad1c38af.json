@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a227fd800159ad1c38af",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "run p1 ee ft launch",
+  "task_key": "worker_run_p1_ee_ft_launch_20260518T193754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_p1_ee_ft_launch_20260518T193754_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "28cd0abc50d6e4eeb967e2232ff37ee4802a647b57f01da96f37ec148e19df6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n```\ntmux session: p1_ee_ft [重建]\nGPU 0: util=13%, mem=16201 MiB (模型加载中)\nPID: 54946\n根因修复: WANDB_DISABLED=true (服务器无网络无法安装 wandb)\n训练预估完成: ~16 min\nPipeline 总预估: ~66 min\n```\n\n上次启动因 wandb 未安装直接崩溃，`| tee` 吞掉了非零 exit code 导致 pipeline 继续执行到推理阶段才报错。已用 `WANDB_DISABLED=true` + `set -eo pipefail` 重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-p1-ee-ft-launch.md"
+}

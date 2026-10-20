@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6af3e8721b8af379063a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d049 cf majority voting",
+  "task_key": "worker_code_d049_cf_majority_voting_20260518T101948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d049_cf_majority_voting_20260518T101948_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "769d2eea796bfe8908ca91588679af4524873dba61aa11cb2236a0c831f222f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署并验证。Dry-run 结果：\n\n- **246 文档**，修正前 698 个 CF 违规，修正后 596 个，修正率 14.6%\n- 127 次修正，675 次被 AC 约束阻止\n- 主要修正 pattern: `PER→FAC` (20), `PER→GPE` (14), `ORG→GPE` (10)\n- AC-blocked 大量存在是合理的：多数 CF 违规本就是因为 Place 等角色的 AC 约束强制改了 entity_type（如人名在 Place 角色下被强制标为 LOC/FAC），majority voting 无法反向修正这些而不违反 AC\n\n脚本位于 `/root/schema_semantic_constrained_ie/cf_majority_voting.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d049-cf-majority-voting.md"
+}

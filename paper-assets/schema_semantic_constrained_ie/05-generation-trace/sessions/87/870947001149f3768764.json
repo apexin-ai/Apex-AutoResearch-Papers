@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "870947001149f3768764",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "urgent kill duplicate docred pid",
+  "task_key": "worker_urgent_kill_duplicate_docred_pid_20260515T180412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill_duplicate_docred_pid_20260515T180412_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "16a842a2a5745c8780e288ca82e35816f11c58aac276ca759cc1c7f58a4d7b18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个进程都已不在。**\n\n汇报：\n- **PID 294205**：已不存在（执行 kill 时报 No such process，应已被其他 worker 杀掉）\n- **PID 293601**：也已不在\n- **GPU 状态**：两块 GPU 均空闲（0 MiB 显存占用，0% 利用率）\n\n**需要重新启动训练。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-duplicate-docred-pid.md"
+}

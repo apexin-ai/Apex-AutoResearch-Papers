@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "82e3711b8e3b0592147e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code fix s2 pass2 semantic",
+  "task_key": "worker_code_fix_s2_pass2_semantic_20260513T213645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_s2_pass2_semantic_20260513T213645.log",
+    "occurrence": 1,
+    "bytes": 911029,
+    "sha256": "f9bdf19a7604a4689a85a0f1d13f716e94c279bbd3524979bdce74dff6acb70d"
+  },
+  "statistics": {
+    "messages": 225,
+    "user_turns": 2,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 2,
+      "assistant": 66,
+      "tool_call": 69,
+      "user": 2,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "82e3711b8e3b0592147e-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "82e3711b8e3b0592147e-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "82e3711b8e3b0592147e-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 76,
+      "chunks": [
+        {
+          "path": "82e3711b8e3b0592147e-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-s2-pass2-semantic.md"
+}

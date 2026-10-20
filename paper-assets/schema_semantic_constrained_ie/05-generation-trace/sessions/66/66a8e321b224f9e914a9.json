@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66a8e321b224f9e914a9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 gtc results collect",
+  "task_key": "worker_code_w10_gtc_results_collect_20260517T063832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_gtc_results_collect_20260517T063832_result.json",
+    "occurrence": 1,
+    "bytes": 1624,
+    "sha256": "38faabb66199a7e551a64d3381fd2c6334d6e748240a2a189621306a027e66ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最终汇总：\n\n---\n\n## GTC Results Summary\n\n### SciERC (551 docs)\n| Metric | Baseline (full_s1) | GTC Consensus | Delta |\n|--------|-------------------|---------------|-------|\n| Lines in output | 551 | 551 | 0 |\n| ET% | 0.0% | 0.0% | 0 |\n| RV% | 0.0% | 0.0% | 0 |\n| DR% | 0.93% | 0.93% | 0 |\n| CF% | 9.9% | 9.9% | 0 |\n| E_F1 | 0.3098 | 0.3098 | 0 |\n| R_F1 | 0.0836 | 0.0836 | 0 |\n| GTC skips (total log lines) | - | 672 | - |\n| GTC skips (unique entities) | - | 258 | - |\n\n### DocRED (50 docs)\n| Metric | Baseline (full_s1, same 50 docs) | GTC Consensus | Delta |\n|--------|----------------------------------|---------------|-------|\n| Lines in output | 50 | 50 | 0 |\n| ET% | 0.0% | 0.0% | 0 |\n| RV% | 0.0% | 0.0% | 0 |\n| DR% | 8.69% | 8.69% | 0 |\n| CF% | 2.4% (20/840) | 2.4% (20/840) | 0 |\n| E_F1 | 0.5908 | 0.5908 | 0 |\n| R_F1 | 0.0833 | 0.0833 | 0 |\n| GTC skips (total log lines) | - | 601 | - |\n| GTC skips (unique entities) | - | 213 | - |\n\n### 结论\n\n**GTC (Type Consensus) 在两个数据集上完全没有效果。** `parsed_output` 和 baseline 完全相同（仅 metadata 字段 `decoding_strategy`/`num_beams`/`inference_time_seconds` 有差异）。\n\n**原因：所有 consensus 修改尝试都因 DR (Domain/Range) constraint 冲突被 SKIP 了。** GTC 的设计是\"Layer 3 respects Layer 2's DR constraints\"——当 consensus 想把 entity type 改成全局一致的 type 时，如果这个 type 不满足当前 relation 的 domain/range 约束，就被跳过。结果是 100% 的 consensus 尝试都被 DR conflict 否决了，GTC 相当于 no-op。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-gtc-results-collect.md"
+}

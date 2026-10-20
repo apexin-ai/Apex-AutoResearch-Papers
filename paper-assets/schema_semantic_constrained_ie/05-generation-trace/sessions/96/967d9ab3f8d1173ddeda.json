@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "967d9ab3f8d1173ddeda",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "audit data consistency p1",
+  "task_key": "worker_audit_data_consistency_p1_20260517T000138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_consistency_p1_20260517T000138.log",
+    "occurrence": 1,
+    "bytes": 703605,
+    "sha256": "c223aa5fcf018c8ceed62e0ca810c6f2a93c0672e542673ac78f92566a05c463"
+  },
+  "statistics": {
+    "messages": 132,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 49,
+      "tool_result": 49,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "967d9ab3f8d1173ddeda-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "967d9ab3f8d1173ddeda-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "967d9ab3f8d1173ddeda-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-consistency-p1.md"
+}

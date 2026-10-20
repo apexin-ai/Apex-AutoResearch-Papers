@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd05976061ad8390d95f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r4n3 beam runtime profiling",
+  "task_key": "worker_analysis_r4n3_beam_runtime_profiling_20260518T120631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r4n3_beam_runtime_profiling_20260518T120631_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "14ebc32350b3ead95d03fd4ae24a5aa8120bc389829d46aba194dbf83c3f56a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `artifacts/r4_n3_runtime_profiling.md`.\n\n## 结果总结\n\n### 最可靠的对比: Qwen DocRED (matched 50-doc subset, 同 GPU 近时运行)\n\n| | Greedy | Beam k=4 | Overhead |\n|---|---|---|---|\n| Per-doc avg | 18.5s | 31.4s | **1.69x** |\n| Per-doc median | 18.1s | 24.5s | **1.35x** |\n\nBeam 的 tail latency 显著更高 (max 129s vs 33s)。\n\n### Beam width scaling (Qwen SciERC, 551 docs)\n\n| k | Avg (s) | 相对 k=2 |\n|---|---|---|\n| 2 | 5.39 | 1.00x |\n| 4 | 5.92 | 1.10x |\n| 8 | 7.06 | 1.31x |\n\n**Sub-linear scaling**: k 翻倍只增加 10-19% latency。\n\n### Fine-tuned beam 加速\n\nFT beam k=4 比 ZS beam k=4 快 **1.6x** (avg 3.7s vs 5.9s)，因为 FT 模型 token 分布更集中，beam 更早收敛。\n\n### Caveats\n\n- SciERC greedy baseline 跑的时间比 beam 早 2-3 天，不是严格控制变量对比 (Qwen greedy 反而比 beam k=4 慢，不合理)\n- Llama DocRED beam vs greedy 几乎无差异 (0.98x)，可能因 greedy tail variance 大\n- **建议**: 论文引用 Qwen DocRED 的 1.69x/1.35x 作为 beam overhead；如需 clean SciERC 数据，需重跑 greedy baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r4n3-beam-runtime-profiling.md"
+}

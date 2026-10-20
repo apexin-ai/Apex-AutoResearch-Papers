@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ac0e15d168d2428dc42",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "writing appendix beam search",
+  "task_key": "worker_writing_appendix_beam_search_20260517T011448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix_beam_search_20260517T011448_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "a9b74cf876d5bc457b62216d24f68701a2850b9d93041f5fec662aa7173da7f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。数据来源：\n\n| 指标 | Beam (k=4) | Greedy |\n|------|-----------|--------|\n| ET% | 0 | 0 |\n| RV% | 0 | 0 |\n| DR% | 0 | 0.63 |\n| CF% | 2.01 (3/149) | 15.82 (25/158) |\n| E-F1 | 33.67 | 30.96 |\n| R-F1 | 13.03 | 11.85 |\n\nTODO 注释已标记 551-doc 和 Mistral DocRED 的 placeholder 位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix-beam-search.md"
+}

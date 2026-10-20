@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a365467adb25544ca504",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred minimal final",
+  "task_key": "worker_analysis_docred_minimal_final_20260513T213803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_minimal_final_20260513T213803_result.json",
+    "occurrence": 1,
+    "bytes": 91,
+    "sha256": "e1e7804dafee2178cdfc8a755a8571a56f1ca5e0470698e4321ac141a82fdd45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "背景脚本已在服务器上运行，等 ~2 分钟后回来检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-minimal-final.md"
+}

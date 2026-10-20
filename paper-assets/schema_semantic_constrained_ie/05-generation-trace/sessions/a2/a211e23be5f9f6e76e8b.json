@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a211e23be5f9f6e76e8b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d049 posthoc ee",
+  "task_key": "worker_code_d049_posthoc_ee_20260518T102140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d049_posthoc_ee_20260518T102140_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "cd13b4f16b57f0ce5dd67529c83da2c770fbdc45d41d39ffd71804e47dcac769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本完成，验证通过。\n\n**汇报：**\n\n| | Unconstrained | Post-hoc Filtered |\n|---|---|---|\n| Events | 3013 | 2291 |\n| Arguments | 5467 | 23 |\n| EV violations | 722 (24.0%) | 0 (0.0%) |\n| RoV violations | 4094 (74.9%) | 0 (0.0%) |\n| AC violations | 18 (0.3%) | 0 (0.0%) |\n| Go/No-go (RoV+AC) | 0.7521 | 0.0000 |\n\n脚本路径：`/root/schema_semantic_constrained_ie/posthoc_filter_ee.py`\n\nPost-hoc filtering 将违规率降至 0%，但代价极大：5467 个 arguments 只剩 23 个（99.6% 被删除）。主要原因是 Qwen unconstrained 输出使用通用角色名（agent, object, location）而非 ontology 定义的专有角色（Attacker, Artifact, Place），导致 RoV 步骤删除了 74.9% 的 arguments。这正好说明 post-hoc filtering 作为 baseline 的局限性：constrained decoding 在生成时就引导模型使用正确的 role vocabulary，避免这种大规模丢弃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d049-posthoc-ee.md"
+}

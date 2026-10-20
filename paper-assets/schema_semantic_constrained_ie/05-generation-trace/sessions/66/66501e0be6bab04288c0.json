@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66501e0be6bab04288c0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code kill dup and launch mistral grammar",
+  "task_key": "worker_code_kill_dup_and_launch_mistral_grammar_20260518T071018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_dup_and_launch_mistral_grammar_20260518T071018_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "1697fbb42e7aa684b752079c92e73d0307efadb039609232fb1ef8b1eb45a930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### Kill 确认\n- **westd-16980 PID 536272** (重复 Mistral v3) — 已 kill，确认死亡\n- **westd-21461 PID 6529** (重复 Qwen v3) — 已 kill，确认死亡\n\n### Mistral grammar_only v3 启动确认\n- **PID**: 536755/536761\n- **GPU**: westd-16980:cuda:1, 15029 MiB used, 88% util\n- **tmux session**: `mistral_grammar_only_v3`\n- **Output**: 1 sample已写入，正在推理中（总 246 samples）\n- 代码确认：938 行, collision=7, exact_match=4 ✓\n\n### 最终 4 卡分配表\n\n| 服务器 | GPU | 显存占用 | GPU利用率 | 任务 |\n|--------|-----|---------|----------|------|\n| westd-16980 | cuda:0 | 22921 MiB | 84% | qwen_v3_full |\n| westd-16980 | cuda:1 | 15029 MiB | 88% | **mistral_grammar_only_v3** (新启动) |\n| westd-21461 | cuda:0 | 16121 MiB | 86% | mistral_v3_full |\n| westd-21461 | cuda:1 | 0 MiB | 0% | 空闲 (重复Qwen已kill) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-dup-and-launch-mistral-grammar.md"
+}

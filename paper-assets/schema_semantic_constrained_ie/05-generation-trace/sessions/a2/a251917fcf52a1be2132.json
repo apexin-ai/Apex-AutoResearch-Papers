@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a251917fcf52a1be2132",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "viz fig1 paperbanana",
+  "task_key": "worker_viz_fig1_paperbanana_20260521T112804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_paperbanana_20260521T112804.log",
+    "occurrence": 1,
+    "bytes": 574043,
+    "sha256": "c9cc62b8e99607f97103a69f51150bdc890d0e57a273ade3d5ec854c2cc37b10"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "a251917fcf52a1be2132-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a251917fcf52a1be2132-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/viz-fig1-paperbanana-copy-2.md"
+}

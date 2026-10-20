@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db7073239e823c93644f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper relwork bib entries",
+  "task_key": "worker_paper_relwork_bib_entries_20260514T061142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_relwork_bib_entries_20260514T061142_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "6e2d087d3b635a7c02ebed7e0069394271f26a1349618831157d384c0b1e4dd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/relwork_new_entries.bib`，9 篇全部通过 WebSearch 验证。两处 venue 修正：\n\n| cite key | 用户给的 venue | 实际 venue |\n|---|---|---|\n| `synchromesh_neurips2022` | NeurIPS 2022 | **ICLR 2022** |\n| `roth_yih_2004` | AAAI 2004 | **CoNLL 2004 at HLT-NAACL** |\n\nbib 文件中已用注释标注这两处差异，`booktitle` 使用了正确 venue。如果 tex 中的 cite key 需要同步改名，请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-relwork-bib-entries.md"
+}

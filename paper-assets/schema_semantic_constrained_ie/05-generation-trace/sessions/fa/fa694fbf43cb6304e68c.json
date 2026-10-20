@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fa694fbf43cb6304e68c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis fuzzy matching threshold source",
+  "task_key": "worker_analysis_fuzzy_matching_threshold_source_20260516T181829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fuzzy_matching_threshold_source_20260516T181829.log",
+    "occurrence": 1,
+    "bytes": 816080,
+    "sha256": "b6bb4f9db64fc05ecce29689e793b383910f6dfdc989d7a6de2c97bc8c8db498"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "fa694fbf43cb6304e68c-part-0001.json",
+          "message_count": 97
+        },
+        {
+          "path": "fa694fbf43cb6304e68c-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fuzzy-matching-threshold-source.md"
+}

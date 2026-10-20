@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a6002be8e0a8b59f3405",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w6 mistral docred unconstrained",
+  "task_key": "worker_diagnose_w6_mistral_docred_unconstrained_20260516T083833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w6_mistral_docred_unconstrained_20260516T083833_result.json",
+    "occurrence": 1,
+    "bytes": 2057,
+    "sha256": "915d1e13f2c6b04d9980a2fc532014bc1ebe6f9239fee4327637a00ea9bca3eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。情况与预期不同：\n\n## 结论\n\n**实验已经成功完成。** `~/runs/` 下的 EXIT_CODE=129 日志来自第一次尝试（13:23-13:25），但第二次尝试（13:30 via tmux pid=7733）已经跑完全部 998 个样本。\n\n**时间线：**\n- 13:23 — 第一次启动，无 tmux 保护，2 分钟后 SSH 断连触发 SIGHUP → EXIT_CODE=129\n- 13:30 — 第二次启动（tmux），运行至 16:36 完成\n- 输出文件：`outputs/w6_mistral_docred_unconstrained.jsonl`，998 行，7.6MB\n\n**第一次失败的根因：** tmux 启动命令格式错误——`&&` 被外层 shell 解析，导致 Python 进程实际运行在 tmux 外部，SSH 断连时收到 SIGHUP。对比 constrained 版本正确使用了 `bash -c \"...\"` 包裹。\n\n**输出验证：** `/tmp/w6_mistral_docred_unconstrained.log` 显示 `Done: 998 new samples, success=991, fail=7`\n\n```json\n{\"root_cause\":\"tmux new-session命令未用引号包裹compound command，&&被外层shell解析导致python进程运行在tmux外部，SSH断连触发SIGHUP。但第二次重试已成功完成(998/998样本，输出文件7.6MB)\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复——实验已完成，输出文件outputs/w6_mistral_docred_unconstrained.jsonl已有998行结果\",\"将~/runs/日志状态更新为成功\",\"未来tmux启动命令应使用: tmux new-session -d -s NAME 'bash -c \\\"...\\\"'\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "tmux new-session命令未用引号包裹compound command，&&被外层shell解析导致python进程运行在tmux外部，SSH断连触发SIGHUP。但第二次重试已成功完成(998/998样本，输出文件7.6MB)",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复——实验已完成，输出文件outputs/w6_mistral_docred_unconstrained.jsonl已有998行结果",
+                "将~/runs/日志状态更新为成功",
+                "未来tmux启动命令应使用: tmux new-session -d -s NAME 'bash -c \"...\"'"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w6-mistral-docred-unconstrained.md"
+}

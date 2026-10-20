@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d42e4ca30403799edf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis q1 llama lora scierc beam4",
+  "task_key": "worker_analysis_q1_llama_lora_scierc_beam4_20260518T141444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q1_llama_lora_scierc_beam4_20260518T141444_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "dffa38f3c8896db6d12711f505cf30ec6281cafa05f1d5eec8c66ea51e27ecd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== RESULTS: q1_llama_lora_scierc_beam4 ===\nStatus: completed\nDocs processed: 551/551\nParse failures: 0 (0.0%)\n\nViolation Metrics:\n- ET (entity type): 0.0%\n- RV (relation vocab): 0.0%\n- DR (domain-range): 0.0%\n- CF (cross-field): 0.0%\n- Total violation rate: 0.0%\n\nPerformance:\n- Entity F1/P/R: 67.94 / 65.84 / 70.17\n- Relation F1/P/R: 46.11 / 41.99 / 51.13\n\nvs Parent (Qwen FT+beam k=4, full_s1):\n  - Entity F1: 67.94 vs 66.88 (+1.06) — Llama slightly better\n  - Entity P: 65.84 vs 64.69 (+1.15)\n  - Entity R: 70.17 vs 69.22 (+0.95)\n  - Violations: both all-zero — identical\n\nvs Llama FT greedy (w5, full_s1):\n  - Entity F1: 67.94 vs 67.76 (+0.18) — nearly identical\n  - Relation F1: 46.11 vs 45.47 (+0.64)\n  - DR: 0.0% vs 0.09% — beam eliminates residual DR\n  - CF: 0.0% vs 0.46% — beam eliminates residual CF\n\nvs Llama base beam (w9, non-FT, full_s1):\n  - CF: 0.0% vs 0.93% — FT eliminates CF violations that base model still had\n\nHypothesis verified: YES\nLlama LoRA FT + beam k=4 + full_s1 achieves zero violations across all four categories (ET=0%, RV=0%, DR=0%, CF=0%), replicating the Qwen FT+beam result. Additionally, Entity F1 is slightly higher than both the Qwen baseline and Llama greedy variant, confirming that beam search with constrained decoding on a fine-tuned model eliminates all schema violations without sacrificing extraction quality.\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q1-llama-lora-scierc-beam4.md"
+}

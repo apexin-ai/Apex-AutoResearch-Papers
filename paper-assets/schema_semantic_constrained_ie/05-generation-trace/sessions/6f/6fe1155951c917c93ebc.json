@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fe1155951c917c93ebc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis mistral scierc cf check",
+  "task_key": "worker_analysis_mistral_scierc_cf_check_20260516T104023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_scierc_cf_check_20260516T104023_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "fd79512dfa59275ab0a5a6d3b7ff6782eabb2efbdeda812380fc6bc769ad3f29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**CF_pct = 56.87%** (906/1593) 已写入 registry。\n\n对比：constrained CF_pct=1.27% vs unconstrained CF_pct=56.87%，约 45x 差异，说明 schema constraint 对跨字段一致性效果显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-scierc-cf-check.md"
+}

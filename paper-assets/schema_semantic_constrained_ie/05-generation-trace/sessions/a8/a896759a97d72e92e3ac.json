@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a896759a97d72e92e3ac",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis qwen fallback estimation",
+  "task_key": "worker_analysis_qwen_fallback_estimation_20260514T181647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen_fallback_estimation_20260514T181647_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "013897c2639d353cf03cd4072849aa07ef7cdfba9c9af3c4583aedeb6802fa27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Model | Dataset | Fallback Triples | Total Triples | Rate | Avg/doc | Source |\n|-------|---------|-----------------|---------------|------|---------|--------|\n| Llama | SciERC | — | — | — | ~10.7 | 日志 (token-level) |\n| Llama | DocRED | — | — | — | ~57 | 日志 (token-level) |\n| **Qwen** | **SciERC** | **16** | **1,729** | **0.9%** | **0.03** | post-hoc (triple-level) |\n| **Qwen** | **DocRED** | **1,770** | **17,341** | **10.2%** | **1.77** | post-hoc (triple-level) |\n\n关键发现：\n\n1. **Qwen DocRED fallback 率 10.2%**（1,770 triples），高频 fallback 关系包括：parent taxon (77.8%)、unemployment rate (83.3%)、territory claimed by (45%)、product or material produced (30.8%)\n2. **Qwen SciERC 几乎无 fallback**（仅 16 triples, 0.9%），集中在 Evaluate-for 和 Feature-of\n3. **DocRED vs SciERC 差异与 Llama 一致**：DocRED 的 96 种关系类型 + 6 种实体类型组合空间更大，更容易触发 fallback\n\n注意单位差异：Llama 日志是 **token-level** fallback 事件计数（每次 semantic∩grammar=∅ 都记一次），Qwen post-hoc 是 **triple-level** DR violation 计数（fallback 下界）。两者不能直接数值对比，但趋势方向一致（DocRED >> SciERC）。\n\n脚本和结果已保存在服务器 `/root/schema_semantic_constrained_ie/outputs/fallback_estimation_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-fallback-estimation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b01351d17112cbfcfd30",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_1_1778728835.md",
+  "task_key": "loop_1_1778728835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778728835.md",
+    "occurrence": 1,
+    "bytes": 4750,
+    "sha256": "e0071242f2b103d3b4c1311608eec3b8a9506ea68cd3011a240b0cb5d1f1a6d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T03:01:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-16980 cuda:0 + cuda:1**，不得用其他卡\n- `submit_training_job` 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 ...\"` 包裹，否则 EXIT_CODE=127\n- **禁止在 allocate_and_submit 命令内放 `tmux kill-session -t <同名session>`**——会自杀导致 cron 误判失败\n- Cron PID 追踪不可靠（已造成 4 次假失败 + 误杀连锁），长时间实验用 `wc -l` 输出文件行数判断完成\n- DocRED 实验必须加 `--max_new_tokens 4096`（文档级输出比句子级长很多）\n- 重提交实验前必须先单独清理旧 tmux session，否则两进程写同一 JSONL 导致 null bytes 污染\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), torch 2.10.0+cu128, transformers 4.57.6\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- **数据**: SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- **约束文件**: SciERC `ontology_constraints.json`, DocRED `data/docred/ontology_constraints_docred.json`\n- **活跃进程**: phase2_docred_grammar_only (PID 150766, tmux, cuda:0, cron 监控中)\n- **活跃 Worker**: `worker_code_fix_xgrammar_assertion` + `worker_code_fix_grammar_semantic_interaction`（修 DocRED S1 bug）\n\n### 3. 📊 当前状态\n**刚做完**: SciERC Phase 2 全部 5 模式跑完并分析，S2 降级为 ablation (D007)，paper_framing.md 已更新。phase2_docred_full_s1 在 doc 87/998 崩溃（XGrammar assertion: grammar+semantic mask 交互冲突），已派 2 个 Worker 修 bug。\n\n**Registry 状态**:\n- **RUNNING**: `phase2_docred_grammar_only` (cuda:0, 998 docs, grammar_only 模式)\n- **DONE(success)**: mvp_phase0_violation_rate, mvp_phase0_scierc_schema, mvp_phase0_violation_rate_docred, mvp_phase0_docred_schema, phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2, phase2_s2_pilot50\n- **DONE(failed)**: phase2_docred_full_s1 — XGrammar assertion failure\n- **DONE(killed)**: mvp_phase0_docred_schema_r2\n\n**等待中**:\n- 2 个 Worker 回调（fix_xgrammar_assertion + fix_grammar_semantic_interaction）→ 修好后重启 DocRED full_s1 on cuda:1\n- phase2_docred_grammar_only cron 回调 → 完成后分析 DocRED grammar 层效果\n- cuda:1 当前空闲 ⚠️，等 bug 修复后启动 DocRED full_s1\n\n### 4. 📋 待办（条件触发式）\n- **Worker fix bug 完成** → 立即在 cuda:1 重启 `phase2_docred_full_s1`（修复后的代码）\n- **phase2_docred_grammar_only 完成** → 分析 DocRED grammar_only 结果：RV 28.9%→? ET 7.5%→?，与 SciERC grammar_only 对比，更新 report.md + 汇报 Director\n- **DocRED full_s1 完成** → 核心验证点：DR 18.7%→?（预期类似 SciERC ↓94%），与 SciERC 对比证明跨数据集泛化\n- **DocRED 两实验都完成** → CF 根因分析（已派单但无需 GPU），然后启动论文写作（target May 19）\n- **论文写作前** → 读 paper_framing.md 确认 claim 对齐，读 red-section skill\n- **时间允许** → cross-model 验证 Llama-3.1-8B (stretch goal)\n\n### 5. 🎯 战略上下文\n**核心结论**: OntoCoDec S1 grammar+semantic 双层约束在 SciERC 上 DR 15.37%→0.93% (↓94%)，F1 零损失甚至微升。Grammar 层\"免费\"消除 RV+ET，semantic 层精确靶向 DR。两层互补非 synergy（grammar 是 semantic 的前置条件）。\n\n**决策链**: D001(EMNLP ARR 5/25) → D002(GO) → D003(进入 Research) → D004-D006(Phase 2 结果确认) → D007(S2 降级 ablation, 标题 Guaranteed→Near-Complete Type-Valid)\n\n**已知 limitation**: CF violation S1=9.9%（per-relation 独立 type enforcement 副作用），S2 也没解决，必须论文正面报告 + future work。\n\n**易踩坑**:\n- DocRED full_s1 崩溃根因是 grammar+semantic mask 交互冲突（semantic mask 允许了 grammar 不允许的 token），不是简单 bug——修复需要确保两层 mask 取交集或 semantic 在 grammar 允许集内操作\n- 不要把 _v2（干净数据）和原始数据的 metrics 混用——SciERC Phase 2 最终数据全部来自 _v2 文件\n- `phase2_scierc_grammar_only` 曾因 cron 追踪 stale PID 导致假失败+误杀连锁——实际从未崩溃\n- DocRED 实验耗时远长于 SciERC（998 docs vs 551 sentences, batch_size=1），grammar_only 估计需要数小时\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778728835.md"
+}

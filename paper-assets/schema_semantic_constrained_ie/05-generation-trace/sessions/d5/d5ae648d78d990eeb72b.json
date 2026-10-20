@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5ae648d78d990eeb72b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops llama constrained done and mistral submit",
+  "task_key": "worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_constrained_done_and_mistral_submit_20260516T045111_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "fd383eb462ba8b0556722df232aa195baac6f0a13ccaf61fdbbbf66d3a0f9b62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## Llama FT Constrained Eval Metrics\n\n| 指标 | Constrained | Unconstrained | Delta |\n|---|---|---|---|\n| E-F1 | **85.23%** | 85.17% | +0.06pp |\n| R-F1 (all_set) | **44.23%** | 44.15% | +0.08pp |\n| ET violations | 0 (0%) | 0 (0%) | — |\n| RV violations | 0 (0%) | 24 (0.1%) | **-0.1pp** |\n| DR violations | 33 (0.2%) | 80 (0.5%) | **-0.3pp** |\n| Parse fail | 25 (2.51%) | 23 (2.30%) | +0.21pp |\n\n**结论**：constrained 解码在 fine-tuned Llama DocRED 上将 DR 从 0.5%→0.2%（降 60%），RV 从 0.1%→0%（完全消除），同时 E-F1 和 R-F1 均微升，无性能损失。Composability 验证通过。\n\n## Mistral SciERC Unconstrained 提交状态\n\n- **exp_id**: w6_mistral_scierc_unconstrained\n- **GPU**: cuda:0 @ westd-16980\n- **PID**: 332156（GPU 子进程）\n- **数据量**: 100 条 SciERC test\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-constrained-done-and-mistral-submit.md"
+}

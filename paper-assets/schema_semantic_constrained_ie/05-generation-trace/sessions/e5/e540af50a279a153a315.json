@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e540af50a279a153a315",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper docred beam table pareto",
+  "task_key": "worker_paper_docred_beam_table_pareto_20260520T135434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_docred_beam_table_pareto_20260520T135434_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "c7033b7cf61c26d7885097e2771b4cf400e9385fc98c6a34be7dbd4085f7edbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已创建。\n\n### 产出汇报\n\n**1. `beam_docred_sweep_table.tex`**\n- 与 `tab:beam-sweep` (SciERC) 完全一致的列结构：k, Mode, E-F1, R-F1, DR(%), CF(%), Latency(s), Rel. Lat.\n- 8 行数据（k∈{1,2,4,8} × {unc, con}），用 `--` 占位\n- beam=2 con 行用 `\\cellcolor{blue!8}` 高亮（sweet spot 候选）\n- beam=8 con 的 DR/CF 已填入 **0**（已确认数据），加粗处理\n- label: `tab:beam-docred-sweep`，caption 标注 \"200 documents\" + Llama-3.1-8B LoRA\n\n**2. `plot_pareto_dual.py`**\n- 双面板 `(10, 4)` 图，左 SciERC（数据已填）/ 右 DocRED（`None` 占位）\n- X 轴 Relative Latency（`%.1f×` 格式），Y 轴 R-F1\n- unc 灰色圆点 / con 蓝色方块，每个点标注 beam width\n- 绿色空心环标注 zero-violation 点（DR=0% AND CF=0%）：SciERC 的 k=4 con 和 k=8 con\n- 红色星号标注 sweet spot（SciERC beam=2 unc R-F1=44.75）\n- 学术 serif 字体，输出 PDF + PNG\n- DocRED 的 `sweet_spot` 参数留 `None`，数据到齐后填入即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-docred-beam-table-pareto.md"
+}

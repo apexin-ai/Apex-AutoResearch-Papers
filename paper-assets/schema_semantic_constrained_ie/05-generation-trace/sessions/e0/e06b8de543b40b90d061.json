@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e06b8de543b40b90d061",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh mf2 constraint coverage",
+  "task_key": "worker_ssh_mf2_constraint_coverage_20260519T073445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mf2_constraint_coverage_20260519T073445_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "898c750ec7cd2d41ff5b27bb7ce4a39749d4e05017b6e991789207ad14586cd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果写入 `artifacts/mf2_constraint_coverage_results.md`。\n\n核心发现：\n\n| 数据集 | Type-level 覆盖 | Instance-level 覆盖 |\n|--------|----------------|-------------------|\n| SciERC | 106/115 (92.2%) | 964/974 (**99.0%**) |\n| DocRED | 313/360 (86.9%) | 12199/12275 (**99.4%**) |\n\n- **未覆盖的 type pairs 与训练集中未见过的完全重合** (SciERC 9个, DocRED 47个)，说明约束表忠实反映了训练数据\n- DocRED 的 gap 主要由 MISC 类型歧义驱动 (P178 developer MISC-MISC x10, P127 owned by MISC-MISC x8)\n- SciERC 的 gap 集中在 Evaluate-for 关系 (5/9)\n- 实例级覆盖率 >99%，未覆盖实例都是低频边缘情况，无需扩展约束表"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mf2-constraint-coverage.md"
+}

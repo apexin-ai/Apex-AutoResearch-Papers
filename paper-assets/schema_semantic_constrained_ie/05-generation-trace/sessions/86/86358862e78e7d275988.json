@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86358862e78e7d275988",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops launch docred full s1",
+  "task_key": "worker_ops_launch_docred_full_s1_20260514T020519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_docred_full_s1_20260514T020519_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "f128712d7c467c995a06732c621dd5c42cb14e2a177dbc1a628695553c581dc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，汇总如下：\n\n**DocRED full_s1 启动确认**\n- PID: 152026 (子进程 152032)\n- 模型已加载，开始推理，已产出 2 条\n\n**GPU 显存占用**\n| GPU | PID | 显存 | 任务 |\n|-----|-----|------|------|\n| cuda:0 | 150766 | 16856 MiB | grammar_only |\n| cuda:1 | 152032 | 16558 MiB | full_s1 |\n\n**DocRED grammar_only 进度**\n- 39/998 docs 完成（约 3.9%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-docred-full-s1.md"
+}

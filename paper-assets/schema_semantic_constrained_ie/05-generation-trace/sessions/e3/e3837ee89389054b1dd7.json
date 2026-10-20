@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3837ee89389054b1dd7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12.md",
+    "occurrence": 1,
+    "bytes": 5196,
+    "sha256": "9a30b104da2923c0db77c46898c97f33a406888fd08934900a72a414f994eae6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:13:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 [cuda:0, cuda:1] + westd-21461 [cuda:0, cuda:1]，不可用其他设备\n- EMNLP 2026 ARR 截止 **May 25**，距今 9 天，所有实验规划以此为硬 deadline\n- D030 决策：第三模型锁定 **Mistral-7B-Instruct-v0.3**，不可自行更换\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 `/root/schema_semantic_constrained_ie`，conda 环境 `/root/miniconda3`\n  - cuda:0: w6_mistral_scierc_unconstrained RUNNING (PID 332156)\n  - cuda:1: w5_qwen_docred_lora_constrained_eval RUNNING (PID 321568)\n- **westd-21461**: 同项目路径，cuda:0 + cuda:1 均空闲（3 个 Mistral PREPARING 实验待提交）\n- HF cache / 模型路径 / wandb config：未在本 session 探查，需 Worker SSH 确认\n- **活跃 Cron**: 仅 1 个——w5_qwen_docred_lora_constrained_eval (pid 321568)\n- ⚠️ w6_mistral_scierc_unconstrained (pid 332156) **无 cron 监控**，需要补注册或 spawn worker 检查\n\n### 3. 📊 当前状态\n**刚发生的关键事件**: w5_llama_docred_lora_constrained_eval 已转 **ANALYZING (conclusion=success)**，但 **Worker 池=0，无人处理**。这是最高优先级——Llama DocRED composability 2×2 的最后一格完成了，需要立即走 on-experiment-done 流程（提取 metrics → 更新 registry → 更新 ROADMAP/report → 汇报 Director）。\n\n**Registry 快照** (44 总):\n| exp_id | status | server | gpu | 说明 |\n|--------|--------|--------|-----|------|\n| w5_llama_docred_lora_constrained_eval | ANALYZING (success) | westd-16980 | 0 | ⚡ 需立即处理结果 |\n| w5_qwen_docred_lora_constrained_eval | RUNNING | westd-16980 | 1 | cron 监控中，PID 321568 |\n| w6_mistral_scierc_unconstrained | RUNNING | westd-16980 | 0 | PID 332156，⚠️ 无 cron |\n| w6_mistral_scierc_constrained | PREPARING | westd-16980 | 1 | 等 cuda:1 空出 |\n| w6_mistral_docred_unconstrained | PREPARING | westd-21461 | 0 | 可立即提交 |\n| w6_mistral_docred_constrained | PREPARING | westd-21461 | 1 | 可立即提交 |\n| 其余 38 | DONE | — | — | 33 success / 1 negative / 4 killed |\n\n**等待中**: 无 Worker 回调；1 个 cron 回调（w5_qwen）；无 Director 决策待回。\n\n### 4. 📋 待办（条件触发式）\n- **立即** → spawn Worker 处理 w5_llama_docred_lora_constrained_eval 的 ANALYZING 结果（SSH 读 log/metrics → update_registry → on-experiment-done 全流程 → 汇报 Director Llama DocRED 2×2 完整数据）\n- **立即** → 检查 w6_mistral_scierc_unconstrained 是否有 cron；若无，补注册 cron 或 spawn worker 查进度\n- **立即** → westd-21461 两卡空闲，w6_mistral_docred_unconstrained + w6_mistral_docred_constrained 可并行提交（需先确认 Mistral 模型已下载到 westd-21461）\n- w5_qwen_docred_lora_constrained_eval cron 回调到达 → on-experiment-done 流程 → Qwen DocRED 2×2 完整数据\n- w6_mistral_scierc_unconstrained 完成 → cuda:0 空出 → 可提交 w6_mistral_scierc_constrained（或等 cuda:1 空出）\n- Llama + Qwen DocRED 2×2 全部完成 → 更新论文 Table 3/5, §5.4/5.5, Appendix B（checklist 在 `artifacts/composability_update_checklist.md`）\n- Mistral 全 4 格完成 → 三模型泛化性 claim 可写入论文 → 全文数字一致性审查 → May 25 提交\n\n### 5. 🎯 战略上下文\n**项目核心**: OntoCoDec = 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM IE 的 ontology violations。目标 EMNLP 2026 ARR May 25。\n\n**决策链关键节点**:\n- D025/D028: Qwen + Llama SciERC 2×2 composability 双确认（FT+OntoCoDec DR→~0%, F1 中性）\n- D030: 第三模型选 Mistral-7B-Instruct-v0.3，justify 为架构多样性（Qwen=custom, Llama=LlamaArch, Mistral=SlidingWindow）\n- 当前阶段: Round 1 审稿应对，composability matrix 扩展\n\n**Composability Matrix 进展**:\n| | SciERC | DocRED |\n|--|--------|--------|\n| Qwen3-8B | ✅ 完整 | 🔥 constrained eval 跑中 |\n| Llama3.1-8B | ✅ 完整 | ⚡ constrained eval 刚完成(ANALYZING) |\n| Mistral-7B | 🔥 unconstrained 跑中 | ⏳ PREPARING (westd-21461) |\n\n**易错点**:\n- w5_llama_docred_lora_constrained_eval 已 success 但无人处理——**这是本 session 最紧急的事**，不要先搞 Mistral 而忽略它\n- westd-21461 是新加的服务器，环境可能未完全就绪（Mistral 模型是否已下载？项目代码是否 sync？），提交前必须 Worker 探查\n- w6_mistral_scierc_unconstrained 无 cron 监控，可能完成了但没人知道\n- memory.md 记录了 DocRED composability 完成后需更新的论文位置 checklist（`artifacts/composability_update_checklist.md`），别忘了用\n- CF Fallback ablation (D020) 是 analytical finding，已写入论文，不要重跑\n- 目标分数路径：当前 Llama LoRA 成功 → 4.0/5，DocRED LoRA 全补完 → 4.25/5\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

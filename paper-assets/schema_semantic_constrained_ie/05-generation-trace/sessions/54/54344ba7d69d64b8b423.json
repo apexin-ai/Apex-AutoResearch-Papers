@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54344ba7d69d64b8b423",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 llama fix and restart",
+  "task_key": "worker_ssh_p1_llama_fix_and_restart_20260518T221956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_llama_fix_and_restart_20260518T221956_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "83d542e977aece5d5e9c89e8cb2b426daf62bbec41c0e753e662ebcff31743cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行：\n\n**修复内容：**\n1. **peft AWQ dispatcher 报错** — `pip install optimum` 未解决根本问题（`gptqmodel` 类名不兼容），改用 monkey-patch 直接在 `awq.py` 模块上 patch `is_gptqmodel_available = lambda: False`\n2. **checkpoint 路径** — `output_dir` 和 `merged_dir` 默认值及 bash 脚本中所有引用均改到 `/root/autodl-tmp/checkpoints/`\n\n**当前状态：**\n- Step 0（SFT 数据）已完成\n- Step 1（训练）进行中：1/39 steps，GPU 0 占用 55.6GB，util 100%\n- 数据卷剩余 109GB，空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-llama-fix-and-restart.md"
+}

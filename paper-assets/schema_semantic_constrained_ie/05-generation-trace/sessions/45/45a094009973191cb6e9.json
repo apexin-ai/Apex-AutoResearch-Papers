@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45a094009973191cb6e9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper figure fig3 ablation layers",
+  "task_key": "worker_paper_figure_fig3_ablation_layers_20260514T043108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_ablation_layers_20260514T043108_result.json",
+    "occurrence": 1,
+    "bytes": 137,
+    "sha256": "2823e159bc1693d6042b135bddd8ad494c4c516281f252056630d3b73f8c3989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册（`art_20260514_7897eb`）。PDF 和 PNG 均在 `figures/paper/fig3_ablation_layers.{pdf,png}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-ablation-layers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9714b80059851fecd290",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check docred eval status",
+  "task_key": "worker_check_docred_eval_status_20260515T230147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_docred_eval_status_20260515T230147_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "dcec3344eed4b31ac862f10caf8a3128edf7eb7626cdfe8352d8e2a143f35331"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 (LLaMA) | 16,921 MiB / 97,887 MiB | 90% |\n| cuda:1 (Qwen) | 17,343 MiB / 97,887 MiB | 87% |\n\n### 实验 1: w5_qwen_docred_lora_unconstrained_eval\n- **状态**: **RUNNING**\n- **进度**: 517/998 docs (51.8%)\n- **已运行**: ~3h (04:03 UTC 启动)\n- **速度**: ~2.87 docs/min\n- **预计剩余**: ~2.8h\n- **ETA**: ~09:50 UTC\n\n### 实验 2: w5_llama_docred_lora_unconstrained_eval\n- **状态**: **RUNNING**\n- **进度**: 731/998 docs (73.2%)\n- **已运行**: ~3.1h (03:58 UTC 启动)\n- **速度**: ~3.97 docs/min\n- **预计剩余**: ~1.1h\n- **ETA**: ~08:10 UTC\n\n注意：LLaMA 日志中观察到少量跳过的 doc index（如 51, 52, 61 缺失），可能有个别 doc 处理失败。两个实验的输出 jsonl 行数均多于日志中 \"OK\" 计数（LLaMA: 731 行 vs 642 OK, Qwen: 517 行 vs 450 OK），完成后需要检查是否有 FAIL 行。\n\nLLaMA 预计约 1 小时后完成，届时可以跑 violation_checker 和 F1。Qwen 预计约 3 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-docred-eval-status.md"
+}

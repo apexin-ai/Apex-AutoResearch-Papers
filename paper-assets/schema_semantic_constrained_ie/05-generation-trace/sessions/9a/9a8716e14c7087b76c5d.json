@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a8716e14c7087b76c5d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_4_1778766425.md",
+  "task_key": "loop_4_1778766425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778766425.md",
+    "occurrence": 1,
+    "bytes": 4507,
+    "sha256": "110966ee10c5a22ec452cbed6ae8742e2735ed135187fff25e75f357d40ab7fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T13:18:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-16980 cuda:0 + cuda:1，不可用其他设备\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 禁止在 allocate_and_submit 命令内放 `tmux kill-session -t <同名session>`（会自杀导致 cron 误判失败）\n- 重提交实验前必须先 `tmux kill-session -t <exp_id>` 清理旧 session，否则两进程并写 JSONL → null bytes 污染\n- phase2_docred_unconstrained 和 semantic_only 输出存在数据完整性风险（JSONL 行数 > 日志 processed 计数，疑似前次运行残留），分析前必须按 doc_id 去重\n- orphan 清理必须查 registry 所有 RUNNING 实验 PID 加入白名单（2026-05-14 事故教训：误杀导致级联恶性循环）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-16980，GPU 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)，CUDA 12.8\n- 工作目录: `/root/schema_semantic_constrained_ie`\n- Python: `/root/miniconda3/bin/python`（conda base），torch 2.10.0+cu128, transformers 4.57.6, XGrammar v2\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- Llama-3.1-8B: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`（已验证兼容，零代码修改）\n- SciERC: `data/processed_data/test.json` (551 samples, 7 relations, `ontology_constraints.json`)\n- DocRED: `data/docred/dev.json` (998 docs, 96 relations, `data/docred/ontology_constraints_docred.json`)\n- 活跃进程: phase2_docred_semantic_only (PID 172859, tmux=phase2_docred_semantic_only, cuda:1)\n- 活跃 cron: phase2_docred_semantic_only\n- 活跃 Worker: `worker_analysis_phase2_docred_unconstrained_20260514T131355`（正在分析 unconstrained 结果）\n\n### 3. 📊 当前状态\nDocRED Phase 2 四实验消融进度:\n- `phase2_docred_grammar_only` ✅ DONE — ET 0%, RV 0.03%, DR 26.17%\n- `phase2_docred_full_s1` ✅ DONE — ET 0%, RV 0.03%, DR 10.19% (↓45.5% vs Phase 0)\n- `phase2_docred_unconstrained` ANALYZING — 刚完成, Worker 正在跑 violation 分析\n- `phase2_docred_semantic_only` RUNNING cuda:1 — 328+/998 processed\n\n4 个 Llama 实验 QUEUED (llama_scierc_unconstrained/full_s1, llama_docred_unconstrained/full_s1)，等 GPU 释放。cuda:0 当前空闲。\n\n论文写作: §1/§2/§3/§4/§5(SciERC)/§6/§7/Abstract/Tables/Figs 已完成。缺 §5 DocRED subsection + §5 Cross-model。May 19 内部稿 DDL（距今 5 天）。\n\n等待回调: (1) Worker analysis:phase2_docred_unconstrained 回调 (2) phase2_docred_semantic_only cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:phase2_docred_unconstrained 回调到 → 更新 registry metrics + report.md，对比 Phase 0 确认数据一致性\n- phase2_docred_semantic_only cron 回调 → spawn Worker 跑 violation_checker_docred + 对比 SciERC semantic_only\n- DocRED 4 实验全部完成 → 汇总 DocRED 消融表，向 Director 汇报 + 建议立即启动 Llama 实验 (D009)\n- cuda:0 空闲且 DocRED semantic_only 仍在跑 → **考虑立即在 cuda:0 启动 Llama SciERC unconstrained**（不用等 DocRED 全完成，SciERC 只需 551 样本）\n- Llama 全部完成 → §5 Cross-model subsection\n- DocRED + Llama 结果齐全 → 派 Worker 写 §5 DocRED subsection + 填 Abstract/Conclusion 的 placeholder\n- May 18-19 → 全文校对 + 一致性检查\n\n### 5. 🎯 战略上下文\n- 投稿: EMNLP 2026 ARR May 25，内部初稿 DDL May 19\n- 核心结果: SciERC DR ↓94% (15.37→0.93%), DocRED DR ↓45.5% (18.7→10.19%), ET/RV→0% 双数据集一致。F1 零损失\n- D007: S1 为主推策略, S2 降级 ablation\n- D009: Llama cross-model 升级为 should-have（zero code change 已验证）\n- **最易判断错的事**: DR scaling gap (SciERC 94% vs DocRED 45.5%) 不是方法失效——根因是 constraint tightness 不同 (SciERC avg 26.1 valid pairs, DocRED avg 5.68)。高 tightness 下 semantic∩grammar=∅ 导致 fallback。论文 framing: \"effectiveness scales inversely with constraint tightness\" 是 **contribution**（首个 constraint scaling 实证），不是 weakness\n- CF violation 100% 来自 semantic 层（per-relation 独立 type enforcement 副作用），论文写 limitation，不要试图修复\n- type_mask_processor.py 已加 safety check（semantic∩grammar=∅ → skip semantic masking），这是双层架构关键 invariant，Method section 要描述\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778766425.md"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "532dab5fa81b646d40e7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis r2n10 rv003 root cause",
+  "task_key": "worker_analysis_r2n10_rv003_root_cause_20260518T122605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r2n10_rv003_root_cause_20260518T122605.log",
+    "occurrence": 1,
+    "bytes": 643108,
+    "sha256": "d5e2218b12e3f3d9293137c12a4e1517345e6ded3948e9b9a4824aaf14cb0633"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "532dab5fa81b646d40e7-part-0001.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "532dab5fa81b646d40e7-part-0001.json",
+          "message_count": 102
+        },
+        {
+          "path": "532dab5fa81b646d40e7-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r2n10-rv003-root-cause.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdd8ac79e6b278e89796",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis mistral tightness r2 refit",
+  "task_key": "worker_analysis_mistral_tightness_r2_refit_20260516T175802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_tightness_r2_refit_20260516T175802_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "d726cfd8b2fbe12434f3d9ac54fd05e28576eefb11549e55ed53d47befcebdaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/mistral_tightness_r2_analysis.md`。\n\n核心结果：\n- **SciERC τ̄ = 0.333**（低 tightness，schema 宽松）\n- **DocRED τ̄ = 0.842**（高 tightness，schema 严格）\n- **n=4 (Qwen+Llama): R² = 0.538** — 中等线性关系\n- **n=6 (加 Mistral): R² = 0.211** — 线性关系崩塌，R² 下降 0.33\n- Mistral 残差巨大：SciERC +12.9%（4.7× RMSE），DocRED +26.8%（9.8× RMSE）\n\n结论：τ̄ 只在同一 calibration tier 内有效。Mistral 的高 DR 是 model-level 因素（未经 schema-aware 微调）主导的，schema tightness 是放大器而非根因。论文叙述建议：分层呈现——calibrated models 展示 τ̄ 与 DR 的正相关，Mistral 作为 boundary condition 说明 constrained decoding 在 model-schema misalignment 场景下获益最大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-tightness-r2-refit.md"
+}

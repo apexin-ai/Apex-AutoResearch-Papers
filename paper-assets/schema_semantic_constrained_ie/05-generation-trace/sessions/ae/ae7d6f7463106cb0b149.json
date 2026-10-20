@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae7d6f7463106cb0b149",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research composability paper audit",
+  "task_key": "worker_research_composability_paper_audit_20260516T021140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_composability_paper_audit_20260516T021140_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "74a4febaa84422ba38a80d147f1119c9f9408194a4cef43a69ed80de7b5b028f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已保存到 `artifacts/composability_update_checklist.md`。\n\n**总结**：论文中涉及 composability（FT + OntoCoDec）且需要 DocRED constrained eval 数字后更新的位置共 **10 处**，分布在 4 个文件中：\n\n| 优先级 | 位置 | 要点 |\n|--------|------|------|\n| **P0** | `section5_composability.tex:18-51` Table 5 | 整个 DocRED 块缺失，需加 4-8 行数据 |\n| **P0** | `main.tex:69` Limitations | 删除 \"DocRED fine-tuning is not reported\" |\n| P1 | `section5_composability.tex:14-16` | 实验描述从 \"SciERC\" 改为 \"SciERC and DocRED\" |\n| P1 | `section5_composability.tex:53-68` | \"FT does not eliminate violations\" 段加 DocRED DR 数字 |\n| P1 | `section5_composability.tex:70-86` | \"no F1 cost\" 段加 DocRED delta 数字 |\n| P1 | `main.tex:65` | Limitations CF≤1.18% 可能需扩为范围 |\n| P2 | `section5_composability.tex:88-98` | Implication 定性 claim，看结果定 |\n| P2 | `paper_tables_draft.tex:119` | TBD 占位符（未编译，低优先级） |\n\n另外 `abstract.tex` 和 `section1_introduction_draft.tex` 中的 \"composable\" 用法是描述层间组合，不涉及 FT composability 数字，**无需更新**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-composability-paper-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef025f876366da6d44c5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis case study kappa dr",
+  "task_key": "worker_analysis_case_study_kappa_dr_20260519T175519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_case_study_kappa_dr_20260519T175519_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "7fd098c17831aeaca2ff1cabd6b832ed655ac302d4cacc16b84480414c02a29d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成：\n\n- **数据报告**: `artifacts/_project/report/case_study_kappa_dr.md` — 包含 SciERC 全部 7 个关系 + DocRED 全部 80+ 个 canonical 关系的完整 per-relation 数据，以及 Top-5 / Bottom-5 的详细分析。\n- **LaTeX 表格**: `artifacts/figures/case_study_kappa_dr.tex` — 10 行 case study 表格，5 个高 DR% + 5 个低 DR% 关系，每行附一句解释。\n\n核心发现：**高 κ 是高 DR% 的必要非充分条件**。关键 co-factor 是 entity type confusion：\n- `basin country` (κ=0.97) 和 `participant of` (κ=0.81) 因类型可混淆而 DR% 高达 58–75%\n- `place of birth` (κ=0.92) 和 `place of death` (κ=0.89) 的 κ 同样高，但 PER→LOC 完全无歧义，DR%=0%\n- `Used-for` (κ=0.03) 35/36 pairs 合法，几乎不可能违反"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-case-study-kappa-dr.md"
+}

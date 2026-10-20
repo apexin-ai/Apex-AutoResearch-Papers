@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "436de33be17cf9a2f5a0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper composability llama writeup",
+  "task_key": "worker_paper_composability_llama_writeup_20260515T175614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_composability_llama_writeup_20260515T175614_result.json",
+    "occurrence": 1,
+    "bytes": 2370,
+    "sha256": "aa592ebecd42d47875aacd92e41430d4ea3872cba5caf52d6b9d9af0bcbccef4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 重编译成功。现在汇总评估结果。\n\n---\n\n## 论文状态评估报告\n\n### 整体状态：**论文基本完整，数据齐全**\n\n论文已编译为 17 页 PDF（305KB），所有 section 齐备。\n\n### 第二步：Llama 跨模型数据 — **已全部写入论文**\n\n**Llama LoRA SciERC constrained eval (pid 290317) 已完成：**\n| 指标 | 值 |\n|------|-----|\n| DR | 0.09% (1/1081 triples, Evaluate-for) |\n| RV | 0% |\n| ET | 0% |\n| CF | 0.46% (8/1757 entities) |\n| R-F1 | 45.47% |\n| E-F1 | 67.76% |\n| Parse failures | 0 |\n\n**数据在论文中的位置：**\n- **Table 3 (cross-model)**: Qwen + Llama × SciERC + DocRED 零-shot 4 格全填 ✅\n- **Table 5 (composability)**: 2 model × 2 train × 2 decode = 8 行全填 ✅，Llama LoRA S1 行数据与服务器 report 完全一致\n- **§5.4 Cross-Model Validation 正文**: tightness × RV interaction, CF trade-off, F1 分析 ✅\n- **§5.5 Composability 正文**: 引用了 Llama LoRA constrained 数据（DR 1.11%→0.09%, R-F1 +0.02pp, CF 0.46%）✅\n\n### 第四步：W1 CF Fallback Analysis — **已写入 Appendix B**\n\n`appendix_discussion.tex` 包含完整的：\n- CF-DR re-routing 实验数据（CF 9.90%→0.04%, DR 0.93%→14.78%）\n- Violation budget 净增 +3.99pp 分析\n- 63.3% CF 来自 schema 歧义的分析\n- Near-Pareto-optimal 结论\n\n从 §7 Discussion (CF Severity 段) 和 Limitations section 均有引用。\n\n### 修复的问题\n\n**LaTeX bug**: Limitations section 有两处 `\\\\ref{...}`（双反斜杠=换行+literal text），已修复为 `\\ref{...}`，PDF 重编译成功。\n\n### 还差什么\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| Qwen DocRED LoRA | failed | registry 显示 `w5_qwen_docred_lora_training` RUNNING/failed。Limitations 已声明 \"DocRED fine-tuning is not reported\" |\n| Registry 更新 | 待做 | `w5_llama_lora_scierc_constrained_eval` 仍为 ANALYZING，应更新为 DONE + 填入 metrics |\n| 全文校对 | 待做 | 数字一致性、cross-reference 完整性需要通检 |\n\n### 下一步建议\n\n1. 更新 registry 中 Llama LoRA constrained eval 状态\n2. 重新尝试 Qwen DocRED LoRA training（如果时间允许，DDL May 25）\n3. 全文数字一致性审查 + 编译检查（无 warning/undefined reference）\n4. May 19 内部稿 → submit_paper_to_review"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-composability-llama-writeup.md"
+}

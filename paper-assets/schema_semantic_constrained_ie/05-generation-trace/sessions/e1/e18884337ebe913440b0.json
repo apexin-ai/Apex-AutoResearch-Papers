@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e18884337ebe913440b0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents full rsync and redryrun",
+  "task_key": "worker_code_wikievents_full_rsync_and_redryrun_20260517T190702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_full_rsync_and_redryrun_20260517T190702_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "4e3d7ff376eb1a25a58c21e8c04df501330454ae94674635c26418ef1a0336c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**所有 4 步已完成：**\n\n| Step | 状态 |\n|------|------|\n| 1. rsync 源码 | ✓ type_mask_processor.py 已同步（MD5: `9983b405...`） |\n| 2. 验证关键符号 | ✓ Import 成功，其他文件 MD5 均匹配 |\n| 3. Kill 旧 session + 启动 v2 | ✓ `constrained_dryrun_v2` 运行中 |\n| 4. 验证 dry-run | ✓ GPU1 82% util, 18.9GB VRAM, 已输出 3 条结果 |\n\n**注意事项：**\n- 传了 `HF_HUB_OFFLINE=1` + 本地模型路径（直传 HF hub ID 会卡在网络连接上）\n- 备份在 `/tmp/type_mask_processor.py.bak`，防止文件再次被意外清零\n- `Device: cuda:0` 是进程内部看到的设备编号（因为 `CUDA_VISIBLE_DEVICES=1` 把物理 GPU1 映射为逻辑 cuda:0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-full-rsync-and-redryrun.md"
+}

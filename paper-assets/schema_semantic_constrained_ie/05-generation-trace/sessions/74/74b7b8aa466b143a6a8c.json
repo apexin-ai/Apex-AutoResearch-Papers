@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b7b8aa466b143a6a8c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp phase2 scierc sequential",
+  "task_key": "worker_exp_phase2_scierc_sequential_20260513T214939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase2_scierc_sequential_20260513T214939_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "7bc6de9ab87d3b7d2791bc309d532d2197f4d4ea8bba23a441a1dac02320fe8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载完毕，grammar_only 实验 (551 samples) 正在推理中。\n\n**状态汇总：**\n- **PID**: 123425\n- **GPU**: cuda:1（通过 `CUDA_VISIBLE_DEVICES=1`，脚本内用 `cuda:0`）\n- **当前进度**: [1/3] grammar_only 正在运行\n- **预估时间**: 每个实验约 1-1.5 小时，3 个实验共 3-5 小时\n- **日志文件**: `/root/schema_semantic_constrained_ie/outputs/phase2_batch.log`\n\n**监控命令**：\n```bash\n# 查进度\ntail -5 /root/schema_semantic_constrained_ie/outputs/phase2_batch.log\n# 查进程\nps -p 123425 -o pid,etime --no-headers\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase2-scierc-sequential.md"
+}

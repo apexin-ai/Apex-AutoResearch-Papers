@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "901fe89d5bafe12b63ba",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 ee patch offline env",
+  "task_key": "worker_ssh_p1_ee_patch_offline_env_20260518T203948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_ee_patch_offline_env_20260518T203948_result.json",
+    "occurrence": 1,
+    "bytes": 2762,
+    "sha256": "f3a2797f448a6341a6ebdc7f366fba78702fc39657e68734001dea46ea781937"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。完整脚本内容：\n\n```bash\n#!/bin/bash\nset -eo pipefail\n\n# 环境\nsource /root/miniconda3/bin/activate\nexport CUDA_VISIBLE_DEVICES=0\nexport WANDB_DISABLED=true\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\n\nPROJECT=/root/schema_semantic_constrained_ie\ncd \"$PROJECT\"\n\necho \"=== ENV CHECK ===\"\necho \"python3: $(which python3)\"\npython3 --version\necho \"torch: $(python3 -c 'import torch; print(torch.__version__)')\"\necho \"CUDA: $(python3 -c 'import torch; print(torch.cuda.is_available())')\"\nnvidia-smi\necho \"pwd: $(pwd)\"\n\necho \"=== STEP 1: TRAINING ===\"\npython3 scripts/train_lora_wikievents.py 2>&1\necho \"=== TRAINING DONE ===\"\nls -la checkpoints/qwen3_8b_lora_wikievents/ || { echo \"FATAL: no LoRA checkpoint\"; exit 1; }\nls -la checkpoints/qwen3_8b_lora_wikievents_merged/ || { echo \"FATAL: no merged checkpoint\"; exit 1; }\n\necho \"=== STEP 2: UNCONSTRAINED INFERENCE ===\"\npython3 run_constrained_extraction.py \\\n    --dataset wikievents \\\n    --mode unconstrained \\\n    --model_path checkpoints/qwen3_8b_lora_wikievents_merged \\\n    --data_path data/wikievents/test.jsonl \\\n    --output_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl \\\n    --device cuda:0 2>&1\n\necho \"=== STEP 3: CONSTRAINED INFERENCE (full_s1) ===\"\npython3 run_constrained_extraction.py \\\n    --dataset wikievents \\\n    --mode full_s1 \\\n    --model_path checkpoints/qwen3_8b_lora_wikievents_merged \\\n    --data_path data/wikievents/test.jsonl \\\n    --constraints_path data/wikievents/ontology_constraints_wikievents.json \\\n    --output_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl \\\n    --device cuda:0 2>&1\n\necho \"=== STEP 4: EVAL ===\"\npython3 eval_event_extraction.py \\\n    --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl \\\n    --output_path outputs/eval_report_unconstrained.json 2>&1\npython3 eval_event_extraction.py \\\n    --input_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl \\\n    --output_path outputs/eval_report_full_s1.json 2>&1\n\necho \"=== STEP 5: VIOLATION CHECK ===\"\npython3 violation_checker_wikievents.py \\\n    --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl \\\n    --constraints_path data/wikievents/ontology_constraints_wikievents.json \\\n    --output_path outputs/violation_report_ft_unconstrained.json 2>&1\npython3 violation_checker_wikievents.py \\\n    --input_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl \\\n    --constraints_path data/wikievents/ontology_constraints_wikievents.json \\\n    --output_path outputs/violation_report_ft_full_s1.json 2>&1\n\necho \"=== ALL STEPS COMPLETE ===\"\n```\n\n两行环境变量已正确插入在 `export WANDB_DISABLED=true` 之后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-ee-patch-offline-env.md"
+}

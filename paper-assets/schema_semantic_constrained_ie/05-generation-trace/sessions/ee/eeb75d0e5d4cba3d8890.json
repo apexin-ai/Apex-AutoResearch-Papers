@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeb75d0e5d4cba3d8890",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r15 taskD bib orphan scan",
+  "task_key": "worker_analysis_r15_taskD_bib_orphan_scan_20260521T015029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15_taskD_bib_orphan_scan_20260521T015029_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "825e409373dafcc68cd4796add6a66491d26be54761614725bf555d1f3613f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描完成。结果：\n\n- **60 个 bib key，60 个被引用，0 个 orphan**\n- chen2024agentre 和 fan2024fsn 都在 `section5_scierc_draft.tex:112` 中通过 `\\citealt{}` 被引用，**不是 orphan**\n- 扫描覆盖 31 个活跃 .tex 文件（从 main.tex 递归 `\\input` 收集）和 2 个 .bib 文件\n- 结果已保存到 `task_d_bib_orphans.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r15-taskd-bib-orphan-scan.md"
+}

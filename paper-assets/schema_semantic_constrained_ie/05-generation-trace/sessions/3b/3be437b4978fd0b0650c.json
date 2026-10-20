@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3be437b4978fd0b0650c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w5 lora scierc training",
+  "task_key": "worker_diagnose_w5_lora_scierc_training_20260515T150019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w5_lora_scierc_training_20260515T150019_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "4c6766f190cee02fc0e443343cafeca0c4ae0fc35622e9adfbe7b0a595b84649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**错误类型**: 配置错误（wandb 未登录）  \n**根本原因**: `train_lora_scierc.py` 默认 `report_to=\"wandb\"`，但服务器无 `WANDB_API_KEY`、无 `~/.netrc`、无 `~/.config/wandb`；wandb 在 noninteractive 下无法 prompt，抛 `UsageError` 终止训练。  \n**失败位置**: `trainer.train()` 的 `on_train_begin` 回调，模型/数据/LoRA/Trainer 全部构造成功，未消耗显存。\n\n**排除**: 非 OOM、非依赖缺失、非路径错误、非代码 bug。\n\n**修复（无需改代码）**：\n- 重跑命令前加 `WANDB_MODE=disabled` 直接禁用 wandb（最快）；或\n- `export WANDB_API_KEY=[REDACTED] 后重跑保留 W&B 追踪。\n\n诊断报告写入 `artifacts/w5_lora_scierc_training/diagnosis.md`（`save_project_file` 白名单不含 artifacts，已直接在本地路径写入）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w5-lora-scierc-training.md"
+}

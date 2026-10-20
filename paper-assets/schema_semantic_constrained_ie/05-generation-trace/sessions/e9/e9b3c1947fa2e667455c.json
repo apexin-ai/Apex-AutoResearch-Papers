@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9b3c1947fa2e667455c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen docred beam 50",
+  "task_key": "worker_code_qwen_docred_beam_50_20260517T034917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_docred_beam_50_20260517T034917_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "564645a7ba15484bec313d60bc0cfb8a9efbfaf8e004ebeb72c1492bd594f603"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 tmux session `qwen_beam` 中启动，beam search (4 beams) 对 50 docs 跑 DocRED full_s1 模式。模型已成功加载，推理正在进行中。约 4.5 分钟后我会检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-docred-beam-50.md"
+}

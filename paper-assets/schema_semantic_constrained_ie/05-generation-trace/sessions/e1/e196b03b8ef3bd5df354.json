@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e196b03b8ef3bd5df354",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exec docred lora s1 westd21461",
+  "task_key": "worker_exec_docred-lora-s1-westd21461_20260522T052720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_docred-lora-s1-westd21461_20260522T052720_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "557eaea8b5e1f92d5244095c9b8ca66b9d9e56c5b66e8baa0cd5ec023948a3d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已成功启动。总结：\n\n**Checkpoint 传输**: westd-21461 通过 SSH 直接从 westd-16980 拉取，2秒完成（内网直连）。传输了 adapter_model.safetensors (251MB)、adapter_config.json、tokenizer 文件。\n\n**启动过程遇到的问题及修复**:\n1. `--lora_path` 参数不存在 → 改用 monkey-patch `AutoModelForCausalLM.from_pretrained` 注入 LoRA 加载\n2. `compiler` 模块找不到 → 添加 sys.path 和 os.chdir\n3. `AwqGEMMQuantLinear` 导入失败 → 给 gptqmodel 添加别名\n4. AWQ 模型不支持 `merge_and_unload()` → 改为不合并，直接用 PeftModel 推理\n\n**运行状态**:\n- PID: 11466\n- GPU: cuda:0, 86-90% 利用率, 39.6GB/97.9GB 显存\n- 输出: `/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_200_s1_constrained.jsonl`（已写入 1 条，第 2 条生成中）\n- 日志: `/tmp/constrained_inference.log`\n\n**注意**: PEFT 报 `Unsupported layer type AwqMarlinLinear` warning — LoRA adapter 可能未实际应用到 AWQ 量化层。如果最终结果与 base model 无显著差异，需要确认 LoRA 是否生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-docred-lora-s1-westd21461.md"
+}

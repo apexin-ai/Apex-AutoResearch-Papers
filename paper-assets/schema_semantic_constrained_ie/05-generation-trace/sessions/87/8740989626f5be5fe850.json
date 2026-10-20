@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8740989626f5be5fe850",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents collect baseline results",
+  "task_key": "worker_code_wikievents_collect_baseline_results_20260517T190117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_collect_baseline_results_20260517T190117_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "24b2b760326877c5c658de3e15953062f2bc8ee3ec2b0e288f9859c42222d1e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three baselines are still in progress. Here's the status:\n\n---\n\n**Model: Qwen (unconstrained)**\n- Server: westd-16980\n- Docs: 172/246 (70%)\n- Last write: 19s ago (actively running)\n- Session: `wikievents_unconstrained` / `qwen_wikievents` (started ~01:42)\n- Rate: ~2.1 docs/min\n- ETA: ~35 min\n\n**Model: Llama (unconstrained)**\n- Server: westd-16980\n- Docs: 171/246 (70%)\n- Last write: 37s ago (actively running)\n- Session: `llama_wikievents_full` (started ~01:47)\n- Rate: ~2.3 docs/min\n- ETA: ~33 min\n\n**Model: Mistral (unconstrained)**\n- Server: westd-21461\n- Docs: 93/246 (38%)\n- Last write: ~19 min ago (may be on a long document)\n- Session: `mistral_wikievents` (started ~00:50)\n- Rate: ~0.7 docs/min\n- ETA: ~3.5 hours\n\n**Constrained dry-run (Qwen, westd-21461):**\n- Docs: 10/20\n- Log shows model still loading weights (Fetching 5 files, Loading weights 100%)\n\n---\n\nGPU utilization:\n- westd-16980: GPU0 19.9GB/89%, GPU1 21.7GB/87% (both active)\n- westd-21461: GPU0 0MB/0%, GPU1 18.9GB/82% (only GPU1 active)\n\nQwen and Llama should finish in ~30-35 min. Mistral is significantly slower. I can re-check and run evaluations once the first two complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-collect-baseline-results.md"
+}

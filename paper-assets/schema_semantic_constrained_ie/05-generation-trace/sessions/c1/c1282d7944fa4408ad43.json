@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1282d7944fa4408ad43",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops gpu cascade fix v2",
+  "task_key": "worker_ops_gpu_cascade_fix_v2_20260515T182206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_cascade_fix_v2_20260515T182206_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "dfc9aa4f59cc6295f4d2686a7824674942883599bb8e4756539ab6baa7a9a669"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡满载运行，任务完成。\n\n---\n\n## 执行结果汇总\n\n### 1. 清理前后 nvidia-smi 对比\n\n| 时间 | GPU 0 | GPU 1 |\n|------|-------|-------|\n| 清理前 | 0 MiB (空闲) | 31820 MiB (PID 295339 Qwen 错误占用) |\n| 清理后 | 0 MiB | 0 MiB |\n| 重新提交后 | 37807 MiB / 99% (Llama) | 44597 MiB / 99% (Qwen) |\n\n### 2. 训练脚本 CUDA_VISIBLE_DEVICES 检查\n\n两个脚本中 `CUDA_VISIBLE_DEVICES=0` 仅出现在 docstring 的 usage 示例中（注释），**无实际代码硬编码**，无需修改。`os.environ` 只设置 WANDB 变量，无 `cuda:X` 硬编码。\n\n根因确认：之前提交命令中手动写了 `CUDA_VISIBLE_DEVICES=0`，覆盖了 wrapper 注入的值。\n\n### 3. 提交命令和 PID\n\n| 任务 | GPU | PID | CUDA_VISIBLE_DEVICES |\n|------|-----|-----|---------------------|\n| Qwen DocRED LoRA (`w5_qwen_docred_lora_training`) | cuda:1 | 298245 (实际 GPU 进程 298250) | 1 |\n| Llama DocRED LoRA (`w5_llama_docred_lora_training`) | cuda:0 | 298323 (实际 GPU 进程 298328) | 0 |\n\n命令均为：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred{_llama}.py\"`，不含 CUDA_VISIBLE_DEVICES，由 submit_training_job wrapper 自动注入。\n\n### 4. 最终双卡状态\n\n- **GPU 0**: Llama, 37807 MiB / 97887 MiB, 99% util, 462W\n- **GPU 1**: Qwen, 44597 MiB / 97887 MiB, 99% util, 449W\n- 两个训练都已进入 training loop (0/573 steps)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cascade-fix-v2.md"
+}

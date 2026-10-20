@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ce52cdcaf595a61cb6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 cf majority voting",
+  "task_key": "worker_ssh_d062_cf_majority_voting_20260519T031718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_cf_majority_voting_20260519T031718_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "8b4b409239173fd40d2fdd92f8e55021c61dc03596d8d701ac2995b73525ba72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d062 完成。**结论: negative。**\n\n| | CF 变化 | DR 变化 |\n|---|---|---|\n| **ZS 条件** | 减少 18-96% | 增加 43-3300% |\n| **FT 条件** | 减少 43-95% | 增加 145-3300% |\n\nMajority voting 在所有 8 个条件上都降低了 CF，但同时大幅增加了 DR。原因：统一 entity type 时不考虑 domain/range 约束，\"赢\"的 type 在特定 relation 中违反了允许的 (head_type, tail_type) 组合。DocRED 尤为严重（Llama ZS 的 DR 从 2.55% 飙升到 16.65%）。FT 模型本身 CF 就很低（8-48），majority voting 意义不大。\n\n产出已全部就绪：脚本、8 组修正后 JSONL、8 组 correction report、8 组 violation report、summary artifact，registry 已标记 DONE(negative)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-cf-majority-voting.md"
+}

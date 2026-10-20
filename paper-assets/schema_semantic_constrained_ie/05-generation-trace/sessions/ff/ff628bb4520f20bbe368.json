@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "ff628bb4520f20bbe368",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose llama scierc full s1",
+  "task_key": "worker_diagnose_llama_scierc_full_s1_20260514T141318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama_scierc_full_s1_20260514T141318_result.json",
+    "occurrence": 1,
+    "bytes": 1807,
+    "sha256": "6bf74058fe475528db4d1bf99d2ab02c315ad085860e26722a3e696920ce9c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\n  \"root_cause\": \"外部 SIGTERM 杀死旧进程 PID 190648，最可能来源：agent-ml-research 基础设施的任务管理/孤儿进程清理。dmesg 无 OOM，journalctl 无 kill 记录，无 crontab，无清理脚本——与已知的'孤儿进程清理误杀'踩坑历史一致\",\n  \"error_type\": \"infrastructure\",\n  \"fix_steps\": [\n    \"无需修复——实验已自动重启 (PID 190246)，当前正常运行中\",\n    \"当前进度 335/551 (61%)，速率 ~5s/sample，预计还需 ~18 分钟完成\"\n  ],\n  \"can_auto_fix\": true,\n  \"output_lines_completed\": \"335 (且在持续增长)\",\n  \"total_expected\": 551\n}\n```\n\n**额外发现**：日志中 92% 的行是 `Grammar-first fallback triggered: semantic mask would eliminate all grammar-valid tokens`，平均每个样本 ~11 次。这意味着 semantic 约束在绝大多数 token 上与 grammar 约束冲突，full_s1 模式实际上频繁退化为 grammar_only。这不影响运行完成，但会影响 semantic 约束的实际覆盖率——后续分析结果时需关注 full_s1 vs grammar_only 的效果差异是否显著。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "外部 SIGTERM 杀死旧进程 PID 190648，最可能来源：agent-ml-research 基础设施的任务管理/孤儿进程清理。dmesg 无 OOM，journalctl 无 kill 记录，无 crontab，无清理脚本——与已知的'孤儿进程清理误杀'踩坑历史一致",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复——实验已自动重启 (PID 190246)，当前正常运行中",
+                "当前进度 335/551 (61%)，速率 ~5s/sample，预计还需 ~18 分钟完成"
+              ],
+              "can_auto_fix": true,
+              "output_lines_completed": "335 (且在持续增长)",
+              "total_expected": 551
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama-scierc-full-s1.md"
+}

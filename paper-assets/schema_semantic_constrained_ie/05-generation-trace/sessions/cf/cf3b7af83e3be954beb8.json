@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf3b7af83e3be954beb8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit main tables verification",
+  "task_key": "worker_audit_main-tables-verification_20260523T102235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_main-tables-verification_20260523T102235_result.json",
+    "occurrence": 1,
+    "bytes": 7945,
+    "sha256": "051a9d6f3567712072de5ebe9e1298d72e5ea46134a6a6273ccb42e41c420d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Here is the complete audit report.\n\n---\n\n## Table 1 审计报告 (`tab:scierc-ablation`)\n**SciERC 551 docs, Qwen3-8B, zero-shot**\n\nRegistry metrics use decimal (e.g., 0.1537 = 15.37%); vLLM experiment uses percent directly.\n\n### Row: Unconstrained — `phase2_scierc_unconstrained`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 15.37 | 0.1537 → 15.37% | ✅ |\n| ΔDR | --- | --- | ✅ |\n| RV | 1.39 | 0.0139 → 1.39% | ✅ |\n| ET | 0.40 | 0.004 → 0.40% | ✅ |\n| CF | 0.08 | 0.0008 → 0.08% | ✅ |\n| Tot. | 15.45 | 15.37+0.08=15.45 | ✅ |\n| Rel. F1 | 8.23 | 0.0823 → 8.23% | ✅ |\n| Ent. F1 | 31.01 | 0.3101 → 31.01% | ✅ |\n\n### Row: Grammar — `phase2_scierc_grammar_only`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 14.84 | 0.1484 → 14.84% | ✅ |\n| ΔDR | ↓3% | (15.37-14.84)/15.37=3.4%≈3% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 0.08 | 0.0008 → 0.08% | ✅ |\n| Tot. | 14.92 | 14.84+0.08=14.92 | ✅ |\n| Rel. F1 | 8.23 | 0.0823 → 8.23% | ✅ |\n| Ent. F1 | 30.98 | 0.3098 → 30.98% | ✅ |\n\n### Row: GCD-equiv.† — `vllm_guided_json_scierc_zs`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 15.26 | 15.26% | ✅ |\n| ΔDR | ↓1% | (15.37-15.26)/15.37=0.7%≈1% | ✅ |\n| RV | 0 | 0% | ✅ |\n| ET | 0 | 0% | ✅ |\n| CF | 0.04 | 0.04% | ✅ |\n| Tot. | 15.30 | 15.26+0.04=15.30 | ✅ |\n| Rel. F1 | 8.75 | 8.75% | ✅ |\n| Ent. F1 | 30.91 | 30.91% | ✅ |\n\n### Row: Semantic — `phase2_scierc_semantic_only`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 11.65 | 0.1165 → 11.65% | ✅ |\n| ΔDR | ↓24% | (15.37-11.65)/15.37=24.2%≈24% | ✅ |\n| RV | 1.51 | 0.0151 → 1.51% | ✅ |\n| ET | 0.40 | 0.004 → 0.40% | ✅ |\n| CF | 2.71 | 0.0271 → 2.71% | ✅ |\n| Tot. | 14.36 | 11.65+2.71=14.36 | ✅ |\n| Rel. F1 | 8.15 | 0.0815 → 8.15% | ✅ |\n| Ent. F1 | 31.01 | 0.3101 → 31.01% | ✅ |\n\n### Row: S1 — `phase2_scierc_full_s1`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 0.93 | 0.0093 → 0.93% | ✅ |\n| ΔDR | ↓94% | (15.37-0.93)/15.37=93.9%≈94% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 9.90 | 0.099 → 9.90% | ✅ |\n| Tot. | 10.83 | 0.93+9.90=10.83 | ✅ |\n| Rel. F1 | 8.36 | 0.0836 → 8.36% | ✅ |\n| Ent. F1 | 30.98 | 0.3098 → 30.98% | ✅ |\n\n### Row: S2 — `phase2_scierc_full_s2`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| DR | 0.97 | 0.0097 → 0.97% | ✅ |\n| ΔDR | ↓94% | (15.37-0.97)/15.37=93.7%≈94% | ✅ |\n| RV | 0 | 0 | ✅ |\n| ET | 0 | 0 | ✅ |\n| CF | 8.03 | 0.0803 → 8.03% | ✅ |\n| Tot. | 9.00 | 0.97+8.03=9.00 | ✅ |\n| Rel. F1 | 8.03 | 0.0803 → 8.03% | ✅ |\n| Ent. F1 | 31.90 | 0.319 → 31.90% | ✅ |\n\n**Table 1 结论: 48/48 cells 全部通过 ✅**\n\n---\n\n## Table 2 审计报告 (`tab:composability`)\n**Fine-tuning composability: LoRA × unconstrained vs. S1**\n\n### Qwen3-8B × SciERC — `w5_lora_scierc_*_eval`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| Unconstr. DR | 1.95 | 0.0195 → 1.95% | ✅ |\n| Unconstr. CF | 0 | 0 | ✅ |\n| Unconstr. R-F1 | 43.86 | 0.4386 → 43.86% | ✅ |\n| Unconstr. E-F1 | 67.05 | 0.6705 → 67.05% | ✅ |\n| S1 DR | **0** | 0 | ✅ |\n| S1 CF | 1.18 | 0.0118 → 1.18% | ✅ |\n| S1 R-F1 | 43.77 | 0.4377 → 43.77% | ✅ |\n| S1 E-F1 | 67.05 | 0.6705 → 67.05% | ✅ |\n| S1 ΔDR | ↓100% | (1.95→0)/1.95=100% | ✅ |\n\n**Qwen SciERC: 9/9 ✅**\n\n### Llama 3.1-8B × SciERC — `w5_llama_lora_scierc_*_eval`\n\n| Cell | Paper | Registry | Verified |\n|------|-------|----------|----------|\n| Unconstr. DR | 1.11 | 0.0111 → 1.11% | ✅ |\n| Unconstr. CF | 0 | 0 | ✅ |\n| Unconstr. R-F1 | 45.45 | 0.4545 → 45.45% | ✅ |\n| Unconstr. E-F1 | 67.76 | 0.6776 → 67.76% | ✅ |\n| S1 DR | 0.09 | 0.0009 → 0.09% | ✅ |\n| S1 CF | 0.46 | 0.0046 → 0.46% | ✅ |\n| S1 R-F1 | 45.47 | 0.4547 → 45.47% | ✅ |\n| S1 E-F1 | 67.76 | 0.6776 → 67.76% | ✅ |\n| S1 ΔDR | ↓92% | (1.11-0.09)/1.11=91.9%≈92% | ✅ |\n\n**Llama SciERC: 9/9 ✅**\n\n### Qwen3-8B × DocRED — `w5_qwen_docred_lora_*_eval`\n\n| Cell | Paper | Registry (corrected) | Verified |\n|------|-------|---------------------|----------|\n| Unconstr. DR | 0.56 | DR_pct=**0.76** | ❌ (diff=0.20) |\n| Unconstr. CF | 0.08 | CF_pct=**0.12** | ❌ (diff=0.04) |\n| Unconstr. R-F1 | 40.89 | R_F1=**40.86** | ❌ (diff=0.03) |\n| Unconstr. E-F1 | 82.35 | E_F1=**82.15** | ❌ (diff=0.20) |\n| S1 DR | 0.00 | DR_pct=**0.01** | ❌ (diff=0.01) |\n| S1 CF | 0.22 | CF_pct=**0.41** | ❌ (diff=0.19) |\n| S1 R-F1 | 40.79 | R_F1=**40.56** | ❌ (diff=0.23) |\n| S1 E-F1 | 81.87 | E_F1=**81.43** | ❌ (diff=0.44) |\n| S1 ΔDR | ↓100% | (0.76→0.01)=**↓98.7%** | ❌ |\n\n**Qwen DocRED: 0/9 — 全部不一致 ❌**\n\n### Llama 3.1-8B × DocRED — `w5_llama_docred_lora_*_eval`\n\n| Cell | Paper | Registry (corrected) | Verified |\n|------|-------|---------------------|----------|\n| Unconstr. DR | 0.49 | DR_pct=**0.49** | ✅ |\n| Unconstr. CF | 0.08 | **无 CF 字段** | ⚠️ 无法核实 |\n| Unconstr. R-F1 | 44.55 | R_F1=**43.72** | ❌ (diff=0.83) |\n| Unconstr. E-F1 | 84.77 | E_F1=**83.93** | ❌ (diff=0.84) |\n| S1 DR | 0.00 | dr_violation_rate=**0.21** | ❌ (diff=0.21) |\n| S1 CF | 0.26 | CF_pct=**0.21** | ❌ (diff=0.05) |\n| S1 R-F1 | 44.70 | relation_f1_all_set=**43.78** | ❌ (diff=0.92) |\n| S1 E-F1 | 84.71 | entity_f1=**83.94** | ❌ (diff=0.77) |\n| S1 ΔDR | ↓100% | (0.49→0.21)=**↓57%** | ❌ |\n\n**Llama DocRED: 1/9 通过, 1 无法核实, 7 不一致 ❌**\n\n---\n\n## 根因分析\n\nRegistry 有多条修正记录表明 `violation_checker.py` 和 `unified_f1_eval.py` 存在 **parse-failure bug**，已于 2026-05-20/22 用 `eval_d064.py` 修正：\n\n- `w8_qwen_docred_ft_semantic_only`: \"Old registry value 40.89 was from unified_f1_eval.py (had same parse-failure bug)\"\n- `w5_llama_docred_lora_constrained_eval`: \"P/R corrected 2026-05-20 per Director\"\n- `r16_trie_*_ft_scierc`: \"CORRECTED: violation_checker.py parse-failure bug fixed. Old R-F1 was inflated (gold dropped for parse failures)\"\n\n**论文 Table 2 的 DocRED 四行使用了修正前的旧值**。SciERC 行不受影响（parse fail rate = 0%）。\n\n## 不一致汇总\n\n| 位置 | 论文值 | 正确值 (registry) | 严重程度 |\n|------|--------|-------------------|----------|\n| Qwen DocRED Unc. DR | 0.56 | **0.76** | 高 |\n| Qwen DocRED Unc. CF | 0.08 | **0.12** | 中 |\n| Qwen DocRED Unc. R-F1 | 40.89 | **40.86** | 低 |\n| Qwen DocRED Unc. E-F1 | 82.35 | **82.15** | 中 |\n| Qwen DocRED S1 DR | 0.00 | **0.01** | 低 |\n| Qwen DocRED S1 CF | 0.22 | **0.41** | 高 |\n| Qwen DocRED S1 R-F1 | 40.79 | **40.56** | 中 |\n| Qwen DocRED S1 E-F1 | 81.87 | **81.43** | 中 |\n| Qwen DocRED S1 ΔDR | ↓100% | **↓98.7%** | 中 |\n| Llama DocRED Unc. R-F1 | 44.55 | **43.72** | 高 |\n| Llama DocRED Unc. E-F1 | 84.77 | **83.93** | 高 |\n| Llama DocRED S1 DR | 0.00 | **0.21** | 高 |\n| Llama DocRED S1 CF | 0.26 | **0.21** | 低 |\n| Llama DocRED S1 R-F1 | 44.70 | **43.78** | 高 |\n| Llama DocRED S1 E-F1 | 84.71 | **83.94** | 高 |\n| Llama DocRED S1 ΔDR | ↓100% | **↓57%** | 极高 |\n| Llama DocRED Unc. CF | 0.08 | **缺失** | ⚠️ |\n\n最严重问题：Llama DocRED S1 ΔDR 从 ↓100% 降为 ↓57%，且 DR 从 0.00 变为 0.21%。这会影响论文 \"fine-tuning practically eliminates DR\" 的核心结论强度。\n\nTable 2 的 DocRED 四行全部需要用 `eval_d064.py` 的修正值重写。同时需检查正文中引用这些数字的段落（至少 `\\paragraph{Composability with fine-tuning.}` 中的 \"DR≤0.09%\" 等表述）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-main-tables-verification.md"
+}

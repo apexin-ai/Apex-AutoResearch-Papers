@@ -1,0 +1,3553 @@
+{
+  "schema_version": "1.0",
+  "session_id": "61ac7f1f370f9207435a",
+  "rounds": [
+    {
+      "number": 708,
+      "messages": [
+        {
+          "source_line": 4501,
+          "timestamp": "2026-05-21T11:33:58.048987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have comprehensive data. Let me compile a complete, organized report with all figures and tables. Based on my search, I can see there are only 4 figures defined (1 in main, 3 in appendices). The user asked for Figure 4 and Table 14, but based on the numbering in the main document, there are no numbered figures beyond Figure 1 in the main paper. Let me verify what's actually in the compiled document by looking at the main file structure more carefully:\n\nBased on my thorough search of the paper directory, here is my complete findings:\n\n## Summary: Figures and Tables in the Paper\n\nThe paper has a **very limited number of figures in the main text**. There are **only 4 figures total** defined across all .tex files:\n\n### ALL FIGURES (4 total)\n\n1. **Figure 1 (Framework)** - Line 145 in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/fig1_framework.tex`\n   - Label: `\\label{fig:framework}`\n\n2. **Figure 2 (Dual-factor scatter)** - Line 137 in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex`\n   - Label: `\\label{fig:dual-factor-scatter}`\n\n3. **Figure 3 (Per-relation DR)** - Line 435 in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex`\n   - Label: `\\label{fig:per_relation_dr}`\n\n4. **Figure 4 (Beam Pareto)** - Line 102 in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex`\n   - Label: `\\label{fig:beam-pareto}`\n\n**FINDING: Figure 4 is located in `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex` at line 102**\n\n### ALL TABLES (39 total across all files)\n\nSince there are 39 tables total, here are the key ones near Table 14:\n\nTables 1-10:\n1. tab:sampling-\n…[truncated 3411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Agent",
+            "elapsed_ms": 30569
+          },
+          "id": "event-004501"
+        },
+        {
+          "source_line": 4502,
+          "timestamp": "2026-05-21T11:33:58.099760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"secret_approval\\\",\\\"preview\\\":\\\"[SECRET APPROVED] 密钥 `gemini_api_key` 已批准。请调用 `poll_secret_request('secret_req_gemini_api_key_1779362795', 'schema_seman\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":432}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 30091
+          },
+          "id": "event-004502"
+        },
+        {
+          "source_line": 4503,
+          "timestamp": "2026-05-21T11:34:05.460995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex"
+            }
+          },
+          "id": "event-004503"
+        },
+        {
+          "source_line": 4504,
+          "timestamp": "2026-05-21T11:34:06.214517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Beam Search Compatibility}\n2\t\\label{app:beam-search}\n3\t\n4\tOntoCoDec's constraint enforcement is designed to be decoding-strategy agnostic.\n5\tThe main experiments (\\S\\ref{sec:experiments}) use greedy decoding; Appendix~\\ref{app:sampling} validates nucleus sampling.\n6\tHere we verify compatibility with beam search, completing coverage of the three standard decoding strategies.\n7\t\n8\t\\paragraph{Implementation challenges.}\n9\tTwo stateful components require adaptation for beam search.\n10\t(1)~The grammar layer (XGrammar) maintains an internal \\texttt{GrammarMatcher} state that tracks the generated token sequence; beam reordering invalidates this state because beams are permuted across steps.\n11\tOur solution instantiates a fresh \\texttt{GrammarMatcher} per beam per step and replays the beam's current token sequence through XGrammar's stateless accept API (64 lines of code).\n12\t(2)~The semantic layer's \\texttt{TypeConstraintProcessor} accumulates entity and relation registries that assume a single generation path.\n13\tOur solution isolates state per beam by calling \\texttt{detect()} on the full partial output at each step, reconstructing all entity/relation state from scratch for each beam independently (61 lines of code).\n14\tBoth adaptations add ${\\sim}125$ lines total without modifying the existing greedy/sampling logic.\n15\t\n16\t\\paragraph{Results.}\n17\tTable~\\ref{tab:beam-search} compares beam search ($k{=}4$, \\texttt{early\\_stopping=True}) against greedy decoding under full S1 constraints across six model-dataset combinations.\n18\t\n19\t\\begin{table}[h]\n20\t\\centering\n21\t\\small\n22\t\\caption{Beam search ($k{=}4$) vs.\\ greedy decoding under full S1 constraints (zero-shot).\n23\tSciERC: 551 documents; DocRED: matched 50-document subsets (same documents for greedy and beam); full 998-doc DocRED beam results confirm DR${=}$0\\% for both calibrated models (see text).\n24\tET = entity type, RV = relation vocabulary, DR = domain/range, CF = cross-field consistency violation rates (\n…[truncated 12259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 753
+          },
+          "id": "event-004504"
+        },
+        {
+          "source_line": 4505,
+          "timestamp": "2026-05-21T11:34:06.214939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex"
+            }
+          },
+          "id": "event-004505"
+        },
+        {
+          "source_line": 4506,
+          "timestamp": "2026-05-21T11:34:06.265485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Post-hoc Type Consistency Resolution (TCR)\n2\t% exp_ids: d065_tcr_pilot (all 10 configs)\n3\t\n4\t\\section{Post-hoc Type Consistency Resolution}\n5\t\\label{app:tcr}\n6\t\n7\tS1 enforces domain/range constraints per-triple but does not enforce global entity type consensus, leaving residual CF violations where the same entity receives different types across triples.\n8\tWe evaluate a post-hoc resolution step (TCR): for each entity with conflicting type assignments, TCR selects the type that maximizes satisfaction count across all relations referencing that entity, subject to domain/range constraints.\n9\tUnlike naive majority voting (which ignores relational constraints and increases DR), TCR is constraint-aware: candidate types are scored by how many of the entity's relational contexts they satisfy.\n10\tTCR runs after S1 decoding completes and has access to the full document context.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: TCR results on SciERC\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.2pt}\n19\t\\begin{tabular}{@{}ll rr rr r r@{}}\n20\t\\toprule\n21\t& & \\multicolumn{2}{c}{\\textbf{CF (\\%)}} & \\multicolumn{2}{c}{\\textbf{DR (\\%)}} & \\textbf{$\\Delta$E-F1} & \\textbf{Fund.} \\\\\n22\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-7} \\cmidrule(l){8-8}\n23\t\\textbf{Config} & \\textbf{Model} & Pre & Post & Pre & Post & (pp) & (\\%) \\\\\n24\t\\midrule\n25\t\\multirow{3}{*}{Zero-shot}\n26\t  & Qwen    & 9.75 & \\textbf{0} & 0.93  & 1.21  & $-$1.29 & 2.04 \\\\\n27\t  & Llama   & 6.40 & \\textbf{0} & 0.08  & 0.30  & $-$1.78 & 1.85 \\\\\n28\t  & Mistral & 0.67 & \\textbf{0} & 13.36 & 12.87 & $+$0.05 & 0 \\\\\n29\t\\midrule\n30\t\\multirow{2}{*}{LoRA}\n31\t  & Qwen    & 1.19 & \\textbf{0} & 0     & 0     & $-$0.75 & 0 \\\\\n32\t  & Llama   & 0.46 & \\textbf{0} & 0.09  & 0.09  & $-$0.18 & 0 \\\\\n33\t\\bottomrule\n34\t\\end{tabular}\n35\t\\caption{TCR on SciERC ($\\bar{\\kappa}{=}0.333$, 551 docs).\n36\tPre/Post: before/after TCR.\n37\t$\\Delt\n…[truncated 3381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004506"
+        },
+        {
+          "source_line": 4507,
+          "timestamp": "2026-05-21T11:34:06.366330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "preview": "False"
+            }
+          },
+          "id": "event-004507"
+        },
+        {
+          "source_line": 4508,
+          "timestamp": "2026-05-21T11:34:06.871779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": false, \\\"pdf_path\\\": null, \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\", \\\"error\\\": \\\"main tex not found: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper/main.tex\\\", \\\"pages\\\": null, \\\"warnings\\\": []}, \\\"pages\\\": null, \\\"page_status\\\": \\\"ok\\\", \\\"max_pages\\\": null, \\\"min_pages\\\": null, \\\"critical_warnings\\\": [], \\\"minor_warnings\\\": [], \\\"issues\\\": [\\\"compile failed: main tex not found: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper/main.tex\\\"], \\\"summary\\\": \\\"FAIL: compile failed: main tex not found: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper/main.tex\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 505
+          },
+          "id": "event-004508"
+        },
+        {
+          "source_line": 4509,
+          "timestamp": "2026-05-21T11:34:13.850623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "preview": "False"
+            }
+          },
+          "id": "event-004509"
+        },
+        {
+          "source_line": 4510,
+          "timestamp": "2026-05-21T11:34:14.052406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\nUnderfull \\\\\\\\hbox (badness 1838) in paragraph at lines 120--121\\\\n\\\\\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\\\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\\\\\T1\\\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (98.73831pt too wide) in paragraph at lines 127--139\\\\n [][] \\\\n []\\\\n\\\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\\\nOverfull \\\\\\\\hbox (7.93059pt too wide) in paragraph at lines 19--39\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (10.92789pt too wide) in paragraph at lines 50--69\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[31]) (./appendix_kappa_case_study.tex\\\\nUnderfull \\\\\\\\vbox (badness 1472) has occurred while \\\\\\\\output is active []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (158.91896pt too wide) in paragraph at lines 11--31\\\\n [][] \\\\n []\\\\n\\\\n) (./appendix_pumping_lemma.tex [32]) [33] [34\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 28975 strings out of 469438\\\\n 528980 string characters out of 5468411\\\\n 1003806 words of memory out of 5000000\\\\n 56099 multiletter control sequences out of 15000+600000\\\\n 754645 words of font info for 577 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,94p,1001b,899s stack positions out of 10000i,1000n,20000\n…[truncated 11956 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 201
+          },
+          "id": "event-004510"
+        },
+        {
+          "source_line": 4511,
+          "timestamp": "2026-05-21T11:34:14.053191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.pdf",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+            }
+          },
+          "id": "event-004511"
+        },
+        {
+          "source_line": 4512,
+          "timestamp": "2026-05-21T11:34:14.556638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/figures/fig2_per_relation_dr.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/figures/dual_factor_scatter.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/ontocodec_paper_r9_final.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/ontocodec_paper_r10_final.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/figures/beam_pareto.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Glob",
+            "elapsed_ms": 503
+          },
+          "id": "event-004512"
+        },
+        {
+          "source_line": 4513,
+          "timestamp": "2026-05-21T11:34:31.632922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "9-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-004513"
+        },
+        {
+          "source_line": 4514,
+          "timestamp": "2026-05-21T11:34:33.149160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 547.1}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 439.1}, {\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 555.6}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 629.1}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 611.1}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 561.2}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 370.3}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 553.1}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/mai\n…[truncated 984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1516
+          },
+          "id": "event-004514"
+        },
+        {
+          "source_line": 4515,
+          "timestamp": "2026-05-21T11:34:36.412692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-004515"
+        },
+        {
+          "source_line": 4516,
+          "timestamp": "2026-05-21T11:34:36.908097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png"
+            }
+          },
+          "id": "event-004516"
+        },
+        {
+          "source_line": 4517,
+          "timestamp": "2026-05-21T11:34:37.612598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1199
+          },
+          "id": "event-004517"
+        },
+        {
+          "source_line": 4518,
+          "timestamp": "2026-05-21T11:34:37.664504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 756
+          },
+          "id": "event-004518"
+        },
+        {
+          "source_line": 4519,
+          "timestamp": "2026-05-21T11:34:37.715872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png"
+            }
+          },
+          "id": "event-004519"
+        },
+        {
+          "source_line": 4520,
+          "timestamp": "2026-05-21T11:34:38.169883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png"
+            }
+          },
+          "id": "event-004520"
+        },
+        {
+          "source_line": 4521,
+          "timestamp": "2026-05-21T11:34:38.622900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 907
+          },
+          "id": "event-004521"
+        },
+        {
+          "source_line": 4522,
+          "timestamp": "2026-05-21T11:34:38.723824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png"
+            }
+          },
+          "id": "event-004522"
+        },
+        {
+          "source_line": 4523,
+          "timestamp": "2026-05-21T11:34:39.077758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 907
+          },
+          "id": "event-004523"
+        },
+        {
+          "source_line": 4524,
+          "timestamp": "2026-05-21T11:34:39.078264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png"
+            }
+          },
+          "id": "event-004524"
+        },
+        {
+          "source_line": 4525,
+          "timestamp": "2026-05-21T11:34:39.833885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1110
+          },
+          "id": "event-004525"
+        },
+        {
+          "source_line": 4526,
+          "timestamp": "2026-05-21T11:34:40.136594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1058
+          },
+          "id": "event-004526"
+        },
+        {
+          "source_line": 4527,
+          "timestamp": "2026-05-21T11:34:46.247768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png"
+            }
+          },
+          "id": "event-004527"
+        },
+        {
+          "source_line": 4528,
+          "timestamp": "2026-05-21T11:34:46.887498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png"
+            }
+          },
+          "id": "event-004528"
+        },
+        {
+          "source_line": 4529,
+          "timestamp": "2026-05-21T11:34:47.194204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 946
+          },
+          "id": "event-004529"
+        },
+        {
+          "source_line": 4530,
+          "timestamp": "2026-05-21T11:34:47.194738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p17.png"
+            }
+          },
+          "id": "event-004530"
+        },
+        {
+          "source_line": 4531,
+          "timestamp": "2026-05-21T11:34:48.103395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1215
+          },
+          "id": "event-004531"
+        },
+        {
+          "source_line": 4532,
+          "timestamp": "2026-05-21T11:34:48.103939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-004532"
+        },
+        {
+          "source_line": 4533,
+          "timestamp": "2026-05-21T11:34:48.660690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1465
+          },
+          "id": "event-004533"
+        },
+        {
+          "source_line": 4534,
+          "timestamp": "2026-05-21T11:34:48.661151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p19.png"
+            }
+          },
+          "id": "event-004534"
+        },
+        {
+          "source_line": 4535,
+          "timestamp": "2026-05-21T11:34:49.063885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png"
+            }
+          },
+          "id": "event-004535"
+        },
+        {
+          "source_line": 4536,
+          "timestamp": "2026-05-21T11:34:49.115445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1011
+          },
+          "id": "event-004536"
+        },
+        {
+          "source_line": 4537,
+          "timestamp": "2026-05-21T11:34:49.821571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1160
+          },
+          "id": "event-004537"
+        },
+        {
+          "source_line": 4538,
+          "timestamp": "2026-05-21T11:34:50.125155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1061
+          },
+          "id": "event-004538"
+        },
+        {
+          "source_line": 4539,
+          "timestamp": "2026-05-21T11:34:58.028263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "21-34",
+              "dpi": "150"
+            }
+          },
+          "id": "event-004539"
+        },
+        {
+          "source_line": 4540,
+          "timestamp": "2026-05-21T11:34:59.725777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.0}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 475.6}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.6}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 494.4}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 454.4}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 520.1}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 482.2}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.4}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/m\n…[truncated 1433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1697
+          },
+          "id": "event-004540"
+        },
+        {
+          "source_line": 4541,
+          "timestamp": "2026-05-21T11:35:03.094579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png"
+            }
+          },
+          "id": "event-004541"
+        },
+        {
+          "source_line": 4542,
+          "timestamp": "2026-05-21T11:35:03.638897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png"
+            }
+          },
+          "id": "event-004542"
+        },
+        {
+          "source_line": 4543,
+          "timestamp": "2026-05-21T11:35:04.493737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1399
+          },
+          "id": "event-004543"
+        },
+        {
+          "source_line": 4544,
+          "timestamp": "2026-05-21T11:35:04.495523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-004544"
+        },
+        {
+          "source_line": 4545,
+          "timestamp": "2026-05-21T11:35:04.495996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png"
+            }
+          },
+          "id": "event-004545"
+        },
+        {
+          "source_line": 4546,
+          "timestamp": "2026-05-21T11:35:05.048915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png"
+            }
+          },
+          "id": "event-004546"
+        },
+        {
+          "source_line": 4547,
+          "timestamp": "2026-05-21T11:35:05.502030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-004547"
+        },
+        {
+          "source_line": 4548,
+          "timestamp": "2026-05-21T11:35:05.502476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png"
+            }
+          },
+          "id": "event-004548"
+        },
+        {
+          "source_line": 4549,
+          "timestamp": "2026-05-21T11:35:05.954620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png"
+            }
+          },
+          "id": "event-004549"
+        },
+        {
+          "source_line": 4550,
+          "timestamp": "2026-05-21T11:35:06.056212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1007
+          },
+          "id": "event-004550"
+        },
+        {
+          "source_line": 4551,
+          "timestamp": "2026-05-21T11:35:06.612923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1110
+          },
+          "id": "event-004551"
+        },
+        {
+          "source_line": 4552,
+          "timestamp": "2026-05-21T11:35:06.915367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 960
+          },
+          "id": "event-004552"
+        },
+        {
+          "source_line": 4553,
+          "timestamp": "2026-05-21T11:36:06.342504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png"
+            }
+          },
+          "id": "event-004553"
+        },
+        {
+          "source_line": 4554,
+          "timestamp": "2026-05-21T11:36:06.897156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png"
+            }
+          },
+          "id": "event-004554"
+        },
+        {
+          "source_line": 4555,
+          "timestamp": "2026-05-21T11:36:07.402769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1060
+          },
+          "id": "event-004555"
+        },
+        {
+          "source_line": 4556,
+          "timestamp": "2026-05-21T11:36:07.403231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p29.png"
+            }
+          },
+          "id": "event-004556"
+        },
+        {
+          "source_line": 4557,
+          "timestamp": "2026-05-21T11:36:07.858623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 961
+          },
+          "id": "event-004557"
+        },
+        {
+          "source_line": 4558,
+          "timestamp": "2026-05-21T11:36:07.859126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p30.png"
+            }
+          },
+          "id": "event-004558"
+        },
+        {
+          "source_line": 4559,
+          "timestamp": "2026-05-21T11:36:08.864379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1461
+          },
+          "id": "event-004559"
+        },
+        {
+          "source_line": 4560,
+          "timestamp": "2026-05-21T11:36:08.867376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1008
+          },
+          "id": "event-004560"
+        },
+        {
+          "source_line": 4561,
+          "timestamp": "2026-05-21T11:36:08.867842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p31.png"
+            }
+          },
+          "id": "event-004561"
+        },
+        {
+          "source_line": 4562,
+          "timestamp": "2026-05-21T11:36:09.169321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p32.png"
+            }
+          },
+          "id": "event-004562"
+        },
+        {
+          "source_line": 4563,
+          "timestamp": "2026-05-21T11:36:09.623552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 755
+          },
+          "id": "event-004563"
+        },
+        {
+          "source_line": 4564,
+          "timestamp": "2026-05-21T11:36:10.026063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-004564"
+        },
+        {
+          "source_line": 4565,
+          "timestamp": "2026-05-21T11:37:06.348735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "460",
+              "limit": "70"
+            }
+          },
+          "id": "event-004565"
+        },
+        {
+          "source_line": 4566,
+          "timestamp": "2026-05-21T11:37:06.801231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "460\tA ``lucky violation'' is a constraint-removed triple that happens to match a gold label---an ontologically invalid prediction that is nonetheless correct.\n461\tAcross four fine-tuned configurations, lucky violations average 0.49\\% of gold triples (range 0.01--0.51\\%), confirming that nearly all removed DR violations are false positives.\n462\tOn Llama SciERC, all five lucky violations are recovered as legal type paths under constrained decoding (zero churn): the model finds an ontology-compliant route to the same prediction.\n463\t\n464\t\\begin{table}[h]\n465\t\\centering\n466\t\\small\n467\t\\begin{tabular}{@{}llrrrr@{}}\n468\t\\toprule\n469\t\\textbf{Model} & \\textbf{Dataset} & \\textbf{DR (\\%)} & \\textbf{Lucky} & \\textbf{$\\Delta$Recall} & \\textbf{Churn} \\\\\n470\t& & \\textbf{unc$\\to$con} & \\textbf{(\\% gold)} & \\textbf{(pp)} & \\textbf{(\\%)} \\\\\n471\t\\midrule\n472\tQwen3-8B  & SciERC & 1.95$\\to$0    & 4 (0.41\\%) & $-$0.10 & 0.22 \\\\\n473\tLlama-8B  & SciERC & 1.11$\\to$0.09 & 5 (0.51\\%) & $\\pm$0.00 & 0 \\\\\n474\tQwen3-8B  & DocRED & 1.03$\\to$0.01 & 1 (0.01\\%) & $-$0.84 & 2.05 \\\\\n475\tLlama-8B  & DocRED & 0.64$\\to$0.21 & 1 (0.01\\%) & $-$0.10 & 0.86 \\\\\n476\t\\midrule\n477\t\\multicolumn{2}{@{}l}{\\textit{Average}} & & \\textit{0.49\\%} & $-$0.26 & 0.78 \\\\\n478\t\\bottomrule\n479\t\\end{tabular}\n480\t\\caption{Lucky violation analysis across four LoRA fine-tuned configurations.\n481\tLucky: count (and \\% of gold triples) of constraint-removed violations matching gold labels.\n482\t$\\Delta$Recall: recall change from unconstrained to constrained.\n483\tChurn: fraction of gold-matching triples whose predictions change (including recovery via legal type paths).}\n484\t\\label{tab:lucky-violations}\n485\t\\end{table}\n486\t\n487\t%%% Trie-Only Baseline %%%\n488\t% exp_ids: trie_qwen_ft_scierc, trie_qwen_zs_scierc, trie_llama_ft_scierc, trie_llama_zs_scierc\n489\t\n490\t\\paragraph{Trie-Only Baseline (GCD-Equivalent).}\n491\t\\label{app:trie-baseline}\n492\tTable~\\ref{tab:trie-baseline} isolates the effect of vocabulary membership constraints without\n…[truncated 1591 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004566"
+        },
+        {
+          "source_line": 4567,
+          "timestamp": "2026-05-21T11:37:06.851900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex"
+            }
+          },
+          "id": "event-004567"
+        },
+        {
+          "source_line": 4568,
+          "timestamp": "2026-05-21T11:37:07.254934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Constraint Tightness Case Study\n2\t% Data source: case_study_kappa_dr_dddc01.md (Qwen-2.5-7B zero-shot unconstrained)\n3\t\n4\t\\section{Constraint Tightness Case Study}\n5\t\\label{app:kappa-case-study}\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\small\n10\t\\setlength{\\tabcolsep}{2.8pt}\n11\t\\begin{tabular}{@{}llccc l@{}}\n12\t\\toprule\n13\t\\textbf{Relation} & \\textbf{Dataset} & $\\kappa$ & \\textbf{DR\\%} & $n$ & \\textbf{Explanation} \\\\\n14\t\\midrule\n15\t\\multicolumn{6}{@{}l}{\\textit{Highest DR violation rate}} \\\\\n16\tbasin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \\textsc{loc}$\\to$\\textsc{loc}; head mistyped as \\textsc{org}/\\textsc{misc} \\\\\n17\tproduct produced     & DocRED & .94 & 67.2 &  61 & Requires \\textsc{org} head; model assigns \\textsc{loc}/\\textsc{per} \\\\\n18\tparticipant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \\textsc{event} type; \\textsc{per}$\\leftrightarrow$event confusion \\\\\n19\t\\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs violate same-type constraint \\\\\n20\t\\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary \\\\\n21\t\\midrule\n22\t\\multicolumn{6}{@{}l}{\\textit{High $\\kappa$ with zero violations (DR = 0\\%)}} \\\\\n23\tlyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \\textsc{per}$\\to$\\textsc{misc}; creative roles rarely mistyped \\\\\n24\tplace of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \\textsc{per}$\\to$\\textsc{loc}; no type confusion \\\\\n25\tplace of death       & DocRED & .89 &  0.0 &  60 & Strong \\textsc{per}$\\to$\\textsc{loc} prior; mirrors place of birth \\\\\n26\tsubsidiary           & DocRED & .86 &  0.0 &   5 & Clear \\textsc{org}$\\to$\\textsc{org} corporate semantics \\\\\n27\tfather               & DocRED & .81 &  0.0 &  69 & Clear \\textsc{per}$\\to$\\textsc{per} kinship semantics \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\caption{Per-relation $\\kappa$ vs.\\ DR violation rate (Qwen3-8B, zero-shot, unconstrained).\n31\tHigh $\\kappa$ is necessary but not sufficient for high D\n…[truncated 1138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-004568"
+        },
+        {
+          "source_line": 4569,
+          "timestamp": "2026-05-21T11:37:07.255322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex"
+            }
+          },
+          "id": "event-004569"
+        },
+        {
+          "source_line": 4570,
+          "timestamp": "2026-05-21T11:37:07.807868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)\n2\t% exp_ids: llama_docred_unconstrained, llama_docred_full_s1\n3\t\n4\t\\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\\label{app:llama-per-relation}\n5\t\n6\tTable~\\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.\n7\tThe Llama baseline exhibits an RV rate of 16.03\\%, substantially lower than Qwen's 29.66\\%, which indicates stronger baseline vocabulary compliance.\n8\t% exp_ids: llama_docred_unconstrained (RV=16.03%), qwen_docred_unconstrained (RV=29.66%)\n9\tFull S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\\% (418/16{,}368 triples), with only three relations exceeding 10\\%.\n10\t% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)\n11\t\n12\t\\begin{table}[h]\n13\t\\centering\n14\t\\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}\n15\t\\label{tab:llama-per-relation-dr}\n16\t\\resizebox{\\columnwidth}{!}{%\n17\t\\begin{tabular}{@{}llrrr@{}}\n18\t\\toprule\n19\tRelation & PID & Triples & DR Violations & DR Rate (\\%) \\\\\n20\t\\midrule\n21\tdissolved/demolished & P576 & 73 & 24 & 32.9 \\\\\n22\tfollowed by          & P156 & 117 & 24 & 20.5 \\\\\n23\tunemployment rate    & P1198 & 15 & 3 & 20.0 \\\\\n24\tend time             & P582 & 130 & 21 & 16.2 \\\\\n25\tinstance of          & P31  & 290 & 37 & 12.8 \\\\\n26\tproduct/material produced & P1056 & 98 & 11 & 11.2 \\\\\n27\tlocation of formation & P740 & 81 & 8 & 9.9 \\\\\n28\thead of state        & P35  & 41  & 3  & 7.3 \\\\\n29\tapplies to jurisdiction & P1001 & 637 & 45 & 7.1 \\\\\n30\tconflict             & P607 & 453 & 30 & 6.6 \\\\\n31\t\\bottomrule\n32\t\\end{tabular}}\n33\t\\end{table}\n34\t% exp_ids: llama_docred_full_s1\n35\t\n36\tCompared with Qwen, which retains a 10.21\\% residual DR under full S1 concentrated in P1198 (83\\% fallback) and P171 (78\\% fallback), Llama\n…[truncated 528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-004570"
+        },
+        {
+          "source_line": 4571,
+          "timestamp": "2026-05-21T11:37:07.858609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_scalability.tex"
+            }
+          },
+          "id": "event-004571"
+        },
+        {
+          "source_line": 4572,
+          "timestamp": "2026-05-21T11:37:07.909328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Ontology Scalability}\n2\t\\label{app:scalability}\n3\t\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\small\n7\t\\resizebox{\\columnwidth}{!}{%\n8\t\\begin{tabular}{@{}lrrrr@{}}\n9\t\\toprule\n10\t\\textbf{Scale} & \\textbf{Types} & \\textbf{Rels} & \\textbf{Compile (s)} & \\textbf{Overhead} \\\\\n11\t\\midrule\n12\tSmall (SciERC) & 6 & 7 & 0.33 & 1.02$\\times$ \\\\\n13\tMedium (DocRED) & 6 & 96 & 0.32 & 1.03$\\times$ \\\\\n14\tLarge (synth.) & 100 & 500 & 0.35 & 1.03$\\times$ \\\\\n15\tXLarge (synth.) & 200 & 1{,}000 & 0.42 & 1.03$\\times$ \\\\\n16\t\\bottomrule\n17\t\\end{tabular}}\n18\t\\caption{Compilation time (one-time) and per-token inference overhead across ontology scales. Small and Medium use real ontologies; Large and XLarge use synthetic ontologies with random domain/range constraints. Overhead measured on Qwen3-8B, 10 documents per scale.}\n19\t\\label{tab:scalability}\n20\t\\end{table}\n21\t\n22\tFull constraint compilation (schema parsing + grammar build) scales sub-linearly (0.32\\,s to 0.42\\,s for 7$\\to$1{,}000 relations; Table~\\ref{tab:scalability}); within this, the XGrammar automaton accounts for $\\sim$0.044\\,s and semantic constraint compilation grows linearly but remains negligible (0.4\\,ms to 17\\,ms).\n23\tInference overhead is constant at 2--3\\% because XGrammar uses precompiled bitmasks ($O(1)$ per token) and the semantic layer checks only the active relation's domain/range set rather than the full ontology.\n24\tThe practical limit is first-token uniqueness: when entity types exceed $\\sim$200, prefix collisions in the tokenizer vocabulary may require fallback to multi-token disambiguation (\\S\\ref{sec:dynamic-masking}).\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004572"
+        },
+        {
+          "source_line": 4573,
+          "timestamp": "2026-05-21T11:38:06.209332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
+            }
+          },
+          "id": "event-004573"
+        },
+        {
+          "source_line": 4574,
+          "timestamp": "2026-05-21T11:38:06.260282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{amsthm}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{pifont}\n19\t\\usepackage{soul}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}\n22\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n23\t\n24\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n25\t\n26\t\\author{Anonymous ACL submission}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\input{abstract}\n33\t\n34\t% === §1 Introduction ===\n35\t\\input{section1_introduction_draft}\n36\t\n37\t% === §2 Background ===\n38\t\\input{section2_background}\n39\t\n40\t% === §3 Method ===\n41\t\\input{section3_method_draft}\n42\t\n43\t% === §4 Constraint Composition ===\n44\t\\section{Constraint Composition}\n45\t\\label{sec:composition}\n46\t\\input{section4_composition_draft}\n47\t\n48\t% === §5 Experiments ===\n49\t\\section{Experiments}\n50\t\\label{sec:experiments}\n51\t\n52\t\\input{section3_violation_landscape}\n53\t\n54\t\\input{section5_scierc_draft}\n55\t\\input{section5_docred_draft}\n56\t\\input{section5_crossmodel_draft}\n57\t\\input{section5_wikievents_draft}\n58\t\\input{section5_runtime}\n59\t\n60\t% === §6 Related Work ===\n61\t\\input{section6_related_work}\n62\t\n63\t% === §7 Discussion and Conclusion ===\n64\t\\section{Discussion and Conclusion}\n65\t\\label{sec:discussion}\n66\t\\input{section7_conclusion_compressed}\n67\t\n68\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n69\t\\clearpage\n70\t\\section*{Limitations}\n71\t\n72\t\\paragraph{Constraint scope.}\n73\tCF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\\,$\\leq$\\,1\\% under greedy constrained decoding), S1 introduces CF violations (u\n…[truncated 5895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004574"
+        },
+        {
+          "source_line": 4575,
+          "timestamp": "2026-05-21T11:38:19.769242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex"
+            }
+          },
+          "id": "event-004575"
+        },
+        {
+          "source_line": 4576,
+          "timestamp": "2026-05-21T11:38:19.820086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — Error Analysis and Case Studies\n2\t\n3\t\\section{Error Analysis and Case Studies}\n4\t\\label{app:case-studies}\n5\t\n6\t\\definecolor{violation}{RGB}{220,50,50}\n7\t\\definecolor{fixed}{RGB}{34,139,34}\n8\t\\definecolor{cfwarn}{RGB}{200,120,0}\n9\t\\newcommand{\\viol}[1]{\\textcolor{violation}{\\st{#1}}}\n10\t\\newcommand{\\fixd}[1]{\\textcolor{fixed}{\\textbf{#1}}}\n11\t\n12\tWe present four representative cases illustrating constraint behavior across violation types. Cases 1--3 demonstrate OntoCoDec's corrective mechanisms; Case 4 illustrates a limitation.\n13\t\n14\t\\subsection{Domain-Range Correction}\n15\t\\label{app:case-dr}\n16\t\n17\t\\noindent\\textbf{Input (SciERC, Qwen3-8B):} \\textit{``We present a novel model-based approach to recover the shapes and the poses of transparent objects from known motion.''}\n18\t\n19\tThe unconstrained model assigns \\textsc{OtherScientificTerm} to ``shapes'' and ``poses,'' producing \\textsc{Feature-of}(\\textsc{Task}, \\textsc{OtherScientificTerm}) triples that violate domain/range constraints. The semantic layer redirects the tail type to \\textsc{Task}, yielding schema-compliant triples (Table~\\ref{tab:case1}).\n20\t\n21\t\\begin{table}[h]\n22\t\\centering\n23\t\\small\n24\t\\caption{OntoCoDec corrects three Feature-of DR violations. \\textcolor{violation}{Red}/\\ding{55} = violation; \\textcolor{fixed}{\\textbf{green/bold}}/\\ding{51} = corrected (shape markers provided for colorblind accessibility).}\n25\t\\label{tab:case1}\n26\t\\begin{tabular}{@{}p{3.2cm}lll@{}}\n27\t\\toprule\n28\t\\textbf{Triple} & \\textbf{Head} & \\textbf{Tail} & \\textbf{DR} \\\\\n29\t\\midrule\n30\t\\multicolumn{4}{@{}l}{\\textit{Unconstrained (3 violations)}} \\\\\n31\t\\midrule\n32\tFeature-of(recover, shapes) & Task & \\textcolor{violation}{OtherSciTerm} & \\textcolor{violation}{\\ding{55}} \\\\\n33\tFeature-of(recover, poses) & Task & \\textcolor{violation}{OtherSciTerm} & \\textcolor{violation}{\\ding{55}} \\\\\n34\tFeature-of(recover, transp.\\ obj.) & Task & \\textcolor{violation}{OtherSciTerm} & \\textcolor{violation}{\\ding{55}} \\\\\n35\tUsed-\n…[truncated 6156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004576"
+        },
+        {
+          "source_line": 4577,
+          "timestamp": "2026-05-21T11:38:19.820601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "55",
+              "limit": "80"
+            }
+          },
+          "id": "event-004577"
+        },
+        {
+          "source_line": 4578,
+          "timestamp": "2026-05-21T11:38:20.674836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\\textbf{Model} & \\textbf{Setting} & \\textbf{Fallback Rate} & \\textbf{DR} & \\textbf{From FB} \\\\\n56\t\\midrule\n57\tQwen3-8B  & FT S1 & 0/2256 (0\\%)    & 0  & N/A \\\\\n58\tQwen3-8B  & ZS S1 & 16/3458 (0.46\\%) & 16 & 100\\% \\\\\n59\tLlama-3.1-8B & FT S1 & 1/2162 (0.05\\%) & 1  & 100\\% \\\\\n60\tLlama-3.1-8B & ZS S1 & 1/2630 (0.04\\%) & 1  & 100\\% \\\\\n61\t\\bottomrule\n62\t\\end{tabular}\n63\t\\caption{Fallback causal tracing on SciERC (551 documents). Fallback Rate: type-bearing positions where $S(t) \\cap G(t) = \\emptyset$ triggers grammar-first fallback. DR: residual domain/range violations. From FB: fraction of DR violations occurring at fallback positions. All violations occur exclusively at tail\\_type positions (range constraints are tighter than domain constraints).}\n64\t\\label{tab:causal-tracing}\n65\t\\end{table}\n66\t\n67\tWhen the semantic mask is active, $\\text{DR}_{\\text{independent}} = 0$: the type constraint processor structurally prevents domain/range violations.\n68\tAll 18 residual DR violations across four configurations occur exclusively at fallback positions, confirming that grammar-first fallback is a necessary condition for residual DR.\n69\tFine-tuning reduces fallback to near-zero ($\\leq$0.05\\%), effectively eliminating the sole source of residual violations.\n70\tAll fallback events occur at tail\\_type positions, where $|\\operatorname{range}(r, \\tau^h)|$ is smaller than $|\\operatorname{dom}(r)|$, making the intersection $S(t) \\cap G(t)$ more likely to be empty.\n71\t\n72\t%%% CF-DR Trade-off Analysis %%%\n73\t% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n74\t\n75\t\\paragraph{CF-DR Trade-off Analysis.}\n76\t\\label{app:cf-dr-tradeoff}\n77\t\n78\tCF violations are the most prominent residual limitation of OntoCoDec under zero-shot decoding (9.90\\% on SciERC, up to 12.02\\% on Llama DocRED).\n79\tWe treat this honestly: per-relation independent enforcement cannot eliminate CF without trading it against DR.\n80\tTable~\\ref{tab:cf-dr-tradeoff} reports a pilot ablation in which we \n…[truncated 6475 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-004578"
+        },
+        {
+          "source_line": 4579,
+          "timestamp": "2026-05-21T11:38:20.675243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "390",
+              "limit": "50"
+            }
+          },
+          "id": "event-004579"
+        },
+        {
+          "source_line": 4580,
+          "timestamp": "2026-05-21T11:38:20.726102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "390\tUnder LoRA fine-tuning (same hardware and dataset), unconstrained inference averages 2.612\\,s/doc and Full S1 constrained decoding averages 2.873\\,s/doc ($+$10.0\\% overhead, $n{=}551$).\n391\tFine-tuned models generate shorter, more structured outputs than zero-shot models (2.612\\,s vs.\\ 4.163\\,s/doc unconstrained); absolute generation time drops by 37\\%.\n392\tThe relative overhead ($+$10.0\\%) is slightly lower than zero-shot ($+$13.1\\%), consistent with shorter sequences requiring fewer constraint checks per document.\n393\t\n394\t%%% Fuzzy Relation Matching %%%\n395\t\n396\t\\paragraph{Relation Matching Protocol.}\n397\t\\label{app:fuzzy-matching}\n398\tRelation F1 evaluation uses fuzzy normalization to handle model-specific formatting variants (e.g., underscores vs.\\ spaces, abbreviations).\n399\tA predicted relation $r_p$ matches gold relation $r_g$ if: (1)~exact string match after case-insensitive normalization, or (2)~token overlap $>$80\\% \\emph{and} edit distance $\\leq 2$.\n400\tThis protocol affects primarily Mistral, which produces underscore-separated variants (e.g., ``head\\_of\\_government'' for ``head of government'').\n401\tOn Mistral DocRED, fuzzy matching contributes 98 additional TPs ($+$0.84\\,pp R-F1; strict R-F1\\,=\\,3.50\\% vs.\\ fuzzy 4.34\\%).\n402\tFor Qwen and Llama under grammar constraints, the grammar layer enforces exact relation names, making fuzzy matching irrelevant (0 additional matches).\n403\tAll F1 figures in the main text use fuzzy normalization consistently across all models and conditions.\n404\t\n405\t%%% Per-Relation Violation Landscape %%%\n406\t\n407\t\\paragraph{Per-Relation Violation Landscape.}\n408\t\\label{app:per-relation-landscape}\n409\t\n410\tTable~\\ref{tab:prompt_comparison} compares violation rates under unconstrained and schema-informed prompting.\n411\tFigure~\\ref{fig:per_relation_dr} shows the per-relation DR distribution on SciERC.\n412\t\n413\t\\begin{table}[t]\n414\t\\centering\n415\t\\small\n416\t\\caption{Violation rates (\\%) under unconstrained and schema-informed \n…[truncated 969 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004580"
+        },
+        {
+          "source_line": 4581,
+          "timestamp": "2026-05-21T11:39:25.560167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex"
+            }
+          },
+          "id": "event-004581"
+        },
+        {
+          "source_line": 4582,
+          "timestamp": "2026-05-21T11:39:26.012566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Sampling Robustness}\\label{app:sampling}\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\caption{Constraint robustness under nucleus sampling ($T$=0.7, $p$=0.9) vs.\\ greedy decoding (Qwen3-8B, full S1 constraints).}\n6\t\\label{tab:sampling-robustness}\n7\t\\begin{tabular}{llcccccc}\n8\t\\toprule\n9\tDataset & Decoding & ET\\% & RV\\% & DR\\% & CF\\% & E-F1 & R-F1 \\\\\n10\t\\midrule\n11\t\\multirow{2}{*}{SciERC (551)} & Greedy & 0 & 0 & 0.93 & 9.90 & 30.98 & 8.36 \\\\\n12\t& Sampling & 0 & 0 & 0.75 & 9.90 & 31.28 & 7.42 \\\\\n13\t\\midrule\n14\t\\multirow{2}{*}{DocRED (114$^\\dagger$)} & Greedy & 0 & 0.03 & 10.21 & 2.57 & 59.37 & 8.23 \\\\\n15\t& Sampling & 0 & 0 & 10.31 & 12.63 & 57.05 & 7.92 \\\\\n16\t\\bottomrule\n17\t\\end{tabular}\n18\t\\par\\smallskip\\footnotesize $^\\dagger$Subset of 114 documents; full DocRED sampling requires ${\\sim}300$h due to extended generation under high-temperature sampling with complex schemas.\n19\t\\end{table}\n20\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004582"
+        },
+        {
+          "source_line": 4583,
+          "timestamp": "2026-05-21T11:39:26.013080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex"
+            }
+          },
+          "id": "event-004583"
+        },
+        {
+          "source_line": 4584,
+          "timestamp": "2026-05-21T11:39:26.515468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Effect of Document Length on Constraint Effectiveness}\n2\t\\label{app:doc-length}\n3\t\n4\tTo examine whether OntoCoDec's constraint effectiveness varies with document complexity, we partition test documents into three length bins (tertile split by word count) and report per-bin violation counts and F1.\n5\t\n6\t\\begin{table}[h]\n7\t\\centering\n8\t\\small\n9\t\\caption{Document length breakdown on SciERC (Qwen3-8B). Tertile boundaries: Short $\\leq$ 19 words, Medium $\\leq$ 27, Long $>$ 27.}\n10\t\\label{tab:doc-length-scierc}\n11\t\\begin{tabular}{ll rrrrr rr}\n12\t\\toprule\n13\t\\textbf{Bin} & \\textbf{Mode} & \\textbf{ET} & \\textbf{RV} & \\textbf{DR} & \\textbf{CF} & \\textbf{Total} & \\textbf{E-F1} & \\textbf{R-F1} \\\\\n14\t\\midrule\n15\tShort (196)  & Uncon. &  1 &  5 &  57 & 0 &  63 & 32.4 &  8.9 \\\\\n16\t             & Const. &  0 &  0 &   5 & 5 &  10 & 32.4 &  8.9 \\\\\n17\t\\midrule\n18\tMedium (180) & Uncon. &  6 &  9 & 104 & 0 & 119 & 27.8 &  6.7 \\\\\n19\t             & Const. &  0 &  0 &   7 & 15 & 22 & 27.8 &  6.7 \\\\\n20\t\\midrule\n21\tLong (175)   & Uncon. &  3 & 10 & 104 & 1 & 118 & 29.9 &  7.0 \\\\\n22\t             & Const. &  0 &  0 &   4 & 20 & 24 & 30.0 &  7.3 \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\end{table}\n26\t\n27\t\\begin{table}[h]\n28\t\\centering\n29\t\\small\n30\t\\caption{Document length breakdown on DocRED (Qwen3-8B). Tertile boundaries: Short $\\leq$ 160 words, Medium $\\leq$ 208, Long $>$ 208.}\n31\t\\label{tab:doc-length-docred}\n32\t\\begin{tabular}{ll rrrrr rr}\n33\t\\toprule\n34\t\\textbf{Bin} & \\textbf{Mode} & \\textbf{ET} & \\textbf{RV} & \\textbf{DR} & \\textbf{CF} & \\textbf{Total} & \\textbf{E-F1} & \\textbf{R-F1} \\\\\n35\t\\midrule\n36\tShort (336)  & Uncon. & 177 & 1238 & 1021 &   9 & 2445 & 61.1 &  9.3 \\\\\n37\t             & Const. &   0 &    0 &  495 & 138 &  633 & 62.6 &  9.6 \\\\\n38\t\\midrule\n39\tMedium (332) & Uncon. & 147 & 1742 & 1047 &   5 & 2941 & 59.3 &  7.9 \\\\\n40\t             & Const. &   0 &    5 &  544 & 180 &  729 & 60.7 &  8.5 \\\\\n41\t\\midrule\n42\tLong (330)   & Uncon. & 176 & 2209 & 1162 &   3 & 3550 & 53.9 \n…[truncated 1432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004584"
+        },
+        {
+          "source_line": 4585,
+          "timestamp": "2026-05-21T11:39:26.516012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex"
+            }
+          },
+          "id": "event-004585"
+        },
+        {
+          "source_line": 4586,
+          "timestamp": "2026-05-21T11:39:26.975804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Prompt Sensitivity Analysis}\n2\t\\label{app:prompt-sensitivity}\n3\t\n4\tTo verify that OntoCoDec's constraint enforcement is robust to prompt variation, we evaluate three prompt variants on SciERC using Qwen3-8B (551 test documents): \\textbf{Default} (the prompt used in all main experiments), \\textbf{Minimal} (a shortened version listing only entity/relation types), and \\textbf{Detailed} (an extended version with type definitions and extraction guidelines). All three variants share the same output JSON schema; only the instruction text differs. Each variant is decoded in both unconstrained and constrained (full Stage~1) modes.\n5\t\n6\t\\begin{table}[h]\n7\t\\centering\n8\t\\small\n9\t\\caption{Prompt sensitivity results on SciERC (Qwen3-8B, 551 documents). ET, RV, DR denote entity-type, relation-vocabulary, and domain-range violation rates (\\%), respectively. $\\Delta$DR shows the relative reduction from unconstrained to constrained decoding.}\n10\t\\label{tab:prompt-sensitivity}\n11\t\\begin{tabular}{llcccccc}\n12\t\\toprule\n13\t\\textbf{Prompt} & \\textbf{Mode} & \\textbf{ET\\%} & \\textbf{RV\\%} & \\textbf{DR\\%} & \\textbf{$\\Delta$DR} & \\textbf{E-F1} & \\textbf{R-F1} \\\\\n14\t\\midrule\n15\t\\multirow{2}{*}{Default}\n16\t  & Unconstrained & 0.40 & 1.39 & 15.37 & \\multirow{2}{*}{94.0\\%} & 31.01 & 8.23 \\\\\n17\t  & Constrained   & 0.00 & 0.00 &  0.93 &                         & 30.98 & 8.36 \\\\\n18\t\\midrule\n19\t\\multirow{2}{*}{Minimal}\n20\t  & Unconstrained & 0.58 & 1.16 & 16.91 & \\multirow{2}{*}{94.6\\%} & 31.98 & 7.91 \\\\\n21\t  & Constrained   & 0.00 & 0.00 &  0.92 &                         & 31.99 & 7.85 \\\\\n22\t\\midrule\n23\t\\multirow{2}{*}{Detailed}\n24\t  & Unconstrained & 0.22 & 0.45 & 11.07 & \\multirow{2}{*}{94.2\\%} & 33.55 & 10.48 \\\\\n25\t  & Constrained   & 0.00 & 0.00 &  0.64 &                         & 33.56 & 10.48 \\\\\n26\t\\bottomrule\n27\t\\end{tabular}\n28\t\\end{table}\n29\t\n30\tTable~\\ref{tab:prompt-sensitivity} shows that constrained decoding eliminates entity-type and relation-vocabulary violations entirely (E\n…[truncated 1213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 459
+          },
+          "id": "event-004586"
+        },
+        {
+          "source_line": 4587,
+          "timestamp": "2026-05-21T11:39:26.976276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_full_ft.tex"
+            }
+          },
+          "id": "event-004587"
+        },
+        {
+          "source_line": 4588,
+          "timestamp": "2026-05-21T11:39:27.579648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Full Fine-Tuning Baseline}\n2\t\\label{app:full-ft}\n3\t\n4\tTo verify that constraint effectiveness generalizes beyond LoRA, we evaluate Qwen3-8B with full-parameter fine-tuning on SciERC (same data, 3 epochs, lr=$2{\\times}10^{-4}$, seed 42).\n5\t\n6\t\\begin{table}[h]\n7\t\\centering\n8\t\\small\n9\t\\begin{tabular}{@{}lrrrr@{}}\n10\t\\toprule\n11\t& \\textbf{E-F1} & \\textbf{R-F1} & \\textbf{DR\\%} & \\textbf{CF\\%} \\\\\n12\t\\midrule\n13\tFull FT unconstrained & 64.78 & 37.89 & 2.74 & 0 \\\\\n14\tFull FT + S1 & 64.78 & 37.89 & \\textbf{0} & 1.31 \\\\\n15\t\\midrule\n16\tLoRA unconstrained & 66.86 & 43.65 & 0.31 & 0 \\\\\n17\tLoRA + S1 & 67.05 & 43.77 & \\textbf{0} & 1.18 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\caption{Full fine-tuning vs.\\ LoRA on SciERC (Qwen3-8B, 551 docs). Constraints eliminate DR under both methods. Full FT underperforms LoRA, likely due to an untuned learning rate ($2{\\times}10^{-4}$, standard for LoRA but high for full FT). F1 is unaffected by constraints in both cases.}\n21\t\\label{tab:full-ft}\n22\t\\end{table}\n23\t\n24\tFull fine-tuning retains 2.74\\% DR violations (30 triples), concentrated in Part-of (14.6\\%), Hyponym-of (9.6\\%), and Evaluate-for (8.4\\%). S1 eliminates all 30 violations with no F1 cost, which confirms that constraint enforcement is effective regardless of the fine-tuning method. The CF$\\leftrightarrow$DR trade-off persists (CF 0\\%$\\to$1.31\\%), consistent with the LoRA pattern (1.18\\%).\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-004588"
+        },
+        {
+          "source_line": 4589,
+          "timestamp": "2026-05-21T11:39:27.780646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex"
+            }
+          },
+          "id": "event-004589"
+        },
+        {
+          "source_line": 4590,
+          "timestamp": "2026-05-21T11:39:27.881721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Reproducibility Details}\n2\t\\label{app:reproducibility}\n3\t\n4\t\\paragraph{Fine-tuning configuration.}\n5\tAll four fine-tuned models (Qwen3-8B and Llama-3.1-8B-Instruct on SciERC and DocRED) use identical LoRA hyperparameters: rank $r{=}16$, $\\alpha{=}32$, dropout $0.05$, no bias, targeting all attention and MLP projection layers (\\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}, \\texttt{o\\_proj}, \\texttt{gate\\_proj}, \\texttt{up\\_proj}, \\texttt{down\\_proj}).\n6\tTraining uses AdamW with learning rate $2{\\times}10^{-4}$, cosine schedule, warmup ratio $0.1$, effective batch size $16$, bf16 precision, gradient checkpointing, and completion-only loss for 3 epochs.\n7\tSciERC trains on 1,762 examples (260 dev) for 333 steps; DocRED trains on 3,053 examples (998 dev) for 573 steps.\n8\tMaximum sequence length is 2,048 (SciERC) and 4,096 (DocRED).\n9\tAll runs use seed 42.\n10\t\n11\t\\paragraph{Hardware and software.}\n12\tTraining runs on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (98\\,GB VRAM).\n13\tSciERC fine-tuning takes approximately 11 minutes per model; DocRED takes approximately 1.5 hours.\n14\tSoftware versions: PyTorch 2.10, Transformers 4.57, PEFT 0.19, TRL 1.1, Accelerate 1.13.\n15\t\n16\t\\paragraph{Inference time.}\n17\tInference timing is reported in Appendix~\\ref{app:runtime} (NVIDIA RTX PRO 6000 Blackwell Server Edition GPU, same hardware as training).\n18\tFull S1 constrained decoding adds $+$13.1\\% wall-clock overhead on SciERC and $+$2.43\\% on DocRED (Qwen3-8B, zero-shot greedy); under LoRA fine-tuning, overhead is $+$10.0\\% on SciERC.\n19\t\n20\t\\paragraph{Greedy decoding determinism.}\n21\t\\label{app:greedy-determinism}\n22\t% exp_id: d067_seed_variance\n23\tAll main results use greedy decoding (temperature$\\,{=}\\,$0, argmax token selection).\n24\tArgmax is deterministic: the random seed controls \\texttt{torch.manual\\_seed} for sampling and dropout, neither of which is active during greedy inference.\n25\tWe verify this with three seeds (42, 123, 456) across two LoR\n…[truncated 2246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-004590"
+        },
+        {
+          "source_line": 4591,
+          "timestamp": "2026-05-21T11:40:15.752511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "old_string": "\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/beam_pareto.pdf}\n\\caption{Beam width vs.\\ R-F1 under LoRA fine-tuning. Left: SciERC (Qwen3-8B solid, Llama-3.1-8B dashed; 551 docs). Right: DocRED (Llama-3.1-8B, 200 docs). Bubble area $\\propto$ total violation rate (DR+CF+RV); green rings mark zero-violation configurations. Star: Pareto-optimal ($k{=}2$).}\n\\label{fig:beam-pareto}\n\\end{figure}",
+              "new_string": "\\begin{figure*}[ht]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/beam_pareto.pdf}\n\\caption{Beam width vs.\\ R-F1 under LoRA fine-tuning. Left: SciERC (Qwen3-8B solid, Llama-3.1-8B dashed; 551 docs). Right: DocRED (Llama-3.1-8B, 200 docs). Bubble area $\\propto$ total violation rate (DR+CF+RV); green rings mark zero-violation configurations. Star: Pareto-optimal ($k{=}2$).}\n\\label{fig:beam-pareto}\n\\end{figure*}"
+            }
+          },
+          "id": "event-004591"
+        },
+        {
+          "source_line": 4592,
+          "timestamp": "2026-05-21T11:40:16.266028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 513
+          },
+          "id": "event-004592"
+        },
+        {
+          "source_line": 4593,
+          "timestamp": "2026-05-21T11:40:32.760169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "old_string": "\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Model / Dataset} & \\textbf{Decoding} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B / SciERC (551)}\n  & Greedy      & 0 & 0 & 0.93 & 9.90 & 30.98 & 8.36 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.53} & 32.00 & 8.56 \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B / DocRED (50)}\n  & Greedy      & 0 & 0 & 8.69 & 2.08 & 59.08 & 8.33 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.55} & 58.64 & 9.37 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B / SciERC (551)}\n  & Greedy      & 0 & 0 & 0.08 & 6.56 & 23.49 & 2.54 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.93} & 25.04 & 3.33 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B / DocRED (50)}\n  & Greedy      & 0 & 0 & 1.58 & 6.85 & 55.35 & 6.12 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.94} & 55.62 & 9.47 \\\\\n\\midrule\n\\multirow{2}{*}{Mistral-7B / SciERC (551)}\n  & Greedy      & 0 & 0 & 13.40 & 1.27 & 27.46 & 3.67 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & 13.79 & \\textbf{0.57} & 26.66 & 4.37 \\\\\n\\midrule\n\\multirow{2}{*}{Mistral-7B / DocRED (50)}\n  & Greedy      & 0 & 0 & 28.37 & 0.34 & 51.60 & 4.19 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{21.37} & \\textbf{0.19} & 51.78 & 5.70 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Model / Dataset} & \\textbf{Decoding} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B / SciERC (551)}\n  & Greedy      & 0 & 0 & 0.93 & 9.90 & 30.98 & 8.36 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.53} & 32.00 & 8.56 \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B / DocRED (50)}\n  & Greedy      & 0 & 0 & 8.69 & 2.08 & 59.08 & 8.33 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.55} & 58.64 & 9.37 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B / SciERC (551)}\n  & Greedy      & 0 & 0 & 0.08 & 6.56 & 23.49 & 2.54 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.93} & 25.04 & 3.33 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B / DocRED (50)}\n  & Greedy      & 0 & 0 & 1.58 & 6.85 & 55.35 & 6.12 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{0} & \\textbf{0.94} & 55.62 & 9.47 \\\\\n\\midrule\n\\multirow{2}{*}{Mistral-7B / SciERC (551)}\n  & Greedy      & 0 & 0 & 13.40 & 1.27 & 27.46 & 3.67 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & 13.79 & \\textbf{0.57} & 26.66 & 4.37 \\\\\n\\midrule\n\\multirow{2}{*}{Mistral-7B / DocRED (50)}\n  & Greedy      & 0 & 0 & 28.37 & 0.34 & 51.60 & 4.19 \\\\\n  & Beam ($k{=}4$) & 0 & 0 & \\textbf{21.37} & \\textbf{0.19} & 51.78 & 5.70 \\\\\n\\bottomrule\n\\end{tabular}}"
+            }
+          },
+          "id": "event-004593"
+        },
+        {
+          "source_line": 4594,
+          "timestamp": "2026-05-21T11:40:33.664485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 904
+          },
+          "id": "event-004594"
+        },
+        {
+          "source_line": 4595,
+          "timestamp": "2026-05-21T11:40:35.422659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "old_string": "\\begin{tabular}{@{}cl cccc cc@{}}\n\\toprule\n$k$ & Mode & E-F1 & R-F1 & DR (\\%) & CF (\\%) & Latency (s) & Rel.\\ Lat. \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}cl cccc cc@{}}\n\\toprule\n$k$ & Mode & E-F1 & R-F1 & DR (\\%) & CF (\\%) & Latency (s) & Rel.\\ Lat. \\\\"
+            }
+          },
+          "id": "event-004595"
+        },
+        {
+          "source_line": 4596,
+          "timestamp": "2026-05-21T11:40:35.473612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004596"
+        },
+        {
+          "source_line": 4597,
+          "timestamp": "2026-05-21T11:40:42.770944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "offset": "125",
+              "limit": "50"
+            }
+          },
+          "id": "event-004597"
+        },
+        {
+          "source_line": 4598,
+          "timestamp": "2026-05-21T11:40:43.272381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "125\t & \\textsc{unc} & 67.49 & 43.72 & 1.89 & 0    & 3.485 & 1.40$\\times$ \\\\\n126\t & \\textsc{con} & 67.22 & 43.60 & \\textbf{0} & 0    & 4.069 & 1.63$\\times$ \\\\\n127\t\\midrule\n128\t\\multirow{2}{*}{8}\n129\t & \\textsc{unc} & 66.40 & 43.17 & 1.77 & 0    & 4.194 & 1.68$\\times$ \\\\\n130\t & \\textsc{con} & 66.36 & 43.65 & \\textbf{0} & 0    & 5.058 & 2.03$\\times$ \\\\\n131\t\\bottomrule\n132\t\\end{tabular}\n133\t\\end{table}\n134\t\n135\t\\paragraph{Composability with fine-tuning.}\n136\tUnder greedy decoding, the fine-tuned Qwen3-8B (LoRA, SciERC) with full S1 constraints already achieves DR=0\\% but retains CF=1.18\\% (21 cross-field violations across 551 documents), with E-F1=67.05 and R-F1=43.77.\n137\tAdding beam search ($k{=}4$) eliminates all residual CF violations (1.18\\%\\,$\\to$\\,0\\%), yielding zero violations across all four metrics (ET=0\\%, RV=0\\%, DR=0\\%, CF=0\\%) while preserving extraction quality (E-F1=66.88, R-F1=43.60; changes within $\\pm$0.5\\,pp).\n138\tLlama-3.1-8B (LoRA, SciERC) with full S1 constraints and beam search ($k{=}4$) likewise achieves zero violations across all four metrics (ET=0\\%, RV=0\\%, DR=0\\%, CF=0\\%) with R-F1=46.18; the zero-violation result thus generalizes across calibrated model families.\n139\t% exp_id: q1_llama_ft_beam_scierc\n140\tThe three constraint mechanisms (grammar masking, semantic domain-range filtering, and beam exploration) are thus fully composable: each addresses a distinct violation source without interfering with the others or degrading task performance.\n141\t\n142\tThe initial 50-document DocRED subset (Table~\\ref{tab:beam-search}) was subsequently validated on the full 998-document set: both models achieve DR${=}$0\\% (Qwen CF${=}$4.94\\%, Llama CF 8.54\\%\\,$\\to$\\,1.00\\%, 88\\% reduction; R-F1 $+$2.6\\,pp Llama), confirming subset representativeness.\n143\t\n144\tTable~\\ref{tab:beam-docred-lora} reports LoRA + beam-4 results on the full DocRED dev set (998 documents), extending the fine-tuning composability evaluation from SciERC to the higher-$\\bar{\\kappa}$ regi\n…[truncated 1846 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 501
+          },
+          "id": "event-004598"
+        },
+        {
+          "source_line": 4599,
+          "timestamp": "2026-05-21T11:40:47.693304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "old_string": "\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Composability with fine-tuning.}",
+              "new_string": "\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Composability with fine-tuning.}"
+            }
+          },
+          "id": "event-004599"
+        },
+        {
+          "source_line": 4600,
+          "timestamp": "2026-05-21T11:40:48.225833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 532
+          },
+          "id": "event-004600"
+        },
+        {
+          "source_line": 4601,
+          "timestamp": "2026-05-21T11:40:54.379377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+              "old_string": "\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Decoding} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ & PF \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B}\n  & Greedy con & 0 & 0 & 0 & 0.22 & 81.87 & 40.79 & 7.8 \\\\ % d065_qwen_greedy_4096_r2\n  & Beam-4 con & 0 & \\textbf{0} & \\textbf{0} & 0.01 & 84.00 & 44.46 & 2.9 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B}\n  & Greedy con & 0 & 0 & 0 & 0.26 & 84.71 & 44.70 & 2.6 \\\\ % d065: 4096 context\n  & Beam-4 con & 0 & 0 & 0 & \\textbf{0} & \\textbf{85.23} & \\textbf{47.17} & \\textbf{1.3} \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccccc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Decoding} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ & PF \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B}\n  & Greedy con & 0 & 0 & 0 & 0.22 & 81.87 & 40.79 & 7.8 \\\\ % d065_qwen_greedy_4096_r2\n  & Beam-4 con & 0 & \\textbf{0} & \\textbf{0} & 0.01 & 84.00 & 44.46 & 2.9 \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B}\n  & Greedy con & 0 & 0 & 0 & 0.26 & 84.71 & 44.70 & 2.6 \\\\ % d065: 4096 context\n  & Beam-4 con & 0 & 0 & 0 & \\textbf{0} & \\textbf{85.23} & \\textbf{47.17} & \\textbf{1.3} \\\\\n\\bottomrule\n\\end{tabular}}"
+            }
+          },
+          "id": "event-004601"
+        },
+        {
+          "source_line": 4602,
+          "timestamp": "2026-05-21T11:40:54.432090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-004602"
+        },
+        {
+          "source_line": 4603,
+          "timestamp": "2026-05-21T11:41:01.023972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex",
+              "old_string": "\\setlength{\\tabcolsep}{2.8pt}\n\\begin{tabular}{@{}llccc l@{}}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccc l@{}}"
+            }
+          },
+          "id": "event-004603"
+        },
+        {
+          "source_line": 4604,
+          "timestamp": "2026-05-21T11:41:01.476317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004604"
+        },
+        {
+          "source_line": 4605,
+          "timestamp": "2026-05-21T11:41:02.430537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex",
+              "old_string": "\\bottomrule\n\\end{tabular}\n\\caption{Per-relation $\\kappa$ vs.\\ DR violation rate",
+              "new_string": "\\bottomrule\n\\end{tabular}}\n\\caption{Per-relation $\\kappa$ vs.\\ DR violation rate"
+            }
+          },
+          "id": "event-004605"
+        },
+        {
+          "source_line": 4606,
+          "timestamp": "2026-05-21T11:41:02.933197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-004606"
+        },
+        {
+          "source_line": 4607,
+          "timestamp": "2026-05-21T11:41:13.778489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+              "old_string": "\\setlength{\\tabcolsep}{3.2pt}\n\\begin{tabular}{@{}ll rr rr r r@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{CF (\\%)}} & \\multicolumn{2}{c}{\\textbf{DR (\\%)}} & \\textbf{$\\Delta$E-F1} & \\textbf{Fund.} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-7} \\cmidrule(l){8-8}\n\\textbf{Config} & \\textbf{Model} & Pre & Post & Pre & Post & (pp) & (\\%) \\\\\n\\midrule\n\\multirow{3}{*}{Zero-shot}\n  & Qwen    & 9.75 & \\textbf{0} & 0.93  & 1.21  & $-$1.29 & 2.04 \\\\\n  & Llama   & 6.40 & \\textbf{0} & 0.08  & 0.30  & $-$1.78 & 1.85 \\\\\n  & Mistral & 0.67 & \\textbf{0} & 13.36 & 12.87 & $+$0.05 & 0 \\\\\n\\midrule\n\\multirow{2}{*}{LoRA}\n  & Qwen    & 1.19 & \\textbf{0} & 0     & 0     & $-$0.75 & 0 \\\\\n  & Llama   & 0.46 & \\textbf{0} & 0.09  & 0.09  & $-$0.18 & 0 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}ll rr rr r r@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{CF (\\%)}} & \\multicolumn{2}{c}{\\textbf{DR (\\%)}} & \\textbf{$\\Delta$E-F1} & \\textbf{Fund.} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-7} \\cmidrule(l){8-8}\n\\textbf{Config} & \\textbf{Model} & Pre & Post & Pre & Post & (pp) & (\\%) \\\\\n\\midrule\n\\multirow{3}{*}{Zero-shot}\n  & Qwen    & 9.75 & \\textbf{0} & 0.93  & 1.21  & $-$1.29 & 2.04 \\\\\n  & Llama   & 6.40 & \\textbf{0} & 0.08  & 0.30  & $-$1.78 & 1.85 \\\\\n  & Mistral & 0.67 & \\textbf{0} & 13.36 & 12.87 & $+$0.05 & 0 \\\\\n\\midrule\n\\multirow{2}{*}{LoRA}\n  & Qwen    & 1.19 & \\textbf{0} & 0     & 0     & $-$0.75 & 0 \\\\\n  & Llama   & 0.46 & \\textbf{0} & 0.09  & 0.09  & $-$0.18 & 0 \\\\\n\\bottomrule\n\\end{tabular}}"
+            }
+          },
+          "id": "event-004607"
+        },
+        {
+          "source_line": 4608,
+          "timestamp": "2026-05-21T11:41:14.231715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 453
+          },
+          "id": "event-004608"
+        },
+        {
+          "source_line": 4609,
+          "timestamp": "2026-05-21T11:41:23.270928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+              "old_string": "\\setlength{\\tabcolsep}{3.2pt}\n\\begin{tabular}{@{}ll rr rr r r@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{CF (\\%)}} & \\multicolumn{2}{c}{\\textbf{DR (\\%)}} & \\textbf{$\\Delta$E-F1} & \\textbf{Fund.} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-7} \\cmidrule(l){8-8}\n\\textbf{Config} & \\textbf{Model} & Pre & Post & Pre & Post & (pp) & (\\%) \\\\\n\\midrule\n\\multirow{3}{*}{Zero-shot}\n  & Qwen    & 13.11 & \\textbf{0} & 10.21 & 11.74 & $-$3.44 & 13.52 \\\\\n  & Llama   & 23.71 & \\textbf{0} &  2.55 & 11.93 & $-$5.21 & 22.78 \\\\\n  & 70B     & 11.61 & \\textbf{0} &  0    &  4.20 & $-$5.98 & 18.26 \\\\\n\\midrule\n\\multirow{2}{*}{LoRA}\n  & Qwen    &  0.42 & \\textbf{0} &  0.01 &  0.14 & $-$0.16 & 12.16 \\\\\n  & Llama   &  0.36 & \\textbf{0} &  0.21 &  0.20 & $-$0.17 & 11.59 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}ll rr rr r r@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{CF (\\%)}} & \\multicolumn{2}{c}{\\textbf{DR (\\%)}} & \\textbf{$\\Delta$E-F1} & \\textbf{Fund.} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-7} \\cmidrule(l){8-8}\n\\textbf{Config} & \\textbf{Model} & Pre & Post & Pre & Post & (pp) & (\\%) \\\\\n\\midrule\n\\multirow{3}{*}{Zero-shot}\n  & Qwen    & 13.11 & \\textbf{0} & 10.21 & 11.74 & $-$3.44 & 13.52 \\\\\n  & Llama   & 23.71 & \\textbf{0} &  2.55 & 11.93 & $-$5.21 & 22.78 \\\\\n  & 70B     & 11.61 & \\textbf{0} &  0    &  4.20 & $-$5.98 & 18.26 \\\\\n\\midrule\n\\multirow{2}{*}{LoRA}\n  & Qwen    &  0.42 & \\textbf{0} &  0.01 &  0.14 & $-$0.16 & 12.16 \\\\\n  & Llama   &  0.36 & \\textbf{0} &  0.21 &  0.20 & $-$0.17 & 11.59 \\\\\n\\bottomrule\n\\end{tabular}}"
+            }
+          },
+          "id": "event-004609"
+        },
+        {
+          "source_line": 4610,
+          "timestamp": "2026-05-21T11:41:23.271594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004610"
+        },
+        {
+          "source_line": 4611,
+          "timestamp": "2026-05-21T11:41:37.278025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": "\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Dataset} & \\textbf{DR (\\%)} & \\textbf{Lucky} & \\textbf{$\\Delta$Recall} & \\textbf{Churn} \\\\\n& & \\textbf{unc$\\to$con} & \\textbf{(\\% gold)} & \\textbf{(pp)} & \\textbf{(\\%)} \\\\\n\\midrule\nQwen3-8B  & SciERC & 1.95$\\to$0    & 4 (0.41\\%) & $-$0.10 & 0.22 \\\\\nLlama-8B  & SciERC & 1.11$\\to$0.09 & 5 (0.51\\%) & $\\pm$0.00 & 0 \\\\\nQwen3-8B  & DocRED & 1.03$\\to$0.01 & 1 (0.01\\%) & $-$0.84 & 2.05 \\\\\nLlama-8B  & DocRED & 0.64$\\to$0.21 & 1 (0.01\\%) & $-$0.10 & 0.86 \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{\\textit{Average}} & & \\textit{0.49\\%} & $-$0.26 & 0.78 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Dataset} & \\textbf{DR (\\%)} & \\textbf{Lucky} & \\textbf{$\\Delta$Recall} & \\textbf{Churn} \\\\\n& & \\textbf{unc$\\to$con} & \\textbf{(\\% gold)} & \\textbf{(pp)} & \\textbf{(\\%)} \\\\\n\\midrule\nQwen3-8B  & SciERC & 1.95$\\to$0    & 4 (0.41\\%) & $-$0.10 & 0.22 \\\\\nLlama-8B  & SciERC & 1.11$\\to$0.09 & 5 (0.51\\%) & $\\pm$0.00 & 0 \\\\\nQwen3-8B  & DocRED & 1.03$\\to$0.01 & 1 (0.01\\%) & $-$0.84 & 2.05 \\\\\nLlama-8B  & DocRED & 0.64$\\to$0.21 & 1 (0.01\\%) & $-$0.10 & 0.86 \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{\\textit{Average}} & & \\textit{0.49\\%} & $-$0.26 & 0.78 \\\\\n\\bottomrule\n\\end{tabular}}"
+            }
+          },
+          "id": "event-004611"
+        },
+        {
+          "source_line": 4612,
+          "timestamp": "2026-05-21T11:41:38.283090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 1005
+          },
+          "id": "event-004612"
+        },
+        {
+          "source_line": 4613,
+          "timestamp": "2026-05-21T11:41:38.536550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": "\\begin{tabular}{ll cccc}\n\\toprule\nDataset & Prompt & DR$\\downarrow$ & RV$\\downarrow$ & ET$\\downarrow$ & CF$\\downarrow$ \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll cccc}\n\\toprule\nDataset & Prompt & DR$\\downarrow$ & RV$\\downarrow$ & ET$\\downarrow$ & CF$\\downarrow$ \\\\"
+            }
+          },
+          "id": "event-004613"
+        },
+        {
+          "source_line": 4614,
+          "timestamp": "2026-05-21T11:41:38.989742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 453
+          },
+          "id": "event-004614"
+        },
+        {
+          "source_line": 4615,
+          "timestamp": "2026-05-21T11:41:40.697660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "old_string": " & Schema-informed & 12.8 & 18.4 & 0.2 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": " & Schema-informed & 12.8 & 18.4 & 0.2 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004615"
+        },
+        {
+          "source_line": 4616,
+          "timestamp": "2026-05-21T11:41:40.748812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-004616"
+        },
+        {
+          "source_line": 4617,
+          "timestamp": "2026-05-21T11:41:46.878371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex",
+              "old_string": "\\begin{tabular}{llcccccc}\n\\toprule\nDataset & Decoding & ET\\% & RV\\% & DR\\% & CF\\% & E-F1 & R-F1 \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\nDataset & Decoding & ET\\% & RV\\% & DR\\% & CF\\% & E-F1 & R-F1 \\\\"
+            }
+          },
+          "id": "event-004617"
+        },
+        {
+          "source_line": 4618,
+          "timestamp": "2026-05-21T11:41:47.330716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004618"
+        },
+        {
+          "source_line": 4619,
+          "timestamp": "2026-05-21T11:41:48.235405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex",
+              "old_string": "\\bottomrule\n\\end{tabular}\n\\par\\smallskip",
+              "new_string": "\\bottomrule\n\\end{tabular}}\n\\par\\smallskip"
+            }
+          },
+          "id": "event-004619"
+        },
+        {
+          "source_line": 4620,
+          "timestamp": "2026-05-21T11:41:48.286078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004620"
+        },
+        {
+          "source_line": 4621,
+          "timestamp": "2026-05-21T11:41:50.148714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "\\label{tab:doc-length-scierc}\n\\begin{tabular}{ll rrrrr rr}",
+              "new_string": "\\label{tab:doc-length-scierc}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll rrrrr rr}"
+            }
+          },
+          "id": "event-004621"
+        },
+        {
+          "source_line": 4622,
+          "timestamp": "2026-05-21T11:41:50.601734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 453
+          },
+          "id": "event-004622"
+        },
+        {
+          "source_line": 4623,
+          "timestamp": "2026-05-21T11:41:53.977549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "             & Const. &  0 &  0 &   4 & 20 & 24 & 30.0 &  7.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Document length breakdown on DocRED",
+              "new_string": "             & Const. &  0 &  0 &   4 & 20 & 24 & 30.0 &  7.3 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Document length breakdown on DocRED"
+            }
+          },
+          "id": "event-004623"
+        },
+        {
+          "source_line": 4624,
+          "timestamp": "2026-05-21T11:41:54.420354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 442
+          },
+          "id": "event-004624"
+        },
+        {
+          "source_line": 4625,
+          "timestamp": "2026-05-21T11:41:55.374760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "\\label{tab:doc-length-docred}\n\\begin{tabular}{ll rrrrr rr}",
+              "new_string": "\\label{tab:doc-length-docred}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll rrrrr rr}"
+            }
+          },
+          "id": "event-004625"
+        },
+        {
+          "source_line": 4626,
+          "timestamp": "2026-05-21T11:41:55.826955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004626"
+        },
+        {
+          "source_line": 4627,
+          "timestamp": "2026-05-21T11:41:57.907475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "             & Const. &   0 &    0 &  731 & 200 &  931 & 54.8 &  5.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Violation reduction percentage",
+              "new_string": "             & Const. &   0 &    0 &  731 & 200 &  931 & 54.8 &  5.8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Violation reduction percentage"
+            }
+          },
+          "id": "event-004627"
+        },
+        {
+          "source_line": 4628,
+          "timestamp": "2026-05-21T11:41:57.958292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004628"
+        },
+        {
+          "source_line": 4629,
+          "timestamp": "2026-05-21T11:42:04.410294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex",
+              "old_string": "\\begin{tabular}{llcccccc}\n\\toprule\n\\textbf{Prompt} & \\textbf{Mode} & \\textbf{ET\\%} & \\textbf{RV\\%} & \\textbf{DR\\%} & \\textbf{$\\Delta$DR} & \\textbf{E-F1} & \\textbf{R-F1} \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n\\textbf{Prompt} & \\textbf{Mode} & \\textbf{ET\\%} & \\textbf{RV\\%} & \\textbf{DR\\%} & \\textbf{$\\Delta$DR} & \\textbf{E-F1} & \\textbf{R-F1} \\\\"
+            }
+          },
+          "id": "event-004629"
+        },
+        {
+          "source_line": 4630,
+          "timestamp": "2026-05-21T11:42:04.762346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 352
+          },
+          "id": "event-004630"
+        },
+        {
+          "source_line": 4631,
+          "timestamp": "2026-05-21T11:42:06.620867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex",
+              "old_string": "  & Constrained   & 0.00 & 0.00 &  0.64 &                         & 33.56 & 10.48 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "  & Constrained   & 0.00 & 0.00 &  0.64 &                         & 33.56 & 10.48 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004631"
+        },
+        {
+          "source_line": 4632,
+          "timestamp": "2026-05-21T11:42:07.072749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-004632"
+        },
+        {
+          "source_line": 4633,
+          "timestamp": "2026-05-21T11:42:09.031552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": "\\begin{tabular}{@{}p{4.2cm}ll@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Output} & \\textbf{Gold?} \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}p{4.2cm}ll@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Output} & \\textbf{Gold?} \\\\"
+            }
+          },
+          "id": "event-004633"
+        },
+        {
+          "source_line": 4634,
+          "timestamp": "2026-05-21T11:42:09.433900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-004634"
+        },
+        {
+          "source_line": 4635,
+          "timestamp": "2026-05-21T11:42:11.343634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": " & Feature-of(NE items\\textsuperscript{Task}, in two stages\\textsuperscript{Gen}) & \\textcolor{violation}{\\ding{55}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": " & Feature-of(NE items\\textsuperscript{Task}, in two stages\\textsuperscript{Gen}) & \\textcolor{violation}{\\ding{55}} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004635"
+        },
+        {
+          "source_line": 4636,
+          "timestamp": "2026-05-21T11:42:11.495048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-004636"
+        },
+        {
+          "source_line": 4637,
+          "timestamp": "2026-05-21T11:42:13.707782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+              "old_string": "\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nModel & Dataset & Mode & E-F1 & R-F1 & DR\\% \\\\"
+            }
+          },
+          "id": "event-004637"
+        },
+        {
+          "source_line": 4638,
+          "timestamp": "2026-05-21T11:42:14.210109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-004638"
+        },
+        {
+          "source_line": 4639,
+          "timestamp": "2026-05-21T11:42:16.324493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex",
+              "old_string": "Llama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "Llama-3.1-8B & SciERC & Con & $67.99 \\pm 0.16$ & $45.40 \\pm 0.05$ & $0.03 \\pm 0.04$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004639"
+        },
+        {
+          "source_line": 4640,
+          "timestamp": "2026-05-21T11:42:16.475843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-004640"
+        },
+        {
+          "source_line": 4641,
+          "timestamp": "2026-05-21T11:42:35.538320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "195",
+              "limit": "130"
+            }
+          },
+          "id": "event-004641"
+        },
+        {
+          "source_line": 4642,
+          "timestamp": "2026-05-21T11:42:36.040712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "195\t\\centering\n196\t\\small\n197\t\\begin{tabular}{@{}lr r@{}}\n198\t\\toprule\n199\t\\textbf{Conflicting Type Pair} & \\textbf{Count} & \\textbf{\\%} \\\\\n200\t\\midrule\n201\tGeneric $\\leftrightarrow$ OtherScientificTerm & 85 & 34.7 \\\\\n202\tGeneric $\\leftrightarrow$ Material & 35 & 14.3 \\\\\n203\tGeneric $\\leftrightarrow$ Metric & 30 & 12.2 \\\\\n204\tMethod $\\leftrightarrow$ Task & 20 & 8.2 \\\\\n205\tMaterial $\\leftrightarrow$ Method & 17 & 6.9 \\\\\n206\tOtherScientificTerm $\\leftrightarrow$ Task & 12 & 4.9 \\\\\n207\t\\midrule\n208\t10 further pairs (each $\\leq$3.3\\%) & 46 & 18.8 \\\\\n209\t\\midrule\n210\t\\textbf{Total} & \\textbf{245} & 100.0 \\\\\n211\t\\bottomrule\n212\t\\end{tabular}\n213\t\\caption{CF violation distribution on SciERC full S1 (Qwen3-8B, 551 documents).\n214\tAll 245 violations are pairwise conflicts.\n215\tConflicts involving \\textsc{Generic} account for 63.3\\%.}\n216\t\\label{tab:cf-distribution}\n217\t\\end{table}\n218\t\n219\t%%% Per-Relation DR Elimination under Fine-Tuning %%%\n220\t% exp_ids: lora_scierc_unconstrained, lora_scierc_full_s1\n221\t\n222\t\\paragraph{Per-Relation DR Elimination under Fine-Tuning.}\n223\t\\label{app:lora-per-relation}\n224\t\n225\tTable~\\ref{tab:lora-per-relation} presents the per-relation breakdown of DR elimination when OntoCoDec is composed with LoRA fine-tuning on SciERC.\n226\tFine-tuning alone eliminates DR on four of seven relations but leaves non-zero violations on the three tightest-constraint relations: \\textsc{Evaluate-for} ($\\kappa{=}0.361$, 13.13\\%), \\textsc{Part-of} ($\\kappa{=}0.417$, 5.77\\%), and \\textsc{Compare} ($\\kappa{=}0.528$, 5.00\\%).\n227\tAdding OntoCoDec constraints eliminates all remaining violations across all relations.\n228\tOne \\textsc{Evaluate-for} triple (99\\,$\\to$\\,98) is redirected to \\textsc{Used-for} (634\\,$\\to$\\,635) by token-level masking: the head entity's registered type falls outside \\textsc{Evaluate-for}'s domain, and the semantic mask steers generation to the nearest valid relation.\n229\t\n230\t\\begin{table}[t]\n231\t\\centering\n232\t\\small\n233\t\\begin{tabular}{@{}\n…[truncated 6182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004642"
+        },
+        {
+          "source_line": 4643,
+          "timestamp": "2026-05-21T11:42:41.216492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "345",
+              "limit": "50"
+            }
+          },
+          "id": "event-004643"
+        },
+        {
+          "source_line": 4644,
+          "timestamp": "2026-05-21T11:42:41.267380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "345\t\\resizebox{\\columnwidth}{!}{%\n346\t\\begin{tabular}{@{}lll rrr l@{}}\n347\t\\toprule\n348\t\\textbf{Setting} & \\textbf{Model} & \\textbf{Dataset} & \\textbf{Reject\\%} & \\textbf{R-F1$_{\\text{ph}}$} & \\textbf{R-F1$_{\\text{cd}}$} & \\textbf{Winner} \\\\\n349\t\\midrule\n350\t\\multirow{6}{*}{ZS}\n351\t  & Qwen    & SciERC & 16.8 & 8.63  & 8.36  & ph \\\\\n352\t  & Llama   & SciERC & 13.9 & 2.71  & 2.54  & ph \\\\\n353\t  & Mistral & SciERC & 20.3 & 3.94  & 3.67  & ph \\\\\n354\t  & Qwen    & DocRED & 48.1 & 9.61  & 8.23  & ph \\\\\n355\t  & Llama   & DocRED & 42.2 & 7.44  & 6.27  & ph \\\\\n356\t  & Mistral & DocRED & \\textbf{73.7} & 3.85  & \\textbf{5.52} & cd \\\\\n357\t\\midrule\n358\t\\multirow{4}{*}{FT}\n359\t  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\\n360\t  & Llama   & SciERC & 1.11 & 45.23 & 45.47 & cd \\\\\n361\t  & Qwen    & DocRED & 1.03 & 41.11 & 40.79 & ph \\\\\n362\t  & Llama   & DocRED & 0.64 & 43.92 & 44.70 & cd \\\\\n363\t\\bottomrule\n364\t\\end{tabular}}%\n365\t\\caption{Post-hoc filtering (ph) vs.\\ constrained decoding (cd).\n366\tIn zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.\n367\tAt reject rate $>$70\\% (Mistral DocRED), post-hoc F1 collapses below constrained.\n368\tUnder fine-tuning, rejection rates drop to 0.6--2.0\\% and the two strategies are equivalent ($\\Delta \\leq 0.55$\\,pp; each wins two groups).\n369\tF1 $\\times$100.}\n370\t\\label{tab:posthoc-extended}\n371\t\\end{table}\n372\t\n373\tThe crossover point occurs when post-hoc rejection exceeds $\\sim$70\\%: Mistral DocRED rejects 73.7\\% of predicted triples, discarding enough true positives that constrained decoding's recall advantage dominates ($+$1.67\\,pp).\n374\tOntoCoDec's advantage thus scales with violation severity: precisely when constraints are most needed, post-hoc filtering is most destructive.\n375\tUnder fine-tuning, both strategies converge because few violations remain to filter or constrain ($\\Delta \\leq 0.55$\\,pp across all four FT groups, with each stra\n…[truncated 1590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004644"
+        },
+        {
+          "source_line": 4645,
+          "timestamp": "2026-05-21T11:42:54.878983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "preview": "False"
+            }
+          },
+          "id": "event-004645"
+        },
+        {
+          "source_line": 4646,
+          "timestamp": "2026-05-21T11:43:00.258058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (18.30952pt too wide) in paragraph at lines 58--75\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (24.621pt too wide) in paragraph at lines 89--113\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 5331) in paragraph at lines 120--121\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1838) in paragraph at lines 120--121\\\\n\\\\\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\\\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\\\\\T1\\\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\\\n []\\\\n\\\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[31]) (./appendix_kappa_case_study.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_pumping_lemma.tex [32]) [33] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 28972 strings out of 469438\\\\n 528958 string characters out of 5468411\\\\n 1004768 words of memory out of 5000000\\\\n 56097 multiletter control sequences out of 15000+600000\\\\n 754645 words of font info for 577 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,94p,1001b,899s stack positions out of 10000i,10\n…[truncated 10929 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5379
+          },
+          "id": "event-004646"
+        },
+        {
+          "source_line": 4647,
+          "timestamp": "2026-05-21T11:43:18.288401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "\\label{tab:doc-length-reduction}\n\\begin{tabular}{l rr rr}",
+              "new_string": "\\label{tab:doc-length-reduction}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l rr rr}"
+            }
+          },
+          "id": "event-004647"
+        },
+        {
+          "source_line": 4648,
+          "timestamp": "2026-05-21T11:43:18.769702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 481
+          },
+          "id": "event-004648"
+        },
+        {
+          "source_line": 4649,
+          "timestamp": "2026-05-21T11:43:21.080210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex",
+              "old_string": "Long   & 118 $\\to$ 24 & 79.7 & 3550 $\\to$ 931  & 73.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "Long   & 118 $\\to$ 24 & 79.7 & 3550 $\\to$ 931  & 73.8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004649"
+        },
+        {
+          "source_line": 4650,
+          "timestamp": "2026-05-21T11:43:22.035025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 954
+          },
+          "id": "event-004650"
+        },
+        {
+          "source_line": 4651,
+          "timestamp": "2026-05-21T11:43:23.039145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": "\\begin{tabular}{@{}p{4.5cm}p{1.8cm}p{1.2cm}@{}}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}p{4.5cm}p{1.8cm}p{1.2cm}@{}}"
+            }
+          },
+          "id": "event-004651"
+        },
+        {
+          "source_line": 4652,
+          "timestamp": "2026-05-21T11:43:23.390713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 351
+          },
+          "id": "event-004652"
+        },
+        {
+          "source_line": 4653,
+          "timestamp": "2026-05-21T11:43:25.852082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": "rel=P17 (Piraeus, Greece) & LOC$\\to$LOC & \\ding{51} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "rel=P17 (Piraeus, Greece) & LOC$\\to$LOC & \\ding{51} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004653"
+        },
+        {
+          "source_line": 4654,
+          "timestamp": "2026-05-21T11:43:26.303907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-004654"
+        },
+        {
+          "source_line": 4655,
+          "timestamp": "2026-05-21T11:43:28.206511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": "\\begin{tabular}{@{}llll@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Relation} & \\textbf{Types} & \\textbf{DR} \\\\",
+              "new_string": "\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llll@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Relation} & \\textbf{Types} & \\textbf{DR} \\\\"
+            }
+          },
+          "id": "event-004655"
+        },
+        {
+          "source_line": 4656,
+          "timestamp": "2026-05-21T11:43:28.759732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 553
+          },
+          "id": "event-004656"
+        },
+        {
+          "source_line": 4657,
+          "timestamp": "2026-05-21T11:43:30.545359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex",
+              "old_string": "Part-of(NIST, MT eval) & Metric$\\to$\\textcolor{fixed}{Generic} & \\textcolor{fixed}{\\ding{51}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "Part-of(NIST, MT eval) & Metric$\\to$\\textcolor{fixed}{Generic} & \\textcolor{fixed}{\\ding{51}} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-004657"
+        },
+        {
+          "source_line": 4658,
+          "timestamp": "2026-05-21T11:43:30.596176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004658"
+        },
+        {
+          "source_line": 4659,
+          "timestamp": "2026-05-21T11:43:34.617128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "preview": "False"
+            }
+          },
+          "id": "event-004659"
+        },
+        {
+          "source_line": 4660,
+          "timestamp": "2026-05-21T11:43:40.122201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 40--40\\\\n[]|\\\\\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 41--41\\\\n[]|\\\\\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 5331) in paragraph at lines 122--123\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1838) in paragraph at lines 122--123\\\\n\\\\\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\\\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\\\\\T1\\\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\\\n []\\\\n\\\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_tcr.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[31]) (./appendix_kappa_case_study.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_pumping_lemma.tex [32]) [33] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 28972 strings out of 469438\\\\n 528958 string characters out of 5468411\\\\n 1004768 words of memory out of 5000000\\\\n 56097 multiletter control sequences out of 15000+600000\\\\n 754645 words of font info for 577 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out o\n…[truncated 10855 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5505
+          },
+          "id": "event-004660"
+        },
+        {
+          "source_line": 4661,
+          "timestamp": "2026-05-21T11:43:52.767686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "1-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-004661"
+        },
+        {
+          "source_line": 4662,
+          "timestamp": "2026-05-21T11:43:53.733065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 466.8}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 524.8}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 427.0}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.6}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.3}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.4}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.2}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 527.4}], \\\"total_pages\\\": 33, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/arti\n…[truncated 73 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 965
+          },
+          "id": "event-004662"
+        },
+        {
+          "source_line": 4663,
+          "timestamp": "2026-05-21T11:44:02.025461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-004663"
+        },
+        {
+          "source_line": 4664,
+          "timestamp": "2026-05-21T11:44:02.640450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 614
+          },
+          "id": "event-004664"
+        },
+        {
+          "source_line": 4665,
+          "timestamp": "2026-05-21T11:44:03.243164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+              "project": "schema_semantic_constrained_ie",
+              "pages": "20-33",
+              "dpi": "150"
+            }
+          },
+          "id": "event-004665"
+        },
+        {
+          "source_line": 4666,
+          "timestamp": "2026-05-21T11:44:04.817945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.5}, {\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.0}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 475.6}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.6}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.8}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 462.5}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 517.8}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 395.3}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/m\n…[truncated 1434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1574
+          },
+          "id": "event-004666"
+        },
+        {
+          "source_line": 4667,
+          "timestamp": "2026-05-21T11:44:11.753862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png"
+            }
+          },
+          "id": "event-004667"
+        },
+        {
+          "source_line": 4668,
+          "timestamp": "2026-05-21T11:44:12.266127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png"
+            }
+          },
+          "id": "event-004668"
+        },
+        {
+          "source_line": 4669,
+          "timestamp": "2026-05-21T11:44:12.718937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 965
+          },
+          "id": "event-004669"
+        },
+        {
+          "source_line": 4670,
+          "timestamp": "2026-05-21T11:44:12.719386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png"
+            }
+          },
+          "id": "event-004670"
+        },
+        {
+          "source_line": 4671,
+          "timestamp": "2026-05-21T11:44:13.577892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1311
+          },
+          "id": "event-004671"
+        },
+        {
+          "source_line": 4672,
+          "timestamp": "2026-05-21T11:44:13.630997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 911
+          },
+          "id": "event-004672"
+        },
+        {
+          "source_line": 4673,
+          "timestamp": "2026-05-21T11:44:13.631481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png"
+            }
+          },
+          "id": "event-004673"
+        },
+        {
+          "source_line": 4674,
+          "timestamp": "2026-05-21T11:44:13.886027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png"
+            }
+          },
+          "id": "event-004674"
+        },
+        {
+          "source_line": 4675,
+          "timestamp": "2026-05-21T11:44:14.691737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 1060
+          },
+          "id": "event-004675"
+        },
+        {
+          "source_line": 4676,
+          "timestamp": "2026-05-21T11:44:14.794129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-004676"
+        },
+        {
+          "source_line": 4677,
+          "timestamp": "2026-05-21T11:45:32.244249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_agent_queue_status,feishu_upload_file,director_reply_to_user,paper_compile_and_check",
+              "max_results": "4"
+            }
+          },
+          "id": "event-004677"
+        },
+        {
+          "source_line": 4678,
+          "timestamp": "2026-05-21T11:45:32.745346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 501
+          },
+          "id": "event-004678"
+        },
+        {
+          "source_line": 4679,
+          "timestamp": "2026-05-21T11:45:34.754511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_agent_queue_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-004679"
+        },
+        {
+          "source_line": 4680,
+          "timestamp": "2026-05-21T11:45:34.805876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-004680"
+        }
+      ]
+    }
+  ]
+}

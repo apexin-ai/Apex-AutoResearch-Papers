@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd7c2c964a1bcc7a92a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen docred beam 50 collect",
+  "task_key": "worker_code_qwen_docred_beam_50_collect_20260517T042309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_docred_beam_50_collect_20260517T042309_result.json",
+    "occurrence": 1,
+    "bytes": 279,
+    "sha256": "99d60b488488039ca104fe2816a625c3a0b24b68c2e025eb3892272e0dc08e9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：运行中，未完成。**\n\n- 进程正在运行（CPU 106%，已运行约 4 分钟）\n- 已完成 8/50 docs\n- Beam search (num_beams=4) 比 greedy 慢很多，按当前速度约 30 秒/doc，预计还需 ~21 分钟完成\n\n需要稍后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-docred-beam-50-collect.md"
+}

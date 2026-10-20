@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40e71235808c36d7b182",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w5 llama docred lora unconstrained eval retry",
+  "task_key": "worker_diagnose_w5_llama_docred_lora_unconstrained_eval_retry_20260516T001311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w5_llama_docred_lora_unconstrained_eval_retry_20260516T001311_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "e296a71d7b6128965cd9c18e7cc8f649decb1e356d4810b4d6a793a809f0ebd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，无需重提。\n\n**结论：**\n- Output 文件 `w5_llama_docred_lora_unconstrained_eval.jsonl` 已有 **998/998** 行，全部 samples 推理完成\n- SIGTERM (exit 143) 发生在输出写完之后，进程只是没有正常退出（可能是 job scheduler 超时杀进程，但推理已做完）\n- 无 OOM、无 Traceback\n- cuda:0 当前空闲，无残留进程\n\n**已执行操作：**\n- Registry 状态从 `DONE/failed` 更新为 `DONE/success`\n- notes 中记录了诊断结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w5-llama-docred-lora-unconstrained-eval-retry.md"
+}

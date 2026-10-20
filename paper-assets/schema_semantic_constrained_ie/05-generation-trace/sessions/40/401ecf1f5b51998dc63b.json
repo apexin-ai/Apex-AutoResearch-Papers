@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "401ecf1f5b51998dc63b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "gpu d066 docred beam sweep v2",
+  "task_key": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d066_docred_beam_sweep_v2_20260520T025208_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "33bc2ff8fcf72fc5e68bf4963e90390ed46bbaae45fd2e5ada8dc377f46fda1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d066 Qwen DocRED beam sweep 方案已部署：\n\n**当前状态**\n- d065 LLaMA unc 在 GPU0 跑 345/998 docs（~2.5h 后完成）\n- Wrapper 脚本（PID 712981）在等 GPU0 释放，之后顺序跑 k=2 unc → k=2 S1 → k=8 unc → k=8 S1\n- Cascade 已杀，不会抢 GPU0\n- 200-doc subset 和 greedy baseline eval 已准备好\n\n**已收集的 baseline 数据（200-doc subset, 公平对比）**\n\n| Config | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|--------|-----|-----|-----|-----|------|------|\n| k=1 greedy unc | 0 | 0.24 | 0.20 | 0.03 | 81.34 | 44.56 |\n| k=1 greedy S1 | 0 | 0 | 0 | 0.12 | 80.54 | 43.64 |\n\n30 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-d066-docred-beam-sweep-v2.md"
+}

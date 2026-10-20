@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65be608a641b6ca2c035",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft final check",
+  "task_key": "worker_ssh_d062_full_ft_final_check_20260519T044208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_final_check_20260519T044208_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "16a32923bb2c4af2f97d183d3ed04f21963e08618d351bf97787ea4d2c4a3689"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d062_full_ft_scierc pipeline complete. Summary:\n\n**Registry** — `d062_full_ft_scierc` updated to `DONE/negative` with full metrics, checkpoint_path, log_path.\n\n**Artifact** — Report registered as `art_20260519_37230b` at `artifacts/d062_full_ft_scierc_results.md`.\n\n**Bottom line**: Full FT is worse than LoRA FT on SciERC (E_F1 0.6478 vs 0.6705, R_F1 0.3789 vs 0.4386). The secondary finding holds: unconstrained Full FT still produces DR violations (2.74%), confirming OntoCoDec constraints remain necessary across all fine-tuning strategies."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-final-check.md"
+}

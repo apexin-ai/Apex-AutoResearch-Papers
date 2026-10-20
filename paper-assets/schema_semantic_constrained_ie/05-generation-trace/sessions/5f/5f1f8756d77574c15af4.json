@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1f8756d77574c15af4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra registry sync audit",
+  "task_key": "worker_infra_registry_sync_audit_20260513T230318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_registry_sync_audit_20260513T230318_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "9eac877c9cec8358679c1c75644a1bc4661769709db5fb17b3e356840248f7f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPROCESS_STATUS:\n  grammar_only:    running, PID=126473, GPU=cuda:1 (GPU-342cbca6), progress=315/551\n  unconstrained:   running, PID=126948, GPU=cuda:1 (GPU-342cbca6), progress=276/551\n  s2_pilot50:      completed (no process), progress=50/50, output=118KB\n  docred_schema:   running, PID=116365, GPU=cuda:0 (GPU-0ce19412), progress=684/998\n\nGPU_ALLOCATION:\n  GPU 0: docred_schema (PID 116365), 24442 MiB used / 97887 MiB, util 87%\n  GPU 1: grammar_only (PID 126473) + unconstrained (PID 126948), 16502+16502=33004 MiB used / 97887 MiB, util 92%\n\nCRASH_ROOT_CAUSE:\n  dmesg: [无法读取 — read_only 不允许 dmesg]\n  journalctl: [无法读取 — read_only 不允许]\n  实际状态: 4 个实验均无异常，3 个在跑，s2_pilot50 已正常完成\n```\n\n注意：grammar_only 和 unconstrained 共享 GPU 1（各占 ~16.5GB），两者都设了 `--device cuda:0` 但通过 `CUDA_VISIBLE_DEVICES` 隔离——grammar_only 未设 CUDA_VISIBLE_DEVICES（实际映射到物理 GPU 1），unconstrained 设了 `CUDA_VISIBLE_DEVICES=1`。两个进程在同一张卡上并行跑，GPU 利用率 92%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-registry-sync-audit.md"
+}

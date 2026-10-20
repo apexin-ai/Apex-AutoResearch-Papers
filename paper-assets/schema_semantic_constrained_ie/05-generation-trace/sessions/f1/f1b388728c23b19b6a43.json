@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b388728c23b19b6a43",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops fix westd21461 and resubmit",
+  "task_key": "worker_ops_fix_westd21461_and_resubmit_20260516T052856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_westd21461_and_resubmit_20260516T052856_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "b894a597c95fce085e44379161cb1b78b4787042fdae0002bcff17e30bb4e378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 修复结果\n\n**1. xgrammar 版本差异**\n| 服务器 | xgrammar 版本 |\n|--------|--------------|\n| westd-16980（正常） | 0.1.33 |\n| westd-21461（崩溃） | 0.2.0 → 已降级到 0.1.33 |\n\n**2. 修复方案**: 方案 A — 在 westd-21461 上 `pip install xgrammar==0.1.33`，验证 `accept_token` 调用正常。\n\n**3. 两个实验重提交状态**\n\n| 实验 | GPU | PID | 显存 | GPU利用率 | 状态 |\n|------|-----|-----|------|----------|------|\n| w6_mistral_docred_unconstrained | GPU 0 | 7740 | 15282MiB | 90% | RUNNING，正在推理 |\n| w6_mistral_scierc_constrained | GPU 1 | 7813 | 15352MiB | 85% | RUNNING，已通过 grammar compilation，正在推理 |\n\nconstrained 实验日志无 TypeError，确认 xgrammar 降级修复有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-westd21461-and-resubmit.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "3abe8d2fc1a406ab1210",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code llama lora merge and eval pipeline",
+  "task_key": "worker_code_llama_lora_merge_and_eval_pipeline_20260515T171548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_llama_lora_merge_and_eval_pipeline_20260515T171548.jsonl",
+    "occurrence": 1,
+    "bytes": 196,
+    "sha256": "7689df83650997c45a9397175af8d18b68b3b4ce1b1c90d05064c1188e2045da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:15:58.058962+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_llama_lora_merge_and_eval_pipeline_20260515T171548"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-llama-lora-merge-and-eval-pipeline.md"
+}

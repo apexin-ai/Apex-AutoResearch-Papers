@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76f6339addeedd421b5c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 k2 log check",
+  "task_key": "worker_code_w10_k2_log_check_20260517T093134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_k2_log_check_20260517T093134_result.json",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "9333022dd992894f9bd8564c41edf8e640d4ff0fb716286e92a957eef147c79d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件不存在：\n\n```\ntail: cannot open '/root/runs/schema_semantic_constrained_ie/w10_beam_ablation_k2.log' for reading: No such file or directory\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-k2-log-check.md"
+}

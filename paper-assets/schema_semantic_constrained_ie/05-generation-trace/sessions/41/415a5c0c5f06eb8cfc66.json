@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "415a5c0c5f06eb8cfc66",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778898969.md",
+  "task_key": "loop_11_1778898969",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778898969.md",
+    "occurrence": 1,
+    "bytes": 4492,
+    "sha256": "3e424bc3e264b312bd4923b39f9c429520e4c111acb3021ebd6164c3c6085fd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:09:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 仅 westd-16980 的 cuda:0 和 cuda:1，白名单 gpu_ids=[0,1]\n- spec.command 中**禁止**硬编码 CUDA_VISIBLE_DEVICES（级联故障教训 D029）——GPU 分配由 submit_training_job 的 gpu 参数控制\n- 数据路径易错：SciERC 数据在 `data/processed_data/test.json`（不是 `data/scierc/`），SciERC constraints 在项目根目录 `ontology_constraints.json`\n- checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区只有 30G\n- WANDB_MODE=disabled（项目未配 wandb key）\n- SIGTERM exit 143 不一定=失败——cron 自动标 failed，需验证 output 完整性\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，工作目录 `/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- torch 2.10.0+cu128, transformers 4.57.6, CUDA 12.8, 2× RTX PRO 6000 Blackwell (94GB each)\n- 模型路径：\n  - Qwen: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n- 活跃进程：\n  - w5_qwen_docred_lora_constrained_eval: PID 321568, cuda:1\n  - w5_llama_docred_lora_constrained_eval: PID 317464, cuda:0\n- 活跃 cron：0 个（reconcile 返回空）——说明这两个 RUNNING 实验可能没有 cron 监控，需要手动检查或重新注册\n\n### 3. 📊 当前状态\n两个 constrained eval 实验正在运行（DocRED composability matrix 的最后 2 格）：\n- `w5_qwen_docred_lora_constrained_eval` — Qwen DocRED FT + OntoCoDec，cuda:1，PID 321568\n- `w5_llama_docred_lora_constrained_eval` — Llama DocRED FT + OntoCoDec，cuda:0，PID 317464\n\n前序 unconstrained eval 已完成：\n- Qwen DocRED FT unconstrained: DR=1.24%, R-F1=40.20%（report.md 标 success）\n- Llama DocRED FT unconstrained: DR=0.5%, R-F1=43.72%（memory.md 已记录）\n\nPREPARING 但未开始：\n- w1_cf_fallback_llama_scierc / w1_cf_fallback_llama_docred — CF fallback 已定为 analytical finding (D020)，这两个可能不需要跑\n- w5_llama_docred_sft_data_gen — Llama DocRED SFT 数据生成（应该已完成，因为 Llama DocRED LoRA 训练和 eval 都完成了）\n\nWorker 池=0，无 pending Worker 回调。无活跃 cron。\n\n### 4. 📋 待办（条件触发式）\n- w5_qwen_docred_lora_constrained_eval 完成 → 提取 DR/R-F1 → 填 Qwen×DocRED FT+Constrained 格 → 更新 registry + ROADMAP matrix\n- w5_llama_docred_lora_constrained_eval 完成 → 提取 DR/R-F1 → 填 Llama×DocRED FT+Constrained 格 → 更新 registry + ROADMAP matrix\n- 两个 constrained eval 都完成 → 完整 4×2 composability matrix 就绪 → 向 Director 汇报最终结果 → 推进论文 Table 3/5 更新 + 全文数字一致性审查\n- ⚠️ 无活跃 cron 监控这两个实验——新 session 应立即检查进程是否还活着（`ps -p 321568` / `ps -p 317464`），如已完成则直接分析 output\n- CF fallback（w1_cf_fallback_llama_*）——等 Director 明确指示是否需要跑；D020 已定为 analytical finding，大概率不需要额外实验\n\n### 5. 🎯 战略上下文\n- **核心 claim**: OntoCoDec 将 IE ontology schema 编译为 decoding-time constraints，消除 type violations 且不损 F1\n- **当前阶段**: Round 1 审稿应对——composability matrix 扩展（Claim 3: FT + OntoCoDec 正交可组合）\n- **目标**: May 19 内部稿 → May 25 EMNLP ARR 提交\n- **进度**: SciERC 2×2 双模型完成 ✅，DocRED 2×2 最后 2 格（constrained eval）正在跑\n- **已确认 pattern**: FT 内化 87-98% 约束但有长尾残余，OntoCoDec 消除残余至 0-0.09%，R-F1 代价 <0.15pp\n- **易踩坑**:\n  - 不要对比不同 constraints 文件的 DR（SciERC tightness=0.333 vs DocRED=0.842，这解释了 DocRED 较高 CF）\n  - cron 为空意味着实验可能已结束但没有回调——优先检查进程状态和 output 文件\n  - w1_cf_fallback 系列实验状态混乱（代码错误 + kill + analytical finding 决策），不要尝试重跑，除非 Director 明确要求\n- **决策链**: D020(CF=analytical) → D023(reframe claim3) → D025(composability confirmed) → D028(Llama cross-model) → D029(kill & resubmit DocRED training)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778898969.md"
+}

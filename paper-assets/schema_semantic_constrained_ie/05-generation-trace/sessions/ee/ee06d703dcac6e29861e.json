@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee06d703dcac6e29861e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents mistral unconstrained full",
+  "task_key": "worker_code_wikievents_mistral_unconstrained_full_20260517T174540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_mistral_unconstrained_full_20260517T174540_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "0aa8ec185e2a26a14e36aecbc2d8d71deb7b6b4bba921379faa421110ce9fbe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n### 执行结果\n\n1. **文件同步** ✓\n   - 通过 temp.sh 中转（两服务器不能直连），成功将以下文件从 16980 同步到 21461：\n   - `data/wikievents/all.jsonl` (246 docs, 13.8 MB)\n   - `data/wikievents/ontology_constraints_wikievents.json` (含最新 5 event types + 1 entity type + 2 roles)\n   - `compiler/` 目录\n   - `run_constrained_extraction.py`\n   - `prompts/`\n   - `violation_checker_wikievents.py`, `eval_event_extraction.py`\n\n2. **tmux session 运行确认** ✓\n   - Session: `mistral_wikievents_full`\n   - GPU 0 使用率 90%，显存 15.3 GB\n   - 已处理 6/246 samples，无报错\n\n3. **预估完成时间**\n   - 速率: ~20s/sample（文档长度不一，部分长文档更慢）\n   - 预计总时长: ~80-100 分钟\n   - 预计完成: **2026-05-18 03:20-03:40 (服务器时间)**\n\n4. **输出文件路径**\n   - JSONL: `/root/schema_semantic_constrained_ie/outputs/wikievents_mistral_unconstrained_full.jsonl`\n   - Log: `/root/schema_semantic_constrained_ie/outputs/wikievents_mistral_unconstrained_full.log`\n\n**运行命令**:\n```\nCUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\n  --dataset wikievents --mode unconstrained \\\n  --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 \\\n  --data_path data/wikievents/all.jsonl \\\n  --output_path outputs/wikievents_mistral_unconstrained_full.jsonl \\\n  --max_new_tokens 4096\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-mistral-unconstrained-full.md"
+}

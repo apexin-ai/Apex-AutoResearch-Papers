@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d86dbfa153262795446",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents full status check and launch",
+  "task_key": "worker_code_wikievents_full_status_check_and_launch_20260517T202659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_full_status_check_and_launch_20260517T202659_result.json",
+    "occurrence": 1,
+    "bytes": 1766,
+    "sha256": "cc8600f7e254584b11eaa7895dfe748c8a4bdb382432be95ab554ab0c150de05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n---\n\n### 已完成实验\n\n**Model: Qwen (constrained dry-run v2)**\n```\nServer: westd-21461:gpu1\nDocs: 20/20 (14 evaluated, 6 parse failures)\nParse Success: 14/20 (70%)\n\nViolation Rates:\n  ET:  0.0%\n  EV:  0.0%\n  RoV: 0.0%\n  AC:  0.5%\n  CF:  22.3%\n\nF1 Scores:\n  Trigger F1: 0.1230\n  Argument F1: 0.0213\n  Entity F1: 0.1357\n```\n\n---\n\n### 运行中实验\n\n| 实验 | 服务器:GPU | 进度 | 速率 | 预估完成 |\n|------|-----------|------|------|---------|\n| Qwen constrained full | westd-16980:gpu0 | 73/246 (30%) | ~1.7 doc/min | ~06:10 UTC |\n| Llama constrained full | westd-16980:gpu1 | 92/246 (37%) | ~2.1 doc/min | ~05:41 UTC |\n| Mistral unconstrained full | westd-21461:gpu0 | 239/246 (97%) | — | ~几分钟内 |\n\n---\n\n### GPU 使用状态\n\n| 服务器 | GPU | 显存占用 | 利用率 | 任务 |\n|--------|-----|---------|--------|------|\n| westd-16980 | 0 | 19043 MiB | 84% | Qwen constrained |\n| westd-16980 | 1 | 18377 MiB | 84% | Llama constrained |\n| westd-21461 | 0 | 19027 MiB | 89% | Mistral unconstrained |\n| westd-21461 | 1 | 0 MiB | 0% | **空闲** |\n\n---\n\n### 待执行操作\n\nMistral unconstrained 即将完成 (239/246)。完成后需要：\n\n1. **运行 violation check + eval**\n2. **启动 Mistral constrained**（注意参数名与用户模板不同）：\n   - `--model_name` → `--model_path`\n   - `--constraint_mode` → `--mode`\n   - `--ontology_path` → `--constraints_path`\n   - `--output_file` → `--output_path`\n   - 无 `--skip_on_error`，有 `--resume`\n   - Python 路径：`/root/miniconda3/bin/python`\n\n是否现在轮询等待 Mistral unconstrained 完成，然后自动执行 violation+eval 并启动 Mistral constrained？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-full-status-check-and-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc16084282444b28d777",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "experiment r14 llama docred beam4 998",
+  "task_key": "worker_experiment_r14_llama_docred_beam4_998_20260520T214443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r14_llama_docred_beam4_998_20260520T214443_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "69ecc0716021acab0ceadc4763799a6cc79197efc4a04a8064c1189b494f06a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并设置监控：\n\n- **PID**: 790392\n- **服务器**: westd-16980, cuda:0\n- **命令**: `run_constrained_extraction.py --mode full_s1 --dataset docred --decoding_strategy beam --num_beams 4 --max_new_tokens 4096`\n- **模型**: Llama-3.1-8B-Instruct (ZS)\n- **数据**: 998 docs\n- **输出**: `/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl`\n- **日志**: `/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log`\n- **监控**: 每 30 分钟 cron 检查进度 (job 449206ed)\n- **预计耗时**: 6-11 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r14-llama-docred-beam4-998.md"
+}

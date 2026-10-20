@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a00f5d05233c3b3b12f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 final status 16980",
+  "task_key": "worker_ssh_d064_final_status_16980_20260519T231823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_final_status_16980_20260519T231823_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "5b04769b7c1bcad5c34f23599233027d58e09c1232407c89afe8f0a115c4e761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/d064_final_status_16980.md`。\n\n**汇总**：\n- **beam4_unconstrained**: ✅ 998/998，已完成\n- **beam4_constrained**: ✅ 998/998，已完成\n- **greedy_unconstrained_w5**: 🔄 909/998 (91.1%)，预计 ~20 分钟后完成\n- **greedy_constrained_w5**: 🔄 726/998 (72.7%)，预计 ~68 分钟后完成\n\n两块 GPU 利用率 86-90%，运行正常，无异常。全部任务预计约 08:30（服务器时间）完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-final-status-16980.md"
+}

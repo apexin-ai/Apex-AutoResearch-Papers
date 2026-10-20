@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b150a0abc450647fc72d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code check v3 westd16980",
+  "task_key": "worker_code_check_v3_westd16980_20260518T080934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_v3_westd16980_20260518T080934_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "0feb889a8d192ebc946f55f975fcbd9eab885fccd15b174b94f6cda2e15c0cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16980 状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | GPU 利用率 | 温度 |\n|-----|------|---------|-----------|------|\n| 0 | RTX PRO 6000 (98GB) | 24,991 / 97,887 MiB | 84% | 59°C |\n| 1 | RTX PRO 6000 (98GB) | 17,419 / 97,887 MiB | 89% | 65°C |\n\n两块 GPU 都在满负荷运行。\n\n### v3 实验进度（目标 246 行/文件）\n\n| 实验 | GPU | 输出文件 | 已完成行数 | 进度 | 运行时间 |\n|------|-----|---------|-----------|------|---------|\n| Qwen v3 full_s1 | GPU 0 | `ee_qwen_wikievents_constrained_v3_full.jsonl` | **103 / 246** | 42% | ~87 min（14:42 启动） |\n| Mistral grammar_only v3 | GPU 1 | `ee_mistral_wikievents_grammar_only_v3.jsonl` | **74 / 246** | 30% | ~59 min（15:10 启动） |\n\n另外还存在一个之前跑的 `ee_mistral_wikievents_constrained_v3_full.jsonl`（仅 6 行，已停止）。\n\n### tmux 会话\n6 个会话存在，其中 `qwen_v3_full` 和 `mistral_grammar_only_v3` 是当前活跃实验。\n\n### 其他确认\n- `type_mask_processor.py` = **938 行**（修复版确认）\n- `run_v3_eval.sh` 已存在，会对 qwen/llama/mistral 三个模型跑 violation_checker + F1 eval\n- 两个实验都还在跑，预计还需 1-2 小时完成全部 246 个文档"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-v3-westd16980.md"
+}

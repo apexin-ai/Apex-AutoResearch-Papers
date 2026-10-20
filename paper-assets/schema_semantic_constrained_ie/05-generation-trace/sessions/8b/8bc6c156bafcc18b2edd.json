@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bc6c156bafcc18b2edd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 llama lora scierc constrained eval",
+  "task_key": "worker_analysis_w5_llama_lora_scierc_constrained_eval_20260515T180056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_llama_lora_scierc_constrained_eval_20260515T180056_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "0adb7ef96c7e9b7b7401c97597d4e73bdf0cd1c5694e3a4983d128959edf2e93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果：SUCCESS\n\n### Llama FT Constrained Metrics (checker: fixed_20260514_v2)\n| Metric | Value |\n|--------|-------|\n| ET | 0.00% |\n| RV | 0.00% |\n| **DR** | **0.09%** (1/1081) |\n| CF | 0.46% (8/1757) |\n| **E-F1** | **67.76%** |\n| **R-F1** | **45.47%** |\n\n### Delta vs Unconstrained\n| | Unconstrained | Constrained | Delta |\n|--|--|--|--|\n| DR | 1.11% | 0.09% | **-92%** |\n| CF | 0.00% | 0.46% | +0.46pp |\n| E-F1 | 67.76% | 67.76% | **0.00pp** |\n| R-F1 | 45.45% | 45.47% | **+0.02pp** |\n\n### Llama SciERC 完整 2×2 Matrix\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n|--|--|--|--|--|\n| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |\n| **Fine-tuned LoRA** | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | **-91.9%** | **+0.02pp** |\n\n### 结论\n\nComposability 完全验证通过。约束解码在 fine-tuned Llama 上将 DR 从 1.11% 降至 0.09%（仅 1 个残留 violation），R-F1 完全不受影响（+0.02pp 在噪声范围内）。唯一的残留 DR violation 是 Evaluate-for 关系的 `(OtherScientificTerm, Generic)` 类型对。\n\nCF 从 0% 升至 0.46% 是因为 constrained decoding 的 fallback 机制偶尔为同一 mention 分配不同类型，与 Qwen 实验一致。\n\nLlama 2×2 matrix 模式与 Qwen 高度一致：FT + constrained 组合 DR 接近 0，F1 无损。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-llama-lora-scierc-constrained-eval.md"
+}

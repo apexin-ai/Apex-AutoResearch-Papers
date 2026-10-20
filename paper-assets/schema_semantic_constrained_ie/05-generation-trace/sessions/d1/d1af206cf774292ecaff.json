@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1af206cf774292ecaff",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code prepare llama crossmodel",
+  "task_key": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_llama_crossmodel_20260514T043051_result.json",
+    "occurrence": 1,
+    "bytes": 3250,
+    "sha256": "bfe3db5b6b65098d15d355667bd3597e1966cae8a07dbfcdd928ad9c8ad6167f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是 Llama-3.1-8B cross-model 验证的兼容性报告。\n\n---\n\n## Llama-3.1-8B 兼容性评估\n\n### 1. 模型加载 — ✅ 兼容\n- `AutoModelForCausalLM` + `AutoTokenizer`，通用接口\n- 默认路径硬编码为 Qwen3-8B（line 616-622），但 `--model_path` 参数可覆盖，**无需改代码**\n\n### 2. Chat Template — ❌ 需要修改\n**唯一的硬性不兼容点。** 三处 `apply_chat_template` 调用传了 Qwen3 特有参数：\n- `run_constrained_extraction.py:416` — `enable_thinking=False`\n- `run_constrained_extraction.py:464` — `enable_thinking=False`\n- `run_constrained_extraction.py:505` — `enable_thinking=False`\n\nLlama tokenizer 不识别 `enable_thinking`，会抛 `TypeError`。**修复方案**: 条件传参，检测 tokenizer 是否支持该参数。\n\n### 3. Semantic Constraint (First-Token Masking) — ✅ 兼容（需验证）\n- `ensure_first_token_map()` 和 `_build_first_token_map()` 动态从 tokenizer 计算，**无硬编码 token ID**\n- `compile_type_constraints()` 有运行时碰撞检查（两个 entity type 共享 first token → ValueError）\n- **风险点**: SciERC 的 Method/Material/Metric 和 DocRED 的 MISC 都以 M 开头，需确认 Llama tokenizer 不会产生 first-token 碰撞。大概率没问题（常见英文单词通常有独立 BPE token），但建议跑前先用脚本验证\n\n### 4. XGrammar — ✅ 兼容\n- `xgr.TokenizerInfo.from_huggingface(tokenizer, vocab_size=...)` 是通用 HF 接口\n- Grammar 编译基于 JSON Schema，与 tokenizer 无关\n\n### 5. 模型下载 — ✅ 已存在\n- 路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/`\n- 大小: 15GB，4 个 safetensors shard + tokenizer 文件齐全\n- HF 模型 ID: `meta-llama/Llama-3.1-8B-Instruct` ([HuggingFace](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct))\n\n---\n\n## 需要的代码修改\n\n**仅 1 处改动**（3 个调用点）：`enable_thinking=False` 条件化\n\n```python\n# 方案: 构造 chat_template kwargs\nchat_kwargs = dict(tokenize=False, add_generation_prompt=True)\nif \"enable_thinking\" in inspect.signature(tokenizer.apply_chat_template).parameters:\n    chat_kwargs[\"enable_thinking\"] = False\n\ntext = tokenizer.apply_chat_template(msgs, **chat_kwargs)\n```\n\n或更简单：`try/except` 包一层。\n\n## 建议的运行命令\n\n```bash\ncd /root/schema_semantic_constrained_ie\n\n# SciERC full_s2 (与 Qwen3 实验对齐)\npython run_constrained_extraction.py \\\n  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --dataset scierc \\\n  --mode full_s2 \\\n  --output_path results/scierc_llama31_8b_full_s2.jsonl\n\n# 其他 modes 对齐 Qwen 实验\npython run_constrained_extraction.py \\\n  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --dataset scierc \\\n  --mode unconstrained \\\n  --output_path results/scierc_llama31_8b_unconstrained.jsonl\n```\n\n## 预计准备时间\n\n- 代码修改: ~10 分钟（`enable_thinking` 条件化 + first-token 碰撞验证脚本）\n- 测试运行（几个 sample）: ~5 分钟\n- 全量运行: 与 Qwen3 实验耗时相当\n\n批准后可立即开始改代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-llama-crossmodel.md"
+}

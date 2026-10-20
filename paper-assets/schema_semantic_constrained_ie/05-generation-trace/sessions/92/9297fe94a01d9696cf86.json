@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "9297fe94a01d9696cf86",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ssh d062 beam latency",
+  "task_key": "worker_ssh_d062_beam_latency_20260519T031749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_beam_latency_20260519T031749.log",
+    "occurrence": 1,
+    "bytes": 1148833,
+    "sha256": "29622932ecd40d9f56fcd7f43a85485b8452cbc0a8074dbaa2607f8f74d92bfb"
+  },
+  "statistics": {
+    "messages": 859,
+    "user_turns": 1,
+    "tool_calls": 373,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 2,
+      "assistant": 99,
+      "tool_call": 373,
+      "tool_result": 373,
+      "result": 2,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 842,
+      "chunks": [
+        {
+          "path": "9297fe94a01d9696cf86-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9297fe94a01d9696cf86-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9297fe94a01d9696cf86-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9297fe94a01d9696cf86-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9297fe94a01d9696cf86-part-0005.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "9297fe94a01d9696cf86-part-0005.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d062-beam-latency.md"
+}

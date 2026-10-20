@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "422fa3654bb80725e2e6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh qwen unc integrity check",
+  "task_key": "worker_ssh_qwen_unc_integrity_check_20260520T011147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen_unc_integrity_check_20260520T011147_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "b84041b03d30c57eb8a3a560cb890dfa4a59eed08a8ab1e6dabc0646c90fd912"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**文件完整，无需干预。**\n\n| 文件 | 行数 | 唯一 doc_id | 重复 |\n|------|------|-------------|------|\n| unconstrained.jsonl | 300 | 300 | 0 |\n| constrained.jsonl | 158 | 158 | 0 |\n\n**日志与 JSONL 行数不一致的原因**：启动命令没有 `--resume`，文件以 `\"w\"` 模式打开（截断），所有数据来自本次运行。脚本在写 JSONL 后调用了 `fout.flush()`（第 1070 行），但 `print()` 输出到 stdout 是 block-buffered（因为被重定向到文件）。所以 JSONL 是实时的，日志滞后约 133 条。\n\n- **无前次运行残留**\n- **JSONL 是真实进度指标**，日志会在 buffer flush 时追上\n- **eval 不受影响**——无重复数据需要去重\n- 两个进程（PID 676441 unc / PID 682762 con）都在正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-unc-integrity-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98bbd50353e91dc54855",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code add fallback counter",
+  "task_key": "worker_code_add_fallback_counter_20260514T061237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add_fallback_counter_20260514T061237_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "4de72644ddc8e4c13aa4f72d55231ff37a961fd227db81e95429f68cdfbb2154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。改动汇总：\n\n| 行号 | 改动 |\n|------|------|\n| 35 | `import logging` |\n| 45 | `logger = logging.getLogger(__name__)` |\n| 204 | `self._grammar_first_skip_count = 0`（`__init__` 中初始化） |\n| 387-388 | `any_allowed_valid=False` 分支中 `+= 1` + `logger.warning(...)` |\n| 397-399 | `reset()` 中：count > 0 时 `logger.info` 汇总，然后归零 |\n\n行为：每次 fallback 触发时打一条 WARNING（含累计次数），每次 `reset()`（即一次 `generate()` 结束）打一条 INFO 汇总并归零。不影响现有 masking 逻辑。下次实验自动生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-fallback-counter.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9dd5bdc21a42f6c56bd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra mistral docred westd21461",
+  "task_key": "worker_infra_mistral-docred-westd21461_20260516T051708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mistral-docred-westd21461_20260516T051708_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "7256e0c712b055b9f34893ece4632c08cdf6b493681e5291354956e3ec15695a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双实验已提交并在运行，registry 已更新。\n\n**总结：**\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| w6_mistral_docred_unconstrained | cuda:0 | 5571 | 运行中 |\n| w6_mistral_docred_constrained | cuda:1 | 6789 | 运行中 |\n\n**环境处理：**\n- Mistral-7B-Instruct-v0.3 通过 ModelScope 下载到 ms_cache，符号链接到 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3`\n- 修复了 xgrammar 0.2.0 的 `accept_token` 类型兼容性 bug（`input_ids[i][-1]` → `.item()` 转 int），该 bug 导致 constrained 实验首次启动时崩溃\n- 服务器: westd-21461, 2x NVIDIA RTX PRO 6000 Blackwell 98GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mistral-docred-westd21461.md"
+}

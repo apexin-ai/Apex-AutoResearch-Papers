@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aaea0ebd81a40085424",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code urgent full status and v3 launch 16980",
+  "task_key": "worker_code_urgent_full_status_and_v3_launch_16980_20260518T070503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_full_status_and_v3_launch_16980_20260518T070503_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "f639caaa464d297d7171f5d7539686a6db6a73be3969506af64938bcd06cf997"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。状态报告：\n\n---\n\n### nvidia-smi\n| GPU | 型号 | 显存 | 利用率 | PID |\n|-----|------|------|--------|-----|\n| 0 | RTX PRO 6000 Black | 22033/97887 MiB | 83% | 534706 |\n| 1 | RTX PRO 6000 Black | 15069/97887 MiB | 85% | 536272 |\n\n### 脚本参数（--help 确认）\n- `--model_path`（非 --model）\n- `--output_path`（非 --output_file）\n- `--mode`（非 --task）\n- `--dataset`, `--device`, `--max_new_tokens`, `--skip_on_error`, `--resume`\n\n### 代码版本 ✓\n- `type_mask_processor.py`: **938 行**\n- `collision`: 7 处\n- `exact_match`: 4 处\n\n### 任务状态\n\n| GPU | tmux session | 任务 | 进度 |\n|-----|-------------|------|------|\n| 0 | `qwen_v3_full` | Qwen3-8B wikievents full_s1 v3 | **31/246** (运行中) |\n| 1 | `mistral_v3_full` | Mistral-7B-Instruct-v0.3 wikievents full_s1 v3 | **1/246** (刚启动) |\n\n### Llama grammar_only\n**246/246 — 已完成** ✓\n\n### Mistral 缓存\n`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3-ms/mistralai/Mistral-7B-Instruct-v0___3/` — 3 个 safetensors 分片，完整可用。\n\n### Qwen 模型\n本地路径 `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`（Qwen3-8B，非 Qwen2.5-7B）\n\n### 最终 GPU 分配\n- **GPU 0**: Qwen3-8B v3 full_s1 (PID 534706)\n- **GPU 1**: Mistral-7B v3 full_s1 (PID 536272)\n- 两张卡均已满载，无 `--resume` 标志，均为全新运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-full-status-and-v3-launch-16980.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd8ecc70d75bc2d2c3f9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis compile paper tables 20260516",
+  "task_key": "worker_analysis_compile_paper_tables_20260516_20260516T123831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_paper_tables_20260516_20260516T123831_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "30408a4a76e2ab3b302c4f46f28123bd7908b7ba7483bbda97fbb4cf0fe81fc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。6 张表已编译到 `artifacts/paper_results_tables.md` 并注册为 `art_20260516_382ed5`。\n\n汇总:\n- **Table 1**: 3 模型 × 2 数据集 zero-shot violation 全景，Mistral DR 最高（56–57%），Qwen/Llama 中等（13–26%）\n- **Table 2**: Constrained decoding 在所有 6 组均大幅降低 DR（−8.25 至 −43.54 pp），R_F1 变化 ≤ ±1.18 pp\n- **Table 3**: FT + OntoCoDec 组合，DR 降至 0.00–0.20%，|ΔR_F1| ≤ 0.51 pp\n- **Table 4**: 消融显示 semantic layer 贡献主要 DR 降幅（Qwen −69%, Llama −41%），grammar layer 对 FT 模型几乎无效\n- **Table 5**: Post-hoc filtering 在 5/6 ZS 组提升 R_F1，但 Mistral DocRED 的 73.7% 拒绝率导致 F1 下降；constrained decoding 优势在结构性保证\n- **Table 6**: Schema prompt 降低 DR 31–62%，但残余 DR（5.78–12.84%）仍存在，R_F1 未在 Phase 0 实验中计算"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-paper-tables-20260516.md"
+}

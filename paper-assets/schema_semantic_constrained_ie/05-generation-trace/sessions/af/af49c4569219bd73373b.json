@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "af49c4569219bd73373b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code llama 16k results then grammar only",
+  "task_key": "worker_code_llama_16k_results_then_grammar_only_20260518T014515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_16k_results_then_grammar_only_20260518T014515.log",
+    "occurrence": 1,
+    "bytes": 435818,
+    "sha256": "61bbabca75b5257c597fcca69acb7dd43aa105d06a5ac3c7df1fcff7f6d84460"
+  },
+  "statistics": {
+    "messages": 411,
+    "user_turns": 0,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 190,
+      "tool_result": 190
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "af49c4569219bd73373b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "af49c4569219bd73373b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "af49c4569219bd73373b-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-16k-results-then-grammar-only.md"
+}

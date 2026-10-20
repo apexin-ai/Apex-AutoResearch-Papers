@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ef7e79053415faeefd3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w5 docred sft data gen",
+  "task_key": "worker_code_w5_docred_sft_data_gen_20260515T175442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5_docred_sft_data_gen_20260515T175442_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "fb0421371ddb5c1e14980dcf0df79f40d2ec2982d111cb2ed9821707d2ac90e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 脚本 | `scripts/prepare_sft_data_docred.py` (已存在) |\n| Train | `data/docred/sft_train.jsonl` — 3053 样本 |\n| Dev | `data/docred/sft_dev.jsonl` — 998 样本 |\n| 平均实体/文档 | ~19.5 |\n| 平均关系/文档 | ~12.5 |\n| 格式错误 | 0 |\n| 无效 entity type | 0 |\n| 无效 relation type | 0 |\n| Prompt 来源 | `run_constrained_extraction.py` 的 `build_messages` (与推理时字节一致) |\n\nRegistry `w5_docred_sft_data_gen` 已更新为 DONE。数据可直接用于 Qwen3-8B / Llama-3.1-8B DocRED LoRA fine-tune。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-docred-sft-data-gen.md"
+}

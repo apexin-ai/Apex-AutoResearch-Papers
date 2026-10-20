@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf80c94608057f4b443c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops submit w6 mistral scierc constrained 16980",
+  "task_key": "worker_ops_submit_w6_mistral_scierc_constrained_16980_20260516T053228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_w6_mistral_scierc_constrained_16980_20260516T053228_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "d9d69500dffa31f491d47177cf44b52b7ba66250ee03bbe696a372a1b114c5b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在运行，无需重复提交。当前状态：\n\n- **PID**: 334612\n- **GPU 0**: 14701 MiB 占用\n- **进度**: 45/551 样本（~8.2%）\n- **输出正常**：最新一条是 `P05-1039_sent1`，包含 entities、relations、inference_time 等字段，单样本约 3.1 秒\n\nGPU 1 上还有另一个 python3 进程（PID 321568，17418 MiB）。两张卡都在工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-w6-mistral-scierc-constrained-16980.md"
+}

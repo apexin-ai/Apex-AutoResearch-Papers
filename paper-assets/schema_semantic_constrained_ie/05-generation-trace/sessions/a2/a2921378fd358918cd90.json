@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2921378fd358918cd90",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis sf4 cf cascade quantification",
+  "task_key": "worker_analysis_sf4-cf-cascade-quantification_20260523T094407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf4-cf-cascade-quantification_20260523T094407_result.json",
+    "occurrence": 1,
+    "bytes": 1382,
+    "sha256": "b2c256d09cb273b1372a8f8e74050156f52dc0c0652c95cb1dbb90670ab07e2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n---\n\n### Qwen ZS SciERC S1 (245 unique CF entities, 248 violations, 167/551 docs)\n\n| 分类 | 数量 | 占比 | 含义 |\n|---|---|---|---|\n| **no_gold_match** | 144 | 58.1% | 实体不在 gold 中（幻觉实体） |\n| **correct_lock** | 45 | 18.1% | first-seen 正确，约束阻止了错误类型 |\n| **both_wrong** | 41 | 16.5% | 两个类型都不匹配 gold |\n| **cascade_error** | 18 | 7.3% | first-seen 错误，阻止了正确类型 |\n\nGeneric 参与度：Specific→Generic 占 51.2%（主导模式），模型在具体类型锁定后尝试退化为 Generic。\n\n### Qwen FT SciERC S1 (21 unique CF entities, 22 violations)\n\n- **cascade_error = 0** — FT 完全消除了级联错误\n- correct_lock = 14 (63.6%) — 剩余的 CF 大多是约束在帮忙\n\n### 关键结论\n\n1. **只有 7.3% 的 ZS CF violations 是真正的级联错误**（first-seen 锁错 → 阻止正确类型）\n2. **correct_lock (18.1%) 是 cascade_error (7.3%) 的 2.5 倍** — first-seen 锁定更多时候是在帮忙\n3. **58.1% 涉及幻觉实体** — CF 的根因是 ZS 模型能力不足，不是约束机制本身\n4. **FT 完全消除 cascade errors** (0/22)，fine-tuning 解决了这个问题\n\n脚本：`scripts/analyze_cf_cascade.py`\n报告：`outputs/cf_cascade_analysis_qwen_zs_scierc_s1.json` / `..._ft_...json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf4-cf-cascade-quantification.md"
+}

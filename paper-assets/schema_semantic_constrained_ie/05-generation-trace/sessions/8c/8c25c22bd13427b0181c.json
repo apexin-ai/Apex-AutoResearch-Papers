@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c25c22bd13427b0181c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama docred beam1 unc check relay",
+  "task_key": "worker_ops_d066_llama_docred_beam1_unc_check_relay_20260520T131524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_docred_beam1_unc_check_relay_20260520T131524_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "daea5aace6421e50017c9ccbd16f269da638e288d30b182ec0308385ad4928c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载完成，已开始推理。\n\n**结果汇报：**\n\n1. **Llama DocRED beam1 unc** — 完成，200 行 JSONL，196 成功 / 4 失败\n2. **新启动配置** — `llama_docred_200_beam1_full_s1`，PID 209444（实际子进程），GPU1 已占用 18266 MiB\n3. **GPU 状态**：\n   - GPU0: PID 194615 (d065_qwen_greedy_4096_r2), 18910 MiB\n   - GPU1: PID 209444 (d066_llama_docred_beam1_s1), 18266 MiB\n   - 双卡满载\n\n**DocRED Llama 剩余队列**：beam4 unc → beam4 s1（等 GPU1 空闲后继续）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-docred-beam1-unc-check-relay.md"
+}

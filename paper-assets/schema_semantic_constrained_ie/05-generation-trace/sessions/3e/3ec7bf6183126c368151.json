@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ec7bf6183126c368151",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w9 qwen docred zs sampling rerun",
+  "task_key": "worker_code_w9_qwen_docred_zs_sampling_rerun_20260518T151230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w9_qwen_docred_zs_sampling_rerun_20260518T151230_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "bfabf231f16fda252897d220365b38c1c9afe1a6746aa513ef6ac7aedb1278d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动。\n\n**汇总：**\n- **服务器**: westd-21461, cuda:1 (CUDA_VISIBLE_DEVICES=1)\n- **tmux session**: `w9_qwen_docred_zs_sampling`\n- **模型**: Qwen3-8B (已加载成功)\n- **数据**: DocRED dev.json, 998 docs, 96 relation types\n- **参数**: T=0.7, top_p=0.9, max_new_tokens=4096, full_s1 mode\n- **输出**: `/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.jsonl`\n- **日志**: `/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.log`\n- **Registry**: status=RUNNING, hypothesis 已更新\n\n注：conclusion 字段仍保留旧值 \"killed\"（registry 不支持 \"pending\"），待实验完成后更新为 success/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w9-qwen-docred-zs-sampling-rerun.md"
+}

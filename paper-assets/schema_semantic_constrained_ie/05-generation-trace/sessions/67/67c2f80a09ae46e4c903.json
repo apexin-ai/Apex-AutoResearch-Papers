@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67c2f80a09ae46e4c903",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis cuda0 idle prep",
+  "task_key": "worker_analysis_cuda0_idle_prep_20260515T174457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cuda0_idle_prep_20260515T174457_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "ae648fa08f9078d456469ffb0951947cf78d04c0b83e82424983d513fa816510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 状态\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | **完全空闲** | 0 / 97887 MiB | 0% |\n| cuda:1 | 运行中 (PID 290322) | 17169 / 97887 MiB | 88% |\n\ncuda:0 无残留进程，干净可用。注意实际运行 PID 是 290322（非 290317），可能是子进程。\n\n### Constrained Eval 进度\n- 已完成 **193 / 551 行**（35%），还需一段时间。\n\n### 磁盘\n| 分区 | 已用 | 可用 |\n|------|------|------|\n| `/`（根） | 12G / 30G | 19G (62%) |\n| `/root/autodl-tmp` | 89G / 250G | 162G (64%) |\n\n磁盘充裕，不是瓶颈。\n\n### DocRED SFT 数据准备\n- 脚本已存在：`prepare_sft_data_docred.py`\n- 数据已存在：`data/docred/` 下有 `train_annotated.json`、`dev.json`、`rel_info.json`、`ontology_constraints_docred.json`\n- **SFT 数据也已存在**：`sft_train.jsonl` 和 `sft_dev.jsonl` 已经生成过了\n\nDocRED SFT 数据看起来**已经准备好了**。cuda:0 当前空闲，可以立即用于下一步任务（比如 DocRED 训练或 eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cuda0-idle-prep.md"
+}

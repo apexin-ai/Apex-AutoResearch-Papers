@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "6705a43a4c6ecf4ce7b9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "code w10 appendix type consensus tex",
+  "task_key": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_w10_appendix_type_consensus_tex_20260517T060734.jsonl",
+    "occurrence": 1,
+    "bytes": 5758,
+    "sha256": "b5eca9b122e6d054b6d5b7cc48fd77586b69b171c21948b1b1d1e839fa7c28fa"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T06:08:14.710565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/",
+              "description": "List existing paper files"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T06:08:14.710975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_pdf_images\nabstract.tex\nabstract_d3264e.tex\nabstract_fd4b26.tex\nacl.sty\nacl_natbib.bst\nappendix_beam_search.tex\nappendix_discussion.tex\nappendix_llama_per_relation.tex\nappendix_prompts.tex\nappendix_related_work.tex\nappendix_sampling_table.tex\ndiscussion_paragraphs.tex\ndiscussion_paragraphs_cf83d1.tex\nfigures\nmain.aux\nmain.bbl\nmain.blg\nmain.log\nmain.out\nmain.pdf\nmain.tex\npaper_tables_draft.tex\nrelwork_new_entries.bib\nsection1_introduction_draft.tex\nsection2_background.tex\nsection3_method_draft.tex\nsection3_violation_landscape.tex\nsection4_composition_draft.tex\nsection5_crossmodel_draft.tex\nsection5_docred_draft.tex\nsection5_docred_draft_9b84f1.tex\nsection5_runtime.tex\nsection5_scierc_draft.tex\nsection5_scierc_draft_4796e8.tex\nsection6_related_work.tex\nsection6_relwork_additions.tex\nsection6_relwork_outline.tex\nsection7_conclusion.tex\nsection7_conclusion_550cbf.tex\nsection7_conclusion_compressed.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T06:08:14.711180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_type_consensus.tex",
+              "content": "\\section{Type Consensus Constraint (Layer 3)}\\label{app:type-consensus}\n\n\\paragraph{Motivation.}\nWe define a \\emph{consistency-failure} (CF) violation as the case where the same entity text span receives different type labels across relation triples within a single document.\nPer-relation domain/range constraints (Layer 2) operate independently on each relation and cannot enforce cross-relation type consistency.\nAs a result, even well-calibrated models exhibit CF rates as high as 9.90\\% on SciERC under the \\texttt{full\\_s1} decoding mode.\n\n\\paragraph{Implementation.}\nWe maintain a document-level entity registry that maps each entity text to the type first assigned during decoding.\nThe registry is populated from the \\texttt{entities} section and from head/tail types already generated in completed relation blocks.\nWhen the decoder reaches a \\texttt{head\\_type} or \\texttt{tail\\_type} position, it queries the registry: if the corresponding entity text has a stored type, the model is forced to emit that type token.\n\nA critical detail is \\emph{domain/range-aware skipping}: if the consensus type conflicts with the allowed types for the current relation (i.e., the stored type falls outside the relation's domain or range set), the consensus constraint is not applied.\nThis prevents the introduction of new DR violations in exchange for resolving CF violations.\n\nThe procedure is summarized below:\n\n\\begin{enumerate}\n    \\item Detect that the current decoding position is an entity type field.\n    \\item Query the registry for the current entity text $\\rightarrow$ \\texttt{stored\\_type}.\n    \\item Query the ontology for the current relation $\\rightarrow$ \\texttt{allowed\\_types}.\n    \\item If \\texttt{stored\\_type} $\\in$ \\texttt{allowed\\_types}: force \\texttt{stored\\_type}.\n    \\item Else: skip consensus enforcement and log a warning.\n\\end{enumerate}\n\n\\paragraph{Results.}\n% TODO: fill with 551-doc (SciERC) + 50-doc (DocRED) full results\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Configuration} & \\textbf{CF (\\%)} & \\textbf{DR (\\%)} \\\\\n\\midrule\n\\texttt{full\\_s1} (no GTC) & 9.90 & 0.93 \\\\\n\\texttt{full\\_s1} + GTC     & ---  & ---  \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Effect of Global Type Consensus (GTC) on consistency-failure and domain/range violation rates. % TODO: fill with 551-doc results\n}\n\\label{tab:gtc-results}\n\\end{table}\n\nPreliminary results from a 10-document dry-run confirm the mechanism works as intended: CF drops from 7.69\\% to 0\\%, with 3 DR-conflict skips triggered across the subset.\nThe DR violation rate remains at 0.0\\%, improving over the baseline rate of 0.93\\%.\n% TODO: replace with full 551-doc numbers once available\n\n\\paragraph{Discussion.}\n% TODO: fill after full evaluation\n% Points to cover:\n% - Skip frequency across full dataset (how often does DR-conflict arise?)\n% - Conditions under which GTC provides the largest gain\n% - Interaction with beam search (Layer 4): does GTC reduce the search space beam must explore?\n% - Limitations: GTC assumes first-assigned type is correct; error propagation risk\n\n\\end{antml:parameter>\n</invoke>"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T06:08:14.711380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_type_consensus.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T06:08:14.711573+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建。结构包含 Motivation、Implementation（含 enumerate 伪代码）、Results（含 booktabs 表格骨架和 10-doc preliminary data）、Discussion（TODO 占位），控制在 1 页内。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w10_appendix_type_consensus_tex_20260517T060734"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/code-w10-appendix-type-consensus-tex.md"
+}

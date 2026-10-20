@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "568131d7f8ef871f8bb9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose bootstrap f1 discrepancy",
+  "task_key": "worker_diagnose_bootstrap-f1-discrepancy_20260522T072049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_bootstrap-f1-discrepancy_20260522T072049_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "0cf4daa2d8331fbcd3cf23b6786c59b4c2e2f1ae535be54932baaa5fdd55b8a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。\n\n## 对比结果\n\n| 维度 | `compute_bootstrap_ci_ft.py` | `violation_checker.py` |\n|------|------------------------------|------------------------|\n| F1 类型 | micro（全局聚合 TP/gold/pred） | micro（同上） |\n| Relation key | `(head.lower().strip(), tail.lower().strip(), type)` | 完全相同 |\n| Entity normalization | `scierc_normalize_type` | 相同的 `normalize_type` |\n| Relation type normalization | **不做** | **不做**（F1 用原始 type） |\n| **parse failure 处理** | **计入 gold，TP=0, pred=0** | **整个样本跳过（continue）** |\n\n## 根因：parse failure 处理不同\n\n**violation_checker.py** (line 142-144):\n```python\nif parsed is None:\n    json_fail += 1\n    continue  # 跳过整个样本，gold_rels 不计入分母\n```\n\n**compute_bootstrap_ci_ft.py** (`scierc_sample_stats`):\n```python\nif parsed is None:\n    return {\"rel_tp\": 0, \"rel_gold\": len(gold_rel_set), \"rel_pred\": 0}\n    # gold 仍然计入分母\n```\n\n当 `parsed_output` 为 None 时：\n- **violation_checker** 完全跳过该样本，gold relations 不进入 recall 的分母 → recall 偏高 → F1 偏高\n- **bootstrap 脚本** 正确地将 gold 计入分母，TP=0 → recall 被惩罚 → F1 更低\n\n这就是 47.15 vs 43.86 的 ~3.3pp 差异来源。\n\n## 结论\n\n**bootstrap 脚本是正确的。** parse failure 应该惩罚模型（pred=0 但 gold 仍在），不应跳过。violation_checker 的 `continue` 逻辑人为抬高了 F1。\n\n## 建议\n\n需要修复 `violation_checker.py`：当 `parsed is None` 时，仍然计算 F1（gold 计入分母，pred 为空）。修复后 registry 的 R-F1 会降到与 bootstrap 一致的 ~43.86。是否要我修？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bootstrap-f1-discrepancy.md"
+}

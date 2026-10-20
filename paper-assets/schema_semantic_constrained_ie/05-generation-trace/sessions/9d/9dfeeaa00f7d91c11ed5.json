@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dfeeaa00f7d91c11ed5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_18.md",
+  "task_key": "loop_18",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18.md",
+    "occurrence": 1,
+    "bytes": 3733,
+    "sha256": "0411c7d86d4da935c67cd6492902d3bb8291bda7a69e34c4ea4121380b1fa400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T03:25:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0,1 + westd-21461 cuda:0,1（共 4 张 RTX PRO 6000 96GB）。白名单外的 GPU 必须 push back Director\n- Table 2 eval 统一用 `eval_d064.py`（决策 D068），禁止混用其他 eval 脚本，否则指标不可比\n- DocRED 所有 Llama 结果必须用 westd-16980 的 w5 checkpoint（决策 D069），21461 上的 Llama greedy 仅作内部参考\n- 提交截止 **May 25 EMNLP 2026 ARR**，距今 4 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**：工作目录 `/root/autodl-tmp/OntoCoDec/`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/checkpoints/llama_lora_docred_merged`、`qwen_lora_docred_merged`、`qwen3_8b_lora_scierc_merged`\n  - 输出：`/root/autodl-tmp/schema_outputs/`（d065/d066/d067 子目录）\n  - 磁盘：`/usr/bin/nvidia-smi` 50% 已用（424G 可用）\n- **westd-21461**：同结构，磁盘 3% 已用（817G 可用）\n  - 模型路径同上\n- 无 W&B 集成（inference-only 实验），cron 靠进程存活 + sentinel 文件检测\n\n### 3. 📊 当前状态\n**刚做完**：d066_sweep_16980_gpu1（Llama beam2 unc DocRED 200-doc）被 cron 误判 failed——日志确认 200/200 完成。已更正 registry conclusion=success，派了 Worker `worker_eval_d066_sweep_16980_gpu1_20260520T112330` 跑 eval 取 metrics，**尚未回调**。\n\n**RUNNING 实验**（3 个，reconcile 确认全部存活）：\n| exp_id | 服务器 | 内容 | PID |\n|--------|--------|------|-----|\n| d065_qwen_greedy_4096_r2 | westd-21461 GPU0 | Qwen DocRED 998-doc greedy con 4096（关键路径 appendix 数据） | 194615 |\n| d066_sweep_21461_gpu1 | westd-21461 GPU1 | Qwen beam8 constrained DocRED 200-doc | 196653 |\n| d066_sweep_llama_beam2_s1 | westd-16980 GPU1 | Llama beam2 constrained DocRED 200-doc（从 unc 接力） | 750801 |\n\n**ANALYZING**：d066_beam_sweep（父实验，SciERC 8 配置全完，DocRED 子任务还在跑）\n\n**等待中**：eval Worker 回调（d066_sweep_16980_gpu1 metrics）\n\n### 4. 📋 待办\n- eval Worker 回调到 → 将 metrics 写入 d066_beam_sweep 父实验的 DocRED 段，检查是否与 SciERC Pareto pattern 一致\n- d066_sweep_llama_beam2_s1 cron 完成 → eval → 与 unc 对比 DR/CF 消除效果\n- d066_sweep_21461_gpu1 cron 完成 → eval → Qwen beam8 con 入 DocRED Pareto 数据\n- d065_qwen_greedy_4096_r2 cron 完成 → eval → 替换 appendix 2 行数据，**这是关键路径**\n- 所有 DocRED beam sweep + d065 全部到齐 → 生成 Pareto 曲线图 → 入稿 appendix → 触发 R12 fresh 内审\n- 第二个 cron 重复回调（同一 exp_id d066_sweep_16980_gpu1）已在本 session 处理过，**忽略即可**\n\n### 5. 🎯 战略上下文\n- **核心结论**：OntoCoDec 两层约束解码在 SciERC 和 DocRED 上均实现 DR→0%，LoRA+constrained 强协同（即使 k=1 也能消除 DR），beam k=2 是 Pareto optimal\n- **d066 SciERC 结果已齐**（registry metrics 完整），DocRED 侧还差 3 个子任务完成 + eval\n- **易错点 1**：这些 inference 实验没有 W&B，cron 会误判完成的进程为 failed——看到 \"process dead with no W&B\" 先查日志确认是否正常完成\n- **易错点 2**：d066_beam_sweep 父实验状态是 ANALYZING 但实际 DocRED 子任务仍在跑，不要提前关闭\n- **论文状态**：8 页编译通过，0 undefined refs。剩余：Pareto 图 + d067 determinism 段落 + d065 appendix 数据替换 + R12 内审 + 定稿\n- **决策链关键节点**：D068（统一 eval 为 eval_d064.py）、D069（Llama 用 w5 checkpoint）、D070（Table 2 全面 re-eval）、D063（constraint-guided beam no-go）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18.md"
+}

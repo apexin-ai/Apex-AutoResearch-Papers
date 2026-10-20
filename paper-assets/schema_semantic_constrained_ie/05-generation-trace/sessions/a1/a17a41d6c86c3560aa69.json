@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a17a41d6c86c3560aa69",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "launch 70b lora docred restart",
+  "task_key": "worker_launch_70b_lora_docred_restart_20260521T123028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_70b_lora_docred_restart_20260521T123028_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "b66e4a5304c77dd335c7ed8da48272249ea334d6ca1b58b1a1bb226be203d41f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在稳步运行但 loss 没有打到控制台。这是 transformers 5.8.1 + `report_to=\"none\"` 的行为——metrics 不输出到 tqdm bar。训练本身正常（GPU1 100%，~31s/step）。\n\n有两个选择：\n1. **继续当前训练**，loss 在 epoch 1 结束时（step 382，约 3.3h 后）保存到 `trainer_state.json`\n2. **重启并修改** `report_to=[\"tensorboard\"]` 使 loss 写入 TB logs，这样可以实时查看\n\n训练刚跑了 13 步（<1%），重启代价不大。要我改成 tensorboard 报告并重启吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-70b-lora-docred-restart.md"
+}

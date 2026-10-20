@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d4c35c86f436d5c22ca",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper power analysis integration",
+  "task_key": "worker_paper_power-analysis-integration_20260522T090501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_power-analysis-integration_20260522T090501_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "8cb869b2ac878e08a3961a511b82ee8f1603e141b650ff2fc53b8b09243b8c07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two changes made:\n\n1. **`appendix_reproducibility.tex`** — added `\\paragraph{200-document subset justification.}` with `\\label{app:power-analysis}` at the end of the file, containing the bootstrap power analysis results.\n\n2. **`section5_runtime.tex` L18** — inserted `Appendix~\\ref{app:power-analysis}` cross-reference after \"200-document subset\" in the 70B paragraph."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-power-analysis-integration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9621ce7540ff5f8631b2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check 70b lora status",
+  "task_key": "worker_check_70b_lora_status_20260521T122625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_70b_lora_status_20260521T122625_result.json",
+    "occurrence": 1,
+    "bytes": 1594,
+    "sha256": "d125e18ce1e5b54f35c83958ac54e7e1029c3905b3a93a48a8ede2b99aafcca5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中完全没有 loss 输出。原因是脚本没有设置 `log_level=\"info\"`，HF Trainer 的 loss 日志在 INFO 级别被默认 WARNING 级别过滤了。\n\n## 汇报\n\n### 1. SciERC (PID 836206/836212)\n- **状态**: 存活，运行 ~23h\n- **进度**: step **97/663** (14.6%)，~14.5s/step，预计还需 ~2h15m\n- **Loss**: **无法观测** — 脚本未设 `log_level=\"info\"`，Trainer 的 loss 日志被默认 WARNING 级别过滤。日志文件只有启动信息和 tqdm 进度条\n- **NaN/Error**: 无异常，AwqGEMMLinear 警告 2 次（正常）\n- **Checkpoint**: 尚无（`save_strategy=\"epoch\"`，第 1 个 epoch 在 step 221）\n\n### 2. DocRED (PID 835754)\n- **状态**: **已死**\n- **tmux session**: docred_70b **不存在**（当前 tmux 有 llama_beam, llama_wikievents, llama_wikievents_full, qwen_wikievents）\n- **Checkpoint 目录**: `/root/autodl-tmp/checkpoints/70b_lora_docred/` **为空**（只有目录本身）\n- **恢复**: 无 checkpoint，需从头重启\n\n### 3. GPU VRAM\n| GPU | 已用 | 总量 | 利用率 |\n|-----|------|------|--------|\n| GPU0 | 46.6 GB | 97.9 GB | 99% (SciERC) |\n| GPU1 | 0 GB | 97.9 GB | 0% (空闲) |\n\n### 4. 建议\n- **DocRED**: 需从头重启到 GPU1，建议在新 tmux session 中启动\n- **SciERC loss 监控**: 当前无法看到 loss。如需实时监控，可以：\n  1. 在脚本 SFTConfig 中加 `log_level=\"info\"` 然后重启（会丢失当前进度，不推荐）\n  2. 等第 1 个 epoch 结束后从 `trainer_state.json` 读取完整 loss 历史（推荐，约 ~2h15m 后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-70b-lora-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97d897e117e5cf9f5108",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code recovery westd 21461",
+  "task_key": "worker_code_recovery_westd_21461_20260518T021622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_recovery_westd_21461_20260518T021622_result.json",
+    "occurrence": 1,
+    "bytes": 3455,
+    "sha256": "1f96f1c69307da70feaa50e46222b3d97d5b6a5fef65ab7b2060bf2ad675d947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整报告。\n\n---\n\n## 服务器状态报告 (westd-21461)\n\n### GPU 状态\n| GPU | 显存使用 | 利用率 | 运行任务 |\n|-----|---------|--------|---------|\n| cuda:0 | 31.8 / 97.9 GB | 73% | Mistral v2 16K retry |\n| cuda:1 | 18.9 / 97.9 GB | 87% | Qwen grammar_only |\n\n### tmux Sessions\n| Session | 状态 |\n|---------|------|\n| `mistral_v2_retry_16k` | **运行中** — Mistral 16K retry |\n| `qwen_grammar_only` | **运行中** — Qwen 刚加载完模型，开始推理 |\n| `mistral_restart` | 空闲（已完成） |\n| `mistral_wikievents` | 已完成（unconstrained 12 docs） |\n\n### 输出文件\n| 文件 | 行数 | 最后修改 | 状态 |\n|------|------|---------|------|\n| `ee_mistral_wikievents_constrained_v2_full.jsonl` | 190/246 | 10:14 | **运行中**（16K retry） |\n| `ee_mistral_wikievents_constrained_v2_full.jsonl.bak_before16k` | 246 | 09:44 | 备份（v2 4K 完整结果） |\n| `ee_qwen_wikievents_grammar_only.jsonl` | 46/246 | 10:15 | **运行中** |\n| `mistral_constrained_full.jsonl` | 246 | 07:22 | **已完成**（v1 grammar_only） |\n| `wikievents_mistral_unconstrained_full.jsonl` | 246 | 04:32 | **已完成** |\n\n---\n\n### 已完成实验结果\n\n#### 1. Mistral v1 grammar_only (`mistral_constrained_full.jsonl`, 246 docs)\n**Violation Check:** 184 checked, 62 parse failures\n| Violation | Count | Rate |\n|-----------|-------|------|\n| RoV | 2314 | 54.8% |\n| AC | 813 | 19.2% |\n| CF | 33 | 0.7% |\n| **Go/No-go** | | **0.7405** |\n\n**Eval:** Entity F1=0.1271, Trigger F1=0.0468, Argument F1=0.0042\n\n#### 2. Mistral v2 constrained 4K（备份, 246 docs, 68 parse failures）\n**Violation Check:** 178 checked, 68 parse failures\n| Violation | Count | Rate |\n|-----------|-------|------|\n| RoV | 2 | 0.1% |\n| AC | 667 | 16.6% |\n| CF | 642 | 13.9% |\n| **Go/No-go** | | **0.1666** |\n\n**Eval:** Entity F1=0.1245, Trigger F1=0.0508, Argument F1=0.0047\n\n#### 3. Mistral v2 constrained 16K retry（进行中, 190/246 docs, 3 parse failures）\n**Violation Check:** 187 checked, **仅 3 parse failures**（从 68 降至 3）\n| Violation | Count | Rate |\n|-----------|-------|------|\n| RoV | 17 | 0.4% |\n| AC | 770 | 16.8% |\n| CF | 690 | 13.6% |\n| **Go/No-go** | | **0.1718** |\n\n**Eval:** Entity F1=0.1221, Trigger F1=0.0466, Argument F1=0.0042\n\n---\n\n### 关键发现\n\n1. **16K retry 大幅减少 parse failures**: 68 → 3（12 docs retried so far, 56 remaining）\n2. **v2 constrained vs v1 grammar_only**: RoV 从 54.8% 降至 0.1-0.4%，说明 v2 schema 约束有效控制了 role vocab violations\n3. **AC violations 仍然高** (~16-17%)，v1 和 v2 都未解决\n4. **所有方法的 eval F1 极低**: Entity ~12%, Trigger ~5%, Argument <1%，可能是 eval 脚本与输出格式对齐问题\n5. **Unconstrained 文件格式不兼容** eval 脚本（list vs dict），需要适配\n6. 诊断脚本 `diagnose_entity_type_tokens.py` 不存在\n\n### 建议下一步\n1. **等待两个运行中任务完成**（Mistral 16K retry 还剩 ~56 docs, Qwen grammar_only 还剩 ~200 docs）\n2. **排查 eval F1 极低的原因** — 可能是输出格式与 gold 标注的 schema 不匹配，需要检查 eval 脚本的解析逻辑\n3. **解决 AC violations 16-17%** — 这是当前 constrained decoding 的主要瓶颈\n4. **统一 unconstrained 输出格式** 使其兼容 eval 脚本，以获得可比较的 baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-recovery-westd-21461.md"
+}

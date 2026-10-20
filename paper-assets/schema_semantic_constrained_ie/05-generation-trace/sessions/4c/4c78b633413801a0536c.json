@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c78b633413801a0536c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d065 check 21461",
+  "task_key": "worker_ops_d065-check-21461_20260520T081817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d065-check-21461_20260520T081817_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "5493d4e9d2719609584d8fd0c1f54ca6fbea29928b4c3392e5118b28db92c18c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总：**\n\n| Run | 进度 | 状态 | ETA |\n|-----|------|------|-----|\n| **d065 Qwen greedy unc 4096** (GPU0, PID 167691) | 878/998 (jsonl) / log 在 823 | 运行中 | ~17:20 CST (~60min) |\n| **d065 Qwen greedy con 4096** (GPU1, PID 174618) | 700/998 (jsonl) / log 在 656 | 运行中 | ~18:00-18:30 CST (~100-120min) |\n\n- UNC 从 11:14 CST 开始，已跑 ~5h，平均 ~22s/doc，剩 120 doc\n- CON 较慢（constrained 解码开销 + 偶有 FAIL 耗时 77s），剩 ~300 doc\n- GPU 利用率正常（84-86%），18.9GB/97.9GB 显存\n\n两个 ETA 都超过了原来的预估（~15:50/16:00 UTC）。等完成后需要再查一次行数并跑 eval。要我稍后再来检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d065-check-21461.md"
+}

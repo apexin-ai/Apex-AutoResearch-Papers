@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d201eb300d4a58f675a2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "backup fix ssh westd 21461",
+  "task_key": "worker_backup_fix-ssh-westd-21461_20260525T210732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_backup_fix-ssh-westd-21461_20260525T210732_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "e12a0126f61d57c7000d45d3bbbf7fb9a49a32fdb22e5d93aed922e6579dee32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。BE 公钥已添加到 westd-21461 的 `/root/.ssh/authorized_keys`，验证通过。现在 BE 机器可以直接 rsync/scp 连接 westd-21461。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/backup-fix-ssh-westd-21461.md"
+}

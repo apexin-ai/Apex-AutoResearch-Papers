@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c604900dc24bf210062",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d068 final collect",
+  "task_key": "worker_ssh_d068_final_collect_20260519T164313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d068_final_collect_20260519T164313_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "263936440f0b9a67461924a2fe43b2842a9db0601bf849c73746af92b47de4cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/d068_guided_beam.md`。\n\n**关键发现**: 4 个 beta 值（0.0, 0.5, 1.0, 2.0）的 **violation rate 全部为 0%**。fine-tuned Qwen3-8B 的 beam 候选中没有任何 constraint violation，因此 penalty re-ranking 无实际效果。beta=0.0（标准 beam search）的 F1 反而最高（Entity 0.7429, Relation 0.5442），beta>0 时 F1 略降。\n\n**注意**:\n1. 实验仍在运行（约 20% 完成，test.json 有 551 samples 而非预期的 100 docs），当前数字是中间结果\n2. 预计每组还需 ~1-1.5 小时完成\n3. Guided beam 更适合 zero-shot/few-shot 场景——fine-tuned 模型已内化了 schema 约束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d068-final-collect.md"
+}

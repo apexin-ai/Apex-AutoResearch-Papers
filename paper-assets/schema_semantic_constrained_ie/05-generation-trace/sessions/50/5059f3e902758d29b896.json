@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5059f3e902758d29b896",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section6 relwork full",
+  "task_key": "worker_paper_section6_relwork_full_20260514T055150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section6_relwork_full_20260514T055150_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "a12847a1bd00aaccd4f8b08a0acc788b87abc59bf6cc75f9e3ca7c29b6e5c56d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section6_related_work.tex` 并注册到 manifest。\n\n验证清单：\n- **7 段全部完成**，每段 8-12 句（§Our Approach 4 句）\n- **0 个 `% TODO`** 残留\n- **`zhou2026snowballing`** 保留引用 + `% PENDING AUDIT` 注释\n- **§Semantic CD for Code 段尾**包含要求的迁移句\n- **§Quality Impact Distinction**：IE 是 extraction 任务 + 约束仅作用于 type tokens\n- **Registry 数字一致**：15.37%→0.93%、R-F1 8.36% vs 8.23%\n- **措辞规范**：用 \"near-complete\"（2处）、\"enabling dependency\"（1处）、0 个 \"synergistic\"、0 个 \"guaranteed\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section6-relwork-full.md"
+}

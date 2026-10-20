@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b9c9a0d2ef479ea322c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis q7 cf conflict distribution",
+  "task_key": "worker_analysis_q7_cf_conflict_distribution_20260515T085725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q7_cf_conflict_distribution_20260515T085725_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "85ca5805313936b7c8fcdf66264f801d748b4f6eb565800b31c9786d65d4479d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/rebuttal/q7_cf_distribution_report.md`。\n\n**关键发现**:\n\n- **SciERC full_s1 (Qwen v2) 共 245 个 CF**，全部为 2-type 冲突，完整分布 15 个 pair：\n  - Top-1: Generic ↔ OtherScientificTerm = **85 (34.7%)**，**不是任务中说的 60**\n  - \"60\" 对应的是 **full_s2** (179 CF 中 60 个 Generic↔OtherScientificTerm)，user 可能混淆了 s1/s2\n  - 涉及 Generic 的冲突合计 155 (63.3%)\n\n- **跨模型/数据集**:\n  - SciERC full_s1 (Llama): 162 CF，Top-1 同样是 Generic↔OtherScientificTerm (53, 32.7%)\n  - DocRED full_s1 (Qwen): 2670 CF，Top-1 MISC↔ORG (701, 26.3%)\n  - DocRED full_s1 (Llama): 3824 CF，Top-1 NUM↔TIME (671, 17.5%)\n  - 所有 unconstrained baseline 都 ≤10 CF — **CF violation 是 constrained decoding 的产物**\n\n- **语义解释**: SciERC 中 Generic 是 anaphoric 占位类型，DocRED 中 MISC 是 catch-all。两者都吸收低置信度 mention，导致 per-slot 决策跨 slot 漂移。报告内含直接可投到 rebuttal 的回复模板。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q7-cf-conflict-distribution.md"
+}

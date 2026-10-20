@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc4a0fec640aef0f3c11",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 llama beam 16980",
+  "task_key": "worker_ssh_d064_llama_beam_16980_20260519T142541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_llama_beam_16980_20260519T142541_result.json",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "0f1a0dac26ce3e7d7f06d56f847193acd2867c4af8a1964d1bdc1c53660dbc93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 beam search 都在正常产出。\n\n## 报告\n\n### 启动状态：成功\n\n| Job | GPU | Mode | PID (bash/python) | 输出已产出 |\n|-----|-----|------|-------------------|-----------|\n| beam-4 unconstrained | cuda:0 | unconstrained | 647117 / 647122 | 4/998 docs |\n| beam-4 constrained | cuda:1 | full_s1 | 647329 / 647334 | 2/998 docs |\n\n### Checkpoint 来源\n使用 **westd-16980 上已有的** Llama LoRA DocRED merged checkpoint（May 16，w5 训练版本，分片格式 4×safetensors）。westd-21461 上有 d064 新训练的版本（May 19，单文件格式），但 AutoDL 实例间无法直连 scp。两者架构相同（Llama 3.1 8B），权重来自不同训练 run。\n\n### 预估完成时间\n当前速度约 ~22s/doc（unconstrained），998 docs 预估 **~6h**，约 5/20 凌晨 4:30 完成。Constrained 因额外约束计算会稍慢。\n\n### 日志路径\n- `/root/autodl-tmp/schema_outputs/d064_beam4_unc_16980.log`\n- `/root/autodl-tmp/schema_outputs/d064_beam4_con_16980.log`\n\n### 输出路径\n- `/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_unconstrained_16980.jsonl`\n- `/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_constrained_16980.jsonl`\n\n### 注意\n- westd-21461 无任何进程被干扰\n- 若需严格一致性（用 d064 新 checkpoint），后续可在 westd-21461 beam search 完成后对比结果，或找中间存储做模型中转"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-llama-beam-16980.md"
+}

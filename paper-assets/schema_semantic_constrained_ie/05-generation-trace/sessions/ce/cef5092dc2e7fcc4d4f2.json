@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cef5092dc2e7fcc4d4f2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis llama docred dr residual",
+  "task_key": "worker_analysis_llama_docred_dr_residual_20260515T063059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_docred_dr_residual_20260515T063059_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "b5818eddae4b80d6fd9395679f460f900fa0e6eb2b9d1e2c181bb02d707b9bcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n**418 residual DR violations (2.55%)** 的结构化分析：\n\n1. **Top-10 relations 占 63.9% violations** — P1001 (jurisdiction, 45), P31 (instance of, 37), P607 (conflict, 30) 居前三\n2. **Tightness 与残余 DR 无相关性** — Spearman rho=0.069, p=0.52。约束系统在松紧不同的 relation 上均有效，残余 violation 不是 schema 太紧导致的\n3. **三类残余成因**：entity type ambiguity (forward coreference)、temporal role confusion、type granularity mismatch — 均为 greedy left-to-right decoding 的天然局限\n4. **Llama 大幅优于 Qwen** — 91.7% vs 53.3% 相对降幅，42/94 relations 零违规\n5. **Rebuttal 核心论点**：残余 2.55% 是 non-local dependency 的结构性下界，不可通过 local constraint 消除；tau(r) 无相关证明约束系统 uniformly effective\n\n报告路径：`artifacts/llama_docred_full_s1/report/dr_residual_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-docred-dr-residual.md"
+}

@@ -1,0 +1,455 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb0a1713b844416bb32",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis phase2 scierc unconstrained",
+  "task_key": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_phase2_scierc_unconstrained_20260513T234927.jsonl",
+    "occurrence": 1,
+    "bytes": 23250,
+    "sha256": "5ab873674ac58182ad8697c31f9abde8c9fad7b2f6e8b1111cd5a6c9a8f6cfce"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T23:50:29.688317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T23:50:29.688867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T23:50:29.689170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T23:50:29.689390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -3 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T23:50:29.689608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T23:50:29.689839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/violation_checker.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T23:50:29.690342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent0\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Part-of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Used-for\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"Task\\\\\\\"}], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\n  \\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"morphological analysis in Japanese text processing\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"1\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"OtherScientificTerm\\\\\\\\\\\\\\\"\\\\\\\\n    },\\\\\\\\n    {\\\\\\\\n      \\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\",\\\\\\\\n      \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"OtherScientificT\n…[truncated 7382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T23:50:29.690622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/violation_checker.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T23:50:29.690915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T23:50:29.691143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: violation_checker.py [-h] [--input_path INPUT_PATH]\\\\n                            [--constraints_path CONSTRAINTS_PATH]\\\\n                            [--output_path OUTPUT_PATH]\\\\n\\\\nCheck ontology constraint violations (SciERC)\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --input_path INPUT_PATH\\\\n  --constraints_path CONSTRAINTS_PATH\\\\n  --output_path OUTPUT_PATH\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T23:50:29.691374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker.py --input_path outputs/phase2_scierc_unconstrained.jsonl --constraints_path ontology_constraints.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T23:50:29.691600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (SciERC) ===\\\\nSamples: 551, JSON failures: 0 (0.0%)\\\\nEntities: 2474, Relations: 1724\\\\n\\\\nEntity type violations: 10/2474 (0.4%)\\\\nRelation vocab violations: 24/1724 (1.4%)\\\\nDomain/range violations: 265/1724 (15.4%)\\\\nCross-field consistency violations: 2\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.1537\\\\n\\\\nEntity F1: P=0.2605 R=0.3831 F1=0.3101\\\\nRelation F1: P=0.0644 R=0.1140 F1=0.0823\\\\n\\\\nReport saved to outputs/violation_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T23:50:29.691894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T23:50:29.692298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_samples\\\\\\\": 551,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 1724,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n    \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 10,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.004,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 24,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0139,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 265,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1537,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 2,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0008,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 301,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0717,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.1537,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"Compare\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 66,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 28,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4242\\\\n    },\\\\n    \\\\\\\"Conjunction\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 32,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Evaluate-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 133,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 32,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2406\\\\n    },\\\\n    \\\\\\\"Feature-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 486,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 163,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3354\\\\n    },\\\\n    \\\\\\\"Hyponym-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 124,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.1452\\\\n    },\\\\n    \\\\\\\"Part-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 72,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"Used-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 787,\\\\n      \\\\\\\"domain_range_violations\\\\\\\"\n…[truncated 4705 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T23:50:29.692665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase2_scierc_unconstrained",
+              "field": "metrics",
+              "value": "{'json_parse_rate': 1, 'entity_f1': 0.3101, 'entity_precision': 0.2605, 'entity_recall': 0.3831, 'relation_f1': 0.0823, 'relation_precision': 0.0644, 'relation_recall': 0.114, 'entity_type_violation_rate': 0.004, 'relation_vocabulary_violation_rate': 0.0139, 'domain_range_violation_rate': 0.1537, 'cross_field_consistency_violation_rate': 0.0008, 'total_triples': 1724, 'total_entities': 2474, 'total_samples': 551, 'per_relation_dr_violation': {'Compare': {'total': 66, 'violations': 28, 'rate': 0.4242}, 'Conjunction': {'total': 32, 'violations': 0, 'rate': 0}, 'Evaluate-for': {'total': 133, 'violations': 32, 'rate': 0.2406}, 'Feature-of': {'total': 486, 'violations': 163, 'rate': 0.3354}, 'Hyponym-of': {'total': 124, 'violations': 18, 'rate': 0.1452}, 'Part-of': {'total': 72, 'violations': 18, 'rate': 0.25}, 'Used-for': {'total': 787, 'violations': 6, 'rate': 0.0076}}, 'delta_vs_phase0': {'entity_f1': 0, 'relation_f1': 0, 'domain_range_violation_rate': 0, 'relation_vocabulary_violation_rate': 0, 'entity_type_violation_rate': 0, 'total_triples': 0}}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T23:50:29.693062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_scierc_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:19:07.120Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:50:15.156Z\\\", \\\"hypothesis\\\": \\\"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"126948\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:20:28.660Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\\\", \\\"wall_clock_seconds\\\": 5186.0, \\\"gpu_hours\\\": 1.44}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:44:02.820Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:44:06.470330+00:00\\\"}]}, \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"per_rel\n…[truncated 1046 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T23:50:29.693316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase2_scierc_unconstrained",
+              "field": "checkpoint_path",
+              "value": "/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T23:50:29.693622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_scierc_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:19:07.120Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:50:16.650Z\\\", \\\"hypothesis\\\": \\\"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"126948\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:20:28.660Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\\\", \\\"wall_clock_seconds\\\": 5186.0, \\\"gpu_hours\\\": 1.44}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:44:02.820Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:44:06.470330+00:00\\\"}]}, \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"per_rel\n…[truncated 1046 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T23:50:29.693910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase2_scierc_unconstrained",
+              "field": "log_path",
+              "value": "~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T23:50:29.694216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_scierc_unconstrained\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:19:07.120Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:50:17.609Z\\\", \\\"hypothesis\\\": \\\"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"126948\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:20:28.660Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\\\", \\\"wall_clock_seconds\\\": 5186.0, \\\"gpu_hours\\\": 1.44}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:44:02.820Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:44:06.470330+00:00\\\"}]}, \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"per_rel\n…[truncated 1046 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T23:50:29.694522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. 完整分析结果：\n\n## Phase 2 Unconstrained Baseline — 分析结果\n\n**结论: SUCCESS** — 与 Phase 0 完全一致，确认代码路径正确，constrained vs unconstrained 对比公平。\n\n### 核心指标\n\n| Metric | Phase 0 | Phase 2 Unconstrained | Delta |\n|--------|---------|----------------------|-------|\n| entity_f1 | 0.3101 | **0.3101** | 0 |\n| relation_f1 | 0.0823 | **0.0823** | 0 |\n| DR violation | 15.37% | **15.37%** | 0 |\n| RV violation | 1.39% | **1.39%** | 0 |\n| ET violation | 0.4% | **0.4%** | 0 |\n| total_triples | 1724 | **1724** | 0 |\n\n### 与 Phase 2 grammar_only 对比\n\n| Metric | Unconstrained | Grammar Only | Delta |\n|--------|--------------|-------------|-------|\n| entity_f1 | 0.3101 | 0.3098 | -0.0003 |\n| relation_f1 | 0.0823 | 0.0823 | 0 |\n| DR violation | 15.37% | 14.84% | **-0.53pp** |\n| RV violation | 1.39% | 0% | **-1.39pp** |\n| ET violation | 0.4% | 0% | **-0.4pp** |\n\n### Per-relation DR Violation Breakdown\n\n| Relation | Triples | Violations | Rate |\n|----------|---------|-----------|------|\n| Feature-of | 486 | 163 | **33.5%** |\n| Compare | 66 | 28 | **42.4%** |\n| Part-of | 72 | 18 | 25.0% |\n| Evaluate-for | 133 | 32 | 24.1% |\n| Hyponym-of | 124 | 18 | 14.5% |\n| Used-for | 787 | 6 | 0.8% |\n| Conjunction | 32 | 0 | 0% |\n\n所有 delta vs Phase 0 均为零，完美复现。Grammar_only 已将 RV 和 ET violation 降至 0%，DR violation 微降 0.53pp（语法约束对 domain-range 影响有限，符合预期）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase2_scierc_unconstrained_20260513T234927"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-phase2-scierc-unconstrained.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9ccd05b4cb5b1f8cfe3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w8 mistral docred zs posthoc",
+  "task_key": "worker_analysis_w8_mistral_docred_zs_posthoc_20260516T091422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w8_mistral_docred_zs_posthoc_20260516T091422_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "41cd05d3f72a60907689a41c14f2b33368c2ffc93ecddf21caa2b82c76b43e27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n**Mistral DocRED Post-hoc Filtering**\n\n| 指标 | 值 |\n|------|-----|\n| Total triples | 11,836 |\n| Rejected | 8,727 (73.7%) |\n| — RV (relation vocabulary) | 4,172 (35.2%) |\n| — ET (entity type) | 3,382 (28.6%) |\n| — DR (domain-range) | 1,173 (9.9%) |\n| R_F1 before | 0.0434 |\n| R_F1 posthoc | 0.0385 ↓ |\n| R_F1 constrained | 0.0552 |\n| TP before→after | 518 → 292 (lost 226, 43.6%) |\n\n这是 6 组 ZS 实验中唯一 post-hoc 导致 R_F1 下降的 case。73.7% 的拒绝率砍掉了近一半的 TP，precision 翻倍（0.044→0.094）但 recall 崩塌（0.043→0.024），净效果为负。key_finding 已更新：ZS 下 post-hoc ≥ constrained 在 5/6 组成立，Mistral DocRED 是例外。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w8-mistral-docred-zs-posthoc.md"
+}

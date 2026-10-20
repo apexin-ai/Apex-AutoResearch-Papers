@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c737a6a9576efc57fc97",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778867677.md",
+  "task_key": "loop_9_1778867677",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778867677.md",
+    "occurrence": 1,
+    "bytes": 4105,
+    "sha256": "f20d873ee213ab1b741d1ff39b633c6c9f1181306bb7a7188dd731b6f23f1fc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T17:52:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-16980 的 cuda:0 和 cuda:1（gpu_ids=[0,1]），其他设备号禁止\n- submit_training_job 命令必须 `bash -c` 包裹（tmux 默认 sh，source/conda activate 会 127）\n- CF fallback pilot 分析结果出来前，不能启动 PREPARING 的 3 个正式 CF 实验（w1_cf_fallback_llama_scierc / docred / llama_docred）\n- W5 LoRA (D018) 是条件启动：需 cuda:1 释放 + DR>2% gate\n- violation_checker 和 F1 评估必须用 `checker_version: fixed_20260514_v2` 口径，旧数据不可比\n- R-F1 统一用 all_set 方法（OOV 计为 FP），不要用 recognized_set\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-16980, account: root\n- 工作目录: `/root/schema_semantic_constrained_ie/`\n- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型: Qwen3-8B `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，Llama-3.1-8B `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据: SciERC `data/processed_data/test.json`，DocRED `data/docred/`\n- 约束文件: SciERC `ontology_constraints.json`，DocRED `data/docred/ontology_constraints_docred.json`\n- 活跃进程: llama_docred_full_s1_mt6144 (PID 247487, cuda:1, tmux)\n- Cron: llama_docred_full_s1_mt6144 存活监控中（reconcile 确认 still running）\n\n### 3. 📊 当前状态\n**刚做的**: w1_cf_fallback_scierc_pilot 实验正常退出 → 转 ANALYZING → 派 Worker `worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938` 做日志读取 + violation_checker + F1 评估。已向 Director 汇报 pilot 完成。\n\n**Registry 关键实验**:\n- `w1_cf_fallback_scierc_pilot`: ANALYZING，cuda:0，Qwen3-8B SciERC full_s1 CF fallback pilot\n- `llama_docred_full_s1_mt6144`: RUNNING，cuda:1 (PID 247487)，Llama DocRED full_s1 max_tokens=6144\n- `w1_cf_fallback_llama_scierc` / `w1_cf_fallback_docred` / `w1_cf_fallback_llama_docred`: PREPARING（等 pilot 分析通过）\n\n**等待中**:\n- Worker 回调: `worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938`（分析 pilot 结果）\n- Cron: llama_docred_full_s1_mt6144 完成回调\n- Director 未有未决决策\n\n### 4. 📋 待办\n- 分析 Worker 回调到 → 读 Worker 产出，判定 conclusion (success/negative)，update_registry，刷新 report.md，向 Director 汇报（带 on-experiment-done 全流程：反思实验计划 + 文献联动）\n- pilot conclusion=success → cuda:0 空闲，立即准备正式 CF 实验（先 dry-run 再提交），优先 Qwen SciERC/DocRED\n- pilot conclusion=negative → 产出 Framing 调整提案（red-section 规范），禁止默默跑下一个实验，等 Director 决策\n- llama_docred_full_s1_mt6144 cron 回调 → 分析 Llama DocRED mt6144 结果，与之前 llama_docred_full_s1 (DR 2.55%) 对比 max_tokens 影响\n- cuda:1 释放 + W1 正式实验占 cuda:0 → cuda:1 启动 W5 LoRA (D018)\n\n### 5. 🎯 战略上下文\n- **目标**: EMNLP 2026 ARR，DDL May 25。当前 Round 1 审稿应对，目标从 Weak Reject 2.75 → Accept 3.75-4.0\n- **W1 CF fallback 是 critical issue**: Reviewer 关注 CF violation (9.90%)。pilot 验证 fallback 机制能否降低 CF 且不牺牲 DR。phase2_scierc_full_s1 baseline: DR 0.93%, CF 9.90%, R-F1 8.36%\n- **D019 已解决 D017**: 代码已是 pair-based，W2 只需写作修复（§3 形式化统一 pair-based notation），0 GPU\n- **易错点**:\n  - SciERC CF 9.90% 的根因是 per-relation 独立 type enforcement 导致 entity-vs-relation type drift，主要冲突是 Generic ↔ OtherScientificTerm。CF fallback 可能只是缓解不是消除\n  - grammar_only DR 上升 (DocRED 18.46→26.17%) 是审稿必问点，已有预写 rebuttal\n  - DocRED 评估必须描述 name→PID 归一化 + OOV 计为 FP（审稿攻击面）\n  - Constraint tightness 是 DR scaling 的根因（SciERC τ̄=0.333 vs DocRED τ̄=0.842），不是 semantic 层失效\n  - 20 个 success / 0 个 negative，连续正向结果但 CF 残留是最大风险点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778867677.md"
+}

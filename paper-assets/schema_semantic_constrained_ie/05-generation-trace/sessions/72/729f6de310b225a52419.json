@@ -1,0 +1,539 @@
+{
+  "schema_version": "1.0",
+  "id": "729f6de310b225a52419",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "paper table2 cascade fix 13",
+  "task_key": "worker_paper_table2_cascade_fix_13_20260520T113317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_table2_cascade_fix_13_20260520T113317.jsonl",
+    "occurrence": 1,
+    "bytes": 18293,
+    "sha256": "d534279cea403a0c845d426f2d79d6023393c02d2d32e2a4741124283574d2ec"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T11:34:37.107396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eliminat",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T11:34:37.107930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/discussion_paragraphs_cf83d1.tex:38:The divergence in F1 significance between DocRED ($+$0.50\\,pp, $p < 0.001$, 95\\% CI [$+$0.23, $+$0.81]) and SciERC ($+$0.13\\,pp, $p = 0.58$, 95\\% CI [$-$0.24, $+$0.58]) traces to a single mechanism: grammar-layer elimination of out-of-vocabulary (OOV) relation names.\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex:43:The grammar layer eliminates these OOV predictions, removing a substantial source of false positives and yielding a statistically significant precision gain.\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:80:eliminating entity type violations (8.18\\%\\,$\\to$\\,0\\%) and\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:81:near-eliminating relation vocabulary violations\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:101:eliminating entity type violations (8.18\\%\\,$\\to$\\,0\\%) and\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:102:near-eliminating relation vocabulary violations\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:129:(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:172:eliminates a larger fraction of candidate tokens at each decoding step,\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex:180:near-complete DR elimination.\nartifacts/_project/paper/p3_case_studies_861a0d.tex:67:\\caption{Case~2: Layer~1 eliminates RV violations; Layer~2 corrects DR types on DocRED.}\nartifacts/_project/paper/section1_introduction_draft.tex:22:We evaluate two deployment configurations: LoRA + greedy S1 eliminates DR with R-F1 within $\\pm$0.6\\,pp and $+$10\\% latency; LoRA + beam S1 ($k{=}4$) additionally resolves the CF trade-off, achieving zero violations on SciERC (1.54$\\times$ latency).\nartifacts/_project/paper/main.tex:70:CF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\\,pp). CF$\\leftrightarrow$DR thus represents a fundamental tr\n…[truncated 16394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T11:34:37.108151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.20",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T11:34:37.108304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "59:Fine-tuning resolves both: DR\\,$\\leq$\\,0.20\\%, CF\\,$\\leq$\\,1.18\\%, R-F1 $\\pm$0.6\\,pp (\\S\\ref{sec:composability})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T11:34:37.108463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+              "offset": "3",
+              "limit": "8"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T11:34:37.108608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3\tWithout constraints, Large Language Model (LLM) based IE produces systematic domain/range (DR) violations that persist after fine-tuning, with rates characterized by \\emph{constraint tightness} ($\\bar{\\kappa}$) rather than schema or model scale.\n4\tThe two layers exhibit a formal enabling dependency (Proposition~1): neither achieves this reduction alone.\n5\t% exp_ids: w5_lora_scierc_constrained_eval, w5_qwen_docred_lora_constrained_eval, w5_llama_lora_scierc_constrained_eval, w5_llama_docred_lora_constrained_eval\n6\tComposed with Low-Rank Adaptation (LoRA), \\textsc{OntoCoDec} eliminates DR violations with negligible R-F1 impact ($\\pm$0.6\\,pp); beam search ($k{=}4$) resolves the cross-field consistency (CF) trade-off, achieving zero violations on SciERC (R-F1 44--46, 1.54$\\times$ latency).\n7\tUnder zero-shot decoding, DR drops by 76--99\\% for calibrated models.\n8\tThe framework extends to event extraction without modification, validating the ontology-agnostic compilation design.\n9\t\\textsc{OntoCoDec} compiles constraints automatically from any IE ontology at inference time, requires no constraint-specific training, and applies to any autoregressive LM across four models (8B--70B) and three tokenizer families.\n10\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T11:34:37.108790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+              "offset": "19",
+              "limit": "8"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T11:34:37.108932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19\tWe propose \\textbf{OntoCoDec}, a framework that formally compiles IE ontologies into composable layers of decoding-time constraints.\n20\tA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} enforces context-free constraints (JSON structure, vocabulary membership) via XGrammar; the \\emph{semantic layer} enforces prefix-decidable constraints (pair-based domain/range) through dynamic logit masking over a runtime entity registry, with an \\emph{enabling dependency} between layers.\n21\tOntoCoDec compiles constraints automatically from any IE ontology, requires no constraint-specific training, and applies to any autoregressive LM.\n22\tWe evaluate two deployment configurations: LoRA + greedy S1 eliminates DR with R-F1 within $\\pm$0.6\\,pp and $+$10\\% latency; LoRA + beam S1 ($k{=}4$) additionally resolves the CF trade-off, achieving zero violations on SciERC (1.54$\\times$ latency).\n23\tZero-shot evaluation across four models (8B--70B) confirms DR drops by 76--99\\% for calibrated models.\n24\t\n25\tOur contributions:\n26\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T11:34:37.109064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+              "offset": "5",
+              "limit": "8"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T11:34:37.109188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\\label{sec:violation_landscape}\n6\t\n7\tWe evaluate OntoCoDec in two deployment configurations.\n8\tLoRA + greedy S1 (\\S\\ref{sec:composability}) is the recommended fast configuration, eliminating DR violations with minimal latency overhead.\n9\tLoRA + beam S1 (\\S\\ref{sec:beam-results}) additionally resolves cross-field consistency, achieving zero total violations at 1.54$\\times$ latency.\n10\tZero-shot evaluation (\\S\\ref{sec:scierc-results}--\\S\\ref{sec:cross-model}) isolates layer contributions as a diagnostic; R-F1 2--8 reflects the absence of task-specific training, not method failure.\n11\t\n12\t\\paragraph{Setup.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T11:34:37.109308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "offset": "56",
+              "limit": "8"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T11:34:37.109445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56\tRV and ET reach $\\leq$0.03\\% for all models on both datasets.\n57\tDR drops 76--99\\% on SciERC and 42--90\\% on DocRED; R-F1 improves in 5/6 settings (DocRED: Qwen $+$0.50\\,pp, $p{<}0.001$; Llama $+$0.29\\,pp, $p{=}0.013$).\n58\tCF direction depends on calibration: S1 introduces CF for calibrated models (up to 12.02\\%; \\S\\ref{sec:discussion}) but reduces it for Mistral (56.87\\%\\,$\\to$\\,1.27\\%).\n59\tFine-tuning resolves both: DR\\,$\\leq$\\,0.20\\%, CF\\,$\\leq$\\,1.18\\%, R-F1 $\\pm$0.6\\,pp (\\S\\ref{sec:composability}).\n60\t\n61\t\\paragraph{Mistral as boundary condition.}\n62\tEffective semantic constraint enforcement presupposes that the base model assigns entity types within the ontology vocabulary.\n63\tWhen entity typing quality degrades substantially (Mistral: ET 1.5--7.6\\% unconstrained, DR 56.9--57.4\\%), the semantic layer cannot correct entity misclassification errors that precede constraint application; DR reduction is limited to 42\\% vs.\\ 76--99\\% for calibrated models."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T11:34:37.109646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+              "old_string": "\\textsc{OntoCoDec} eliminates DR violations with negligible R-F1 impact",
+              "new_string": "\\textsc{OntoCoDec} near-eliminates DR violations (DR $\\leq$ 0.21\\%) with negligible R-F1 impact"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T11:34:37.109872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T11:34:37.110009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+              "old_string": "LoRA + greedy S1 eliminates DR with R-F1 within",
+              "new_string": "LoRA + greedy S1 near-eliminates DR ($\\leq$ 0.21\\%) with R-F1 within"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T11:34:37.110168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T11:34:37.110292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+              "old_string": "eliminating DR violations with minimal latency overhead",
+              "new_string": "near-eliminating DR violations with minimal latency overhead"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T11:34:37.110431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T11:34:37.110551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "old_string": "DR\\,$\\leq$\\,0.20\\%",
+              "new_string": "DR\\,$\\leq$\\,0.21\\%"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T11:34:37.110744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T11:34:37.110905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "Compile LaTeX paper",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T11:34:37.111028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur\nw/zapfding/uzdr.pfb>\nOutput written on main.pdf (32 pages, 504264 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T11:34:37.111155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/ && echo \"=== (a) DR context 0.20 残留 ===\" && grep -rn \"0\\.20\" *.tex | grep -i -E \"DR|domain|violation\" ; echo \"=== (b) eliminates/eliminating DR 残留 ===\" && grep -rn \"eliminates DR\\|eliminating DR\" *.tex ; echo \"=== (c) 旧 R-F1 44.23 和 delta 0.51 残留 ===\" && grep -rn \"44\\.23\\|0\\.51\" *.tex ; echo \"=== (d) eliminat + DR context ===\" && grep -rn \"eliminat\" *.tex | grep -i \"DR\\|domain\"",
+              "description": "Run 4 grep verifications"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T11:34:37.111395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== (a) DR context 0.20 残留 ===\n=== (b) eliminates/eliminating DR 残留 ===\nabstract.tex:6:Composed with Low-Rank Adaptation (LoRA), \\textsc{OntoCoDec} near-eliminates DR violations (DR $\\leq$ 0.21\\%) with negligible R-F1 impact ($\\pm$0.6\\,pp); beam search ($k{=}4$) resolves the cross-field consistency (CF) trade-off, achieving zero violations on SciERC (R-F1 44--46, 1.54$\\times$ latency).\nappendix_beam_search.tex:59:On SciERC, beam search eliminates DR for both Qwen (0.93\\%\\,$\\to$\\,0\\%) and Llama (0.08\\%\\,$\\to$\\,0\\%), and substantially reduces CF (Qwen: 9.90\\%\\,$\\to$\\,0.53\\%; Llama: 6.56\\%\\,$\\to$\\,0.93\\%).\nappendix_beam_search.tex:60:On DocRED (matched 50-document subsets), beam search eliminates DR for both Qwen (8.69\\%\\,$\\to$\\,0\\%) and Llama (1.58\\%\\,$\\to$\\,0\\%), with CF reductions of 74\\% and 86\\% respectively.\nappendix_discussion.tex:193:Fine-tuning alone eliminates DR on four of seven relations but leaves non-zero violations on the three tightest-constraint relations: \\textsc{Evaluate-for} ($\\kappa{=}0.361$, 13.13\\%), \\textsc{Part-of} ($\\kappa{=}0.417$, 5.77\\%), and \\textsc{Compare} ($\\kappa{=}0.528$, 5.00\\%).\nsection1_introduction_draft.tex:22:We evaluate two deployment configurations: LoRA + greedy S1 near-eliminates DR ($\\leq$ 0.21\\%) with R-F1 within $\\pm$0.6\\,pp and $+$10\\% latency; LoRA + beam S1 ($k{=}4$) additionally resolves the CF trade-off, achieving zero violations on SciERC (1.54$\\times$ latency).\nsection3_violation_landscape.tex:8:LoRA + greedy S1 (\\S\\ref{sec:composability}) is the recommended fast configuration, near-eliminating DR violations with minimal latency overhead.\nsection5_scierc_draft.tex:104:On SciERC ($\\bar{\\kappa}{=}0.333$), adding S1 eliminates or near-eliminates DR: Qwen 1.95\\%\\,$\\to$\\,0\\%, Llama 1.11\\%\\,$\\to$\\,0.09\\%, with R-F1 within $\\pm$0.1\\,pp.\n=== (c) 旧 R-F1 44.23 和 delta 0.51 残留 ===\nappendix_beam_search.tex:135:Adding beam search ($k{=}4$) eliminates all residual CF violations (1.18\\%\\,$\\to$\\,0\\%), yielding zero violations acro\n…[truncated 14909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T11:34:37.111731+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改报告\n\n### 修改清单（4处）\n\n| # | 文件 | 行 | 旧值 | 新值 |\n|---|------|-----|------|------|\n| 1 | `abstract.tex` | 6 | `eliminates DR violations` | `near-eliminates DR violations (DR $\\leq$ 0.21\\%)` |\n| 2 | `section1_introduction_draft.tex` | 22 | `eliminates DR` | `near-eliminates DR ($\\leq$ 0.21\\%)` |\n| 3 | `section3_violation_landscape.tex` | 8 | `eliminating DR violations` | `near-eliminating DR violations` |\n| 4 | `section5_crossmodel_draft.tex` | 59 | `DR\\,$\\leq$\\,0.20\\%` | `DR\\,$\\leq$\\,0.21\\%` |\n\n### 验证结果\n\n**编译**: 0 errors, 32 pages, 504264 bytes.\n\n**grep (a) DR context 0.20 残留**: 空 — 无残留。\n\n**grep (b) \"eliminates/eliminating DR\" 残留**: 剩余出现均合法：\n- `appendix_beam_search.tex:59,60` — beam search 确实将 DR 降到 0%，\"eliminates\" 事实正确\n- `appendix_discussion.tex:193` — \"Fine-tuning alone eliminates DR on four of seven relations\"，描述具体 relation 级别的消除\n- `section5_scierc_draft.tex:104` — \"eliminates or near-eliminates DR\"，Qwen LoRA 确实 DR=0%\n\n**grep (c) 44.23 / 0.51 残留**: 均合法：\n- `appendix_beam_search.tex:135`, `section5_scierc_draft.tex:110` — R-F1=44.23 是 Qwen SciERC beam 结果\n- `appendix_discussion.tex:260` — 0.51 是 per-relation 表格中的 Grammar 行 CF 值，非 ΔDR\n\n**grep (d) \"eliminat\" + DR context**: 所有剩余出现均为合法用法（beam DR→0%、ET/RV 消除、per-relation 细节、DEPRECATED 文件）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table2_cascade_fix_13_20260520T113317"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/paper-table2-cascade-fix-13.md"
+}

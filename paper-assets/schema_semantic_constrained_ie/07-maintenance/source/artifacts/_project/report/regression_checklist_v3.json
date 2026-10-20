@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-05-21T14:45:00Z",
+  "note": "v3 FINAL: Independent verification on latest .tex files after Paper Agent R15 Patch. Clean compile (latexmk -C && latexmk -pdf). PDF = 33 pages.",
+  "checks": [
+    {
+      "id": 1,
+      "name": "no_formal_guarantee",
+      "status": "PASS",
+      "evidence": "grep -ri 'formal guarantee' across all .tex: 0 matches."
+    },
+    {
+      "id": 2,
+      "name": "no_kappa_bar_in_contributions",
+      "status": "PASS",
+      "evidence": "Contributions block (section1_introduction_draft.tex:26-29) verified. Full text:\n  \\item A two-layer constrained decoding framework, motivated by a decidability analysis establishing that IE type constraints require runtime state beyond CFG expressiveness (Proposition~1), yielding pair-based sequential enforcement at each level (§sec:decidability). Constraints compile automatically from IE ontologies, validated on schemas of varying restrictiveness with up to 96 relation types.\n  \\item A comprehensive evaluation of type constraint enforcement across 3 IE datasets, 4 models (7--70B), and 2 tasks: (a) for RE, the five-way ablation confirms that neither layer alone achieves >24% DR reduction while their composition yields 94--100%, and that fine-tuning does not obviate constraints (residual DR 1--2% at R-F1 40--46%); (b) preliminary event extraction results on WikiEvents demonstrate generalization to 245 constraints across three tokenizer families (§sec:wikievents).\nNo \\bar{\\kappa}, no '94-99%', no '42-90%'. κ̄ detail replaced with 'schemas of varying restrictiveness'."
+    },
+    {
+      "id": 3,
+      "name": "zero_orphan_bib",
+      "status": "PASS",
+      "evidence": "60 bib keys in relwork_new_entries.bib; all 60 cited in ≥1 .tex file. 0 orphans."
+    },
+    {
+      "id": 4,
+      "name": "main_text_leq_8pages",
+      "status": "PASS",
+      "evidence": "Clean compile: latexmk -C && latexmk -pdf → 33 pages, 0 errors. main.aux: \\newlabel{sec:discussion}{{7}{8}}. PDF visual: §7 Discussion and Conclusion starts on p8 (line 626), ends on p8 (line 636: 'with preliminary 70B results.'). p9 first line: 'Limitations' (line 637). Main text (§1-§7) fits in 8 pages. \\clearpage before Limitations confirmed."
+    },
+    {
+      "id": 5,
+      "name": "dr_cf_parallel_reporting",
+      "status": "PASS",
+      "evidence": "abstract.tex:6 'near-eliminates DR (94--100% reduction)...but introduces cross-field (CF) violations as a trade-off'. section1_introduction_draft.tex:21 'DR enforcement is precision-preserving...but introduces CF side-effects'. All DR claims have CF context in same or adjacent sentence."
+    },
+    {
+      "id": 6,
+      "name": "no_any_autoregressive_lm",
+      "status": "PASS",
+      "evidence": "grep -ri 'any autoregressive' across all .tex: 0 matches."
+    },
+    {
+      "id": 7,
+      "name": "no_formally_compiles",
+      "status": "PASS",
+      "evidence": "grep -ri 'formally compiles' across all .tex: 0 matches."
+    },
+    {
+      "id": 8,
+      "name": "MF1_constrained_baselines_paragraph",
+      "status": "PASS",
+      "evidence": "section5_runtime.tex:21 '\\paragraph{Comparison with grammar-constrained approaches.}' with \\label{sec:constrained-baselines}. Contains \\cite{geng2023gcd} (GCD) and \\cite{boostcd2025} (BoostCD). Line 25: '70 pp gap demonstrates that Level 1 constraints alone are insufficient'."
+    },
+    {
+      "id": 9,
+      "name": "appendix_fallback_causal_tracing",
+      "status": "PASS",
+      "evidence": "appendix_discussion.tex:44 '\\paragraph{Fallback Causal Tracing.}' with \\label{app:causal-tracing}. Table at line 63-64: '\\caption{Fallback causal tracing on SciERC (551 documents)...}' \\label{tab:causal-tracing}."
+    },
+    {
+      "id": 10,
+      "name": "W7_cross_language_limitation",
+      "status": "PASS",
+      "evidence": "main.tex:94 'Our evaluation is limited to English-language datasets; the continuation masking mechanism may behave differently for languages without whitespace-delimited tokenization (e.g., Chinese, Japanese), which we leave to future work.'"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "pass": 10,
+    "fail": 0,
+    "overall": "PASS"
+  }
+}

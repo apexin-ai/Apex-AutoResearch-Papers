@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c3bf7b2a77ebae336c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check gpu utilization",
+  "task_key": "worker_check_gpu_utilization_20260521T114951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_utilization_20260521T114951_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "9637d16168dd889445186d150085e00ee73a763f13acc9a748a9838774d549b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。核心发现：\n\n**GPU 实际状态（与预期不符）：**\n\n| GPU | 状态 | 说明 |\n|-----|------|------|\n| westd-21461 cuda:0 | **FREE** | 0 MiB |\n| westd-21461 cuda:1 | BUSY (92%) | 70B DocRED **unconstrained**（非 s1） |\n| westd-16980 cuda:0 | **FREE** | 0 MiB |\n| westd-16980 cuda:1 | **FREE** | 0 MiB |\n\n**关键发现：Registry 与实际不一致。** `r16_70b_docred_zs_s1` 标记为 RUNNING，但 PID 247853 实际在跑 `--mode unconstrained`。Constrained (s1) 还没开始。进度 750/998 docs (75%)，预计还需 ~2h。\n\n**3 张空闲 GPU 建议调度：**\n\n1. **P0 — 70B DocRED constrained (s1)** → westd-16980 cuda:0\n   - 不用等 unconstrained 结束，直接在 16980 加载 70B 模型并行跑\n   - 预计 ~9h\n\n2. **P0 — GoLLIE SciERC 551-doc head-to-head** → westd-16980 cuda:1\n   - 目前只有 100-doc pilot (d063)，需要全量测试集对比\n   - 预计 1-3h\n\n3. **P1/P2 — Triple validity 分析 或 70B LoRA SciERC** → westd-21461 cuda:0\n   - Trie 已完成，70B LoRA 启动条件满足\n\n**立即需要的操作：**\n- 修正 registry 中 `r16_70b_docred_zs_s1` 的描述（实际是 unconstrained）\n- 将 70B constrained 和 GoLLIE 分别 dispatch 到 westd-16980 两张卡"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-utilization.md"
+}

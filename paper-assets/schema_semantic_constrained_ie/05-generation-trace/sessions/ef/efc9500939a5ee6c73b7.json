@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "efc9500939a5ee6c73b7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis phase2 scierc s1 semantic",
+  "task_key": "worker_analysis_phase2_scierc_s1_semantic_20260514T003544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_scierc_s1_semantic_20260514T003544.log",
+    "occurrence": 1,
+    "bytes": 727231,
+    "sha256": "e18723bcd7a7bf6a8427001fd603d7e2e51420f69a2045a1982702af52eabe41"
+  },
+  "statistics": {
+    "messages": 402,
+    "user_turns": 0,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 135,
+      "tool_result": 135
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 402,
+      "chunks": [
+        {
+          "path": "efc9500939a5ee6c73b7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "efc9500939a5ee6c73b7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "efc9500939a5ee6c73b7-part-0003.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-scierc-s1-semantic.md"
+}

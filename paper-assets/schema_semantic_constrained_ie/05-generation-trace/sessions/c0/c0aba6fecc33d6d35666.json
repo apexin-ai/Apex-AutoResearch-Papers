@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0aba6fecc33d6d35666",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code v3 progress check",
+  "task_key": "worker_code_v3_progress_check_20260518T091719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v3_progress_check_20260518T091719_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "e827466c72b158561ac8205736d3ed2213641a4f7e7eb75298c53cbbae66c08d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16980\n\n| 文件 | 行数 |\n|---|---|\n| `ee_mistral_wikievents_grammar_only_v3.jsonl` | 158 |\n| `ee_qwen_wikievents_constrained_v3_full.jsonl` | 179 |\n\n| GPU | 显存占用 | 利用率 |\n|---|---|---|\n| 0 | 27431 MiB | 84% |\n| 1 | 20073 MiB | 88% |\n\n## westd-21461\n\n| 文件 | 行数 |\n|---|---|\n| `ee_llama_wikievents_constrained_v3_full.jsonl` | 146 |\n| `ee_mistral_wikievents_constrained_v3_full.jsonl` | 141 |\n\n| GPU | 显存占用 | 利用率 |\n|---|---|---|\n| 0 | 24007 MiB | 79% |\n| 1 | 19309 MiB | 88% |\n\n四个实验均在运行中，GPU 利用率都在 79%-88%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v3-progress-check.md"
+}

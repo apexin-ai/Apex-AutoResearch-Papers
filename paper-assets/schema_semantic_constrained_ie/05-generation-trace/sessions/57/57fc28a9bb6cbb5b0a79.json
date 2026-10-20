@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57fc28a9bb6cbb5b0a79",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check harvest qwen int4",
+  "task_key": "worker_check_harvest-qwen-int4_20260523T050742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_harvest-qwen-int4_20260523T050742_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "8edc9cc50351cdf2f44b7b8bad6c25557ef55144b87efac2fe9ed9252d216a9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring both INT4 inference runs:\n- **Qwen INT4**: 202/551, ~26 min remaining\n- **Llama INT4**: 243/551, ~18 min remaining\n\nFP16 baselines identified from registry:\n- **Qwen FP16 S1** (`w5_lora_scierc_constrained_eval`): DR=0%, CF=1.18%, R-F1=43.77%, E-F1=67.05%\n- **Llama FP16 S1** (`w5_llama_lora_scierc_constrained_eval`): DR=0.09%, CF=0.46%, R-F1=45.47%, E-F1=67.76%\n\nWill check back in ~4.5 min for progress update."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-harvest-qwen-int4.md"
+}

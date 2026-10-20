@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf3fb3052b0cbaf8e98",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix semantic only complete",
+  "task_key": "worker_fix_semantic_only_complete_20260514T003554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_semantic_only_complete_20260514T003554.log",
+    "occurrence": 1,
+    "bytes": 742051,
+    "sha256": "86bd354ae1de834c0f1b95ddf076d3952d1679c92902f5e7fad44d99a9eb9bdd"
+  },
+  "statistics": {
+    "messages": 382,
+    "user_turns": 0,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 146,
+      "tool_result": 146,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 382,
+      "chunks": [
+        {
+          "path": "8bf3fb3052b0cbaf8e98-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8bf3fb3052b0cbaf8e98-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8bf3fb3052b0cbaf8e98-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-semantic-only-complete.md"
+}

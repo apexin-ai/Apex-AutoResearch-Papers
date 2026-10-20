@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aac554d81e4b4731476",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section3 method draft",
+  "task_key": "worker_paper_section3_method_draft_20260514T054115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section3_method_draft_20260514T054115_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "bd6664c4070299933a06774153fb661def94db552f84b14dee94cdf0e1c67811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/section3_method_draft.tex` 并注册到 manifest。\n\n结构概要：\n- **3.1 Problem Formulation** — IE as structured generation、ontology schema $\\mathcal{O}=(\\mathcal{E},\\mathcal{R},\\operatorname{dom},\\operatorname{range})$、type-validity 定义、三类 constraint decidability\n- **3.2 Grammar Layer** — JSON Schema → EBNF → XGrammar logit masking；消除 RV/ET，不影响 F1；明确不处理 dom/range\n- **3.3 Semantic Layer** — Entity Registry 动态构建、Position Detection、Head/Tail type dynamic masking、grammar-semantic conjunction (Eq.~4)、enabling dependency 实证（semantic-only DR 仅降 24%）、grammar-first invariant fallback，详细分析 refer Section 4\n- **3.4 Decoding Strategies** — S1 single-pass（推荐）vs S2 two-pass（ablation），含 SciERC 对比数据\n\n符号体系与 Section 4/5 保持一致：$G(t)$, $S(t)$, $M_{\\text{grammar}}$, $M_{\\text{semantic}}$, $M_{\\text{final}}$。所有数字与 registry 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section3-method-draft.md"
+}

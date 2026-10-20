@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4064f4658ccfb2f4066a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix urgent bib corrections",
+  "task_key": "worker_fix_urgent-bib-corrections_20260526T103547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_urgent-bib-corrections_20260526T103547_result.json",
+    "occurrence": 1,
+    "bytes": 2853,
+    "sha256": "60cf8589f7118399c3a9a3ad764934ed8f40316dbd91b45b3c7570d5b88192b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，bibtex 0 warnings。汇报如下：\n\n---\n\n## 修改汇报\n\n### 1. `luo2025kgtrie` — 标题修正 ✅\n\n- **来源**: [arXiv:2410.13080](https://arxiv.org/abs/2410.13080), [ICML 2025 poster](https://icml.cc/virtual/2025/poster/45868)\n- **修改前**: `Graph-Constrained Reasoning: Faithful Knowledge Graph Rationale Generation for Knowledge-to-Text Generation`\n- **修改后**: `Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models`\n- 作者和 venue (ICML 2025) 确认正确，无需改动\n\n### 3. `sainz2024gollie` — 删除多余 \"Modeling\" ✅\n\n- **来源**: [OpenReview Y3wpuxd7u9](https://openreview.net/forum?id=Y3wpuxd7u9), [arXiv:2310.03668](https://arxiv.org/abs/2310.03668), [ICLR 2024 poster page](https://iclr.cc/virtual/2024/poster/18435)\n- **修改前**: `GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling`\n- **修改后**: `GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction`\n\n### 4. `ugare2024syncode` — year 改为 2025 ✅\n\n- **来源**: [OpenReview HiUZtgAPoH](https://openreview.net/forum?id=HiUZtgAPoH), [TMLR official announcement](https://x.com/TmlrPub/status/1951447922060435673) (published 2025-06-16)\n- **修改前**: `year = {2024}`\n- **修改后**: `year = {2025}`\n\n### 5. `spires_2024` — 无需修改 ✅\n\n- **来源**: [Bioinformatics btae104](https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230)\n- 当前标题 \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases Using Zero-shot Learning\" 与正式发表标题一致，无副标题缺失\n\n### 6. `tam2024letmespeak` — 标题措辞修正 ✅\n\n- **来源**: [ACL Anthology 2024.emnlp-industry.91](https://aclanthology.org/2024.emnlp-industry.91/)\n- **修改前**: `...on Performance of Large Language Models`\n- **修改后**: `...on Large Language Model Performance`\n- ACL Anthology 正式发表版与 arXiv 预印本措辞不同，已改为正式发表版\n\n### 7. `ontologx_2025` — 无需修改 ✅\n\n- **来源**: [Wiley Advanced Intelligent Systems](https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aisy.202501381) (online published 2026-04-23)\n- `year = {2026}` 正确。cite key 中的 2025 是命名惯例，不影响编译\n\n### 8. `zhou2026ontologytools` — \"Bulter\" → \"Butler\" ✅\n\n- **来源**: [arXiv:2602.03439](https://arxiv.org/abs/2602.03439) 上拼作 \"Bulter\"，但 [Cambridge CoMo Group 主页](https://como.ceb.cam.ac.uk/people/pb879/) 显示该作者全名为 **Patrick Butler**\n- arXiv 上的 \"Bulter\" 是拼写错误\n- **修改前**: `Bulter, Patrick`\n- **修改后**: `Butler, Patrick`\n\n### 编译结果\n\n- PDF 生成成功 (39 pages)\n- bibtex warnings: **0**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-urgent-bib-corrections.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d119ccb53265ac1688d2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix docred lora restart tb",
+  "task_key": "worker_fix_docred_lora_restart_tb_20260521T124132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_docred_lora_restart_tb_20260521T124132_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "fa2f439db588c833fc6080de5018a1d07f117b047fb0ccc68a9c7cf0761ddc37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 20 数据到了：\n\n| Step | Loss | Grad Norm | LR |\n|------|------|-----------|----|\n| 10 | 0.1472 | 0.1431 | 2e-6 |\n| 20 | 0.1499 | 0.1574 | 3e-6 |\n\nLoss 从 0.1472→0.1499 微升，这是正常的——当前处于 warmup 阶段（LR 在爬升），loss 在 warmup 结束前不会明显下降。grad_norm 稳定在 0.14-0.16，梯度健康。训练一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-docred-lora-restart-tb.md"
+}

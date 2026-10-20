@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48091ea43b114c8f61c3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "backup execute final backup",
+  "task_key": "worker_backup_execute-final-backup_20260525T211320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_backup_execute-final-backup_20260525T211320_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "3bb8d08504baa4264cc74c176da7b6b5a5538ab0108cb6ea66d790c9cdd4e578"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "上传成功。Step 6 汇报：\n\n---\n\n## S3 备份完成\n\n### (a) 各 tarball 文件名 + 大小\n\n| 文件 | 大小 |\n|------|------|\n| `schema_semantic_constrained_ie_be_local.tar.gz` | 3.0G |\n| `schema_semantic_constrained_ie_westd-16980.tar.gz` | 94M |\n| `schema_semantic_constrained_ie_westd-21461.tar.gz` | 2.2G |\n\n### (b) 最终 tarball\n\n- 路径：`/home/ubuntu/s3_staging/schema_semantic_constrained_ie-final-20260525T215124Z.tar.gz`\n- 大小：5.2G (5,506,461,787 bytes)\n\n### (c) S3 URI\n\n```\ns3://agent-ml-manager-backups-emnlp/manager-backup/backends/schema_semantic_constrained_ie/project-archive/schema_semantic_constrained_ie-final-20260525T215124Z.tar.gz\n```\n\n### (d) 上传速率\n\n119.3 MB/s，耗时 44.0s\n\n### (e) 备份内容清单\n\n| 服务器 | 包含目录 |\n|--------|---------|\n| **BE local** | `projects/schema_semantic_constrained_ie/`（代码、artifacts、checkpoints、data、compiler、figures、docs、paper 等） |\n| **westd-16980** | `schema_semantic_constrained_ie/`（代码、outputs、logs、data） |\n| **westd-21461** | `schema_semantic_constrained_ie/`（代码、checkpoints/qwen3_8b_lora_wikievents 1.2G、checkpoints/llama_lora_docred 1.2G、outputs、logs）+ `autodl-tmp/schema_outputs/` |\n\n### (f) 每台服务器数据总大小\n\n| 服务器 | 原始大小 | 压缩后 |\n|--------|---------|--------|\n| BE local | 3.8G | 3.0G |\n| westd-16980 | 693M | 94M |\n| westd-21461 | 2.75G（代码 2.6G + outputs 145M）| 2.2G |\n| **合计** | **~7.2G** | **5.2G** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/backup-execute-final-backup.md"
+}

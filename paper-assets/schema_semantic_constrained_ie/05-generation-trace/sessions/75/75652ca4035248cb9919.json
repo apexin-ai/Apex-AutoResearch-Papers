@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75652ca4035248cb9919",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor westd 21461 gpu status",
+  "task_key": "worker_monitor_westd-21461-gpu-status_20260522T052009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-21461-gpu-status_20260522T052009_result.json",
+    "occurrence": 1,
+    "bytes": 2163,
+    "sha256": "06671df8eb205811881dc350ea365857d946e92dcc88c6a8dbe965797390b2b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇总如下：\n\n---\n\n## westd-21461 服务器状态\n\n### GPU\n| GPU | 型号 | 显存 | 利用率 | 显存占用 |\n|-----|------|------|--------|----------|\n| 0 | NVIDIA RTX PRO 6000 Black | 96 GB | 0% | 0 MiB |\n| 1 | NVIDIA RTX PRO 6000 Black | 96 GB | 0% | 0 MiB |\n\n**两块 GPU 完全空闲，无运行进程。**\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (root) | 30G | 21G | 9.5G | 69% |\n| /root/autodl-tmp | 250G | 176G | 75G | 71% |\n\n根分区偏紧（9.5G 剩余），数据盘 75G 可用。\n\n### 项目代码\n`/root/schema_semantic_constrained_ie/` — 存在，包含完整代码（脚本、编译器、数据、论文目录等）。\n\n### 已下载模型 (`/root/autodl-tmp/models/`)\n- `LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4` — 完整（9 个 safetensors 分片 + tokenizer）\n- `Mistral-7B-Instruct-v0.3`\n- `Qwen3-8B-ms`\n- `hugging-quants`\n- `mistralai`\n\n### Checkpoints（LoRA / 微调）\n**`/root/autodl-tmp/checkpoints/`:**\n- `llama_lora_docred_merged`\n- `llama_lora_scierc_merged`\n- `qwen3_8b_lora_scierc_merged`\n- `qwen3_8b_lora_wikievents_merged`\n- `qwen_full_ft_scierc`\n- `qwen_lora_docred_merged`\n\n**`/root/schema_semantic_constrained_ie/checkpoints/`:**\n- `llama_lora_docred`\n- `qwen3_8b_lora_wikievents`\n\nSciERC 和 DocRED 的 LoRA checkpoint 均存在（Llama + Qwen 两个模型）。\n\n### 已有输出 (`/root/autodl-tmp/schema_outputs/`)\n大量历史推理结果（70b_scierc、docred beam sweep、seed variance、trie baseline、latency 等）。\n\n### Python 环境\n- Python 3.10.12（系统），conda 环境在 `/root/miniconda3/`（Python 3.12）\n- **PyTorch** 2.8.0+cu128\n- **Transformers** 5.8.1\n- **PEFT** 0.19.1\n- **xgrammar** 0.1.33\n- **vLLM** — 未安装\n\n### 结论\n**可以直接启动新推理任务。** GPU 空闲、模型和 checkpoint 齐全、核心依赖（torch/transformers/peft/xgrammar）已装好。唯一缺失是 vLLM（如需 vLLM 推理需额外安装）。根分区空间偏紧，新输出建议写到 `/root/autodl-tmp/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-21461-gpu-status.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "98e15ff371b264aa2e1e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents phase3 integration dryrun",
+  "task_key": "worker_code_wikievents_phase3_integration_dryrun_20260517T150624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_phase3_integration_dryrun_20260517T150624.log",
+    "occurrence": 1,
+    "bytes": 851963,
+    "sha256": "3b52c70c81e28dd5e4b25947013eab0c065ddef6d3fed86bb2186983e6f01e20"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "98e15ff371b264aa2e1e-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "98e15ff371b264aa2e1e-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-phase3-integration-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f20a1602da2742a01227",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write section5 unified update",
+  "task_key": "worker_write_section5_unified_update_20260514T183710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_section5_unified_update_20260514T183710_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "22299774883298b640c566841625a3cd39e136fbae295e7003e61d9cbd40e9c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "活动文件中无 v1 旧数字残留。\n\n**修改统计（共 21 处）：**\n\n**DocRED 草稿 — 18 处：**\n- 表格 ET 列：unconstrained 8.18→2.48, semantic 10.44→4.22（2 处）\n- 表格 DR 列：Full S1 10.19→10.21（1 处）\n- 表格 caption：加 checker v2 说明 + bootstrap 脚注（2 处）\n- Core result 段：ET 8.18→2.48, DR 10.19→10.21, 替换 F1-neutral 为 bootstrap CI 显著性声明（4 处文本 + 3 处注释）\n- Grammar layer 段：ET 8.18→2.48（1 处）\n- Enabling dependency 段：ET 10.44→4.22, ET 对比 10.44/8.18→4.22/2.48, DR 10.19→10.21（3 处文本 + 2 处注释）\n- 新增 post-hoc filtering 对比段落（~150 words，含 SciERC/DocRED 双数据集数据）\n- 新增 per-relation fallback 具体数据（P1198=83%, P171=78%, P127=0%, P170=0%, aggregate 10.2%）\n\n**SciERC 草稿 — 3 处：**\n- Core result 段：加 bootstrap 95% CI [−0.24, +0.58]pp, p=0.58\n- 简化显著性声明为 `$p = 0.58$`\n- 表格 caption：加 bootstrap 脚注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-section5-unified-update.md"
+}

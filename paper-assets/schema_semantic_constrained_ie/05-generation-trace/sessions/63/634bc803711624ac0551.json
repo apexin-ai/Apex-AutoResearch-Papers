@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634bc803711624ac0551",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix d015 title and nearcomplete cleanup",
+  "task_key": "worker_fix_d015_title_and_nearcomplete_cleanup_20260514T223119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d015_title_and_nearcomplete_cleanup_20260514T223119_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "766910fd01a933490ecfd2849b471202107f5b1ea144d3c11ac8c39400e08fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "残留全部符合保留/跳过条件：\n\n| 残留 | 原因 |\n|---|---|\n| `section5_docred_draft_9b84f1.tex` ×3 | 旧版本文件（hash 后缀），跳过 |\n| `section5_scierc_draft_4796e8.tex` | 旧版本文件，跳过 |\n| `section3_method_draft.tex:2` | 注释行（`%` 开头），跳过 |\n| `section6_relwork_outline.tex:102` | 具体描述 SciERC 15.37%→0.93%，保留 |\n| `section5_scierc_draft.tex:76` | 描述 SciERC DR 94%（→0.93%），保留 |\n| `section5_docred_draft.tex:60` | `near-eliminates RV` 29.66%→0.03%，保留 |\n\n---\n\n### 修改总结\n\n**P1 — Title：**\n- `main.tex:18`：`Near-Complete Type-Valid` → `Type-Valid`\n\n**P3 — \"near-complete\" 清理（4 处修改，6 处保留/跳过）：**\n\n| 文件 | 修改 |\n|---|---|\n| `appendix_related_work.tex:85` | `near-complete to substantial elimination` → `substantially reduces violations` |\n| `appendix_related_work.tex:109` | `near-complete to substantial elimination of type violations` → `substantially reduces type violations` |\n| `section6_relwork_outline.tex:135` | `near-complete elimination of type violations` → `substantially reduces type violations (up to 94\\% DR reduction)` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d015-title-and-nearcomplete-cleanup.md"
+}

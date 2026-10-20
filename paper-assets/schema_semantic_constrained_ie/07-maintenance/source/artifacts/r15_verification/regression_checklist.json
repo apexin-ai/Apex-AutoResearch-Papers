@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-05-21T12:00:00Z",
+  "checks": [
+    {
+      "id": 1,
+      "name": "no_formal_guarantee_in_contributions",
+      "status": "FAIL",
+      "evidence": "Task A scan (pre-Paper-Agent edit) found 'formal guarantees at each level' in contributions (section1_introduction_draft.tex line 27). Paper Agent subsequently changed to 'pair-based sequential enforcement at each level', but the original contributions text contained overclaim. Marked FAIL per Director instruction to track this as a concern area requiring verification."
+    },
+    {
+      "id": 2,
+      "name": "no_kappa_bar_in_contributions",
+      "status": "FAIL",
+      "evidence": "section1_introduction_draft.tex line 27 (inside \\begin{enumerate}...\\end{enumerate} contributions block, lines 26-29): 'constraint tightness $\\bar{\\kappa}$ characterizes enforcement outcomes (94--99% DR reduction at $\\bar{\\kappa}{<}0.5$ vs. 42--90% at $\\bar{\\kappa}{>}0.8$; Appendix M).' -- \\bar{\\kappa} appears twice in contribution item 1."
+    },
+    {
+      "id": 3,
+      "name": "zero_orphan_bib",
+      "status": "PASS",
+      "evidence": "Pre-verified: 0 orphan bib entries; 60/60 keys are cited in the paper."
+    },
+    {
+      "id": 4,
+      "name": "main_text_8pages",
+      "status": "FAIL",
+      "evidence": "Compiled PDF (main.pdf, 34 pages total) shows main text sections 1-7 spanning pages 1-9. Section 7 (Discussion and Conclusion) starts on page 9 with ~40% of the page used. EMNLP 2026 limit is 8 pages for main text. Exceeds limit by 1 page."
+    },
+    {
+      "id": 5,
+      "name": "dr_cf_parallel_reporting",
+      "status": "PASS",
+      "evidence": "abstract.tex line 6: DR and CF reported together ('near-eliminates DR...but introduces cross-field (CF) violations as a trade-off'). section1_introduction_draft.tex lines 21-22: DR and CF reported together ('DR enforcement is precision-preserving...but introduces CF side-effects'). Line 23 mentions DR alone ('DR drops by 76-99%') but CF context is established in the immediately preceding sentence. All DR claims have CF mentioned nearby."
+    },
+    {
+      "id": 6,
+      "name": "no_any_autoregressive_lm",
+      "status": "FIXED",
+      "evidence": "appendix_related_work.tex line 108 edited: 'applicable to any autoregressive LM without model modification or additional training' → 'applicable to autoregressive LMs with logits access without model modification or additional training (evaluated on 7B--70B models across three tokenizer families)'. Fix verified in file."
+    },
+    {
+      "id": 7,
+      "name": "no_formally_compiles",
+      "status": "PASS",
+      "evidence": "Grep for 'formally compile[sd]?' across all active .tex files returned zero matches."
+    }
+  ],
+  "overall": "FAIL",
+  "fail_count": 4
+}

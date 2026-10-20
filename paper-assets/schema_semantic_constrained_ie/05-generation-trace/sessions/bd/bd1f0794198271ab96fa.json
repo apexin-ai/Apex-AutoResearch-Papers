@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd1f0794198271ab96fa",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "writing d066 latex table",
+  "task_key": "worker_writing_d066-latex-table_20260520T035943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_d066-latex-table_20260520T035943_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "c1473503c23dd7d25c9325ec1cdf0aa7a7c8725f43ccf4daaf0ea0d831755dca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/d066_beam_sweep/beam_sweep_table.tex`。\n\n要点：\n- Rel. Latency 以 k=1 unc (2.494s) 为基准计算\n- k=2 con 行（Pareto optimal）整行加粗 + `\\cellcolor{blue!8}` 浅蓝底色突出\n- 所有 con 行的 DR=0 用 `\\textbf{0}` 标记\n- 需要 `\\usepackage{booktabs, multirow, colortbl}` 在 preamble 中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-d066-latex-table.md"
+}

@@ -1,0 +1,812 @@
+{
+  "schema_version": "1.0",
+  "session_id": "532dab5fa81b646d40e7",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-18T12:32:26.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FkNbqbgrgjbP6f4bMhFEab",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path, torch_dtype=torch.bfloat16,\\\\n        device_map=args.device, trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    print(\\\\\\\"Model loaded\\\\\\\")\\\\n\\\\n    ensure_first_token_map(spec, tokenizer)\\\\n\\\\n    # Pre-compile grammars (reusable across samples)\\\\n    compiled_grammar = None\\\\n    entity_compiled_grammar = None\\\\n    xgr_compiler = None\\\\n\\\\n    needs_grammar = args.mode in (\\\\\\\"grammar_only\\\\\\\", \\\\\\\"full_s1\\\\\\\", \\\\\\\"full_s2\\\\\\\")\\\\n    if needs_grammar:\\\\n        import xgrammar as xgr\\\\n        tokenizer_info = xgr.TokenizerInfo.from_huggingface(\\\\n            tokenizer, vocab_size=model.config.vocab_size\\\\n        )\\\\n        xgr_compiler = xgr.GrammarCompiler(tokenizer_info)\\\\n\\\\n        if args.mode in (\\\\\\\"grammar_only\\\\\\\", \\\\\\\"full_s1\\\\\\\"):\\\\n            if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                oc = OntologyCompiler(args.constraints_path)\\\\n                schema = oc.compile_event_json_schema()\\\\n            else:\\\\n                schema = build_full_schema(spec.entity_types, spec.relation_types)\\\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\\\n            compiled_grammar = xgr_compiler.compile_grammar(grammar)\\\\n            schema_name = \\\\\\\"event\\\\\\\" if args.dataset == \\\\\\\"wikievents\\\\\\\" else \\\\\\\"full\\\\\\\"\\\\n            print(f\\\\\\\"Grammar compiled ({schema_name} schema)\\\\\\\")\\\\n        else:\\\\n            schema = build_entity_only_schema(spec.entity_types)\\\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\\\n            entity_compiled_grammar = xgr_compiler.compile_grammar(grammar)\\\\n            print(\\\\\\\"Grammar compiled (entity-only for S2 Pass 1)\\\\\\\")\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Resume: load already-processed doc_ids and skip them\\\\n    processed_ids = set()\\\\n    if args.resume:\\\\n        processed_ids = load_processed_ids(args.output_path, args.mode)\\\\n        if processed_ids:\\\\n            print(f\\\\\\\"Resume: found {len(processed_ids)} already processed samples\\\\\\\")\\\\n\\\\n    todo = [(i, s) for i, s in enumerate(samples) if s[\\\\\\\"doc_id\\\\\\\"] not in processed_ids]\\\\n    skipped = len(samples) - len(todo)\\\\n    if args.resume and skipped > 0:\\\\n        print(f\\\\\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\\\\\")\\\\n\\\\n    sampling_kwargs = None\\\\n    if args.temperature > 0:\\\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\\\n\\\\n    # Pass type_consensus flag to run_single_pass via function attribute\\\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\\\n    if run_single_pass._type_consensus:\\\\n        print(\\\\\\\"Layer 3: Type Consensus Constraint ENABLED\\\\\\\")\\\\n\\\\n    file_mode = \\\\\\\"a\\\\\\\" if args.resume else \\\\\\\"w\\\\\\\"\\\\n    n_ok, n_fail = 0, 0\\\\n\\\\n    with open(args.output_path, file_mode) as fout:\\\\n        for idx, (i, sample) in enumerate(todo):\\\\n            try:\\\\n                t0 = time.time()\\\\n\\\\n                if args.decoding_strategy == \\\\\\\"beam\\\\\\\" and args.mode != \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_single_pass_beam(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        args.num_beams,\\\\n                    )\\\\n                elif args.mode == \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_s2_two_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n                else:\\\\n                    raw, parsed = run_single_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n\\\\n                elapsed = time.time() - t0\\\\n\\\\n                if parsed is not None:\\\\n                    n_ok += 1\\\\n                else:\\\\n                    n_fail += 1\\\\n\\\\n                if isinstance(parsed, list):\\\\n                    parsed = {}\\\\n                record = {\\\\n                    \\\\\\\"doc_id\\\\\\\": sample[\\\\\\\"doc_id\\\\\\\"],\\\\n                    \\\\\\\"input_text\\\\\\\": sample[\\\\\\\"input_text\\\\\\\"],\\\\n                    \\\\\\\"gold_entities\\\\\\\": sample[\\\\\\\"gold_entities\\\\\\\"],\\\\n                    \\\\\\\"gold_relations\\\\\\\": sample.get(\\\\\\\"gold_relations\\\\\\\", []),\\\\n                    \\\\\\\"raw_output\\\\\\\": raw,\\\\n                    \\\\\\\"parsed_output\\\\\\\": parsed,\\\\n                    \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 3),\\\\n                    \\\\\\\"mode\\\\\\\": args.mode,\\\\n                    \\\\\\\"decoding_strategy\\\\\\\": args.decoding_strategy,\\\\n                    \\\\\\\"num_beams\\\\\\\": args.num_beams if args.decoding_strategy == \\\\\\\"beam\\\\\\\" else 1,\\\\n                }\\\\n                if \\\\\\\"gold_events\\\\\\\" in sample:\\\\n                    record[\\\\\\\"gold_events\\\\\\\"] = sample[\\\\\\\"gold_events\\\\\\\"]\\\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                fout.flush()\\\\n\\\\n                n_ents = len(parsed.get(\\\\\\\"entities\\\\\\\", [])) if parsed else 0\\\\n                n_rels = len(parsed.get(\\\\\\\"relations\\\\\\\", [])) if parsed else 0\\\\n                n_evts = len(parsed.get(\\\\\\\"events\\\\\\\", [])) if parsed else 0\\\\n                status = \\\\\\\"OK\\\\\\\" if parsed else \\\\\\\"FAIL\\\\\\\"\\\\n                if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\\\\\")\\\\n                else:\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\\\\\")\\\\n\\\\n            except Exception as e:\\\\n                if args.skip_on_error:\\\\n                    n_fail += 1\\\\n                    elapsed = time.time() - t0\\\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\\\\\"doc_id\\\\\\\"]}: ERROR skipped ({e})')\\\\n                    continue\\\\n                else:\\\\n                    raise\\\\n    print(f\\\\\\\"\\\\\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\\\\\"\\\\n          f\\\\\\\"(skipped {skipped} already processed)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "06e111c0-64d0-4ed6-bb9e-21cc2a9e75f1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path, torch_dtype=torch.bfloat16,\\\\n        device_map=args.device, trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    print(\\\\\\\"Model loaded\\\\\\\")\\\\n\\\\n    ensure_first_token_map(spec, tokenizer)\\\\n\\\\n    # Pre-compile grammars (reusable across samples)\\\\n    compiled_grammar = None\\\\n    entity_compiled_grammar = None\\\\n    xgr_compiler = None\\\\n\\\\n    needs_grammar = args.mode in (\\\\\\\"grammar_only\\\\\\\", \\\\\\\"full_s1\\\\\\\", \\\\\\\"full_s2\\\\\\\")\\\\n    if needs_grammar:\\\\n        import xgrammar as xgr\\\\n        tokenizer_info = xgr.TokenizerInfo.from_huggingface(\\\\n            tokenizer, vocab_size=model.config.vocab_size\\\\n        )\\\\n        xgr_compiler = xgr.GrammarCompiler(tokenizer_info)\\\\n\\\\n        if args.mode in (\\\\\\\"grammar_only\\\\\\\", \\\\\\\"full_s1\\\\\\\"):\\\\n            if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                oc = OntologyCompiler(args.constraints_path)\\\\n                schema = oc.compile_event_json_schema()\\\\n            else:\\\\n                schema = build_full_schema(spec.entity_types, spec.relation_types)\\\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\\\n            compiled_grammar = xgr_compiler.compile_grammar(grammar)\\\\n            schema_name = \\\\\\\"event\\\\\\\" if args.dataset == \\\\\\\"wikievents\\\\\\\" else \\\\\\\"full\\\\\\\"\\\\n            print(f\\\\\\\"Grammar compiled ({schema_name} schema)\\\\\\\")\\\\n        else:\\\\n            schema = build_entity_only_schema(spec.entity_types)\\\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\\\n            entity_compiled_grammar = xgr_compiler.compile_grammar(grammar)\\\\n            print(\\\\\\\"Grammar compiled (entity-only for S2 Pass 1)\\\\\\\")\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Resume: load already-processed doc_ids and skip them\\\\n    processed_ids = set()\\\\n    if args.resume:\\\\n        processed_ids = load_processed_ids(args.output_path, args.mode)\\\\n        if processed_ids:\\\\n            print(f\\\\\\\"Resume: found {len(processed_ids)} already processed samples\\\\\\\")\\\\n\\\\n    todo = [(i, s) for i, s in enumerate(samples) if s[\\\\\\\"doc_id\\\\\\\"] not in processed_ids]\\\\n    skipped = len(samples) - len(todo)\\\\n    if args.resume and skipped > 0:\\\\n        print(f\\\\\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\\\\\")\\\\n\\\\n    sampling_kwargs = None\\\\n    if args.temperature > 0:\\\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\\\n\\\\n    # Pass type_consensus flag to run_single_pass via function attribute\\\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\\\n    if run_single_pass._type_consensus:\\\\n        print(\\\\\\\"Layer 3: Type Consensus Constraint ENABLED\\\\\\\")\\\\n\\\\n    file_mode = \\\\\\\"a\\\\\\\" if args.resume else \\\\\\\"w\\\\\\\"\\\\n    n_ok, n_fail = 0, 0\\\\n\\\\n    with open(args.output_path, file_mode) as fout:\\\\n        for idx, (i, sample) in enumerate(todo):\\\\n            try:\\\\n                t0 = time.time()\\\\n\\\\n                if args.decoding_strategy == \\\\\\\"beam\\\\\\\" and args.mode != \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_single_pass_beam(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        args.num_beams,\\\\n                    )\\\\n                elif args.mode == \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_s2_two_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n                else:\\\\n                    raw, parsed = run_single_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n\\\\n                elapsed = time.time() - t0\\\\n\\\\n                if parsed is not None:\\\\n                    n_ok += 1\\\\n                else:\\\\n                    n_fail += 1\\\\n\\\\n                if isinstance(parsed, list):\\\\n                    parsed = {}\\\\n                record = {\\\\n                    \\\\\\\"doc_id\\\\\\\": sample[\\\\\\\"doc_id\\\\\\\"],\\\\n                    \\\\\\\"input_text\\\\\\\": sample[\\\\\\\"input_text\\\\\\\"],\\\\n                    \\\\\\\"gold_entities\\\\\\\": sample[\\\\\\\"gold_entities\\\\\\\"],\\\\n                    \\\\\\\"gold_relations\\\\\\\": sample.get(\\\\\\\"gold_relations\\\\\\\", []),\\\\n                    \\\\\\\"raw_output\\\\\\\": raw,\\\\n                    \\\\\\\"parsed_output\\\\\\\": parsed,\\\\n                    \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 3),\\\\n                    \\\\\\\"mode\\\\\\\": args.mode,\\\\n                    \\\\\\\"decoding_strategy\\\\\\\": args.decoding_strategy,\\\\n                    \\\\\\\"num_beams\\\\\\\": args.num_beams if args.decoding_strategy == \\\\\\\"beam\\\\\\\" else 1,\\\\n                }\\\\n                if \\\\\\\"gold_events\\\\\\\" in sample:\\\\n                    record[\\\\\\\"gold_events\\\\\\\"] = sample[\\\\\\\"gold_events\\\\\\\"]\\\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                fout.flush()\\\\n\\\\n                n_ents = len(parsed.get(\\\\\\\"entities\\\\\\\", [])) if parsed else 0\\\\n                n_rels = len(parsed.get(\\\\\\\"relations\\\\\\\", [])) if parsed else 0\\\\n                n_evts = len(parsed.get(\\\\\\\"events\\\\\\\", [])) if parsed else 0\\\\n                status = \\\\\\\"OK\\\\\\\" if parsed else \\\\\\\"FAIL\\\\\\\"\\\\n                if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\\\\\")\\\\n                else:\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\\\\\")\\\\n\\\\n            except Exception as e:\\\\n                if args.skip_on_error:\\\\n                    n_fail += 1\\\\n                    elapsed = time.time() - t0\\\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\\\\\"doc_id\\\\\\\"]}: ERROR skipped ({e})')\\\\n                    continue\\\\n                else:\\\\n                    raise\\\\n    print(f\\\\\\\"\\\\\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\\\\\"\\\\n          f\\\\\\\"(skipped {skipped} already processed)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    model = AutoModelForCausalLM.from_pretrained(\\n        model_path, torch_dtype=torch.bfloat16,\\n        device_map=args.device, trust_remote_code=True,\\n    )\\n    model.eval()\\n    print(\\\"Model loaded\\\")\\n\\n    ensure_first_token_map(spec, tokenizer)\\n\\n    # Pre-compile grammars (reusable across samples)\\n    compiled_grammar = None\\n    entity_compiled_grammar = None\\n    xgr_compiler = None\\n\\n    needs_grammar = args.mode in (\\\"grammar_only\\\", \\\"full_s1\\\", \\\"full_s2\\\")\\n    if needs_grammar:\\n        import xgrammar as xgr\\n        tokenizer_info = xgr.TokenizerInfo.from_huggingface(\\n            tokenizer, vocab_size=model.config.vocab_size\\n        )\\n        xgr_compiler = xgr.GrammarCompiler(tokenizer_info)\\n\\n        if args.mode in (\\\"grammar_only\\\", \\\"full_s1\\\"):\\n            if args.dataset == \\\"wikievents\\\":\\n                oc = OntologyCompiler(args.constraints_path)\\n                schema = oc.compile_event_json_schema()\\n            else:\\n                schema = build_full_schema(spec.entity_types, spec.relation_types)\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\n            compiled_grammar = xgr_compiler.compile_grammar(grammar)\\n            schema_name = \\\"event\\\" if args.dataset == \\\"wikievents\\\" else \\\"full\\\"\\n            print(f\\\"Grammar compiled ({schema_name} schema)\\\")\\n        else:\\n            schema = build_entity_only_schema(spec.entity_types)\\n            grammar = xgr.Grammar.from_json_schema(json.dumps(schema))\\n            entity_compiled_grammar = xgr_compiler.compile_grammar(grammar)\\n            print(\\\"Grammar compiled (entity-only for S2 Pass 1)\\\")\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n\\n    # Resume: load already-processed doc_ids and skip them\\n    processed_ids = set()\\n    if args.resume:\\n        processed_ids = load_processed_ids(args.output_path, args.mode)\\n        if processed_ids:\\n            print(f\\\"Resume: found {len(processed_ids)} already processed samples\\\")\\n\\n    todo = [(i, s) for i, s in enumerate(samples) if s[\\\"doc_id\\\"] not in processed_ids]\\n    skipped = len(samples) - len(todo)\\n    if args.resume and skipped > 0:\\n        print(f\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\")\\n\\n    sampling_kwargs = None\\n    if args.temperature > 0:\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\n\\n    # Pass type_consensus flag to run_single_pass via function attribute\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\n    if run_single_pass._type_consensus:\\n        print(\\\"Layer 3: Type Consensus Constraint ENABLED\\\")\\n\\n    file_mode = \\\"a\\\" if args.resume else \\\"w\\\"\\n    n_ok, n_fail = 0, 0\\n\\n    with open(args.output_path, file_mode) as fout:\\n        for idx, (i, sample) in enumerate(todo):\\n            try:\\n                t0 = time.time()\\n\\n                if args.decoding_strategy == \\\"beam\\\" and args.mode != \\\"full_s2\\\":\\n                    raw, parsed = run_single_pass_beam(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\n                        args.num_beams,\\n                    )\\n                elif args.mode == \\\"full_s2\\\":\\n                    raw, parsed = run_s2_two_pass(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\n                        sampling_kwargs,\\n                    )\\n                else:\\n                    raw, parsed = run_single_pass(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\n                        sampling_kwargs,\\n                    )\\n\\n                elapsed = time.time() - t0\\n\\n                if parsed is not None:\\n                    n_ok += 1\\n                else:\\n                    n_fail += 1\\n\\n                if isinstance(parsed, list):\\n                    parsed = {}\\n                record = {\\n                    \\\"doc_id\\\": sample[\\\"doc_id\\\"],\\n                    \\\"input_text\\\": sample[\\\"input_text\\\"],\\n                    \\\"gold_entities\\\": sample[\\\"gold_entities\\\"],\\n                    \\\"gold_relations\\\": sample.get(\\\"gold_relations\\\", []),\\n                    \\\"raw_output\\\": raw,\\n                    \\\"parsed_output\\\": parsed,\\n                    \\\"inference_time_seconds\\\": round(elapsed, 3),\\n                    \\\"mode\\\": args.mode,\\n                    \\\"decoding_strategy\\\": args.decoding_strategy,\\n                    \\\"num_beams\\\": args.num_beams if args.decoding_strategy == \\\"beam\\\" else 1,\\n                }\\n                if \\\"gold_events\\\" in sample:\\n                    record[\\\"gold_events\\\"] = sample[\\\"gold_events\\\"]\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n                fout.flush()\\n\\n                n_ents = len(parsed.get(\\\"entities\\\", [])) if parsed else 0\\n                n_rels = len(parsed.get(\\\"relations\\\", [])) if parsed else 0\\n                n_evts = len(parsed.get(\\\"events\\\", [])) if parsed else 0\\n                status = \\\"OK\\\" if parsed else \\\"FAIL\\\"\\n                if args.dataset == \\\"wikievents\\\":\\n                    print(f\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\"\\n                          f\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\")\\n                else:\\n                    print(f\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\"\\n                          f\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\")\\n\\n            except Exception as e:\\n                if args.skip_on_error:\\n                    n_fail += 1\\n                    elapsed = time.time() - t0\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\"doc_id\\\"]}: ERROR skipped ({e})')\\n                    continue\\n                else:\\n                    raise\\n    print(f\\\"\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\"\\n          f\\\"(skipped {skipped} already processed)\\\")\\n    print(f\\\"Output: {args.output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me find the `build_full_schema` function to see how the relation type enum is defined in the JSON schema.",
+              "signature": "Eq0CClkIDRgCKkBYxzWs3iNOVAqohLJ1C2qlfqsCd1DCuWW4bzYiO9szUFnC2TO9xHlWn5SBE05NulyJvS/eeNWGi6TryctwRez8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMsDaibWswoF5bTHnKGgzD3dIGwZTPCe+uqgsiMFtjd+XysTGf26x//DbzNXud70IWlrWKdqr8X7i1Y7sddNqBDUW6N7vhzdCmKPV7diqBAdkYJhTvyidIdOf9QqJ1BQU5W/5HCdoR0l/o5KL1LFfcCOOO6kfW4ojPwBT3jH0O/0n8JqJq1BZOo/oSeizIKa9Rzw8oH7Rr3tpkaMGEw96jiYHQEg7MSIxcd9h7+s2ySMvSOaOjI4UAPyfw5bUXsYtxl2siU9WQKt/G2DLQnc+G4BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "906f37f8-1f80-4d4d-9b52-bfe19e396b27",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRYx1XRA6NQEvb1nJsr6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 75699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Y2uTHttwxffN3Q2mayd9s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "grep -n \"def build_full_schema\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "a91d82f7-c8e3-4693-801c-0c619d33ff54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRYx1XRA6NQEvb1nJsr6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 75699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-18T12:32:32.288Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Y2uTHttwxffN3Q2mayd9s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"346:def build_full_schema(entity_types, relation_types):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "3e941c60-209f-418a-9e8d-a46bd6cbee9f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"346:def build_full_schema(entity_types, relation_types):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"346:def build_full_schema(entity_types, relation_types):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SDYyfd6ki7facsFgw9kN1w",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "tail -n +346 /root/schema_semantic_constrained_ie/run_constrained_extraction.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "745164f7-f9a3-4e6c-9457-53329bdb1c38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKjrjF5mn6hPMRUaUUzx9H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 249,
+                "cache_read_input_tokens": 78180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 249
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-18T12:32:36.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SDYyfd6ki7facsFgw9kN1w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def build_full_schema(entity_types, relation_types):\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"entities\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n            \\\\\\\"relations\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"head\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"tail\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": relation_types},\\\\n                        \\\\\\\"head_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                        \\\\\\\"tail_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"head_type\\\\\\\", \\\\\\\"tail_type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\ndef build_entity_only_schema(entity_types):\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"entities\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"entities\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\ndef build_relation_only_schema(entity_types, relation_types, entity_texts=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"When entity_texts provided, head/tail are enum-constrained to known entities.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    head_prop = {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_texts} if entity_texts else {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"}\\\\n    tail_prop = {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_texts} if entity_texts else {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"}\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"relations\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"head\\\\\\\": head_prop,\\\\n                        \\\\\\\"tail\\\\\\\": tail_prop,\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": relation_types},\\\\n                        \\\\\\\"head_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                        \\\\\\\"tail_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"head_type\\\\\\\", \\\\\\\"tail_type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"relations\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\n# -- Constraint Loading --\\\\n\\\\ndef load_constraint_spec(constraints_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load ontology constraints, normalizing DocRED P-codes to relation names.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(constraints_path) as f:\\\\n        raw = json.load(f)\\\\n\\\\n    entity_types = raw[\\\\\\\"entity_types\\\\\\\"]\\\\n    raw_rtypes = raw.get(\\\\\\\"relation_types\\\\\\\", [])\\\\n\\\\n    if isinstance(raw_rtypes, dict):\\\\n        # DocRED: {P-code: name} dict -> use names as relation types\\\\n        code_to_name = raw_rtypes\\\\n        relation_types = list(code_to_name.values())\\\\n        relation_constraints = {}\\\\n        for code, data in raw.get(\\\\\\\"relation_constraints\\\\\\\", {}).items():\\\\n            name = code_to_name.get(code, code)\\\\n            relation_constraints[name] = RelationConstraint(\\\\n                relation_type=name,\\\\n                valid_pairs=[(h, t) for h, t in data[\\\\\\\"valid_pa\\\\n\\\\n... [截断: 输出过长，省略 20341 字符] ...\\\\n\\\\nles) - len(todo)\\\\n    if args.resume and skipped > 0:\\\\n        print(f\\\\\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\\\\\")\\\\n\\\\n    sampling_kwargs = None\\\\n    if args.temperature > 0:\\\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\\\n\\\\n    # Pass type_consensus flag to run_single_pass via function attribute\\\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\\\n    if run_single_pass._type_consensus:\\\\n        print(\\\\\\\"Layer 3: Type Consensus Constraint ENABLED\\\\\\\")\\\\n\\\\n    file_mode = \\\\\\\"a\\\\\\\" if args.resume else \\\\\\\"w\\\\\\\"\\\\n    n_ok, n_fail = 0, 0\\\\n\\\\n    with open(args.output_path, file_mode) as fout:\\\\n        for idx, (i, sample) in enumerate(todo):\\\\n            try:\\\\n                t0 = time.time()\\\\n\\\\n                if args.decoding_strategy == \\\\\\\"beam\\\\\\\" and args.mode != \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_single_pass_beam(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        args.num_beams,\\\\n                    )\\\\n                elif args.mode == \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_s2_two_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n                else:\\\\n                    raw, parsed = run_single_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n\\\\n                elapsed = time.time() - t0\\\\n\\\\n                if parsed is not None:\\\\n                    n_ok += 1\\\\n                else:\\\\n                    n_fail += 1\\\\n\\\\n                if isinstance(parsed, list):\\\\n                    parsed = {}\\\\n                record = {\\\\n                    \\\\\\\"doc_id\\\\\\\": sample[\\\\\\\"doc_id\\\\\\\"],\\\\n                    \\\\\\\"input_text\\\\\\\": sample[\\\\\\\"input_text\\\\\\\"],\\\\n                    \\\\\\\"gold_entities\\\\\\\": sample[\\\\\\\"gold_entities\\\\\\\"],\\\\n                    \\\\\\\"gold_relations\\\\\\\": sample.get(\\\\\\\"gold_relations\\\\\\\", []),\\\\n                    \\\\\\\"raw_output\\\\\\\": raw,\\\\n                    \\\\\\\"parsed_output\\\\\\\": parsed,\\\\n                    \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 3),\\\\n                    \\\\\\\"mode\\\\\\\": args.mode,\\\\n                    \\\\\\\"decoding_strategy\\\\\\\": args.decoding_strategy,\\\\n                    \\\\\\\"num_beams\\\\\\\": args.num_beams if args.decoding_strategy == \\\\\\\"beam\\\\\\\" else 1,\\\\n                }\\\\n                if \\\\\\\"gold_events\\\\\\\" in sample:\\\\n                    record[\\\\\\\"gold_events\\\\\\\"] = sample[\\\\\\\"gold_events\\\\\\\"]\\\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                fout.flush()\\\\n\\\\n                n_ents = len(parsed.get(\\\\\\\"entities\\\\\\\", [])) if parsed else 0\\\\n                n_rels = len(parsed.get(\\\\\\\"relations\\\\\\\", [])) if parsed else 0\\\\n                n_evts = len(parsed.get(\\\\\\\"events\\\\\\\", [])) if parsed else 0\\\\n                status = \\\\\\\"OK\\\\\\\" if parsed else \\\\\\\"FAIL\\\\\\\"\\\\n                if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\\\\\")\\\\n                else:\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\\\\\")\\\\n\\\\n            except Exception as e:\\\\n                if args.skip_on_error:\\\\n                    n_fail += 1\\\\n                    elapsed = time.time() - t0\\\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\\\\\"doc_id\\\\\\\"]}: ERROR skipped ({e})')\\\\n                    continue\\\\n                else:\\\\n                    raise\\\\n    print(f\\\\\\\"\\\\\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\\\\\"\\\\n          f\\\\\\\"(skipped {skipped} already processed)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "cdc0bd13-be79-4b02-bf63-fade7494e0de",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def build_full_schema(entity_types, relation_types):\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"entities\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n            \\\\\\\"relations\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"head\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"tail\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": relation_types},\\\\n                        \\\\\\\"head_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                        \\\\\\\"tail_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"head_type\\\\\\\", \\\\\\\"tail_type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\ndef build_entity_only_schema(entity_types):\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"entities\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"entities\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\ndef build_relation_only_schema(entity_types, relation_types, entity_texts=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"When entity_texts provided, head/tail are enum-constrained to known entities.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    head_prop = {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_texts} if entity_texts else {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"}\\\\n    tail_prop = {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_texts} if entity_texts else {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"}\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n        \\\\\\\"properties\\\\\\\": {\\\\n            \\\\\\\"relations\\\\\\\": {\\\\n                \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n                \\\\\\\"items\\\\\\\": {\\\\n                    \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n                    \\\\\\\"properties\\\\\\\": {\\\\n                        \\\\\\\"head\\\\\\\": head_prop,\\\\n                        \\\\\\\"tail\\\\\\\": tail_prop,\\\\n                        \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": relation_types},\\\\n                        \\\\\\\"head_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                        \\\\\\\"tail_type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": entity_types},\\\\n                    },\\\\n                    \\\\\\\"required\\\\\\\": [\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"head_type\\\\\\\", \\\\\\\"tail_type\\\\\\\"],\\\\n                    \\\\\\\"additionalProperties\\\\\\\": False,\\\\n                }\\\\n            },\\\\n        },\\\\n        \\\\\\\"required\\\\\\\": [\\\\\\\"relations\\\\\\\"],\\\\n        \\\\\\\"additionalProperties\\\\\\\": False,\\\\n    }\\\\n\\\\n\\\\n# -- Constraint Loading --\\\\n\\\\ndef load_constraint_spec(constraints_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load ontology constraints, normalizing DocRED P-codes to relation names.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(constraints_path) as f:\\\\n        raw = json.load(f)\\\\n\\\\n    entity_types = raw[\\\\\\\"entity_types\\\\\\\"]\\\\n    raw_rtypes = raw.get(\\\\\\\"relation_types\\\\\\\", [])\\\\n\\\\n    if isinstance(raw_rtypes, dict):\\\\n        # DocRED: {P-code: name} dict -> use names as relation types\\\\n        code_to_name = raw_rtypes\\\\n        relation_types = list(code_to_name.values())\\\\n        relation_constraints = {}\\\\n        for code, data in raw.get(\\\\\\\"relation_constraints\\\\\\\", {}).items():\\\\n            name = code_to_name.get(code, code)\\\\n            relation_constraints[name] = RelationConstraint(\\\\n                relation_type=name,\\\\n                valid_pairs=[(h, t) for h, t in data[\\\\\\\"valid_pa\\\\n\\\\n... [截断: 输出过长，省略 20341 字符] ...\\\\n\\\\nles) - len(todo)\\\\n    if args.resume and skipped > 0:\\\\n        print(f\\\\\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\\\\\")\\\\n\\\\n    sampling_kwargs = None\\\\n    if args.temperature > 0:\\\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\\\n\\\\n    # Pass type_consensus flag to run_single_pass via function attribute\\\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\\\n    if run_single_pass._type_consensus:\\\\n        print(\\\\\\\"Layer 3: Type Consensus Constraint ENABLED\\\\\\\")\\\\n\\\\n    file_mode = \\\\\\\"a\\\\\\\" if args.resume else \\\\\\\"w\\\\\\\"\\\\n    n_ok, n_fail = 0, 0\\\\n\\\\n    with open(args.output_path, file_mode) as fout:\\\\n        for idx, (i, sample) in enumerate(todo):\\\\n            try:\\\\n                t0 = time.time()\\\\n\\\\n                if args.decoding_strategy == \\\\\\\"beam\\\\\\\" and args.mode != \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_single_pass_beam(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        args.num_beams,\\\\n                    )\\\\n                elif args.mode == \\\\\\\"full_s2\\\\\\\":\\\\n                    raw, parsed = run_s2_two_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n                else:\\\\n                    raw, parsed = run_single_pass(\\\\n                        model, tokenizer, sample, args.dataset, spec,\\\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\\\n                        sampling_kwargs,\\\\n                    )\\\\n\\\\n                elapsed = time.time() - t0\\\\n\\\\n                if parsed is not None:\\\\n                    n_ok += 1\\\\n                else:\\\\n                    n_fail += 1\\\\n\\\\n                if isinstance(parsed, list):\\\\n                    parsed = {}\\\\n                record = {\\\\n                    \\\\\\\"doc_id\\\\\\\": sample[\\\\\\\"doc_id\\\\\\\"],\\\\n                    \\\\\\\"input_text\\\\\\\": sample[\\\\\\\"input_text\\\\\\\"],\\\\n                    \\\\\\\"gold_entities\\\\\\\": sample[\\\\\\\"gold_entities\\\\\\\"],\\\\n                    \\\\\\\"gold_relations\\\\\\\": sample.get(\\\\\\\"gold_relations\\\\\\\", []),\\\\n                    \\\\\\\"raw_output\\\\\\\": raw,\\\\n                    \\\\\\\"parsed_output\\\\\\\": parsed,\\\\n                    \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 3),\\\\n                    \\\\\\\"mode\\\\\\\": args.mode,\\\\n                    \\\\\\\"decoding_strategy\\\\\\\": args.decoding_strategy,\\\\n                    \\\\\\\"num_beams\\\\\\\": args.num_beams if args.decoding_strategy == \\\\\\\"beam\\\\\\\" else 1,\\\\n                }\\\\n                if \\\\\\\"gold_events\\\\\\\" in sample:\\\\n                    record[\\\\\\\"gold_events\\\\\\\"] = sample[\\\\\\\"gold_events\\\\\\\"]\\\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                fout.flush()\\\\n\\\\n                n_ents = len(parsed.get(\\\\\\\"entities\\\\\\\", [])) if parsed else 0\\\\n                n_rels = len(parsed.get(\\\\\\\"relations\\\\\\\", [])) if parsed else 0\\\\n                n_evts = len(parsed.get(\\\\\\\"events\\\\\\\", [])) if parsed else 0\\\\n                status = \\\\\\\"OK\\\\\\\" if parsed else \\\\\\\"FAIL\\\\\\\"\\\\n                if args.dataset == \\\\\\\"wikievents\\\\\\\":\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\\\\\")\\\\n                else:\\\\n                    print(f\\\\\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\\\\\"\\\\n                          f\\\\\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\\\\\")\\\\n\\\\n            except Exception as e:\\\\n                if args.skip_on_error:\\\\n                    n_fail += 1\\\\n                    elapsed = time.time() - t0\\\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\\\\\"doc_id\\\\\\\"]}: ERROR skipped ({e})')\\\\n                    continue\\\\n                else:\\\\n                    raise\\\\n    print(f\\\\\\\"\\\\\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\\\\\"\\\\n          f\\\\\\\"(skipped {skipped} already processed)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"def build_full_schema(entity_types, relation_types):\\n    return {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"properties\\\": {\\n            \\\"entities\\\": {\\n                \\\"type\\\": \\\"array\\\",\\n                \\\"items\\\": {\\n                    \\\"type\\\": \\\"object\\\",\\n                    \\\"properties\\\": {\\n                        \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                        \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                    },\\n                    \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n                    \\\"additionalProperties\\\": False,\\n                }\\n            },\\n            \\\"relations\\\": {\\n                \\\"type\\\": \\\"array\\\",\\n                \\\"items\\\": {\\n                    \\\"type\\\": \\\"object\\\",\\n                    \\\"properties\\\": {\\n                        \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                        \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                        \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": relation_types},\\n                        \\\"head_type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                        \\\"tail_type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                    },\\n                    \\\"required\\\": [\\\"head\\\", \\\"tail\\\", \\\"type\\\", \\\"head_type\\\", \\\"tail_type\\\"],\\n                    \\\"additionalProperties\\\": False,\\n                }\\n            },\\n        },\\n        \\\"required\\\": [\\\"entities\\\", \\\"relations\\\"],\\n        \\\"additionalProperties\\\": False,\\n    }\\n\\n\\ndef build_entity_only_schema(entity_types):\\n    return {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"properties\\\": {\\n            \\\"entities\\\": {\\n                \\\"type\\\": \\\"array\\\",\\n                \\\"items\\\": {\\n                    \\\"type\\\": \\\"object\\\",\\n                    \\\"properties\\\": {\\n                        \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                        \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                    },\\n                    \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n                    \\\"additionalProperties\\\": False,\\n                }\\n            },\\n        },\\n        \\\"required\\\": [\\\"entities\\\"],\\n        \\\"additionalProperties\\\": False,\\n    }\\n\\n\\ndef build_relation_only_schema(entity_types, relation_types, entity_texts=None):\\n    \\\"\\\"\\\"When entity_texts provided, head/tail are enum-constrained to known entities.\\\"\\\"\\\"\\n    head_prop = {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_texts} if entity_texts else {\\\"type\\\": \\\"string\\\"}\\n    tail_prop = {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_texts} if entity_texts else {\\\"type\\\": \\\"string\\\"}\\n    return {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"properties\\\": {\\n            \\\"relations\\\": {\\n                \\\"type\\\": \\\"array\\\",\\n                \\\"items\\\": {\\n                    \\\"type\\\": \\\"object\\\",\\n                    \\\"properties\\\": {\\n                        \\\"head\\\": head_prop,\\n                        \\\"tail\\\": tail_prop,\\n                        \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": relation_types},\\n                        \\\"head_type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                        \\\"tail_type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": entity_types},\\n                    },\\n                    \\\"required\\\": [\\\"head\\\", \\\"tail\\\", \\\"type\\\", \\\"head_type\\\", \\\"tail_type\\\"],\\n                    \\\"additionalProperties\\\": False,\\n                }\\n            },\\n        },\\n        \\\"required\\\": [\\\"relations\\\"],\\n        \\\"additionalProperties\\\": False,\\n    }\\n\\n\\n# -- Constraint Loading --\\n\\ndef load_constraint_spec(constraints_path):\\n    \\\"\\\"\\\"Load ontology constraints, normalizing DocRED P-codes to relation names.\\\"\\\"\\\"\\n    with open(constraints_path) as f:\\n        raw = json.load(f)\\n\\n    entity_types = raw[\\\"entity_types\\\"]\\n    raw_rtypes = raw.get(\\\"relation_types\\\", [])\\n\\n    if isinstance(raw_rtypes, dict):\\n        # DocRED: {P-code: name} dict -> use names as relation types\\n        code_to_name = raw_rtypes\\n        relation_types = list(code_to_name.values())\\n        relation_constraints = {}\\n        for code, data in raw.get(\\\"relation_constraints\\\", {}).items():\\n            name = code_to_name.get(code, code)\\n            relation_constraints[name] = RelationConstraint(\\n                relation_type=name,\\n                valid_pairs=[(h, t) for h, t in data[\\\"valid_pa\\n\\n... [截断: 输出过长，省略 20341 字符] ...\\n\\nles) - len(todo)\\n    if args.resume and skipped > 0:\\n        print(f\\\"Resuming from {skipped} processed samples, {len(todo)} remaining\\\")\\n\\n    sampling_kwargs = None\\n    if args.temperature > 0:\\n        sampling_kwargs = {'do_sample': True, 'temperature': args.temperature, 'top_p': args.top_p}\\n\\n    # Pass type_consensus flag to run_single_pass via function attribute\\n    run_single_pass._type_consensus = getattr(args, 'type_consensus', False)\\n    if run_single_pass._type_consensus:\\n        print(\\\"Layer 3: Type Consensus Constraint ENABLED\\\")\\n\\n    file_mode = \\\"a\\\" if args.resume else \\\"w\\\"\\n    n_ok, n_fail = 0, 0\\n\\n    with open(args.output_path, file_mode) as fout:\\n        for idx, (i, sample) in enumerate(todo):\\n            try:\\n                t0 = time.time()\\n\\n                if args.decoding_strategy == \\\"beam\\\" and args.mode != \\\"full_s2\\\":\\n                    raw, parsed = run_single_pass_beam(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\n                        args.num_beams,\\n                    )\\n                elif args.mode == \\\"full_s2\\\":\\n                    raw, parsed = run_s2_two_pass(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        entity_compiled_grammar, xgr_compiler, args.max_new_tokens,\\n                        sampling_kwargs,\\n                    )\\n                else:\\n                    raw, parsed = run_single_pass(\\n                        model, tokenizer, sample, args.dataset, spec,\\n                        args.mode, compiled_grammar, args.max_new_tokens,\\n                        sampling_kwargs,\\n                    )\\n\\n                elapsed = time.time() - t0\\n\\n                if parsed is not None:\\n                    n_ok += 1\\n                else:\\n                    n_fail += 1\\n\\n                if isinstance(parsed, list):\\n                    parsed = {}\\n                record = {\\n                    \\\"doc_id\\\": sample[\\\"doc_id\\\"],\\n                    \\\"input_text\\\": sample[\\\"input_text\\\"],\\n                    \\\"gold_entities\\\": sample[\\\"gold_entities\\\"],\\n                    \\\"gold_relations\\\": sample.get(\\\"gold_relations\\\", []),\\n                    \\\"raw_output\\\": raw,\\n                    \\\"parsed_output\\\": parsed,\\n                    \\\"inference_time_seconds\\\": round(elapsed, 3),\\n                    \\\"mode\\\": args.mode,\\n                    \\\"decoding_strategy\\\": args.decoding_strategy,\\n                    \\\"num_beams\\\": args.num_beams if args.decoding_strategy == \\\"beam\\\" else 1,\\n                }\\n                if \\\"gold_events\\\" in sample:\\n                    record[\\\"gold_events\\\"] = sample[\\\"gold_events\\\"]\\n                fout.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n                fout.flush()\\n\\n                n_ents = len(parsed.get(\\\"entities\\\", [])) if parsed else 0\\n                n_rels = len(parsed.get(\\\"relations\\\", [])) if parsed else 0\\n                n_evts = len(parsed.get(\\\"events\\\", [])) if parsed else 0\\n                status = \\\"OK\\\" if parsed else \\\"FAIL\\\"\\n                if args.dataset == \\\"wikievents\\\":\\n                    print(f\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\"\\n                          f\\\"E={n_ents} Ev={n_evts} {elapsed:.1f}s\\\")\\n                else:\\n                    print(f\\\"[{idx+1+skipped}/{len(samples)}] {sample['doc_id']}: {status} \\\"\\n                          f\\\"E={n_ents} R={n_rels} {elapsed:.1f}s\\\")\\n\\n            except Exception as e:\\n                if args.skip_on_error:\\n                    n_fail += 1\\n                    elapsed = time.time() - t0\\n                    print(f'[{idx+1+skipped}/{len(samples)}] {sample[\\\"doc_id\\\"]}: ERROR skipped ({e})')\\n                    continue\\n                else:\\n                    raise\\n    print(f\\\"\\\\nDone: {n_ok + n_fail} new samples, success={n_ok}, fail={n_fail} \\\"\\n          f\\\"(skipped {skipped} already processed)\\\")\\n    print(f\\\"Output: {args.output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture. Let me analyze the root cause:\n\nThe `build_full_schema` function creates a JSON Schema where:\n```python\n\"type\": {\"type\": \"string\", \"enum\": relation_types}\n```\n\nThis is passed to `xgr.Grammar.from_json_schema(json.dumps(schema))` and compiled to a grammar. The `relation_types` is a list of relation names like `[\"member of\", \"participant of\", \"participant\", ...]`.\n\nXGrammar should enforce that the \"type\" field can only contain one of these exact enum strings. But somehow \"membericipant of\" leaked through.\n\n\nThis is pointing to an XGrammar enum compilation bug rather than a JSON parsing issue. The FSM compilation for enum constraints likely has trouble with overlapping substrings across alternatives—DocRED's 96 relation types share many common prefixes and suffixes, which could cause the grammar to incorrectly accept concatenated or blended tokens.\n\nNow I'm double-checking the violation count—the report mentioned 5 RV violations but I only saw 3 examples.  Looking at the actual output, all 5 instances of \"membericipant of\" appear in the same document, each pairing Souvlaki with a different ingredient (pork, chicken, beef, lamb, fish). So the count matches. Let me see if I can track down which XGrammar version was used.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "2bce4395-211a-49c6-848c-5ed073bf4dc8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RFMyCWLUyuSkTxv7yuSfxm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3362,
+                "cache_read_input_tokens": 78429,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3362
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。让我验证 XGrammar 版本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "3001c8a0-a044-46ed-801d-b5f7c6fa4d7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RFMyCWLUyuSkTxv7yuSfxm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3362,
+                "cache_read_input_tokens": 78429,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3362
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LZVmeoHg1wtw1EK71Njq2A",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && pip3 show xgrammar 2>&1; pip3 list 2>&1 | grep -i xgrammar; find /root -name \"xgrammar*\" -path \"*/dist-info/*\" -type d 2>/dev/null | head -3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "7797d97a-4b3f-4cb0-9697-35afeaa6d89d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RFMyCWLUyuSkTxv7yuSfxm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3362,
+                "cache_read_input_tokens": 78429,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3362
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-18T12:33:00.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LZVmeoHg1wtw1EK71Njq2A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip3: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "bda299ce-5b41-43ed-bc65-bec0479a6859",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip3: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: pip3: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ltg9ibTtLWy9HiAkhneQjc",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "find /root -name \"METADATA\" -path \"*xgrammar*\" 2>/dev/null -exec head -5 {} \\;"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "9582eff0-d74f-4c44-b9a6-79e8ca4239d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017jA4qyXnft9pXZKSKkR2pN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 946,
+                "cache_read_input_tokens": 81791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 946
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-18T12:33:04.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ltg9ibTtLWy9HiAkhneQjc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Metadata-Version: 2.1\\\\nName: xgrammar\\\\nVersion: 0.1.33\\\\nSummary: Efficient, Flexible and Portable Structured Generation\\\\nKeywords: machine learning,inference\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "359a55a3-633f-4e4e-a48f-8a00f5cd46f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Metadata-Version: 2.1\\\\nName: xgrammar\\\\nVersion: 0.1.33\\\\nSummary: Efficient, Flexible and Portable Structured Generation\\\\nKeywords: machine learning,inference\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Metadata-Version: 2.1\\nName: xgrammar\\nVersion: 0.1.33\\nSummary: Efficient, Flexible and Portable Structured Generation\\nKeywords: machine learning,inference\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "XGrammar version 0.1.33. \n\nNow let me also check: is there an inference log that might show whether the Souvlaki document triggered the assertion error fallback?",
+              "signature": "Et0CClkIDRgCKkBDXjIjkS+opSl4xTJvnifSLv4Dr7MdQD3BWXbMJv0JSt1HVeP7B1SNTfgF4lQgkAuxY5UlxbTni+YXnzOKDEeCMg9jbGF1ZGUtb3B1cy00LTY4ABIM3JpFeOQVcr5cpamuGgzbaevRaRREh2yLrc0iMH1wC1VccSm6WMCmZE3J80VzYmf1K7A7sZ+aPthhVyFN9iJoG4dua2AFyTxA52UluCqxAVHL+brvUfTpV2hTUv042hoY6uwLaSPnJuDhF+r+RtcX+gpHDRcBpZ0fZ+rGmnDf0/24ZD99/RGgPXiqNipZglS5vGdpEx4L2rCD9JyFVcvBwNojf0nDqnhpyojSqDShQk1HrH6OKQlx3BidMzFRmj9Nz5keXAB9wJMj8+Mq7IyM/ayh0nXZ6c0vYvbjmNOZIb8mm4SkhcCDvHliASDxNvO9KWruInJvyn6V7y9K3xnu2hgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "f8b8c147-4ee4-4620-8e07-dc644e82a0c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018oyBjdP9Xfb1HJpvNJggjS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 82737,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "XGrammar 0.1.33。最后确认 Souvlaki 运行时是否触发了 assertion fallback。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "8023b38f-c1b9-42e7-bcc0-43662a6782a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018oyBjdP9Xfb1HJpvNJggjS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 82737,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D78PxyCFDgAax5dnFDSvZi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "find /root/schema_semantic_constrained_ie -name \"*.log\" -newer /root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl -mtime +2 2>/dev/null | head -5; find /root/schema_semantic_constrained_ie -name \"*.log\" | xargs grep -l \"Souvlaki\" 2>/dev/null | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "687e8a96-eed4-4221-bc2d-14fc107cd0bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018oyBjdP9Xfb1HJpvNJggjS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 82737,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-18T12:33:10.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D78PxyCFDgAax5dnFDSvZi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/texput.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "03d24215-56f0-45a8-8ea3-b44aa207793b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/texput.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/paper/texput.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011DVoKtD9KqWwnWApgyh36C",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "find /root/schema_semantic_constrained_ie -name \"*.log\" | xargs grep -l \"assertion\\|fallback\\|accept_token\" 2>/dev/null | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "a5f07b4d-d2bb-48dc-968f-1d236294e4cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AneAoQGJiUhPjBDWUYRTPA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 82977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-18T12:33:15.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011DVoKtD9KqWwnWApgyh36C",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.log\\\\n/root/schema_semantic_constrained_ie/outputs/dryrun_constrained.log\\\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic.log\\\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "eea74bef-7067-425e-b9bc-58c2369509e2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.log\\\\n/root/schema_semantic_constrained_ie/outputs/dryrun_constrained.log\\\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic.log\\\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.log\\n/root/schema_semantic_constrained_ie/outputs/dryrun_constrained.log\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic.log\\n/root/schema_semantic_constrained_ie/outputs/debug_semantic2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me also check the `docred_full_s1.jsonl` for any metadata that could indicate whether the assertion error fallback was triggered. The output record doesn't have a `fallback` flag. But I can also check if there's a run log for this specific run.\n\nActually, I have enough information now to draw conclusions. Let me also quickly verify: does \"grammar_only\" mode on DocRED also have the same XGrammar issue?",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "3cb6c07e-7cbd-4e5e-9bdf-833b0f02bad9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014eMjA4jhogQf4PGaKJHfq2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 301,
+                "cache_read_input_tokens": 83347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XGvfveCaKWS13G8ffecmYv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# Check grammar_only mode for RV violations\nwith open('outputs/docred_grammar_only.jsonl') as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc['doc_id'] == 'Souvlaki':\n            parsed = doc.get('parsed_output', {})\n            rels = parsed.get('relations', [])\n            for r in rels:\n                if 'membericipant' in r.get('type', ''):\n                    print('FOUND in grammar_only:', json.dumps(r))\n            # Check all relation types\n            rel_types = set(r['type'] for r in rels)\n            print(f'Souvlaki in grammar_only: {len(rels)} relations')\n            print('Relation types:', sorted(rel_types))\n            break\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "e0ad73a7-3572-4d65-a9b0-b2553aceafa4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014eMjA4jhogQf4PGaKJHfq2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 301,
+                "cache_read_input_tokens": 83347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-18T12:33:26.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XGvfveCaKWS13G8ffecmYv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"FOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"pork\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"chicken\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"beef\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"lamb\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"fish\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nSouvlaki in grammar_only: 14 relations\\\\nRelation types: ['country of origin', 'languages spoken, written or signed', 'location of formation', 'membericipant of', 'original language of work', 'part of']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "924ace29-b075-4b0d-8ea2-d3a32c219707",
+            "uuid": "9d835aa4-1dc6-448a-83a5-8e90984efc10",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"FOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"pork\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"chicken\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"beef\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"lamb\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nFOUND in grammar_only: {\\\\\\\"head\\\\\\\": \\\\\\\"Souvlaki\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"fish\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"membericipant of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"MISC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"MISC\\\\\\\"}\\\\nSouvlaki in grammar_only: 14 relations\\\\nRelation types: ['country of origin', 'languages spoken, written or signed', 'location of formation', 'membericipant of', 'original language of work', 'part of']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"FOUND in grammar_only: {\\\"head\\\": \\\"Souvlaki\\\", \\\"tail\\\": \\\"pork\\\", \\\"type\\\": \\\"membericipant of\\\", \\\"head_type\\\": \\\"MISC\\\", \\\"tail_type\\\": \\\"MISC\\\"}\\nFOUND in grammar_only: {\\\"head\\\": \\\"Souvlaki\\\", \\\"tail\\\": \\\"chicken\\\", \\\"type\\\": \\\"membericipant of\\\", \\\"head_type\\\": \\\"MISC\\\", \\\"tail_type\\\": \\\"MISC\\\"}\\nFOUND in grammar_only: {\\\"head\\\": \\\"Souvlaki\\\", \\\"tail\\\": \\\"beef\\\", \\\"type\\\": \\\"membericipant of\\\", \\\"head_type\\\": \\\"MISC\\\", \\\"tail_type\\\": \\\"MISC\\\"}\\nFOUND in grammar_only: {\\\"head\\\": \\\"Souvlaki\\\", \\\"tail\\\": \\\"lamb\\\", \\\"type\\\": \\\"membericipant of\\\", \\\"head_type\\\": \\\"MISC\\\", \\\"tail_type\\\": \\\"MISC\\\"}\\nFOUND in grammar_only: {\\\"head\\\": \\\"Souvlaki\\\", \\\"tail\\\": \\\"fish\\\", \\\"type\\\": \\\"membericipant of\\\", \\\"head_type\\\": \\\"MISC\\\", \\\"tail_type\\\": \\\"MISC\\\"}\\nSouvlaki in grammar_only: 14 relations\\nRelation types: ['country of origin', 'languages spoken, written or signed', 'location of formation', 'membericipant of', 'original language of work', 'part of']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000201"
+        }
+      ]
+    }
+  ]
+}

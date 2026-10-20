@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19d7c63c917b4dc57dc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check gpu experiments status",
+  "task_key": "worker_check_gpu-experiments-status_20260522T144440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-experiments-status_20260522T144440_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "f56424d1a3f080e74aed7889d0be5d7d81b0f7234c7f49ba96ae6c8401692815"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n| 实验 | 服务器 | PID | GPU | 显存 | 进度 | 状态 |\n|------|--------|-----|-----|------|------|------|\n| **eval_70b_lora_scierc_beam4_s1** | westd-16980 | 957041 | cuda:0 | 40064 MiB | 7/551 | 运行中，刚开始推理 |\n| **tcr_beam4_qwen_scierc** | westd-16980 | 956461 | cuda:0 | 18910 MiB | 84/551 | 运行中，模型已加载 |\n| **eval_70b_zs_scierc_grammar_only** | westd-21461 | 59802 | cuda:0 | 39256 MiB | 21/551 | 运行中 |\n\n**GPU 冲突问题：无冲突。** westd-16980 GPU0 总 97887 MiB，两个进程共用 ~59000 MiB（70B AWQ-INT4 ~40GB + 8B LoRA ~19GB），未 OOM，GPU 利用率 96%。\n\n**Cron 监控已注册：** 3 个实验各 8 分钟轮询一次（session-only，7 天自动过期）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-experiments-status.md"
+}

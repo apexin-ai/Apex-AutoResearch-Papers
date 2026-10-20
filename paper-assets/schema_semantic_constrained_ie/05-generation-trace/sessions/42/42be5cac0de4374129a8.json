@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42be5cac0de4374129a8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check experiment progress and compile",
+  "task_key": "worker_check_experiment_progress_and_compile_20260518T163411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_experiment_progress_and_compile_20260518T163411_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "4212d46b286512c1d6c16c398d1f6378ba101769f64b384a6b337ebf957f8f12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. P8b DocRED Latency (westd-21461)\n- **Unconstrained**: 200/200 ✅ 已完成\n- **Constrained**: 48/200 进行中 (24%)\n- 平均 ~19s/doc，剩余 152 docs\n- **预估完成**: ~50 分钟后\n\n### 2. 70B DocRED (westd-16980)\n- **Unconstrained**: 428/998 (42.9%)，GPU 0\n- **Constrained**: 429/998 (43.0%)，GPU 1\n- 两个进程并行运行，已跑 ~3h47m (20:48 启动)\n- 速率: ~1.89 docs/min (~32s/doc)\n- 剩余 ~570 docs，**预估还需 ~5h**，ETA ~05:35 CST\n\n### 3. 论文编译\n- **编译成功**: 17 pages, 305KB，无错误\n- **Undefined citations: 0** — 完全干净\n- **BibTeX warnings: 0**\n- Bib 文件已从本地同步到远程（506→623行，新增了 2026-05-18 batch）\n\n**关于指定 cite keys 的检查**:\n- `schall2025hiddencost` — 已被论文引用 ✅\n- 以下 keys 存在于 bib 中但**论文尚未引用**（需要在 tex 中加 `\\cite{}`）:\n  - `boostcd2025`, `grammar_aligned_2024`, `formattax2026`, `dccd2026`, `slot2025`, `guidex2025`, `schema_rl2025`, `jsonschemabench2025`\n- Worker 生成的变体 keys (`sakota2025boostcd`, `park2024grammaraligned` 等) 均不存在于 bib 中，也未被引用\n\n### 附带发现\n- **westd-16980 上 `llama_wikievents_full` 已 crash** (51/246): `AttributeError: 'list' object has no attribute 'get'` — `run_constrained_extraction.py:985`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-experiment-progress-and-compile.md"
+}

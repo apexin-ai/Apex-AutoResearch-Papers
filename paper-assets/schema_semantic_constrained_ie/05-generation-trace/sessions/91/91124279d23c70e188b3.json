@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91124279d23c70e188b3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code deploy eval westd21461",
+  "task_key": "worker_code_deploy_eval_westd21461_20260518T081400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deploy_eval_westd21461_20260518T081400_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "2f1e6664e9ca05eba62448a8d9c3cd4479641e4be07eb95fd47f92ac409e5ca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**部署完成。最终状态：**\n\n| 文件 | westd-16980 | westd-21461 |\n|---|---|---|\n| `run_v3_eval.sh` | ✅ 原始 | ✅ 已部署，可执行 |\n| `violation_checker_wikievents.py` | ✅ | ✅ 已存在 |\n| `eval_event_extraction.py` | ✅ | ✅ 已存在 |\n| `ontology_constraints_wikievents.json` | ✅ | ✅ 已存在 |\n\n两台服务器路径一致（`/root/schema_semantic_constrained_ie/`），无需路径调整。westd-21461 上 eval 全套脚本和数据就绪，可直接运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deploy-eval-westd21461.md"
+}

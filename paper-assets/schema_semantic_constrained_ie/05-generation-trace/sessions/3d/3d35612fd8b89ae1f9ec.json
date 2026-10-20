@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d35612fd8b89ae1f9ec",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis latency profiling docred collect",
+  "task_key": "worker_analysis_latency_profiling_docred_collect_20260516T101608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latency_profiling_docred_collect_20260516T101608_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "f1fcde40a05ed34ec8a06c9fbd380608ed443a5266dd83a214e7ca315c7277a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态明确了。汇总报告：\n\n## DocRED Latency Benchmark 状态\n\n**进程仍在运行**（PID 351213/351214/354247），GPU 利用率 85-89%。\n\n### 已完成\n- **unconstrained** (100 samples): mean=21.023s, median=15.588s, std=17.729s\n\n### 进行中\n- **grammar_only**: 已开始，日志因 Python stdout 缓冲未显示进度\n\n### 未开始\n- semantic_only\n- full_s1\n\n### 时间估算\n- 脚本 17:20 启动，unconstrained 在 ~18:13 完成\n- 每个 mode ≈ 35 分钟（100 × 21s）\n- 剩余 3 个 mode ≈ 105 分钟\n- **预计完成时间：~20:00 CST (UTC+8)**\n\n### 结果文件\n- 脚本写结果到 `/tmp/latency_benchmark_docred_results.json`，但仅在全部 4 个 mode 跑完后才写入（目前不存在）\n- 完成后还会输出 summary table 到 stdout（会追加到 `/tmp/benchmark_docred.log`）\n\n### 另外\n已有的 `/tmp/latency_benchmark.log` 和 `/tmp/latency_benchmark_results.json` 是 **SciERC controlled benchmark** 的结果（已完成）：\n\n| Mode | N | Mean(s) | P50(s) | P95(s) | P99(s) | Overhead | tok/s |\n|------|---|---------|--------|--------|--------|----------|-------|\n| unconstrained | 100 | 2.594s | 2.359s | 5.985s | 8.194s | - | 57.7 |\n| grammar_only | 100 | 2.637s | 2.397s | 6.099s | 8.346s | +1.7% | 56.7 |\n| semantic_only | 100 | 2.625s | 2.379s | 6.080s | 8.335s | +1.2% | 57.0 |\n| full_s1 | 100 | 2.655s | 2.416s | 6.162s | 8.449s | +2.3% | 56.4 |\n\n建议约 2 小时后（~20:00 CST）再派 Worker 收集 DocRED 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-latency-profiling-docred-collect.md"
+}

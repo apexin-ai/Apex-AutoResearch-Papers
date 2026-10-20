@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "id": "64ab8eff3a2af435032b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "ssh d062 full ft scierc",
+  "task_key": "worker_ssh_d062_full_ft_scierc_20260519T031647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_scierc_20260519T031647.log",
+    "occurrence": 1,
+    "bytes": 3162070,
+    "sha256": "b7b242e79bf923369f7cee378c37fc8d228026861f04b95eeaed6c185d154751"
+  },
+  "statistics": {
+    "messages": 1484,
+    "user_turns": 3,
+    "tool_calls": 581,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 3,
+      "assistant": 304,
+      "tool_call": 581,
+      "tool_result": 581,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 651,
+      "chunks": [
+        {
+          "path": "64ab8eff3a2af435032b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0004.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "64ab8eff3a2af435032b-part-0004.json",
+          "message_count": 69
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0006.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 424,
+      "chunks": [
+        {
+          "path": "64ab8eff3a2af435032b-part-0006.json",
+          "message_count": 39
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "64ab8eff3a2af435032b-part-0009.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "64ab8eff3a2af435032b-part-0009.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d062-full-ft-scierc.md"
+}

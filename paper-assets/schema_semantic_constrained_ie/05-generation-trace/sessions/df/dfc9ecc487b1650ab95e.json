@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfc9ecc487b1650ab95e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp sf2 quant qwen int4",
+  "task_key": "worker_exp_sf2-quant-qwen-int4_20260523T044726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sf2-quant-qwen-int4_20260523T044726_result.json",
+    "occurrence": 1,
+    "bytes": 94,
+    "sha256": "4ec15957d7f2e71530e7a4eefb3c99177d23ba43adfd3ba2aa57c55ab7facdb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference running steadily — 116/551 complete. Will check back in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sf2-quant-qwen-int4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6acfc5c360a34e9e00f3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r16 70b lora scierc",
+  "task_key": "worker_code_r16_70b_lora_scierc_20260521T040623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_70b_lora_scierc_20260521T040623_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "9ddba15edb8add67670032e0b8e2dd861cef3c70e3bd8fe685b5269e27bc7d70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5/551 samples processed, steady progress. The experiment is running correctly.\n\n**Summary:**\n\n- **Launched on westd-16980 cuda:1**: Llama-3.1-70B-Instruct-AWQ-INT4 zero-shot SciERC experiment\n- **No 70B LoRA checkpoint exists**, so running **ZS (zero-shot)** instead of FT\n- **Two runs** (sequential):\n  1. `r16_70b_scierc_zs_unconstrained.jsonl` — no constraints\n  2. `r16_70b_scierc_zs_full_s1.jsonl` — full S1 constrained (grammar + semantic)\n- **Violation checks** run automatically after each\n- **Model**: 39.2GB VRAM on cuda:1, AwqMarlinLinear kernel, ~5.8s/sample\n- **ETA**: ~1h for unconstrained + ~1-1.5h for constrained = **~2-3h total**\n- **Log**: `/tmp/r16_70b_scierc_zs.log`\n- **Script**: `/root/schema_semantic_constrained_ie/run_70b_scierc_zs.sh`\n- **PID**: 808988 (parent), 808996 (python3)\n- **cuda:0 untouched** (beam experiment still running at 22.6GB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-70b-lora-scierc.md"
+}

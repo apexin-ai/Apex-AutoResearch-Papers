@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8b40acea4c758c4b227",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh w9 r2 check completion",
+  "task_key": "worker_ssh_w9_r2_check_completion_20260518T215629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w9_r2_check_completion_20260518T215629_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "64de3d4249a98d5dc04c3d8d7f48f78f71f397663d602a998279823f78629aec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Success** — 892/892 docs 全部完成。\n\n- 输出文件：892 行，9.0 MB，最后修改 May 19 05:47\n- 日志结尾：`Done: 892 new samples, success=887, fail=5 (skipped 0 already processed)`\n- 887 成功，5 失败（正常范围），无异常错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w9-r2-check-completion.md"
+}

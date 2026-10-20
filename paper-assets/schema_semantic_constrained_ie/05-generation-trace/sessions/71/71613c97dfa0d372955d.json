@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71613c97dfa0d372955d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor docred 200 server loop",
+  "task_key": "worker_monitor_docred_200_server_loop_20260522T035541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_docred_200_server_loop_20260522T035541_result.json",
+    "occurrence": 1,
+    "bytes": 45,
+    "sha256": "2c3c7afde1fbd477f8e5ea200f3b24ae88dec3f2f229c985ed8a70552d7d412c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20 分钟后回来查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-docred-200-server-loop.md"
+}

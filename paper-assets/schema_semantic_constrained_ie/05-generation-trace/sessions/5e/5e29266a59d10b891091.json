@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e29266a59d10b891091",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r2n10 rv003 root cause v2",
+  "task_key": "worker_analysis_r2n10_rv003_root_cause_v2_20260518T130606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r2n10_rv003_root_cause_v2_20260518T130606_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "6855ee03106eed9e3b092fe76793902fba131b74ad6df686e67f4f2811d254a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `artifacts/r2n10_rv_root_cause.md`.\n\n**Summary**: All 5 RV cases are a single xgrammar 0.1.33 bug, not a fundamental limitation. The chimeric relation \"membericipant of\" forms when xgrammar's enum automaton incorrectly allows token \"icipant\" (from \"participant of\") after token \"member\" (from \"member of\"). I reproduced this directly with xgrammar's GrammarMatcher, confirming 8 tokens are allowed after \"member\" when only \" of\"-continuing tokens should be. The TypeConstraintProcessor (Layer 2) is uninvolved since it doesn't mask relation type values at all.\n\nPaper Agent's description (\"tokenization edge cases where multi-token relation names span grammar-state boundaries\") is directionally correct but imprecise. The report includes three revision options at different verbosity levels."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r2n10-rv003-root-cause-v2.md"
+}

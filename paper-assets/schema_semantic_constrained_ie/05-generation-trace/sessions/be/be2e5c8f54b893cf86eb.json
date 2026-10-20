@@ -1,0 +1,1409 @@
+{
+  "schema_version": "1.0",
+  "id": "be2e5c8f54b893cf86eb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "research composability paper audit",
+  "task_key": "worker_research_composability_paper_audit_20260516T021140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_composability_paper_audit_20260516T021140.jsonl",
+    "occurrence": 1,
+    "bytes": 72033,
+    "sha256": "15df7c5adea9a7d8fe8f9d902fd19d53a620b161f631ef006ec563dcd222da76"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:16:43.958941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:16:43.959418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:16:43.959620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:16:43.960005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md\\\", \\\"content\\\": \\\"# OntoCoDec — Paper Framing\\\\n\\\\n## Target Venue\\\\nEMNLP 2026 (ARR submission May 25, 2026)\\\\n\\\\n## Title\\\\nOntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints\\\\n(D015: \\\\\\\"Near-Complete\\\\\\\" dropped — DocRED residual DR=10.21% (Qwen) 不算 near-complete。论文贡献是方法，不是特定消除率。SciERC 0.93% 和 DocRED 2.55% (Llama) 可在正文中描述为 near-complete，但 title 不宜 overclaim。)\\\\n\\\\n## Core Insight\\\\nLLM-based IE systems produce systematic ontology constraint violations concentrated in specific relation types. Prompt-level intervention (schema-informed prompting) reduces violations by ~62% but cannot eliminate them — certain relation types retain 25-30% violation rates even with explicit constraint descriptions. OntoCoDec provides **near-complete elimination (DR 15.4%→0.93%, ↓94%) at zero or positive F1 impact** through automatic ontology-to-decoder constraint compilation with two complementary layers.\\\\n\\\\n**Phase 2 confirmed (D012 bootstrap CI, v2 fix)**: Grammar+Semantic dual-layer constrained decoding reduces domain/range violations by 94%, eliminates entity-type and relation-vocabulary violations entirely (→0%). F1 impact is **dataset-dependent**:\\\\n- SciERC: Rel F1 neutral (+0.13pp, p=0.58), Ent F1 neutral (-0.03pp, p=0.53)\\\\n- DocRED: Rel F1 **significantly improved** (+0.50pp, p<0.001, 95% CI [+0.23, +0.81]); Ent F1 **significantly improved** (+1.23pp, p<0.001, 95% CI [+0.94, +1.55])\\\\n- Mechanism: grammar 消除 OOV relation names (DocRED RV 29.66%→0.03%) + 非标 entity types (ET 2.48%→0%)。all_set F1 方法下 OOV=FP → fewer FP → higher precision/F1。SciERC baseline RV/ET 已很低，效果不显著。\\\\n- **Grammar 层是 F1 提升的唯一来源**: grammar_only Ent F1=59.38% ≈ full_s1 59.37% (Δ+0.01pp, p=0.66)。Semantic 层对 F1 无额外贡献，专注 DR reduction。\\\\n\\\\n## Core Claims\\\\n\\\\n### Claim 1 (Empirical): Violation Landscape\\\\nLLM-based IE system\n…[truncated 19275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:16:43.960187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/paper -type f -name \"*.tex\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:16:43.960323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:16:43.960506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/abstract.tex\\\\n/root/schema_semantic_constrained_ie/paper/section7_conclusion_compressed.tex\\\\n/root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_llama_per_relation.tex\\\\n/root/schema_semantic_constrained_ie/paper/main.tex\\\\n/root/schema_semantic_constrained_ie/paper/section1_introduction_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/section2_background.tex\\\\n/root/schema_semantic_constrained_ie/paper/section4_composition_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/section3_violation_landscape.tex\\\\n/root/schema_semantic_constrained_ie/paper/section6_related_work.tex\\\\n/root/schema_semantic_constrained_ie/paper/section3_method_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/section5_scierc_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_related_work.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_discussion.tex\\\\n/root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex\\\\n/root/schema_semantic_constrained_ie/paper/discussion_paragraphs.tex\\\\n/root/schema_semantic_constrained_ie/paper/discussion_paragraphs_cf83d1.tex\\\\n/root/schema_semantic_constrained_ie/paper/section5_scierc_draft_4796e8.tex\\\\n/root/schema_semantic_constrained_ie/paper/section5_docred_draft_9b84f1.tex\\\\n/root/schema_semantic_constrained_ie/paper/section7_conclusion.tex\\\\n/root/schema_semantic_constrained_ie/paper/section7_conclusion_550cbf.tex\\\\n/root/schema_semantic_constrained_ie/paper/abstract_fd4b26.tex\\\\n/root/schema_semantic_constrained_ie/paper/abstract_d3264e.tex\\\\n/root/schema_semantic_constrained_ie/paper/section6_relwork_additions.tex\\\\n/root/schema_semantic_constrained_ie/paper/section6_relwork_outline.tex\\\\n/root/schema_semantic_constrained_ie/paper/discussion_cf_fallback.tex\\\\n/root/\n…[truncated 170 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:16:43.960766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/section7_conclusion_550cbf.tex\nartifacts/dream_reports/dream_20260514T094226/best/paper.tex\nartifacts/dream_reports/dream_20260514T094226/median/paper.tex\nartifacts/dream_reports/dream_20260514T094226/worst/paper.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs.tex\nartifacts/dream_reports/dream_20260514T205155/best/paper.tex\nartifacts/dream_reports/dream_20260514T205155/median/paper.tex\nartifacts/dream_reports/dream_20260514T205155/worst/paper.tex\nartifacts/_project/paper/section6_relwork_outline.tex\nartifacts/_project/paper/section7_conclusion.tex\nartifacts/_project/paper/appendix_llama_per_relation.tex\nartifacts/_project/paper/appendix_related_work.tex\nartifacts/_project/paper/appendix_prompts.tex\nartifacts/_project/paper/section6_related_work.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/paper_tables_draft.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex\nartifacts/_project/paper/section5_runtime.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/section1_introduction_draft.tex\nartifacts/_project/paper/section7_conclusion_compressed.tex\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:16:43.960968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/section5_composability.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:16:43.961195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% Section 5 — Composability with Fine-Tuned Models\\\\n     2\\\\t% exp_ids: w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval,\\\\n     3\\\\t%          w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval\\\\n     4\\\\t\\\\n     5\\\\t\\\\\\\\subsection{Composability with Fine-Tuned Models}\\\\n     6\\\\t\\\\\\\\label{sec:composability-ft}\\\\n     7\\\\t\\\\n     8\\\\tThe cross-model validation in \\\\\\\\S\\\\\\\\ref{sec:cross-model} establishes that\\\\n     9\\\\tOntoCoDec generalizes across model families in the zero-shot regime.\\\\n    10\\\\tA complementary question is whether the same constraints remain useful\\\\n    11\\\\tafter task-specific fine-tuning, where the model has been trained to\\\\n    12\\\\temit ontology-conformant outputs and one might expect violations to\\\\n    13\\\\tdisappear on their own.\\\\n    14\\\\tWe test this by LoRA fine-tuning both Qwen3-8B and Llama-3.1-8B on\\\\n    15\\\\tSciERC and then evaluating each fine-tuned model with and without the\\\\n    16\\\\ttwo-layer constraints, yielding a 2$\\\\\\\\times$2 design per model family.\\\\n    17\\\\t\\\\n    18\\\\t\\\\\\\\begin{table}[t]\\\\n    19\\\\t\\\\\\\\centering\\\\n    20\\\\t\\\\\\\\small\\\\n    21\\\\t\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\\\n    22\\\\t\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n    23\\\\t\\\\\\\\begin{tabular}{@{}lll rr rr@{}}\\\\n    24\\\\t\\\\\\\\toprule\\\\n    25\\\\t& & & \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{Viol.~(\\\\\\\\%)}}\\\\n    26\\\\t& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n    27\\\\t\\\\\\\\cmidrule(lr){4-5} \\\\\\\\cmidrule(l){6-7}\\\\n    28\\\\t\\\\\\\\textbf{Model} & \\\\\\\\textbf{Train} & \\\\\\\\textbf{Decode}\\\\n    29\\\\t  & DR\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n    30\\\\t  & Rel.\\\\\\\\,$\\\\\\\\uparrow$ & Ent.\\\\\\\\,$\\\\\\\\uparrow$ \\\\\\\\\\\\\\\\\\\\n    31\\\\t\\\\\\\\midrule\\\\n    32\\\\t\\\\\\\\multirow{4}{*}{Qwen3-8B}\\\\n    33\\\\t  & Zero-shot & U   & 15.37 & 0.08 & 8.23 & 31.01 \\\\\\\\\\\\\\\\\\\\n    34\\\\t  & Zero-shot & S1  & \\\\\\\\textbf{0.93}  & 9.90 & 8.36 & 30.98 \\\\\\\\\\\\\\\\\\\\n    35\\\\t  & LoRA      & U   &  1.95 & 0\n…[truncated 4379 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:16:43.961350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:16:43.961593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% =============================================================\\\\n     2\\\\t% Paper Tables Draft — Schema-Semantic Constrained IE\\\\n     3\\\\t% Generated from experiment registry, 2026-05-14\\\\n     4\\\\t% Model: Qwen3-8B (zero-shot), all percentages to 1 d.p.\\\\n     5\\\\t% =============================================================\\\\n     6\\\\t\\\\n     7\\\\t% ------------------------------------------------------------\\\\n     8\\\\t% Table 1: SciERC 5-way Ablation\\\\n     9\\\\t% ------------------------------------------------------------\\\\n    10\\\\t\\\\\\\\begin{table}[t]\\\\n    11\\\\t\\\\\\\\centering\\\\n    12\\\\t\\\\\\\\caption{Ablation study on SciERC test set (551 samples, Qwen3-8B zero-shot).\\\\n    13\\\\tDR = Domain/Range violation rate, RV = Relation Vocabulary violation rate,\\\\n    14\\\\tET = Entity Type violation rate, CF = Cross-Field consistency violation rate.\\\\n    15\\\\t$\\\\\\\\downarrow$: lower is better; $\\\\\\\\uparrow$: higher is better.\\\\n    16\\\\t$\\\\\\\\Delta$DR shows the absolute change (pp) relative to the unconstrained baseline.}\\\\n    17\\\\t\\\\\\\\label{tab:scierc-ablation}\\\\n    18\\\\t\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n    19\\\\t\\\\\\\\begin{tabular}{l cccc cc c}\\\\n    20\\\\t\\\\\\\\toprule\\\\n    21\\\\tMode & DR$\\\\\\\\downarrow$ & RV$\\\\\\\\downarrow$ & ET$\\\\\\\\downarrow$ & CF$\\\\\\\\downarrow$ & R-F1$\\\\\\\\uparrow$ & E-F1$\\\\\\\\uparrow$ & $\\\\\\\\Delta$DR (pp) \\\\\\\\\\\\\\\\\\\\n    22\\\\t\\\\\\\\midrule\\\\n    23\\\\tUnconstrained      & 15.4 & 1.4          & 0.4          & \\\\\\\\textbf{0.1} & 8.2          & 31.0          & ---                    \\\\\\\\\\\\\\\\\\\\n    24\\\\tGrammar-only       & 14.8 & \\\\\\\\textbf{0.0} & \\\\\\\\textbf{0.0} & \\\\\\\\textbf{0.1} & 8.2          & 31.0          & $-$0.5                 \\\\\\\\\\\\\\\\\\\\n    25\\\\tSemantic-only      & 11.7 & 1.5          & 0.4          & 2.7          & 8.2          & 31.0          & $-$3.7                 \\\\\\\\\\\\\\\\\\\\n    26\\\\tFull (S1)          & \\\\\\\\textbf{0.9} & \\\\\\\\textbf{0.0} & \\\\\\\\textbf{0.0} & 9.9  & \\\\\\\\textbf{\n…[truncated 5536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:16:43.961778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:16:43.961933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\\begin{abstract}\\\\n     2\\\\tLLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.\\\\n     3\\\\tOn SciERC (7 relation types), 15.37\\\\\\\\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\\\\\\\\%---comparable rates governed by \\\\\\\\emph{constraint tightness} rather than ontology scale.\\\\n     4\\\\t%\\\\n     5\\\\tWe present \\\\\\\\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\\\\n     6\\\\t(1)~a \\\\\\\\emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity/relation vocabularies to schema-defined values (ET, RV\\\\\\\\,$\\\\\\\\to$\\\\\\\\,0\\\\\\\\%); and\\\\n     7\\\\t(2)~a \\\\\\\\emph{semantic layer} enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.\\\\n     8\\\\tThe grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.\\\\n     9\\\\t%\\\\n    10\\\\tOn SciERC, \\\\\\\\textsc{OntoCoDec} reduces domain/range violations by 94\\\\\\\\% (15.37\\\\\\\\%\\\\\\\\,$\\\\\\\\to$\\\\\\\\,0.93\\\\\\\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$).\\\\n    11\\\\tOn DocRED, violations decrease by 45--90\\\\\\\\% depending on the model, with significant relation F1 gains for both Qwen3-8B ({+}0.50pp, $p{<}0.001$) and Llama-3.1-8B ({+}0.29pp, $p{=}0.013$; DR$\\\\\\\\downarrow$90.2\\\\\\\\%).\\\\n    12\\\\t% exp_ids: phase2_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1\\\\n    13\\\\tThe dual-factor mechanism---tightness $\\\\\\\\times$ baseline violation rate---explains cross-dataset and cross-model DR reduction differences.\\\\n    14\\\\t\\\\\\\\end{abstract}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:16:43.962077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/section1_introduction_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:16:43.962250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% Section 1: Introduction (compressed, 669→~550 words)\\\\n     2\\\\t\\\\n     3\\\\t\\\\\\\\section{Introduction}\\\\n     4\\\\t\\\\\\\\label{sec:introduction}\\\\n     5\\\\t\\\\n     6\\\\tLarge language models are increasingly deployed for zero-shot information extraction~\\\\\\\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity is guaranteed to carry a type consistent with the ontology's domain/range constraints for $r$.\\\\n     7\\\\tWe call such outputs \\\\\\\\emph{domain/range violations}---structurally valid triples that are ontologically invalid.\\\\n     8\\\\tIn a systematic study, we find violations are pervasive: 15.4\\\\\\\\% of triples on SciERC~\\\\\\\\cite{luan2018scierc} and 18.7\\\\\\\\% on DocRED~\\\\\\\\cite{yao2019docred}, driven by \\\\\\\\emph{constraint tightness} (few valid type pairs per relation) rather than ontology scale.\\\\n     9\\\\tRelations with tight constraints exhibit far higher rates (\\\\\\\\textsc{Compare}: 42.4\\\\\\\\%) than loosely constrained ones (\\\\\\\\textsc{Used-for}: 0.8\\\\\\\\%).\\\\n    10\\\\t\\\\n    11\\\\tExisting approaches leave a fundamental gap.\\\\n    12\\\\tSchema-informed prompting reduces violations by 62\\\\\\\\% on average but is per-relation unreliable---violations for \\\\\\\\textsc{Evaluate-for} actually \\\\\\\\emph{increase} by 5.8\\\\\\\\,pp.\\\\n    13\\\\tGrammar-constrained decoding~\\\\\\\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints.\\\\n    14\\\\tPost-hoc validation wastes compute on discarded outputs and cannot redirect probability mass during decoding.\\\\n    15\\\\tTraining-based approaches~\\\\\\\\cite{sainz2024gollie,lu2022uie} provide only soft guidance that cannot eliminate violations.\\\\n    16\\\\t\\\\n    17\\\\tWe propose \\\\\\\\textbf{OntoCoDec} (\\\\\\\\textbf{Onto}logy-\\\\\\\\textbf{Co}mpiled \\\\\\\\textbf{Dec}oding), a framework that compiles an IE ontology into two composabl\n…[truncated 1758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:16:43.962396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/section7_conclusion_compressed.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:16:43.962566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% Section 7 — Discussion and Conclusion (compressed)\\\\n     2\\\\t% Full discussion paragraphs moved to Appendix B.\\\\n     3\\\\t\\\\n     4\\\\t\\\\\\\\paragraph{CF Severity.}\\\\n     5\\\\t% exp_ids: phase2_scierc_full_s1 (CF=9.90%), phase2_scierc_grammar_only (CF=0.08%),\\\\n     6\\\\t%          phase2_docred_full_s1 (CF=2.57%), llama_docred_full_s1 (CF=12.02%)\\\\n     7\\\\tDR violations produce ontologically invalid triples---a hard constraint failure that no downstream system can recover from.\\\\n     8\\\\tCF violations are qualitatively different: each individual triple remains type-valid with respect to its own relation's domain/range rules; only cross-triple consistency is broken when the same entity receives different types across relations.\\\\n     9\\\\tThe dominant conflict pattern---\\\\\\\\emph{Generic}$\\\\\\\\leftrightarrow$\\\\\\\\emph{OtherScientificTerm} (60 of 245 affected entities on SciERC)---reflects genuine semantic ambiguity in the type system rather than a systematic method failure.\\\\n    10\\\\tAblation cleanly attributes CF to the semantic layer: grammar-only decoding yields CF\\\\\\\\,=\\\\\\\\,0.08\\\\\\\\%, matching the unconstrained baseline, while the full system reaches 9.90\\\\\\\\% on SciERC and 2.57\\\\\\\\% on DocRED (Qwen3-8B; 12.02\\\\\\\\% DocRED for Llama-3.1-8B), confirming that CF arises from per-relation independent enforcement where each relation's constraint mask is computed without access to type decisions made for other relations (extended analysis in Appendix~\\\\\\\\ref{app:discussion}).\\\\n    11\\\\t% exp_ids: phase2_scierc_grammar_only, phase2_docred_full_s1, llama_docred_full_s1\\\\n    12\\\\t\\\\n    13\\\\t\\\\\\\\paragraph{Dataset-Dependent F1 Impact.}\\\\n    14\\\\t% exp_ids: d012_bootstrap_ci (DocRED +0.50pp p<0.001, SciERC +0.13pp p=0.58),\\\\n    15\\\\t%          phase0_docred_unconstrained (RV=29.66%), phase0_scierc_unconstrained (RV=1.39%)\\\\n    16\\\\tThe divergence in F1 significance between DocRED ($+$0.50\\\\\\\\,pp, $p < 0.00\n…[truncated 1814 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:16:43.962737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/section5_crossmodel_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:16:43.962950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% Section 5 — Cross-Model Validation (compressed, 830→~400 words)\\\\n     2\\\\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\\\\n     3\\\\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\\\\n     4\\\\t%          llama_scierc_unconstrained, llama_scierc_full_s1,\\\\n     5\\\\t%          llama_docred_unconstrained, llama_docred_full_s1\\\\n     6\\\\t\\\\n     7\\\\t\\\\\\\\subsection{Cross-Model Validation}\\\\n     8\\\\t\\\\\\\\label{sec:cross-model}\\\\n     9\\\\t\\\\n    10\\\\tWe replicate the full S1 configuration with Llama-3.1-8B-Instruct under identical prompts, decoding parameters, and evaluation.\\\\n    11\\\\tTable~\\\\\\\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\\\\n    12\\\\t\\\\n    13\\\\t\\\\\\\\begin{table}[t]\\\\n    14\\\\t\\\\\\\\centering\\\\n    15\\\\t\\\\\\\\small\\\\n    16\\\\t\\\\\\\\setlength{\\\\\\\\tabcolsep}{3.4pt}\\\\n    17\\\\t\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n    18\\\\t\\\\\\\\begin{tabular}{@{}ll rrrr rr@{}}\\\\n    19\\\\t\\\\\\\\toprule\\\\n    20\\\\t& & \\\\\\\\multicolumn{4}{c}{\\\\\\\\textbf{Violation Rates (\\\\\\\\%)}}\\\\n    21\\\\t& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{F1}} \\\\\\\\\\\\\\\\\\\\n    22\\\\t\\\\\\\\cmidrule(lr){3-6} \\\\\\\\cmidrule(l){7-8}\\\\n    23\\\\t\\\\\\\\textbf{Dataset} & \\\\\\\\textbf{Model}\\\\n    24\\\\t  & DR\\\\\\\\,$\\\\\\\\downarrow$ & RV\\\\\\\\,$\\\\\\\\downarrow$ & ET\\\\\\\\,$\\\\\\\\downarrow$ & CF\\\\n    25\\\\t  & Rel. & Ent. \\\\\\\\\\\\\\\\\\\\n    26\\\\t\\\\\\\\midrule\\\\n    27\\\\t\\\\\\\\multirow{4}{*}{SciERC}\\\\n    28\\\\t  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\\\\\\\\\\\\\\\\n    29\\\\t  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\\\\\\\\\\\\\\\\n    30\\\\t  \\\\\\\\cmidrule(l){2-8}\\\\n    31\\\\t  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\\\\\\\\\\\\\\\\n    32\\\\t  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\\\\\\\\\\\\\\\\n    33\\\\t\\\\\\\\midrule\\\\n    34\\\\t\\\\\\\\multirow{4}{*}{DocRED}\\\\n    35\\\\t  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\\\\\\\\\\\\\\\\n    36\\\\t  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\\\\\\\n…[truncated 3674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:16:43.963137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/appendix_discussion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:16:43.963346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t% Appendix B — Extended Discussion\\\\n     2\\\\t% Contains discussion paragraphs moved from the main text during compression.\\\\n     3\\\\t\\\\n     4\\\\t\\\\\\\\section{Extended Discussion}\\\\\\\\label{app:discussion}\\\\n     5\\\\t\\\\n     6\\\\t%%% Paragraph 1: Low F1 Practical Significance %%%\\\\n     7\\\\t% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),\\\\n     8\\\\t%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)\\\\n     9\\\\t\\\\n    10\\\\t\\\\\\\\paragraph{Practical Significance of Zero-Shot F1.}\\\\n    11\\\\tOur reported relation F1 of approximately 8\\\\\\\\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.\\\\n    12\\\\tFor reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\\\\\\\\% relation F1 with full training data~\\\\\\\\citep{zhong2021frustratingly,ye2022packed}.\\\\n    13\\\\tConstraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.\\\\n    14\\\\tWhen applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\\\\\\\\% DR on SciERC, 18.46\\\\\\\\% on DocRED).\\\\n    15\\\\t% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained\\\\n    16\\\\tIn our evaluation, F1 serves as a \\\\\\\\emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.\\\\n    17\\\\tThe contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.\\\\n    18\\\\t\\\\n    19\\\\t%%% Paragraph 4: Decoding-Time vs. Post-H\n…[truncated 5130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:16:43.963497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat -n /root/schema_semantic_constrained_ie/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:16:43.963736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\\documentclass[11pt]{article}\\\\n     2\\\\t\\\\n     3\\\\t\\\\\\\\usepackage[review]{acl}\\\\n     4\\\\t\\\\n     5\\\\t\\\\\\\\usepackage{times}\\\\n     6\\\\t\\\\\\\\usepackage{latexsym}\\\\n     7\\\\t\\\\\\\\usepackage[T1]{fontenc}\\\\n     8\\\\t\\\\\\\\usepackage[utf8]{inputenc}\\\\n     9\\\\t\\\\\\\\usepackage{microtype}\\\\n    10\\\\t\\\\\\\\usepackage{graphicx}\\\\n    11\\\\t\\\\\\\\usepackage{booktabs}\\\\n    12\\\\t\\\\\\\\usepackage{multirow}\\\\n    13\\\\t\\\\\\\\usepackage{amsmath}\\\\n    14\\\\t\\\\\\\\usepackage{amssymb}\\\\n    15\\\\t\\\\\\\\usepackage{enumitem}\\\\n    16\\\\t\\\\\\\\usepackage{xcolor}\\\\n    17\\\\t\\\\n    18\\\\t\\\\\\\\title{OntoCoDec: Type-Valid Information Extraction\\\\\\\\\\\\\\\\via Compiled Ontology Constraints}\\\\n    19\\\\t\\\\n    20\\\\t\\\\\\\\author{Anonymous ACL submission}\\\\n    21\\\\t\\\\n    22\\\\t\\\\\\\\begin{document}\\\\n    23\\\\t\\\\\\\\maketitle\\\\n    24\\\\t\\\\n    25\\\\t% === Abstract ===\\\\n    26\\\\t\\\\\\\\input{abstract}\\\\n    27\\\\t\\\\n    28\\\\t% === §1 Introduction ===\\\\n    29\\\\t\\\\\\\\input{section1_introduction_draft}\\\\n    30\\\\t\\\\n    31\\\\t% === §2 Background ===\\\\n    32\\\\t\\\\\\\\input{section2_background}\\\\n    33\\\\t\\\\n    34\\\\t% === §3 Method ===\\\\n    35\\\\t\\\\\\\\input{section3_method_draft}\\\\n    36\\\\t\\\\n    37\\\\t% === §4 Constraint Composition ===\\\\n    38\\\\t\\\\\\\\section{Constraint Composition}\\\\n    39\\\\t\\\\\\\\label{sec:composition}\\\\n    40\\\\t\\\\\\\\input{section4_composition_draft}\\\\n    41\\\\t\\\\n    42\\\\t% === §5 Experiments ===\\\\n    43\\\\t\\\\\\\\section{Experiments}\\\\n    44\\\\t\\\\\\\\label{sec:experiments}\\\\n    45\\\\t\\\\n    46\\\\t\\\\\\\\subsection{Violation Landscape}\\\\n    47\\\\t\\\\\\\\input{section3_violation_landscape}\\\\n    48\\\\t\\\\n    49\\\\t\\\\\\\\input{section5_scierc_draft}\\\\n    50\\\\t\\\\\\\\input{section5_docred_draft}\\\\n    51\\\\t\\\\\\\\input{section5_crossmodel_draft}\\\\n    52\\\\t\\\\\\\\input{section5_composability}\\\\n    53\\\\t\\\\n    54\\\\t% === §6 Related Work ===\\\\n    55\\\\t\\\\\\\\input{section6_related_work}\\\\n    56\\\\t\\\\n    57\\\\t% === §7 Discussion and Conclusion ===\\\\n    58\\\\t\\\\\\\\section{Discussion a\n…[truncated 2560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:16:43.963948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n -i \"composab\\|fine-tun.*constrain\\|LoRA.*constrain\\|FT.*constrain\\|constrain.*fine-tun\\|constrain.*LoRA\\|constrain.*FT\\|tab:composab\" /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:16:43.964092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:16:43.964217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn -i \"composab\\|tab:composab\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:16:43.964342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:16:43.964528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"composab\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:16:43.964754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/abstract.tex:5:We present \\\\\\\\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\\\\n/root/schema_semantic_constrained_ie/paper/main.tex:52:\\\\\\\\input{section5_composability}\\\\n/root/schema_semantic_constrained_ie/paper/main.tex:65:The semantic layer introduces cross-field consistency (CF) violations (up to 12.02\\\\\\\\%) under zero-shot prompting, a systematic consequence of per-relation independent enforcement that remains an open challenge; this rate falls to $\\\\\\\\leq$1.18\\\\\\\\% once the base model is LoRA fine-tuned (Table~\\\\\\\\ref{tab:composability}).\\\\n/root/schema_semantic_constrained_ie/paper/section1_introduction_draft.tex:17:We propose \\\\\\\\textbf{OntoCoDec} (\\\\\\\\textbf{Onto}logy-\\\\\\\\textbf{Co}mpiled \\\\\\\\textbf{Dec}oding), a framework that compiles an IE ontology into two composable layers of decoding-time constraints.\\\\n/root/schema_semantic_constrained_ie/paper/section6_related_work.tex:20:OntoCoDec provides complementary \\\\\\\\emph{hard} enforcement that is training-free and composable with these methods.\\\\n/root/schema_semantic_constrained_ie/paper/appendix_related_work.tex:65:OntoCoDec provides \\\\\\\\emph{hard} decoding-time enforcement that is training-free, automatically compiled from ontology schemas, and composable with any of these training-based approaches.\\\\n/root/schema_semantic_constrained_ie/paper/abstract_fd4b26.tex:9:We present \\\\\\\\textsc{OntoCoDec}, which automatically compiles IE ontology schemas into two composable constraint layers for autoregressive decoding:\\\\n/root/schema_semantic_constrained_ie/paper/abstract_d3264e.tex:9:We present \\\\\\\\textsc{OntoCoDec}, which automatically compiles IE ontology schemas into two composable constraint layers for autoregressive decoding:\\\\n/root/schema_semantic_constrained_ie/paper/section6_relwork_outline.tex:79:\\\\\\\\textbf{Distinction:} Training-based methods provi\n…[truncated 1378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:16:43.964914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"tab:composab\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:16:43.965052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/main.tex:65:The semantic layer introduces cross-field consistency (CF) violations (up to 12.02\\\\\\\\%) under zero-shot prompting, a systematic consequence of per-relation independent enforcement that remains an open challenge; this rate falls to $\\\\\\\\leq$1.18\\\\\\\\% once the base model is LoRA fine-tuned (Table~\\\\\\\\ref{tab:composability}).\\\\n/root/schema_semantic_constrained_ie/paper/main.aux:680:\\\\\\\\newlabel{tab:composability}{{5}{7}{Composability with fine-tuning on SciERC (551 documents). U: unconstrained; S1: full two-layer decoding. LoRA $r{=}16$, $\\\\\\\\alpha {=}32$, all-linear targets, 3 epochs, effective batch 16. F1 $\\\\\\\\times $100. RV and ET are 0\\\\\\\\,\\\\\\\\% in every constrained row and are omitted for space.\\\\\\\\relax }{table.caption.39}{}}\\\\n/root/schema_semantic_constrained_ie/paper/section5_composability.tex:50:\\\\\\\\label{tab:composability}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:16:43.965188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"composab\\|fine-tun\\|LoRA\\|DocRED.*fine\" /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:16:43.965313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:16:43.965431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"composab\\|fine-tun\\|DocRED.*LoRA\\|TBD\" /root/schema_semantic_constrained_ie/paper/section7_conclusion_compressed.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:16:43.965552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:16:43.965699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"composab\" /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:16:43.965826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"fine-tun\" /root/schema_semantic_constrained_ie/paper/section5_docred_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:16:43.965942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -n \"TBD\" /root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:16:43.966059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:16:43.966181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T02:16:43.966296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"DocRED.*fine-tun\\|fine-tun.*DocRED\\|DocRED.*LoRA\\|LoRA.*DocRED\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T02:16:43.966414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"119:DocRED & 96 & 18.7 & 28.9 & 7.5 & \\\\\\\\textit{TBD} & \\\\\\\\textit{TBD} \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T02:16:43.966527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T02:16:43.966653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"DocRED.*LoRA\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T02:16:43.966796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/main.tex:69:Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings on SciERC; DocRED fine-tuning is not reported (the Qwen LoRA run is still in progress at submission time).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T02:16:43.966913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"DocRED fine\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T02:16:43.967031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/main.tex:69:Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings on SciERC; DocRED fine-tuning is not reported (the Qwen LoRA run is still in progress at submission time).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T02:16:43.967150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"not reported\\|in progress\\|pending\\|still running\\|RUNNING\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T02:16:43.967267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T02:16:43.967378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"not reported\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T02:16:43.967493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/main.tex:69:Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings on SciERC; DocRED fine-tuning is not reported (the Qwen LoRA run is still in progress at submission time).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T02:16:43.967607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"pending\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T02:16:43.967747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/abstract.tex:11:On DocRED, violations decrease by 45--90\\\\\\\\% depending on the model, with significant relation F1 gains for both Qwen3-8B ({+}0.50pp, $p{<}0.001$) and Llama-3.1-8B ({+}0.29pp, $p{=}0.013$; DR$\\\\\\\\downarrow$90.2\\\\\\\\%).\\\\n/root/schema_semantic_constrained_ie/paper/appendix_related_work.tex:85:Soft-constraint approaches such as ontology-weighted beam scoring reduce violation frequency but cannot eliminate it, whereas OntoCoDec substantially reduces violations (DR$\\\\\\\\downarrow$94\\\\\\\\% on SciERC, $\\\\\\\\downarrow$45--90\\\\\\\\% on DocRED depending on model).\\\\n/root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex:112:DocRED S1 results are pending (experiment in progress).}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T02:16:43.967869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"RUNNING\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T02:16:43.967988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex:128:DocRED S1 = \\\\\\\\texttt{phase2\\\\\\\\_docred\\\\\\\\_full\\\\\\\\_s1} (RUNNING).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T02:16:43.968108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "grep -rn \"TBD\" /root/schema_semantic_constrained_ie/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T02:16:43.968226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/paper_tables_draft.tex:119:DocRED & 96 & 18.7 & 28.9 & 7.5 & \\\\\\\\textit{TBD} & \\\\\\\\textit{TBD} \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T02:16:43.968443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "file": "memory.md",
+              "content": "# Composability 数字更新清单\n\n## 待 DocRED constrained eval 结果后更新\n\n依赖实验：`w5_qwen_docred_lora_constrained_eval` / `w5_llama_docred_lora_constrained_eval`（及对应的 unconstrained baseline `w5_qwen_docred_lora_unconstrained_eval` / `w5_llama_docred_lora_unconstrained_eval`）\n\n---\n\n### 1. [section5_composability.tex:18-51] Table 5 (tab:composability) — 仅含 SciERC，需加 DocRED 行\n\n- **当前值**: 8 行数据（2 models × {ZS, LoRA} × {U, S1}），全部 SciERC\n- **需要更新为**: 新增 DocRED 块（至少 4 行：2 models × {LoRA-U, LoRA-S1}；或 8 行含 ZS-DocRED 作对照）\n- **需要的数字**: DocRED FT-unconstrained DR/CF/R-F1/E-F1（两模型）、DocRED FT-S1 DR/CF/R-F1/E-F1（两模型）\n- **表格 caption (line 45-49)** 也需从 \"on SciERC (551 documents)\" 改为 \"on SciERC (551) and DocRED (998 documents)\"\n\n### 2. [section5_composability.tex:14-16] 实验描述 — SciERC-only 措辞\n\n- **当前值**: `\"We test this by LoRA fine-tuning both Qwen3-8B and Llama-3.1-8B on SciERC and then evaluating each fine-tuned model with and without the two-layer constraints\"`\n- **需要更新为**: \"...on SciERC and DocRED...\" 或分段描述两个数据集\n- **行号**: 14-16\n\n### 3. [section5_composability.tex:53-68] ¶ \"Fine-tuning does not eliminate violations\" — 所有数字仅 SciERC\n\n- **line 54-56**: `\"lifts relation F1 from 8.23 to 43.86 (Qwen) and from 2.68 to 45.45 (Llama)---a 35--43pp gain\"` — 需加 DocRED FT F1 数字\n- **line 58**: `\"residual domain/range violations persist at 1.95% (Qwen) and 1.11% (Llama)\"` — 需加 DocRED FT DR baseline\n- **line 60-62**: `\"Evaluate-for retains 13.1% DR for the fine-tuned Qwen model despite achieving zero on six of the other seven relations\"` — SciERC per-relation analysis，DocRED 是否有类似 tight-constraint relation 残留需分析\n- **整段策略**: 可扩展为 \"On SciERC, ... On DocRED, ...\" 两段式；或保留 SciERC 正文 + DocRED 表格引用\n\n### 4. [section5_composability.tex:70-86] ¶ \"Constraints compose with fine-tuning at no F1 cost\" — 所有数字仅 SciERC\n\n- **line 72-73**: `\"eliminates residual DR almost entirely (Qwen 1.95%→0.00%, Llama 1.11%→0.09%)\"` — 需加 DocRED FT-U→FT-S1 DR 变化\n- **line 73-74**: `\"relation F1 changes by less than 0.1pp (−0.09pp Qwen, +0.02pp Llama)\"` — 需加 DocRED R-F1 delta\n- **line 74-75**: `\"entity F1 is identical to the fine-tuned unconstrained baseline in both cases\"` — 需验证 DocRED 是否同样成立\n- **line 81-82**: `\"CF rate at the fine-tuned regime is also markedly lower (1.18% Qwen, 0.46% Llama vs. 9.90% and 6.56%)\"` — 需加 DocRED FT CF 数字\n- **整段需要判断**: DocRED FT+S1 是否同样 \"no F1 cost\"？如果 DocRED FT DR 残留更高（类似 ZS 模式），段落 claim 需 nuance\n\n### 5. [section5_composability.tex:88-98] ¶ \"Implication\" — 定性 claim，可能需强化或限定\n\n- **当前值**: 通用性 claim \"Fine-tuning and decoding-time enforcement are complementary, not substitutable\"\n- **需要更新为**: 如果 DocRED 结果一致，claim 可保持不变（evidence 更强）；如果 DocRED FT 消除了大部分 violations（DR→<0.5%），可能需 nuance \"constraints are most needed when FT data does not cover the full relation distribution\"\n- **无硬数字需替换**，但逻辑可能需调整\n\n### 6. [main.tex:65] Limitations — CF under fine-tuning 数字\n\n- **当前值**: `\"this rate falls to $\\leq$1.18\\% once the base model is LoRA fine-tuned (Table~\\ref{tab:composability})\"`\n- **需要更新为**: 如果 DocRED FT CF 更高，需改为 DocRED+SciERC 范围，如 `\"falls to X--1.18%\"`；如果 DocRED FT CF 也很低，可保持\n- **关键**: 当前 1.18% 是 SciERC Qwen FT S1 的 CF。DocRED ZS CF 本就更低（2.57% Qwen），FT 后可能更低——但需实验确认\n\n### 7. [main.tex:69] Limitations — \"DocRED fine-tuning is not reported\" 需删除\n\n- **当前值**: `\"Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings on SciERC; DocRED fine-tuning is not reported (the Qwen LoRA run is still in progress at submission time).\"`\n- **需要更新为**: 删除 \"DocRED fine-tuning is not reported...\" 半句，改为 \"Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings.\" 或类似表述\n- **line 69**: 这是 Limitations 中最显眼的\"缺失实验\"声明，必须在结果到手后第一时间修改\n\n### 8. [paper_tables_draft.tex:112,119,128] Table 4 (cross-dataset) — TBD 占位符\n\n- **line 119**: `DocRED & 96 & 18.7 & 28.9 & 7.5 & \\textit{TBD} & \\textit{TBD}`\n- **line 112**: caption 写 \"DocRED S1 results are pending (experiment in progress)\"\n- **line 128**: exp ID 注释写 \"(RUNNING)\"\n- **⚠️ 注意**: 此文件未被 main.tex `\\input`，是独立草稿。cross-model table (section5_crossmodel_draft.tex) 已有 DocRED ZS S1 数字。此文件可能已废弃，但仍应更新或标注弃用。\n\n### 9. [appendix_discussion.tex:13-17] ¶ \"Practical Significance\" — fine-tuning 泛指\n\n- **当前值**: `\"When applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase 0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37% DR on SciERC, 18.46% on DocRED).\"`\n- **无需硬数字更新**（引用的是 Phase 0 ZS baseline），但如果添加 DocRED FT composability 数据，可在此段补充一句 DocRED FT 的 evidence\n- **优先级**: 低\n\n### 10. [section6_related_work.tex:20] & [appendix_related_work.tex:65] — \"composable\" 泛指\n\n- **当前值**: \"training-free and composable with these methods\" / \"composable with any of these training-based approaches\"\n- **无数字，无需更新**。DocRED FT 结果出来后这些 claim 的 evidence base 变强，但文本无需改动。\n- **优先级**: 无\n\n---\n\n## 更新优先级\n\n| 优先级 | 项目 | 原因 |\n|--------|------|------|\n| P0 | #1 Table 5 加 DocRED 行 | 核心数据表，composability claim 的直接 evidence |\n| P0 | #7 删除 \"DocRED not reported\" | Limitations 中的 gap 声明，有结果后必须删 |\n| P1 | #2 实验描述改 \"SciERC and DocRED\" | 与 Table 一致性 |\n| P1 | #4 \"no F1 cost\" 段加 DocRED 数字 | 核心 claim 的量化支撑 |\n| P1 | #3 \"FT does not eliminate violations\" 段 | 支持 claim 的 evidence 扩展 |\n| P1 | #6 Limitations CF 数字范围 | 准确性 |\n| P2 | #5 Implication 段 | 看结果决定是否调整 |\n| P2 | #8 paper_tables_draft.tex TBD | 已非编译文件，低优先级 |\n| P3 | #9 Appendix discussion | 可选补充 |\n| P3 | #10 Related work | 无需改动 |\n\n## 数据需求汇总\n\n从 DocRED FT 实验中需提取的数字（每个模型 × {unconstrained, S1}）：\n\n| 指标 | Qwen FT-U | Qwen FT-S1 | Llama FT-U | Llama FT-S1 |\n|------|-----------|------------|------------|-------------|\n| DR (%) | ? | ? | ? | ? |\n| RV (%) | ? | ? | ? | ? |\n| ET (%) | ? | ? | ? | ? |\n| CF (%) | ? | ? | ? | ? |\n| R-F1 (×100) | ? | ? | ? | ? |\n| E-F1 (×100) | ? | ? | ? | ? |\n| Parse failures | ? | ? | ? | ? |\n"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T02:16:43.968717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T02:16:43.968893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "file": "memory.md",
+              "max_chars": "500"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T02:16:43.969041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\\\", \\\"content\\\": \\\"# Composability 数字更新清单\\\\n\\\\n## 待 DocRED constrained eval 结果后更新\\\\n\\\\n依赖实验：`w5_qwen_docred_lora_constrained_eval` / `w5_llama_docred_lora_constrained_eval`（及对应的 unconstrained baseline `w5_qwen_docred_lora_unconstrained_eval` / `w5_llama_docred_lora_unconstrained_eval`）\\\\n\\\\n---\\\\n\\\\n### 1. [section5_composability.tex:18-51] Table 5 (tab:composability) — 仅含 SciERC，需加 DocRED 行\\\\n\\\\n- **当前值**: 8 行数据（2 models × {ZS, LoRA} × {U, S1}），全部 SciERC\\\\n- **需要更新为**: 新增 DocRED 块（至少 4 行：2 models × {LoRA-U, LoRA-S1}；或 8 行含 ZS-DocRED 作\\\\n\\\\n... [截断: 省略 5324 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 5824, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T02:16:43.969189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T02:16:43.969323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nanalyze_ontology_docred.py\ncf_fallback_code_diff_analysis.md\ncompare_prompts.py\nconstrained_eval_readiness.md\ncross_model_analysis_framework.md\nd009_llama_prep.md\ndocred_full_s1_dr_root_cause_analysis.md\ndocred_lora_eval_commands.md\ndocred_phase2_ablation_analysis.md\ndocred_progress_check.md\ndream_reports\ndual_factor_analysis\nimpact_analysis.py\nliterature_docred_compare.md\nliterature_map.yaml\nliterature_survey_constrained_decoding_ie.md\nliterature_survey_ontology_constrained_ie.md\nllama_docred_full_s1\nllama_docred_full_s1_mt6144\nllama_docred_maxtoken\nllama_docred_per_relation_dr_analysis.md\nllama_docred_unconstrained_mt6144\nllama_submit_commands.md\nmanifest.yaml\nmethod_invariant_notes.md\npair_based_enforcement_plan.md\npaper_number_consistency_check.md\npaper_results_summary.md\npaper_writing_readiness.md\nphase2_docred_full_s1\nphase2_docred_semantic_only\nrebuttal\nreference_audit_relwork.md\nreference_audit_results.md\nrelated_work_survey.md\nreview_issues.yaml\nreview_reports\nrun_constrained_extraction.py\nrun_extraction_docred.py\nruntime_benchmark.json\ntightness_ablation\nunified_et_dr_recalc.md\nviolation_checker_docred.py\nw1_cf_fallback\nw1_cf_fallback_pilot_detailed_analysis.md\nw1_cf_fallback_scierc_pilot\nw4_table1_v2\nw5_docred_sft_data_gen\nw5_llama_docred_lora_training\nw5_llama_lora_scierc_constrained_eval\nw5_lora_scierc_training"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T02:16:43.969478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/composability_update_checklist.md",
+              "content": "# Composability 数字更新清单\n\n## 待 DocRED constrained eval 结果后更新\n\n依赖实验：`w5_qwen_docred_lora_constrained_eval` / `w5_llama_docred_lora_constrained_eval`（及对应的 unconstrained baseline `w5_qwen_docred_lora_unconstrained_eval` / `w5_llama_docred_lora_unconstrained_eval`）\n\n---\n\n### 1. [section5_composability.tex:18-51] Table 5 (tab:composability) — 仅含 SciERC，需加 DocRED 行\n\n- **当前值**: 8 行数据（2 models × {ZS, LoRA} × {U, S1}），全部 SciERC\n- **需要更新为**: 新增 DocRED 块（至少 4 行：2 models × {LoRA-U, LoRA-S1}；或 8 行含 ZS-DocRED 作对照）\n- **需要的数字**: DocRED FT-unconstrained DR/CF/R-F1/E-F1（两模型）、DocRED FT-S1 DR/CF/R-F1/E-F1（两模型）\n- **表格 caption (line 45-49)** 也需从 \"on SciERC (551 documents)\" 改为 \"on SciERC (551) and DocRED (998 documents)\"\n- **占位符**: 无 TBD，但整个 DocRED 块缺失\n\n### 2. [section5_composability.tex:14-16] 实验描述 — SciERC-only 措辞\n\n- **当前值**: `\"We test this by LoRA fine-tuning both Qwen3-8B and Llama-3.1-8B on SciERC and then evaluating each fine-tuned model with and without the two-layer constraints\"`\n- **需要更新为**: \"...on SciERC and DocRED...\" 或分段描述两个数据集\n- **行号**: 14-16\n\n### 3. [section5_composability.tex:53-68] ¶ \"Fine-tuning does not eliminate violations\" — 所有数字仅 SciERC\n\n- **line 54-56**: `\"lifts relation F1 from 8.23 to 43.86 (Qwen) and from 2.68 to 45.45 (Llama)---a 35--43pp gain\"` — 需加 DocRED FT F1 数字\n- **line 58**: `\"residual domain/range violations persist at 1.95% (Qwen) and 1.11% (Llama)\"` — 需加 DocRED FT DR baseline\n- **line 60-62**: `\"Evaluate-for retains 13.1% DR for the fine-tuned Qwen model despite achieving zero on six of the other seven relations\"` — SciERC per-relation analysis；DocRED 是否有类似 tight-constraint relation 残留需分析\n- **整段策略**: 可扩展为 \"On SciERC, ... On DocRED, ...\" 两段式；或保留 SciERC 正文 + DocRED 表格引用\n\n### 4. [section5_composability.tex:70-86] ¶ \"Constraints compose at no F1 cost\" — 所有数字仅 SciERC\n\n- **line 72-73**: `\"eliminates residual DR almost entirely (Qwen 1.95%→0.00%, Llama 1.11%→0.09%)\"` — 需加 DocRED FT-U→FT-S1 DR 变化\n- **line 73-74**: `\"relation F1 changes by less than 0.1pp (−0.09pp Qwen, +0.02pp Llama)\"` — 需加 DocRED R-F1 delta\n- **line 74-75**: `\"entity F1 is identical to the fine-tuned unconstrained baseline in both cases\"` — 需验证 DocRED 是否同样成立\n- **line 81-82**: `\"CF rate at the fine-tuned regime is also markedly lower (1.18% Qwen, 0.46% Llama vs. 9.90% and 6.56%)\"` — 需加 DocRED FT CF 数字\n- **⚠️ 关键判断**: DocRED FT+S1 是否同样 \"no F1 cost\"？如果 DocRED FT DR 残留更高（类似 ZS 模式），段落 claim 需 nuance\n\n### 5. [section5_composability.tex:88-98] ¶ \"Implication\" — 定性 claim\n\n- **当前值**: 通用 claim \"Fine-tuning and decoding-time enforcement are complementary, not substitutable\"\n- **无硬数字需替换**，但如果 DocRED FT 消除了大部分 violations（DR→<0.5%），需 nuance \"constraints are most needed when FT data does not cover the full relation distribution\"\n- **优先级**: 看结果再定\n\n### 6. [main.tex:65] Limitations — CF under fine-tuning 数字\n\n- **当前值**: `\"this rate falls to $\\leq$1.18\\% once the base model is LoRA fine-tuned (Table~\\ref{tab:composability})\"`\n- **需要更新为**: 如果 DocRED FT CF 更高，需改为范围如 `\"falls to X--Y%\"`；如果也很低可保持\n- **关键**: 当前 1.18% 是 SciERC Qwen FT S1 的 CF\n\n### 7. [main.tex:69] Limitations — \"DocRED fine-tuning is not reported\" ⬅️ 必须删除\n\n- **当前值**: `\"Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings on SciERC; DocRED fine-tuning is not reported (the Qwen LoRA run is still in progress at submission time).\"`\n- **需要更新为**: 删除 \"DocRED fine-tuning is not reported...\" 半句，改为 \"Results cover two 8B-class models on two datasets, in both zero-shot and LoRA fine-tuned settings.\"\n- **这是 Limitations 中最显眼的\"缺失实验\"声明，有结果后必须第一时间修改**\n\n### 8. [paper_tables_draft.tex:112,119,128] Table 4 (cross-dataset) — TBD 占位符\n\n- **line 119**: `DocRED & 96 & 18.7 & 28.9 & 7.5 & \\textit{TBD} & \\textit{TBD}`\n- **line 112**: caption 写 \"DocRED S1 results are pending (experiment in progress)\"\n- **line 128**: exp ID 注释写 \"(RUNNING)\"\n- **⚠️ 此文件未被 main.tex \\input，是独立草稿。** cross-model table (section5_crossmodel_draft.tex) 已有 DocRED ZS S1 数字（Qwen DR=10.21, Llama DR=2.55）。此文件可清理或标注弃用。\n- **优先级**: 低（不影响编译产出）\n\n### 9. [appendix_discussion.tex:13-17] ¶ \"Practical Significance\" — fine-tuning 泛指\n\n- **当前值**: `\"When applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary\"`\n- **无硬数字需更新**（引用的是 Phase 0 ZS baseline 15.37%/18.46%）\n- **可选**: 添加一句 DocRED FT evidence 强化论点\n- **优先级**: 低\n\n### 10. [section6_related_work.tex:20] & [appendix_related_work.tex:65] — \"composable\" 泛指\n\n- 无数字，无需更新。DocRED FT 结果出来后 evidence base 变强但文本不变。\n- **优先级**: 无\n\n---\n\n## 更新优先级\n\n| 优先级 | 项目 | 原因 |\n|--------|------|------|\n| **P0** | #1 Table 5 加 DocRED 行 | 核心数据表，composability claim 的直接 evidence |\n| **P0** | #7 删除 \"DocRED not reported\" | Limitations 中的 gap 声明，有结果后必须删 |\n| P1 | #2 实验描述改 \"SciERC and DocRED\" | 与 Table 一致性 |\n| P1 | #4 \"no F1 cost\" 段加 DocRED 数字 | 核心 claim 的量化支撑 |\n| P1 | #3 \"FT does not eliminate violations\" 段 | 支持 claim 的 evidence 扩展 |\n| P1 | #6 Limitations CF 数字范围 | 准确性 |\n| P2 | #5 Implication 段 | 看结果决定是否调整 |\n| P2 | #8 paper_tables_draft.tex TBD | 已非编译文件，低优先级 |\n| P3 | #9 Appendix discussion | 可选补充 |\n| P3 | #10 Related work | 无需改动 |\n\n## 数据需求汇总\n\n从 DocRED FT 实验中需提取的数字（每个模型 × {unconstrained, S1}）：\n\n| 指标 | Qwen FT-U | Qwen FT-S1 | Llama FT-U | Llama FT-S1 |\n|------|-----------|------------|------------|-------------|\n| DR (%) | ? | ? | ? | ? |\n| RV (%) | ? | ? | ? | ? |\n| ET (%) | ? | ? | ? | ? |\n| CF (%) | ? | ? | ? | ? |\n| R-F1 (×100) | ? | ? | ? | ? |\n| E-F1 (×100) | ? | ? | ? | ? |\n| Parse failures | ? | ? | ? | ? |\n\n## 注意事项\n\n- DocRED ZS 数据已在 cross-model table (section5_crossmodel_draft.tex) 中，composability table 如果要加 ZS-DocRED 行，直接从那里取（Qwen U: DR=18.46, R-F1=7.74, E-F1=58.15; Qwen S1: DR=10.21, R-F1=8.23, E-F1=59.37; Llama U: DR=26.07, R-F1=5.98, E-F1=55.65; Llama S1: DR=2.55, R-F1=6.27, E-F1=55.01）\n- DocRED FT 的 DR reduction 可能比 SciERC FT 更复杂：ZS baseline Qwen DR=10.21%（S1）vs SciERC 0.93%，如果 FT baseline DR 也更高，FT+S1 的残留 DR 也可能更高\n- DocRED ontology 有 96 relations，FT 可能无法覆盖所有 long-tail relation 的 type constraint，tight-constraint 残留分析需要类似 SciERC Evaluate-for 的 per-relation breakdown\n"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T02:16:43.969765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/composability_update_checklist.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T02:16:43.969935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "file": "memory.md",
+              "content": "# Project Memory\n\n## Composability Update Checklist\n- DocRED FT+constrained eval 完成后需更新的论文位置已整理，见 `artifacts/composability_update_checklist.md`\n- P0 项：Table 5 加 DocRED 行 + 删 Limitations 中 \"DocRED not reported\" 声明\n- P1 项：§5.5 正文三段加 DocRED 数字 + Limitations CF 数字范围\n"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T02:16:43.970074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T02:16:43.970236+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已保存到 `artifacts/composability_update_checklist.md`。\n\n**总结**：论文中涉及 composability（FT + OntoCoDec）且需要 DocRED constrained eval 数字后更新的位置共 **10 处**，分布在 4 个文件中：\n\n| 优先级 | 位置 | 要点 |\n|--------|------|------|\n| **P0** | `section5_composability.tex:18-51` Table 5 | 整个 DocRED 块缺失，需加 4-8 行数据 |\n| **P0** | `main.tex:69` Limitations | 删除 \"DocRED fine-tuning is not reported\" |\n| P1 | `section5_composability.tex:14-16` | 实验描述从 \"SciERC\" 改为 \"SciERC and DocRED\" |\n| P1 | `section5_composability.tex:53-68` | \"FT does not eliminate violations\" 段加 DocRED DR 数字 |\n| P1 | `section5_composability.tex:70-86` | \"no F1 cost\" 段加 DocRED delta 数字 |\n| P1 | `main.tex:65` | Limitations CF≤1.18% 可能需扩为范围 |\n| P2 | `section5_composability.tex:88-98` | Implication 定性 claim，看结果定 |\n| P2 | `paper_tables_draft.tex:119` | TBD 占位符（未编译，低优先级） |\n\n另外 `abstract.tex` 和 `section1_introduction_draft.tex` 中的 \"composable\" 用法是描述层间组合，不涉及 FT composability 数字，**无需更新**。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_composability_paper_audit_20260516T021140"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ],
+  "readable_path": "readable/conversations/research-composability-paper-audit.md"
+}

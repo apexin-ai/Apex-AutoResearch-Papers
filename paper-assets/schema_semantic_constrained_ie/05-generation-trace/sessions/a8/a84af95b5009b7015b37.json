@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a84af95b5009b7015b37",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check full status recovery",
+  "task_key": "worker_check_full-status-recovery_20260523T053924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full-status-recovery_20260523T053924_result.json",
+    "occurrence": 1,
+    "bytes": 1475,
+    "sha256": "b28cd1c48ca27538de725e2f9cd29e4aed7269e2bae6a3f82dd281da83ca0b61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态盘点报告\n\n### 1. GPU 状态\n\n| 服务器 | GPU | 显存占用 | 利用率 | 进程 |\n|--------|-----|---------|--------|------|\n| westd-21461 | cuda:0 | 0 / 98GB | 0% | **空闲** |\n| westd-21461 | cuda:1 | 41.6 / 98GB | 87% | PID 88995 (python) — S2 eval 运行中 |\n| westd-16980 | cuda:0 | 0 / 98GB | 0% | **空闲** |\n| westd-16980 | cuda:1 | 0 / 98GB | 0% | **空闲** |\n\nwestd-16980 完全空闲，INT4/GoLLIE 实验已全部完成。\n\n### 2. S2 进度\n\n- 文件：`70b_lora_docred_200_full_s2.jsonl`\n- 进度：**137 / 200 行**（68.5%）\n- 最后写入：13:37（2分钟前，正在活跃写入）\n- 预计还需一段时间完成剩余 63 条\n\n### 3. Prompt Sensitivity 状态\n\n**未启动。** cuda:0 空闲，无任何 prompt sensitivity 输出文件或目录。仅存在 `compare_prompts.py` 脚本，但未执行。\n\n### 4. Paper 写作文件状态\n\n最近 2 小时内更新的 tex 文件（共 7 个）：\n\n| 文件 | 时间 | 大小 | 备注 |\n|------|------|------|------|\n| `appendix_gollie_comparison.tex` | 05:37 | 1.4KB | **新增** |\n| `section6_related_work.tex` | 05:36 | 2.6KB | |\n| `section5_runtime.tex` | 05:36 | 2.9KB | |\n| `main.tex` | 05:36 | 9.3KB | |\n| `appendix_quantization.tex` | 05:36 | 1.5KB | **新增** |\n| `section5_scierc_draft.tex` | 04:25 | 8.0KB | |\n| `appendix_discussion.tex` | 04:22 | 49KB | |\n\nQuantization 和 GoLLIE 对比的 appendix 文件均已创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-status-recovery.md"
+}

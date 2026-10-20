@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9cdea7aed0c7e6f3478",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis sf5 bonferroni cohens d",
+  "task_key": "worker_analysis_sf5-bonferroni-cohens-d_20260523T041527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf5-bonferroni-cohens-d_20260523T041527_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "8ddff2c1fe3e47664478b2ad53c755b8a1a1046892daa83b0c24ae8559875dc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。更新内容总结：\n\n**表格变更** (`appendix_discussion.tex:175-201`)：\n- 新增 Cohen's $d$ 列，共 8 个配置（4 R-F1 + 4 DR%）\n- R-F1 效应量：$|d| \\in [0.01, 0.37]$，全部 negligible 到 small\n- DR% 效应量：$|d| \\in [3.02, 7.00]$，全部 large\n- 表头从 5 列扩展到 6 列，`\\multicolumn` 已同步更新\n\n**文本变更** (line 170-173)：\n- 新增逐配置 Bonferroni 校正后 p 值：Qwen3-8B/DocRED $p_B=0.224$ 是最接近显著的，其余均 $p_B=1.00$\n- 明确说明 k=4, $\\alpha_{\\text{adj}}=0.0125$ 阈值\n- DR% 全部 $p_{\\text{Bonf}} < 0.005$\n\n**数据来源**：westd-16980 上从原始 eval JSONL 重新运行 10,000 次 bootstrap 计算，结果存于 `/root/schema_semantic_constrained_ie/outputs/r20_cohens_d_pvalues.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf5-bonferroni-cohens-d.md"
+}

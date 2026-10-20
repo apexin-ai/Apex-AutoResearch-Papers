@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cef0222e05c5a2ede089",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section5 scierc draft",
+  "task_key": "worker_paper_section5_scierc_draft_20260514T051334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section5_scierc_draft_20260514T051334_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "4fdb3595af1cfc385112d85b93b6743cff5bcdbd88146358133d8ff111c2c1fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section5_scierc_draft.tex` 并注册。\n\n内容结构：\n- **Table 1**: 5×8 消融表（DR/ΔDR/RV/ET/CF + Rel-F1/Ent-F1），含 bold 标注和 multicolumn 分组\n- **(a) Core result**: DR 15.37→0.93 (↓94%), R-F1 +0.13pp (F1-neutral), per-relation 数据, CF 升高指向 Discussion\n- **(b) Grammar layer**: RV/ET→0% 零代价, DR 不变 (-0.53pp), 定位为 semantic 的前提\n- **(c) Enabling dependency**: semantic-only ↓24% 且无法消 RV/ET, 加 grammar 后再降 92%, 证明 prerequisite 结构\n- **(d) S1 vs S2**: S2 DR 持平但 R-F1 -0.33pp, triples 更少, CF 无实质改善, S1 为推荐配置\n\n所有数字均与 registry 交叉验证，每个 quantitative claim 附 `% exp_id` 注释。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section5-scierc-draft.md"
+}

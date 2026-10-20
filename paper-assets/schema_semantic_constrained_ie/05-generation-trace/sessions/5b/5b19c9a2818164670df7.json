@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b19c9a2818164670df7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose w5 llama constrained eval",
+  "task_key": "worker_diagnose_w5_llama_constrained_eval_20260515T173641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w5_llama_constrained_eval_20260515T173641_result.json",
+    "occurrence": 1,
+    "bytes": 2377,
+    "sha256": "0347995e1ac0d87399ef97c76d3759e758e96826fc000278b3038c3b9f8e1491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. 崩溃原因\n**FileNotFoundError**: `'data/scierc/test.json'` 不存在（`run_constrained_extraction.py:67` 的 `load_scierc_data`）。命令参数路径错误：\n- `--data_path data/scierc/test.json` ❌ → 实际路径 `data/processed_data/test.json` ✓\n- `--constraints_path data/scierc/ontology_constraints.json` ❌ → 实际路径 `ontology_constraints.json`（项目根目录）✓\n\n注：`data/` 下只有 `docred/`、`processed_data/`、`sft/`，**没有 `scierc/` 子目录**。\n\n### 2. GPU 状态\n- **GPU 0**: PID **287677** 占 17160 MiB / 89% util。**不是僵尸**——是同 wave 的 unconstrained baseline (`w5_llama_lora_scierc_unconstrained`)，跑了 17:49 分钟还在进行\n- **GPU 1**: 空闲（0 MiB / 0%），可用\n\n### 3. Llama LoRA merged checkpoint 实际路径\n- 符号链接: `/root/schema_semantic_constrained_ie/checkpoints/llama_lora_scierc_merged`\n- 实指向: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged/`\n- 完整: 4 shards safetensors (~15GB) + tokenizer.json + config.json + chat_template.jinja，齐全\n\n### 4. type_mask_processor.py 是 clean 版本？\n**是 clean 版本（在 `compiler/` 子目录下）**。证据：\n- 字节数 15666 = `type_mask_processor_clean.py` 完全一致（cf_fallback 版本 20195 bytes / 490 lines）\n- 行数 399 = clean 版本相同\n- `grep -c fallback type_mask_processor.py` = **0**（cf_fallback 版本 27 处）\n- mtime 01:19:09，比 .bak 新（说明有人手动从 clean 版恢复过）\n\n### 5. 需要修复的内容\n**代码无需改动**。只需修正提交命令的 `--data_path` 和 `--constraints_path`。磁盘 19G 空闲，无问题。\n\n### 6. 推荐重新提交命令\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w5_llama_lora_scierc_constrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"\n```\n\n提交时指定物理 GPU 1（GPU 0 被 unconstrained 占用），`--device cuda:0` 保留以匹配 `CUDA_VISIBLE_DEVICES=1` 注入后的逻辑映射。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w5-llama-constrained-eval.md"
+}

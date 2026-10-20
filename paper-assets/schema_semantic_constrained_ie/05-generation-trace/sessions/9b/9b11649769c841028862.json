@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b11649769c841028862",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write discussion sections",
+  "task_key": "worker_write_discussion_sections_20260514T182852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_discussion_sections_20260514T182852_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "c4c31afa55d310ca5561ee860f0dc87d850011e7784edd6e83109538c9e28dc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `discussion_paragraphs.tex`，三段内容：\n\n1. **Low F1 Practical Significance** (118 words) — 零样本 F1~8% 是设定使然，supervised SOTA 40-50%；constraint enforcement 与 model quality 正交；F1 是 control variable 非 optimization target。\n\n2. **CF Severity Argument** (133 words) — DR=hard constraint（下游不可用），CF=soft preference（单 triple 仍 type-valid）；dominant conflict Generic↔OtherScientificTerm 反映 type system 语义模糊；grammar_only CF=0.08% → full_s1 CF=9.90% 提供干净消融证据；提出 global entity-level type consensus 作为 future work。\n\n3. **F1 Significance Difference** (117 words) — 机制归因到 grammar 层消除 OOV relation names：DocRED RV=29.66% (5189 OOV→FP) 被消除后 precision 显著提升；SciERC RV=1.39% (24 OOV) 效果不显著。Bootstrap CI 数据完整引用。\n\n所有定量 claim 均带 `% exp_id` 注释追溯到 registry。需要你检查 `\\citep{zhong2021frustratingly,ye2022packed}` 是否在 bib 中有对应条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-discussion-sections.md"
+}

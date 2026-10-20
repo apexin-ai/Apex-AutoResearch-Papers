@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e91920578397d427108d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 quick check",
+  "task_key": "worker_ssh_d064_quick_check_20260519T131119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_quick_check_20260519T131119_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "5846a9c08fefa69e442027fedbb38907865dbf39e8bc8269de96b69fdeec6e08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在跑，两个 python 进程活跃。\n\n**汇总：**\n\n| 指标 | 状态 |\n|------|------|\n| GPU 0 | 18275 MiB, 90% 利用率 |\n| GPU 1 | 18921 MiB, 89% 利用率 |\n| Python 进程 | 2 个在跑 |\n| Qwen unc (beam4) | **681 行**（上次 614，+67） |\n| Llama greedy unc | **648 行**（上次 546，+102） |\n| Llama cascade log | 正常推理中（pad_token_id 设置日志） |\n\n**进程仍在跑，两个文件都在稳步增长。** Llama greedy 增速更快（+102 vs +67）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-quick-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceb6bafa65c1b8708f9d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code verify beam file and processes",
+  "task_key": "worker_code_verify_beam_file_and_processes_20260517T041800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_beam_file_and_processes_20260517T041800_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "68a55dcee3da7a512ddb52f7c8aa5ab0f86cb0a3391ae50fe33d7c8c4f5ace6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n**检查 1: 输出文件完整性**\n- Total lines: 48\n- **Bad JSON lines: 1** (Line 9: 解析错误)\n- Duplicate doc_ids: 0\n\n文件有损坏（Line 9 不是合法 JSON）。按指示需要 kill + rm + 重启。\n\n**检查 2: Python3 进程状态**\n| PID | 状态 | 任务 |\n|-----|------|------|\n| 409855 | **运行中** (100% CPU) | Qwen DocRED beam 50，正在跑 |\n| 408884 | **运行中** (100% CPU) | Stability seed456 (SciERC)，正在跑 |\n| 349350 | 运行中 | HTTP file server (无关) |\n\n- PID 406710 / 406047：已不存在，均已完成。\n\n**检查 3: Stability test 进度**\n- `stability_seed123.jsonl`: 551 lines — **已完成** (551/551)\n- `stability_seed456.jsonl`: 533/551 lines — **进行中**，当前处理到 528/551，还剩约 23 条\n- `stability_seed789.jsonl`: 尚未生成，seed456 跑完后应该会启动\n\n**结论：**\n- `w9_qwen_docred_beam_50.jsonl` 有 1 行损坏 JSON。需要 kill 409855、rm 文件并重启。是否执行？\n- Stability test: seed123 完成，seed456 快完成（~96%），seed789 待启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-beam-file-and-processes.md"
+}

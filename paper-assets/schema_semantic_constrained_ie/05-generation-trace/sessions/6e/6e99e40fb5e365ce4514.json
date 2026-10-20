@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e99e40fb5e365ce4514",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d065 tcr full",
+  "task_key": "worker_ssh_d065_tcr_full_20260519T113441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d065_tcr_full_20260519T113441_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "9e722443d7db9910e401d12cbd502df6ca2b85b590f9687ba833e68e77419ea9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "TCR 全量实验完成。10 个 RE 配置全部跑完，结果汇总：\n\n**CF 消除：所有配置 100%**\n\n**核心发现：**\n\n| | SciERC (7 rels) | DocRED (96 rels) |\n|---|---|---|\n| ZS CF baseline | 0.67-9.75% | 11.61-23.71% |\n| LoRA CF baseline | 0.46-1.19% | 0.36-0.42% |\n| Fundamental conflict (ZS) | 0-2% | 13.5-22.8% |\n| Fundamental conflict (LoRA) | 0% | ~12% |\n| E-F1 cost (ZS) | -0.013 to +0.001 | -0.034 to -0.060 |\n| E-F1 cost (LoRA) | -0.002 to -0.008 | -0.002 |\n\n- DocRED fundamental conflict 率比 SciERC 高 6-12x，与 schema 复杂度直接相关\n- LoRA 模型 TCR 成本极低（E-F1 Δ < 0.002）\n- 70B 模型仍有 11.61% CF，schema 约束瓶颈不随模型规模消失\n- WikiEvents 跳过（EE 格式需重写约束满足逻辑）\n- 修补了 `tcr_resolver.py` 的 `load_schema` 以兼容 DocRED dict 格式 schema\n\n报告：`/root/schema_semantic_constrained_ie/d065_tcr_full_results.md`，已注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d065-tcr-full.md"
+}

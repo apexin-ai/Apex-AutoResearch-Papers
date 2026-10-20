@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ad95270e7ff0b3c3757",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r14 taskB docred beam 998",
+  "task_key": "worker_analysis_r14_taskB_docred_beam_998_20260520T201641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_taskB_docred_beam_998_20260520T201641_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "4c0182e644e8fbcc2e1d9eb3ead1fc73c60f1860f647fa3b6e46661fd921ef1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3/998 docs 已完成。推理正在稳定进行。根据之前 beam=4 实验的经验（~20-40s/doc），预计总时间 6-11 小时。\n\n任务已启动，状态总结：\n\n- **实验 ID**: `r14_qwen_docred_beam4_998`\n- **服务器**: westd-21461, GPU 0 (RTX PRO 6000 Blackwell, 98GB)\n- **配置**: Qwen3-8B ZS, beam=4, full_s1, max_new_tokens=4096, 998 docs\n- **输出**: `/root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl`\n- **日志**: `/root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.log`\n- **进度**: 3/998 (刚启动)\n- **预计完成**: ~6-11 小时后\n\n监控命令：\n- 进度: `wc -l /root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl`\n- 评估: `cd /root/schema_semantic_constrained_ie && python3 scripts/eval_d064.py --dataset docred --pred_file /root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-taskb-docred-beam-998.md"
+}

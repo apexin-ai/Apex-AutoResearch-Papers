@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e874eae9eab662b7541",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w6 mistral docred unconstrained metrics v2",
+  "task_key": "worker_analysis_w6_mistral_docred_unconstrained_metrics_v2_20260516T085747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w6_mistral_docred_unconstrained_metrics_v2_20260516T085747_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "d5ab4ccdf15c7e920a1593ebdac2769ff14dab3936d9283006401e099a35eaf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 写入成功。\n\n## w6_mistral_docred_unconstrained 完整 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| total_samples | 998 |\n| parse_failures | 7 |\n| parse_fail_rate | 0.70% |\n| total_pred_entities | 12,580 |\n| total_pred_relations | 11,879 |\n| **ET_pct** | **7.58%** |\n| **RV_pct** | **42.35%** |\n| **DR_pct** | **57.42%** |\n| **CF_pct** | **24.78%** |\n| E_P | 0.6221 |\n| E_R | 0.3975 |\n| **E_F1** | **0.4851** |\n| R_P | 0.0355 |\n| R_R | 0.0346 |\n| **R_F1** | **0.0350** |\n\n关键发现：Mistral 在 DocRED 上 unconstrained 模式下 relation F1 极低（3.5%），RV 违规率 42.35%（大量生成不在 ontology 中的关系名），DR 违规率 57.42%（即使关系名匹配了，head/tail type pair 仍有过半不满足约束）。Entity F1 尚可（48.5%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w6-mistral-docred-unconstrained-metrics-v2.md"
+}

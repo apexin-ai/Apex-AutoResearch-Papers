@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85f72f54cf3e0748dd66",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code latency profiling prep 20260516",
+  "task_key": "worker_code_latency_profiling_prep_20260516_20260516T123851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_latency_profiling_prep_20260516_20260516T123851_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "6ac335346cc346f71f42129a7d0c9dd36aaa6b20c02240d87bd654a40bb82cf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本工作正常。2 个 sample 在 GPU 0 上成功运行，平均 2.2s/sample，56.5 tok/s。\n\n**完成：**\n- `profile_latency.py` 已部署到 `/root/schema_semantic_constrained_ie/profile_latency.py`\n- 支持 `--dataset {scierc,docred}`、`--mode` / `--all_modes`、`--model_path`（默认 FT，可切 base `/root/autodl-tmp/models/Qwen3-8B-ms`）、`--n_samples`、`--device`\n- 输出 JSON + 终端表格（mean/median/p95/p99/overhead/throughput + paired t-test）\n- Warmup、CUDA synchronize、统计检验齐全\n- Dry-run 通过\n\n**运行完整 profiling 的推荐命令**（GPU 0 空闲时）：\n```bash\n# SciERC 全模式，100 samples\nCUDA_VISIBLE_DEVICES=0 python profile_latency.py --dataset scierc --all_modes --n_samples 100\n\n# DocRED 全模式，100 samples\nCUDA_VISIBLE_DEVICES=0 python profile_latency.py --dataset docred --all_modes --n_samples 100\n\n# Base model (非 FT)\nCUDA_VISIBLE_DEVICES=0 python profile_latency.py --dataset scierc --all_modes --n_samples 50 \\\n  --model_path /root/autodl-tmp/models/Qwen3-8B-ms\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-latency-profiling-prep-20260516.md"
+}

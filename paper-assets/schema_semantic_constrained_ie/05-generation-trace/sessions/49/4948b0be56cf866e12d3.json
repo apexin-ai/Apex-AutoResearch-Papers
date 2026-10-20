@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4948b0be56cf866e12d3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis 70b lora grammar only eval",
+  "task_key": "worker_analysis_70b-lora-grammar-only-eval_20260522T184233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_70b-lora-grammar-only-eval_20260522T184233_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "31882e6862804fea5bb857f5077b6e405ed3ee8278110d690c9f55acd7233085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 第一部分：70B LoRA SciERC grammar_only 评估结果\n\n| 指标 | grammar_only | unconstrained | S1 constrained |\n|------|-------------|---------------|----------------|\n| **DR%** | **1.5%** (17/1133) | 1.5% | 0% |\n| R-F1 | 44.63 | 44.73 | 44.53 |\n| E-F1 | 64.82 | — | — |\n| Entity type violations | 0% | — | — |\n| Relation vocab violations | 0% | — | — |\n| JSON failures | 0% | — | — |\n\n**结论：success。** Grammar layer 对 70B LoRA 零贡献——DR 与 unconstrained 完全一致（1.5%），R-F1 无显著差异。fine-tuned 模型已自行学会正确的输出语法，grammar 约束冗余。与 70B ZS pattern 一致。\n\n### 第二部分：新实验已启动\n\n**70B ZS SciERC unconstrained** → westd-21461 cuda:0, PID 74572\n\n- 目的：独立验证 ZS baseline 数字（之前只有 r16_70b_scierc_zs_s1 附带的数字）\n- 已注册 registry `eval_70b_zs_scierc_unconstrained`，cron 每 8 分钟轮询\n\n### 当前实验全景\n\n| 实验 | 服务器 | GPU | 状态 |\n|------|--------|-----|------|\n| 70B LoRA SciERC semantic_only | westd-16980 | cuda:0 | RUNNING |\n| 70B LoRA SciERC full_s2 | westd-16980 | cuda:1 | RUNNING |\n| 70B LoRA DocRED beam4 S1 | westd-21461 | cuda:1 | RUNNING |\n| **70B ZS SciERC unconstrained** | **westd-21461** | **cuda:0** | **刚启动** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-70b-lora-grammar-only-eval.md"
+}

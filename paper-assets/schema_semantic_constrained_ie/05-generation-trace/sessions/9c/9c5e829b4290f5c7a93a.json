@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c5e829b4290f5c7a93a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper abstract draft",
+  "task_key": "worker_paper_abstract_draft_20260514T061835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract_draft_20260514T061835_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "70011db24ca4c513692439fa0d7c70a735454be4367d3bc03c3824f82ea28d42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用工具列表中。abstract 已写入：\n\n**文件**: `artifacts/_project/paper/abstract.tex`\n**字数**: ~231 words（在 250 上限内）\n\n**结构覆盖**：\n1. **Problem** — 量化 SciERC 15.4% / DocRED 18.7% 的 DR violation，点出 tight-constraint 关系集中现象\n2. **Prompt insufficiency** — SciERC ↓62% vs DocRED ↓31%，Evaluate-for 恶化 +5.8pp\n3. **Approach** — 双层约束：grammar layer (XGrammar) + semantic layer (TypeConstraintProcessor)，bitwise AND 组合\n4. **Results** — DR 15.37%→0.93% (↓94%)，ET/RV 完全消除，F1 无损；CF violation 0.08%→9.9% 作为 open challenge；DocRED 用 `\\placeholder{}` 占位"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-draft.md"
+}

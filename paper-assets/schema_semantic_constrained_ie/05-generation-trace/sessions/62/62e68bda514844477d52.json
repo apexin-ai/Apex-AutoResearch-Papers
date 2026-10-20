@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62e68bda514844477d52",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4010,
+    "sha256": "d5b3ed340b789d452bb1e1176c39e6b65392a27a000fce198c2626994ce78d36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:58:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-16980 的 cuda:0 和 cuda:1，无其他可用卡\n- submit_training_job 命令中**禁止硬编码 CUDA_VISIBLE_DEVICES**——必须由 wrapper 统一注入。今天刚因内层 `CUDA_VISIBLE_DEVICES=0` 覆盖外层 wrapper 的 `CUDA_VISIBLE_DEVICES=1` 导致级联 OOM 故障（两个进程挤 GPU 0，GPU 1 空转），已修复但需持续警惕\n- Qwen DocRED 训练脚本是 `train_lora_docred.py`，Llama 是 `train_lora_docred_llama.py`——不要混\n- 论文 claim \"DR=0%\" 需要下调为 \"DR≤0.09%\"，因 Llama LoRA constrained DR=0.09%（非零）。审稿人会攻击这个精确性问题\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980(root)，工作目录 `/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python3`，conda base 环境（非 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：\n  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen LoRA SciERC merged: `checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama LoRA SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - **Qwen LoRA DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`** ← 刚完成\n  - **Llama LoRA DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`** ← 刚完成\n- 数据：SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- W&B: WANDB_MODE=disabled（本项目未配 W&B）\n- 活跃进程（截至 handoff）：\n  - Llama DocRED unconstrained eval: PID 303530, cuda:0\n  - Qwen DocRED unconstrained eval: PID 304011, cuda:1\n\n### 3. 📊 当前状态\n**已完成审查：**\n- 4 个 LoRA 训练全部 PASS（Qwen/Llama × SciERC/DocRED）\n- GPU 级联故障发现→修复→验证闭环\n- 论文数字一致性检查：Llama LoRA 8 个数字未入论文（已报 Director）\n\n**Registry RUNNING/PREPARING：**\n- `w5_llama_docred_lora_unconstrained_eval` — PREPARING, cuda:0 运行中, PID 303530\n- `w5_qwen_docred_lora_unconstrained_eval` — RUNNING, cuda:1 运行中, PID 304011\n- `w5_llama_docred_lora_constrained_eval` — PREPARING, 未提交（等 GPU 空出）\n- `w5_qwen_docred_lora_constrained_eval` — PREPARING, 未提交（等 GPU 空出）\n\n**等待：** 4 个 DocRED LoRA eval 的 on_complete 回调\n\n### 4. 📋 待办（条件触发式）\n- unconstrained eval 完成 → 审查 DR/R-F1 指标，确认残余 DR > 0%（composability 前提）\n- constrained eval 完成 → 与 unconstrained 对比算 ΔDR / ΔR-F1，核实 composability claim\n- 4 个 DocRED LoRA eval 全部完成 → 完整 4×2×2 composability matrix 可交付，触发论文全文数字更新审查\n- Paper Agent 提交更新后 → 重点审查：Abstract/Intro/Limitations 的 \"DR=0%\" 是否已改为 \"DR≤X%\"，Table 3 是否扩展为双模型\n- 如果 DocRED LoRA constrained 的 ΔR-F1 > 1pp（负向） → severity=warning，composability claim 需降级\n\n### 5. 🎯 战略上下文\n- **核心结论链**：OntoCoDec 两层约束解码消除 LLM IE 的 schema violations，且与 fine-tuning composable（Claim 3）\n- **D028** 确认 Llama SciERC composability（ΔDR=-91.9%, ΔR-F1=+0.02pp），D025 确认 Qwen SciERC（ΔDR=-100%, ΔR-F1=-0.09pp）\n- **当前关键路径**：DocRED LoRA eval → 完整 matrix → 论文更新 → May 19 内部稿 → May 25 EMNLP ARR\n- **最易判断错的事**：Llama LoRA constrained DR=0.09%≠0%，不要像现有论文那样写 \"DR elimination\"——应写 \"91.9-100% DR reduction\"。Qwen SciERC 是唯一 DR=0% 的格子，其他都有微量残余\n- **历史坑**：Agent 提交训练命令时会在 spec.command 里硬编码 CUDA_VISIBLE_DEVICES，与 wrapper 冲突。每次新训练提交后务必 `ps + nvidia-smi` 核实实际 GPU 分配\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

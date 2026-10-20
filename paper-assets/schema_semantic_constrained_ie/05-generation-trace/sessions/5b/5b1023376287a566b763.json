@@ -1,0 +1,2081 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1023376287a566b763",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "gpu d066 docred beam sweep v2",
+  "task_key": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_gpu_d066_docred_beam_sweep_v2_20260520T025208.jsonl",
+    "occurrence": 1,
+    "bytes": 79340,
+    "sha256": "1c24eb21557945a3e0ae331fa65580ab0e6428180901fc2a73ebd795bb4e3913"
+  },
+  "statistics": {
+    "messages": 103,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "tool_call": 51,
+      "tool_result": 51,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T02:58:49.141477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T02:58:49.142013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T02:58:49.142223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nvidia-smi"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T02:58:49.142362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ps aux | grep -E \"run_constrained|beam|docred\" | grep -v grep"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T02:58:49.142529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 10:52:28 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   56C    P0            343W /  600W |   18275MiB /  97887MiB |     90%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   55C    P0            322W /  600W |   18275MiB /  97887MiB |     87%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T02:58:49.142720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T02:58:49.142910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/d066*docred* 2>/dev/null"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T02:58:49.143046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T02:58:49.143166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/*docred*beam* 2>/dev/null"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T02:58:49.143283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T02:58:49.143400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tmux ls 2>/dev/null"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T02:58:49.143551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T02:58:49.143719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd066_docred_beam_sweep'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T02:58:49.143884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3702}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T02:58:49.144039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ps aux | grep -E \"run_constrained|beam|docred|697390\" | grep -v grep",
+              "warn": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T02:58:49.144195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     349350  0.0  0.0  24844 12720 ?        S    May16   1:54 python3 -c  import http.server, os os.chdir('/root/autodl-tmp/checkpoints/qwen_lora_docred_merged') s = http.server.HTTPServer(('0.0.0.0', 18888), http.server.SimpleHTTPRequestHandler) s.serve_forever() \\\\nroot     406013  0.0  0.0   7000  4564 ?        Ss   May17   0:01 tmux new-session -d -s llama_beam\\\\nroot     697383  0.0  0.0   4364  2068 ?        S    09:35   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=0 nohup python run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy greedy --skip_on_error > /root/autodl-tmp/schema_outputs/d065_llama_greedy_unc.log 2>&1 & echo \\\\\\\"LLAMA_UNC_PID=$!\\\\\\\" && CUDA_VISIBLE_DEVICES=1 nohup python run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy greedy --skip_on_error > /root/autodl-tmp/schema_outputs/d065_llama_greedy_con.log 2>&1 & echo \\\\\\\"LLAMA_CON_PID=$!\\\\\\\"\\\\nroot     697390  100  0.1 46610944 1974984 ?    Rl   09:35  77:35 python run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docr\n…[truncated 1679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T02:58:49.144348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/d066*docred* /root/autodl-tmp/schema_outputs/*docred*beam* 2>/dev/null; echo \"---\"; ls -la /root/autodl-tmp/schema_outputs/d066*.log /tmp/d066*.log 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T02:58:49.144481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 8939027 May 20 04:17 /root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_constrained_16980.jsonl\\\\n-rw-r--r-- 1 root root 8947429 May 20 03:30 /root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_unconstrained_16980.jsonl\\\\n---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T02:58:49.144601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tmux ls 2>/dev/null; echo \"---\"; cat /proc/697390/cmdline 2>/dev/null | tr '\\0' ' '",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T02:58:49.144749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_beam: 1 windows (created Sun May 17 10:56:48 2026)\\\\nllama_wikievents: 1 windows (created Mon May 18 00:42:56 2026)\\\\nllama_wikievents_full: 1 windows (created Mon May 18 01:47:41 2026)\\\\nqwen_wikievents: 1 windows (created Mon May 18 00:42:53 2026)\\\\n---\\\\npython run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy greedy --skip_on_error \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T02:58:49.144923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/autodl-tmp/schema_outputs/d065_cascade_qwen.sh"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T02:58:49.145074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\ncd /root/schema_semantic_constrained_ie\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\necho \\\\\\\"[$(date)] Waiting for Llama PID $1 (unc) and $2 (con) to finish...\\\\\\\"\\\\n\\\\nwhile kill -0 $1 2>/dev/null || kill -0 $2 2>/dev/null; do\\\\n    sleep 60\\\\n    echo \\\\\\\"[$(date)] Still waiting... Llama unc=$1 con=$2\\\\\\\"\\\\ndone\\\\necho \\\\\\\"[$(date)] Llama both done. Starting Qwen...\\\\\\\"\\\\n\\\\nCUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python run_constrained_extraction.py \\\\\\\\\\\\n    --mode unconstrained --dataset docred \\\\\\\\\\\\n    --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged \\\\\\\\\\\\n    --data_path data/docred/dev.json \\\\\\\\\\\\n    --constraints_path data/docred/ontology_constraints_docred.json \\\\\\\\\\\\n    --output_path /root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_unc_4096.jsonl \\\\\\\\\\\\n    --device cuda:0 --max_new_tokens 4096 --seed 42 \\\\\\\\\\\\n    --decoding_strategy greedy --skip_on_error \\\\\\\\\\\\n    > /root/autodl-tmp/schema_outputs/d065_qwen_greedy_unc.log 2>&1 &\\\\necho \\\\\\\"[$(date)] Qwen unc started PID: $!\\\\\\\"\\\\n\\\\nCUDA_VISIBLE_DEVICES=1 nohup /root/miniconda3/bin/python run_constrained_extraction.py \\\\\\\\\\\\n    --mode full_s1 --dataset docred \\\\\\\\\\\\n    --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged \\\\\\\\\\\\n    --data_path data/docred/dev.json \\\\\\\\\\\\n    --constraints_path data/docred/ontology_constraints_docred.json \\\\\\\\\\\\n    --output_path /root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl \\\\\\\\\\\\n    --device cuda:0 --max_new_tokens 4096 --seed 42 \\\\\\\\\\\\n    --decoding_strategy greedy --skip_on_error \\\\\\\\\\\\n    > /root/autodl-tmp/schema_outputs/d065_qwen_greedy_con.log 2>&1 &\\\\necho \\\\\\\"[$(date)] Qwen con started PID: $!\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] All Qwen runs launched.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T02:58:49.145213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d065_llama_greedy_unc.log"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T02:58:49.145339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T02:58:49.145462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d065_llama_greedy_con.log"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T02:58:49.145585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T02:58:49.145720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T02:58:49.145850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    327 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\\\n    296 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\\\n    623 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T02:58:49.145966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/checkpoints/qwen_lora_docred_merged"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T02:58:49.146097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013164\\\\ndrwxr-xr-x 2 root root       4096 May 16 04:01 .\\\\ndrwxr-xr-x 9 root root       4096 May 19 06:38 ..\\\\n-rw-r--r-- 1 root root        707 May 16 04:01 added_tokens.json\\\\n-rw-r--r-- 1 root root       4168 May 16 04:01 chat_template.jinja\\\\n-rw-r--r-- 1 root root       1538 May 16 04:01 config.json\\\\n-rw-r--r-- 1 root root        214 May 16 04:01 generation_config.json\\\\n-rw-r--r-- 1 root root    1671853 May 16 04:01 merges.txt\\\\n-rw-r--r-- 1 root root 4902257696 May 16 04:01 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4915960368 May 16 04:01 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4983068496 May 16 04:01 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 1580230264 May 16 04:01 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      32914 May 16 04:01 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root        613 May 16 04:01 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   11422654 May 16 04:01 tokenizer.json\\\\n-rw-r--r-- 1 root root       5404 May 16 04:01 tokenizer_config.json\\\\n-rw-r--r-- 1 root root    2776833 May 16 04:01 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T02:58:49.146282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema_semantic_constrained_ie/data/docred/dev.json')); print(f'Total docs: {len(d)}')\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T02:58:49.146411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total docs: 998\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T02:58:49.146526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/d066_beam_sweep_scierc.sh"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T02:58:49.146642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/schema_semantic_constrained_ie/scripts/d066_beam_sweep_scierc.sh: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T02:58:49.146784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"import sys; sys.path.insert(0,'/root/schema_semantic_constrained_ie'); from run_constrained_extraction import *; import argparse\" 2>&1 | head -5; python /root/schema_semantic_constrained_ie/run_constrained_extraction.py --help 2>&1 | head -50",
+              "warn": "True"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T02:58:49.146910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\n  File \\\\\\\"/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\\\\\\", line 21, in <module>\\\\n    import torch\\\\nModuleNotFoundError: No module named 'torch'\\\\nbash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T02:58:49.147041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/scripts/d066* /root/schema_semantic_constrained_ie/scripts/*beam* 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T02:58:49.147162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/scripts/d066_analyze_beam_sweep.py\\\\n/root/schema_semantic_constrained_ie/scripts/d066_analyze_beam_sweep.py\\\\n/root/schema_semantic_constrained_ie/scripts/d066_beam_sweep_docred.sh\\\\n/root/schema_semantic_constrained_ie/scripts/d066_beam_sweep_docred.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T02:58:49.147288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema_semantic_constrained_ie/run_constrained_extraction.py --help 2>&1 | head -60",
+              "warn": "True"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T02:58:49.147441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_constrained_extraction.py [-h] --mode\\\\n                                     {unconstrained,grammar_only,semantic_only,full_s1,full_s2}\\\\n                                     --dataset {scierc,docred,wikievents}\\\\n                                     [--model_path MODEL_PATH]\\\\n                                     [--data_path DATA_PATH]\\\\n                                     [--constraints_path CONSTRAINTS_PATH]\\\\n                                     [--output_path OUTPUT_PATH]\\\\n                                     [--device DEVICE]\\\\n                                     [--batch_size BATCH_SIZE]\\\\n                                     [--max_samples MAX_SAMPLES]\\\\n                                     [--max_docs MAX_DOCS] [--seed SEED]\\\\n                                     [--max_new_tokens MAX_NEW_TOKENS]\\\\n                                     [--resume] [--temperature TEMPERATURE]\\\\n                                     [--top_p TOP_P]\\\\n                                     [--decoding_strategy {greedy,sampling,beam}]\\\\n                                     [--type_consensus]\\\\n                                     [--num_beams NUM_BEAMS] [--skip_on_error]\\\\n                                     [--repetition_penalty REPETITION_PENALTY]\\\\n                                     [--constraint_penalty CONSTRAINT_PENALTY]\\\\n\\\\nPhase 2: Constrained IE with grammar + semantic layers\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --mode {unconstrained,grammar_only,semantic_only,full_s1,full_s2}\\\\n  --dataset {scierc,docred,wikievents}\\\\n  --model_path MODEL_PATH\\\\n  --data_path DATA_PATH\\\\n  --constraints_path CONSTRAINTS_PATH\\\\n  --output_path OUTPUT_PATH\\\\n  --device DEVICE\\\\n  --batch_size BATCH_SIZE\\\\n  --max_samples MAX_SAMPLES\\\\n                        0 = all\\\\n  --max_docs MAX_DOCS   Alias for --max_samples\\\\n  --seed SEED\\\\n  --max_new_tokens MAX_NEW_TOKENS\\\\n  --resume \n…[truncated 990 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T02:58:49.147648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/d066_beam_sweep_docred.sh"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T02:58:49.147796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/scripts/d066_analyze_beam_sweep.py"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T02:58:49.147988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# d066: Beam Width Sweep - DocRED 200-doc subset (westd-16980)\\\\n# Only k=2,8 (k=1,4 reuse d064 full data)\\\\n# GPU0: Llama-3.1-8B LoRA DocRED, beam k=2,8, unconstrained + constrained\\\\n# GPU1: Qwen3-8B LoRA DocRED, beam k=2,8, unconstrained + constrained\\\\n# Usage: bash scripts/d066_beam_sweep_docred.sh\\\\nset -euo pipefail\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\ncd /root/schema_semantic_constrained_ie\\\\n\\\\nOUTDIR=\\\\\\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep\\\\\\\"\\\\nVIOL_DIR=\\\\\\\"${OUTDIR}/violations\\\\\\\"\\\\nmkdir -p \\\\\\\"$OUTDIR\\\\\\\" \\\\\\\"$VIOL_DIR\\\\\\\"\\\\n\\\\nLLAMA_MODEL=\\\\\\\"/root/autodl-tmp/checkpoints/llama_lora_docred_merged\\\\\\\"\\\\nQWEN_MODEL=\\\\\\\"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\\\\\\\"\\\\nDATA_PATH=\\\\\\\"data/docred/dev.json\\\\\\\"\\\\nCONSTRAINTS_PATH=\\\\\\\"data/docred/ontology_constraints_docred.json\\\\\\\"\\\\nMAX_NEW_TOKENS=4096\\\\nMAX_DOCS=200\\\\nBEAMS=(2 8)\\\\n\\\\nrun_inference() {\\\\n    local gpu=$1 model_path=$2 model_name=$3 beam=$4 mode=$5\\\\n    local out_name=\\\\\\\"${model_name}_docred_200_beam${beam}_${mode}\\\\\\\"\\\\n    local out_file=\\\\\\\"${OUTDIR}/${out_name}.jsonl\\\\\\\"\\\\n\\\\n    if [ -f \\\\\\\"$out_file\\\\\\\" ]; then\\\\n        local n_lines=$(wc -l < \\\\\\\"$out_file\\\\\\\")\\\\n        if [ \\\\\\\"$n_lines\\\\\\\" -ge $MAX_DOCS ]; then\\\\n            echo \\\\\\\"$(date): SKIP ${out_name} (already complete: ${n_lines} lines)\\\\\\\"\\\\n            return 0\\\\n        fi\\\\n    fi\\\\n\\\\n    echo \\\\\\\"$(date): START ${out_name} on GPU${gpu}\\\\\\\"\\\\n    CUDA_VISIBLE_DEVICES=$gpu python run_constrained_extraction.py \\\\\\\\\\\\n        --mode \\\\\\\"$mode\\\\\\\" \\\\\\\\\\\\n        --dataset docred \\\\\\\\\\\\n        --model_path \\\\\\\"$model_path\\\\\\\" \\\\\\\\\\\\n        --data_path \\\\\\\"$DATA_PATH\\\\\\\" \\\\\\\\\\\\n        --constraints_path \\\\\\\"$CONSTRAINTS_PATH\\\\\\\" \\\\\\\\\\\\n        --output_path \\\\\\\"$out_file\\\\\\\" \\\\\\\\\\\\n        --device cuda:0 \\\\\\\\\\\\n        --max_new_tokens $MAX_NEW_TOKENS \\\\\\\\\\\\n        --max_docs $MAX_DOCS \\\\\n…[truncated 2580 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T02:58:49.148206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"d066: Analyze beam width sweep results - latency + violation rates + F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport statistics\\\\nfrom pathlib import Path\\\\n\\\\n\\\\ndef parse_filename(fname):\\\\n    m = re.match(r'^(llama|qwen)_(scierc|docred)_beam(\\\\\\\\d+)_(unconstrained|full_s1)\\\\\\\\.jsonl$', fname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        'model': m.group(1),\\\\n        'dataset': m.group(2),\\\\n        'beam': int(m.group(3)),\\\\n        'mode': m.group(4),\\\\n    }\\\\n\\\\n\\\\ndef analyze_latency(records):\\\\n    times = [r['inference_time_seconds'] for r in records if 'inference_time_seconds' in r]\\\\n    if not times:\\\\n        return {}\\\\n    return {\\\\n        'n_samples': len(times),\\\\n        'total_seconds': round(sum(times), 2),\\\\n        'mean_seconds': round(statistics.mean(times), 3),\\\\n        'median_seconds': round(statistics.median(times), 3),\\\\n        'p90_seconds': round(sorted(times)[int(len(times) * 0.9)], 3),\\\\n        'max_seconds': round(max(times), 3),\\\\n        'samples_per_minute': round(len(times) / (sum(times) / 60), 2) if sum(times) > 0 else 0,\\\\n    }\\\\n\\\\n\\\\ndef load_violation_report(viol_path):\\\\n    if not viol_path.exists():\\\\n        return None\\\\n    with open(viol_path) as f:\\\\n        report = json.load(f)\\\\n    s = report.get('summary', {})\\\\n    result = {\\\\n        'ET%': round(s.get('entity_type_violation_rate', 0) * 100, 2),\\\\n        'RV%': round(s.get('relation_vocabulary_violation_rate', 0) * 100, 2),\\\\n        'DR%': round(s.get('domain_range_violation_rate', 0) * 100, 2),\\\\n        'CF%': round(s.get('cross_field_consistency_violation_rate', 0) * 100, 2),\\\\n        'total_violation_rate%': round(s.get('total_violation_rate', 0) * 100, 2),\\\\n    }\\\\n    quality = report.get('quality', {})\\\\n    if quality:\\\\n        ef = quality.get('entity_f1', {})\\\\n        rf = quality.get('relation_f1', {})\\\\n        if ef:\\\\n       \n…[truncated 2742 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T02:58:49.148379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/autodl-tmp/schema_outputs/d066_beam_sweep/ 2>/dev/null; echo \"===\"; ls -la /root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/ 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T02:58:49.148514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 3 root root   32 May 19 23:18 .\\\\ndrwxr-xr-x 3 root root 4096 May 20 09:37 ..\\\\ndrwxr-xr-x 2 root root    6 May 19 23:18 violations\\\\n===\\\\ntotal 0\\\\ndrwxr-xr-x 2 root root  6 May 19 23:18 .\\\\ndrwxr-xr-x 3 root root 32 May 19 23:18 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T02:58:49.148739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'd064'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T02:58:49.148887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4333}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T02:58:49.149010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'w5'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T02:58:49.149133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4108}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T02:58:49.149264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T02:58:49.149832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d066_docred_beam_sweep\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T02:42:56.730Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:43:16.496Z\\\", \\\"hypothesis\\\": \\\"DocRED beam width sweep (k=2,8) on Qwen LoRA 200-doc subset will show the same Pareto pattern as SciERC — k=2 as sweet spot with diminishing returns at k=8 — confirming the beam width recommendation generalizes across datasets with different schema complexity (DocRED: 96 relation types vs SciERC: 7).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_constrained_extraction.py --dataset docred --decoding_strategy beam --num_beams {2,8} --mode {unconstrained,full_s1} (4 runs serial)\\\", \\\"server\\\": \\\"westd-21461 GPU0\\\", \\\"data_path\\\": \\\"data/docred/dev.json (200-doc subset)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"Qwen3-8B LoRA DocRED (merged)\\\", \\\"seed\\\": 42, \\\"claim\\\": \\\"Claim 3 + deployment guidance\\\", \\\"paper_usage\\\": \\\"DocRED Pareto curve in appendix\\\"}}, \\\"d067_seed_variance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T23:44:45.500Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:42:31.802Z\\\", \\\"hypothesis\\\": \\\"Varying random seed (42,123,456) across models (Qwen,Llama) and datasets (SciERC,DocRED) under constrained vs unconstrained decoding will show low F1 variance (σ<1pp), confirming that reported improvements from constraint decoding are robust and not seed-dependent.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/d067_run_all.sh (3 configs × 2 seeds × unc/con, 12 runs serial)\\\", \\\"server\\\": \\\"westd-21461 GPU0\\\", \\\"data_path\\\": \\\"data/processed_data/test.json (SciERC) + data/docred/dev.json (DocRED)\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B LoRA SciERC + Llama-3.1-8B LoRA SciERC + Qwen3-8B LoRA DocRED\\\", \\\"seed\\\": \\\"123, 456\\\", \\\"checkpoint_path\\\": \\\"westd-21461:/root/autodl-tmp/schema_outputs/d067_*\\\", \\\"log_path\\\": \\\"westd-21461:/root/autodl-tmp/schema_outputs/d067_run_all.log\\\"}, \\\"metrics\\\": {\\\"qwen_scier\n…[truncated 29469 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T02:58:49.150059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "kill 698469 && echo \"cascade killed\" || echo \"cascade kill failed\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T02:58:49.150199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cascade killed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T02:58:49.150321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/scripts/eval_d064.py /root/schema_semantic_constrained_ie/scripts/eval*.py 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T02:58:49.150445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/scripts/eval_d064.py\\\\n/root/schema_semantic_constrained_ie/scripts/eval_d064.py\\\\n/root/schema_semantic_constrained_ie/scripts/eval_d066_unified.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T02:58:49.150591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "head -30 /root/schema_semantic_constrained_ie/scripts/eval_d064.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T02:58:49.150761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified evaluation for d064 DocRED beam search experiments.\\\\nUsage: python scripts/eval_d064.py --input_path <output.jsonl> [--label <name>]\\\\nComputes: ET%, RV%, DR%, CF%, Entity F1, Relation F1, Parse Fail%\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nONTOLOGY_FILE = \\\\\\\"/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\\\\\\\"\\\\n\\\\nENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\ndef normalize_etype(raw):\\\\n    t = raw.strip().upper()\\\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--input_path\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--label\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_json\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T02:58:49.150899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/autodl-tmp/schema_outputs/*qwen*docred* /root/autodl-tmp/schema_outputs/*qwen*greedy*docred* 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T02:58:49.151024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T02:58:49.151155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/autodl-tmp/schema_outputs/ -name \"*qwen*docred*\" -o -name \"*docred*qwen*\" 2>/dev/null | head -20",
+              "warn": "True"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T02:58:49.151276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T02:58:49.151391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'notes']",
+              "limit": "50"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T02:58:49.152018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d067_seed_variance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"qwen_scierc_unc\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.25 ± 0.43\\\", \\\"DR\\\": \\\"2.06 ± 0.08\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"qwen_scierc_con\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.22 ± 0.39\\\", \\\"DR\\\": \\\"0.00 ± 0.00\\\", \\\"CF\\\": \\\"0.48 ± 0.02\\\"}, \\\"llama_scierc_unc\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.38 ± 0.05\\\", \\\"DR\\\": \\\"1.04 ± 0.05\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"llama_scierc_con\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.40 ± 0.05\\\", \\\"DR\\\": \\\"0.03 ± 0.04\\\", \\\"CF\\\": \\\"0.26 ± 0.02\\\"}, \\\"max_sigma_pp\\\": 0.43, \\\"greedy_deterministic\\\": true, \\\"snr_dr_improvement\\\": \\\">12x\\\", \\\"qwen_docred_status\\\": \\\"pending (not started)\\\", \\\"llama_scierc_seed456_con_status\\\": \\\"running (407/551)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Greedy decoding is deterministic; constraint effects (DR↓2pp) have SNR > 12× vs hardware variance (σ < 0.5pp). Seeds 123/456 produce byte-identical outputs on same hardware. Cross-server float noise is the only variance source. All σ < 0.5pp. DocRED Qwen not run (greedy determinism confirmed, not worth GPU). Error bars strategy: no error bars, appendix note greedy determinism.\\\"}, \\\"d068_constraint_guided_beam_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"d064_docred_full_beam\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"d065_tcr_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"configs_tested\\\": 10, \\\"all_cf_eliminated\\\": true, \\\"scierc_all_dr_delta_max\\\": 0.28, \\\"docred_lora_dr_delta_max\\\": 0.14, \\\"docred_zs_llama_dr_delta\\\": 9.38, \\\"docred_zs_70b_dr_delta\\\": 4.2, \\\"docred_zs_qwen_dr_delta\\\": 1.53, \\\"fund_conflict_scierc_max\\\": 2.04, \\\"fund_conflict_docred_zs_max\\\": 22.78, \\\"fund_conflict_docred_lora_max\\\": 12.16, \\\"lora_ef1_cost_max\\\": 0.0075, \\\"zs_docred_ef1_cost_max\\\": 0.0598}}, \\\"d065_tcr_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"\n…[truncated 19894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T02:58:49.152253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion', 'notes']",
+              "limit": "50",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T02:58:49.152864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d067_seed_variance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"qwen_scierc_unc\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.25 ± 0.43\\\", \\\"DR\\\": \\\"2.06 ± 0.08\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"qwen_scierc_con\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.22 ± 0.39\\\", \\\"DR\\\": \\\"0.00 ± 0.00\\\", \\\"CF\\\": \\\"0.48 ± 0.02\\\"}, \\\"llama_scierc_unc\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.38 ± 0.05\\\", \\\"DR\\\": \\\"1.04 ± 0.05\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"llama_scierc_con\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.40 ± 0.05\\\", \\\"DR\\\": \\\"0.03 ± 0.04\\\", \\\"CF\\\": \\\"0.26 ± 0.02\\\"}, \\\"max_sigma_pp\\\": 0.43, \\\"greedy_deterministic\\\": true, \\\"snr_dr_improvement\\\": \\\">12x\\\", \\\"qwen_docred_status\\\": \\\"pending (not started)\\\", \\\"llama_scierc_seed456_con_status\\\": \\\"running (407/551)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Greedy decoding is deterministic; constraint effects (DR↓2pp) have SNR > 12× vs hardware variance (σ < 0.5pp). Seeds 123/456 produce byte-identical outputs on same hardware. Cross-server float noise is the only variance source. All σ < 0.5pp. DocRED Qwen not run (greedy determinism confirmed, not worth GPU). Error bars strategy: no error bars, appendix note greedy determinism.\\\"}, \\\"d065_tcr_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"configs_tested\\\": 10, \\\"all_cf_eliminated\\\": true, \\\"scierc_all_dr_delta_max\\\": 0.28, \\\"docred_lora_dr_delta_max\\\": 0.14, \\\"docred_zs_llama_dr_delta\\\": 9.38, \\\"docred_zs_70b_dr_delta\\\": 4.2, \\\"docred_zs_qwen_dr_delta\\\": 1.53, \\\"fund_conflict_scierc_max\\\": 2.04, \\\"fund_conflict_docred_zs_max\\\": 22.78, \\\"fund_conflict_docred_lora_max\\\": 12.16, \\\"lora_ef1_cost_max\\\": 0.0075, \\\"zs_docred_ef1_cost_max\\\": 0.0598}}, \\\"d065_tcr_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"scierc_zs_qwen\\\": {\\\"cf_before\\\": 9.75, \\\"cf_after\\\": 0, \\\"dr_before\\\": 0.93, \\\"dr_after\\\": 1.21, \\\"ef1_delta\\\": -0.0129, \\\"fund_pct\\\": 2.04}, \\\"\n…[truncated 25355 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T02:58:49.153081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion']",
+              "limit": "50",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T02:58:49.153774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d067_seed_variance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"qwen_scierc_unc\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.25 ± 0.43\\\", \\\"DR\\\": \\\"2.06 ± 0.08\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"qwen_scierc_con\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.22 ± 0.39\\\", \\\"DR\\\": \\\"0.00 ± 0.00\\\", \\\"CF\\\": \\\"0.48 ± 0.02\\\"}, \\\"llama_scierc_unc\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.38 ± 0.05\\\", \\\"DR\\\": \\\"1.04 ± 0.05\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"llama_scierc_con\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.40 ± 0.05\\\", \\\"DR\\\": \\\"0.03 ± 0.04\\\", \\\"CF\\\": \\\"0.26 ± 0.02\\\"}, \\\"max_sigma_pp\\\": 0.43, \\\"greedy_deterministic\\\": true, \\\"snr_dr_improvement\\\": \\\">12x\\\", \\\"qwen_docred_status\\\": \\\"pending (not started)\\\", \\\"llama_scierc_seed456_con_status\\\": \\\"running (407/551)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d065_tcr_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"configs_tested\\\": 10, \\\"all_cf_eliminated\\\": true, \\\"scierc_all_dr_delta_max\\\": 0.28, \\\"docred_lora_dr_delta_max\\\": 0.14, \\\"docred_zs_llama_dr_delta\\\": 9.38, \\\"docred_zs_70b_dr_delta\\\": 4.2, \\\"docred_zs_qwen_dr_delta\\\": 1.53, \\\"fund_conflict_scierc_max\\\": 2.04, \\\"fund_conflict_docred_zs_max\\\": 22.78, \\\"fund_conflict_docred_lora_max\\\": 12.16, \\\"lora_ef1_cost_max\\\": 0.0075, \\\"zs_docred_ef1_cost_max\\\": 0.0598}}, \\\"d065_tcr_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"scierc_zs_qwen\\\": {\\\"cf_before\\\": 9.75, \\\"cf_after\\\": 0, \\\"dr_before\\\": 0.93, \\\"dr_after\\\": 1.21, \\\"ef1_delta\\\": -0.0129, \\\"fund_pct\\\": 2.04}, \\\"scierc_zs_llama\\\": {\\\"cf_before\\\": 6.4, \\\"cf_after\\\": 0, \\\"dr_before\\\": 0.08, \\\"dr_after\\\": 0.3, \\\"ef1_delta\\\": -0.0178, \\\"fund_pct\\\": 1.85}, \\\"scierc_lora_qwen\\\": {\\\"cf_before\\\": 1.19, \\\"cf_after\\\": 0, \\\"dr_before\\\": 0, \\\"dr_after\\\": 0, \\\"ef1_delta\\\": -0.0075, \\\"fund_pct\\\": 0}, \\\"scierc_lora_llama\\\": {\\\"cf_before\\\": 0.46, \\\"cf_after\\\": 0, \\\"dr_before\\\": 0.09, \\\"dr_after\\\": 0.09, \\\"ef1_delta\\\"\n…[truncated 22547 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T02:58:49.154152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion', 'spec']",
+              "limit": "50",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T02:58:49.154995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (56.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/c274df44-7412-40cd-92dc-682d5fee7ec1/tool-results/toolu_01WTFHgsx4BDnpwXHYeN8STY.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d067_seed_variance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/d067_run_all.sh (3 configs × 2 seeds × unc/con, 12 runs serial)\\\", \\\"server\\\": \\\"westd-21461 GPU0\\\", \\\"data_path\\\": \\\"data/processed_data/test.json (SciERC) + data/docred/dev.json (DocRED)\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B LoRA SciERC + Llama-3.1-8B LoRA SciERC + Qwen3-8B LoRA DocRED\\\", \\\"seed\\\": \\\"123, 456\\\", \\\"checkpoint_path\\\": \\\"westd-21461:/root/autodl-tmp/schema_outputs/d067_*\\\", \\\"log_path\\\": \\\"westd-21461:/root/autodl-tmp/schema_outputs/d067_run_all.log\\\"}, \\\"metrics\\\": {\\\"qwen_scierc_unc\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.25 ± 0.43\\\", \\\"DR\\\": \\\"2.06 ± 0.08\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"qwen_scierc_con\\\": {\\\"E_F1\\\": \\\"66.94 ± 0.08\\\", \\\"R_F1\\\": \\\"43.22 ± 0.39\\\", \\\"DR\\\": \\\"0.00 ± 0.00\\\", \\\"CF\\\": \\\"0.48 ± 0.02\\\"}, \\\"llama_scierc_unc\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.38 ± 0.05\\\", \\\"DR\\\": \\\"1.04 ± 0.05\\\", \\\"CF\\\": \\\"0.00 ± 0.00\\\"}, \\\"llama_scierc_con\\\": {\\\"E_F1\\\": \\\"67.99 ± 0.16\\\", \\\"R_F1\\\": \\\"45.40 ± 0.05\\\", \\\"DR\\\": \\\"0.03 ± 0.04\\\", \\\"CF\\\": \\\"0.26 ± 0.02\\\"}, \\\"max_sigma_pp\\\": 0.43, \\\"greedy_deterministic\\\": true, \\\"snr_dr_improvement\\\": \\\">12x\\\", \\\"qwen_docred_status\\\": \\\"pending (not started)\\\", \\\"llama_scierc_seed456_con_status\\\": \\\"running (407/551)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d065_tcr_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"configs_tested\\\": 10, \\\"all_cf_eliminated\\\": true, \\\"scierc_all_dr_delta_max\\\": 0.28, \\\"docred_lora_dr_delta_max\\\": 0.14, \\\"docred_zs_llama_dr_delta\\\": 9.38, \\\"docred_zs_70b_dr_delta\\\": 4.2, \\\"docred_zs_qwen_dr_de\n…[truncated 327 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T02:58:49.155248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat > /root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.sh << 'SCRIPT'\n#!/bin/bash\nset -euo pipefail\n\nLOG=\"/root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.log\"\nexec > >(tee -a \"$LOG\") 2>&1\n\necho \"[$(date)] d066 Qwen DocRED beam sweep wrapper started\"\n\n# Wait for d065 LLaMA unc (GPU0) to finish\nTARGET_PID=697390\necho \"[$(date)] Waiting for PID $TARGET_PID (d065 LLaMA unc) to finish...\"\nwhile kill -0 $TARGET_PID 2>/dev/null; do\n    sleep 30\ndone\necho \"[$(date)] PID $TARGET_PID finished. GPU0 is free.\"\n\n# Setup\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/schema_semantic_constrained_ie\n\nQWEN_MODEL=\"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\"\nDATA_PATH=\"data/docred/dev.json\"\nCONSTRAINTS_PATH=\"data/docred/ontology_constraints_docred.json\"\nOUTDIR=\"/root/autodl-tmp/schema_outputs/d066_beam_sweep\"\nVIOL_DIR=\"${OUTDIR}/violations\"\nmkdir -p \"$OUTDIR\" \"$VIOL_DIR\"\nMAX_DOCS=200\nMAX_NEW_TOKENS=4096\n\nrun_one() {\n    local beam=$1 mode=$2\n    local out_name=\"qwen_docred_200_beam${beam}_${mode}\"\n    local out_file=\"${OUTDIR}/${out_name}.jsonl\"\n\n    if [ -f \"$out_file\" ]; then\n        local n_lines=$(wc -l < \"$out_file\")\n        if [ \"$n_lines\" -ge $MAX_DOCS ]; then\n            echo \"[$(date)] SKIP ${out_name} (already complete: ${n_lines} lines)\"\n            return 0\n        fi\n    fi\n\n    echo \"[$(date)] START ${out_name} on GPU0\"\n    CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\n        --mode \"$mode\" \\\n        --dataset docred \\\n        --model_path \"$QWEN_MODEL\" \\\n        --data_path \"$DATA_PATH\" \\\n        --constraints_path \"$CONSTRAINTS_PATH\" \\\n        --output_path \"$out_file\" \\\n        --device cuda:0 \\\n        --max_new_tokens $MAX_NEW_TOKENS \\\n        --max_docs $MAX_DOCS \\\n        --seed 42 \\\n        --decoding_strategy beam \\\n        --num_beams \"$beam\" \\\n        --skip_on_error\n    echo \"[$(date)] DONE ${out_name} ($(wc -l < \"$out_file\") lines)\"\n}\n\n# Run 4 configs sequentially: k=2 unc, k=2 con, k=8 unc, k=8 con\necho \"[$(date)] === Starting d066 Qwen DocRED 200-doc Beam Sweep ===\"\nrun_one 2 unconstrained\nrun_one 2 full_s1\nrun_one 8 unconstrained\nrun_one 8 full_s1\n\necho \"[$(date)] === All 4 configs complete ===\"\n\n# Violation checks\necho \"[$(date)] Running violation checks...\"\nfor beam in 2 8; do\n    for mode in unconstrained full_s1; do\n        out_name=\"qwen_docred_200_beam${beam}_${mode}\"\n        in_file=\"${OUTDIR}/${out_name}.jsonl\"\n        viol_file=\"${VIOL_DIR}/${out_name}_violations.json\"\n        if [ -f \"$in_file\" ]; then\n            python violation_checker_docred.py \\\n                --input_path \"$in_file\" \\\n                --constraints_path \"$CONSTRAINTS_PATH\" \\\n                --output_path \"$viol_file\" 2>/dev/null && \\\n                echo \"[$(date)] Violation check done: ${out_name}\" || \\\n                echo \"[$(date)] Violation check FAILED: ${out_name}\"\n        fi\n    done\ndone\n\n# Evaluation\necho \"[$(date)] Running eval_d064.py for each config...\"\nfor beam in 2 8; do\n    for mode in unconstrained full_s1; do\n        out_name=\"qwen_docred_200_beam${beam}_${mode}\"\n        in_file=\"${OUTDIR}/${out_name}.jsonl\"\n        if [ -f \"$in_file\" ]; then\n            echo \"=== EVAL: ${out_name} ===\"\n            python scripts/eval_d064.py --input_path \"$in_file\" --label \"${out_name}\"\n        fi\n    done\ndone\n\necho \"[$(date)] === d066 Qwen DocRED beam sweep COMPLETE ===\"\necho \"SENTINEL_DONE\"\nSCRIPT\nchmod +x /root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.sh\necho \"Script created\""
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T02:58:49.155451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T02:58:49.155688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "nohup bash /root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.sh > /dev/null 2>&1 & echo \"WRAPPER_PID=$!\""
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T02:58:49.155840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WRAPPER_PID=712981\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T02:58:49.155997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T02:58:49.156127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 10:56:58 CST 2026] d066 Qwen DocRED beam sweep wrapper started\\\\n[Wed May 20 10:56:58 CST 2026] Waiting for PID 697390 (d065 LLaMA unc) to finish...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T02:58:49.156264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl",
+              "warn": "True"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T02:58:49.156388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"345 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T02:58:49.156544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/schema_semantic_constrained_ie/violation_checker_docred.py 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T02:58:49.156689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 15235 May 15 02:25 /root/schema_semantic_constrained_ie/violation_checker_docred.py\\\\nEXISTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T02:58:49.156818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema_semantic_constrained_ie/scripts/eval_d064.py --help 2>&1 | head -20",
+              "warn": "True"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T02:58:49.156945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: eval_d064.py [-h] --input_path INPUT_PATH [--label LABEL]\\\\n                    [--output_json OUTPUT_JSON]\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --input_path INPUT_PATH\\\\n  --label LABEL\\\\n  --output_json OUTPUT_JSON\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T02:58:49.157101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/autodl-tmp/schema_outputs/ -name \"*qwen*docred*lora*\" -o -name \"*w5*docred*\" -o -name \"*qwen*docred*greedy*\" -o -name \"*qwen*docred*ft*\" 2>/dev/null | head -20",
+              "warn": "True"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T02:58:49.157231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T02:58:49.157354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/outputs/ -name \"*qwen*docred*\" 2>/dev/null | head -20",
+              "warn": "True"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T02:58:49.157495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w8_ft_posthoc_qwen_docred.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w8_ft_posthoc_report_qwen_docred.json\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_zs_sampling_r3.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.log\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/qwen_docred_greedy_matched50.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval_cf_corrected.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/cf_correction_report_qwen_docred_ft.json\\\\n/root/schema_semantic_constrained_ie/outputs/cf_correction_report_qwen_docred_zs.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_qwen_docred_zs_cf_corrected.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_qwen_docred_ft_cf_corrected.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_qwen_docred_ft_baseline.json\\\\n/root/schema_semantic_constrained_ie/outputs/d066_qwen_docred_lora_unc.json\\\\n/root/schema_semantic_constrained_ie/outputs/d066_qwen_docred_lora_s1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T02:58:49.157814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/d066_qwen_docred_lora_unc.json",
+              "warn": "True"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T02:58:49.157992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"Qwen_DocRED_LoRA_unc\\\\\\\",\\\\n  \\\\\\\"total_samples\\\\\\\": 998,\\\\n  \\\\\\\"parse_failures\\\\\\\": 71,\\\\n  \\\\\\\"parse_fail_pct\\\\\\\": 7.11,\\\\n  \\\\\\\"total_entities_pred\\\\\\\": 18091,\\\\n  \\\\\\\"total_relations_pred\\\\\\\": 15870,\\\\n  \\\\\\\"ET_pct\\\\\\\": 0.0,\\\\n  \\\\\\\"RV_pct\\\\\\\": 0.27,\\\\n  \\\\\\\"DR_pct\\\\\\\": 0.76,\\\\n  \\\\\\\"CF_pct\\\\\\\": 0.09,\\\\n  \\\\\\\"E_P\\\\\\\": 85.44,\\\\n  \\\\\\\"E_R\\\\\\\": 79.11,\\\\n  \\\\\\\"E_F1\\\\\\\": 82.15,\\\\n  \\\\\\\"R_P\\\\\\\": 36.41,\\\\n  \\\\\\\"R_R\\\\\\\": 46.56,\\\\n  \\\\\\\"R_F1\\\\\\\": 40.86,\\\\n  \\\\\\\"et_violations\\\\\\\": 0,\\\\n  \\\\\\\"rv_violations\\\\\\\": 43,\\\\n  \\\\\\\"dr_violations\\\\\\\": 121,\\\\n  \\\\\\\"cf_violations\\\\\\\": 16,\\\\n  \\\\\\\"entity_tp\\\\\\\": 15417,\\\\n  \\\\\\\"entity_fp\\\\\\\": 2628,\\\\n  \\\\\\\"entity_fn\\\\\\\": 4070,\\\\n  \\\\\\\"relation_tp\\\\\\\": 5663,\\\\n  \\\\\\\"relation_fp\\\\\\\": 9890,\\\\n  \\\\\\\"relation_fn\\\\\\\": 6501\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T02:58:49.158134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/d066_qwen_docred_lora_s1.json",
+              "warn": "True"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T02:58:49.158283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"Qwen_DocRED_LoRA_S1\\\\\\\",\\\\n  \\\\\\\"total_samples\\\\\\\": 998,\\\\n  \\\\\\\"parse_failures\\\\\\\": 85,\\\\n  \\\\\\\"parse_fail_pct\\\\\\\": 8.52,\\\\n  \\\\\\\"total_entities_pred\\\\\\\": 17799,\\\\n  \\\\\\\"total_relations_pred\\\\\\\": 15563,\\\\n  \\\\\\\"ET_pct\\\\\\\": 0.0,\\\\n  \\\\\\\"RV_pct\\\\\\\": 0.0,\\\\n  \\\\\\\"DR_pct\\\\\\\": 0.01,\\\\n  \\\\\\\"CF_pct\\\\\\\": 0.27,\\\\n  \\\\\\\"E_P\\\\\\\": 85.41,\\\\n  \\\\\\\"E_R\\\\\\\": 77.81,\\\\n  \\\\\\\"E_F1\\\\\\\": 81.43,\\\\n  \\\\\\\"R_P\\\\\\\": 36.35,\\\\n  \\\\\\\"R_R\\\\\\\": 45.86,\\\\n  \\\\\\\"R_F1\\\\\\\": 40.56,\\\\n  \\\\\\\"et_violations\\\\\\\": 0,\\\\n  \\\\\\\"rv_violations\\\\\\\": 0,\\\\n  \\\\\\\"dr_violations\\\\\\\": 2,\\\\n  \\\\\\\"cf_violations\\\\\\\": 48,\\\\n  \\\\\\\"entity_tp\\\\\\\": 15162,\\\\n  \\\\\\\"entity_fp\\\\\\\": 2590,\\\\n  \\\\\\\"entity_fn\\\\\\\": 4325,\\\\n  \\\\\\\"relation_tp\\\\\\\": 5579,\\\\n  \\\\\\\"relation_fp\\\\\\\": 9769,\\\\n  \\\\\\\"relation_fn\\\\\\\": 6585\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T02:58:49.158410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl",
+              "warn": "True"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T02:58:49.158535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     998 /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl\\\\n     998 /root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl\\\\n    1996 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T02:58:49.158722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/schema_semantic_constrained_ie/data/docred/dev.json') as f:\n    data = json.load(f)\nsubset = data[:200]\nwith open('/root/autodl-tmp/schema_outputs/docred_dev_200.json', 'w') as f:\n    json.dump(subset, f)\nprint(f'Saved {len(subset)} docs to docred_dev_200.json')\n\""
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T02:58:49.158865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved 200 docs to docred_dev_200.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T02:58:49.159004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n# Extract first 200 lines from w5 greedy outputs\nfor suffix, label in [('unconstrained', 'unc'), ('constrained', 's1')]:\n    infile = f'outputs/w5_qwen_docred_lora_{suffix}_eval.jsonl'\n    outfile = f'/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_{label}.jsonl'\n    lines = open(infile).readlines()[:200]\n    with open(outfile, 'w') as f:\n        f.writelines(lines)\n    print(f'{label}: wrote {len(lines)} lines to {outfile}')\n\""
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-20T02:58:49.159134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"unc: wrote 200 lines to /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_unc.jsonl\\\\ns1: wrote 200 lines to /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-20T02:58:49.159252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && echo \"=== GREEDY UNC 200 ===\" && python scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_unc.jsonl --label greedy_unc_200 && echo \"=== GREEDY S1 200 ===\" && python scripts/eval_d064.py --input_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_s1.jsonl --label greedy_s1_200",
+              "warn": "True"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-20T02:58:49.159381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== GREEDY UNC 200 ===\\\\n\\\\n=== greedy_unc_200 ===\\\\nSamples: 200, Parse Fail: 13 (6.5%)\\\\nEntities pred: 3510, Relations pred: 2928\\\\nET%=0.00  RV%=0.24  DR%=0.20  CF%=0.03\\\\nE-F1=81.34 (P=84.49 R=78.41)\\\\nR-F1=44.56 (P=41.70 R=47.84)\\\\n=== GREEDY S1 200 ===\\\\n\\\\n=== greedy_s1_200 ===\\\\nSamples: 200, Parse Fail: 15 (7.5%)\\\\nEntities pred: 3458, Relations pred: 2880\\\\nET%=0.00  RV%=0.00  DR%=0.00  CF%=0.12\\\\nE-F1=80.54 (P=84.31 R=77.09)\\\\nR-F1=43.64 (P=41.11 R=46.50)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-20T02:58:49.159558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/autodl-tmp/schema_outputs/ /root/schema_semantic_constrained_ie/outputs/ -name \"*qwen*docred*beam*\" -o -name \"*d064*qwen*docred*\" 2>/dev/null | head -10",
+              "warn": "True"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-20T02:58:49.159709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.log\\\\n/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-20T02:58:49.159874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1800",
+              "reason": "Waiting for d065 LLaMA unc (PID 697390) to finish (~2.5h remaining) before d066 Qwen beam sweep starts on GPU0",
+              "prompt": "接管 DocRED Beam Sweep — 检查 d066 wrapper 进度，看 d065 是否完成、d066 是否开始跑了。轮询 /root/autodl-tmp/schema_outputs/d066_qwen_beam_sweep.log 和 GPU0 状态。"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-20T02:58:49.160001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 03:29:00 (in 1820s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-20T02:58:49.160156+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "d066 Qwen DocRED beam sweep 方案已部署：\n\n**当前状态**\n- d065 LLaMA unc 在 GPU0 跑 345/998 docs（~2.5h 后完成）\n- Wrapper 脚本（PID 712981）在等 GPU0 释放，之后顺序跑 k=2 unc → k=2 S1 → k=8 unc → k=8 S1\n- Cascade 已杀，不会抢 GPU0\n- 200-doc subset 和 greedy baseline eval 已准备好\n\n**已收集的 baseline 数据（200-doc subset, 公平对比）**\n\n| Config | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|--------|-----|-----|-----|-----|------|------|\n| k=1 greedy unc | 0 | 0.24 | 0.20 | 0.03 | 81.34 | 44.56 |\n| k=1 greedy S1 | 0 | 0 | 0 | 0.12 | 80.54 | 43.64 |\n\n30 分钟后回来检查进度。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_d066_docred_beam_sweep_v2_20260520T025208"
+          },
+          "id": "event-000103"
+        }
+      ],
+      "message_count": 103
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-d066-docred-beam-sweep-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f5ccba42d9ab37d7c3f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code kill duplicate beam",
+  "task_key": "worker_code_kill_duplicate_beam_20260517T035759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_duplicate_beam_20260517T035759_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "3fab46d5aea0a8ad173defea02f5531957bef0563de5d03dd7df734aaa5d3035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 410078 已 kill**，退出码 0\n- **PID 409855 正常运行中**，CPU 103%，已运行 8 分 39 秒，beam search (num_beams=4, max_samples=50) 进行中\n- **输出文件**：`/root/schema_semantic_constrained_ie/outputs/w9_qwen_docred_beam_50.jsonl`，当前 13 行（50 样本中已完成 13 个）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-duplicate-beam.md"
+}

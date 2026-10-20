@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "452bfd5cd0baf613a44f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w5 llama docred lora constrained eval",
+  "task_key": "worker_analysis_w5_llama_docred_lora_constrained_eval_20260516T045250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w5_llama_docred_lora_constrained_eval_20260516T045250_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "ed91cd5e023cab62a74e68d9928e6cc292a6652b5af5c32b9c90071610e8c250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama DocRED 2x2 composability matrix 最后一格完成。结果：\n\n**Violation reduction:**\n- DR: 0.49% → 0.21% (**-57.1%** relative, 33 residual violations / 16,074 triples)\n- RV: 0.15% → 0.00% (完全消除)\n- ET: 保持 0%\n\n**F1 preservation:**\n- R-F1: 43.72% → 43.83% (**+0.11pp**, 略有提升)\n- E-F1: 83.93% → 84.01% (+0.08pp)\n\n**Cross-dataset pattern 一致:**\n| Dataset | ΔDR (rel.) | ΔR-F1 |\n|---------|-----------|-------|\n| SciERC | -91.9% | +0.02pp |\n| DocRED | -57.1% | +0.11pp |\n\nDocRED 的相对降幅较小是因为 fine-tuned baseline 已经很低（0.49% vs SciERC 1.11%），改善空间有限。\n\n**Conclusion: SUCCESS.** Composability claim 成立 — Fine-tuning + OntoCoDec 无干扰叠加，violations 进一步减半，F1 零损失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w5-llama-docred-lora-constrained-eval.md"
+}

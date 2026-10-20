@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db17dee1aedef921f3d0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research ft ablation prep",
+  "task_key": "worker_research_ft_ablation_prep_20260516T054250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ft_ablation_prep_20260516T054250_result.json",
+    "occurrence": 1,
+    "bytes": 5202,
+    "sha256": "ea24addbe0983ca736b2fcfab4412fcb98ea1c2788815cbd77c7be683f5a423e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。汇总如下：\n\n---\n\n## 确认结果\n\n### 1. LoRA merged 路径（已确认存在）\n\n| Model | Path | Size |\n|-------|------|------|\n| Qwen3-8B LoRA SciERC | `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged/` | ~15GB, 4 shards |\n| Llama-3.1-8B LoRA SciERC | `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged/` | ~15GB, 4 shards |\n\n### 2. Mode 支持（已确认）\n\n`run_constrained_extraction.py` line 602-604:\n```\n--mode choices=[\"unconstrained\", \"grammar_only\", \"semantic_only\", \"full_s1\", \"full_s2\"]\n```\n`grammar_only` 和 `semantic_only` 均为有效选项。\n\n### 3. 已有 FT baseline metrics\n\n**Qwen3-8B LoRA SciERC** (w5_lora_scierc_*)\n\n| Metric | unconstrained | full_s1 | delta |\n|--------|:---:|:---:|:---:|\n| E_F1 | 0.6705 | 0.6705 | 0 |\n| R_F1 | 0.4386 | 0.4377 | -0.0009 |\n| DR% | 1.95% | 0% | **-1.95pp** |\n| RV% | 0% | 0% | 0 |\n| ET% | 0% | 0% | 0 |\n| CF% | 0% | 1.18% | +1.18pp |\n\n**Llama-3.1-8B LoRA SciERC** (w5_llama_lora_scierc_*)\n\n| Metric | unconstrained | full_s1 | delta |\n|--------|:---:|:---:|:---:|\n| E_F1 | 0.6776 | 0.6776 | 0 |\n| R_F1 | 0.4545 | 0.4547 | +0.0002 |\n| DR% | 1.11% | 0.09% | **-1.02pp** |\n| RV% | 0% | 0% | 0 |\n| ET% | 0% | 0% | 0 |\n| CF% | 0% | 0.46% | +0.46pp |\n\n### 4. 四个实验命令\n\n**注意：两个 GPU 当前均被占用**（GPU0: PID 334612 ~15GB, GPU1: PID 321568 ~17GB）。需要等当前任务结束后再提交。\n\n每个实验约 25-45 min，可 2 并行（每 GPU 一个）。\n\n| exp_id | model | mode | gpu |\n|--------|-------|------|-----|\n| w7_qwen_scierc_ft_grammar_only | Qwen3-8B LoRA | grammar_only | cuda:0 |\n| w7_qwen_scierc_ft_semantic_only | Qwen3-8B LoRA | semantic_only | cuda:0 |\n| w7_llama_scierc_ft_grammar_only | Llama-3.1-8B LoRA | grammar_only | cuda:1 |\n| w7_llama_scierc_ft_semantic_only | Llama-3.1-8B LoRA | semantic_only | cuda:1 |\n\n命令模板（以 w7_qwen_scierc_ft_grammar_only 为例）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w7_qwen_scierc_ft_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"\n```\n\n**完整 4 条命令：**\n\n**Round 1**（并行，Qwen on GPU0 + Llama on GPU1）：\n```bash\n# w7_qwen_scierc_ft_grammar_only — cuda:0\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w7_qwen_scierc_ft_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"\n\n# w7_llama_scierc_ft_grammar_only — cuda:1\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w7_llama_scierc_ft_grammar_only.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\"\n```\n\n**Round 2**（Round 1 结束后并行）：\n```bash\n# w7_qwen_scierc_ft_semantic_only — cuda:0\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w7_qwen_scierc_ft_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"\n\n# w7_llama_scierc_ft_semantic_only — cuda:1\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w7_llama_scierc_ft_semantic_only.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\"\n```\n\n### 5. 预期对比矩阵（完成后）\n\n每个模型将有 4 行：\n\n| mode | DR% | RV% | ET% | E_F1 | R_F1 |\n|------|-----|-----|-----|------|------|\n| unconstrained | baseline | — | — | — | — |\n| grammar_only | **w7 new** | — | — | — | — |\n| semantic_only | **w7 new** | — | — | — | — |\n| full_s1 | existing | — | — | — | — |\n\n这将揭示 grammar 层和 semantic 层在 FT 模型上各自的单独贡献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ft-ablation-prep.md"
+}

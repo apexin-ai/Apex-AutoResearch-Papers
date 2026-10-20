@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e0239098cec701a7706",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d065 tcr pilot",
+  "task_key": "worker_ssh_d065_tcr_pilot_20260519T112723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d065_tcr_pilot_20260519T112723_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "d729a766f0a97269fcef512420eadee02a79a83353156e2cd39221eb68e4e565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**TCR Pilot 全部跑通，4 个 SciERC S1 配置结果：**\n\n| Config | CF 修正前 | CF 修正后 | DR Δ | E-F1 Δ | Fundamental% |\n|--------|---------|---------|------|--------|-------------|\n| ZS Qwen | 9.75% (245) | **0%** | +0.28pp | -1.29pp | 2.04% |\n| ZS Llama | 6.40% (162) | **0%** | +0.22pp | -1.78pp | 1.85% |\n| LoRA Qwen | 1.19% (21) | **0%** | +0.00pp | -0.75pp | 0% |\n| LoRA Llama | 0.46% (8) | **0%** | +0.00pp | -0.18pp | 0% |\n\n核心发现：\n- **CF 100% 消除**，所有配置修正后为 0\n- **DR 几乎无副作用**：LoRA 模型 DR 不变，ZS 模型仅增加 +3~5 个 DR violation（~0.2pp）\n- **E-F1 小幅下降**（-0.18pp 到 -1.78pp），R-F1 不变\n- **Fundamental conflict 极少**（ZS ~2%，LoRA 0%），schema 对 SciERC 不过度约束\n\n产出文件：\n- 脚本：`/root/schema_semantic_constrained_ie/scripts/tcr_resolver.py`\n- 修正后 JSONL：`outputs/tcr/` 下 4 个文件\n- 报告：`d065_tcr_pilot_results.md`（已注册 artifact）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d065-tcr-pilot.md"
+}

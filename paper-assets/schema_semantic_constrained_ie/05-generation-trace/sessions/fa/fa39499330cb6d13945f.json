@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa39499330cb6d13945f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code beam search full 551",
+  "task_key": "worker_code_beam_search_full_551_20260517T004311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_search_full_551_20260517T004311_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "694653c3e4f5f1950257bf86edaeada87e9098f81d43570893258fb468d9c092"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Beam search 已在后台运行（PID 399097/399102），当前 14/551 完成。GPU:0 使用 16.7GB / 82% 利用率，运行稳定。预计约 45 分钟完成全量，我将在 ~4 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beam-search-full-551.md"
+}

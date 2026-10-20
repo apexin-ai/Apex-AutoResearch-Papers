@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d069d16f9f77429951",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit docred et dr calibration",
+  "task_key": "worker_audit_docred_et_dr_calibration_20260514T144331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_docred_et_dr_calibration_20260514T144331_result.json",
+    "occurrence": 1,
+    "bytes": 1705,
+    "sha256": "51a8102a01a8453c48962c1a20d75b7624e3865a8eafa121e8169580e828d864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是统一口径重算的核心结果。\n\n---\n\n## 统一口径 ET/DR/RV 表\n\n| Method | ET↓ | RV↓ | DR↓ |\n|--------|-----|-----|-----|\n| Unconstrained | 2.47% | 29.66% | 14.51% |\n| Grammar-only | 0.00% | 0.03% | 26.17% |\n| Semantic-only | 2.47% | 29.87% | 3.76% |\n| Full (S1) | 0.00% | 0.03% | 10.19% |\n\n## 旧报告问题根因\n\n**ET 膨胀**：旧 `violation_checker_docred.py` 的 `check_document()` 把 entity list violations + relation head violations + relation tail violations 三者加总作为分子，但分母只是 entity list 数量。一个 invalid-type entity 出现在 N 条 relation 中会被计 N+1 次。验证：semantic_only 旧值 (499+1780+1443)/20185 = 18.44% 完美匹配。\n\n**DR 膨胀**：旧 checker 没有把 ET 和 DR 分开——entity type invalid 的 triple 因 pair 自然不在 valid_pairs 中，被同时计为 DR violation。semantic_only 有 14.28% 的 triple 存在 invalid head/tail type，这些全被重复计入了 DR。\n\n**14.83% vs 15.05% 差异**：whitespace 处理不同。semantic_only 有 507 条 relation 的 type 带前导空格（如 `\" TIME\"`），旧 checker 不做 `.strip()` 导致误判。\n\n## 口径说明\n\n- **ET**：entity-level，分母=entity list 总数，分子=entity list 中 type ∉ {PER,ORG,LOC,TIME,NUM,MISC}\n- **DR**：triple-level，仅在 relation 合法 + head/tail type 均合法的 triple 上计算 pair 违规，分母=total triples\n- ET 和 DR **严格不重叠**\n\n产出文件在 `artifacts/unified_et_dr_recalc.md`，服务器上的重算脚本和 JSON 报告分别在 `unified_violation_recalc.py` 和 `outputs/violation_report_docred_{mode}_unified.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-docred-et-dr-calibration.md"
+}

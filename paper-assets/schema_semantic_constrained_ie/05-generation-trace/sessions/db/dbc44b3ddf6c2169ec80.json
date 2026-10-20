@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc44b3ddf6c2169ec80",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check llama docred full s1 progress",
+  "task_key": "worker_check_llama_docred_full_s1_progress_20260514T194059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama_docred_full_s1_progress_20260514T194059_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "93504b93ee7d34cdabe4603cd7d06cb6f2cc9a563b1b394a0cc89dbfef144d80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**`llama_docred_full_s1` 实验状态：**\n\n| 指标 | 值 |\n|------|-----|\n| 进程 | **alive** (PID 194295, 已运行 4h59m52s) |\n| 进度 | **882 / 998** docs (88.4%) |\n| GPU 0 | RTX PRO 6000 Blackwell, 85% 利用率, 17.1 / 97.9 GB |\n| GPU 1 | 空闲 |\n\n**ETA 估算：**\n- 882 docs / 300 min ≈ 2.94 docs/min\n- 剩余 116 docs → **约 39 分钟**（预计 ~20:19 UTC 完成）\n\n**注意：** 日志显示大量 \"Grammar-first fallback triggered\"（semantic mask 消除了所有 grammar-valid tokens，skip_count 已累计到 43）。功能上不影响推理完成，但说明 Llama 在部分文档上 semantic 约束与 grammar 约束冲突较多，值得后续分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama-docred-full-s1-progress.md"
+}

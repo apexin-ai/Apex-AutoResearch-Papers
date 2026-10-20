@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b05702e678b3742c5ac",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh verify d060 execution",
+  "task_key": "worker_ssh_verify_d060_execution_20260518T233317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_d060_execution_20260518T233317_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "eafc53735d25a6f668e0e84119fcc3ffaea3fa3c9de5ff8783a7a319a6ae61c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D060 修复状态报告\n\n### westd-21461 (Qwen FT r5)\n\n| 检查项 | 状态 |\n|--------|------|\n| GPU | GPU 0 活跃，91% util，56.7G/97.9G，3 个 python3 进程 |\n| ontology_compiler.py | **文件不存在** |\n| 推理进程 | 3 个 `run_constrained_extraction.py --mode unconstrained --repetition_penalty 1.2` (Qwen FT r5) |\n| r5 输出文件 | `ee_qwen_ft_wikievents_unconstrained_r5.jsonl` 已产生，17KB（正在写入中） |\n| repetition_penalty 参数 | 脚本 L808/L936/L939 已有 ✅ |\n| 进程命令行含 repetition_penalty | `--repetition_penalty 1.2` ✅ |\n\n### westd-16980 (LLaMA FT r2)\n\n| 检查项 | 状态 |\n|--------|------|\n| GPU | GPU 0 活跃，94% util，36.5G/97.9G，2 个 python3 进程 |\n| ontology_compiler.py | **文件不存在** |\n| 推理进程 | 2 个 `run_constrained_extraction.py --mode unconstrained --repetition_penalty 1.2` (LLaMA FT r2) |\n| r2 输出文件 | `ee_llama_ft_wikievents_unconstrained_r2.jsonl` 已产生，126KB（正在写入中） |\n| repetition_penalty 参数 | 脚本 L808/L938/L941 已有 ✅ |\n| 进程命令行含 repetition_penalty | `--repetition_penalty 1.2` ✅ |\n\n### 问题\n\n- **`ontology_compiler.py` 两台服务器均不存在**，无法验证 schema 中 `required` 字段的修复。文件可能已被重命名或移除，需要确认 schema 修复是通过哪个文件/机制生效的。\n\n### 结论\n\n两台服务器推理进程均正常运行，`repetition_penalty 1.2` 已生效，输出文件正在生成。唯一无法验证的是 ontology_compiler.py 的 schema 修复（文件不存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-d060-execution.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53353ae7552681604892",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "verify docred ft dr reeval",
+  "task_key": "worker_verify_docred-ft-dr-reeval_20260523T114011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_docred-ft-dr-reeval_20260523T114011_result.json",
+    "occurrence": 1,
+    "bytes": 1615,
+    "sha256": "0ae095758681111dc35d8e2497aca112a9fde426d3b35ab4d9ebb52b98c67a3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。最终报告：\n\n---\n\n## 重验结果\n\n所有 DR 值均用 **violation_checker_docred.py (fixed_20260514_v2)** 重算，包括 unconstrained 基线，确保一致可比。\n\n| 实验 | 论文 DR% | 重算 DR% | 偏差 | 需修正? |\n|---|---|---|---|---|\n| w8_qwen_docred_ft_semantic_only | 0.21 | **0.19** (31/15909) | -0.02pp | 轻微，可接受 |\n| w8_llama_docred_ft_semantic_only | 0.30 | **0.48** (77/16038) | **+0.18pp** | **必须修正** |\n| w8_llama_docred_ft_grammar_only | 0.51 | **0.51** (82/16199) | 0.00pp | 匹配 |\n\n## Unconstrained 基线验证（同一 checker）\n\n| 模型 | 基线 DR% | 重算 DR% | 一致? |\n|---|---|---|---|\n| Qwen | 0.76 | 0.76 (121/15870) | 是 |\n| Llama | 0.49 | 0.49 (80/16171) | 是 |\n\n## Semantic DR Reduction 修正\n\n| 模型 | 计算方式 | 论文隐含值 | 修正值 |\n|---|---|---|---|\n| Qwen | (0.76−0.19)/0.76 | 72% | **75%** |\n| Llama | (0.49−0.48)/0.49 | 39% | **2%** |\n| **Range** | | **39--72%** | **2--75%** |\n\n## 影响\n\n正文 claim \"39--72% DR reduction\" **不成立**。Llama semantic-only 仅减少 3 个 DR violation（80→77），reduction 仅 2%，远非 39%。这意味着 semantic constraint 对 FT Llama+DocRED 几乎无效。\n\n论文中 0.30% 可能是用旧版 checker（未修正 entity type normalization）计算的结果。当前修正版 checker 多检出约 29 个 DR violation。\n\n## 已完成\n\n- 3 个实验的 DR_pct 已回填至 registry（含 ET/RV/CF 全量 violation 数据）\n- 需要修正论文中 Llama semantic-only DR 值和 \"39--72%\" claim"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-docred-ft-dr-reeval.md"
+}

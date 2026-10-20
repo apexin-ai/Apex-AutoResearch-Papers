@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0f3639250bafb91e68e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check docred progress",
+  "task_key": "worker_ops_check_docred_progress_20260514T042951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_docred_progress_20260514T042951_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "7baebd2f64105ec1c0e56165f9b99206e8caf789a843b565595e2f29edf37420"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均在运行，GPU 利用率正常 (83-84%)。\n\n| 实验 | 进度 | 速度 | 预估完成 (UTC) |\n|------|------|------|----------------|\n| grammar_only | 454/998 (45.5%) | 174.9 docs/hr | ~07:38 |\n| full_s1 | 315/998 (31.6%) | 185.1 docs/hr | ~08:12 |\n\n注意：PID 157042 的 CPU/MEM 显示 0.0%，可能是 shell wrapper，但 GPU 1 活跃确认实验在跑。报告已写入 `artifacts/docred_progress_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-docred-progress-copy-2.md"
+}

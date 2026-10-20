@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f453b096018a0a000d70",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r16 gollie comparison",
+  "task_key": "worker_code_r16_gollie_comparison_20260521T033212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_gollie_comparison_20260521T033212_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "269bdae7a6f85372a90a784746e37f5d3b32d7b3892d28ae08db6c35585e1905"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Option 2 adopted** — GoLLIE prompt格式与OntoCoDec的JSON FSM约束不兼容，无法直接组合。改用已有的GoLLIE-7B实验数据(D063) + 论文公开数据。\n\n**关键对比 (document-level, SciERC):**\n\n| Method | Model | Setting | E-F1 | R-F1 | DR% | ET% |\n|--------|-------|---------|------|------|-----|-----|\n| GoLLIE | CodeLlama-7B | ZS | 9.17 | 0.0 | 0.0 | 0.0 |\n| OntoCoDec unc | Qwen-3-8B | ZS | 31.39 | 8.25 | 15.37 | 0.40 |\n| OntoCoDec S1 | Qwen-3-8B | ZS | 31.45 | 8.38 | 0.93 | 0.0 |\n| KnowCoder | LLaMA2-7B | FT | - | 40.0 | - | - |\n| OntoCoDec S1 | Llama-3.1-8B | FT | 67.09 | 45.47 | 0.09 | 0.0 |\n\n**核心发现：**\n- GoLLIE通过Python dataclass格式获得0%类型违规，但F1极低（E-F1=9.17%, R-F1=0%, 45%文档空输出）\n- OntoCoDec S1在保持F1的同时消除ET/RV违规，DR从15.37%降至0.93%\n- OntoCoDec FT+S1 (R-F1=45.47) 超过KnowCoder公开的40.0\n- 两种方法互补：GoLLIE约束输出格式（结构合规），OntoCoDec约束生成内容（语义合规）\n\nGoLLIE论文未评估SciERC，我们的GoLLIE-7B实验是原创数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-gollie-comparison.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c99dda3fadb4753f943c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis error cases",
+  "task_key": "worker_analysis_error-cases_20260522T120815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-cases_20260522T120815_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "527328dab450becb2eeb7ef3f357357ffab6aa629e87b63ad5aa8c7da1147885"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。写入了 20 个案例到 `artifacts/_project/paper/error_analysis_cases.json`：\n\n| 类别 | 数量 | 子类 |\n|------|------|------|\n| False Negatives | 7 | 1 constraint-blocked, 1 missing entity, 1 zero-output, 4 relation type confusion |\n| False Positives | 7 | 5 wrong relation type, 2 hallucinated |\n| CF Violations | 6 | entity type inconsistency across relations |\n\n关键发现：\n- **仅 1 个 FN 是约束阻断的**（P08-1105_sent4），其余 513 个是模型本身未生成——约束几乎不损失 recall\n- FP 主要来源是 **Part-of ↔ Used-for 混淆**（schema 内自由度，约束无法纠正）和**语义层面的 hallucination**（如忽略否定语义）\n- CF violations 多涉及**多义实体**（如 \"approach\" Generic/Method、\"datasets\" Material/Task），反映 entity type 在不同关系上下文中的歧义"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-cases.md"
+}

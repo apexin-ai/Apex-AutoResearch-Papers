@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c45613fb0641b1832229",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d066 beam sweep fix",
+  "task_key": "worker_code_d066_beam_sweep_fix_20260519T153141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d066_beam_sweep_fix_20260519T153141_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "114d185367ce9bfdf0491ebbcf362805180d68a308fde22f6a6ddd45445a67ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**westd-21461 SciERC 脚本**：已验证正确，无需修改。\n\n**westd-16980 DocRED 脚本**修改了 4 处：\n1. `BEAMS=(1 2 4 8)` → `BEAMS=(2 8)`（k=1/4 复用 d064）\n2. 添加 `--max_docs 200` 参数（`run_constrained_extraction.py` 原生支持，无需生成子集文件）\n3. 输出文件名加 `_200` 后缀区分：`{model}_docred_200_beam{k}_{mode}.jsonl`\n4. 完成检查阈值从 998 改为 200\n\n语法验证通过。预估 wall time 从 ~32h 降到 ~3-4h。报告已写入 `d066_beam_sweep_fix.md`。\n\nGPU 空闲后启动命令：\n```bash\nnohup bash scripts/d066_beam_sweep_docred.sh > /root/autodl-tmp/schema_outputs/d066_beam_sweep/d066_docred_main.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d066-beam-sweep-fix.md"
+}

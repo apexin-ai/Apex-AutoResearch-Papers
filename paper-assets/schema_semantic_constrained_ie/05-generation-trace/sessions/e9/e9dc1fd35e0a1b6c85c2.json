@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9dc1fd35e0a1b6c85c2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "eval 70b lora scierc unconstrained violations",
+  "task_key": "worker_eval_70b_lora_scierc_unconstrained_violations_20260522T052510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_70b_lora_scierc_unconstrained_violations_20260522T052510_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "42609c80244dec617f97948e6f25bcf0074a1a6c061046226a4ab3ccb4450581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "violation_checker.py 内置了 F1 评估（用 gold_file 默认路径）。结果：\n\n```\nSamples: 551, JSON parse failures: 0 (0.0%)\nEntities: 1806, Relations: 1133\n\nE_P:    62.74\nE_R:    67.12\nE_F1:   64.86\n\nR_P:    41.61\nR_R:    48.36\nR_F1:   44.73\n\nET_pct:  0.00%   (entity type violations)\nRV_pct:  0.00%   (relation vocabulary violations)\nDR_pct:  1.50%   (domain/range violations, 17/1133)\nCF_pct:  0       (cross-field consistency violations)\nParse_fail: 0.00%\n```\n\nUnconstrained 70B LoRA 在 SciERC 上已经有很低的 violation rate（DR 仅 1.5%，ET 和 RV 均为 0），说明 70B 模型本身的 schema 遵循能力很强。R-F1 44.73 是 unconstrained baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-70b-lora-scierc-unconstrained-violations.md"
+}

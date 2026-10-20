@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb962cf5e21e3444f928",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops submit w8 llama docred ft grammar only",
+  "task_key": "worker_ops_submit_w8_llama_docred_ft_grammar_only_20260516T081029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_w8_llama_docred_ft_grammar_only_20260516T081029_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "5fa82d406008ce4c96d57db4229657f8f0c3cb0837d6c08096f7ce6b50a1021d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| PID | 345222 |\n| GPU | cuda:1, 14877 MiB occupied, 2% util (模型加载中) |\n| tmux session | `w8_llama_docred_grammar` |\n| 日志 | `/tmp/w8_llama_docred_ft_grammar_only.log` |\n| Registry | RUNNING |\n| Cron 监控 | 每 30 分钟检查，job `ad9d6555` |\n\n模型正在加载 checkpoint shards (1/4)，预计加载完成后开始推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-w8-llama-docred-ft-grammar-only.md"
+}

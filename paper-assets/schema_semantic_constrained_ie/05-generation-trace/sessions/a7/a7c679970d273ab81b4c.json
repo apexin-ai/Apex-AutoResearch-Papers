@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c679970d273ab81b4c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis s2 cf diagnosis",
+  "task_key": "worker_analysis_s2-cf-diagnosis_20260522T204100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2-cf-diagnosis_20260522T204100_result.json",
+    "occurrence": 1,
+    "bytes": 2129,
+    "sha256": "016c32ac83ddf3626f0c0015f237f9e13339022597041a2acffbf666e45d9dcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论：Not a bug，确认是 over-constraining cascading effect\n\n### CF=18 的来源\n\n**全部 19 个 CF violations（checker 归为 18，去重差异）都来自 `pass2_rel_tail`**：Pass 1 给 entity 分配了类型 X，但 Pass 2 生成 relation 时在 `tail_type` 字段写了不同类型 Y。\n\n典型模式：\n- Metric ↔ OtherScientificTerm（如 \"transliteration accuracy\", \"parsing accuracy\"）\n- Method ↔ Task（如 \"ASR System\", \"vision systems\"）  \n- OtherScientificTerm ↔ Generic（如 \"attention\", \"intention\"）\n\n这些都是 genuinely ambiguous 的 entity typing，模型在 entity-only 和 relation 两个不同 context 下做出了不同判断。`TypeConstraintProcessor` 虽然 pre-register 了 Pass 1 types，但 grammar constraint 只约束 type name 合法性，不强制一致性。\n\n### R-F1 暴跌（44.53→36.28, -8.25pp）的机制\n\n**Pass 1 entity under-extraction → cascading relation wipeout：**\n\n| 指标 | S1 beam4 | S2 | 差异 |\n|------|----------|-----|------|\n| Entity pred | 1785 | 1522 | -14.7% |\n| Entity recall | 0.7029 | 0.5953 | -10.8pp |\n| Total triples | 1283 | 1027 | -20.0% |\n| 0-relation docs | ~71 | 112 | +57.7% |\n\n关键瓶颈：**129/551 docs（23.4%）Pass 1 只提取了 ≤1 entity → 其中 112 docs（86.8%）relations 完全清零**。Pass 2 的 grammar 将 head/tail 枚举限制为 Pass 1 entity texts，任何 Pass 1 遗漏的 entity 永久丢失，无法参与 relation 抽取。\n\nSciERC 是 sentence-level 数据集，很多句子只含 1-2 个 relation，entity-only extraction（缺少 relation context）系统性地 under-recall entities，导致 cascade failure。\n\n### 对论文 claim 的影响\n\n**不影响，反而支持论文叙事：**\n- S2 作为 ablation 展示 pipeline decomposition 的 over-constraining 代价，justifies S1 single-pass 是更优方案\n- CF 从 15→18：pipeline 甚至没能消除 type inconsistency，反而引入新的 cross-pass disagreement\n- 这是 pipeline IE 的经典问题（error propagation），negative result 清晰可解释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-cf-diagnosis.md"
+}

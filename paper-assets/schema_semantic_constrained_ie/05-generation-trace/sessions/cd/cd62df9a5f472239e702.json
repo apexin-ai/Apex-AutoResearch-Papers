@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd62df9a5f472239e702",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 prompt sensitivity v2",
+  "task_key": "worker_code_r4_prompt_sensitivity_v2_20260517T123740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_prompt_sensitivity_v2_20260517T123740_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "ccfdcce638fbdccca01a50d6f9d341d1704333e770998ae8a41988aa32d8b568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态总结：**\n\n6 个推理任务（3 prompt 变体 × 2 模式）的进展：\n- ✅ `default_unconstrained` / `default_full_s1` — 已有历史结果（551/551）\n- 🔄 `minimal_unconstrained` — 运行中 (~124/551)，cuda:0\n- 🔄 `detailed_unconstrained` — 运行中 (~142/551)，cuda:1\n- ⏳ `minimal_full_s1` — 自动排队，unconstrained 完成后自动启动（cuda:0）\n- ⏳ `detailed_full_s1` — 自动排队，unconstrained 完成后自动启动（cuda:1）\n\n预计全部完成时间：~22:45 CST。30 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-prompt-sensitivity-v2.md"
+}

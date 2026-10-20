@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea73c261d71dd6250e9a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops setup westd 21461 finalize",
+  "task_key": "worker_ops_setup_westd_21461_finalize_20260516T051832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_setup_westd_21461_finalize_20260516T051832_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "8aa4f695ed50b61bb641d2c3bbefebdd381fc4302f0ed80849b21ae352b6a4fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| peft | 0.19.1 已安装 |\n| Mistral-7B-Instruct-v0.3 | 下载完成，3 个 safetensors（13.7G），路径 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/` |\n| Tokenizer 验证 | vocab_size=32768, EOS=`</s>` |\n| 模型加载验证 | 7.2B 参数，fp16 自动分配到 2×RTX PRO 6000，加载成功 |\n| peft 版本 | 0.19.1 |\n| torch/CUDA | 2.8.0+cu128, 2 GPU 可用 |\n\n**westd-21461 可以开始跑 Mistral 实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-setup-westd-21461-finalize.md"
+}

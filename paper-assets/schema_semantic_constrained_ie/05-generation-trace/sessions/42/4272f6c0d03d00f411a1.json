@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4272f6c0d03d00f411a1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research d009 llama prep",
+  "task_key": "worker_research_d009-llama-prep_20260514T083659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d009-llama-prep_20260514T083659_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "7fbd5464a09ad5032faa54c0573a91300742f4b98669bda189c782b97bc4826b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册。核心结论：\n\n**Model ID**: `meta-llama/Llama-3.1-8B-Instruct`（推荐 Instruct 版本）\n\n**兼容性**: 服务器 transformers 4.57.6 完全兼容（要求 ≥ 4.43.0），不需要 sentencepiece\n\n**显存**: BF16 占用 ~17GB，RTX PRO 6000 94GB 完全够用，无需量化\n\n**Gated access**: 需要在 HF 页面接受 Llama 3.1 Community License（自动批准），下载需 `HF_TOKEN`\n\n**预估总时间**: 下载 + SciERC 两组实验约 5-9 小时\n\n详细信息见 `artifacts/d009_llama_prep.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d009-llama-prep.md"
+}

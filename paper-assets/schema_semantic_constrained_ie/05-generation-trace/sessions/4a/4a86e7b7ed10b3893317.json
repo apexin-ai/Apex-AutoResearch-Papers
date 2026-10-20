@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a86e7b7ed10b3893317",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper reference audit suspicious",
+  "task_key": "worker_paper_reference_audit_suspicious_20260514T054830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_suspicious_20260514T054830_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "0d56e8d1a8940d870e51963e4f40a4043da0433b7eb83cf321bd7546c22b7411"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 篇引用全部验证通过，无幻觉引用。\n\n| 引用 | 状态 | 备注 |\n|------|------|------|\n| `zhou2026snowballing` | VERIFIED | arXiv:2604.06066, 2026.04, 单作者预印本，内容匹配 |\n| `upadhyay2023openie` | VERIFIED | Findings of EACL 2023, CaRB F1 +29.17% 数据准确 |\n| `regino2025kgcurator` | VERIFIED | GenAIK@COLING 2025, 但引文描述\"multi-stage pipeline\"略有偏差，建议核对引用上下文 |\n| `qi2024adelie` | VERIFIED | EMNLP 2024 主会, SFT+DPO 描述准确 |\n\n结果已写入 `artifacts/reference_audit_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-suspicious.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c56945dca6ad2e30bb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check westd 21461",
+  "task_key": "worker_ops_check-westd-21461_20260520T035101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd-21461_20260520T035101_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "e96ea5941dd57865a418f0d98676f9a2bea4b6dc3b947e7a4d66751be94c5f3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/server_check_21461.md`。关键结论：\n\n**d066 SciERC beam sweep** — 全部完成 (11:47 CST)，GPU1 空闲\n- beam8 constrained: 551/551，DR violation 0.0%，Relation F1 = 43.65\n- beam8 unconstrained: 551/551，DR violation 1.77%，Relation F1 = 43.17\n- constrained 比 unc Relation F1 高 +0.48，同时消除全部 violations\n- 缺 `eval_beam8_con.json`（数据在 violation report 里有）\n\n**d065 Qwen DocRED unc greedy 4096** — 运行中，PID 167691\n- 进度 104/998 (10.4%)，~2.8 docs/min，预计还需 ~5h\n- GPU0 占用 87%，18.9G VRAM，状态正常\n\n**GPU1 完全空闲**，可安排新任务（如 d065 constrained 并行跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-21461.md"
+}

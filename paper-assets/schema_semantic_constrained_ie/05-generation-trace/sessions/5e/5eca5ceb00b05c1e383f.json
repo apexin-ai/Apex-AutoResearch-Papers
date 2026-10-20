@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5eca5ceb00b05c1e383f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w5 qwen docred timeout check",
+  "task_key": "worker_ops_w5_qwen_docred_timeout_check_20260516T062817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w5_qwen_docred_timeout_check_20260516T062817_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "82993f431df97161d2e4ba85063d060c1c03f4e6a4586f357c4e8c9daa36556b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态报告: w5_qwen_docred_lora_constrained_eval**\n\n| 指标 | 值 |\n|------|-----|\n| 进程状态 | **ALIVE** (PID 321568, 运行 4h33m, RSS 1.9GB) |\n| 进度 | **734/998 (73.5%)** — 上次 685，增长 49 samples |\n| GPU 利用率 | GPU0: 86%, 16.5GB; GPU1: 85%, 17.4GB |\n| 最后一条 | doc_id=\"Laytongku\", inference_time=17.3s, 格式正确 |\n\n**判断: 正常运行中。**\n\nETA: 剩余 264 samples × ~15s/sample ≈ **66 分钟**（约 1 小时后完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w5-qwen-docred-timeout-check.md"
+}
