@@ -1,0 +1,1 @@
+DEGENERATE: All predictions = A. For reference only. Not included in IRT pool.
