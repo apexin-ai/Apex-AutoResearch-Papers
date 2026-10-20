@@ -29,3 +29,4 @@ These snapshots preserve later project exports alongside the initial workspace r
 | solver-trace-ablation | 2026-07-12 | No PDF in snapshot | [Assets](solver-trace-ablation/2026-07-12/README.md) · [Conversations](solver-trace-ablation/2026-07-12/05-generation-trace/readable/README.md) |
 | spectral_collapse_ews | 2026-07-12 | No PDF in snapshot | [Assets](spectral_collapse_ews/2026-07-12/README.md) · [Conversations](spectral_collapse_ews/2026-07-12/05-generation-trace/readable/README.md) |
 | struct_self_consist_ie | 2026-07-12 | No PDF in snapshot | [Assets](struct_self_consist_ie/2026-07-12/README.md) · [Conversations](struct_self_consist_ie/2026-07-12/05-generation-trace/readable/README.md) |
+| turn_residual_gating | 2026-07-12 | No PDF in snapshot | [Assets](turn_residual_gating/2026-07-12/README.md) · [Conversations](turn_residual_gating/2026-07-12/05-generation-trace/readable/README.md) |

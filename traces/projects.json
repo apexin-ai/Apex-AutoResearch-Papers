@@ -1569,6 +1569,19 @@
       }
     },
     {
+      "project": "turn_residual_gating--export-20260712",
+      "title": "Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)",
+      "catalog": "../research-snapshots/turn_residual_gating/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1885,
+        "messages": 252917,
+        "user_turns": 10578,
+        "tool_calls": 66706,
+        "unparsed_lines": 12,
+        "conversation": 1885
+      }
+    },
+    {
       "project": "verification_triggered_retrieval",
       "title": "verification triggered retrieval",
       "catalog": "../paper-assets/verification_triggered_retrieval/05-generation-trace/catalog.json",

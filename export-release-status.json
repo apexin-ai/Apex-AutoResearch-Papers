@@ -276,6 +276,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1219
+        },
+        "turn_residual_gating": {
+          "status": "uploaded",
+          "project": "turn_residual_gating",
+          "collection": "turn_residual_gating--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "65da4945e5dcaee255e5fbd67a55121d9685a6219db0c2d0c36a90562e30b14b",
+          "indexed_members": 1890,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1885
         }
       },
       "status": "in_progress",
