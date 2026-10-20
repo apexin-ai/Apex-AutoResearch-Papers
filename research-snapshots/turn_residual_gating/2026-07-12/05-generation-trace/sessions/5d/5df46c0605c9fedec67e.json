@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5df46c0605c9fedec67e",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：turn_residual_gating Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_ga",
+  "task_key": "5b9fc64b-f45f-47e6-bc8c-22edbc48fdf1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/5b9fc64b-f45f-47e6-bc8c-22edbc48fdf1.jsonl",
+    "occurrence": 1,
+    "bytes": 610919,
+    "sha256": "645d34b5b80a8b15410004a5ca19628a3d5a4f5e301d31ae79b56cead060f013"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "record": 31,
+      "user": 1,
+      "assistant": 22,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5df46c0605c9fedec67e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "5df46c0605c9fedec67e-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "5df46c0605c9fedec67e-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-turn-residual-gating-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-gen-0.md"
+}

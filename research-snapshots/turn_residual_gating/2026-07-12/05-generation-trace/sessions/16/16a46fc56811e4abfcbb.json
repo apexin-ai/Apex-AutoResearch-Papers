@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "16a46fc56811e4abfcbb",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_code_reference_fixes_20260514T192902]: Worker worker_code_reference_fixes_20260514T192902 已完成",
+  "task_key": "adda7756-4df5-4b0f-9f1c-bc72c93d82fa",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/adda7756-4df5-4b0f-9f1c-bc72c93d82fa.jsonl",
+    "occurrence": 1,
+    "bytes": 934357,
+    "sha256": "4a0aa606c0b3f594a99d559beaac2e7c3db16df613bb70ee2a228552c6bb8e96"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 19,
+    "tool_calls": 68,
+    "roles": {
+      "record": 71,
+      "user": 19,
+      "assistant": 67,
+      "tool_call": 68,
+      "tool_result": 68
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "16a46fc56811e4abfcbb-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-code-reference-fixes-20260514t192902-worker-worker-code-ref.md"
+}

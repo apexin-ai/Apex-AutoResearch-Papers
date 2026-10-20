@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5d3d336a1360508e9e",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] Cohen's d 修复确认收到。 **上一轮问题 2 未回答——重复一次**： 上一轮状态报告说 §5 Results / §8 Conclusion / Abstract 全部 ✅ 含真实数据，再上一轮又说 ",
+  "task_key": "719d97b4-6ea7-479b-9e30-035587097893",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/719d97b4-6ea7-479b-9e30-035587097893.jsonl",
+    "occurrence": 1,
+    "bytes": 791685,
+    "sha256": "6f0c7f8da53a5deb8f60f63428e6d47c1a8c3ce4af2005e9e9df244dccd33e63"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 19,
+    "tool_calls": 68,
+    "roles": {
+      "record": 74,
+      "user": 19,
+      "assistant": 68,
+      "tool_call": 68,
+      "tool_result": 68
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0001.json",
+          "message_count": 19
+        },
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "3c5d3d336a1360508e9e-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-cohen-s-d-2-5-results-8-conclusion-abstract.md"
+}

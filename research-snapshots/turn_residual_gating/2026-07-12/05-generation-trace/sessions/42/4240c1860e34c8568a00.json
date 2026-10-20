@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4240c1860e34c8568a00",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器：westd-22162，4× RTX PRO 6000 Blackwell 96GB SSH 后激活环境：source /root/miniconda3/etc/profile.d/conda.sh ",
+  "task_key": "711c94dc-9bab-455a-b10e-7559b171e352",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/711c94dc-9bab-455a-b10e-7559b171e352.jsonl",
+    "occurrence": 1,
+    "bytes": 839504,
+    "sha256": "6edecae7418fac5e40c07f11fa57597afb059fd844e70a65c5f0c77e4027bcfd"
+  },
+  "statistics": {
+    "messages": 304,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "record": 56,
+      "user": 1,
+      "assistant": 65,
+      "tool_call": 91,
+      "tool_result": 91
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4240c1860e34c8568a00-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "4240c1860e34c8568a00-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "4240c1860e34c8568a00-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-22162-4-rtx-pro-6000-blackwell-96gb-ssh-source-root-minico.md"
+}

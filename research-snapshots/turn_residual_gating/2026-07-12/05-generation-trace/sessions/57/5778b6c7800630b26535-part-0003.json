@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5778b6c7800630b26535",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 330,
+          "timestamp": "2026-05-24T15:47:12.655Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013UgmowsaAtiHgx7fgL7oxU",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_steering_perturn_4panel",
+                "type": "chart",
+                "description": "4-panel (2×2) per-turn GAR bar charts for β=0/3/5/10 attention steering, with PPL annotations and β=0 reference lines. Fallback from per-head heatmaps (data unavailable).",
+                "project": "turn_residual_gating",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/figures/paper/fig_steering_perturn_4panel.pdf",
+                "tags": [
+                  "appendix",
+                  "steering",
+                  "item-10",
+                  "paper-figure"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae7468d7-aaa0-4626-bf3f-6d0d0742a7ed",
+            "isSidechain": false,
+            "requestId": "req_011CbMewKzdjBSXLtzfU1kxX",
+            "type": "assistant",
+            "uuid": "bf978866-2e33-43bb-bf0d-adaf35b3a98b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+            "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "zesty-fluttering-planet",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168g9pvD2sEBkHGKLXxCyZK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4393,
+                "cache_read_input_tokens": 59563,
+                "output_tokens": 828,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4393,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 828,
+                    "cache_read_input_tokens": 59563,
+                    "cache_creation_input_tokens": 4393,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4393
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000330"
+        },
+        {
+          "source_line": 331,
+          "timestamp": "2026-05-24T15:47:12.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013UgmowsaAtiHgx7fgL7oxU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_11fa13\\\", \\\"name\\\": \\\"fig_steering_perturn_4panel\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"4-panel (2×2) per-turn GAR bar charts for β=0/3/5/10 attention steering, with PPL annotations and β=0 reference lines. Fallback from per-head heatmaps (data unavailable).\\\", \\\"path\\\": \\\"projects/turn_residual_gating/artifacts/_project/chart/fig_steering_perturn_4panel.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"turn_residual_gating\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T15:47:12.662483+00:00\\\", \\\"tags\\\": [\\\"appendix\\\", \\\"steering\\\", \\\"item-10\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf978866-2e33-43bb-bf0d-adaf35b3a98b",
+            "isSidechain": false,
+            "promptId": "eec10602-0e28-490d-80d0-43b70a34aea2",
+            "type": "user",
+            "uuid": "eb8970b9-c09d-4ab6-a512-ed16750702cc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_11fa13\\\", \\\"name\\\": \\\"fig_steering_perturn_4panel\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"4-panel (2×2) per-turn GAR bar charts for β=0/3/5/10 attention steering, with PPL annotations and β=0 reference lines. Fallback from per-head heatmaps (data unavailable).\\\", \\\"path\\\": \\\"projects/turn_residual_gating/artifacts/_project/chart/fig_steering_perturn_4panel.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"turn_residual_gating\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T15:47:12.662483+00:00\\\", \\\"tags\\\": [\\\"appendix\\\", \\\"steering\\\", \\\"item-10\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_11fa13\", \"name\": \"fig_steering_perturn_4panel\", \"type\": \"chart\", \"description\": \"4-panel (2×2) per-turn GAR bar charts for β=0/3/5/10 attention steering, with PPL annotations and β=0 reference lines. Fallback from per-head heatmaps (data unavailable).\", \"path\": \"projects/turn_residual_gating/artifacts/_project/chart/fig_steering_perturn_4panel.pdf\", \"url\": null, \"project\": \"turn_residual_gating\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T15:47:12.662483+00:00\", \"tags\": [\"appendix\", \"steering\", \"item-10\", \"paper-figure\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "bf978866-2e33-43bb-bf0d-adaf35b3a98b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+            "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "zesty-fluttering-planet"
+          },
+          "id": "event-000331"
+        },
+        {
+          "source_line": 332,
+          "timestamp": "2026-05-24T15:47:12.786Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "eb8970b9-c09d-4ab6-a512-ed16750702cc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "12fd8f13-0afc-40d7-82de-b18efa3557da",
+                "timestamp": "2026-05-24T15:47:12.786Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+                "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6",
+                "version": "2.1.126",
+                "gitBranch": "master",
+                "slug": "zesty-fluttering-planet"
+              }
+            }
+          ],
+          "id": "event-000332"
+        },
+        {
+          "source_line": 333,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "12fd8f13-0afc-40d7-82de-b18efa3557da",
+                "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6"
+              }
+            }
+          ],
+          "id": "event-000333"
+        },
+        {
+          "source_line": 334,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Extract experiment data for appendix expansion items 8-10",
+                "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6"
+              }
+            }
+          ],
+          "id": "event-000334"
+        },
+        {
+          "source_line": 335,
+          "timestamp": "2026-05-24T15:47:22.764Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项附录扩充素材全部完成：\n\n| 项目 | 输出路径 | 状态 |\n|------|---------|------|\n| **Item 8** — 6-panel 训练曲线 | `figures/paper/fig_training_curves_6panel.pdf/.png` | 5 条件 + 图例面板，含 epoch 边界标记 |\n| **Item 9** — 统计检验汇总表 | `artifacts/appendix_expansion/tab_statistical_tests.tex` | 12 行 Wilcoxon (β=0/3/5) + McNemar 指令保持检验 |\n| **Item 10** — 4-panel steering per-turn GAR | `figures/paper/fig_steering_perturn_4panel.pdf/.png` | β=0/3/5/10 柱状图，含 PPL 标注和 β=0 参考线 |\n\n关键发现：β=0 时 TG 显著优于 Base/LoRA/PCGrad（r=0.45–0.87）；β≥5 时各条件差异不再显著（p>.08）；β=10 虽 GAR≈0.98 但 PPL=505 崩溃。指令保持 McNemar 检验 p=.077（边际），但 point-biserial r=.200, p=.007（显著）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12fd8f13-0afc-40d7-82de-b18efa3557da",
+            "isSidechain": false,
+            "requestId": "req_011CbMexV9aNXdCBwN6BcKPR",
+            "type": "assistant",
+            "uuid": "89bcd474-2d1e-4140-a4cb-7c5728c26cfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+            "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "zesty-fluttering-planet",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JRtq99vXAPaEnvKBxHU2Fr",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1939,
+                "cache_read_input_tokens": 63956,
+                "output_tokens": 376,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1939,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 376,
+                    "cache_read_input_tokens": 63956,
+                    "cache_creation_input_tokens": 1939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1939
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000335"
+        },
+        {
+          "source_line": 336,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "89bcd474-2d1e-4140-a4cb-7c5728c26cfb",
+                "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6"
+              }
+            }
+          ],
+          "id": "event-000336"
+        },
+        {
+          "source_line": 337,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Extract experiment data for appendix expansion items 8-10",
+                "sessionId": "f8ea1d4e-f8b0-4cc9-ab1e-7e98852d80e6"
+              }
+            }
+          ],
+          "id": "event-000337"
+        }
+      ]
+    }
+  ]
+}

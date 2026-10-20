@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7d4d4f838e14c72821d9",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 489,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "a9f0f99f-ac23-4149-8af6-749d8b7ec63a",
+                "sessionId": "402b1671-0031-4e30-8f70-393b5c5096eb"
+              }
+            }
+          ],
+          "id": "event-000489"
+        },
+        {
+          "source_line": 490,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compound sparsity accuracy evaluation on MATH-500",
+                "sessionId": "402b1671-0031-4e30-8f70-393b5c5096eb"
+              }
+            }
+          ],
+          "id": "event-000490"
+        }
+      ]
+    }
+  ]
+}

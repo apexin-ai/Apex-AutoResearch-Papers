@@ -1,0 +1,1417 @@
+{
+  "schema_version": "1.0",
+  "id": "52eb5424d27c4c1874a3",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 2 (R2) for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept",
+  "task_key": "agent-a0f61c367bd26458b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a0f61c367bd26458b.jsonl",
+    "occurrence": 1,
+    "bytes": 138986,
+    "sha256": "fdf261c403632a38651b2b77c567e51dd2f1ffed883df3d9f1a591e1593dadbd"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T01:19:51.422Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 2 (R2) for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept). Your focus is **Novelty and Related Work**: significance of contributions, positioning against prior work, related work coverage, and whether the paper advances the field meaningfully.\n\n## Paper Summary\n\nTitle: \"Phase-Gated Compound Sparsity: Reasoning Phase Modulates the Severity of Pruning-Eviction Interactions in Large Language Models\"\n\nThe paper studies compound sparsity (simultaneous attention head pruning + KV cache eviction) and claims the interaction severity depends on reasoning phase and eviction strategy. It is explicitly an empirical finding paper, not a method paper.\n\nKey contributions:\n1. Discovery that compound sparsity severity is an emergent property of strategy × phase interaction\n2. Introduction of recency-based eviction as a scoring-independent control for triple dissociation\n3. Proposed \"discrimination collapse\" mechanism\n4. Cross-model, cross-architecture, cross-benchmark validation\n\n## Related Work Section (from paper)\n\nThe paper covers:\n- **Compound Sparsity**: SparK (2024), SLiM (2024) — joint pruning+compression, uniform interaction assumption. Paper claims phase-modulated interaction.\n- **Phase-Aware KV Compression**: ThinKV (2025), R-KV (2025) — single-axis phase-aware methods. Paper claims compound (two-axis) phase-dependent behavior.\n- **Importance Score Dynamics**: HIES (2025) — importance score collapse under compression, entropy compensation. Physics-KV (2026) — phase transitions in compression rate. Paper claims independent support for discrimination collapse.\n- **Adaptive Eviction**: Lethe (2026), Ada-KV (2024) — method papers. Paper positions itself as empirical finding paper.\n\nTotal references: ~10 papers cited (Ada-KV, H2O, HIES, Lethe, Physics-KV, R-KV, SLiM, SparK, StreamingLLM, ThinKV).\n\n## Methods Summary\n\n- Interaction Index: II_i = PPL_both - (PPL_prune + PPL_evict - PPL_base)\n- Phase segmentation by per-token perplexity tertiles from uncompressed model\n- Triple dissociation: importance (scoring-dependent) vs recency (scoring-independent) vs random (structure-independent)\n- 3 models, 2 architectures, 3 benchmarks, sparsity s ∈ {0.15, 0.20, 0.25, 0.30}\n\n## Key Results\n\n- Importance-based eviction: monotonically increasing phase gradients (dz 0.57→1.13)\n- Recency: consistently null (dz ≤ 0.15)\n- Random: null to small (dz ≤ 0.18)\n- Cross-benchmark (GPQA): dose-response confirmed, strategy specificity 4.2×\n- Architecture-dependent: Qwen2 specificity 15-17×, Llama 2.0-2.6×\n- Discrimination collapse: Gini/CV decline (correlational)\n\n## Discussion/Limitations from paper\n\n- 7B scale only\n- Strategy specificity is benchmark-specific (MATH-500 15-17× vs GSM8K 2.3-3.8×)\n- Discrimination collapse is correlational, not causal\n- Phase detection at inference time not addressed (offline segmentation only)\n- Mitigation pilot shows directional but not practically significant results\n\n## Your Task\n\nWrite a detailed review covering:\n1. **Summary** (2-3 sentences)\n2. **Strengths** (bullet points, focus on novelty, significance, positioning)\n3. **Weaknesses** (bullet points, focus on novelty, related work gaps, significance concerns)\n4. **Questions for Authors** (specific, actionable)\n5. **Minor Issues**\n6. **Scores**: Overall (1-6), Novelty (1-5), Presentation (1-5), Confidence (1-5)\n\nBe rigorous. Consider: Is the triple dissociation genuinely novel or an obvious control? Is recency control really a \"methodological innovation\"? How significant is the finding for the field? Is the related work coverage sufficient for a top venue? Are there important missing references (e.g., GQA/MQA work, other KV compression methods, reasoning-phase analysis papers)? Is the paper positioned correctly as an \"empirical finding\" paper? Does the lack of a method contribution limit venue fit? Is \"discrimination collapse\" a genuine mechanistic insight or a restatement of known phenomena (HIES already described score collapse)?"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "ece46d50-ef5f-4f8c-a095-f4d5f9a933f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T01:19:51.426Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ece46d50-ef5f-4f8c-a095-f4d5f9a933f5",
+                "isSidechain": true,
+                "agentId": "a0f61c367bd26458b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "46ea64ab-c193-4e96-9eb4-f7a802b08fd6",
+                "timestamp": "2026-05-17T01:19:51.426Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T01:19:54.710Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Szgi3nU2cAQ7N7mM5bxqeT",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46ea64ab-c193-4e96-9eb4-f7a802b08fd6",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7G9tAkMmZdmx7saVhtE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "51221d69-3ebb-4cb5-9e23-2c1f66cfe821",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B1tDQeUYJUEr8yYiZZjVEP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8208,
+                "cache_read_input_tokens": 8252,
+                "output_tokens": 88,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8208
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 88,
+                    "cache_read_input_tokens": 8252,
+                    "cache_creation_input_tokens": 8208,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8208,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T01:19:54.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Szgi3nU2cAQ7N7mM5bxqeT",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51221d69-3ebb-4cb5-9e23-2c1f66cfe821",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "1230aac3-9c39-4a15-bba7-f5099c9afa28",
+            "sourceToolAssistantUUID": "51221d69-3ebb-4cb5-9e23-2c1f66cfe821",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T01:19:58.420Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014zDDo3CGvXhSyaZesRKgHW",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "report.md",
+                "max_chars": 12000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1230aac3-9c39-4a15-bba7-f5099c9afa28",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GA8J4GMfVaB4QdE8mP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "092b030e-6e4c-4e37-8bce-d9a37c8461a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GNd6vLtfYD5kM8TH9PBRkt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1270,
+                "cache_read_input_tokens": 16460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1270,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T01:19:58.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014zDDo3CGvXhSyaZesRKgHW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| gpqa_ds_random_s020 | Cross-task generalization: random eviction control on GPQA Diamond. DS-R1 random s020 to establish baseline phase gradient (expected NS or weak) for strategy specificity comparison. | — | — | — |\\\\n| gpqa_ds_importance_s030 | Cross-task generalization: compound sparsity severity monotonically increases on GPQA Diamond (non-math reasoning) using quantile 3-segment phase decomposition. DS-R1 importance s030 as fourth condition. | — | — | — |\\\\n| gpqa_ds_importance_s025 | Cross-task generalization: compound sparsity severity monotonically increases on GPQA Diamond (non-math reasoning) using quantile 3-segment phase decomposition. DS-R1 importance s025 as third condition (after s015 success, s020 running). | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **recency_s025** (success): Recency-based (position-only) eviction as scoring-independent control to disentangle phase segmentation circularity and H2O confound from attention-score-specific compound interaction. s=0.25 condition.\\\\n  [recency_s025_analysis](/api/workspace-files/projects/phase-gated-compound-sparse/artifacts/recency_s025/report/analysis.md)\\\\n- **recency_s030** (success): Recency-based (position-only) eviction as scoring-independent control to disentangle phase segmentation circularity and H2O confound from attention-score-specific compound interaction. s=0.30 condition.\\\\n  [recency_s030_analysis](/api/workspace-files/projects/phase-gated-compound-sparse/artifacts/recency_s030/report/analysis.md)\\\\n- **recency_s015** (success): Recency-based (position-only) eviction as scoring-independent control to disentangle phase segmentation circularity and H2O confound from attention-score-specific compound interaction. s=0.15 condition.\\\\n\\\\n## 趋势\\\\n成功 70 / 负向 17 / 失败 17 / 共 134\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-22162: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\\\n- mvp_v4a_r2: 训练失败 — unknown\\\\n- mvp_v4b_r2: 训练失败 — unknown\\\\n- mvp_v4c_r2: 训练失败 — unknown\\\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\\\n- mvp_v4_float32_s030: 已被终止 — unknown\\\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\\\n- qwen_importance_s015: 已被终止 — unknown\\\\n- qwen_importance_s020: 已被终止 — unknown\\\\n- qwen_importance_s025: 已被终止 — unknown\\\\n- qwen_importance_s030: 已被终止 — unknown\\\\n- v6_random_s030: 训练失败 — unknown\\\\n- v6_random_s030_r2: 训练失败 — unknown\\\\n- bf16_random_s015: 已被终止 — unknown\\\\n- bf16_random_s020: 已被终止 — unknown\\\\n- bf16_random_s025: 已被终止 — unknown\\\\n- bf16_random_s030: 已被终止 — unknown\\\\n- bf16_qwen_importance_s015: 已被终止 — unknown\\\\n- bf16_qwen_importance_s020: 已被终止 — unknown\\\\n- bf16_qwen_importance_s025: 已被终止 — unknown\\\\n- bf16_qwen_importance_s030: 已被终止 — unknown\\\\n- bf16_ds_imp_s015: 已被终止 — unknown\\\\n- bf16_ds_imp_s020: 已被终止 — unknown\\\\n- bf16_ds_imp_s025: 已被终止 — unknown\\\\n- bf16_ds_imp_s030: 已被终止 — unknown\\\\n- c3_llama_arch: 已被终止 — unknown\\\\n- c2_ds_n500: 已被终止 — unknown\\\\n- c2_qw_n500: 训练失败 — unknown\\\\n- r9c2-spike: 已被终止 — unknown\\\\n- r9c2-spike-v2: 已被终止 — unknown\\\\n- r9c2-spike-v3: 已被终止 — unknown\\\\n- acc_ds_dense_8k: 已被终止 — unknown\\\\n- acc_ds_s015_8k: 已被终止 — unknown\\\\n- acc_ds_s020_8k: 已被终止 — unknown\\\\n- acc_ds_s025_8k: 已被终止 — unknown\\\\n- acc_ds_s030_8k: 已被终止 — unknown\\\\n- gsm8k_qw_rand_s025: 训练失败 — unknown\\\\n- gsm8k_qw_rand_s030: 训练失败 — unknown\\\\n- c8_llama_n250: 训练失败 — unknown\\\\n- c10-lang-s020-s025: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 3667, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "092b030e-6e4c-4e37-8bce-d9a37c8461a4",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "23f0f86f-4832-4a56-b31d-d9a3e4f9d700",
+            "sourceToolAssistantUUID": "092b030e-6e4c-4e37-8bce-d9a37c8461a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T01:19:58.855Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LpNgERx7fPUL3DzeUcw9jY",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "literature_map.yaml",
+                "max_chars": 12000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23f0f86f-4832-4a56-b31d-d9a3e4f9d700",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GA8J4GMfVaB4QdE8mP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31b32f67-a33e-423d-82e1-cfeae1381ec8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GNd6vLtfYD5kM8TH9PBRkt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1270,
+                "cache_read_input_tokens": 16460,
+                "output_tokens": 206,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1270
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 206,
+                    "cache_read_input_tokens": 16460,
+                    "cache_creation_input_tokens": 1270,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1270,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T01:19:58.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LpNgERx7fPUL3DzeUcw9jY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/literature_map.yaml\\\", \\\"content\\\": \\\"## Literature Map — Phase-Gated Compound Sparsity\\\\n## 增量扫描: 2026-05-14\\\\n\\\\n# ============================================================\\\\n# 已知文献（baseline）\\\\n# ============================================================\\\\n\\\\n- paper_id: spark-aaai2026\\\\n  title: \\\\\\\"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\\\\\\\"\\\\n  venue: AAAI 2026\\\\n  year: 2026\\\\n  category: direct-competitor\\\\n  relevance: 首篇报告 compound sparsity 总是 super-additive（ThinK+SnapKV 退化 65%），核心对标\\\\n  key_finding: compound KV cache sparsity (channel + token) 产生 super-additive degradation\\\\n\\\\n- paper_id: thinkv-iclr2026\\\\n  title: \\\\\\\"ThinKV\\\\\\\"\\\\n  venue: ICLR 2026 Oral\\\\n  year: 2026\\\\n  category: method-component\\\\n  relevance: phase 划分思想来源，但只做单一压缩策略\\\\n  key_finding: KV cache 可按 phase 划分应用不同策略\\\\n\\\\n- paper_id: rac-neurips2025\\\\n  title: \\\\\\\"RAC\\\\\\\"\\\\n  venue: NeurIPS 2025\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: reasoning model 对 sparsity 更敏感，支撑评估任务选择\\\\n  key_finding: reasoning model 对 sparsity 敏感度高于一般 LLM\\\\n\\\\n- paper_id: raas-acl2025\\\\n  title: \\\\\\\"RaaS\\\\\\\"\\\\n  venue: ACL 2025\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: milestone tokens 先重要后衰减，支撑 phase-dependent importance\\\\n  key_finding: token importance 随 decoding phase 非单调变化\\\\n\\\\n- paper_id: mixeddimkv-2026\\\\n  title: \\\\\\\"MixedDimKV\\\\\\\"\\\\n  year: 2026\\\\n  category: method-component\\\\n  relevance: multi-dimension compression budget allocation，与 joint controller 思路平行\\\\n  key_finding: 多维度压缩 budget allocation 优于均匀分配\\\\n\\\\n# ============================================================\\\\n# 新增 — Compound / Joint Compression Interaction\\\\n# ============================================================\\\\n\\\\n- paper_id: slim-icml2025\\\\n  title: \\\\\\\"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\\\\\\\"\\\\n  authors: Mozaffari et al.\\\\n  venue: ICML 2025\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: 首个正式处理 compound compression error 的框架——用 low-rank adapter 补偿 Q+S 聚合误差，证明误差非加性\\\\n  key_finding: quantization + sparsity 聚合误差非加性；invertible saliency function 精确计算 low-rank 补偿\\\\n\\\\n- paper_id: unicomp-2026\\\\n  title: \\\\\\\"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\\\\\\\"\\\\n  authors: Wang et al.\\\\n  venue: arXiv 2602.09130\\\\n  year: 2026\\\\n  category: evaluation\\\\n  relevance: 40+ benchmarks 系统评估 compound compression，发现 compression 有 consistent knowledge bias\\\\n  key_finding: compression 对 knowledge-intensive tasks 保留好但 reasoning/multilingual 显著退化；quantization 整体 trade-off 最佳\\\\n\\\\n- paper_id: compression-ordering-2025\\\\n  title: \\\\\\\"A Systematic Study of Compression Ordering for Large Language Models\\\\\\\"\\\\n  venue: arXiv 2511.19495\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: 证明 compound compression ordering 显著影响结果，early quantization 造成不可逆信息损失\\\\n  key_finding: P→KD→Q 最优；quantization first 产生不可逆退化；interaction 依赖 ordering\\\\n\\\\n- paper_id: phase-transition-compression-2026\\\\n  title: \\\\\\\"Phase Transitions in Large Language Model Compression\\\\\\\"\\\\n  authors: Ma et al.\\\\n  venue: npj Artificial Intelligence (Nature), 2026\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: 直接支撑 phase-gating 理论动机——不同压缩维度有独立 phase transition point，联合安全区可叠加\\\\n  key_finding: structured pruning 30-45% 崩溃，unstructured 55-65%；多维度 PTP 正交，联合安全区可实现 10% 压缩\\\\n\\\\n- paper_id: graspune-acl2026\\\\n  title: \\\\\\\"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\\\\\"\\\\n  authors: Wang et al.\\\\n  venue: ACL 2026 Main\\\\n  year: 2026\\\\n  category: direct-competitor\\\\n  relevance: 最直接 competitor——联合 pruning FFN channels + KV head groups with learned gate scores under global budget\\\\n  key_finding: learned gate + projected STE 全局 budget 下联合 prune FFN+heads，高压缩比下显著优于逐层独立 pruning\\\\n\\\\n- paper_id: mustafar-neurips2025\\\\n  title: \\\\\\\"MUSTAFAR: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\\\\\\\"\\\\n  authors: Joo et al.\\\\n  venue: NeurIPS 2025\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: per-token magnitude pruning 70% sparsity 无损，与 token eviction 可组合——potential compound baseline\\\\n  key_finding: unstructured KV sparsity (per-token magnitude) 70% 无损，bitmap 格式 2.23x throughput\\\\n\\\\n# ============================================================\\\\n# 新增 — Non-monotonic / Sign Reversal / Phase Effects\\\\n# ============================================================\\\\n\\\\n- paper_id: decision-repr-transition-2026\\\\n  title: \\\\\\\"Understanding Performance Collapse in Layer-Pruned LLMs via Decision Representation Transitions\\\\\\\"\\\\n  venue: arXiv 2605.07271\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: layer pruning 存在 Silent/Decisive Phase 二分——pruning 敏感度 phase-dependent，直接支撑 phase-gated 思想\\\\n  key_finding: Decision Margin 在 Transition Point 发生符号反转（负→正）；pruning Silent Phase 崩溃，Decisive Phase 可安全 prune\\\\n\\\\n- paper_id: doing-more-with-less-2026\\\\n  title: \\\\\\\"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\\\\\\\"\\\\n  venue: arXiv 2604.25098\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: 符号反转直接证据——unstructured pruning + TTS 可超越未剪枝模型\\\\n  key_finding: unstructured pruning + test-time scaling 可超越 unpruned baseline（Qwen3-8B）；structured pruning 严重退化\\\\n\\\\n- paper_id: sparse-frontier-2025\\\\n  title: \\\\\\\"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\\\\\\\"\\\\n  venue: arXiv 2504.17768\\\\n  year: 2025\\\\n  category: evaluation\\\\n  relevance: 最大规模 sparse attention 评估，无通用最优策略，trade-off 依赖 task 和 phase\\\\n  key_finding: decoding vs prefilling 可承受 sparsity 不同；大模型+高稀疏可优于小模型+密集\\\\n\\\\n# ============================================================\\\\n# 新增 — Adaptive / Learned Controllers\\\\n# ============================================================\\\\n\\\\n- paper_id: obcache-2025\\\\n  title: \\\\\\\"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\\\\\\\"\\\\n  venue: arXiv 2510.07651\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: OBD 理论推导 joint K-V saliency score，可作为 importance-based masking 的理论参照\\\\n  key_finding: 二阶 Taylor 近似推导 joint K-V pruning score；key-pruning 比 value-pruning 影响更大\\\\n\\\\n- paper_id: pagedeviction-eacl2026\\\\n  title: \\\\\\\"PagedEviction: Structured Block-wise KV Cache Pruning\\\\\\\"\\\\n  venue: EACL 2026 Findings\\\\n  year: 2026\\\\n  category: method-component\\\\n  relevance: prefill/decode 两阶段不同 eviction 策略，呼应 phase-gated 思想\\\\n  key_finding: block-wise eviction prefill/decode 分阶段执行，优于 token-level baselines\\\\n\\\\n- paper_id: adakv-neurips2025\\\\n  title: \\\\\\\"Ada-KV: Adaptive Budget Allocation for KV Cache Eviction\\\\\\\"\\\\n  venue: NeurIPS 2025\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: per-head adaptive budget 分配，与 per-phase budget allocation 正交互补\\\\n  key_finding: 自适应 per-head KV cache budget 优于均匀分配\\\\n\\\\n- paper_id: sol-2026\\\\n  title: \\\\\\\"SOL: Self-Optimizing Language Models — Compute Where it Counts\\\\\\\"\\\\n  venue: arXiv 2605.10875\\\\n  year: 2026\\\\n  category: method-component\\\\n  relevance: learned policy 按 token difficulty 分配 compute，与 learned joint controller 方法论平行\\\\n  key_finding: 学习 per-token compute allocation policy，easy tokens 少算 hard tokens 多算\\\\n\\\\n# ============================================================\\\\n# 新增 — Phase-Adaptive Dynamic Compression (2026-05-14 scan)\\\\n# ============================================================\\\\n\\\\n- paper_id: twilight-neurips2025\\\\n  title: \\\\\\\"Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning\\\\\\\"\\\\n  authors: Lin, Tang, Yang, Wang, Tang, Tian, Stoica, Han, Gao\\\\n  venue: NeurIPS 2025 Spotlight\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: 证明 fixed budget 次优，per-step adaptive budget 更优；但单轴无 compound interaction\\\\n  key_finding: top-p 采样思想做 per-step adaptive attention budget，最多 prune 98% tokens\\\\n\\\\n- paper_id: lava-emnlp2025\\\\n  title: \\\\\\\"LAVa: Layer-wise KV Cache Eviction with Dynamic Budget Allocation\\\\\\\"\\\\n  authors: Shen, Yuan, Zhang, Wang, Jiang, Nguyen\\\\n  venue: EMNLP 2025 Findings\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: layer budgets 对 generation 重要、head budgets 对 extraction 重要——支撑 task-conditional budget\\\\n  key_finding: 基于 Layer Attention Output Loss 的 unified eviction + dynamic budget；budget 需求 task-dependent\\\\n\\\\n- paper_id: lkv-2026\\\\n  title: \\\\\\\"LKV: End-to-End Learning of Head-wise Budgets and Token Selection for LLM KV Cache Eviction\\\\\\\"\\\\n  venue: arXiv 2605.06676\\\\n  year: 2026\\\\n  category: method-component\\\\n  relevance: 首个端到端可微 budget+selection 联合学习框架；可作 phase-gated controller backbone\\\\n  key_finding: LKV-H 学 head budget + LKV-T 学 token selection，全面超越启发式方法\\\\n\\\\n- paper_id: defensivekv-iclr2026\\\\n  title: \\\\\\\"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\\\\\\\"\\\\n  venue: ICLR 2026\\\\n  year: 2026\\\\n  category: direct-competitor\\\\n  relevance: 独立发现 importance-based eviction 的脆弱性——stability assumption 不成立，importance 高度非稳态\\\\n  key_finding: mean aggregation 在极端情况下 vulnerable；defensive aggregation 控制 worst-case risk，2.3-4.3x 质量损失降低\\\\n\\\\n- paper_id: retentivekv-2026\\\\n  title: \\\\\\\"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\\\\\\\"\\\\n  venue: arXiv 2605.04075\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: \\\\\\\"Deferred Importance\\\\\\\" 现象——token 初始 salience 低但后期变 pivotal，直接支撑 crossover 机制\\\\n  key_finding: 视觉 tokens 存在 deferred importance——早期不重要晚期关键；单一时刻 importance 评估不可靠\\\\n\\\\n- paper_id: pitfalls-kvcache-2025\\\\n  title: \\\\\\\"The Pitfalls of KV Cache Compression\\\\\\\"\\\\n  venue: arXiv 2510.00231\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: multi-instruction 场景下部分指令被压缩严重忽略——condition-dependent failure\\\\n  key_finding: 特定 instructions 在压缩下退化极快甚至完全被忽略；compression method + order 产生 bias 交互\\\\n\\\\n- paper_id: greedy-bias-kvcache-2026\\\\n  title: \\\\\\\"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\\\\\\\"\\\\n  venue: arXiv 2602.02199\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: 单一 attention-score metric 是 greedy 的——miss structurally relevant tokens\\\\n  key_finding: 单 metric 有 greedy bias；multi-metric scoring 克服 condition-dependent metric failure\\\\n\\\\n- paper_id: thinking-tokens-mi-neurips2025\\\\n  title: \\\\\\\"Demystifying Reasoning Dynamics with Mutual Information: Thinking Tokens are Information Peaks\\\\\\\"\\\\n  venue: NeurIPS 2025\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: reasoning 中 MI 在 thinking tokens 处突然 peak——compression 需避开 info-critical phases\\\\n  key_finding: thinking tokens (Hmm/Wait/Therefore) 处 MI 突增；这些 tokens 对推理性能不成比例重要\\\\n\\\\n- paper_id: lserve-mlsys2025\\\\n  title: \\\\\\\"LServe: Efficient Long-sequence LLM Serving with Unified Sparse Attention\\\\\\\"\\\\n  venue: MLSys 2025\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: sparse attention + KV quantization 工业级联合部署但无 interaction 分析\\\\n  key_finding: 统一 static/dynamic sparsity + KV quant 到单 GPU kernel；prefilling 2.9x 加速\\\\n\\\\n- paper_id: squeezeattention-iclr2025\\\\n  title: \\\\\\\"SqueezeAttention: 2D Management of KV-Cache via Layer-wise Optimal Budget\\\\\\\"\\\\n  venue: ICLR 2025\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: layer × sequence 二维 budget 优化；我们增加第三维——temporal phase\\\\n  key_finding: layer-wise cosine similarity 区分 layer 重要性，30-70% memory reduction\\\\n\\\\n- paper_id: nsa-acl2025\\\\n  title: \\\\\\\"NSA: Native Sparse Attention\\\\\\\"\\\\n  authors: DeepSeek\\\\n  venue: ACL 2025 Best Paper\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: hardware-aligned trainable sparse attention；hierarchical 策略（coarse compression + fine selection）呼应 multi-phase\\\\n  key_finding: 端到端可训练 sparse attention，64k 解码 11.6x 加速；coarse+fine 分层策略\\\\n\\\\n- paper_id: evicpress-2025\\\\n  title: \\\\\\\"EVICPRESS: Joint KV-Cache Compression and Eviction for Efficient LLM Serving\\\\\\\"\\\\n  venue: arXiv 2512.14946\\\\n  year: 2025\\\\n  category: method-component\\\\n  relevance: 联合 eviction + quantization 优化 KV cache——compound 方向但仅 KV 内部\\\\n  key_finding: joint eviction + quantization 优于独立应用；但无 head pruning compound\\\\n\\\\n- paper_id: phase-transition-pruning-thermo-2026\\\\n  title: \\\\\\\"Phase Transitions in Neural Networks Pruning (Thermodynamic Analysis)\\\\\\\"\\\\n  venue: arXiv 2602.15224\\\\n  year: 2026\\\\n  category: background\\\\n  relevance: 自由能分析预测 sharp collapse；transition 前稳定 3-5%，跨越后 30%+ 骤降\\\\n  key_finding: free-energy phase transition 预测 pruning 崩溃点；importance 方法可能在某 phase 跨越 PTP\\\\n\\\\n- paper_id: token-budget-aware-acl2025\\\\n  title: \\\\\\\"Token-Budget-Aware LLM Reasoning\\\\\\\"\\\\n  venue: ACL 2025 Findings\\\\n  year: 2025\\\\n  category: background\\\\n  relevance: reasoning budget 应按 query 难度自适应分配——支撑 phase-adaptive compression\\\\n  key_finding: self-consistency 作为 thinking necessity proxy 动态调整 reasoning token budget\\\\n\\\\n# ============================================\\\\n\\\\n... [截断: 省略 1069 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 13069, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31b32f67-a33e-423d-82e1-cfeae1381ec8",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "1dd3c216-92cf-4ed0-85f0-f374857e87e3",
+            "sourceToolAssistantUUID": "31b32f67-a33e-423d-82e1-cfeae1381ec8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T01:20:03.185Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VafnsgHLUHXYEuHBYv2fXD",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "ideas.md",
+                "max_chars": 12000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1dd3c216-92cf-4ed0-85f0-f374857e87e3",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GAS8MxezPhEqJzfvRC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "74f26388-867c-4324-b0c8-e9f8dee05f70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016LLPqEhJSwaCkcysakgVDP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7156,
+                "cache_read_input_tokens": 17730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7156,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T01:20:03.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VafnsgHLUHXYEuHBYv2fXD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'phase-gated-compound-sparse'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74f26388-867c-4324-b0c8-e9f8dee05f70",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "930d68bc-8549-4b50-8e97-8175cdcbbe9d",
+            "sourceToolAssistantUUID": "74f26388-867c-4324-b0c8-e9f8dee05f70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T01:20:03.550Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ub4qTf3KduUftGfJ9QR85o",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "paper_framing.md",
+                "max_chars": 12000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "930d68bc-8549-4b50-8e97-8175cdcbbe9d",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GAS8MxezPhEqJzfvRC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "016399ae-b243-4a8f-ba39-c73b65f76cb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016LLPqEhJSwaCkcysakgVDP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7156,
+                "cache_read_input_tokens": 17730,
+                "output_tokens": 206,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7156
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 206,
+                    "cache_read_input_tokens": 17730,
+                    "cache_creation_input_tokens": 7156,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7156,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T01:20:03.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ub4qTf3KduUftGfJ9QR85o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Phase-Gated Compound Sparsity\\\\n\\\\n> 最后更新: 2026-05-17 (D102: C11 confirmed — recency triple NS across s015/s025/s030; s015+s025 primary, s030 supplementary) | 维护者: Director\\\\n\\\\n## Core Insight\\\\n\\\\nCompound sparsity（attention head pruning + KV cache eviction）的 severity 不是固定常数——它是 eviction strategy 和 reasoning phase 交互的涌现属性。Importance-based eviction 的 compound interaction severity（paired median difference: median(II_low_i − II_high_i)）随 sparsity 单调递增（DeepSeek: 0.39→1.21→3.99→8.48; Qwen: 0.07→0.31→1.07→3.16），而 random masking 在 s015/s020 NS，在 s025 跨模型显著但效应量远小于 importance（DS: 0.257 vs 3.986; QW: 0.393 vs 1.074, 2.7-17×差异），存在 sparsity threshold ~s020-s025（D063; s030 待定）。Cohen's d（per-problem paired, B=10000）从 medium 到 large（DeepSeek: 0.61→1.13; Qwen: 0.37→1.44，registry cohens_d s015→s030）。LLaMA 跨架构验证（D060, c8_llama_n250_fixed, n=250）：within-importance phase gradient 强（d_z=0.81-1.15, all p<10^-29, all monotonic），且 random 在 LLaMA 上所有条件均显著（d_z=0.41-0.46, all p<10^-12），imp/rand Δ ratio 仅 2.0-2.6×（vs DeepSeek 15-17×），strategy×phase 交互强度 architecture-dependent。GSM8K 跨 benchmark 验证（D075）：importance masking 的 phase gradient 在 GSM8K 上同样单调递增（QW: 0.039→0.158→1.100→2.092; DS: 0.241→0.740→1.992→4.682），但 strategy specificity（importance/random gradient ratio）从 MATH-500 的 15-17× 衰减至 GSM8K 的 2.3-3.8×。注意：\\\\\\\"反转\\\\\\\"仅在原始 II_low 值上（random > importance），phase gradient 层面 importance ≥ random。Strategy specificity 的 task-dependence 机制是开放问题（见 §6 Discussion）。这一发现挑战了 compound degradation 均匀分布的隐含假设。\\\\n\\\\n**数字基准**：所有数字基于 bf16 per-problem paired 统计量（B=10000 bootstrap）。median_diff 定义为 median(II_low_i − II_high_i)（逐 problem 配对差的中位数）。fp16 旧数据已弃用。\\\\n\\\\n## Narrative Arc\\\\n\\\\nCompound sparsity 是高效 LLM 推理的实用部署需求，但 prior work（SparK, Ada-KV, SLiM）将 compound interaction 视为均匀超可加。我们发现 severity 是 strategy × phase 交互的涌现属性：importance eviction 的 compound interaction 在 low-sparsity phase 远大于 high-sparsity phase（paired median difference 单调递增 0.39→8.48），而 random eviction 在低 sparsity (s015/s020) NS，在 s025+ 跨模型显著但效应量远小于 importance (2.7-17×)——存在 sparsity threshold (~s020-s025)，低于阈值 compound effect importance-specific，高于阈值两者均触发但 importance 主导。Cross-model replication 方向一致（Qwen magnitude ~1/4 of DeepSeek，onset threshold s≥0.20）。LLaMA 跨架构验证已完成（c8_llama_n250_fixed, n=250, D060）：within-importance phase gradient 强（d_z=0.81-1.15, all p<10^-29），random 所有条件显著（d_z=0.41-0.46, all p<10^-12），但 imp/rand ratio 仅 2.0-2.6×（远低于 DS 15-17×），strategy×phase 交互强度 architecture-dependent。Recency-based eviction（scoring-independent control, D100/D102）跨三个 sparsity level 均产生 null phase gradient（s015+s025 为 primary evidence，s030 supplementary due to numerical instability at extreme sparsity），确认 phase-dependent severity 是 attention-score-based eviction 的特有交互效应而非 token removal 的 trivial 副产物。我们通过 discrimination collapse 机制解释这一现象：head pruning → importance score 的判别力崩塌（Gini/CV 下降跨模型一致）→ importance eviction 退化为有偏伪随机。Attention entropy redistribution 作为 model-dependent secondary effect 在 DeepSeek 上观察到，但在 Qwen 上不稳健（D044）。\\\\n\\\\n**Framing 硬约束（D015）**：\\\\n- MUST: \\\\\\\\\\\\\\\"emergent phase-strategy interaction\\\\\\\\\\\\\\\"\\\\n- MUST NOT: \\\\\\\\\\\\\\\"importance metric limitation / importance is broken\\\\\\\\\\\\\\\"\\\\n- MUST NOT: claim \\\\\\\\\\\\\\\"importance masking produces super-additive interaction\\\\\\\\\\\\\\\" without qualifier — random masking also produces positive II, and at s025+ random is statistically significant (D063). The distinguishing signal is **magnitude gradient** (importance 2.7-17× larger) and **onset threshold** (random NS below ~s020, importance significant from s015+), not the existence of super-additivity itself (D023)\\\\n\\\\n## Core Claims\\\\n\\\\n| ID | Claim | Status | Key Evidence |\\\\n|----|-------|--------|-------------|\\\\n| C1 | Compound sparsity severity is strategy- and task-modulated | confirmed | MATH-500: importance gradient 15-17× random (DeepSeek s025-s030); GSM8K: ratio 衰减至 2.3-3.8× (D075)。Phase gradient 层面 importance ≥ random 跨 benchmark 成立，但 magnitude ratio task-dependent。Threshold ~s020-s025 (D063) |\\\\n| C2 | Severity is phase-modulated (amplified in low-sparsity phase) | confirmed | bf16 paired median difference 单调递增: 0.39→1.21→3.99→8.48; Bonferroni p<0.005 全 4 水平 (D032)。预注册：n=500 后若 QW s015 CI 仍跨零，叙事改为 'compound effect emerges above threshold sparsity (~s020)' |\\\\n| C3 | Phase-strategy crossover exists | confirmed | s=0.25: importance high_phase=0.032 < random=0.818, importance low_phase=7.196 > random=1.363 (bf16) |\\\\n| C4 | Discrimination collapse as primary mechanism; entropy redistribution model-dependent | partially_confirmed | D044: Gini/CV 下降跨模型一致; entropy collapse DeepSeek 一致但 Qwen s025 反转(+0.045) s030≈0。30/30 problems completed. |\\\\n| C5 | Phase-modulated compound severity generalizes across models | confirmed | DeepSeek + Qwen cross-model replication: 方向一致, Cohen's d ρ=1.0, gradient permutation p=0.043. Qwen magnitude ~1/4 of DeepSeek, onset threshold s≥0.20 (S3→C). |\\\\n| C5b | Phase-aware mitigation recovers compound degradation | future_work | D056: pilot 完成 gate_failed。Oracle recovery 18% < 30% gate (Wilcoxon p=0.002)，heuristic 32% 但 CI 跨零。方向正确但效应量不足，需更精细 phase boundary estimation → future work |\\\\n| C6 | Severity gradient is sub-exponential | confirmed | Growth rate decreasing: Δ增长因子 3.8×→4.8×→2.0×（递减） |\\\\n| C7 | Statistical power at n=500 confirms dose-response | confirmed | c2_n500_deepseek (success) + c2_qw_n500_r3 (success): 两模型 n=500 全 4 sparsity Bonferroni p<0.005, Spearman ρ=1.0 |\\\\n| C8 | Cross-architecture validation (LLaMA) | confirmed | c8_llama_n250_fixed (n=250, D060): within-importance phase gradient d_z=0.81-1.15 (all p<10^-29, all monotonic) ✓。Random 所有条件显著 (d_z=0.41-0.46, all p<10^-12)，与 DeepSeek/Qwen random 低 sparsity NS 模式定性不同。Imp/rand Δ ratio 2.0-2.6×（远低于 DS 15-17×）。Strategy specificity architecture-dependent。n=250 功效充分。 |\\\\n| C9 | Differentiation from Lethe/SparK prior work | planned | Related Work §2 引用区分 + SparK gap analysis |\\\\n| C10 | Phase gradient cross-benchmark robust; strategy specificity task-modulated | confirmed | GSM8K DS gradient 0.241→4.682 单调递增; QW gradient 0.039→2.092; imp/rand ratio 衰减至 2.3-3.8× (D075)。QW random s025+s030 均 success |\\\\n| C11 | Phase-dependent severity absent under scoring-independent eviction (recency control) | confirmed | D102: 三个 sparsity level 全部 NS。s015+s025 为 primary evidence (n=100 each, both d_z < 0.1, p > 0.5); s030 supplementary (numerical instability at extreme sparsity)。对比 importance: d_z=0.574-1.15, ratio=119.8×。Triple dissociation confirmed: importance 有 gradient, recency + random 均 NS。排除 (a) phase segmentation circularity (b) H2O scoring pathway confound。文献中无先例将 recency eviction 作为 methodological control (experimental design contribution)。 |\\\\n| S3→C | Onset threshold is model-dependent (DeepSeek s≥0.15, Qwen s≥0.20) | confirmed | D037/D038: Qwen s015 d_z=0.37 CI含0, s020+ 显著 |\\\\n| S7→C | Dose-response monotonicity (Spearman ρ=1.0) | confirmed | D047: 6-point dose-response, 单调递增 |\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### RC1: Generalizability — 7B models only, benchmark scope\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Results on two 7B models and MATH-500 only. How do we know this generalizes to larger models or other reasoning tasks?\\\\\\\\\\\\\\\"\\\\n- **应对**: 四层泛化证据：(1) Cross-model: DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（同架构不同训练，ρ=1.0）(2) Cross-architecture: c8_llama_n250_fixed (DeepSeek-R1-Distill-Llama-8B, LlamaForCausalLM, n=250)，within-importance phase gradient 强 (d_z=0.81-1.15)，但 strategy specificity 弱于 Qwen2 架构（2.0-2.6× vs 15-17×），strategy×phase 交互强度 architecture-dependent (3) **Cross-benchmark (D075)**: GSM8K（两模型）phase gradient 单调递增复现（DS: 0.241→4.682; QW: 0.039→2.092），但 strategy specificity ratio 从 MATH-500 15-17× 衰减至 2.3-3.8×，表明 phase modulation 跨 benchmark 稳健而 magnitude modulation task-dependent。Limitations 诚实声明：(a) 7B scale only；(b) strategy specificity 强度 task-dependent（GSM8K 衰减，可能因推理链更短）；(c) random phase gradient 行为 architecture-dependent。\\\\n- **实验支撑**: C5 (cross-model) + C8 (c8_llama_n250_fixed cross-architecture, n=250) + C10 (cross-benchmark GSM8K, D075)\\\\n\\\\n### RC2: Methodology — phase segmentation circularity and scoring confound\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Your phase segmentation uses perplexity computed from the same model whose sparsity you're measuring. Isn't this circular? And H2O's attention-score mechanism could itself create the phase gradient artifact.\\\\\\\\\\\\\\\"\\\\n- **应对**: Recency-based eviction (scoring-independent control, D102 confirmed) produces null phase gradient across all three sparsity levels (s015+s025 primary, s030 supplementary), confirming the observed severity pattern is specific to attention-score-based methods, not an artifact of (a) phase segmentation itself or (b) the scoring computation pathway. Triple dissociation: importance shows gradient (d_z=0.574+), recency and random both NS. Novel experimental design: repurposing recency eviction as methodological control has no precedent in literature (H2O/StreamingLLM use it only as performance baseline).\\\\n- **实验支撑**: C11 (recency_s015/s025/s030, D102 confirmed) + c4_entropy (discrimination collapse mechanism, D044)\\\\n\\\\n### RC3: Practical impact — 没有 throughput 数据\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"No wall-clock or throughput measurements. Is the severity amplification reflected in actual inference speed?\\\\\\\\\\\\\\\"\\\\n- **应对**: 本文定位是 empirical finding paper（发现 + 机制解释），不是 method paper。Throughput 不是 claim 的一部分。Discussion 中明确 phase-gated controller 作为 future direction。\\\\n  - C5b pilot 已完成（D056）：oracle recovery 18%（Wilcoxon p=0.002），heuristic recovery 32%（p=0.024），但两者 95% CI 均跨零。方向正确（Wilcoxon 显著）但效应量不足（未达 30% gate），需更精细的 phase boundary estimation。论文 §6 Discussion 诚实报告 pilot 结果 + future work。\\\\n  - Heuristic > oracle 悖论值得提及：token position ratio 粗粒度划分可能恰好更适合 mitigation 场景，暗示 phase boundary 的最优粒度是开放问题。\\\\n- **实验支撑**: c5b_pilot (gate_failed, D056)\\\\n\\\\n### RC4: Statistical rigor — bootstrap 是否足够\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Per-problem bootstrap with 50 problems — sufficient sample size?\\\\\\\\\\\\\\\"\\\\n- **应对**: bf16 使用 B=10000 per-problem paired bootstrap，有效配对数 n=49 (DeepSeek) / n=46 (Qwen)；n=500 实验进一步验证 (C7 confirmed)。Permutation test 使用 paired median difference 作为 robust statistic（D032），Bonferroni 校正后全 4 水平 p<0.005。Dose-response 主用 Wilcoxon signed-rank p + median_diff（robust to outliers），Cohen's d 作为辅助效应量（DeepSeek 0.61→1.13, Qwen 0.37→1.44, registry cohens_d s015→s030），注释高 sparsity 下 d 受 outlier-driven variance 影响（DS s020→s025: median 3.3× jump 但 d 非单调，因极端 II 值影响分母，D064）。可在 appendix 补充 per-problem 分布图（已生成 fig4_per_problem_dist.pdf）。\\\\n- **实验支撑**: bf16 permutation test (D032) + Cohen's d per-problem paired (rebootstrap B=10000) + n=500 Wilcoxon (C7 confirmed)\\\\n\\\\n### RC5: Novelty — prior work 是否已覆盖 phase-dependent sparsity\\\\n- **预期质疑**: \\\\\\\"ThinKV and phase-aware methods already consider phase. What's new?\\\\\\\"\\\\n- **应对**: Prior work 在单轴上分析 phase（ThinKV: phase-aware eviction）或 compound（SparK: joint compression）。没有工作同时分析 compound × phase × strategy 的三维交互。Crossover 现象（同一 strategy 在不同 phase 方向反转）是全新发现。Related Work 加 Lethe 引用区分 + SparK 对比。具体区分：\\\\n  - **ThinKV** (arxiv 2510.01290, Oct 2025): 在 KV cache 单轴上做 phase-aware 压缩（按 CoT 阶段差异化 eviction），但不涉及 pruning × eviction 的 compound interaction。我们研究的是双轴（head pruning × KV eviction）compound interaction 如何随 phase 变化，ThinKV 的单轴 phase-aware 策略是我们分析维度的子集。\\\\n  - **Physics of KV Cache Compression** (arxiv 2603.01426, Mar 2026): 揭示了单轴 KV 压缩的 phase transition 和 representational rigidity，是机制层面最接近的工作。关键区分：他们刻画的是单一压缩轴上压缩率的 critical threshold（phase transition），我们刻画的是两种压缩方法的 compound interaction severity 如何被 reasoning phase 调制（phase-dependent gradient）——维度正交。\\\\n  - **HIES** (arxiv 2510.13832, Oct 2025): 发现 importance score collapse 并提出 entropy 补偿，为我们的 discrimination collapse 机制提供独立 supporting evidence——他们在单轴上观察到的 score collapse 正是我们在 compound setting 中发现的 Gini/CV 下降的单轴对应。\\\\n  - **R-KV** (arxiv 2505.24133, May 2025): 针对 reasoning task 做 KV compression 优化，属于 task-specific method。我们不是提出新方法，而是 mechanistic 分析 compound interaction 的 phase-dependent 行为，二者目标不同（optimization vs understanding）。\\\\n- **实验支撑**: C3 (crossover), Related Work §2 的 gap 分析\\\\n\\\\n### RC6: Novelty vs Lethe/SparK\\\\n- **预期质疑**: \\\\\\\"How does this differ from Lethe (AAAI 2026) which also does layer-time-adaptive KV pruning, or SparK which studies compound compression?\\\\\\\"\\\\n- **应对*\\\\n\\\\n... [截断: 省略 2093 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 14093, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "016399ae-b243-4a8f-ba39-c73b65f76cb0",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "7d5d90b3-23e8-4266-9788-ff4907cb56f4",
+            "sourceToolAssistantUUID": "016399ae-b243-4a8f-ba39-c73b65f76cb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T01:20:08.142Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019iAmSPHqBY7ReP3TPafkwa",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d5d90b3-23e8-4266-9788-ff4907cb56f4",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GAnFaGzhC1ePJJn9xe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c8ebcc6-1065-4443-a089-2cfa51d6e468",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GCBYKjsQ37YwnUQggdiCuh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5714,
+                "cache_read_input_tokens": 24886,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5714
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 24886,
+                    "cache_creation_input_tokens": 5714,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5714,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T01:20:08.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019iAmSPHqBY7ReP3TPafkwa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Phase-Gated Compound Sparsity\\\\n\\\\n> 最后更新: 2026-05-17 (D102: C11 confirmed — recency triple NS across s015/s025/s030; s015+s025 primary, s030 supplementary) | 维护者: Director\\\\n\\\\n## Core Insight\\\\n\\\\nCompound sparsity（attention head pruning + KV cache eviction）的 severity 不是固定常数——它是 eviction strategy 和 reasoning phase 交互的涌现属性。Importance-based eviction 的 compound interaction severity（paired median difference: median(II_low_i − II_high_i)）随 sparsity 单调递增（DeepSeek: 0.39→1.21→3.99→8.48; Qwen: 0.07→0.31→1.07→3.16），而 random masking 在 s015/s020 NS，在 s025 跨模型显著但效应量远小于 importance（DS: 0.257 vs 3.986; QW: 0.393 vs 1.074, 2.7-17×差异），存在 sparsity threshold ~s020-s025（D063; s030 待定）。Cohen's d（per-problem paired, B=10000）从 medium 到 large（DeepSeek: 0.61→1.13; Qwen: 0.37→1.44，registry cohens_d s015→s030）。LLaMA 跨架构验证（D060, c8_llama_n250_fixed, n=250）：within-importance phase gradient 强（d_z=0.81-1.15, all p<10^-29, all monotonic），且 random 在 LLaMA 上所有条件均显著（d_z=0.41-0.46, all p<10^-12），imp/rand Δ ratio 仅 2.0-2.6×（vs DeepSeek 15-17×），strategy×phase 交互强度 architecture-dependent。GSM8K 跨 benchmark 验证（D075）：importance masking 的 phase gradient 在 GSM8K 上同样单调递增（QW: 0.039→0.158→1.100→2.092; DS: 0.241→0.740→1.992→4.682），但 strategy specificity（importance/random gradient ratio）从 MATH-500 的 15-17× 衰减至 GSM8K 的 2.3-3.8×。注意：\\\\\\\"反转\\\\\\\"仅在原始 II_low 值上（random > importance），phase gradient 层面 importance ≥ random。Strategy specificity 的 task-dependence 机制是开放问题（见 §6 Discussion）。这一发现挑战了 compound degradation 均匀分布的隐含假设。\\\\n\\\\n**数字基准**：所有数字基于 bf16 per-problem paired 统计量（B=10000 bootstrap）。median_diff 定义为 median(II_low_i − II_high_i)（逐 problem 配对差的中位数）。fp16 旧数据已弃用。\\\\n\\\\n## Narrative Arc\\\\n\\\\nCompound sparsity 是高效 LLM 推理的实用部署需求，但 prior work（SparK, Ada-KV, SLiM）将 compound interaction 视为均匀超可加。我们发现 severity 是 strategy × phase 交互的涌现属性：importance eviction 的 compound interaction 在 low-sparsity phase 远大于 high-sparsity phase（paired median difference 单调递增 0.39→8.48），而 random eviction 在低 sparsity (s015/s020) NS，在 s025+ 跨模型显著但效应量远小于 importance (2.7-17×)——存在 sparsity threshold (~s020-s025)，低于阈值 compound effect importance-specific，高于阈值两者均触发但 importance 主导。Cross-model replication 方向一致（Qwen magnitude ~1/4 of DeepSeek，onset threshold s≥0.20）。LLaMA 跨架构验证已完成（c8_llama_n250_fixed, n=250, D060）：within-importance phase gradient 强（d_z=0.81-1.15, all p<10^-29），random 所有条件显著（d_z=0.41-0.46, all p<10^-12），但 imp/rand ratio 仅 2.0-2.6×（远低于 DS 15-17×），strategy×phase 交互强度 architecture-dependent。Recency-based eviction（scoring-independent control, D100/D102）跨三个 sparsity level 均产生 null phase gradient（s015+s025 为 primary evidence，s030 supplementary due to numerical instability at extreme sparsity），确认 phase-dependent severity 是 attention-score-based eviction 的特有交互效应而非 token removal 的 trivial 副产物。我们通过 discrimination collapse 机制解释这一现象：head pruning → importance score 的判别力崩塌（Gini/CV 下降跨模型一致）→ importance eviction 退化为有偏伪随机。Attention entropy redistribution 作为 model-dependent secondary effect 在 DeepSeek 上观察到，但在 Qwen 上不稳健（D044）。\\\\n\\\\n**Framing 硬约束（D015）**：\\\\n- MUST: \\\\\\\\\\\\\\\"emergent phase-strategy interaction\\\\\\\\\\\\\\\"\\\\n- MUST NOT: \\\\\\\\\\\\\\\"importance metric limitation / importance is broken\\\\\\\\\\\\\\\"\\\\n- MUST NOT: claim \\\\\\\\\\\\\\\"importance masking produces super-additive interaction\\\\\\\\\\\\\\\" without qualifier — random masking also produces positive II, and at s025+ random is statistically significant (D063). The distinguishing signal is **magnitude gradient** (importance 2.7-17× larger) and **onset threshold** (random NS below ~s020, importance significant from s015+), not the existence of super-additivity itself (D023)\\\\n\\\\n## Core Claims\\\\n\\\\n| ID | Claim | Status | Key Evidence |\\\\n|----|-------|--------|-------------|\\\\n| C1 | Compound sparsity severity is strategy- and task-modulated | confirmed | MATH-500: importance gradient 15-17× random (DeepSeek s025-s030); GSM8K: ratio 衰减至 2.3-3.8× (D075)。Phase gradient 层面 importance ≥ random 跨 benchmark 成立，但 magnitude ratio task-dependent。Threshold ~s020-s025 (D063) |\\\\n| C2 | Severity is phase-modulated (amplified in low-sparsity phase) | confirmed | bf16 paired median difference 单调递增: 0.39→1.21→3.99→8.48; Bonferroni p<0.005 全 4 水平 (D032)。预注册：n=500 后若 QW s015 CI 仍跨零，叙事改为 'compound effect emerges above threshold sparsity (~s020)' |\\\\n| C3 | Phase-strategy crossover exists | confirmed | s=0.25: importance high_phase=0.032 < random=0.818, importance low_phase=7.196 > random=1.363 (bf16) |\\\\n| C4 | Discrimination collapse as primary mechanism; entropy redistribution model-dependent | partially_confirmed | D044: Gini/CV 下降跨模型一致; entropy collapse DeepSeek 一致但 Qwen s025 反转(+0.045) s030≈0。30/30 problems completed. |\\\\n| C5 | Phase-modulated compound severity generalizes across models | confirmed | DeepSeek + Qwen cross-model replication: 方向一致, Cohen's d ρ=1.0, gradient permutation p=0.043. Qwen magnitude ~1/4 of DeepSeek, onset threshold s≥0.20 (S3→C). |\\\\n| C5b | Phase-aware mitigation recovers compound degradation | future_work | D056: pilot 完成 gate_failed。Oracle recovery 18% < 30% gate (Wilcoxon p=0.002)，heuristic 32% 但 CI 跨零。方向正确但效应量不足，需更精细 phase boundary estimation → future work |\\\\n| C6 | Severity gradient is sub-exponential | confirmed | Growth rate decreasing: Δ增长因子 3.8×→4.8×→2.0×（递减） |\\\\n| C7 | Statistical power at n=500 confirms dose-response | confirmed | c2_n500_deepseek (success) + c2_qw_n500_r3 (success): 两模型 n=500 全 4 sparsity Bonferroni p<0.005, Spearman ρ=1.0 |\\\\n| C8 | Cross-architecture validation (LLaMA) | confirmed | c8_llama_n250_fixed (n=250, D060): within-importance phase gradient d_z=0.81-1.15 (all p<10^-29, all monotonic) ✓。Random 所有条件显著 (d_z=0.41-0.46, all p<10^-12)，与 DeepSeek/Qwen random 低 sparsity NS 模式定性不同。Imp/rand Δ ratio 2.0-2.6×（远低于 DS 15-17×）。Strategy specificity architecture-dependent。n=250 功效充分。 |\\\\n| C9 | Differentiation from Lethe/SparK prior work | planned | Related Work §2 引用区分 + SparK gap analysis |\\\\n| C10 | Phase gradient cross-benchmark robust; strategy specificity task-modulated | confirmed | GSM8K DS gradient 0.241→4.682 单调递增; QW gradient 0.039→2.092; imp/rand ratio 衰减至 2.3-3.8× (D075)。QW random s025+s030 均 success |\\\\n| C11 | Phase-dependent severity absent under scoring-independent eviction (recency control) | confirmed | D102: 三个 sparsity level 全部 NS。s015+s025 为 primary evidence (n=100 each, both d_z < 0.1, p > 0.5); s030 supplementary (numerical instability at extreme sparsity)。对比 importance: d_z=0.574-1.15, ratio=119.8×。Triple dissociation confirmed: importance 有 gradient, recency + random 均 NS。排除 (a) phase segmentation circularity (b) H2O scoring pathway confound。文献中无先例将 recency eviction 作为 methodological control (experimental design contribution)。 |\\\\n| S3→C | Onset threshold is model-dependent (DeepSeek s≥0.15, Qwen s≥0.20) | confirmed | D037/D038: Qwen s015 d_z=0.37 CI含0, s020+ 显著 |\\\\n| S7→C | Dose-response monotonicity (Spearman ρ=1.0) | confirmed | D047: 6-point dose-response, 单调递增 |\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### RC1: Generalizability — 7B models only, benchmark scope\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Results on two 7B models and MATH-500 only. How do we know this generalizes to larger models or other reasoning tasks?\\\\\\\\\\\\\\\"\\\\n- **应对**: 四层泛化证据：(1) Cross-model: DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（同架构不同训练，ρ=1.0）(2) Cross-architecture: c8_llama_n250_fixed (DeepSeek-R1-Distill-Llama-8B, LlamaForCausalLM, n=250)，within-importance phase gradient 强 (d_z=0.81-1.15)，但 strategy specificity 弱于 Qwen2 架构（2.0-2.6× vs 15-17×），strategy×phase 交互强度 architecture-dependent (3) **Cross-benchmark (D075)**: GSM8K（两模型）phase gradient 单调递增复现（DS: 0.241→4.682; QW: 0.039→2.092），但 strategy specificity ratio 从 MATH-500 15-17× 衰减至 2.3-3.8×，表明 phase modulation 跨 benchmark 稳健而 magnitude modulation task-dependent。Limitations 诚实声明：(a) 7B scale only；(b) strategy specificity 强度 task-dependent（GSM8K 衰减，可能因推理链更短）；(c) random phase gradient 行为 architecture-dependent。\\\\n- **实验支撑**: C5 (cross-model) + C8 (c8_llama_n250_fixed cross-architecture, n=250) + C10 (cross-benchmark GSM8K, D075)\\\\n\\\\n### RC2: Methodology — phase segmentation circularity and scoring confound\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Your phase segmentation uses perplexity computed from the same model whose sparsity you're measuring. Isn't this circular? And H2O's attention-score mechanism could itself create the phase gradient artifact.\\\\\\\\\\\\\\\"\\\\n- **应对**: Recency-based eviction (scoring-independent control, D102 confirmed) produces null phase gradient across all three sparsity levels (s015+s025 primary, s030 supplementary), confirming the observed severity pattern is specific to attention-score-based methods, not an artifact of (a) phase segmentation itself or (b) the scoring computation pathway. Triple dissociation: importance shows gradient (d_z=0.574+), recency and random both NS. Novel experimental design: repurposing recency eviction as methodological control has no precedent in literature (H2O/StreamingLLM use it only as performance baseline).\\\\n- **实验支撑**: C11 (recency_s015/s025/s030, D102 confirmed) + c4_entropy (discrimination collapse mechanism, D044)\\\\n\\\\n### RC3: Practical impact — 没有 throughput 数据\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"No wall-clock or throughput measurements. Is the severity amplification reflected in actual inference speed?\\\\\\\\\\\\\\\"\\\\n- **应对**: 本文定位是 empirical finding paper（发现 + 机制解释），不是 method paper。Throughput 不是 claim 的一部分。Discussion 中明确 phase-gated controller 作为 future direction。\\\\n  - C5b pilot 已完成（D056）：oracle recovery 18%（Wilcoxon p=0.002），heuristic recovery 32%（p=0.024），但两者 95% CI 均跨零。方向正确（Wilcoxon 显著）但效应量不足（未达 30% gate），需更精细的 phase boundary estimation。论文 §6 Discussion 诚实报告 pilot 结果 + future work。\\\\n  - Heuristic > oracle 悖论值得提及：token position ratio 粗粒度划分可能恰好更适合 mitigation 场景，暗示 phase boundary 的最优粒度是开放问题。\\\\n- **实验支撑**: c5b_pilot (gate_failed, D056)\\\\n\\\\n### RC4: Statistical rigor — bootstrap 是否足够\\\\n- **预期质疑**: \\\\\\\\\\\\\\\"Per-problem bootstrap with 50 problems — sufficient sample size?\\\\\\\\\\\\\\\"\\\\n- **应对**: bf16 使用 B=10000 per-problem paired bootstrap，有效配对数 n=49 (DeepSeek) / n=46 (Qwen)；n=500 实验进一步验证 (C7 confirmed)。Permutation test 使用 paired median difference 作为 robust statistic（D032），Bonferroni 校正后全 4 水平 p<0.005。Dose-response 主用 Wilcoxon signed-rank p + median_diff（robust to outliers），Cohen's d 作为辅助效应量（DeepSeek 0.61→1.13, Qwen 0.37→1.44, registry cohens_d s015→s030），注释高 sparsity 下 d 受 outlier-driven variance 影响（DS s020→s025: median 3.3× jump 但 d 非单调，因极端 II 值影响分母，D064）。可在 appendix 补充 per-problem 分布图（已生成 fig4_per_problem_dist.pdf）。\\\\n- **实验支撑**: bf16 permutation test (D032) + Cohen's d per-problem paired (rebootstrap B=10000) + n=500 Wilcoxon (C7 confirmed)\\\\n\\\\n### RC5: Novelty — prior work 是否已覆盖 phase-dependent sparsity\\\\n- **预期质疑**: \\\\\\\"ThinKV and phase-aware methods already consider phase. What's new?\\\\\\\"\\\\n- **应对**: Prior work 在单轴上分析 phase（ThinKV: phase-aware eviction）或 compound（SparK: joint compression）。没有工作同时分析 compound × phase × strategy 的三维交互。Crossover 现象（同一 strategy 在不同 phase 方向反转）是全新发现。Related Work 加 Lethe 引用区分 + SparK 对比。具体区分：\\\\n  - **ThinKV** (arxiv 2510.01290, Oct 2025): 在 KV cache 单轴上做 phase-aware 压缩（按 CoT 阶段差异化 eviction），但不涉及 pruning × eviction 的 compound interaction。我们研究的是双轴（head pruning × KV eviction）compound interaction 如何随 phase 变化，ThinKV 的单轴 phase-aware 策略是我们分析维度的子集。\\\\n  - **Physics of KV Cache Compression** (arxiv 2603.01426, Mar 2026): 揭示了单轴 KV 压缩的 phase transition 和 representational rigidity，是机制层面最接近的工作。关键区分：他们刻画的是单一压缩轴上压缩率的 critical threshold（phase transition），我们刻画的是两种压缩方法的 compound interaction severity 如何被 reasoning phase 调制（phase-dependent gradient）——维度正交。\\\\n  - **HIES** (arxiv 2510.13832, Oct 2025): 发现 importance score collapse 并提出 entropy 补偿，为我们的 discrimination collapse 机制提供独立 supporting evidence——他们在单轴上观察到的 score collapse 正是我们在 compound setting 中发现的 Gini/CV 下降的单轴对应。\\\\n  - **R-KV** (arxiv 2505.24133, May 2025): 针对 reasoning task 做 KV compression 优化，属于 task-specific method。我们不是提出新方法，而是 mechanistic 分析 compound interaction 的 phase-dependent 行为，二者目标不同（optimization vs understanding）。\\\\n- **实验支撑**: C3 (crossover), Related Work §2 的 gap 分析\\\\n\\\\n### RC6: Novelty vs Lethe/SparK\\\\n- **预期质疑**: \\\\\\\"How does this differ from Lethe (AAAI 2026) which also does layer-time-adaptive KV pruning, or SparK which studies compound compression?\\\\\\\"\\\\n- **应对**: Lethe 和 SparK 都没有分析 phase × strategy 的交互效应。Lethe 是 method paper（提出 adaptive eviction 方法），我们是 empirical finding paper（发现 phase-dependent severity gradient）。SparK 研究 compound compression 但将 interaction 视为均匀超可加，我们发现 interaction severity 随 phase 和 strategy 变化。新近工作进一步确认我们的独特定位：\\\\n  - **Physics of KV Cache Compression** (arxiv 2603.01426, Mar 2026) 是最近的相关工作，研究单轴压缩的 phase transition 阈值行为。与我们的核心区别：他们的 phase transition 是压缩率维度上的 critical point，我们的 phase-dependent gradient 是 reasoning phase 维度上 compound interaction 的连续调制——两者刻画的 \\\\\\\"phase\\\\\\\" 语义不同（compression-rate phase vs reasoning phase）。\\\\n  - **ThinKV** (arxiv 2510.01290, Oct 2025) 和 **R-KV** (arxiv 2505.24133, May 2025) 都在 KV compression 单轴上引入 phase/reasoning awareness，但均未涉及 compound interaction。我们的贡献在于揭示 pruning × eviction 双轴交互如何被 reasoning phase 调制，这是单轴方法无法观察到的涌现现象。\\\\n  - **HIES** (arxiv 2510.13832, Oct 2025) 的 importance score collapse 发现为我们的 discrimination collapse 机制提供了独立佐证，但 HIES 聚焦于单轴补偿方法，未研究 collapse 在 compound setting 中的放大效应。\\\\n  - Related Work §2 明确区分三者定位：Lethe/SparK = method/compound method, ThinKV/R-KV = single-axis phase-aware, Physics of KV = single-axis phase transition, HIES = single-axis collapse。我们 = compound × phase × strategy 三维交互分析。\\\\n- **实验支撑**: 不需要额外实验，仅需 §2 引用区分\\\\n\\\\n## Paper Positioning\\\\n\\\\n**类型**: Empirical finding paper（非 method paper）\\\\n**核心贡献**:\\\\n1. 发现 compound sparsity severity 的 strategy × phase 交互\\\\n2. 量化 severity gradient（bf16 paired median difference 0.39→8.48, Cohen's d 0.61→1.13）和 crossover 现象\\\\n3. 提出 discrimination collapse 机制解释（Gini/CV 跨模型一致；entropy redistribution model-dependent）\\\\n4. Cross-model + cross-architecture (LLaMA, n=250) replication 验证泛化性（三模型两架构；strategy×phase 交互强度 architecture-dependent, D060）\\\\n5. Novel use of scoring-independent eviction (recency-based) as methodological control — experimental design contribution 排除 phase segmentation circularity 和 scoring pathway confound (C11, D102 confirmed)\\\\n\\\\n**投稿目标**: EMNLP 2026 ARR, deadline 2026-05-25\\\\n**Rebuttal 准备**: Day 9 (2026-05-23) 预留 rebuttal letter 写作时间\\\\n**关键时间线**：\\\\n- Day 9 (2026-05-23): 预留写 rebuttal letter\\\\n- Day 11 (2026-05-25): EMNLP 2026 ARR 截稿\\\\n\\\", \\\"total_chars\\\": 14093, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c8ebcc6-1065-4443-a089-2cfa51d6e468",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "fe9749ee-320d-4ec0-b09f-099ef5daf23f",
+            "sourceToolAssistantUUID": "8c8ebcc6-1065-4443-a089-2cfa51d6e468",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T01:20:11.178Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look at the actual paper artifacts to see what's been written."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe9749ee-320d-4ec0-b09f-099ef5daf23f",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GB8BtRuJAn1W1B1tzb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "16f321e1-812e-4e49-be0c-8a2acbb47196",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hs75CSJL2J9hK6gKLamSGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6447,
+                "cache_read_input_tokens": 30600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6447,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T01:20:13.196Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tycm8uxMxxYew59Cxknc2Y",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16f321e1-812e-4e49-be0c-8a2acbb47196",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GB8BtRuJAn1W1B1tzb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7b260442-c547-4af7-9196-8cbd83c081fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hs75CSJL2J9hK6gKLamSGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6447,
+                "cache_read_input_tokens": 30600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6447,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T01:20:13.230Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tycm8uxMxxYew59Cxknc2Y",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/main.tex\nartifacts/_project/paper/appendix.tex\nartifacts/_project/paper/appendix_robustness.tex\nartifacts/dream_reports/dream_20260516T073742/best/paper.tex\nartifacts/dream_reports/dream_20260516T073742/median/paper.tex\nartifacts/dream_reports/dream_20260516T073742/worst/paper.tex\nartifacts/dream_reports/dream_20260516T150210/best/paper.tex\nartifacts/dream_reports/dream_20260516T150210/median/paper.tex\nartifacts/dream_reports/dream_20260516T150210/worst/paper.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/analysis.tex\nartifacts/dream_reports/dream_20260516T164305/best/paper.tex\nartifacts/dream_reports/dream_20260516T164305/median/paper.tex\nartifacts/dream_reports/dream_20260516T164305/worst/paper.tex\nartifacts/_project/paper/methodology.tex\nartifacts/_project/paper/background.tex\nartifacts/_project/paper/appendix_moved.tex\nartifacts/_project/paper/appendix_disc_analysis.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/drafts/recency_control_section.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/limitations.tex\nartifacts/_project/paper/results.tex\nartifacts/_project/paper/abstract.tex\nartifacts/dream_reports/dream_20260517T005655/best/paper.tex\nartifacts/dream_reports/dream_20260517T005655/median/paper.tex\nartifacts/dream_reports/dream_20260517T005655/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b260442-c547-4af7-9196-8cbd83c081fa",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "e87feec4-c1a3-4a4b-be56-af8f1dc726f9",
+            "sourceToolAssistantUUID": "7b260442-c547-4af7-9196-8cbd83c081fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T01:20:13.728Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsjYKFoqxqD9hxE7s5JFTP",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e87feec4-c1a3-4a4b-be56-af8f1dc726f9",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GB8BtRuJAn1W1B1tzb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9fc8f482-fdef-4b9a-8483-eae596837d47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hs75CSJL2J9hK6gKLamSGu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6447,
+                "cache_read_input_tokens": 30600,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6447
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 30600,
+                    "cache_creation_input_tokens": 6447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6447,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T01:20:13.748Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsjYKFoqxqD9hxE7s5JFTP",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fc8f482-fdef-4b9a-8483-eae596837d47",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "d4b23923-3f76-4a99-b75f-31533c013249",
+            "sourceToolAssistantUUID": "9fc8f482-fdef-4b9a-8483-eae596837d47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T01:20:16.941Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016jvqpgHzsoLVTSiDiRJxsP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4b23923-3f76-4a99-b75f-31533c013249",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GBXdHTqdRf7HGGvtP7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6991bc6d-e12b-4d2d-951f-de687bf32419",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JW8wGDunKvHL8trJAArXvx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 707,
+                "cache_read_input_tokens": 37047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T01:20:16.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016jvqpgHzsoLVTSiDiRJxsP",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{Compound compression.}\n5\tCombining multiple compression axes produces non-additive errors.\n6\t\\cite{spark-aaai2026} report super-additive degradation when combining channel pruning with token eviction; \\cite{slim-icml2025} formalize compound error for quantization and sparsity.\n7\t\\cite{unicomp-2026} evaluate compound compression across 40+ benchmarks, revealing that reasoning capabilities degrade disproportionately.\n8\t\\cite{phase-transition-compression-2026} characterize independent phase transition points per compression dimension, implying the joint safe region is the intersection of per-dimension safe zones.\n9\tGRASPrune~\\cite{graspune-acl2026} learns global budget-constrained gates for joint pruning but treats decisions as static across generation.\n10\tPM-KVQ~\\cite{pmkvq-iclr2026} shows that progressive quantization---gradually reducing bit-width over the generation process---mitigates cumulative error in long-CoT reasoning, implicitly introducing a temporal dimension to compression severity that resonates with our finding that compound interaction is phase-dependent.\n11\t\n12\t\\cite{kim2026pqqp} show that compression order (prune-then-quantize vs.\\ quantize-then-prune) substantially affects joint quality, and their Progressive Intensity Hypothesis---that weaker perturbations should precede stronger ones---echoes our dose-response finding that interaction severity increases monotonically with sparsity.\n13\t\n14\tThese works establish compound interaction but share an implicit assumption: interaction magnitude is constant across the generation process.\n15\t\n16\t\\paragraph{Structured pruning.}\n17\tMagnitude pruning~\\cite{han-neurips2015} and the lottery ticket hypothesis~\\cite{frankle-iclr2019} establish that neural networks contain sparse subnetworks preserving full-model performance.\n18\tMovement pruning~\\cite{sanh-neurips2020} extends this to fine-tuning, learning which weights to zero during task adaptation.\n19\tFor attention heads specifically, \\cite{voita-acl2019} show most heads are prunable without degradation, and \\cite{michel-neurips2019} demonstrate that head importance varies substantially across layers---findings our head pruning axis builds upon. These methods optimize a single pruning axis in isolation; we characterize the interaction when head pruning operates simultaneously with KV cache eviction.\n20\t\n21\t\\paragraph{KV cache eviction.}\n22\tStreamingLLM~\\cite{streamingllm-iclr2024} establishes attention sinks as a foundational mechanism; DuoAttention~\\cite{duoattention-2024} classifies heads into retrieval and streaming types, complementing our analysis of importance discrimination collapse (\\S\\ref{sec:discrimination-collapse-main}). Subsequent work improves eviction through per-head adaptive budgets \\cite{adakv-neurips2025}, observation-window compression \\cite{snapkv-neurips2024}, proxy-token strategies \\cite{nacl-acl2024}, deferred importance \\cite{retentivekv-2026}, and worst-case analysis \\cite{defensivekv-iclr2026}; \\cite{greedy-bias-kvcache-2026} show that single importance metrics exhibit systematic greedy bias. \\cite{hies-2025} independently show that importance discrimination collapses under heavy single-axis pruning; our results extend this to the compound setting, revealing phase-modulated amplification and a strategy crossover (\\S\\ref{sec:crossover}) absent in single-axis analysis.\n23\tRecent approaches target reasoning-aware eviction \\cite{rlkv-2025, longflow-2026, dong2026foresightkv}, temporal adaptivity \\cite{lethe-aaai2026}, channel-level pruning \\cite{xu2025think, spark-aaai2026}, and learned budgets \\cite{lkv-2026}. Concurrent work~\\citep{hold-onto-thought-neurips2025} evaluates single-axis compression on mathematical reasoning; we extend to the compound setting.\n24\tThese methods each optimize a single pruning axis without characterizing compound interactions.\n25\t\n26\t\\paragraph{Phase-aware inference and reasoning.}\n27\tThinKV~\\cite{thinkv-iclr2026} applies different KV strategies per phase but without compound interaction.\n28\t\\cite{decision-repr-transition-2026} find pruning sensitivity depends on ``silent'' vs.\\ ``decisive'' representation phases.\n29\t\\cite{doing-more-with-less-2026} show pruning combined with test-time scaling can exceed unpruned baselines; \\cite{sparse-frontier-2025} find no universally optimal sparse attention strategy across generation stages.\n30\t\\cite{physics-kvcache-2026} identify a sharp phase transition in single-axis KV cache compression at high sparsity, characterizing the single-dimension failure mode that our compound analysis extends across multiple axes.\n31\tR-KV~\\cite{rkv-neurips2025} exploits reasoning-specific redundancy for aggressive cache compression, targeting per-axis optimization rather than characterizing compound degradation.\n32\tTest-time compute scaling~\\cite{snell-2024-scaling-test-time} shows that allocating more inference-time computation can substitute for model scale; this emphasizes the importance of preserving reasoning-phase fidelity, where our work shows compound sparsity is most destructive.\n33\tScissorHands~\\cite{scissorhands-2023} leverages the persistence of importance hypothesis---that important tokens remain important across generation steps---a property our Gini analysis shows breaks down under compound stress.\n34\tThese works establish phase-dependent compression tolerance along single axes.\n35\t\n36\t\\paragraph{Conditional computation.}\n37\tMixture-of-Experts architectures~\\cite{shazeer-2017-moe, fedus-jmlr2022} achieve dynamic sparsity by routing tokens to a subset of parameters, providing a complementary paradigm to post-hoc pruning.\n38\tMoE sparsity is \\emph{designed} (experts are trained to specialize), whereas compound sparsity is \\emph{imposed} (pruning removes capacity without retraining).\n39\tOur phase-strategy interaction findings suggest that designed sparsity and imposed sparsity may interact differently across reasoning phases---a connection we leave to future work.\n40\t\n41\t\\paragraph{Positioning.}\n42\tOur work bridges the compound compression and phase-aware literatures by quantifying how compound severity varies across phases and eviction strategies. Key differentiators: SparK~\\cite{spark-aaai2026} characterizes compound interaction magnitude but treats it as phase-invariant; ThinKV~\\cite{thinkv-iclr2026} adapts per phase but considers only single-axis KV compression without compound interaction; HIES~\\cite{hies-2025} identifies importance score collapse under single-axis pruning but does not quantify its role in compound settings or its phase dependence. Our strategy specificity finding---that random eviction produces near-zero phase gradients while importance-based eviction exhibits $15$--$17{\\times}$ amplification---is non-obvious: the \\emph{a priori} expectation is that any eviction strategy operating on phase-structured attention should produce some phase gradient, yet random eviction yields effectively none at $s \\leq 0.20$. The quantitative dose-response characterization provides target operating points for phase-aware compression controllers.\n43\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6991bc6d-e12b-4d2d-951f-de687bf32419",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "f2ad426b-cd43-4e8e-b7c8-e684f6fa05ef",
+            "sourceToolAssistantUUID": "6991bc6d-e12b-4d2d-951f-de687bf32419",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T01:20:17.141Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DtgYWVG8DQhxEFdH3SVjvj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2ad426b-cd43-4e8e-b7c8-e684f6fa05ef",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GBXdHTqdRf7HGGvtP7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ddb74de4-302e-4dda-b8be-f30e0953d287",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JW8wGDunKvHL8trJAArXvx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 707,
+                "cache_read_input_tokens": 37047,
+                "output_tokens": 170,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 707
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 170,
+                    "cache_read_input_tokens": 37047,
+                    "cache_creation_input_tokens": 707,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 707,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T01:20:17.147Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DtgYWVG8DQhxEFdH3SVjvj",
+              "type": "tool_result",
+              "content": "1\t\n2\t@inproceedings{streamingllm-iclr2024,\n3\t    title     = {Efficient Streaming Language Models with Attention Sinks},\n4\t    author    = {Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n5\t    booktitle = {International Conference on Learning Representations},\n6\t    year      = {2024},\n7\t    url       = {https://arxiv.org/abs/2309.17453},\n8\t}\n9\t\n10\t@article{duoattention-2024,\n11\t    title   = {{DuoAttention}: Efficient Long-Context {LLM} Inference with Retrieval and Streaming Heads},\n12\t    author  = {Xiao, Guangxuan and Tang, Jiaming and Zuo, Jingwei and Guo, Junxian and Yang, Shang and Tang, Haotian and Fu, Yao and Han, Song},\n13\t    journal = {arXiv preprint arXiv:2410.10819},\n14\t    year    = {2024},\n15\t    url     = {https://arxiv.org/abs/2410.10819},\n16\t}\n17\t\n18\t@inproceedings{adakv-neurips2025,\n19\t    title     = {Ada-{KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation for Efficient {LLM} Inference},\n20\t    author    = {Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin},\n21\t    booktitle = {Advances in Neural Information Processing Systems},\n22\t    year      = {2025},\n23\t    url       = {https://arxiv.org/abs/2407.11550},\n24\t}\n25\t\n26\t@article{decision-repr-transition-2026,\n27\t    title   = {Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions},\n28\t    author  = {Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin},\n29\t    journal = {arXiv preprint arXiv:2605.07271},\n30\t    year    = {2026},\n31\t    url     = {https://arxiv.org/abs/2605.07271},\n32\t}\n33\t\n34\t@article{deepseek-r1-2025,\n35\t    title   = {{DeepSeek-R1} incentivizes reasoning in {LLMs} through reinforcement learning},\n36\t    author  = {{DeepSeek-AI}},\n37\t    journal = {Nature},\n38\t    volume  = {645},\n39\t    pages   = {633--638},\n40\t    year    = {2025},\n41\t    doi     = {10.1038/s41586-025-09422-z},\n42\t}\n43\t\n44\t@inproceedings{defensivekv-iclr2026,\n45\t    title     = {{DefensiveKV}: Taming the Fragility of {KV} Cache Eviction in {LLM} Inference},\n46\t    author    = {Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike},\n47\t    booktitle = {International Conference on Learning Representations},\n48\t    year      = {2026},\n49\t    url       = {https://arxiv.org/abs/2510.13334},\n50\t}\n51\t\n52\t@article{doing-more-with-less-2026,\n53\t    title   = {Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n54\t    author  = {Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n55\t    journal = {arXiv preprint arXiv:2604.25098},\n56\t    year    = {2026},\n57\t    url     = {https://arxiv.org/abs/2604.25098},\n58\t}\n59\t\n60\t@book{efron-1993,\n61\t    title     = {An Introduction to the Bootstrap},\n62\t    author    = {Efron, Bradley and Tibshirani, Robert J.},\n63\t    publisher = {Chapman \\& Hall/CRC},\n64\t    year      = {1993},\n65\t}\n66\t\n67\t@inproceedings{graspune-acl2026,\n68\t    title     = {{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n69\t    author    = {Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n70\t    booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},\n71\t    year      = {2026},\n72\t    url       = {https://arxiv.org/abs/2604.19398},\n73\t}\n74\t\n75\t@article{greedy-bias-kvcache-2026,\n76\t    title   = {More Than a Quick Glance: Overcoming the Greedy Bias in {KV}-Cache Compression},\n77\t    author  = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},\n78\t    journal = {arXiv preprint arXiv:2602.02199},\n79\t    year    = {2026},\n80\t    url     = {https://arxiv.org/abs/2602.02199},\n81\t}\n82\t\n83\t@article{hold-onto-thought-neurips2025,\n84\t    title   = {Hold Onto That Thought: Assessing {KV} Cache Compression On Reasoning},\n85\t    author  = {Liu, Minghui and Palnitkar, Aadi and Rabbani, Tahseen and Jae, Hyunwoo and Sang, Kyle Rui and Yao, Dixi and Shabihi, Shayan and Zhao, Fuheng and Li, Tian and Zhang, Ce and Huang, Furong and Zhang, Kunpeng},\n86\t    journal = {arXiv preprint arXiv:2512.12008},\n87\t    year    = {2025},\n88\t    url     = {https://arxiv.org/abs/2512.12008},\n89\t}\n90\t\n91\t@inproceedings{h2o-neurips2023,\n92\t    title     = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n93\t    author    = {Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lianmin and Cai, Ruisi and Song, Zhao and Tian, Yuandong and R{\\'e}, Christopher and Barrett, Clark and Wang, Zhangyang and Chen, Beidi},\n94\t    booktitle = {Advances in Neural Information Processing Systems},\n95\t    year      = {2023},\n96\t    url       = {https://arxiv.org/abs/2306.14048},\n97\t}\n98\t\n99\t@article{hies-2025,\n100\t    title   = {Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning},\n101\t    author  = {Choi, Minsik and Son, Hyegang and Kim, Changhoon and Kim, Young Geun},\n102\t    journal = {arXiv preprint arXiv:2510.13832},\n103\t    year    = {2025},\n104\t    url     = {https://arxiv.org/abs/2510.13832},\n105\t}\n106\t\n107\t@inproceedings{kwon-sosp2023,\n108\t    title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n109\t    author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},\n110\t    booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles},\n111\t    year      = {2023},\n112\t    url       = {https://arxiv.org/abs/2309.06180},\n113\t}\n114\t\n115\t@inproceedings{lethe-aaai2026,\n116\t    title     = {Lethe: Layer- and Time-Adaptive {KV} Cache Pruning for Reasoning-Intensive {LLM} Serving},\n117\t    author    = {Zeng, Hui and Zhao, Daming and Yang, Pengfei and Hou, WenXuan and Zheng, Tianyang and Li, Hui and Ji, Weiye and Zhai, Jidong},\n118\t    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n119\t    year      = {2026},\n120\t    url       = {https://arxiv.org/abs/2511.06029},\n121\t}\n122\t\n123\t@inproceedings{math500-neurips2021,\n124\t    title     = {Measuring Mathematical Problem Solving With the {MATH} Dataset},\n125\t    author    = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},\n126\t    booktitle = {Advances in Neural Information Processing Systems},\n127\t    year      = {2021},\n128\t    url       = {https://arxiv.org/abs/2103.03874},\n129\t}\n130\t\n131\t@inproceedings{michel-neurips2019,\n132\t    title     = {Are Sixteen Heads Really Better than One?},\n133\t    author    = {Michel, Paul and Levy, Omer and Neubig, Graham},\n134\t    booktitle = {Advances in Neural Information Processing Systems},\n135\t    year      = {2019},\n136\t    url       = {https://arxiv.org/abs/1905.10650},\n137\t}\n138\t\n139\t@inproceedings{nacl-acl2024,\n140\t    title     = {{NACL}: A General and Effective {KV} Cache Eviction Framework for {LLMs} at Inference Time},\n141\t    author    = {Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhenyu and Liu, Tingwen and Wang, Shuohuan and Sun, Yu and Yu, Dianhai and Wu, Hua},\n142\t    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n143\t    year      = {2024},\n144\t    url       = {https://arxiv.org/abs/2408.03675},\n145\t}\n146\t\n147\t@article{phase-transition-compression-2026,\n148\t    title   = {Phase transitions in large language model compression},\n149\t    author  = {Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhang, Liangpei and Tao, Dacheng},\n150\t    journal = {npj Artificial Intelligence},\n151\t    volume  = {2},\n152\t    number  = {21},\n153\t    year    = {2026},\n154\t    url     = {https://www.nature.com/articles/s44387-026-00072-8},\n155\t}\n156\t\n157\t@article{physics-kvcache-2026,\n158\t    title   = {Understanding the Physics of Key-Value Cache Compression for {LLMs} through Attention Dynamics},\n159\t    author  = {Ananthanarayanan, Samhruth and Sengupta, Ayan and Chakraborty, Tanmoy},\n160\t    journal = {arXiv preprint arXiv:2603.01426},\n161\t    year    = {2026},\n162\t    url     = {https://arxiv.org/abs/2603.01426},\n163\t}\n164\t\n165\t@inproceedings{pope-mlsys2023,\n166\t    title     = {Efficiently Scaling Transformer Inference},\n167\t    author    = {Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and Bradbury, James and Heek, Jonathan and Xiao, Kefan and Agrawal, Shivani and Dean, Jeff},\n168\t    booktitle = {Proceedings of Machine Learning and Systems},\n169\t    year      = {2023},\n170\t    url       = {https://arxiv.org/abs/2211.05102},\n171\t}\n172\t\n173\t@inproceedings{pyramidkv-colm2025,\n174\t    title     = {{PyramidKV}: Dynamic {KV} Cache Compression based on Pyramidal Information Funneling},\n175\t    author    = {Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and Lu, Keming and Xiong, Wayne and Dong, Yue and Chang, Baobao and Hu, Junjie and Xiao, Wen},\n176\t    booktitle = {Conference on Language Modeling},\n177\t    year      = {2025},\n178\t    url       = {https://arxiv.org/abs/2406.02069},\n179\t}\n180\t\n181\t@article{qwen25-2024,\n182\t    title   = {{Qwen2.5} Technical Report},\n183\t    author  = {Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and Liu, Dayiheng and Huang, Fei and Wei, Haoran and others},\n184\t    journal = {arXiv preprint arXiv:2412.15115},\n185\t    year    = {2024},\n186\t    url     = {https://arxiv.org/abs/2412.15115},\n187\t}\n188\t\n189\t@article{retentivekv-2026,\n190\t    title   = {{RetentiveKV}: State-Space Memory for Uncertainty-Aware Multimodal {KV} Cache Eviction},\n191\t    author  = {Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfei and Zhang, Shengyu},\n192\t    journal = {arXiv preprint arXiv:2605.04075},\n193\t    year    = {2026},\n194\t    url     = {https://arxiv.org/abs/2605.04075},\n195\t}\n196\t\n197\t@inproceedings{rkv-neurips2025,\n198\t    title     = {{R-KV}: Redundancy-Aware {KV} Cache Compression for Reasoning Models},\n199\t    author    = {Cai, Zefan and Xiao, Wen and Sun, Hanshi and Luo, Cheng and Zhang, Yikai and Wan, Ke and Li, Yucheng and Zhou, Yeyang and Chang, Li-Wen and Gu, Jiuxiang and Dong, Zhen and Anandkumar, Anima and Asi, Abedelkadir and Hu, Junjie},\n200\t    booktitle = {Advances in Neural Information Processing Systems},\n201\t    year      = {2025},\n202\t    url       = {https://arxiv.org/abs/2505.24133},\n203\t}\n204\t\n205\t@inproceedings{slim-icml2025,\n206\t    title     = {{SLiM}: One-shot Quantization and Sparsity with Low-rank Approximation for {LLM} Weight Compression},\n207\t    author    = {Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri},\n208\t    booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n209\t    year      = {2025},\n210\t    url       = {https://arxiv.org/abs/2410.09615},\n211\t}\n212\t\n213\t@inproceedings{snapkv-neurips2024,\n214\t    title     = {{SnapKV}: {LLM} Knows What You Are Looking for Before Generation},\n215\t    author    = {Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatelli, Acyr and Ye, Hanchen and Cai, Tianle and Lewis, Patrick and Chen, Deming},\n216\t    booktitle = {Advances in Neural Information Processing Systems},\n217\t    year      = {2024},\n218\t    url       = {https://arxiv.org/abs/2404.14469},\n219\t}\n220\t\n221\t\n222\t@inproceedings{spark-aaai2026,\n223\t    title     = {{SparK}: Query-Aware Unstructured Sparsity with Recoverable {KV} Cache Channel Pruning},\n224\t    author    = {Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu and Li, Dong and Barsoum, Emad and Zhao, Jun and Liu, Kang},\n225\t    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n226\t    year      = {2026},\n227\t    url       = {https://arxiv.org/abs/2508.15212},\n228\t}\n229\t\n230\t@article{sparse-frontier-2025,\n231\t    title   = {The Sparse Frontier: Sparse Attention Trade-offs in Transformer {LLMs}},\n232\t    author  = {Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisio, Kelly and Ponti, Edoardo M.},\n233\t    journal = {arXiv preprint arXiv:2504.17768},\n234\t    year    = {2025},\n235\t    url     = {https://arxiv.org/abs/2504.17768},\n236\t}\n237\t\n238\t@inproceedings{thinkv-iclr2026,\n239\t    title     = {{ThinKV}: Thought-Adaptive {KV} Cache Compression for Efficient Reasoning Models},\n240\t    author    = {Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangharajan and Khailany, Brucek and Krishna, Tushar},\n241\t    booktitle = {International Conference on Learning Representations},\n242\t    year      = {2026},\n243\t    url       = {https://arxiv.org/abs/2510.01290},\n244\t}\n245\t\n246\t@article{unicomp-2026,\n247\t    title   = {{UniComp}: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation},\n248\t    author  = {von Rad, Jonathan and Cao, Yong and Geiger, Andreas},\n249\t    journal = {arXiv preprint arXiv:2602.09130},\n250\t    year    = {2026},\n251\t    url     = {https://arxiv.org/abs/2602.09130},\n252\t}\n253\t\n254\t@article{longflow-2026,\n255\t    title   = {{LongFlow}: Efficient {KV} Cache Compression for Reasoning Models},\n256\t    author  = {Su, Yi and Tian, Zhenxu and Qiao, Dan and Zhou, Yuechi and Li, Juntao and Zhang, Min},\n257\t    journal = {arXiv preprint arXiv:2603.11504},\n258\t    year    = {2026},\n259\t    url     = {https://arxiv.org/abs/2603.11504},\n260\t}\n261\t\n262\t@inproceedings{pmkvq-iclr2026,\n263\t    title     = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-{CoT} {LLMs}},\n264\t    author    = {Liu, Tengxuan and Li, Shiyao and Yang, Jiayi and Zhao, Tianchen and Zhou, Feng and Song, Xiaohui and Dai, Guohao and Yan, Shengen and Yang, Huazhong and Wang, Yu},\n265\t    booktitle = {International Conference on Learning Representations},\n266\t    year      = {2026},\n267\t    url       = {https://arxiv.org/abs/2505.18610},\n268\t}\n269\t\n270\t@article{rlkv-2025,\n271\t    title   = {Which Heads Matter for Reasoning? {RL}-Guided {KV} Cache Compression},\n272\t    author  = {Du, Wenjie and Jiang, Li and Tao, Keda and Liu, Xue and Wang, Huan},\n273\t    journal = {arXiv preprint arXiv:2510.08525},\n274\t    year    = {2025},\n275\t    url     = {https://arxiv.org/abs/2510.08525},\n276\t}\n277\t\n278\t\n279\t@article{lkv-2026,\n280\t    title   = {{LKV}: End-to-End Learning of Head-wise Budgets and Token Selection for {LLM} {KV} Cache Eviction},\n281\t    author  = {Zhou, Enshuai and Hao, Yifan and Wang, Chao and Zhang, Rui and Huang, Di and Guo, Jiaming and Hu, Xing and Du, Zidong and Guo, Qi and Chen, Yunji},\n282\t    journal = {arXiv preprint arXiv:2605.06676},\n283\t    year    = {2026},\n284\t    url     = {https://arxiv.org/abs/2605.06676},\n285\t}\n286\t\n287\t@inproceedings{xu2025think,\n288\t    title     = {{ThinK}: Thinner Key Cache by Query-Driven Pruning},\n289\t    author    = {Xu, Yuhui and Jie, Zhanming and Dong, Hanze and Wang, Lei and Lu, Xudong and Zhou, Aojun and Saha, Amrita and Xiong, Caiming and Sahoo, Doyen},\n290\t    booktitle = {International Conference on Learning Representations},\n291\t    year      = {2025},\n292\t    url       = {https://arxiv.org/abs/2407.21018},\n293\t}\n294\t\n295\t@article{dong2026foresightkv,\n296\t    title   = {{ForesightKV}: Optimizing {KV} Cache Eviction for Reasoning Models by Learning Long-Term Contribution},\n297\t    author  = {Dong, Zican and Liu, Peiyu and Li, Junyi and Chen, Zhipeng and Peng, Han and Wang, Shuo and Zhao, Wayne Xin},\n298\t    journal = {arXiv preprint arXiv:2602.03203},\n299\t    year    = {2026},\n300\t    url     = {https://arxiv.org/abs/2602.03203},\n301\t}\n302\t\n303\t@inproceedings{kim2026pqqp,\n304\t    title     = {Prune-then-Quantize or Quantize-then-Prune? Understanding the Impact of Compression Order in Joint Model Compression},\n305\t    author    = {Kim, Minjun and Choi, Jaehyeon and Yang, Hyunwoo and Kim, Jongjin and Song, Jinho and Kang, U},\n306\t    booktitle = {International Conference on Learning Representations},\n307\t    year      = {2026},\n308\t    url       = {https://arxiv.org/abs/2603.18426},\n309\t}\n310\t\n311\t@article{lanham-2023-faithfulness,\n312\t    title   = {Measuring Faithfulness in Chain-of-Thought Reasoning},\n313\t    author  = {Lanham, Tamera and Chen, Anna and Radhakrishnan, Ansh and Steiner, Benoit and Denison, Carson and Hernandez, Danny and Li, Dustin and Durmus, Esin and Hubinger, Evan and Kernion, Jackson and others},\n314\t    journal = {arXiv preprint arXiv:2307.13702},\n315\t    year    = {2023},\n316\t    url     = {https://arxiv.org/abs/2307.13702},\n317\t}\n318\t\n319\t@inproceedings{turpin-2023-biased-cot,\n320\t    title     = {Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n321\t    author    = {Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel R.},\n322\t    booktitle = {Advances in Neural Information Processing Systems},\n323\t    year      = {2023},\n324\t    url       = {https://arxiv.org/abs/2305.04388},\n325\t}\n326\t\n327\t@inproceedings{voita-acl2019,\n328\t    title     = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n329\t    author    = {Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, Ivan},\n330\t    booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n331\t    year      = {2019},\n332\t    url       = {https://arxiv.org/abs/1905.09418},\n333\t}\n334\t\n335\t@inproceedings{wei-neurips2022-cot,\n336\t    title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},\n337\t    author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},\n338\t    booktitle = {Advances in Neural Information Processing Systems},\n339\t    year      = {2022},\n340\t    url       = {https://arxiv.org/abs/2201.11903},\n341\t}\n342\t\n343\t@article{rein-gpqa-2024,\n344\t    title   = {{GPQA}: A Graduate-Level Google-Proof Q\\&A Benchmark},\n345\t    author  = {Rein, David and Hou, Betty Li and Stickland, Asa Cooper and Petty, Jackson and Pang, Richard Yuanzhe and Dirani, Julien and Michael, Julian and Bowman, Samuel R.},\n346\t    journal = {arXiv preprint arXiv:2311.12022},\n347\t    year    = {2024},\n348\t    url     = {https://arxiv.org/abs/2311.12022},\n349\t}\n350\t\n351\t@inproceedings{frankle-iclr2019,\n352\t    title     = {The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n353\t    author    = {Frankle, Jonathan and Carlin, Michael},\n354\t    booktitle = {International Conference on Learning Representations},\n355\t    year      = {2019},\n356\t    url       = {https://arxiv.org/abs/1803.03635},\n357\t}\n358\t\n359\t@inproceedings{han-neurips2015,\n360\t    title     = {Learning both Weights and Connections for Efficient Neural Networks},\n361\t    author    = {Han, Song and Pool, Jeff and Tran, John and Dally, William J.},\n362\t    booktitle = {Advances in Neural Information Processing Systems},\n363\t    year      = {2015},\n364\t    url       = {https://arxiv.org/abs/1506.02626},\n365\t}\n366\t\n367\t@inproceedings{sanh-neurips2020,\n368\t    title     = {Movement Pruning: Adaptive Sparsity during Fine-Tuning},\n369\t    author    = {Sanh, Victor and Wolf, Thomas and Rush, Alexander M.},\n370\t    booktitle = {Advances in Neural Information Processing Systems},\n371\t    year      = {2020},\n372\t    url       = {https://arxiv.org/abs/2005.07683},\n373\t}\n374\t\n375\t@article{scissorhands-2023,\n376\t    title   = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression},\n377\t    author  = {Liu, Zichang and Desai, Aditya and Liao, Fangshuo and Wang, Weitao and Xie, Victor and Xu, Zhaozhuo and Kyrillidis, Anastasios and Shrivastava, Anshumali},\n378\t    journal = {arXiv preprint arXiv:2305.17118},\n379\t    year    = {2023},\n380\t    url     = {https://arxiv.org/abs/2305.17118},\n381\t}\n382\t\n383\t@article{snell-2024-scaling-test-time,\n384\t    title   = {Scaling {LLM} Test-Time Compute Optimally Can be More Effective Than Scaling Model Parameters},\n385\t    author  = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n386\t    journal = {arXiv preprint arXiv:2408.03314},\n387\t    year    = {2024},\n388\t    url     = {https://arxiv.org/abs/2408.03314},\n389\t}\n390\t\n391\t@article{fedus-jmlr2022,\n392\t    title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},\n393\t    author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},\n394\t    journal = {Journal of Machine Learning Research},\n395\t    volume  = {23},\n396\t    number  = {120},\n397\t    pages   = {1--39},\n398\t    year    = {2022},\n399\t    url     = {https://arxiv.org/abs/2101.03961},\n400\t}\n401\t\n402\t@article{lazyeviction2025,\n403\t    title   = {{LazyEviction}: Lagged {KV} Eviction with Attention Pattern Observation for Efficient Long Reasoning},\n404\t    author  = {Zhang, Haoyue and Zhang, Hualei and Ma, Xiaosong and Zhang, Jie and Guo, Song},\n405\t    journal = {arXiv preprint arXiv:2506.15969},\n406\t    year    = {2025},\n407\t    url     = {https://arxiv.org/abs/2506.15969},\n408\t}\n409\t\n410\t@inproceedings{shazeer-2017-moe,\n411\t    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n412\t    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n413\t    booktitle = {International Conference on Learning Representations},\n414\t    year      = {2017},\n415\t    url       = {https://arxiv.org/abs/1701.06538},\n416\t}\n417\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddb74de4-302e-4dda-b8be-f30e0953d287",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "fe90f4aa-5d64-4f3f-aeb2-d68bdfc4d141",
+            "sourceToolAssistantUUID": "ddb74de4-302e-4dda-b8be-f30e0953d287",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T01:20:21.743Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S1M6SwTTANwRvnC3EwU24a",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe90f4aa-5d64-4f3f-aeb2-d68bdfc4d141",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GBnRXHmfdNTy8MR6fM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7b1bfe71-722c-4c86-a2b1-786cd3c3df22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EpgfH4qXPycjCDBzQB7WpM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10486,
+                "cache_read_input_tokens": 37754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10486,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T01:20:21.754Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S1M6SwTTANwRvnC3EwU24a",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tCompound sparsity---simultaneously pruning attention heads and evicting KV cache entries---is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.\n3\tWe find that compound sparsity severity is not a fixed constant but an emergent property of the interaction among eviction strategy, reasoning phase, and sparsity level.\n4\tOn DeepSeek-R1-Distill-Qwen-7B (MATH-500), importance-based eviction exhibits a monotonically increasing phase--severity gradient: the paired median difference $\\Delta$ rises from $0.39$ at sparsity $s{=}0.15$ to $8.48$ at $s{=}0.30$ (Spearman $\\rho{=}1.0$; all Bonferroni-corrected $p < 0.005$).\n5\tRandom eviction develops a detectable gradient only above $s \\approx 0.20$, at $2.7$--$17{\\times}$ smaller magnitude.\n6\tA scoring-independent control (recency eviction) produces no positive phase gradient: $\\Delta$ vanishes at $s \\leq 0.25$ and remains non-significant at $s{=}0.30$, confirming that the interaction is attention-score-specific rather than an inherent property of token removal.\n7\tThe pattern replicates on Qwen2.5-7B-Instruct ($\\Delta$: $0.07 \\to 3.16$; $\\rho{=}1.0$), shows consistent phase gradient direction on GSM8K, and generalizes to LlamaForCausalLM ($n{=}250$; $d_z{=}0.81$--$1.15$, all $p < 10^{-29}$).\n8\tPer-phase Gini analysis identifies \\emph{importance discrimination collapse}---the degeneration of head importance scores toward uniformity under compound stress---as a correlational diagnostic of this severity divergence.\n9\tPrior work characterizes compound degradation as phase-agnostic; we show that phase modulates severity by $15$--$17{\\times}$ on DeepSeek and $2.7$--$3.5{\\times}$ on Qwen, specifically driven by attention-score-based selection. These findings establish phase-gated analysis as a principled diagnostic framework with direct implications for phase-aware budget allocation.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b1bfe71-722c-4c86-a2b1-786cd3c3df22",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "d3fe84bf-1ce7-48fa-94f0-ccb2fdca2b5f",
+            "sourceToolAssistantUUID": "7b1bfe71-722c-4c86-a2b1-786cd3c3df22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T01:20:21.956Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013pjfjcn2sQnfBehuFBppet",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3fe84bf-1ce7-48fa-94f0-ccb2fdca2b5f",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GBnRXHmfdNTy8MR6fM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1cb69290-97de-4ae3-ae62-8e60a3e44285",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EpgfH4qXPycjCDBzQB7WpM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10486,
+                "cache_read_input_tokens": 37754,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10486
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 37754,
+                    "cache_creation_input_tokens": 10486,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10486,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T01:20:21.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013pjfjcn2sQnfBehuFBppet",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLong-context language models place acute pressure on the key--value (KV) cache, which grows linearly with sequence length \\cite{kwon-sosp2023, pope-mlsys2023}.\n5\tTwo complementary responses---\\emph{attention head pruning} \\cite{voita-acl2019, michel-neurips2019} and \\emph{KV cache eviction} \\cite{snapkv-neurips2024, adakv-neurips2025}---are increasingly deployed simultaneously as \\emph{compound sparsity}, but the resulting quality degradation is often super-additive \\cite{spark-aaai2026, slim-icml2025}. Recent evaluations show that reasoning capabilities degrade disproportionately under compound compression \\cite{unicomp-2026}, and that per-dimension safe zones intersect to form a smaller joint safe region \\cite{phase-transition-compression-2026}.\n6\t\n7\tPrior work treats compound interaction magnitude as roughly constant across generation \\cite{spark-aaai2026, unicomp-2026}, despite evidence that pruning sensitivity depends on representational phase \\cite{decision-repr-transition-2026} and that no single sparse attention strategy dominates across generation stages \\cite{sparse-frontier-2025}.\n8\tThis assumption is problematic for reasoning models, whose chain-of-thought generations \\cite{wei-neurips2022-cot} alternate between broadly distributed attention (exploratory reasoning) and sharply concentrated attention (structured computation) \\cite{thinkv-iclr2026}.\n9\tPhase-aware methods like ThinKV \\cite{thinkv-iclr2026} apply different KV strategies per phase but without considering compound interaction, while importance-based eviction itself faces challenges from score collapse \\cite{hies-2025}, greedy bias \\cite{greedy-bias-kvcache-2026}, and temporal dynamics \\cite{lethe-aaai2026}. These methods each optimize a single pruning axis; we characterize the interaction when multiple axes are composed.\n10\tIf compound severity varies across these phases, a uniform sparsity budget may be safe in one phase yet destructive in another.\n11\t\n12\tWe find that compound sparsity severity is an emergent property of the three-way interaction among eviction strategy, reasoning phase, and sparsity level.\n13\tUnder importance-based KV cache eviction, the Interaction Index---a measure of super-additive degradation---concentrates in low-sparsity reasoning phases and is largely absent in high-sparsity phases.\n14\tOn DeepSeek-R1-Distill-Qwen-7B (MATH-500), the paired median difference rises from $0.39$ at $s{=}0.15$ to $8.48$ at $s{=}0.30$ (Spearman $\\rho{=}1.0$; all Bonferroni-corrected $p < 0.005$).\n15\tThe pattern replicates on Qwen2.5-7B-Instruct ($\\Delta$: $0.07 \\to 3.16$; all $p < 0.005$), with cross-architecture support from DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM, $n{=}250$), where the importance phase gradient replicates with large effect sizes ($d_z{=}0.81$--$1.15$; all $p < 10^{-29}$) despite reduced strategy specificity ($2.0$--$2.6{\\times}$ vs.\\ $15$--$17{\\times}$ on Qwen2-family models).\n16\tRandom eviction develops a detectable phase gradient only above $s \\approx 0.20$, at $2.7$--$17{\\times}$ smaller magnitude than importance-based (where both strategies reach significance at $s \\geq 0.25$), supporting that the dominant gradient is strategy-specific.\n17\tA scoring-independent control (recency eviction, which removes the oldest positions without attention scores) produces no phase gradient ($\\Delta{=}-0.003$, CI spans zero), ruling out segmentation artifact and confirming that the interaction is specifically driven by attention-score-based selection (\\S\\ref{sec:scoring-control}).\n18\tCross-benchmark validation on GSM8K reveals consistent phase gradient direction: DeepSeek replicates the monotonic dose-response ($\\Delta$: $0.24 \\to 4.68$; all $p \\leq 0.0003$), while Qwen shows directional consistency at $s \\geq 0.25$ but is inconclusive due to generation truncation (\\S\\ref{sec:cross-benchmark}). Strategy specificity attenuates on GSM8K relative to MATH-500, indicating that phase modulation generalizes but its magnitude is task-dependent.\n19\t\n20\tPer-phase Gini analysis identifies \\emph{importance discrimination collapse}---the degeneration of head importance scores toward uniformity under compound stress---as a correlational diagnostic of this phase--strategy divergence. Both strategies exhibit consistent Gini drops across all tested conditions, yet severity diverges by $2.7$--$17{\\times}$, implicating the structural specificity of importance-based pruning as the key differentiator.\n21\t\n22\tBeyond individual findings, we contribute a \\emph{phase-gated analysis framework} that decomposes compound severity by reasoning phase and eviction strategy, transforming a scalar interaction metric into a structured diagnostic. This framework---combining the Interaction Index with attention-sparsity-based phase segmentation---reveals structure in compound degradation that aggregate metrics miss, and provides practitioners with a principled basis for phase-aware sparsity allocation.\n23\t\n24\tOur contributions:\n25\t\\begin{enumerate}[nosep,leftmargin=*]\n26\t    \\item We characterize a \\textbf{phase-modulated compound severity gradient}: importance-based eviction exhibits a monotonic dose-response ($\\rho{=}1.0$; $\\Delta$: $0.39 \\to 8.48$) with a phase gradient $2.7$--$17{\\times}$ larger than random eviction where both strategies are significant ($s \\geq 0.25$) on MATH-500; the gradient direction is consistent on GSM8K, while strategy specificity attenuates (\\S\\ref{sec:cross-benchmark}).\n27\t    \\item We replicate the pattern \\textbf{across training paradigms and architectures}: within-architecture replication on Qwen2.5-7B-Instruct (same Qwen2 backbone, instruction-tuned; $\\Delta$: $0.07 \\to 3.16$; $\\rho{=}1.0$) and cross-architecture validation on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM; $n{=}250$; importance phase gradient $d_z{=}0.81$--$1.15$, all $p < 10^{-29}$; strategy specificity reduced to $2.0$--$2.6{\\times}$, architecture-dependent; \\S\\ref{sec:cross-arch}).\n28\t    \\item We provide a \\textbf{scoring-independent control}: recency eviction (position-only, no attention scores) under identical compound sparsity produces no phase gradient ($\\Delta \\approx 0$, CI spans zero), ruling out segmentation artifact and establishing that phase-dependent severity is specifically driven by attention-score-based selection (\\S\\ref{sec:scoring-control}).\n29\t    \\item We identify \\textbf{importance discrimination collapse} via per-phase Gini analysis as a correlational diagnostic: consistent collapse across models and strategies, with the structural specificity of importance-based pruning corresponding to the severity divergence (\\S\\ref{sec:analysis}).\n30\t    \\item We validate the phase gradient on \\textbf{GSM8K} for both models, finding that phase modulation is benchmark-robust while strategy specificity is task-dependent (\\S\\ref{sec:cross-benchmark}).\n31\t\\end{enumerate}\n32\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cb69290-97de-4ae3-ae62-8e60a3e44285",
+            "isSidechain": true,
+            "promptId": "e094363e-fd4f-4649-8867-0eb6b8a0e169",
+            "agentId": "a0f61c367bd26458b",
+            "type": "user",
+            "uuid": "715db202-2663-497f-8b20-5d2f504633d3",
+            "sourceToolAssistantUUID": "1cb69290-97de-4ae3-ae62-8e60a3e44285",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T01:21:30.587Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have sufficient information to write a comprehensive review. Let me compose it.\n\n---\n\n## Review: Phase-Gated Compound Sparsity (R2: Novelty and Related Work)\n\n### 1. Summary\n\nThis paper empirically investigates how compound sparsity (simultaneous attention head pruning + KV cache eviction) interacts with reasoning phases in LLMs. The core finding is that the super-additive degradation from compound sparsity is not phase-invariant: importance-based eviction produces a monotonically increasing severity gradient across reasoning phases (low-sparsity phases suffer more), while recency-based and random eviction produce null or near-null gradients. The authors validate across 3 models, 2 architectures, and 3 benchmarks, and propose \"discrimination collapse\" (Gini/CV decline of importance scores) as a correlational mechanistic explanation.\n\n### 2. Strengths\n\n- **Well-controlled experimental design.** The triple dissociation (importance / recency / random) is a sound methodological structure. Using recency eviction as a scoring-independent control to rule out phase segmentation circularity is a thoughtful experimental choice, even if calling it a \"methodological innovation\" overstates its novelty.\n\n- **Thorough statistical treatment.** Per-problem paired bootstrap (B=10000), Bonferroni correction, Wilcoxon signed-rank tests, and dose-response monotonicity (Spearman rho=1.0) at n=500 demonstrate genuine statistical rigor for an empirical paper. The effect sizes are non-trivial (d_z up to 1.15).\n\n- **Multi-axis generalization.** The paper systematically varies models (DeepSeek-R1-Distill-Qwen, Qwen2.5, LLaMA), benchmarks (MATH-500, GSM8K, GPQA), and sparsity levels (s=0.15-0.30). The finding that strategy specificity is architecture-dependent (15-17x on Qwen2 vs 2.0-2.6x on LLaMA) is honestly reported and adds nuance.\n\n- **Related work is comprehensive relative to typical empirical papers.** The paper cites ~40 references spanning compound compression, phase-aware methods, adaptive eviction, structured pruning, and conditional computation. The positioning paragraph at the end clearly differentiates from SparK, ThinKV, and HIES.\n\n- **Honest limitations.** The paper acknowledges 7B-only scale, correlational (not causal) discrimination collapse, task-dependent strategy specificity, and the failure of the mitigation pilot (C5b).\n\n### 3. Weaknesses\n\n- **Incremental conceptual novelty.** The core finding can be restated as: \"importance-based eviction degrades more in easy/low-entropy phases because head pruning destroys the score distribution that importance eviction relies on.\" This is arguably predictable from first principles once you combine two known facts: (a) HIES (2025) already showed importance scores collapse under pruning, and (b) ThinKV (2026) already showed phase-dependent compression tolerance. The paper's contribution is measuring this interaction rather than discovering a non-obvious phenomenon. For a top venue, the \"so what\" question looms large: now that we know this, what do we do differently? The mitigation pilot failed.\n\n- **\"Discrimination collapse\" is a relabeling, not a new mechanism.** HIES (2025) described importance score collapse under compression and proposed entropy compensation. The paper acknowledges HIES provides \"independent supporting evidence\" but frames discrimination collapse as its own contribution. In reality, the Gini/CV analysis is the same phenomenon (score distribution flattening) measured with different statistics in a compound setting. The mechanistic depth is shallow: the paper shows Gini drops correlate with severity divergence but does not establish a causal chain, and entropy redistribution is model-dependent (fails on Qwen). This is not a mechanistic \"explanation\" but a correlational re-description.\n\n- **Missing important related work on GQA/MQA architectures.** The paper tests standard MHA models (or Qwen2's GQA variant) but does not discuss how GQA/MQA (which share KV heads across query heads) fundamentally changes compound interaction. GQA-based models like Llama-3 are the deployment standard; the paper's head pruning assumes independent heads but does not address how shared KV heads alter the interaction. This is a significant gap in both related work coverage and experimental design.\n\n- **No discussion of SnapKV-style observation window methods beyond a citation.** SnapKV, PyramidKV, and related methods that use observation windows rather than pure attention-score accumulation represent a different \"strategy\" category that could exhibit different phase-sensitivity. The paper only tests H2O-style importance eviction, which is the simplest and most fragile approach. The generality claim (\"importance-based eviction\") is narrower than presented.\n\n- **Venue fit concern for a pure empirical finding paper.** The paper explicitly positions as \"not a method paper\" and the mitigation pilot failed. For EMNLP 2026, the standard question is: does this finding change how anyone builds systems? The dose-response characterization is intellectually interesting but the practical implication (\"use phase-aware budgets\") is obvious once stated, and the paper cannot demonstrate it works (C5b failed). The \"phase-gated analysis framework\" contribution (contribution 5 in Introduction) is essentially: segment by perplexity tertiles and compute Interaction Index per phase. This is a measurement protocol, not a framework.\n\n- **Recency control is not as novel as claimed.** The paper states \"no precedent in literature\" for using recency eviction as a methodological control. However, StreamingLLM's recency-based approach is routinely used as a control condition in KV cache papers. The \"innovation\" is using it specifically to rule out phase segmentation circularity, which is a reasonable experimental choice but not a standalone contribution worth highlighting as a primary contribution (contribution 3).\n\n- **Phase segmentation validity concern not fully resolved.** The perplexity-tertile segmentation from the uncompressed model defines \"phases\" that may not correspond to meaningful cognitive/computational boundaries. The paper uses this as a proxy for reasoning complexity, but perplexity conflates multiple factors (vocabulary rarity, syntactic complexity, uncertainty). Alternative segmentation methods (e.g., based on attention pattern structure, or token type) are not explored. The recency control rules out circularity artifacts, but does not validate that the phases correspond to anything mechanistically meaningful.\n\n- **Strategy specificity varies so much across conditions that the headline numbers are cherry-picked.** The ratio ranges from 2.0x (LLaMA) to 17x (DeepSeek on MATH-500) depending on architecture and benchmark. Reporting \"15-17x\" in the abstract without immediately qualifying this as the maximum-case observation is potentially misleading.\n\n### 4. Questions for Authors\n\n1. **On mechanistic novelty:** Given that HIES already demonstrated importance score collapse under single-axis pruning and proposed a fix (entropy compensation), what is the specific new mechanistic insight from your \"discrimination collapse\" analysis beyond confirming the same phenomenon occurs in compound settings? Have you tried applying HIES's entropy compensation in your compound setting?\n\n2. **On GQA interaction:** Your models include Qwen2 (which uses GQA with 4 KV head groups for 28 query heads). How does shared KV heads affect the interpretation of \"head pruning\" in your framework? When you prune attention heads that share KV caches, the interaction dynamics should differ fundamentally from MHA. Do you account for this?\n\n3. **On eviction strategy generality:** You test H2O-style cumulative attention score eviction. Would observation-window methods (SnapKV, NACL) or learned eviction (LKV) show the same phase gradient? If the finding is specific to H2O's accumulation mechanism, the title should reflect this.\n\n4. **On practical impact:** Given that the mitigation pilot (C5b) failed to achieve practical significance, what concrete guidance does this paper provide to practitioners? Is \"avoid compound sparsity in low-perplexity phases\" actionable without a working phase detector at inference time?\n\n5. **On scale:** The paper exclusively uses 7B models. At 70B+ scale, attention patterns are known to differ substantially (more redundancy, more head specialization). Do you have any evidence, even indirect, that the phase-strategy interaction survives at scale?\n\n6. **On the 15-17x claim:** This number comes from DeepSeek on MATH-500 at s>=0.25. On GSM8K the ratio drops to 2.3-3.8x, and on LLaMA it drops to 2.0-2.6x. Why should reviewers treat the maximum-case number as representative rather than the minimum?\n\n### 5. Minor Issues\n\n- The abstract uses \"low-sparsity phase\" and \"high-sparsity phase\" where \"low-perplexity\" and \"high-perplexity\" would be clearer. The terminology is confusing because \"sparsity\" already refers to the compression level.\n- The Interaction Index formula (II_i = PPL_both - (PPL_prune + PPL_evict - PPL_base)) is standard for measuring super-additivity; it should be explicitly acknowledged as analogous to drug interaction indices in pharmacology or synergy metrics in biology.\n- The paper would benefit from discussing when compound sparsity is actually deployed in practice. If practitioners rarely combine head pruning with KV eviction simultaneously, the motivation weakens.\n- The GPQA experiments appear still running per the report. If these are not complete at submission time, this weakens the cross-benchmark claim.\n\n### 6. Scores\n\n| Dimension | Score | Justification |\n|-----------|-------|---------------|\n| **Overall** | 3 (Weak Reject) | The empirical methodology is sound but the conceptual novelty is limited. The finding is a predictable consequence of known phenomena (score collapse + phase-dependent attention), the mechanistic contribution repackages HIES, and the lack of actionable method or mitigation reduces practical significance. For a 25% acceptance rate venue, this falls below the threshold. |\n| **Novelty** | 2/5 | The specific quantification is new, but the qualitative finding (importance scores degrade under compound stress, worse in certain phases) follows logically from prior work. The triple dissociation is methodologically competent but not conceptually surprising. |\n| **Presentation** | 4/5 | Well-written, clearly structured, honest about limitations. The statistical reporting is exemplary. Minor terminology confusion (sparsity phases vs perplexity phases). |\n| **Confidence** | 4/5 | I am familiar with the KV cache compression, attention head pruning, and reasoning-phase analysis literatures. I have moderate uncertainty about whether the EMNLP community would value this type of empirical characterization more than I currently estimate. |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "715db202-2663-497f-8b20-5d2f504633d3",
+            "isSidechain": true,
+            "agentId": "a0f61c367bd26458b",
+            "requestId": "req_011Cb7GC8z39ER81M6GwvxsR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fa5a49f8-f336-4ff8-81ea-7bf2c6fbfeee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "133834fc-cdb1-4626-a41f-e256628bff5f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADqiaWrnGjv54CNVHDKzGQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2776,
+                "cache_read_input_tokens": 48240,
+                "output_tokens": 2569,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2776
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2569,
+                    "cache_read_input_tokens": 48240,
+                    "cache_creation_input_tokens": 2776,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2776,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-2-r2-for-a-top-ml-venue-review-acceptance-rate-25-6-point-sca.md"
+}

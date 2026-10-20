@@ -1,0 +1,1276 @@
+{
+  "schema_version": "1.0",
+  "id": "6a6eebd956c4a6e800d5",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_11, find any file named experiment_plan or similar (exper",
+  "task_key": "agent-abf055976e8a6999d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-abf055976e8a6999d.jsonl",
+    "occurrence": 1,
+    "bytes": 65975,
+    "sha256": "745d769e7c298ef2299f8fec8a8f2cb4422e53bdee360a7cb9fd7f884d5642e9"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:51:51.515Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_11, find any file named experiment_plan or similar (experiment_plan.md, experiment_plan.yaml, experiment_plan.yml, etc.) and return its full contents. Also look for any files that contain \"planned\" experiments or \"experiment plan\" in their content. Search broadly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "95515fab-19c2-4c66-96c7-1fd5c690ec9f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:51:52.845Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for files matching the experiment_plan pattern and also search for content containing \"planned experiments\" or \"experiment plan\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95515fab-19c2-4c66-96c7-1fd5c690ec9f",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3713946e-725c-4e1c-9a4a-17f16d5fd36d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:51:53.235Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XFb4J7mcTMh8L3rFe8SUMM",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*experiment_plan*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3713946e-725c-4e1c-9a4a-17f16d5fd36d",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "08e35ebe-47b2-4ca3-bb24-91bbabca81b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:51:53.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XFb4J7mcTMh8L3rFe8SUMM",
+              "type": "tool_result",
+              "content": "projects/redundancy-compound-sparsity/experiment_plan.yaml\nprojects/redundancy-compound-sparsity-2/experiment_plan.lock\nprojects/redundancy-compound-sparsity-2/experiment_plan.yaml\nprojects/phase-gated-compound-sparse/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08e35ebe-47b2-4ca3-bb24-91bbabca81b3",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "0461878a-4787-44a7-b62d-67f409274e5d",
+            "sourceToolAssistantUUID": "08e35ebe-47b2-4ca3-bb24-91bbabca81b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:51:53.501Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bdr2PeQUnarpmRfa9LvCwJ",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0461878a-4787-44a7-b62d-67f409274e5d",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "67472d6c-c429-4828-b32e-3d5b529c62cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:51:53.523Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bdr2PeQUnarpmRfa9LvCwJ",
+              "type": "tool_result",
+              "content": ".claude/sessions/no_project_0f597922/CLAUDE.md\n.claude/sessions/no_project_0f597922/AGENTS.md\nprojects/verifier-tts-struct-ie/docs/IDEA_BRIEF.md\nprojects/verifier-tts-struct-ie/.claude/sessions/reviewer_9e88391e/CLAUDE.md\nprojects/verifier-tts-struct-ie/.claude/sessions/reviewer_9e88391e/AGENTS.md\nprojects/verifier-tts-struct-ie/.claude/sessions/agent_03899c25/CLAUDE.md\nprojects/verifier-tts-struct-ie/.claude/sessions/agent_03899c25/AGENTS.md\nprojects/verifier-tts-struct-ie/report.md\nprojects/verifier-tts-struct-ie/memory.md\nprojects/verifier-tts-struct-ie/ROADMAP.md\nprojects/verifier-tts-struct-ie/.claude/CLAUDE.md\nprojects/verifier-tts-struct-ie/AGENTS.md\nprojects/verifier-tts-struct-ie/.claude/sessions/director_b1492021/CLAUDE.md\nprojects/verifier-tts-struct-ie/.claude/sessions/director_b1492021/AGENTS.md\nprojects/redundancy-compound-sparsity/docs/IDEA_BRIEF.md\nprojects/redundancy-compound-sparsity/artifacts/neg-cross-model-001/report/llama_vs_deepseek_layer_analysis.md\nprojects/redundancy-compound-sparsity/paper_framing.md\nprojects/redundancy-compound-sparsity/memory.md\nprojects/redundancy-compound-sparsity/task_context/director.md\nprojects/redundancy-compound-sparsity/task_context/reviewer.md\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/best/review_report.md\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/median/review_report.md\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/worst/review_report.md\nprojects/redundancy-compound-sparsity/report.md\nprojects/redundancy-compound-sparsity/ROADMAP.md\nprojects/redundancy-compound-sparsity/.claude/sessions/reviewer_ec300adc/CLAUDE.md\nprojects/redundancy-compound-sparsity/.claude/sessions/reviewer_ec300adc/AGENTS.md\nprojects/redundancy-compound-sparsity/.claude/sessions/director_7956a23c/CLAUDE.md\nprojects/redundancy-compound-sparsity/.claude/sessions/director_7956a23c/AGENTS.md\nprojects/redundancy-compound-sparsity/.claude/CLAUDE.md\nprojects/redundancy-compound-sparsity/AGENTS.md\nprojects/redundancy-compound-sparsity/.claude/sessions/agent_bbc64dcb/CLAUDE.md\nprojects/redundancy-compound-sparsity/.claude/sessions/agent_bbc64dcb/AGENTS.md\nprojects/redundancy-compound-sparsity-2/docs/IDEA_BRIEF.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/code_survey_report.md\nprojects/redundancy-compound-sparsity-2/artifacts/code_survey_report.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/teal_calibration_notes.md\nprojects/redundancy-compound-sparsity-2/artifacts/teal_calibration_notes.md\nprojects/redundancy-compound-sparsity-2/artifacts/carc_mvp_seed1337/report/carc_mvp_seed1337_analysis.md\nprojects/redundancy-compound-sparsity-2/artifacts/mvp_merged_analysis.md\nprojects/redundancy-compound-sparsity-2/artifacts/mvp_001/report/mvp_merged_analysis.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/baseline_survey.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/baseline_survey_5f68e4.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/intermediate/related_work_survey.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/intermediate/related_work_survey_d34086.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_1.md\nprojects/redundancy-compound-sparsity-2/task_context/history/director/loop_1.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/baseline_code_survey.md\nprojects/redundancy-compound-sparsity-2/artifacts/baseline_code_survey.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_1_1778606057.md\nprojects/redundancy-compound-sparsity-2/task_context/history/reviewer/loop_1.md\nprojects/redundancy-compound-sparsity-2/task_context/director.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/baseline_integration_notes.md\nprojects/redundancy-compound-sparsity-2/artifacts/baseline_integration_notes.md\nprojects/redundancy-compound-sparsity-2/artifacts/d003_reasoning_traces/report/analysis.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_1_1778607017.md\nglobal/report.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_2.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_d9b2657d/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_d9b2657d/AGENTS.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_2_1778611803.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_bf759703/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_bf759703/AGENTS.md\nprojects/redundancy-compound-sparsity-2/task_context/history/agent/loop_2_1778614533.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_366bde13/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_366bde13/AGENTS.md\nprojects/redundancy-compound-sparsity-2/task_context/reviewer.md\nprojects/redundancy-compound-sparsity-2/task_context/agent.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_dd5bed1b/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_dd5bed1b/AGENTS.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/reviewer_beebbcbf/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/reviewer_beebbcbf/AGENTS.md\nprojects/redundancy-compound-sparsity-2/ROADMAP.md\nprojects/redundancy-compound-sparsity-2/report.md\nprojects/redundancy-compound-sparsity-2/memory.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/director_6a17910f/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/director_6a17910f/AGENTS.md\nprojects/redundancy-compound-sparsity-2/artifacts/_project/report/archive_summary.md\nprojects/redundancy-compound-sparsity-2/.claude/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/AGENTS.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_9eec1489/CLAUDE.md\nprojects/redundancy-compound-sparsity-2/.claude/sessions/agent_9eec1489/AGENTS.md\nprojects/turn-hier-kv-compress/docs/IDEA_BRIEF.md\nprojects/turn-hier-kv-compress/.claude/sessions/agent_b27f4aaa/CLAUDE.md\nprojects/turn-hier-kv-compress/.claude/sessions/agent_b27f4aaa/AGENTS.md\nprojects/turn-hier-kv-compress/memory.md\nprojects/turn-hier-kv-compress/ROADMAP.md\nprojects/turn-hier-kv-compress/.claude/sessions/reviewer_047d2160/CLAUDE.md\nprojects/turn-hier-kv-compress/.claude/sessions/reviewer_047d2160/AGENTS.md\nprojects/turn-hier-kv-compress/.claude/CLAUDE.md\nprojects/turn-hier-kv-compress/AGENTS.md\nprojects/turn-hier-kv-compress/.claude/sessions/director_ef806bbd/CLAUDE.md\nprojects/turn-hier-kv-compress/.claude/sessions/director_ef806bbd/AGENTS.md\nprojects/turn-hier-kv-compress/report.md\nprojects/phase-gated-compound-sparse/artifacts/m2_m4_code_readiness.md\nprojects/phase-gated-compound-sparse/artifacts/mvp_ii_analysis.md\nprojects/phase-gated-compound-sparse/artifacts/mvp_interaction_index_profiling/report/mvp_ii_analysis.md\nprojects/phase-gated-compound-sparse/artifacts/m1_phase_segmentation_analysis.md\nprojects/phase-gated-compound-sparse/artifacts/mvp_ii_profiling_v2/report/mvp_ii_v2_analysis.md\nprojects/phase-gated-compound-sparse/artifacts/mvp_ii_profiling_v2/report/mvp_ii_v2_analysis_c4933e.md\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67472d6c-c429-4828-b32e-3d5b529c62cb",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "33caa9e5-8bea-4b5a-a395-e31539a8c39b",
+            "sourceToolAssistantUUID": "67472d6c-c429-4828-b32e-3d5b529c62cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T05:51:53.717Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KXG9pkFkeYbZtrFiKJgKot",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33caa9e5-8bea-4b5a-a395-e31539a8c39b",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b772fa36-113c-4edb-88f2-38f1658efcdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:51:53.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KXG9pkFkeYbZtrFiKJgKot",
+              "type": "tool_result",
+              "content": "config/approvals.yaml\nworkspace.yaml\nconfig/feishu.yaml\nconfig/backend.yaml\nprojects/verifier-tts-struct-ie/registry.yaml\nprojects/verifier-tts-struct-ie/decisions.yaml\nconfig/projects/verifier-tts-struct-ie.yaml\nprojects/redundancy-compound-sparsity/literature_map.yaml\nprojects/redundancy-compound-sparsity/artifacts/manifest.yaml\nprojects/redundancy-compound-sparsity/experiment_plan.yaml\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/best/imagined_experiments.yaml\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/median/imagined_experiments.yaml\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/worst/imagined_experiments.yaml\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/meta.yaml\nprojects/redundancy-compound-sparsity/dream_registry.yaml\nprojects/redundancy-compound-sparsity/decisions.yaml\nconfig/projects/redundancy-compound-sparsity.yaml\nprojects/redundancy-compound-sparsity/registry.yaml\nprojects/redundancy-compound-sparsity-2/experiment_plan.yaml\nglobal/registry.yaml\nprojects/redundancy-compound-sparsity-2/artifacts/literature_map.yaml\nprojects/redundancy-compound-sparsity-2/decisions.yaml\nprojects/redundancy-compound-sparsity-2/registry.yaml\nprojects/redundancy-compound-sparsity-2/artifacts/manifest.yaml\nconfig/projects/redundancy-compound-sparsity-2.yaml\nprojects/turn-hier-kv-compress/decisions.yaml\nconfig/projects/turn-hier-kv-compress.yaml\nprojects/turn-hier-kv-compress/registry.yaml\nidea_generator/ideas.yaml\nconfig/secrets/phase-gated-compound-sparse/manifest.yaml\nconfig/projects/phase-gated-compound-sparse.yaml\nprojects/phase-gated-compound-sparse/literature_map.yaml\nconfig/resources.yaml\nprojects/phase-gated-compound-sparse/writing_plan.yaml\nglobal/approvals.yaml\nprojects/phase-gated-compound-sparse/decisions.yaml\nprojects/phase-gated-compound-sparse/experiment_plan.yaml\nprojects/phase-gated-compound-sparse/dream_registry.yaml\nprojects/phase-gated-compound-sparse/artifacts/manifest.yaml\nprojects/phase-gated-compound-sparse/paper_provenance.yaml\nprojects/phase-gated-compound-sparse/registry.yaml\nconfig/crons.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b772fa36-113c-4edb-88f2-38f1658efcdd",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "a9c20087-f73f-450f-be88-3b5bd500df2d",
+            "sourceToolAssistantUUID": "b772fa36-113c-4edb-88f2-38f1658efcdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T05:51:53.934Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LawMXks98TSMAfmLCWw1cY",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9c20087-f73f-450f-be88-3b5bd500df2d",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a3c03318-99a4-4872-b915-ce06eb31bcf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:51:53.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LawMXks98TSMAfmLCWw1cY",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3c03318-99a4-4872-b915-ce06eb31bcf5",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "1b8d02df-7f75-4987-836e-51a969a31911",
+            "sourceToolAssistantUUID": "a3c03318-99a4-4872-b915-ce06eb31bcf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T05:51:54.065Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017oduVDhQY2ReWHQwUEbuVb",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.txt",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b8d02df-7f75-4987-836e-51a969a31911",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUAPqAukA5huC9b3pZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5d90507c-96d4-4c01-97a0-0a2e8ef193e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fbz3UhLPsJkDt86939wspg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16676,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 407,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16676
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 407,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16676,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T05:51:54.102Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017oduVDhQY2ReWHQwUEbuVb",
+              "type": "tool_result",
+              "content": "projects/redundancy-compound-sparsity-2/artifacts/sanity_kv_eviction/data/sanity_check_results.txt\nprojects/redundancy-compound-sparsity-2/artifacts/_project/chart/a1_ema_perturbation_corr_ref.txt\nprojects/redundancy-compound-sparsity-2/artifacts/_project/chart/a1_perturbation_diff_ref.txt\nprojects/redundancy-compound-sparsity-2/artifacts/_project/chart/a1_spatial_decoupling_ref.txt\nprojects/redundancy-compound-sparsity-2/artifacts/analysis_decay_curve/chart/analysis_decay_curve_location.txt\nprojects/redundancy-compound-sparsity-2/artifacts/analysis_decay_curve/chart/analysis_centroid_convergence_location.txt\nprojects/redundancy-compound-sparsity-2/artifacts/analysis_decay_curve/data/analysis_decay_curve_results_location.txt\nprojects/redundancy-compound-sparsity-2/artifacts/analysis_heatmap/chart/ema_heatmap_locations.txt\nprojects/redundancy-compound-sparsity-2/artifacts/_project/data/ema_heatmap_reasoning_artifacts.txt"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d90507c-96d4-4c01-97a0-0a2e8ef193e1",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "9859567e-de25-46ff-b8c8-f0cb9c72f481",
+            "sourceToolAssistantUUID": "5d90507c-96d4-4c01-97a0-0a2e8ef193e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T05:51:55.858Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found multiple experiment_plan files. Now let me search for files containing \"planned experiments\" or \"experiment plan\" in their content, and then read all the experiment_plan files I found."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9859567e-de25-46ff-b8c8-f0cb9c72f481",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d172a3eb-5752-4bea-b042-9769a10902b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4929,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:51:56.761Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LmLt6fiDvrK9zwiN971tbQ",
+              "name": "Grep",
+              "input": {
+                "pattern": "planned\\s+experiments|experiment\\s+plan",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d172a3eb-5752-4bea-b042-9769a10902b4",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9114646a-a8d7-47c7-ae02-df6decdefbc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4929,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T05:51:57.157Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LViK856aitRyDPEso2MafN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9114646a-a8d7-47c7-ae02-df6decdefbc4",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "02553536-bf2e-4731-b139-5be55d02ffcb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4929,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T05:51:57.171Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LViK856aitRyDPEso2MafN",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — Confound Resolution Phase\n2\t# Last updated: 2026-05-12 (D005: MLA misidentification, reasoning vs instruction confound)\n3\t# Target: EMNLP 2026 ARR (DDL: 2026-05-25)\n4\t# NOTE: D004 MLA narrative SUSPENDED — DeepSeek-R1-Distill-Qwen-7B is GQA not MLA\n5\t\n6\texperiments:\n7\t\n8\t  # ============================================================\n9\t  # COMPLETED: MVP + cross-model validation\n10\t  # ============================================================\n11\t\n12\t  - plan_id: mvp-001\n13\t    registry_id: mvp-001\n14\t    name: \"MVP: adjacent-sim baseline (invalid EMA)\"\n15\t    status: DONE\n16\t    result: \"r=-0.186, Δpert=-1.5%, FAIL (wrong impl)\"\n17\t\n18\t  - plan_id: mvp-001b\n19\t    registry_id: mvp-001b\n20\t    name: \"MVP: DeepSeek-R1-7B anchor EMA (easy problems)\"\n21\t    claim: \"Claim 1 (MLA side)\"\n22\t    status: DONE\n23\t    result: \"r=+0.147, Δpert=-2.2%, FAIL on MLA\"\n24\t\n25\t  - plan_id: mvp-001c\n26\t    registry_id: mvp-001c\n27\t    name: \"MVP: DeepSeek-R1-7B anchor EMA (AIME hard problems)\"\n28\t    claim: \"Claim 1 (MLA side, difficulty confound)\"\n29\t    status: DONE\n30\t    result: \"r=+0.159, Δpert=-1.2%, FAIL on MLA — difficulty doesn't matter\"\n31\t\n32\t  - plan_id: neg-cross-model-001\n33\t    registry_id: neg-cross-model-001\n34\t    name: \"Llama-3.1-8B anchor EMA validation\"\n35\t    claim: \"Claim 1 (GQA side — POSITIVE)\"\n36\t    status: DONE\n37\t    result: \"r=+0.471, Δpert=+6.6%, hypothesis HOLDS on GQA\"\n38\t\n39\t  # ============================================================\n40\t  # P0-URGENT: Confound resolution (D005)\n41\t  # ============================================================\n42\t\n43\t  - plan_id: confound-ctrl-001\n44\t    name: \"Confound control: DeepSeek-R1-Distill-Llama-8B (same arch + reasoning)\"\n45\t    claim: \"Confound resolution: architecture vs reasoning training\"\n46\t    priority: P0-URGENT\n47\t    description: |\n48\t      Perfect control: same Llama GQA architecture as Llama-3.1-8B +\n49\t      same reasoning distillation as DeepSeek-R1-Distill-Qwen-7B.\n50\t      If r~0.15 → reasoning training is confound, D004 fails.\n51\t      If r~0.47 → architecture (KV head count / group ratio) matters.\n52\t      Run identical protocol to neg-cross-model-001 (20 problems, 55% sparsity, γ=0.99).\n53\t    model: \"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n54\t    gpu_hours: 2\n55\t    depends_on: [neg-cross-model-001]\n56\t    status: PLANNED\n57\t\n58\t  - plan_id: confound-ctrl-002\n59\t    name: \"Confound control: Qwen2-7B-Instruct (same arch + instruction)\"\n60\t    claim: \"Confound resolution: architecture vs reasoning training\"\n61\t    priority: P0\n62\t    description: |\n63\t      Second control: same Qwen2 GQA architecture as DeepSeek-R1-Distill-Qwen-7B +\n64\t      instruction training. If r~0.47 → Qwen2 arch is fine, reasoning is confound.\n65\t    model: \"Qwen/Qwen2-7B-Instruct\"\n66\t    gpu_hours: 2\n67\t    depends_on: [mvp-001b]\n68\t    status: PLANNED\n69\t\n70\t  # ============================================================\n71\t  # P0: Core experiments (narrative TBD after confound resolution)\n72\t  # ============================================================\n73\t\n74\t  - plan_id: llama-sparsity-sweep\n75\t    name: \"Llama sparsity level sweep: push Δpert higher\"\n76\t    claim: \"Claim 1, 3 (strengthen GQA positive evidence)\"\n77\t    priority: P0\n78\t    description: |\n79\t      Test higher sparsity on Llama: {50%, 55%, 60%, 65%, 70%}.\n80\t      Current Δpert=+6.6% at 55%. Higher sparsity may widen the gap\n81\t      between redundant and novel tokens.\n82\t    model: \"meta-llama/Llama-3.1-8B-Instruct\"\n83\t    gpu_hours: 4\n84\t    depends_on: [neg-cross-model-001]\n85\t    status: PLANNED\n86\t\n87\t  - plan_id: llama-layer-analysis\n88\t    name: \"Llama per-layer r + Δpert decomposition\"\n89\t    claim: \"Claim 3 (per-layer architecture comparison)\"\n90\t    priority: P0\n91\t    description: |\n92\t      Per-layer analysis on Llama data (from neg-cross-model-001).\n93\t      Compare with DeepSeek per-layer profile.\n94\t      Key question: do all layers show positive signal on GQA, or concentrated?\n95\t    gpu_hours: 1\n96\t    depends_on: [neg-cross-model-001]\n97\t    status: PLANNED\n98\t\n99\t  - plan_id: kv-bench-001\n100\t    registry_id: kv-bench-001\n101\t    name: \"KV eviction benchmark: CARC-KV vs baselines\"\n102\t    claim: \"Claim 4 (O(1) KV eviction)\"\n103\t    priority: P0\n104\t    description: |\n105\t      CARC-KV (O(1)) vs H2O (O(n)) vs SnapKV vs StreamingLLM.\n106\t      KV budgets {30%, 50%, 70%}. Eval: perplexity + accuracy.\n107\t    model: \"deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\"\n108\t    gpu_hours: 20\n109\t    depends_on: []\n110\t    status: PREPARING\n111\t\n112\t  # ============================================================\n113\t  # P1: Strengthen architecture-dependence narrative\n114\t  # ============================================================\n115\t\n116\t  - plan_id: cross-arch-mistral\n117\t    name: \"Mistral-7B validation (2nd GQA model)\"\n118\t    claim: \"Claim 1 (GQA generalization)\"\n119\t    priority: P1\n120\t    description: |\n121\t      Repeat validation on Mistral-7B-Instruct (standard GQA).\n122\t      Confirms GQA positive is not Llama-specific.\n123\t    model: \"mistralai/Mistral-7B-Instruct-v0.3\"\n124\t    gpu_hours: 6\n125\t    depends_on: [neg-cross-model-001]\n126\t    status: PLANNED\n127\t\n128\t  - plan_id: mla-signal-analysis\n129\t    name: \"MLA latent space semantic fidelity analysis\"\n130\t    claim: \"Claim 2 (mechanistic: why MLA breaks signal)\"\n131\t    priority: SUSPENDED\n132\t    description: |\n133\t      SUSPENDED (D005): DeepSeek-R1-Distill-Qwen-7B is NOT MLA.\n134\t      No MLA model available to analyze. Reactivate only if a true MLA\n135\t      model (DeepSeek-V2/V3) becomes testable.\n136\t    gpu_hours: 4\n137\t    depends_on: [mvp-001b, neg-cross-model-001]\n138\t    status: SUSPENDED\n139\t\n140\t  - plan_id: kv-eviction-wallclock\n141\t    name: \"Wall-clock: O(1) vs O(n) eviction cost\"\n142\t    claim: \"Claim 4\"\n143\t    priority: P1\n144\t    description: |\n145\t      Eviction overhead timing at L={4K, 8K, 16K, 32K}.\n146\t      CARC-KV O(1) vs H2O O(n).\n147\t    gpu_hours: 10\n148\t    depends_on: [kv-bench-001]\n149\t    status: PLANNED\n150\t\n151\t  - plan_id: neg-per-head\n152\t    name: \"Per-head KV contribution analysis\"\n153\t    claim: \"Claim 2, 3 (is it just head count 4 vs 8?)\"\n154\t    priority: P1\n155\t    description: |\n156\t      Normalize per-head signal contribution.\n157\t      DeepSeek: 4 KV heads, Llama: 8 KV heads.\n158\t      Test: even per-head, does GQA show stronger signal?\n159\t    gpu_hours: 2\n160\t    depends_on: [mvp-001b, neg-cross-model-001]\n161\t    status: PLANNED\n162\t\n163\t  # ============================================================\n164\t  # P2: Extensions\n165\t  # ============================================================\n166\t\n167\t  - plan_id: kv-eviction-ablation\n168\t    name: \"KV eviction: key-only vs key+value anchor\"\n169\t    claim: \"Claim 4\"\n170\t    priority: P2\n171\t    gpu_hours: 5\n172\t    depends_on: [kv-bench-001]\n173\t    status: PLANNED\n174\t\n175\t  - plan_id: llama-downstream\n176\t    name: \"Llama two-tier sparsity downstream accuracy\"\n177\t    claim: \"Claim 1 (practical value of cross-axis on GQA)\"\n178\t    priority: P2\n179\t    description: |\n180\t      Apply CARC two-tier MLP sparsity on Llama: 55% redundant / 40% novel.\n181\t      Compare accuracy vs uniform sparsity on MATH problems.\n182\t    gpu_hours: 6\n183\t    depends_on: [llama-sparsity-sweep]\n184\t    status: PLANNED\n185\t\n186\t# ============================================================\n187\t# Timeline (12-day sprint, 5/12 → 5/25)\n188\t# ============================================================\n189\t# Day 1 (5/12): llama-sparsity-sweep + llama-layer-analysis (CPU)\n190\t# Day 1-3: kv-bench-001 (parallel after sparsity sweep)\n191\t# Day 2-4: cross-arch-mistral (download + run)\n192\t# Day 3-5: mla-signal-analysis + neg-per-head\n193\t# Day 4-7: kv-eviction-wallclock\n194\t# Day 6-12: paper writing (parallel with P2)\n195\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02553536-bf2e-4731-b139-5be55d02ffcb",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "cd996044-1fdf-4beb-987c-8bbac41afa22",
+            "sourceToolAssistantUUID": "02553536-bf2e-4731-b139-5be55d02ffcb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:51:57.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LyiJmqQYYVStgpxpwLdFmA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity-2/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd996044-1fdf-4beb-987c-8bbac41afa22",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0ca00851-2110-4891-99fd-7296b3665fa4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4929,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T05:51:57.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LmLt6fiDvrK9zwiN971tbQ",
+              "type": "tool_result",
+              "content": "Found 13 files\nprojects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260514T054026/logs/phase2_median_attempt0.log\nprojects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260514T054026/logs/phase2_best_attempt0.log\nprojects/phase-gated-compound-sparse/logs/workers/worker_research_paper-writing-prep_20260514T051718.log\nprojects/phase-gated-compound-sparse/logs/workers/worker_research_m1-prep_20260513T190440.log\nprojects/redundancy-compound-sparsity-2/logs/chats/feishu_group_oc_66c5460a32413791b7e928db4154825e_director.jsonl\nprojects/redundancy-compound-sparsity-2/decisions.yaml\nprojects/redundancy-compound-sparsity-2/logs/workers/worker_code_experiment-plan-pathc_20260512T142124.log\nprojects/redundancy-compound-sparsity/logs/chats/archive/feishu_group_oc_b0fb85b2ed7d01d6ae2e95407bbff4c2_reviewer_20260512T025534_209508.jsonl\nprojects/redundancy-compound-sparsity/logs/chats/archive/feishu_group_oc_8df9fedf14d395e7047f130148c75de8_director_20260512T025532_341590.jsonl\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/logs/phase2_worst_attempt0.log\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/logs/phase2_median_attempt0.log\nprojects/redundancy-compound-sparsity/artifacts/dream_reports/dream_20260512T022430/logs/phase2_best_attempt0.log\nprojects/redundancy-compound-sparsity/logs/workers/worker_research_literature-mvp-context_20260511T224539.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9114646a-a8d7-47c7-ae02-df6decdefbc4",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "3516f097-f5eb-4e53-82c9-32a9c6f68087",
+            "sourceToolAssistantUUID": "9114646a-a8d7-47c7-ae02-df6decdefbc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:51:57.379Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LyiJmqQYYVStgpxpwLdFmA",
+              "type": "tool_result",
+              "content": "1\texperiments:\n2\t  # === Phase 0: Sanity Gate ===\n3\t  - id: pathc_sanity_reasoning\n4\t    phase: \"0\"\n5\t    description: \"EMA vs random eviction PPL on reasoning traces (MATH-500, ~30-40K tokens)\"\n6\t    claim: \"EMA eviction signal is meaningful — outperforms random by ≥5% PPL gap\"\n7\t    priority: 0\n8\t    depends_on: []\n9\t    success_criterion: \"EMA vs random PPL gap ≥ 5%\"\n10\t    estimated_hours: 3\n11\t    registry_id: d003_reasoning_traces\n12\t\n13\t  - id: pathc_sanity_wikitext32k\n14\t    phase: \"0\"\n15\t    description: \"EMA vs recency eviction PPL on WikiText-2 32K prefill\"\n16\t    claim: \"EMA eviction outperforms recency-based eviction on long context\"\n17\t    priority: 0\n18\t    depends_on: []\n19\t    success_criterion: \"EMA PPL < recency PPL\"\n20\t    estimated_hours: 3\n21\t    registry_id: d003_wikitext_32k\n22\t\n23\t  # === Phase 0b: Analysis Paper Contingency (if Phase 0 FAIL) ===\n24\t  - id: analysis_heatmap\n25\t    phase: \"0b\"\n26\t    description: \"Per-layer heatmap visualization of spatial decoupling (uses MVP existing data)\"\n27\t    claim: \"EMA captures meaningful per-layer structure\"\n28\t    priority: 2\n29\t    depends_on:\n30\t      - \"pathc_sanity_reasoning FAIL\"\n31\t      - \"pathc_sanity_wikitext32k FAIL\"\n32\t    success_criterion: \"Visual evidence of per-layer EMA score distribution differences\"\n33\t    estimated_hours: 0\n34\t    registry_id: null\n35\t\n36\t  - id: analysis_attn_vs_ema\n37\t    phase: \"0b\"\n38\t    description: \"Attention-score vs EMA signal comparison using kvpress knorm/expected_attn\"\n39\t    claim: \"EMA signal provides complementary information to attention scores — determines claim scope\"\n40\t    priority: 0\n41\t    depends_on:\n42\t      - \"pathc_sanity_reasoning FAIL\"\n43\t      - \"pathc_sanity_wikitext32k FAIL\"\n44\t    success_criterion: \"Quantitative comparison showing EMA vs attention score correlation/divergence\"\n45\t    estimated_hours: 4\n46\t    registry_id: analysis_attn_vs_ema\n47\t\n48\t  - id: analysis_tau_sweep\n49\t    phase: \"0b\"\n50\t    description: \"Tau (EMA decay) sensitivity sweep across gamma values\"\n51\t    claim: \"EMA decay rate has measurable impact on eviction quality\"\n52\t    priority: 1\n53\t    depends_on:\n54\t      - \"pathc_sanity_reasoning FAIL\"\n55\t      - \"pathc_sanity_wikitext32k FAIL\"\n56\t    success_criterion: \"Clear trend in PPL vs gamma curve\"\n57\t    estimated_hours: 2\n58\t    registry_id: analysis_gamma_sweep\n59\t\n60\t  - id: analysis_decay_curve\n61\t    phase: \"0b\"\n62\t    description: \"Information decay curve analysis — how EMA scores evolve over sequence length\"\n63\t    claim: \"EMA scores exhibit characteristic decay patterns for different token types\"\n64\t    priority: 1\n65\t    depends_on:\n66\t      - \"pathc_sanity_reasoning FAIL\"\n67\t      - \"pathc_sanity_wikitext32k FAIL\"\n68\t    success_criterion: \"Distinct decay curves for reasoning vs repetitive tokens\"\n69\t    estimated_hours: 2\n70\t    registry_id: analysis_decay_curve\n71\t\n72\t  - id: analysis_second_model\n73\t    phase: \"0b\"\n74\t    description: \"Qwen2.5-7B validation for generalization\"\n75\t    claim: \"EMA eviction behavior generalizes across model sizes\"\n76\t    priority: 2\n77\t    depends_on:\n78\t      - \"pathc_sanity_reasoning FAIL\"\n79\t      - \"pathc_sanity_wikitext32k FAIL\"\n80\t    success_criterion: \"Similar EMA score distribution patterns on Qwen2.5-7B\"\n81\t    estimated_hours: 8\n82\t    registry_id: null\n83\t\n84\t  # === Phase 1: PPL Budget Sweep ===\n85\t  - id: pathc_ppl_budget30\n86\t    phase: \"1\"\n87\t    description: \"PPL evaluation at 30% KV budget\"\n88\t    claim: \"CARC maintains acceptable PPL at aggressive compression\"\n89\t    priority: 1\n90\t    depends_on: [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"]\n91\t    success_criterion: \"PPL degradation ≤ 10% vs full cache\"\n92\t    estimated_hours: 3\n93\t    registry_id: null\n94\t\n95\t  - id: pathc_ppl_budget50\n96\t    phase: \"1\"\n97\t    description: \"PPL evaluation at 50% KV budget\"\n98\t    claim: \"CARC maintains acceptable PPL at moderate compression\"\n99\t    priority: 1\n100\t    depends_on: [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"]\n101\t    success_criterion: \"PPL degradation ≤ 5% vs full cache\"\n102\t    estimated_hours: 3\n103\t    registry_id: null\n104\t\n105\t  - id: pathc_ppl_budget70\n106\t    phase: \"1\"\n107\t    description: \"PPL evaluation at 70% KV budget\"\n108\t    claim: \"CARC maintains acceptable PPL at light compression\"\n109\t    priority: 1\n110\t    depends_on: [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"]\n111\t    success_criterion: \"PPL degradation ≤ 2% vs full cache\"\n112\t    estimated_hours: 3\n113\t    registry_id: null\n114\t\n115\t  # === Phase 2: Baseline Comparison ===\n116\t  - id: pathc_baseline_h2o\n117\t    phase: \"2\"\n118\t    description: \"H2O baseline comparison via kvpress at matched budgets\"\n119\t    claim: \"CARC outperforms H2O on reasoning-heavy sequences\"\n120\t    priority: 1\n121\t    depends_on: [\"pathc_ppl_budget50\"]\n122\t    success_criterion: \"CARC PPL < H2O PPL at 50% budget\"\n123\t    estimated_hours: 4\n124\t    registry_id: null\n125\t\n126\t  - id: pathc_baseline_rkv\n127\t    phase: \"2\"\n128\t    description: \"R-KV baseline comparison (O(B²) vs O(1) complexity)\"\n129\t    claim: \"CARC achieves comparable PPL to R-KV with O(1) complexity\"\n130\t    priority: 1\n131\t    depends_on: [\"pathc_ppl_budget50\"]\n132\t    success_criterion: \"PPL within 2% of R-KV + throughput advantage\"\n133\t    estimated_hours: 6\n134\t    registry_id: null\n135\t\n136\t  # === Phase 3: Ablation ===\n137\t  - id: pathc_ablation_gamma\n138\t    phase: \"3\"\n139\t    description: \"EMA gamma sensitivity (0.5, 0.7, 0.9, 0.95)\"\n140\t    claim: \"Gamma selection impacts eviction quality\"\n141\t    priority: 2\n142\t    depends_on: [\"pathc_ppl_budget50\"]\n143\t    success_criterion: \"Identified optimal gamma with ≥2% PPL gap vs worst\"\n144\t    estimated_hours: 4\n145\t    registry_id: null\n146\t\n147\t  - id: pathc_ablation_budget\n148\t    phase: \"3\"\n149\t    description: \"Budget ratio sweep (20%-80% in 10% steps)\"\n150\t    claim: \"CARC degrades gracefully across budget range\"\n151\t    priority: 2\n152\t    depends_on: [\"pathc_ppl_budget50\"]\n153\t    success_criterion: \"Monotonic PPL improvement with budget increase\"\n154\t    estimated_hours: 6\n155\t    registry_id: null\n156\t\n157\t  - id: pathc_ablation_grace\n158\t    phase: \"3\"\n159\t    description: \"Grace window size sweep (0, 50, 100, 175, 250, 500)\"\n160\t    claim: \"Grace window protects recent context and improves PPL\"\n161\t    priority: 2\n162\t    depends_on: [\"pathc_ppl_budget50\"]\n163\t    success_criterion: \"Grace window > 0 improves PPL vs no grace\"\n164\t    estimated_hours: 4\n165\t    registry_id: null\n166\t\n167\t  - id: pathc_ablation_perhead\n168\t    phase: \"3\"\n169\t    description: \"Per-head vs concatenated EMA comparison\"\n170\t    claim: \"Per-head EMA captures finer-grained redundancy\"\n171\t    priority: 2\n172\t    depends_on: [\"pathc_ppl_budget50\"]\n173\t    success_criterion: \"Per-head mode matches or beats concatenated\"\n174\t    estimated_hours: 3\n175\t    registry_id: null\n176\t\n177\t  # === Phase 4: Reasoning Eval ===\n178\t  - id: pathc_math500_eval\n179\t    phase: \"4\"\n180\t    description: \"MATH-500 accuracy with CARC eviction at 50% budget\"\n181\t    claim: \"CARC preserves reasoning capability under compression\"\n182\t    priority: 1\n183\t    depends_on: [\"pathc_ppl_budget50\"]\n184\t    success_criterion: \"Accuracy ≥ 90% of full cache baseline\"\n185\t    estimated_hours: 8\n186\t    registry_id: null\n187\t\n188\t  # === Phase 5: Scaling + Throughput ===\n189\t  - id: pathc_scaling_32k\n190\t    phase: \"5\"\n191\t    description: \"32K context length PPL evaluation\"\n192\t    claim: \"CARC scales to long contexts\"\n193\t    priority: 2\n194\t    depends_on: [\"pathc_ppl_budget50\"]\n195\t    success_criterion: \"PPL degradation ≤ 5% at 32K\"\n196\t    estimated_hours: 6\n197\t    registry_id: null\n198\t\n199\t  - id: pathc_scaling_64k\n200\t    phase: \"5\"\n201\t    description: \"64K context length PPL evaluation (depends on model max_pos)\"\n202\t    claim: \"CARC scales to very long contexts\"\n203\t    priority: 3\n204\t    depends_on: [\"pathc_scaling_32k\"]\n205\t    success_criterion: \"PPL degradation ≤ 8% at 64K\"\n206\t    estimated_hours: 10\n207\t    registry_id: null\n208\t\n209\t  - id: pathc_throughput\n210\t    phase: \"5\"\n211\t    description: \"Throughput benchmarking — tokens/sec with vs without eviction\"\n212\t    claim: \"CARC eviction overhead is negligible\"\n213\t    priority: 2\n214\t    depends_on: [\"pathc_ppl_budget50\"]\n215\t    success_criterion: \"Throughput within 5% of full cache\"\n216\t    estimated_hours: 4\n217\t    registry_id: null\n218\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ca00851-2110-4891-99fd-7296b3665fa4",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "a9be1a2f-f2f4-45a4-bf56-425ce866b09a",
+            "sourceToolAssistantUUID": "0ca00851-2110-4891-99fd-7296b3665fa4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T05:51:57.793Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VqpDecoZWkkeWtpzY4NTzT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9be1a2f-f2f4-45a4-bf56-425ce866b09a",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "43e94301-98e7-4409-b1b5-5e1bc94c4664",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4929,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T05:51:57.800Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VqpDecoZWkkeWtpzY4NTzT",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — Phase-Gated Compound Sparsity\n2\t# 最后更新: 2026-05-14\n3\t# 维护者: Director\n4\t#\n5\t# 每个 plan 对应一个 claim（paper_framing.md），标注 priority / depends_on / status\n6\t# registry_id 链接已注册实验；无 registry_id = planned\n7\t\n8\tplans:\n9\t  # ============================================================\n10\t  # C1 + C2: Strategy-dependent, phase-modulated severity\n11\t  # ============================================================\n12\t  - plan_id: plan_001\n13\t    claim: C1, C2\n14\t    title: \"DeepSeek importance bf16 × 4 sparsity\"\n15\t    description: \"bf16 重跑 DeepSeek importance masking (s015/s020/s025/s030)，消除 fp16 NaN 偏差\"\n16\t    priority: P0\n17\t    status: pending\n18\t    depends_on: []\n19\t    registry_ids:\n20\t      - bf16_importance_s015\n21\t      - bf16_importance_s020\n22\t      - bf16_importance_s025\n23\t      - bf16_importance_s030\n24\t    gpu_hours_est: 3\n25\t    notes: \"fp16 版本已完成但有 NaN 问题，需 bf16 重跑获得干净数据\"\n26\t\n27\t  - plan_id: plan_002\n28\t    claim: C1\n29\t    title: \"DeepSeek random bf16 × 4 sparsity\"\n30\t    description: \"bf16 重跑 DeepSeek random masking (s015/s020/s025/s030)，作为 importance 的配对对照\"\n31\t    priority: P0\n32\t    status: planned\n33\t    depends_on: []\n34\t    registry_ids: []\n35\t    gpu_hours_est: 3\n36\t    notes: \"与 plan_001 配对，论文数据必须同一 dtype\"\n37\t\n38\t  # ============================================================\n39\t  # C3: Phase-strategy crossover\n40\t  # ============================================================\n41\t  - plan_id: plan_003\n42\t    claim: C3\n43\t    title: \"Crossover analysis from plan_001 + plan_002\"\n44\t    description: \"从 bf16 importance vs random 数据中提取 per-phase II，验证方向反转\"\n45\t    priority: P0\n46\t    status: planned\n47\t    depends_on: [plan_001, plan_002]\n48\t    registry_ids: []\n49\t    gpu_hours_est: 0\n50\t    notes: \"纯分析任务，不需要额外 GPU。数据从 plan_001/002 派生\"\n51\t\n52\t  # ============================================================\n53\t  # C5: Cross-model generalizability\n54\t  # ============================================================\n55\t  - plan_id: plan_004\n56\t    claim: C5\n57\t    title: \"Qwen importance bf16 × 4 sparsity\"\n58\t    description: \"Qwen2.5-7B-Instruct importance masking bf16 (s015/s020/s025/s030)\"\n59\t    priority: P0\n60\t    status: pending\n61\t    depends_on: []\n62\t    registry_ids:\n63\t      - qwen_importance_s015\n64\t      - qwen_importance_s020\n65\t      - qwen_importance_s025\n66\t      - qwen_importance_s030\n67\t    gpu_hours_est: 3\n68\t    notes: \"cross-model replication 核心实验\"\n69\t\n70\t  - plan_id: plan_005\n71\t    claim: C5\n72\t    title: \"Qwen random bf16 × 4 sparsity\"\n73\t    description: \"Qwen2.5-7B-Instruct random masking bf16 (s015/s020/s025/s030)\"\n74\t    priority: P0\n75\t    status: planned\n76\t    depends_on: []\n77\t    registry_ids: []\n78\t    gpu_hours_est: 3\n79\t    notes: \"Qwen 的配对对照，验证 importance > random 在 Qwen 上也成立\"\n80\t\n81\t  # ============================================================\n82\t  # C4: Entropy-discrimination collapse mechanism\n83\t  # ============================================================\n84\t  - plan_id: plan_006\n85\t    claim: C4\n86\t    title: \"Attention entropy measurement (optional ablation)\"\n87\t    description: \"测量 pruned vs unpruned 的 attention entropy + importance score 分布，直接验证 mechanism\"\n88\t    priority: P2\n89\t    status: planned\n90\t    depends_on: [plan_001]\n91\t    registry_ids: []\n92\t    gpu_hours_est: 2\n93\t    notes: \"RC2 应对实验。仅在时间允许且 reviewer concern 预判需要时执行\"\n94\t\n95\t  # ============================================================\n96\t  # C6: Sub-exponential growth\n97\t  # ============================================================\n98\t  - plan_id: plan_007\n99\t    claim: C6\n100\t    title: \"Growth rate analysis from plan_001\"\n101\t    description: \"从 bf16 importance 4 sparsity 的 gradient 数据分析增长率模式\"\n102\t    priority: P1\n103\t    status: planned\n104\t    depends_on: [plan_001]\n105\t    registry_ids: []\n106\t    gpu_hours_est: 0\n107\t    notes: \"纯分析任务。fp16 数据已确认 sub-exponential (2.24→1.84→1.42)，bf16 需要再验证\"\n108\t\n109\t  # ============================================================\n110\t  # Statistical validation\n111\t  # ============================================================\n112\t  - plan_id: plan_008\n113\t    claim: C1, C2, C3\n114\t    title: \"Per-problem bootstrap CI (bf16 data)\"\n115\t    description: \"对 bf16 重跑数据重新做 B=10000 bootstrap CI\"\n116\t    priority: P0\n117\t    status: planned\n118\t    depends_on: [plan_001, plan_002]\n119\t    registry_ids: []\n120\t    gpu_hours_est: 0.5\n121\t    notes: \"fp16 版本 all p=0.0000，bf16 预计同样显著但必须重做\"\n122\t\n123\t# ============================================================\n124\t# 资源预算\n125\t# ============================================================\n126\tresource_budget:\n127\t  total_gpu_hours_est: 14.5\n128\t  gpu_type: \"RTX 6000 Pro 96GB\"\n129\t  server: westd-22162\n130\t  gpus: [cuda:0, cuda:1, cuda:2, cuda:3]\n131\t  estimated_completion: \"~4h from start (4 GPU parallel)\"\n132\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43e94301-98e7-4409-b1b5-5e1bc94c4664",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "3235e481-9467-413f-94de-8f8c2eb910b5",
+            "sourceToolAssistantUUID": "43e94301-98e7-4409-b1b5-5e1bc94c4664",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:51:57.914Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015PHrCrFGvjm7tCJ4fmsP5a",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity-2/experiment_plan.lock"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3235e481-9467-413f-94de-8f8c2eb910b5",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUMTLrHFyVaS7sik4y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "624bf0db-470c-4274-81f1-e41a6e0080a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KNFZZAYgCueGsTgDAdCjNC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 16676,
+                "output_tokens": 451,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4929
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 451,
+                    "cache_read_input_tokens": 16676,
+                    "cache_creation_input_tokens": 4929,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4929,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T05:51:57.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015PHrCrFGvjm7tCJ4fmsP5a",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "624bf0db-470c-4274-81f1-e41a6e0080a4",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "08af7185-cf37-4491-90b6-38d776d29039",
+            "sourceToolAssistantUUID": "624bf0db-470c-4274-81f1-e41a6e0080a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T05:52:00.175Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found three main experiment_plan files. Let me also check the lock file more carefully and search for any additional files with \"plan\" in their content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08af7185-cf37-4491-90b6-38d776d29039",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUeM6DKQ8otGTdsTj8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3a937375-d359-4312-915a-cce4696a41af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WnLyf4xMQzABUa9FWcb1Yv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23983,
+                "cache_read_input_tokens": 21605,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 23983,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T05:52:00.675Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VbfhTmXjEyFC5MwkWP51Sx",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity-2/experiment_plan.lock"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a937375-d359-4312-915a-cce4696a41af",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUeM6DKQ8otGTdsTj8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5804904d-2df9-4ff4-80b0-5582bd1c0beb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WnLyf4xMQzABUa9FWcb1Yv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23983,
+                "cache_read_input_tokens": 21605,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23983
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 21605,
+                    "cache_creation_input_tokens": 23983,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 23983,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T05:52:00.953Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VbfhTmXjEyFC5MwkWP51Sx",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5804904d-2df9-4ff4-80b0-5582bd1c0beb",
+            "isSidechain": true,
+            "promptId": "42b8cae0-911f-4266-a41a-d5f2c2158511",
+            "agentId": "abf055976e8a6999d",
+            "type": "user",
+            "uuid": "02d31ab5-79f0-42f9-823a-3d1c2cf2dd56",
+            "sourceToolAssistantUUID": "5804904d-2df9-4ff4-80b0-5582bd1c0beb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T05:52:16.332Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The lock file is empty. Now let me compile the full contents of all three experiment_plan files I found:\n\n## Summary of Experiment Plans Found\n\nI found **3 main experiment_plan files** in the directory. Here are their full contents:\n\n### 1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity/experiment_plan.yaml`\n\nThis is an experiment plan for \"Confound Resolution Phase\" targeting EMNLP 2026 (DDL: 2026-05-25). It contains:\n\n**Completed experiments (MVP validation):**\n- mvp-001: Adjacent-sim baseline (FAIL)\n- mvp-001b: DeepSeek-R1-7B anchor EMA on easy problems (FAIL on MLA)\n- mvp-001c: DeepSeek-R1-7B anchor EMA on AIME hard problems (FAIL)\n- neg-cross-model-001: Llama-3.1-8B anchor EMA validation (POSITIVE, r=+0.471)\n\n**P0-URGENT experiments (Confound resolution D005):**\n- confound-ctrl-001: DeepSeek-R1-Distill-Llama-8B control (PLANNED)\n- confound-ctrl-002: Qwen2-7B-Instruct control (PLANNED)\n\n**P0 core experiments:**\n- llama-sparsity-sweep: Test higher sparsity levels on Llama (PLANNED)\n- llama-layer-analysis: Per-layer decomposition (PLANNED)\n- kv-bench-001: KV eviction benchmark CARC-KV vs baselines (PREPARING)\n\n**P1 & P2 experiments:**\n- cross-arch-mistral: Mistral-7B validation (PLANNED)\n- mla-signal-analysis: MLA latent space analysis (SUSPENDED)\n- kv-eviction-wallclock: Wall-clock timing comparison (PLANNED)\n- neg-per-head: Per-head KV contribution (PLANNED)\n- kv-eviction-ablation: Key-only vs key+value anchor (PLANNED)\n- llama-downstream: Two-tier sparsity downstream accuracy (PLANNED)\n\n**Timeline:** 12-day sprint from 5/12 to 5/25\n\n---\n\n### 2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity-2/experiment_plan.yaml`\n\nThis is a detailed plan for \"PathC\" (KV eviction research) with phases organized as follows:\n\n**Phase 0 (Sanity Gate):**\n- pathc_sanity_reasoning: EMA vs random eviction on reasoning traces (3h)\n- pathc_sanity_wikitext32k: EMA vs recency on long context (3h)\n\n**Phase 0b (Analysis contingency if Phase 0 fails):**\n- analysis_heatmap: Per-layer visualization\n- analysis_attn_vs_ema: Attention-score vs EMA comparison\n- analysis_tau_sweep: Tau sensitivity sweep\n- analysis_decay_curve: Information decay curve analysis\n- analysis_second_model: Qwen2.5-7B validation\n\n**Phase 1 (PPL Budget Sweep):**\n- pathc_ppl_budget30/50/70: PPL evaluation at different KV budgets (3h each)\n\n**Phase 2 (Baseline Comparison):**\n- pathc_baseline_h2o: H2O comparison (4h)\n- pathc_baseline_rkv: R-KV comparison (6h)\n\n**Phase 3 (Ablation):**\n- pathc_ablation_gamma: EMA gamma sensitivity (4h)\n- pathc_ablation_budget: Budget ratio sweep (6h)\n- pathc_ablation_grace: Grace window size sweep (4h)\n- pathc_ablation_perhead: Per-head vs concatenated EMA (3h)\n\n**Phase 4 (Reasoning Evaluation):**\n- pathc_math500_eval: MATH-500 accuracy with CARC (8h)\n\n**Phase 5 (Scaling + Throughput):**\n- pathc_scaling_32k: 32K context evaluation (6h)\n- pathc_scaling_64k: 64K context evaluation (10h)\n- pathc_throughput: Throughput benchmarking (4h)\n\n---\n\n### 3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/experiment_plan.yaml`\n\nThis is a plan for \"Phase-Gated Compound Sparsity\" (最后更新: 2026-05-14) organized by claims:\n\n**C1 + C2 (Strategy-dependent, phase-modulated severity):**\n- plan_001: DeepSeek importance bf16 × 4 sparsity (P0, pending, 3h)\n- plan_002: DeepSeek random bf16 × 4 sparsity (P0, planned, 3h)\n- plan_003: Crossover analysis from plan_001 + plan_002 (P0, planned, 0h)\n\n**C5 (Cross-model generalizability):**\n- plan_004: Qwen importance bf16 × 4 sparsity (P0, pending, 3h)\n- plan_005: Qwen random bf16 × 4 sparsity (P0, planned, 3h)\n\n**C4 (Entropy-discrimination collapse mechanism):**\n- plan_006: Attention entropy measurement (P2, planned, 2h)\n\n**C6 (Sub-exponential growth):**\n- plan_007: Growth rate analysis (P1, planned, 0h)\n\n**Statistical validation:**\n- plan_008: Per-problem bootstrap CI (P0, planned, 0.5h)\n\n**Resource budget:** 14.5 GPU hours estimated on RTX 6000 Pro 96GB (westd-22162)\n\n---\n\n### Additional findings:\n\nThere is also an empty lock file at:\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/redundancy-compound-sparsity-2/experiment_plan.lock`\n\nAll three projects contain experiment plans that are actively tracked and managed as part of ongoing ML research initiatives."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02d31ab5-79f0-42f9-823a-3d1c2cf2dd56",
+            "isSidechain": true,
+            "agentId": "abf055976e8a6999d",
+            "requestId": "req_011Cb1wUrYZnSuUhdAwY7ptb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f9137157-3f33-4576-b458-8fd339833d64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11",
+            "sessionId": "38fc074e-6e8b-4c18-9d9b-b6a80f1dc55b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JrveUgmpCX2KgB1YGhw83g",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 145,
+                "cache_read_input_tokens": 45588,
+                "output_tokens": 1549,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 145
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1549,
+                    "cache_read_input_tokens": 45588,
+                    "cache_creation_input_tokens": 145,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 145,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-directory-home-ubuntu-agent-ml-research-idea-gen-0509-11-find-any-file.md"
+}

@@ -1,0 +1,969 @@
+{
+  "schema_version": "1.0",
+  "id": "5f0991c0291151b347c4",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to extract specific experiment data from a large registry JSON file. The file is at: /home/ubuntu/.claude-acc",
+  "task_key": "agent-a25f9195c66584fd7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a25f9195c66584fd7.jsonl",
+    "occurrence": 1,
+    "bytes": 55257,
+    "sha256": "66f1b934c810581a1ed87258b7ca0a4e67725299a8a6b237fc3e9f9f24d9c945"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:49:52.755Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need you to extract specific experiment data from a large registry JSON file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt\n\nThe file format is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to extract ALL fields for experiments whose exp_id starts with \"bf16_\". Specifically these 15 experiments:\n- bf16_importance_s015, bf16_importance_s020, bf16_importance_s025, bf16_importance_s030\n- bf16_ds_rand_s015, bf16_ds_rand_s020, bf16_ds_rand_s025, bf16_ds_rand_s030\n- bf16_qw_imp_s015, bf16_qw_imp_s020, bf16_qw_imp_s025, bf16_qw_imp_s030\n- bf16_qw_rand_s015, bf16_qw_rand_s020, bf16_qw_rand_s025 (skip bf16_qw_rand_s030 if it exists)\n\nFor each experiment, I need:\n- exp_id\n- status\n- conclusion (pass/fail)\n- All metrics (especially: median_high, median_low, median_diff, permutation_p_value, cohens_d, or any similar metric names)\n\nUse jq or python to parse the file. First probe the structure, then extract. Return the results as a clean JSON-like summary with all numeric values preserved exactly. Be thorough - check what metric field names are actually used."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "431ef49c-04e9-4ccc-a105-61624ece5395",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:49:52.760Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "431ef49c-04e9-4ccc-a105-61624ece5395",
+                "isSidechain": true,
+                "agentId": "a25f9195c66584fd7",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "1d936adc-416e-415d-95db-a925f2106e85",
+                "timestamp": "2026-05-14T08:49:52.760Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:49:55.173Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll probe the file structure first, then extract the needed data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d936adc-416e-415d-95db-a925f2106e85",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B3XN5vzXqzunQyCWGN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aa35b9ee-99c8-482c-b9f7-5705b94419cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BuDTXaebWJHFj6iam5KpMY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14420,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14420,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:49:57.009Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FumMhnrHPcDNSf3pS2bAB4",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nprint('Top-level keys:', list(data.keys())[:10])\nprint('Type:', type(data))\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa35b9ee-99c8-482c-b9f7-5705b94419cd",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B3XN5vzXqzunQyCWGN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d6bc2fb0-e7d1-4865-9bc8-c5cd00827f4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BuDTXaebWJHFj6iam5KpMY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14420,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14420
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14420,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14420,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:49:57.259Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FumMhnrHPcDNSf3pS2bAB4",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType: <class 'dict'>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6bc2fb0-e7d1-4865-9bc8-c5cd00827f4d",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "5bdba4c9-0d39-41b1-9b7e-729f6f108f62",
+            "sourceToolAssistantUUID": "d6bc2fb0-e7d1-4865-9bc8-c5cd00827f4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:50:01.886Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019tfAcvbS6cYxwCRCEeRwmP",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\ninner_data = data['data']\nprint('data type:', type(inner_data))\nif isinstance(inner_data, dict):\n    print('data keys:', list(inner_data.keys())[:10])\nelif isinstance(inner_data, list):\n    print('list len:', len(inner_data))\n    print('first item keys:', list(inner_data[0].keys()) if inner_data else 'empty')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bdba4c9-0d39-41b1-9b7e-729f6f108f62",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B3rU3BX88YHxmcVFwP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a856d0fa-633d-44d9-9dda-716492977cf8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01FnVbEXbo1GyQahpNiSQHAQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1115,
+                "cache_read_input_tokens": 14420,
+                "output_tokens": 293,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1115
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 293,
+                    "cache_read_input_tokens": 14420,
+                    "cache_creation_input_tokens": 1115,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1115,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:50:02.004Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019tfAcvbS6cYxwCRCEeRwmP",
+              "type": "tool_result",
+              "content": "data type: <class 'dict'>\ndata keys: ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a856d0fa-633d-44d9-9dda-716492977cf8",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "631bd8d5-3384-4ed0-acef-6e38c3d6eb55",
+            "sourceToolAssistantUUID": "a856d0fa-633d-44d9-9dda-716492977cf8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:50:07.421Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017c6W3KUedv9EaNGuRxQzHH",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\nprint('experiments type:', type(experiments))\nprint('Total experiments:', len(experiments) if isinstance(experiments, list) else 'dict')\n\nif isinstance(experiments, list):\n    # Show first bf16 experiment structure\n    for exp in experiments:\n        if str(exp.get('exp_id','')).startswith('bf16_'):\n            print('Sample bf16 exp keys:', list(exp.keys()))\n            print('Sample bf16 exp:', json.dumps(exp, indent=2))\n            break\nelif isinstance(experiments, dict):\n    bf16_keys = [k for k in experiments.keys() if k.startswith('bf16_')]\n    print('bf16 keys:', bf16_keys[:5])\n    if bf16_keys:\n        sample = experiments[bf16_keys[0]]\n        print('Sample keys:', list(sample.keys()))\n        print('Sample:', json.dumps(sample, indent=2))\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "631bd8d5-3384-4ed0-acef-6e38c3d6eb55",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B4CcVgTGNqyA9DfgmE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fcb75b47-bcff-4689-aa29-536c5703613c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01KYXADPPBo2AeEUwwSMexae",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 333,
+                "cache_read_input_tokens": 15535,
+                "output_tokens": 422,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 333
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 422,
+                    "cache_read_input_tokens": 15535,
+                    "cache_creation_input_tokens": 333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 333,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:50:07.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017c6W3KUedv9EaNGuRxQzHH",
+              "type": "tool_result",
+              "content": "experiments type: <class 'dict'>\nTotal experiments: dict\nbf16 keys: ['bf16_qw_rand_s030', 'bf16_qw_rand_s025', 'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_ds_imp_s030']\nSample keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'server', 'gpu', 'account', 'reproduce', 'spec', 'pid', 'log_path', 'extra', 'conclusion', 'checkpoint_path', 'metrics', 'completed_at']\nSample: {\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T05:39:37.271Z\",\n  \"updated_at\": \"2026-05-14T08:46:56.207Z\",\n  \"hypothesis\": \"D020 bf16 \\u5168\\u91cf\\u91cd\\u8dd1: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model \\u914d\\u5bf9\\u5bf9\\u7167\\u3002\",\n  \"server\": \"westd-22162\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-22162\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-14T08:22:08.391Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\",\n    \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\",\n    \"finished_at\": \"2026-05-14T08:42:12.294Z\",\n    \"training_hours\": 0.33\n  },\n  \"spec\": {\n    \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Qwen2.5-7B-Instruct\",\n    \"seed\": null\n  },\n  \"pid\": \"98285\",\n  \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s030.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T08:42:18.234440+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\",\n  \"metrics\": {\n    \"interaction_index\": {\n      \"high\": {\n        \"mean\": 21.058,\n        \"median\": 3.955,\n        \"ci\": [\n          3.516,\n          5.605\n        ]\n      },\n      \"mid\": {\n        \"mean\": 15.567,\n        \"median\": 6.398,\n        \"ci\": [\n          3.377,\n          10\n        ]\n      },\n      \"low\": {\n        \"mean\": -33.242,\n        \"median\": 8.196,\n        \"ci\": [\n          5.766,\n          10.922\n        ]\n      }\n    },\n    \"median_diff\": 4.241,\n    \"pass_fail\": \"PASS\",\n    \"pass_fail_detail\": \"median monotonic (high<mid<low), high-low CI non-overlapping; adjacent phase CIs overlap\",\n    \"n_problems\": 50,\n    \"sparsity\": 0.3,\n    \"masking\": \"random\",\n    \"model\": \"Qwen2.5-7B-Instruct\"\n  },\n  \"completed_at\": \"2026-05-14T08:46:56.207Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcb75b47-bcff-4689-aa29-536c5703613c",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "7f28d8e1-0123-42ef-8d2e-ab14cfc7c1d9",
+            "sourceToolAssistantUUID": "fcb75b47-bcff-4689-aa29-536c5703613c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:50:12.924Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VEWEdQ7SLGnbEWWjJ5Rgnj",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# List all bf16_ keys\nbf16_keys = sorted([k for k in experiments.keys() if k.startswith('bf16_')])\nprint('All bf16_ experiment IDs:', bf16_keys)\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f28d8e1-0123-42ef-8d2e-ab14cfc7c1d9",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B4cPyptmm9Zb135ZzY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "52936e9a-8e0a-4a55-b5bc-387d8e577acc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Wp1NJ89BptMUDcPWBj7mJR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1620,
+                "cache_read_input_tokens": 15868,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1620
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 15868,
+                    "cache_creation_input_tokens": 1620,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1620,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:50:13.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VEWEdQ7SLGnbEWWjJ5Rgnj",
+              "type": "tool_result",
+              "content": "All bf16_ experiment IDs: ['bf16_ds_imp_s015', 'bf16_ds_imp_s020', 'bf16_ds_imp_s025', 'bf16_ds_imp_s030', 'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030', 'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030', 'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030', 'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025', 'bf16_qw_rand_s030', 'bf16_qwen_importance_s015', 'bf16_qwen_importance_s020', 'bf16_qwen_importance_s025', 'bf16_qwen_importance_s030', 'bf16_random_s015', 'bf16_random_s020', 'bf16_random_s025', 'bf16_random_s030']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52936e9a-8e0a-4a55-b5bc-387d8e577acc",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "1d45af2b-badf-4a04-a581-f154ed9b8992",
+            "sourceToolAssistantUUID": "52936e9a-8e0a-4a55-b5bc-387d8e577acc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T08:50:24.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MutYxHbK9drAfrccyvidBb",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n    'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025',\n]\n\nresults = {}\nfor eid in target_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get('metrics', {})\n        ii = m.get('interaction_index', {})\n        \n        # Extract phase medians\n        high_median = ii.get('high', {}).get('median') if 'high' in ii else None\n        low_median = ii.get('low', {}).get('median') if 'low' in ii else None\n        mid_median = ii.get('mid', {}).get('median') if 'mid' in ii else None\n        \n        results[eid] = {\n            'exp_id': eid,\n            'status': exp.get('status'),\n            'conclusion': exp.get('conclusion'),\n            'pass_fail': m.get('pass_fail'),\n            'pass_fail_detail': m.get('pass_fail_detail'),\n            'sparsity': m.get('sparsity'),\n            'masking': m.get('masking'),\n            'model': m.get('model'),\n            'n_problems': m.get('n_problems'),\n            'median_high': high_median,\n            'median_mid': mid_median,\n            'median_low': low_median,\n            'median_diff': m.get('median_diff'),\n            'permutation_p_value': m.get('permutation_p_value'),\n            'cohens_d': m.get('cohens_d'),\n            'high_ci': ii.get('high', {}).get('ci') if 'high' in ii else None,\n            'mid_ci': ii.get('mid', {}).get('ci') if 'mid' in ii else None,\n            'low_ci': ii.get('low', {}).get('ci') if 'low' in ii else None,\n            'high_mean': ii.get('high', {}).get('mean') if 'high' in ii else None,\n            'mid_mean': ii.get('mid', {}).get('mean') if 'mid' in ii else None,\n            'low_mean': ii.get('low', {}).get('mean') if 'low' in ii else None,\n            # Capture any extra metric keys\n            'extra_metric_keys': [k for k in m.keys() if k not in ('interaction_index','pass_fail','pass_fail_detail','sparsity','masking','model','n_problems','median_diff','permutation_p_value','cohens_d')],\n        }\n    else:\n        results[eid] = {'exp_id': eid, 'status': 'NOT_FOUND'}\n\nprint(json.dumps(results, indent=2))\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d45af2b-badf-4a04-a581-f154ed9b8992",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B51tqthpVvSuBewW21",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1affb12f-4533-4af7-aa09-e132f3ec6a96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01SzRYDmdiCrWF1KSK2MYErK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 605,
+                "cache_read_input_tokens": 17488,
+                "output_tokens": 1054,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 605
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1054,
+                    "cache_read_input_tokens": 17488,
+                    "cache_creation_input_tokens": 605,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 605,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:50:25.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MutYxHbK9drAfrccyvidBb",
+              "type": "tool_result",
+              "content": "{\n  \"bf16_importance_s015\": {\n    \"exp_id\": \"bf16_importance_s015\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": true,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.005752,\n    \"median_mid\": 0.080738,\n    \"median_low\": 0.398291,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.294614,\n      -0.055385\n    ],\n    \"mid_ci\": [\n      0.267993,\n      0.668749\n    ],\n    \"low_ci\": [\n      1.478784,\n      3.667675\n    ],\n    \"high_mean\": -0.150213,\n    \"mid_mean\": 0.447301,\n    \"low_mean\": 2.405837,\n    \"extra_metric_keys\": [\n      \"per_problem_ii_stats\",\n      \"gradient_paired_aggregate_legacy\",\n      \"median_difference\",\n      \"phase_stats\",\n      \"perplexity\"\n    ]\n  },\n  \"bf16_importance_s020\": {\n    \"exp_id\": \"bf16_importance_s020\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.0145,\n    \"median_mid\": 0.2027,\n    \"median_low\": 1.4963,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.1975,\n      0.6647\n    ],\n    \"mid_ci\": [\n      0.7466,\n      1.8962\n    ],\n    \"low_ci\": [\n      4.4671,\n      7.9237\n    ],\n    \"high_mean\": 0.1289,\n    \"mid_mean\": 1.2604,\n    \"low_mean\": 6.0288,\n    \"extra_metric_keys\": [\n      \"per_problem_ii_stats\",\n      \"gradient_paired_aggregate_legacy\",\n      \"median_difference\",\n      \"phase_stats\",\n      \"perplexity\"\n    ]\n  },\n  \"bf16_importance_s025\": {\n    \"exp_id\": \"bf16_importance_s025\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.032363,\n    \"median_mid\": 1.118069,\n    \"median_low\": 7.195958,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      0.083714,\n      0.543977\n    ],\n    \"mid_ci\": [\n      3.455574,\n      8.471799\n    ],\n    \"low_ci\": [\n      19.077082,\n      33.497293\n    ],\n    \"high_mean\": 0.302756,\n    \"mid_mean\": 5.729665,\n    \"low_mean\": 25.852951,\n    \"extra_metric_keys\": [\n      \"per_problem_ii_stats\",\n      \"gradient_paired_aggregate_legacy\",\n      \"median_difference\",\n      \"phase_stats\",\n      \"perplexity\"\n    ]\n  },\n  \"bf16_importance_s030\": {\n    \"exp_id\": \"bf16_importance_s030\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.0534,\n    \"median_mid\": 2.2833,\n    \"median_low\": 14.6395,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      0.2773,\n      0.9198\n    ],\n    \"mid_ci\": [\n      6.865,\n      17.2633\n    ],\n    \"low_ci\": [\n      41.4416,\n      77.0467\n    ],\n    \"high_mean\": 0.5547,\n    \"mid_mean\": 11.3,\n    \"low_mean\": 57.7946,\n    \"extra_metric_keys\": [\n      \"per_problem_ii_stats\",\n      \"gradient_paired_aggregate_legacy\",\n      \"median_difference\",\n      \"phase_stats\",\n      \"perplexity\"\n    ]\n  },\n  \"bf16_ds_rand_s015\": {\n    \"exp_id\": \"bf16_ds_rand_s015\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": false,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.0931,\n    \"median_mid\": 0.0967,\n    \"median_low\": 0.1026,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -1.0091,\n      1.5243\n    ],\n    \"mid_ci\": [\n      -8.4057,\n      0.3697\n    ],\n    \"low_ci\": [\n      -4.9698,\n      0.2741\n    ],\n    \"high_mean\": 0.2208,\n    \"mid_mean\": -3.3604,\n    \"low_mean\": -1.8952,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_ds_rand_s020\": {\n    \"exp_id\": \"bf16_ds_rand_s020\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": false,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.2918,\n    \"median_mid\": 0.3504,\n    \"median_low\": 0.2763,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      0.0796,\n      2.5834\n    ],\n    \"mid_ci\": [\n      -6.0963,\n      1.5735\n    ],\n    \"low_ci\": [\n      -2.6034,\n      1.209\n    ],\n    \"high_mean\": 1.1216,\n    \"mid_mean\": -1.5827,\n    \"low_mean\": -0.4116,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_ds_rand_s025\": {\n    \"exp_id\": \"bf16_ds_rand_s025\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": false,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.8182,\n    \"median_mid\": 0.9324,\n    \"median_low\": 1.3627,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      1.4021,\n      6.2327\n    ],\n    \"mid_ci\": [\n      -10.3663,\n      4.9342\n    ],\n    \"low_ci\": [\n      -4.2068,\n      4.5006\n    ],\n    \"high_mean\": 3.59,\n    \"mid_mean\": -1.8455,\n    \"low_mean\": 0.7212,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_ds_rand_s030\": {\n    \"exp_id\": \"bf16_ds_rand_s030\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": false,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 2.5031,\n    \"median_mid\": 2.5918,\n    \"median_low\": 4.0414,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      4.4087,\n      11.6199\n    ],\n    \"mid_ci\": [\n      2.1767,\n      10.4757\n    ],\n    \"low_ci\": [\n      3.2428,\n      10.6996\n    ],\n    \"high_mean\": 7.5555,\n    \"mid_mean\": 6.2518,\n    \"low_mean\": 6.8323,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_qw_imp_s015\": {\n    \"exp_id\": \"bf16_qw_imp_s015\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.000864,\n    \"median_mid\": -0.010624,\n    \"median_low\": 0.039429,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.117242,\n      -0.052902\n    ],\n    \"mid_ci\": [\n      -0.077076,\n      0.053275\n    ],\n    \"low_ci\": [\n      -0.157736,\n      0.255236\n    ],\n    \"high_mean\": -0.082758,\n    \"mid_mean\": -0.011963,\n    \"low_mean\": 0.034392,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_qw_imp_s020\": {\n    \"exp_id\": \"bf16_qw_imp_s020\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": -0.000116,\n    \"median_mid\": 0.001802,\n    \"median_low\": 0.234863,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.107706,\n      -0.036041\n    ],\n    \"mid_ci\": [\n      -0.142454,\n      0.161648\n    ],\n    \"low_ci\": [\n      0.470641,\n      2.368544\n    ],\n    \"high_mean\": -0.070879,\n    \"mid_mean\": -0.004413,\n    \"low_mean\": 1.342859,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_qw_imp_s025\": {\n    \"exp_id\": \"bf16_qw_imp_s025\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.003422,\n    \"median_mid\": 0.114084,\n    \"median_low\": 1.271154,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.073785,\n      0.011205\n    ],\n    \"mid_ci\": [\n      0.156382,\n      1.126673\n    ],\n    \"low_ci\": [\n      2.533572,\n      6.55223\n    ],\n    \"high_mean\": -0.030717,\n    \"mid_mean\": 0.580245,\n    \"low_mean\": 4.214054,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_qw_imp_s030\": {\n    \"exp_id\": \"bf16_qw_imp_s030\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"PASS\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.009502,\n    \"median_mid\": 0.688477,\n    \"median_low\": 2.952595,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": null,\n    \"high_ci\": [\n      -0.018689,\n      0.153658\n    ],\n    \"mid_ci\": [\n      0.72845,\n      3.451003\n    ],\n    \"low_ci\": [\n      5.068739,\n      11.647498\n    ],\n    \"high_mean\": 0.058026,\n    \"mid_mean\": 1.88021,\n    \"low_mean\": 8.377272,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\"\n    ]\n  },\n  \"bf16_qw_rand_s015\": {\n    \"exp_id\": \"bf16_qw_rand_s015\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.1381,\n    \"median_mid\": 0.2194,\n    \"median_low\": 0.1878,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": -0.0507,\n    \"high_ci\": [\n      1.0986,\n      2.4042\n    ],\n    \"mid_ci\": [\n      0.4473,\n      3.4612\n    ],\n    \"low_ci\": [\n      0.8358,\n      2.06\n    ],\n    \"high_mean\": 1.6652,\n    \"mid_mean\": 1.6975,\n    \"low_mean\": 1.4082,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\",\n      \"permutation_test\",\n      \"bootstrap_ci_95\",\n      \"wilcoxon_p\",\n      \"phase_median_ii\"\n    ]\n  },\n  \"bf16_qw_rand_s020\": {\n    \"exp_id\": \"bf16_qw_rand_s020\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 0.48549,\n    \"median_mid\": 0.76699,\n    \"median_low\": 0.614438,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": 0.247,\n    \"high_ci\": [\n      1.769404,\n      3.501692\n    ],\n    \"mid_ci\": [\n      1.69004,\n      12.276143\n    ],\n    \"low_ci\": [\n      -18.581948,\n      221.709429\n    ],\n    \"high_mean\": 2.58579,\n    \"mid_mean\": 5.69684,\n    \"low_mean\": 65.915714,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\",\n      \"permutation_test\",\n      \"bootstrap_ci_95\",\n      \"wilcoxon_p\",\n      \"phase_median_ii\"\n    ]\n  },\n  \"bf16_qw_rand_s025\": {\n    \"exp_id\": \"bf16_qw_rand_s025\",\n    \"status\": \"DONE\",\n    \"conclusion\": \"success\",\n    \"pass_fail\": {\n      \"ci_overlap\": true,\n      \"sign_reversal\": false,\n      \"overall\": \"FAIL\"\n    },\n    \"pass_fail_detail\": null,\n    \"sparsity\": null,\n    \"masking\": null,\n    \"model\": null,\n    \"n_problems\": 50,\n    \"median_high\": 1.6043,\n    \"median_mid\": 2.2225,\n    \"median_low\": 2.2641,\n    \"median_diff\": null,\n    \"permutation_p_value\": null,\n    \"cohens_d\": 0.1574,\n    \"high_ci\": [\n      7.1074,\n      23.4587\n    ],\n    \"mid_ci\": [\n      3.3729,\n      41.6037\n    ],\n    \"low_ci\": [\n      4.3523,\n      37.2093\n    ],\n    \"high_mean\": 14.4213,\n    \"mid_mean\": 18.6458,\n    \"low_mean\": 17.7277,\n    \"extra_metric_keys\": [\n      \"perplexity\",\n      \"phase_stats\",\n      \"median_difference\",\n      \"permutation_test\",\n      \"bootstrap_ci_95\",\n      \"wilcoxon_p\",\n      \"phase_median_ii\"\n    ]\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1affb12f-4533-4af7-aa09-e132f3ec6a96",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "ff0965e6-80bc-4a8d-bdd4-ca21f9d38cc2",
+            "sourceToolAssistantUUID": "1affb12f-4533-4af7-aa09-e132f3ec6a96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T08:50:34.597Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JmDZo2uFkBRybAHbPVFPKN",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get extra metric details for experiments that have them\ntarget_extra = ['bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025']\nfor eid in target_extra:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    print(f'=== {eid} ===')\n    for k in ['permutation_test', 'bootstrap_ci_95', 'wilcoxon_p', 'phase_median_ii', 'median_difference']:\n        if k in m:\n            print(f'  {k}: {json.dumps(m[k])}')\n    print()\n\n# Also check one importance exp for median_difference\neid = 'bf16_importance_s015'\nexp = experiments[eid]\nm = exp.get('metrics', {})\nprint(f'=== {eid} median_difference ===')\nprint(json.dumps(m.get('median_difference'), indent=2))\nprint('gradient_paired_aggregate_legacy snippet:')\ngpa = m.get('gradient_paired_aggregate_legacy', {})\nif isinstance(gpa, dict):\n    print('  keys:', list(gpa.keys()))\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff0965e6-80bc-4a8d-bdd4-ca21f9d38cc2",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B5uKF9MjqAZpVggJt9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4108c57c-360f-4a28-9e38-caa0b93047b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01B9FeWNeGMPoP8JzEbcQzYn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6567,
+                "cache_read_input_tokens": 18093,
+                "output_tokens": 510,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6567
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 510,
+                    "cache_read_input_tokens": 18093,
+                    "cache_creation_input_tokens": 6567,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6567,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:50:34.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JmDZo2uFkBRybAHbPVFPKN",
+              "type": "tool_result",
+              "content": "=== bf16_qw_rand_s015 ===\n  permutation_test: {\"p_value\": 0.7657, \"B\": 10000}\n  bootstrap_ci_95: [-0.2106, 0.2124]\n  wilcoxon_p: 0.862554\n  phase_median_ii: {\"high\": 0.1381, \"mid\": 0.2194, \"low\": 0.1878}\n  median_difference: -0.029401\n\n=== bf16_qw_rand_s020 ===\n  permutation_test: {\"p_value\": 0.352, \"B\": 10000}\n  bootstrap_ci_95: [-0.139, 0.215]\n  wilcoxon_p: 0.149\n  phase_median_ii: {\"high\": 0.4739, \"mid\": 0.8757, \"low\": 0.4847}\n  median_difference: 0.128948\n\n=== bf16_qw_rand_s025 ===\n  permutation_test: {\"p_value\": 0.1679, \"B\": 10000}\n  bootstrap_ci_95: [-0.3166, 4.1645]\n  wilcoxon_p: 0.010313\n  phase_median_ii: {\"high\": 1.6043, \"mid\": 2.2225, \"low\": 2.2641}\n  median_difference: 1.144074\n\n=== bf16_importance_s015 median_difference ===\n0.3925\ngradient_paired_aggregate_legacy snippet:",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4108c57c-360f-4a28-9e38-caa0b93047b4",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "311861cd-4e42-46cc-a203-618ecd46762c",
+            "sourceToolAssistantUUID": "4108c57c-360f-4a28-9e38-caa0b93047b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T08:50:41.678Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018b1iBGhNJFjWn5MjL91UiH",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get median_difference for all target experiments (ds_rand and importance)\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n]\nfor eid in target_ids:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    md = m.get('median_difference')\n    pt = m.get('permutation_test')\n    wp = m.get('wilcoxon_p')\n    print(f'{eid}: median_difference={md}, permutation_test={pt}, wilcoxon_p={wp}')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "311861cd-4e42-46cc-a203-618ecd46762c",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B6cNYbncWgxsjLBg9q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "84ad2cf5-8506-4bc8-af49-17a8c120e58f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_0131uhhuwGHjRyYhhxy3NtFQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 24660,
+                "output_tokens": 473,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 909
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 473,
+                    "cache_read_input_tokens": 24660,
+                    "cache_creation_input_tokens": 909,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 909,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:50:41.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018b1iBGhNJFjWn5MjL91UiH",
+              "type": "tool_result",
+              "content": "bf16_importance_s015: median_difference=0.3925, permutation_test=None, wilcoxon_p=None\nbf16_importance_s020: median_difference=1.4818, permutation_test=None, wilcoxon_p=None\nbf16_importance_s025: median_difference=7.1636, permutation_test=None, wilcoxon_p=None\nbf16_importance_s030: median_difference=14.5861, permutation_test=None, wilcoxon_p=None\nbf16_ds_rand_s015: median_difference=0.0095, permutation_test=None, wilcoxon_p=None\nbf16_ds_rand_s020: median_difference=-0.0155, permutation_test=None, wilcoxon_p=None\nbf16_ds_rand_s025: median_difference=0.5445, permutation_test=None, wilcoxon_p=None\nbf16_ds_rand_s030: median_difference=1.5383, permutation_test=None, wilcoxon_p=None\nbf16_qw_imp_s015: median_difference=0.038565, permutation_test=None, wilcoxon_p=None\nbf16_qw_imp_s020: median_difference=0.234979, permutation_test=None, wilcoxon_p=None\nbf16_qw_imp_s025: median_difference=1.267732, permutation_test=None, wilcoxon_p=None\nbf16_qw_imp_s030: median_difference=2.943093, permutation_test=None, wilcoxon_p=None",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84ad2cf5-8506-4bc8-af49-17a8c120e58f",
+            "isSidechain": true,
+            "promptId": "25490de5-c373-4957-a97c-b0c392cb1dbd",
+            "agentId": "a25f9195c66584fd7",
+            "type": "user",
+            "uuid": "c67a46c1-f38f-4f0a-97c6-26467c72c6ac",
+            "sourceToolAssistantUUID": "84ad2cf5-8506-4bc8-af49-17a8c120e58f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T08:51:29.593Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extracted data for all 15 requested experiments:\n\n---\n\n## Extracted bf16_ Experiment Data\n\n**Note on metric naming:** Experiments use `median_difference` (not `median_diff`), `pass_fail` is a dict with sub-fields `ci_overlap`, `sign_reversal`, `overall`. The `permutation_p_value` and `cohens_d` fields only appear in `bf16_qw_rand_*` experiments; `permutation_test` contains `{p_value, B}` and `wilcoxon_p` is also present in those.\n\n---\n\n### Group 1: bf16_importance (DeepSeek-R1, importance masking)\n\n| exp_id | status | conclusion | pass_fail.overall | ci_overlap | sign_reversal | median_high | median_mid | median_low | median_difference | n_problems |\n|--------|--------|------------|-------------------|------------|---------------|-------------|------------|------------|-------------------|------------|\n| bf16_importance_s015 | DONE | success | PASS | true | true | 0.005752 | 0.080738 | 0.398291 | 0.3925 | 50 |\n| bf16_importance_s020 | DONE | success | PASS | true | false | 0.0145 | 0.2027 | 1.4963 | 1.4818 | 50 |\n| bf16_importance_s025 | DONE | success | PASS | true | false | 0.032363 | 1.118069 | 7.195958 | 7.1636 | 50 |\n| bf16_importance_s030 | DONE | success | PASS | true | false | 0.0534 | 2.2833 | 14.6395 | 14.5861 | 50 |\n\nPhase means (high/mid/low): s015=(-0.150213, 0.447301, 2.405837), s020=(0.1289, 1.2604, 6.0288), s025=(0.302756, 5.729665, 25.852951), s030=(0.5547, 11.3, 57.7946)\n\nPhase CIs 95%:\n- s015: high=[-0.294614, -0.055385], mid=[0.267993, 0.668749], low=[1.478784, 3.667675]\n- s020: high=[-0.1975, 0.6647], mid=[0.7466, 1.8962], low=[4.4671, 7.9237]\n- s025: high=[0.083714, 0.543977], mid=[3.455574, 8.471799], low=[19.077082, 33.497293]\n- s030: high=[0.2773, 0.9198], mid=[6.865, 17.2633], low=[41.4416, 77.0467]\n\nExtra metric fields present: `per_problem_ii_stats`, `gradient_paired_aggregate_legacy`, `median_difference`, `phase_stats`, `perplexity`\n\n---\n\n### Group 2: bf16_ds_rand (DeepSeek-R1, random masking)\n\n| exp_id | status | conclusion | pass_fail.overall | ci_overlap | sign_reversal | median_high | median_mid | median_low | median_difference | n_problems |\n|--------|--------|------------|-------------------|------------|---------------|-------------|------------|------------|-------------------|------------|\n| bf16_ds_rand_s015 | DONE | success | FAIL | false | false | 0.0931 | 0.0967 | 0.1026 | 0.0095 | 50 |\n| bf16_ds_rand_s020 | DONE | success | FAIL | false | false | 0.2918 | 0.3504 | 0.2763 | -0.0155 | 50 |\n| bf16_ds_rand_s025 | DONE | success | FAIL | false | false | 0.8182 | 0.9324 | 1.3627 | 0.5445 | 50 |\n| bf16_ds_rand_s030 | DONE | success | FAIL | false | false | 2.5031 | 2.5918 | 4.0414 | 1.5383 | 50 |\n\nPhase means (high/mid/low): s015=(0.2208, -3.3604, -1.8952), s020=(1.1216, -1.5827, -0.4116), s025=(3.59, -1.8455, 0.7212), s030=(7.5555, 6.2518, 6.8323)\n\nPhase CIs 95%:\n- s015: high=[-1.0091, 1.5243], mid=[-8.4057, 0.3697], low=[-4.9698, 0.2741]\n- s020: high=[0.0796, 2.5834], mid=[-6.0963, 1.5735], low=[-2.6034, 1.209]\n- s025: high=[1.4021, 6.2327], mid=[-10.3663, 4.9342], low=[-4.2068, 4.5006]\n- s030: high=[4.4087, 11.6199], mid=[2.1767, 10.4757], low=[3.2428, 10.6996]\n\nExtra metric fields present: `perplexity`, `phase_stats`, `median_difference`\n\n---\n\n### Group 3: bf16_qw_imp (Qwen2.5-7B-Instruct, importance masking)\n\n| exp_id | status | conclusion | pass_fail.overall | ci_overlap | sign_reversal | median_high | median_mid | median_low | median_difference | n_problems |\n|--------|--------|------------|-------------------|------------|---------------|-------------|------------|------------|-------------------|------------|\n| bf16_qw_imp_s015 | DONE | success | PASS | true | false | 0.000864 | -0.010624 | 0.039429 | 0.038565 | 50 |\n| bf16_qw_imp_s020 | DONE | success | PASS | true | false | -0.000116 | 0.001802 | 0.234863 | 0.234979 | 50 |\n| bf16_qw_imp_s025 | DONE | success | PASS | true | false | 0.003422 | 0.114084 | 1.271154 | 1.267732 | 50 |\n| bf16_qw_imp_s030 | DONE | success | PASS | true | false | 0.009502 | 0.688477 | 2.952595 | 2.943093 | 50 |\n\nPhase means (high/mid/low): s015=(-0.082758, -0.011963, 0.034392), s020=(-0.070879, -0.004413, 1.342859), s025=(-0.030717, 0.580245, 4.214054), s030=(0.058026, 1.88021, 8.377272)\n\nPhase CIs 95%:\n- s015: high=[-0.117242, -0.052902], mid=[-0.077076, 0.053275], low=[-0.157736, 0.255236]\n- s020: high=[-0.107706, -0.036041], mid=[-0.142454, 0.161648], low=[0.470641, 2.368544]\n- s025: high=[-0.073785, 0.011205], mid=[0.156382, 1.126673], low=[2.533572, 6.55223]\n- s030: high=[-0.018689, 0.153658], mid=[0.72845, 3.451003], low=[5.068739, 11.647498]\n\nExtra metric fields present: `perplexity`, `phase_stats`, `median_difference`\n\n---\n\n### Group 4: bf16_qw_rand (Qwen2.5-7B-Instruct, random masking) — excluding s030\n\n| exp_id | status | conclusion | pass_fail.overall | ci_overlap | sign_reversal | median_high | median_mid | median_low | median_difference | cohens_d | permutation_p | wilcoxon_p | n_problems |\n|--------|--------|------------|-------------------|------------|---------------|-------------|------------|------------|-------------------|----------|---------------|------------|------------|\n| bf16_qw_rand_s015 | DONE | success | FAIL | true | false | 0.1381 | 0.2194 | 0.1878 | -0.029401 | -0.0507 | 0.7657 | 0.862554 | 50 |\n| bf16_qw_rand_s020 | DONE | success | FAIL | true | false | 0.48549 | 0.76699 | 0.614438 | 0.128948 | 0.247 | 0.352 | 0.149 | 50 |\n| bf16_qw_rand_s025 | DONE | success | FAIL | true | false | 1.6043 | 2.2225 | 2.2641 | 1.144074 | 0.1574 | 0.1679 | 0.010313 | 50 |\n\nPhase means (high/mid/low): s015=(1.6652, 1.6975, 1.4082), s020=(2.58579, 5.69684, 65.915714), s025=(14.4213, 18.6458, 17.7277)\n\nPhase CIs 95%:\n- s015: high=[1.0986, 2.4042], mid=[0.4473, 3.4612], low=[0.8358, 2.06]\n- s020: high=[1.769404, 3.501692], mid=[1.69004, 12.276143], low=[-18.581948, 221.709429]\n- s025: high=[7.1074, 23.4587], mid=[3.3729, 41.6037], low=[4.3523, 37.2093]\n\nExtra metric fields present: `perplexity`, `phase_stats`, `median_difference`, `permutation_test`, `bootstrap_ci_95`, `wilcoxon_p`, `phase_median_ii`\n\nBootstrap CI 95% (high-vs-low diff): s015=[-0.2106, 0.2124], s020=[-0.139, 0.215], s025=[-0.3166, 4.1645]\n\n---\n\n**Summary of pass/fail:**\n- bf16_importance_*: all 4 PASS\n- bf16_ds_rand_*: all 4 FAIL\n- bf16_qw_imp_*: all 4 PASS\n- bf16_qw_rand_s015/s020/s025: all 3 FAIL\n\n**Key observation:** `permutation_p_value` and `cohens_d` as top-level metric fields only exist in `bf16_qw_rand_*` experiments. The other groups use `median_difference` (scalar) as the primary diff metric. `bf16_importance_*` additionally has `per_problem_ii_stats` and `gradient_paired_aggregate_legacy` fields not present in other groups."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c67a46c1-f38f-4f0a-97c6-26467c72c6ac",
+            "isSidechain": true,
+            "agentId": "a25f9195c66584fd7",
+            "requestId": "req_011Cb2B78tLeUMZfQ9UPg6JL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d34972cc-8378-41df-ade3-fc0a3c6ab2a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "b5a52f8e-0dc5-481f-828e-b6f3697b314e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_0188pkzMRZDXKyQz4s5QgJdR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 25569,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-extract-specific-experiment-data-from-a-large-registry-json-file.md"
+}

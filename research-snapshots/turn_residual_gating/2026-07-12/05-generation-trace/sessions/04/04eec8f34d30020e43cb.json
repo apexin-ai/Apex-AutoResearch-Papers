@@ -1,0 +1,370 @@
+{
+  "schema_version": "1.0",
+  "id": "04eec8f34d30020e43cb",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the full contents of /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifact",
+  "task_key": "agent-ae2bf8332c55c4fc2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ae2bf8332c55c4fc2.jsonl",
+    "occurrence": 1,
+    "bytes": 31363,
+    "sha256": "e04ff95f51df55d72ff9a03eba0b4b41dea1be44ae0eccf3f00d36e9fea3a86d"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T19:25:11.228Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the full contents of /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/interaction_index.py and report back the entire file content. Also check what other files exist under /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/ — list the directory structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c2cb15b6-4fd5-41e0-828c-ac30e5ea8cf3",
+            "agentId": "ae2bf8332c55c4fc2",
+            "type": "user",
+            "uuid": "3bef6b54-a0ca-4755-aa20-f2aa623f5a10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T19:25:12.261Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the specified file and explore the directory structure for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bef6b54-a0ca-4755-aa20-f2aa623f5a10",
+            "isSidechain": true,
+            "agentId": "ae2bf8332c55c4fc2",
+            "requestId": "req_011Cb17gUwHnm6ECQi6wEGEe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "516213f0-040d-4a27-bf99-6a068575bc7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TE9r6789ieUgDurRDoXU7V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17861,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17861,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T19:25:12.704Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AH7yLqNG24DBhhVqjZRj8v",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/interaction_index.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "516213f0-040d-4a27-bf99-6a068575bc7e",
+            "isSidechain": true,
+            "agentId": "ae2bf8332c55c4fc2",
+            "requestId": "req_011Cb17gUwHnm6ECQi6wEGEe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8c129499-61bd-4206-8806-5d3c0911d263",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TE9r6789ieUgDurRDoXU7V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17861,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17861,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T19:25:12.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AH7yLqNG24DBhhVqjZRj8v",
+              "type": "tool_result",
+              "content": "1\t# Interaction Index (II) calculator for measuring super/sub-additivity\n2\t# of compound sparsity (attention head pruning + KV cache eviction).\n3\t#\n4\t# II = R_both - R_attn - R_kv + 1\n5\t# where R_x = ppl_x / ppl_dense (relative degradation ratio).\n6\t# II > 0 → super-additive degradation (compound sparsity hurts more than sum of parts)\n7\t# II < 0 → sub-additive degradation\n8\t# II = 0 → independent\n9\t\n10\tfrom __future__ import annotations\n11\t\n12\timport math\n13\tfrom dataclasses import dataclass, field\n14\tfrom typing import Dict, List, Optional, Tuple\n15\t\n16\timport numpy as np\n17\t\n18\timport torch\n19\timport torch.nn.functional as F\n20\t\n21\tfrom ..utils.metrics import compute_perplexity\n22\t\n23\ttry:\n24\t    from .phase_segmentation import Phase\n25\texcept ImportError:\n26\t    Phase = None  # will be resolved when phase_segmentation is created\n27\t\n28\t\n29\t# ---------------------------------------------------------------------------\n30\t# Data classes\n31\t# ---------------------------------------------------------------------------\n32\t\n33\t@dataclass\n34\tclass InteractionResult:\n35\t    ii_value: float\n36\t    ppl_dense: float\n37\t    ppl_attn_sparse: float\n38\t    ppl_kv_sparse: float\n39\t    ppl_both_sparse: float\n40\t    r_attn: float          # ppl_attn / ppl_dense\n41\t    r_kv: float            # ppl_kv / ppl_dense\n42\t    r_both: float          # ppl_both / ppl_dense\n43\t    is_super_additive: bool  # II > 0 → compound sparsity degrades more than sum of parts\n44\t    sparsity_level: float = 0.0\n45\t    phase_name: Optional[str] = None\n46\t    num_tokens: int = 0\n47\t\n48\t    def summary(self) -> str:\n49\t        tag = \"super-additive\" if self.is_super_additive else \"sub-additive\"\n50\t        return (\n51\t            f\"II={self.ii_value:+.4f} ({tag})  \"\n52\t            f\"R_attn={self.r_attn:.4f}  R_kv={self.r_kv:.4f}  R_both={self.r_both:.4f}  \"\n53\t            f\"dense={self.ppl_dense:.2f}  attn={self.ppl_attn_sparse:.2f}  \"\n54\t            f\"kv={self.ppl_kv_sparse:.2f}  both={self.ppl_both_sparse:.2f}\"\n55\t        )\n56\t\n57\t\n58\t# ---------------------------------------------------------------------------\n59\t# Hook-based head masking (works with GQA / MHA / MQA)\n60\t# ---------------------------------------------------------------------------\n61\t\n62\tclass _HeadMaskHook:\n63\t    \"\"\"Registers forward hooks that zero out masked attention heads.\"\"\"\n64\t\n65\t    def __init__(self, model: torch.nn.Module, head_mask: torch.Tensor):\n66\t        \"\"\"\n67\t        head_mask: (num_layers, num_heads) float tensor, 1 = active, 0 = masked.\n68\t        \"\"\"\n69\t        self.handles: list = []\n70\t        attn_layers = self._find_attention_layers(model)\n71\t        for layer_idx, attn_module in enumerate(attn_layers):\n72\t            if layer_idx >= head_mask.size(0):\n73\t                break\n74\t            mask = head_mask[layer_idx]  # (num_heads,)\n75\t            handle = attn_module.register_forward_hook(\n76\t                self._make_hook(mask)\n77\t            )\n78\t            self.handles.append(handle)\n79\t\n80\t    @staticmethod\n81\t    def _find_attention_layers(model: torch.nn.Module) -> list:\n82\t        \"\"\"Heuristic: find all self-attention sub-modules by common naming.\"\"\"\n83\t        layers = []\n84\t        for name, module in model.named_modules():\n85\t            # Covers LlamaAttention, Qwen2Attention, MistralAttention, etc.\n86\t            if type(module).__name__.endswith(\"Attention\") and \"self\" not in name.split(\".\")[-1].lower():\n87\t                # Avoid double-counting – only pick the leaf Attention modules\n88\t                children_attn = [\n89\t                    m for m in module.children()\n90\t                    if type(m).__name__.endswith(\"Attention\")\n91\t                ]\n92\t                if not children_attn:\n93\t                    layers.append(module)\n94\t        # Fallback: search by attribute path (model.layers[i].self_attn)\n95\t        if not layers:\n96\t            for name, module in model.named_modules():\n97\t                if name.endswith(\".self_attn\") or name.endswith(\".attention\"):\n98\t                    layers.append(module)\n99\t        return layers\n100\t\n101\t    @staticmethod\n102\t    def _make_hook(mask: torch.Tensor):\n103\t        \"\"\"Return a hook that scales the attention output by head mask.\n104\t\n105\t        For GQA, mask length == num_query_heads.  The hook reshapes the output\n106\t        projection's input by head dim, applies the mask, then collapses back.\n107\t        \"\"\"\n108\t        def hook_fn(module, input, output):\n109\t            # output is typically a tuple; first element is hidden_states\n110\t            if isinstance(output, tuple):\n111\t                hidden = output[0]\n112\t            else:\n113\t                hidden = output\n114\t\n115\t            num_heads = mask.size(0)\n116\t            bsz, seq_len, hidden_dim = hidden.shape\n117\t            head_dim = hidden_dim // num_heads\n118\t\n119\t            reshaped = hidden.view(bsz, seq_len, num_heads, head_dim)\n120\t            head_mask_expanded = mask.to(hidden.device, hidden.dtype).view(1, 1, num_heads, 1)\n121\t            reshaped = reshaped * head_mask_expanded\n122\t            masked_hidden = reshaped.view(bsz, seq_len, hidden_dim)\n123\t\n124\t            if isinstance(output, tuple):\n125\t                return (masked_hidden,) + output[1:]\n126\t            return masked_hidden\n127\t\n128\t        return hook_fn\n129\t\n130\t    def remove(self):\n131\t        for h in self.handles:\n132\t            h.remove()\n133\t        self.handles.clear()\n134\t\n135\t\n136\t# ---------------------------------------------------------------------------\n137\t# KV eviction via attention-mask manipulation\n138\t# ---------------------------------------------------------------------------\n139\t\n140\tdef _build_kv_attention_mask(\n141\t    attention_mask: torch.Tensor,\n142\t    kv_mask: torch.Tensor,\n143\t) -> torch.Tensor:\n144\t    \"\"\"Merge the standard attention mask with per-layer KV eviction mask.\n145\t\n146\t    Args:\n147\t        attention_mask: (batch, seq_len) – 1 = attend, 0 = ignore.\n148\t        kv_mask: (num_layers, seq_len) – 1 = keep, 0 = evict.\n149\t\n150\t    Returns:\n151\t        (num_layers, batch, seq_len) mask suitable for broadcasting into\n152\t        the (batch, num_heads, q_len, kv_len) attention score tensor.\n153\t    \"\"\"\n154\t    # Expand attention_mask: (1, batch, seq_len)\n155\t    base = attention_mask.unsqueeze(0).float()  # (1, B, S)\n156\t    kv = kv_mask.unsqueeze(1).float()            # (L, 1, S)\n157\t    combined = base * kv                          # (L, B, S)\n158\t    return combined\n159\t\n160\t\n161\t# ---------------------------------------------------------------------------\n162\t# Main calculator\n163\t# ---------------------------------------------------------------------------\n164\t\n165\tclass InteractionIndexCalculator:\n166\t    def __init__(\n167\t        self,\n168\t        model: torch.nn.Module,\n169\t        tokenizer,\n170\t        device: str = \"cuda\",\n171\t    ):\n172\t        self.model = model\n173\t        self.tokenizer = tokenizer\n174\t        self.device = device\n175\t        self.model.eval()\n176\t\n177\t    # ------------------------------------------------------------------\n178\t    # Forward with a specific sparsity configuration\n179\t    # ------------------------------------------------------------------\n180\t\n181\t    @torch.no_grad()\n182\t    def forward_with_sparse_config(\n183\t        self,\n184\t        input_ids: torch.Tensor,\n185\t        attention_mask: Optional[torch.Tensor] = None,\n186\t        attn_head_mask: Optional[torch.Tensor] = None,\n187\t        kv_mask: Optional[torch.Tensor] = None,\n188\t        phase_token_indices: Optional[List[int]] = None,\n189\t    ) -> float:\n190\t        \"\"\"Run a forward pass under a given sparsity config, return mean perplexity.\n191\t\n192\t        Args:\n193\t            input_ids: (batch, seq_len).\n194\t            attention_mask: (batch, seq_len), 1=attend. Defaults to all-ones.\n195\t            attn_head_mask: (num_layers, num_heads), 1=active 0=masked.\n196\t            kv_mask: (num_layers, seq_len), 1=keep 0=evict.\n197\t            phase_token_indices: Positions at which to evaluate perplexity.\n198\t        \"\"\"\n199\t        input_ids = input_ids.to(self.device)\n200\t        if attention_mask is None:\n201\t            attention_mask = torch.ones_like(input_ids)\n202\t        attention_mask = attention_mask.to(self.device)\n203\t\n204\t        # --- KV eviction: fold into attention_mask ---\n205\t        model_attention_mask = attention_mask\n206\t        if kv_mask is not None:\n207\t            kv_mask = kv_mask.to(self.device)\n208\t            # For simplicity, apply the *union* (min across layers) to the flat\n209\t            # attention mask. Per-layer masking would need custom model code.\n210\t            flat_kv_mask = kv_mask.min(dim=0).values  # (seq_len,)\n211\t            model_attention_mask = attention_mask * flat_kv_mask.unsqueeze(0)\n212\t\n213\t        # --- Head masking: install hooks ---\n214\t        hook_ctx: Optional[_HeadMaskHook] = None\n215\t        if attn_head_mask is not None:\n216\t            hook_ctx = _HeadMaskHook(self.model, attn_head_mask)\n217\t\n218\t        try:\n219\t            outputs = self.model(\n220\t                input_ids=input_ids,\n221\t                attention_mask=model_attention_mask,\n222\t            )\n223\t        finally:\n224\t            if hook_ctx is not None:\n225\t                hook_ctx.remove()\n226\t\n227\t        logits = outputs.logits[0]   # (seq_len, vocab)\n228\t        labels = input_ids[0]        # (seq_len,)\n229\t\n230\t        return compute_perplexity(logits, labels, token_indices=phase_token_indices)\n231\t\n232\t    # ------------------------------------------------------------------\n233\t    # Mask construction helpers\n234\t    # ------------------------------------------------------------------\n235\t\n236\t    @staticmethod\n237\t    def _select_heads_to_mask(\n238\t        num_layers: int,\n239\t        num_heads: int,\n240\t        ratio: float,\n241\t        importance: Optional[torch.Tensor] = None,\n242\t    ) -> torch.Tensor:\n243\t        \"\"\"Build a (num_layers, num_heads) binary mask, masking `ratio` of heads.\n244\t\n245\t        If importance is given (num_layers, num_heads), mask the least important.\n246\t        Otherwise, mask randomly.\n247\t        \"\"\"\n248\t        mask = torch.ones(num_layers, num_heads)\n249\t        num_to_mask = max(1, int(num_heads * ratio))\n250\t\n251\t        for layer in range(num_layers):\n252\t            if importance is not None:\n253\t                _, indices = importance[layer].topk(num_to_mask, largest=False)\n254\t            else:\n255\t                indices = torch.randperm(num_heads)[:num_to_mask]\n256\t            mask[layer, indices] = 0.0\n257\t\n258\t        return mask\n259\t\n260\t    @staticmethod\n261\t    def _select_kv_to_evict(\n262\t        num_layers: int,\n263\t        seq_len: int,\n264\t        ratio: float,\n265\t        importance: Optional[torch.Tensor] = None,\n266\t    ) -> torch.Tensor:\n267\t        \"\"\"Build a (num_layers, seq_len) binary mask, evicting `ratio` of KV positions.\n268\t\n269\t        If importance is given (num_layers, seq_len), evict the least important.\n270\t        Otherwise, evict randomly (never evict first token / BOS).\n271\t        \"\"\"\n272\t        mask = torch.ones(num_layers, seq_len)\n273\t        num_to_evict = max(1, int(seq_len * ratio))\n274\t        # Never evict position 0 (BOS)\n275\t        num_to_evict = min(num_to_evict, seq_len - 1)\n276\t\n277\t        for layer in range(num_layers):\n278\t            if importance is not None:\n279\t                candidates = importance[layer, 1:]  # skip BOS\n280\t                _, indices = candidates.topk(num_to_evict, largest=False)\n281\t                indices = indices + 1  # shift back\n282\t            else:\n283\t                indices = torch.randperm(seq_len - 1)[:num_to_evict] + 1\n284\t            mask[layer, indices] = 0.0\n285\t\n286\t        return mask\n287\t\n288\t    # ------------------------------------------------------------------\n289\t    # Model config introspection\n290\t    # ------------------------------------------------------------------\n291\t\n292\t    @torch.no_grad()\n293\t    def compute_dense_ce_losses(self, input_ids: torch.Tensor) -> torch.Tensor:\n294\t        \"\"\"Dense forward pass returning per-token CE losses (shifted by 1).\"\"\"\n295\t        input_ids = input_ids.to(self.device)\n296\t        attention_mask = torch.ones_like(input_ids).to(self.device)\n297\t        outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)\n298\t        logits = outputs.logits[0]\n299\t        labels = input_ids[0]\n300\t        shift_logits = logits[:-1]\n301\t        shift_labels = labels[1:]\n302\t        return F.cross_entropy(shift_logits, shift_labels, reduction=\"none\")\n303\t\n304\t    def _get_model_dims(self) -> Tuple[int, int]:\n305\t        \"\"\"Return (num_layers, num_attention_heads) from model config.\"\"\"\n306\t        config = self.model.config\n307\t        num_layers = getattr(config, \"num_hidden_layers\", None)\n308\t        num_heads = getattr(config, \"num_attention_heads\", None)\n309\t        if num_layers is None or num_heads is None:\n310\t            raise ValueError(\n311\t                \"Cannot infer num_hidden_layers / num_attention_heads from model config\"\n312\t            )\n313\t        return num_layers, num_heads\n314\t\n315\t    # ------------------------------------------------------------------\n316\t    # Core: compute Interaction Index\n317\t    # ------------------------------------------------------------------\n318\t\n319\t    def compute_interaction_index(\n320\t        self,\n321\t        input_ids: torch.Tensor,\n322\t        sparsity_level: float = 0.3,\n323\t        phase_token_indices: Optional[List[int]] = None,\n324\t        head_importance: Optional[torch.Tensor] = None,\n325\t        kv_importance: Optional[torch.Tensor] = None,\n326\t    ) -> InteractionResult:\n327\t        \"\"\"Compute the Interaction Index for a single input.\n328\t\n329\t        II = R_both - R_attn - R_kv + 1, where R_x = ppl_x / ppl_dense.\n330\t        II > 0 → super-additive degradation (compound sparsity is worse than\n331\t        the sum of individual degradations).\n332\t        \"\"\"\n333\t        num_layers, num_heads = self._get_model_dims()\n334\t        seq_len = input_ids.size(-1)\n335\t\n336\t        attn_head_mask = self._select_heads_to_mask(\n337\t            num_layers, num_heads, sparsity_level, head_importance\n338\t        )\n339\t        kv_mask = self._select_kv_to_evict(\n340\t            num_layers, seq_len, sparsity_level, kv_importance\n341\t        )\n342\t\n343\t        ppl_dense = self.forward_with_sparse_config(\n344\t            input_ids, phase_token_indices=phase_token_indices,\n345\t        )\n346\t        ppl_attn = self.forward_with_sparse_config(\n347\t            input_ids, attn_head_mask=attn_head_mask,\n348\t            phase_token_indices=phase_token_indices,\n349\t        )\n350\t        ppl_kv = self.forward_with_sparse_config(\n351\t            input_ids, kv_mask=kv_mask,\n352\t            phase_token_indices=phase_token_indices,\n353\t        )\n354\t        ppl_both = self.forward_with_sparse_config(\n355\t            input_ids, attn_head_mask=attn_head_mask, kv_mask=kv_mask,\n356\t            phase_token_indices=phase_token_indices,\n357\t        )\n358\t\n359\t        r_attn = ppl_attn / ppl_dense if ppl_dense > 0 else float(\"nan\")\n360\t        r_kv = ppl_kv / ppl_dense if ppl_dense > 0 else float(\"nan\")\n361\t        r_both = ppl_both / ppl_dense if ppl_dense > 0 else float(\"nan\")\n362\t        ii = r_both - r_attn - r_kv + 1\n363\t\n364\t        num_tokens = len(phase_token_indices) if phase_token_indices else seq_len\n365\t\n366\t        return InteractionResult(\n367\t            ii_value=ii,\n368\t            ppl_dense=ppl_dense,\n369\t            ppl_attn_sparse=ppl_attn,\n370\t            ppl_kv_sparse=ppl_kv,\n371\t            ppl_both_sparse=ppl_both,\n372\t            r_attn=r_attn,\n373\t            r_kv=r_kv,\n374\t            r_both=r_both,\n375\t            is_super_additive=ii > 0,\n376\t            sparsity_level=sparsity_level,\n377\t            num_tokens=num_tokens,\n378\t        )\n379\t\n380\t    # ------------------------------------------------------------------\n381\t    # Per-phase Interaction Index\n382\t    # ------------------------------------------------------------------\n383\t\n384\t    def compute_per_phase_ii(\n385\t        self,\n386\t        input_ids: torch.Tensor,\n387\t        phases: List,\n388\t        sparsity_level: float = 0.3,\n389\t    ) -> Dict[str, InteractionResult]:\n390\t        \"\"\"Compute II separately for each phase (reasoning / execution / transition).\n391\t\n392\t        Args:\n393\t            phases: List of Phase objects with .name and .token_indices attributes.\n394\t            sparsity_level: Fraction of heads to mask / KV positions to evict.\n395\t\n396\t        Returns:\n397\t            Dict mapping phase name to its InteractionResult.\n398\t        \"\"\"\n399\t        results: Dict[str, InteractionResult] = {}\n400\t\n401\t        for phase in phases:\n402\t            result = self.compute_interaction_index(\n403\t                input_ids,\n404\t                sparsity_level=sparsity_level,\n405\t                phase_token_indices=phase.token_indices,\n406\t            )\n407\t            result.phase_name = phase.name\n408\t            results[phase.name] = result\n409\t\n410\t        return results\n411\t\n412\t\n413\t# ---------------------------------------------------------------------------\n414\t# Bootstrap CI for Interaction Index\n415\t# ---------------------------------------------------------------------------\n416\t\n417\tdef bootstrap_interaction_index(\n418\t    ii_samples: List[float],\n419\t    n_resamples: int = 1000,\n420\t    ci_level: float = 0.95,\n421\t    seed: int = 42,\n422\t) -> Tuple[float, float, float]:\n423\t    \"\"\"Bootstrap confidence interval for the mean II.\n424\t\n425\t    Args:\n426\t        ii_samples: Per-problem II values for a given (phase, level).\n427\t        n_resamples: Number of bootstrap resamples.\n428\t        ci_level: Confidence level (default 0.95 → 95% CI).\n429\t        seed: Random seed for reproducibility.\n430\t\n431\t    Returns:\n432\t        (mean, ci_low, ci_high) using percentile method.\n433\t    \"\"\"\n434\t    rng = np.random.RandomState(seed)\n435\t    samples = np.array(ii_samples)\n436\t    n = len(samples)\n437\t    boot_means = np.empty(n_resamples)\n438\t    for i in range(n_resamples):\n439\t        idx = rng.randint(0, n, size=n)\n440\t        boot_means[i] = samples[idx].mean()\n441\t    alpha = 1.0 - ci_level\n442\t    ci_low = float(np.percentile(boot_means, 100 * alpha / 2))\n443\t    ci_high = float(np.percentile(boot_means, 100 * (1 - alpha / 2)))\n444\t    return float(samples.mean()), ci_low, ci_high\n445\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c129499-61bd-4206-8806-5d3c0911d263",
+            "isSidechain": true,
+            "promptId": "c2cb15b6-4fd5-41e0-828c-ac30e5ea8cf3",
+            "agentId": "ae2bf8332c55c4fc2",
+            "type": "user",
+            "uuid": "04568e4a-6b39-42a5-bd77-782943934e5a",
+            "sourceToolAssistantUUID": "8c129499-61bd-4206-8806-5d3c0911d263",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T19:25:12.871Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F7QiKEumnZkoBKavG7JMfD",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs -type f -o -type d | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04568e4a-6b39-42a5-bd77-782943934e5a",
+            "isSidechain": true,
+            "agentId": "ae2bf8332c55c4fc2",
+            "requestId": "req_011Cb17gUwHnm6ECQi6wEGEe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b76dee4-c047-4862-a2e7-979cb1413559",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TE9r6789ieUgDurRDoXU7V",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17861,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17861
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17861,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17861,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T19:25:13.055Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F7QiKEumnZkoBKavG7JMfD",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/__pycache__/__init__.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/__pycache__/__init__.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/__pycache__/interaction_index.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/__pycache__/run_profiling.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/interaction_index.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/phase_segmentation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/profiling/run_profiling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/__pycache__/__init__.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/__pycache__/data_utils.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/__pycache__/metrics.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/pacs/utils/metrics.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b76dee4-c047-4862-a2e7-979cb1413559",
+            "isSidechain": true,
+            "promptId": "c2cb15b6-4fd5-41e0-828c-ac30e5ea8cf3",
+            "agentId": "ae2bf8332c55c4fc2",
+            "type": "user",
+            "uuid": "29b3dbea-1cf9-42fe-b7c9-80bc896d432e",
+            "sourceToolAssistantUUID": "9b76dee4-c047-4862-a2e7-979cb1413559",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T19:25:19.347Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Here's the complete information you requested:\n\n## File Content: interaction_index.py\n\nThe entire file is displayed above (445 lines). It's a module for calculating the **Interaction Index (II)** to measure super/sub-additivity of compound sparsity (attention head pruning + KV cache eviction). Key components include:\n\n- **InteractionResult dataclass**: Stores results of II calculations including perplexity values (dense, attention sparse, KV sparse, both sparse), relative degradation ratios (R_attn, R_kv, R_both), and the computed II value\n- **_HeadMaskHook class**: Implements forward hooks for masking attention heads, with support for different head group attention (GQA/MHA/MQA)\n- **InteractionIndexCalculator class**: Main calculator with methods to:\n  - Run forwards passes with specific sparsity configurations\n  - Construct masks for head masking and KV eviction\n  - Compute the Interaction Index (II = R_both - R_attn - R_kv + 1)\n  - Compute per-phase II for different reasoning/execution phases\n- **bootstrap_interaction_index function**: Computes confidence intervals for II values using bootstrap resampling\n\n## Directory Structure under /artifacts/pacs/\n\n```\n/artifacts/pacs/\n├── __init__.py\n├── profiling/\n│   ├── __init__.py\n│   ├── interaction_index.py          (the file you requested)\n│   ├── phase_segmentation.py\n│   ├── run_profiling.py\n│   └── __pycache__/\n└── utils/\n    ├── __init__.py\n    ├── data_utils.py\n    ├── metrics.py\n    └── __pycache__/\n```\n\nThe structure shows a profiling module with interaction index calculations, phase segmentation utilities, and a profiling runner, all supported by a utils module for data handling and metrics computation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29b3dbea-1cf9-42fe-b7c9-80bc896d432e",
+            "isSidechain": true,
+            "agentId": "ae2bf8332c55c4fc2",
+            "requestId": "req_011Cb17gcjMJhRC94xj7DhMe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "53a4e1eb-ae74-4cb4-8289-1b26fee67950",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+            "sessionId": "c5fb70ab-fa09-40e5-8ad9-1a2031a950a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LjQz2iuLN6faFLtck1vESY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7844,
+                "cache_read_input_tokens": 17861,
+                "output_tokens": 466,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7844
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 466,
+                    "cache_read_input_tokens": 17861,
+                    "cache_creation_input_tokens": 7844,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7844,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-full-contents-of-home-ubuntu-agent-ml-research-idea-gen-0509-11-proje.md"
+}

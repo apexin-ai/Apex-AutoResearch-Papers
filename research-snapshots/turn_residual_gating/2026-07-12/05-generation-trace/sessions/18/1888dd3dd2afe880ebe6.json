@@ -1,0 +1,463 @@
+{
+  "schema_version": "1.0",
+  "id": "1888dd3dd2afe880ebe6",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read the IDEA_BRIEF.md file for the turn_residual_gating project. It should be somewhere under /home/ubuntu/.ag",
+  "task_key": "agent-af1d19e5ea34bb3dc",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-af1d19e5ea34bb3dc.jsonl",
+    "occurrence": 1,
+    "bytes": 86658,
+    "sha256": "fc82ed20650d18b19351d2190fcab9a0384327d831a231576ca3962b6dc82f92"
+  },
+  "statistics": {
+    "messages": 8,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T01:13:02.634Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the IDEA_BRIEF.md file for the turn_residual_gating project. It should be somewhere under /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/. Read the full content and return it to me verbatim."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e4934ee8-c8c7-4814-a6e2-b73108de72d2",
+            "agentId": "af1d19e5ea34bb3dc",
+            "type": "user",
+            "uuid": "b0b9d5f5-571d-426d-934a-8b0e33c505c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T01:13:04.000Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and read the IDEA_BRIEF.md file for the turn_residual_gating project."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0b9d5f5-571d-426d-934a-8b0e33c505c1",
+            "isSidechain": true,
+            "agentId": "af1d19e5ea34bb3dc",
+            "requestId": "req_011CbB3FaigRTfQ7GUHJincj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "befff331-cad0-4d0a-8a8d-cbd0cbcb3177",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RzZVybCu8shUCMvzXTAQqx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38002,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38002,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T01:13:04.361Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PWkCB9MYdt6PXi1fP1pdFh",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/IDEA_BRIEF.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "befff331-cad0-4d0a-8a8d-cbd0cbcb3177",
+            "isSidechain": true,
+            "agentId": "af1d19e5ea34bb3dc",
+            "requestId": "req_011CbB3FaigRTfQ7GUHJincj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "227e35f3-68ff-4f8d-8a36-90cd6c6b4476",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RzZVybCu8shUCMvzXTAQqx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38002,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 38002
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 38002,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 38002,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T01:13:04.389Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PWkCB9MYdt6PXi1fP1pdFh",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/docs/IDEA_BRIEF.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "227e35f3-68ff-4f8d-8a36-90cd6c6b4476",
+            "isSidechain": true,
+            "promptId": "e4934ee8-c8c7-4814-a6e2-b73108de72d2",
+            "agentId": "af1d19e5ea34bb3dc",
+            "type": "user",
+            "uuid": "261c56ef-ac76-4fc4-a3fe-fc7f148089b7",
+            "sourceToolAssistantUUID": "227e35f3-68ff-4f8d-8a36-90cd6c6b4476",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T01:13:05.749Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the full content of the IDEA_BRIEF.md file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "261c56ef-ac76-4fc4-a3fe-fc7f148089b7",
+            "isSidechain": true,
+            "agentId": "af1d19e5ea34bb3dc",
+            "requestId": "req_011CbB3FiAA6C13yF3w1A3bB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2b27c320-7d87-42d3-8c72-91c2092b3dda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016DxxY8a6xKba8spDbE4oeo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1018,
+                "cache_read_input_tokens": 38002,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1018
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 38002,
+                    "cache_creation_input_tokens": 1018,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1018,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T01:13:05.789Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FGcvLMz7yDLpTqArayC9Yo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/docs/IDEA_BRIEF.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b27c320-7d87-42d3-8c72-91c2092b3dda",
+            "isSidechain": true,
+            "agentId": "af1d19e5ea34bb3dc",
+            "requestId": "req_011CbB3FiAA6C13yF3w1A3bB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "702ac9a1-2f5f-48f1-944b-3797eeb99aef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016DxxY8a6xKba8spDbE4oeo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1018,
+                "cache_read_input_tokens": 38002,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1018
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 38002,
+                    "cache_creation_input_tokens": 1018,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1018,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T01:13:06.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FGcvLMz7yDLpTqArayC9Yo",
+              "type": "tool_result",
+              "content": "1\t# Idea Brief: ThreadGate: Goal-Accessibility-Guided Residual Intervention for Multi-Turn Degradation\n2\t\n3\t\n4\t- **Idea ID**: `idea_011`\n5\t- **Created**: 2026-05-18\n6\t- **Approved**: 2026-05-18\n7\t- **Source**: foreign:be-idea-gen-0514-5\n8\t- **Level**: top-tier\n9\t- **Target Venues**: AAAI 2027 (abstract July 21, 2026; full paper July 28, 2026 — confirmed on official AAAI-27 Main Technical Track page, detailed CFP pending) — PRIMARY TARGET, 10 weeks from today, feasible with auto_research timeline, ARR August 2026 cycle (submission August 3, 2026) → EACL 2027 commitment (October 12, 2026) — BACKUP, allows additional experiments if AAAI submission reveals gaps\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission. Track: Dialogue and Interactive Systems / Machine Learning for NLP.\n14\t\n15\tDirection: Training-time architectural fix for multi-turn position bias (\"Lost-in-Middle-Turns\").\n16\tLLMs exhibit a U-shaped attention bias across conversation turns — attending to first and last\n17\tturns while systematically ignoring middle turns — causing a 39% average accuracy drop in\n18\tmulti-turn settings (validated across 15+ models, 200K+ conversations, ICLR 2026 Outstanding\n19\tPaper). A March 2026 theory paper proves this bias is an inherent geometric property of causal\n20\ttransformers with residual connections (Cesaro matrix structure), present at initialization\n21\tbefore any training occurs. The only existing training-based fix (RLAAR: curriculum RL with\n22\tabstention rewards) recovers limited performance (62.6% → 75.1%) by teaching models to\n23\tabstain, but does NOT address the architectural root cause. No method exists that directly\n24\ttargets the geometric origin of the bias with a training-time intervention.\n25\t\n26\tSeed Papers:\n27\t- \"LLMs Get Lost In Multi-Turn Conversation\" (ICLR 2026 Outstanding Paper, arXiv:2505.06120)\n28\t  — establishes the 39% drop across 6 generation tasks, 15 models, 200K conversations\n29\t- \"Lost in the Middle at Birth\" (arXiv:2603.10123) — proves U-shape is a geometric property\n30\t  of causal attention with residual connections (iterated Cesaro matrices), validated on\n31\t  untrained 24-layer Qwen2\n32\t- \"Found in the Middle\" (ACL Findings 2024, arXiv:2406.16008) — inference-time calibration\n33\t  subtracting positional bias from attention weights, recovers only ~15pp\n34\t- RLAAR (arXiv:2510.18731) — curriculum RL + abstention rewards, partial behavioral fix\n35\t- \"When Attention Closes\" (arXiv:2605.12922, May 2026) — latest mechanistic analysis via\n36\t  \"Goal Accessibility Ratio\", diagnostic only, no training fix proposed\n37\t\n38\tKnown Gaps:\n39\t- No training-time method targets the Cesaro matrix geometric bias directly\n40\t- RLAAR teaches abstention (behavioral workaround), doesn't fix the attention pattern itself\n41\t- \"Found in the Middle\" is inference-time only and designed for RAG, not multi-turn generation\n42\t- The problem is multi-causal (verbosity, premature solutions, incorrect assumptions,\n43\t  over-reliance on prior turns), but position bias is the mechanistically proven root cause\n44\t  that enables the others\n45\t- Longer context windows do NOT solve this — the bias is relative (middle of whatever\n46\t  context is present), not absolute position dependent\n47\t\n48\tIn-scope: Training-time interventions that directly address the geometric cause of\n49\tturn-position bias. Specifically: turn-position-aware attention regularization that penalizes\n50\tU-shaped attention patterns, modified positional encodings (RoPE variants) that counteract\n51\tthe Cesaro matrix decay at turn boundaries, turn-shuffling data augmentation with\n52\tmulti-turn consistency losses, attention entropy regularization that enforces more uniform\n53\tturn-level attention distribution, architectural modifications to residual connections that\n54\tbreak the geometric bias at initialization.\n55\t\n56\tNOT in-scope: Inference-time-only methods (already done by \"Found in the Middle\"), pure\n57\tprompting strategies, RAG-specific solutions, single-turn improvements, methods that only\n58\tteach abstention without fixing attention patterns.\n59\t\n60\tContribution type: METHOD ONLY. Must propose a concrete training-time intervention with\n61\ttheoretical motivation grounded in the Cesaro matrix analysis. The method must demonstrably\n62\treduce the 39% multi-turn accuracy gap beyond RLAAR's recovery, AND preserve single-turn\n63\tperformance (no regression on standard benchmarks).\n64\t\n65\tEVAL PROTOCOL:\n66\tTRAIN on multi-turn conversation data (use the \"sharded simulation\" benchmark from the\n67\tICLR 2026 paper, covering 6 task types: summarization, extraction, reasoning, coding,\n68\tmath, instruction following).\n69\tEVALUATE on:\n70\t- Multi-turn accuracy recovery (primary metric: close the 39% gap)\n71\t- Comparison against RLAAR baseline (must exceed its 12.5pp recovery)\n72\t- Comparison against \"Found in the Middle\" inference-time calibration\n73\t- Turn-position attention entropy (measure whether U-shape is reduced)\n74\t- Single-turn preservation (MT-Bench, MMLU — must not regress)\n75\t- Ablation: regularization-only vs encoding-only vs combined\n76\t- Analysis: visualize attention patterns before/after intervention, verify\n77\t  Cesaro matrix eigenvalue structure is modified\n78\t\n79\tBuilding blocks: Open models (Qwen2.5-7B/14B, Llama-3-8B), the ICLR 2026 paper's\n80\tevaluation framework and benchmark, positional encoding research (RoPE, ALiBi, NTK-aware\n81\tscaling), attention regularization techniques, the Cesaro matrix theoretical framework\n82\tfor designing principled interventions.\n83\t\n84\tHARD CONSTRAINTS:\n85\tCompute: ≤200 H100-hours total. Fine-tune from existing checkpoints — no pretraining.\n86\tAttention regularization and positional encoding modifications add minimal overhead.\n87\tEval: Use the established \"sharded simulation\" benchmark (6 tasks × 5 turn depths).\n88\tMust report both multi-turn recovery AND single-turn preservation.\n89\t\n90\tLook for: turn-boundary-aware RoPE modifications that reset or dampen the geometric\n91\tdecay between turns, attention regularization losses derived directly from the Cesaro\n92\tmatrix eigenvalue structure (targeting the specific eigenvalues that cause U-shape),\n93\tconsistency training where the same information is placed at different turn positions\n94\tand the model must produce identical outputs, residual connection gating at turn\n95\tboundaries that prevents the accumulation pattern proven in \"Lost in the Middle at Birth\".\n96\t\n97\tAvoid: pure prompting tricks, inference-time-only solutions (already exists), methods\n98\tthat only work for retrieval/RAG contexts (not multi-turn generation), approaches that\n99\tteach abstention instead of fixing attention (RLAAR already does this), simple data\n100\taugmentation without theoretical grounding, methods requiring full pretraining.\n101\t\n102\tIDEA GENERATION QUALITY CONSTRAINTS (hard rules from historical bad cases):\n103\t\n104\t1. No strawman problems: Any claim about \"current methods assume X\" or \"current methods\n105\t   fail at Y\" MUST cite a specific paper with a specific passage as evidence. Do NOT\n106\t   fabricate mainstream assumptions from pre-training knowledge. If you cannot find paper\n107\t   evidence, the claim is invalid.\n108\t\n109\t2. No observation-only ideas: \"We discover that X happens\" is NOT a contribution.\n110\t   Discovering a problem is not a contribution — solving it is. Output MUST include a\n111\t   complete method, not an analysis/benchmark/empirical study.\n112\t\n113\t3. No mediocre methods: Your method MUST answer:\n114\t   - Core Insight: What non-obvious structural property are you exploiting?\n115\t   - Why Not Obvious: Why isn't this the first thing anyone would try?\n116\t   - Information Exploited: What do you use that a naive baseline doesn't?\n117\t   - Mechanistic Argument: Without experiments, explain from principles why this works.\n118\t   If the method can be summarized in one sentence with zero counter-intuitive content → reject.\n119\t\n120\t4. No rehashing existing work: For every core technical component you propose, search with\n121\t   at least 3 different queries to confirm no directly related work exists. If you find\n122\t   1-2 papers doing similar things, you MUST explicitly state your specific differentiation.\n123\t\n124\t5. No experiment-padding disguise: An idea's value is NOT in how many experiments it can run.\n125\t   Self-check with:\n126\t   - \"Remove experiments test\": Delete all results, keep only method description — does it\n127\t     teach the reader something non-trivial?\n128\t   - \"Baseline fear test\": If a trivial baseline achieves similar results tomorrow, does\n129\t     this paper still have value?\n130\t   - \"Citation test\": In 5 years, will people cite the numbers or the insight?\n131\t   If any test fails → the idea is garbage, start over.\n132\t\n133\t6. The following method patterns are REJECTED (unless extremely strong structural justification):\n134\t   - \"Add an X module\" — Why this specific structure?\n135\t   - \"Train on Y data\" — Is data construction itself the contribution?\n136\t   - \"Transfer Z from domain A to B\" — What is the structural analogy between A and B?\n137\t   - \"Combine P and Q\" — Where is the synergy? Why isn't it just 1+1=2?\n138\t   - \"Use more/bigger/stronger X\" — Scaling is not a method contribution.\n139\t\n140\tCOMPETITION WARNING: \"When Attention Closes\" (May 13, 2026) shows active competition\n141\ton the mechanistic analysis side. Differentiate by focusing on the TRAINING FIX (not\n142\tjust diagnosis) and by connecting directly to the Cesaro matrix theory for principled\n143\tintervention design. Speed matters.\n144\t\n145\tTag: direction=multi_turn_position_bias, contribution_type=method,\n146\tsub_direction=geometric_attention_fix, target_venues=[\"EMNLP 2026\", \"ACL 2026\"].\n147\t\n148\t## Core Problem\n149\t\n150\tMulti-turn LLMs suffer systematic goal-instruction degradation across conversation turns. 'When Attention Closes' (arXiv 2605.12922, May 2026) mechanistically identifies that Goal Accessibility Ratio (GAR) — mean attention from response tokens to task-defining goal tokens — decays 27–48% from turn-1 levels as attention channels close at turn boundaries. The decay is steepest in the first 10 turns (pooled Mann-Kendall τ=−0.75, p=1.5×10⁻¹⁴ across 10 architectures; individual models range τ∈[−0.98, −0.19], all p<0.05) and occurs across all tested architectures. The 'Intent Mismatch' paper (Feb 2026) argues the problem is intent alignment, but GAR evidence shows structural attention closure even with unambiguous instructions. 'Mitigating Conversational Inertia' (arXiv 2602.03664, Feb 2026) identifies a complementary behavioral mechanism (diagonal self-attention causing imitation bias) and proposes Context Preference Learning — but this addresses response-level inertia, not the underlying architectural attention-channel closure to goal tokens. Data-level workarounds exist — Ghost Attention (GAtt, Llama 2) concatenates instructions to every turn during training, and RECAP ('LLMs Get Lost in Multi-Turn Conversation', ICLR 2026) summarizes accumulated context before final generation — but these succeed by keeping goal tokens in the recency window rather than fixing the underlying attention-channel closure. The architectural component is real, mechanistically proven, and currently unfixed at the structural level.\n151\t\n152\t## Opportunity / Why Now\n153\t\n154\tA unique gap exists: the diagnostic (GAR) is published, the mechanistic cause is identified (attention channel closure at turn boundaries), and 'Lost in the Middle at Birth' (arXiv 2603.10123, Mar 2026) provides the theoretical foundation showing this bias is an inherent geometric property of causal decoders with residual connections — yet NO targeted architectural intervention exists. Data-level approaches (GAtt, RECAP) achieve partial recovery (RECAP: +16pp on GPT-4o-mini, from 50.4% to 66.5%) but have a fundamental limitation: they work by keeping instructions in the recency window, so they fail when context budget is exhausted by repeated instructions or when conversation length exceeds the model's effective context. 'Found in the Middle' (ACL 2024) provides static inference-time calibration (~15pp recovery) but doesn't learn or adapt. LLaMA-Adapter (ICLR 2024) demonstrates post-hoc gating of frozen LLMs but uses position-agnostic zero-init gates. LoR2C (arXiv 2503.00572, Mar 2025) adapts residual connections with low-rank matrices but targets gradient vanishing, not positional degradation. 'Regularizing the Entropy Landscape of Self-Attention' (OPT-ML @ NeurIPS 2025) demonstrates learnable per-head entropy regularization with up to 20% perplexity gains, but is position-agnostic and requires training from scratch. The opportunity is a POST-HOC, lightweight, turn-boundary-CONDITIONED intervention that specifically restores GAR in already-deployed models — the first to connect the Cesaro-theoretic understanding of positional attention decay to a learnable fix targeting the exact positions where GAR collapses, complementing (not replacing) data-level workarounds.\n155\t\n156\t## Landscape (SOTA & Limitations)\n157\t\n158\tGhost Attention / GAtt (Llama 2, Meta 2023): data-level augmentation concatenating system instructions to every user turn during training; maintains instruction-following for 20+ turns until context budget exhausted; does NOT fix attention-channel closure — succeeds by keeping instructions within recency window. RECAP ('LLMs Get Lost in Multi-Turn Conversation', ICLR 2026): adds a summarization turn consolidating prior context before final generation; recovers GPT-4o-mini from 50.4% to 66.5% (+16pp); still underperforms single-turn by ~10-21pp; fails when conversation exceeds context length or when degradation is structural rather than information-access. Kimi Attention Residuals (arXiv 2603.15031, Mar 2026): softmax attention over preceding layers at residual connections — position-agnostic, requires pretraining from scratch. MUDDFormer (ICML 2025): dynamic dense connections with input-dependent weights — general cross-layer flow, no turn awareness; trained from scratch at 2.8B scale. ExoFormer (arXiv 2601.08131, Jan 2026): exogenous anchor projections — cross-layer reuse, no position/turn awareness. 'Found in the Middle' (ACL Findings 2024): training-free inference-time attention calibration by subtracting positional bias — ~15pp recovery, static, doesn't adapt. LLaMA-Adapter (ICLR 2024): zero-initialized per-head gating for frozen LLMs — similar post-hoc paradigm but entirely position-agnostic; gate modulates adapted prompt injection uniformly across sequence positions. LoR2C (arXiv 2503.00572, Mar 2025): low-rank residual connection adaptation with ShareLoR2C/MergeLoR2C/InjectLoR2C variants — targets gradient vanishing and parameter efficiency, not positional or turn-aware. PAPEFT (arXiv 2404.01430, 2024): position-aware adapter for reducing positional bias in retrieval tasks — list-position bias in RAG, not multi-turn goal degradation. 'Regularizing the Entropy Landscape of Self-Attention' (OPT-ML @ NeurIPS 2025): learnable per-head entropy regularizer with head-wise strengths and softmax temperatures — up to 20% perplexity improvement on GPT-2; operates as position-agnostic entropy prior, not turn-boundary-conditioned. 'Mitigating Conversational Inertia' (arXiv 2602.03664, Feb 2026): identifies diagonal self-attention (imitation bias) as a complementary mechanism; proposes Context Preference Learning (DPO-based, 0.4% parameters, LoRA rank-16) to calibrate response preferences — addresses behavioral inertia at the response-generation level, complementary to our structural attention-channel fix at the residual-stream level. 'When Attention Closes' (arXiv 2605.12922, May 2026): mechanistic GAR diagnostic — purely diagnostic, no intervention; notes that periodic user-role goal re-injection failed to prevent degradation (Appendix H). 'Intent Mismatch' (arXiv 2602.07338, Feb 2026): argues multi-turn degradation is intent alignment; proposes Mediator-Assistant — complementary to architectural fixes. FLUID (arXiv 2605.04421, May 2026): continuous-time hyperconnections — long-range temporal modeling, not discrete turn events. 'Lost in the Middle at Birth' (arXiv 2603.10123, Mar 2026): proves U-shaped position bias is inherent in causal decoders via Cesaro matrix theory; shows influence density ρ_H(x) = Σ C(H,r)(1-α)^(H-r)α^r · (ln(1/x))^(r-1)/(r-1)! — provides our theoretical foundation for why uniform gating cannot break position-dependent decay. 'A Residual-Aware Theory of Position Bias' (arXiv 2602.16837, Feb 2026): shows residual mixing R(t) = (1-λ_t)I + λ_t A(t), and that decreasing λ_t uniformly induces recency drift but cannot target specific positions. Gated Attention (NeurIPS 2025, Qwen): per-head sigmoid gating after SDPA — input-dependent but not position-conditioned; demonstrates gating can break attention sinks but does not target turn-boundary structure. No existing work provides a learnable, post-hoc, turn-boundary-conditioned architectural intervention for pre-trained models with theoretical grounding for why turn-conditioning is structurally necessary.\n159\t\n160\t## Proposed Approach\n161\t\n162\tInsert lightweight ThreadGate modules at residual connections of FROZEN pre-trained LLMs. Each ThreadGate computes g_l(t) = σ(W_g · [LoRA_down(h_t); τ(t)] + b_g), where τ(t) is a learned turn-boundary distance embedding (tokens since last turn delimiter + turn index) and LoRA_down projects the hidden state to low rank (r=16). The residual becomes x_{l+1} = g_l(t)·x_l + (1-g_l(t))·f_l(x_l). Only gate parameters and a rank-16 LoRA adapter are trained (~0.3% of model parameters); the base model is frozen.\n163\t\n164\t**Theoretical justification for turn-conditioning (why uniform gating provably fails):** From the Cesaro theory ('Lost in the Middle at Birth'), the influence density after H layers with residual mixing α is ρ_H(x) ∝ Σ C(H,r)α^r(1-α)^(H-r)(ln(1/x))^(r-1)/(r-1)!. A uniform gate g modifies the effective mixing: α → g·α. This scales ALL positional influences proportionally — the relative distribution I_A/I_B between any two positions is preserved under uniform gating (a monotone transformation of the Cesaro density). Formally: the residual-aware rollout P = Π_l[(1-λ_l)I + λ_l A_l]; uniform gating (λ_l → g·λ_l ∀l) preserves the eigenvector structure of P while only modifying eigenvalues — the positional bias PATTERN is invariant. To selectively restore attention at turn-boundary positions (specific rows of P), the gate must be position-conditional. Uniform gating is a rank-1 intervention in the space of positional modifications; restoring T distinct turn-boundary positions requires at minimum rank-T control. ThreadGate's turn-distance embedding τ(t) provides exactly this positional conditioning.\n165\t\n166\t**Goal-token identification strategy for GAR loss:** (a) For diagnostic benchmarks ('When Attention Closes' suite): use paper's exact protocol — system prompt tokens specifying persona/rules/format as 𝒢. (b) For general multi-turn training data (ShareGPT, WildChat, UltraChat): define 𝒢 = {system prompt tokens} ∪ {first user-turn instruction tokens}. Rationale: these tokens define the conversational 'thread' that should persist; this aligns with the GAR paper's finding that goal token attention declines. (c) Efficient GAR computation during training: compute GAR only at turn-boundary positions (last token of each assistant response) attending to 𝒢, yielding O(L×H×|𝒢|) per boundary vs prohibitive O(L×H×n²) for full maps. Implemented via forward hooks on attention layers with gradient checkpointing. Estimated overhead: ~25% memory, ~15% wall-clock.\n167\t\n168\t**Training objective:** Standard next-token loss L_NTP on multi-turn conversation data + auxiliary GAR-preservation loss L_GAR = Σ_τ max(0, GAR(τ-1) - GAR(τ) - ε) where ε is a small tolerance (e.g., 0.02) allowing natural minor decline. The combined loss is L = L_NTP + λ·L_GAR with λ annealed from 0→1 over warmup to avoid early instability.\n169\t\n170\t**Fallback if GAR loss conflicts with NTP:** Two-stage decoupled training: (1) Train gate parameters ONLY with L_GAR (attention map supervision, frozen generation) — learns WHERE to intervene. (2) Compose with standard LoRA fine-tuning on multi-turn data — ensures generation quality. This decouples 'structural fix' from 'generation quality.'\n171\t\n172\t**Models:** Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct (Apache 2.0).\n173\t\n174\t**Baselines & Ablations:** (1) ThreadGate (full), (2) Uniform learned gate (same parameters, no turn-position conditioning — equivalent to post-hoc LLaMA-Adapter-style gating; tests theoretical prediction), (3) LoRA-only (same parameter budget, no gate), (4) LoR2C-style residual adaptation (position-agnostic low-rank residual), (5) Found in the Middle inference calibration, (6) PAPEFT-style position adapter, (7) CPL from 'Mitigating Conversational Inertia' (same 0.4% budget, DPO behavioral training), (8) Ghost Attention (GAtt) — data-level instruction concatenation during multi-turn fine-tuning on same training data; tests whether data-level recency tricks match structural intervention at varying conversation lengths. The CRITICAL experiments: (A) Show that baselines (2) and (4) fail to selectively improve GAR at turn boundaries while improving/degrading uniformly across positions — validating the Cesaro-theoretic prediction that uniform gating preserves relative positional distribution. (B) Show that GAtt (baseline 8) succeeds at moderate lengths (≤20 turns within context budget) but degrades when conversation length forces instructions into middle/early positions beyond the recency window, while ThreadGate maintains GAR regardless of conversation length — demonstrating that structural fixes complement data-level workarounds.\n175\t\n176\t**Evaluation:** (a) GAR metric on 'When Attention Closes' diagnostic suite (exact replication), (b) MT-Bench multi-turn subset, (c) MT-Eval (4 interaction types), (d) Synthetic multi-turn needle-in-haystack with controlled turn-boundary distances, (e) RULER long-context to verify no regression, (f) WebArena/AgentBench subset (agentic multi-turn, connecting to 'Conversational Inertia' benchmarks), (g) Scaling analysis: vary conversation length from 5→50 turns to expose GAtt's context-budget failure mode vs ThreadGate's structural robustness.\n177\t\n178\t## Resource Estimate\n179\t\n180\t- **auto_research**: {'claude_api_cost': '$150-250 (est. 1500-2500 turns)', 'estimated_gpu_cost': '$585-$780', 'gpu_hours': '~195h H100 (fixed rank=16 motivated by LoRA convention; 2 model sizes × 8 baselines × ~8h avg fine-tuning + layer subset selection [every-4th vs all layers] + GAR loss λ grid [0.1, 0.5, 1.0] + two-stage vs joint comparison + conversation-length scaling analysis)', 'gpu_utilization': 'High (~85%+); back-to-back runs parallelized across available GPUs', 'risk_note': 'GAR-preservation auxiliary loss may conflict with next-token loss if poorly weighted; auto-agent should monitor both loss curves, flag Pareto-suboptimal runs, and trigger two-stage fallback automatically if joint loss diverges after 500 steps', 'speed_bottleneck': 'Each 7B fine-tuning run ~4h on 4×H100; 14B runs ~8h; total serialized ~65h but parallelizable to <2.5 days. GAR extraction adds ~25% overhead per run. GAtt baseline requires standard multi-turn SFT with instruction concatenation (~4h per model).', 'team': '0 after initial setup (define configs, data pipeline, evaluation harness)', 'timeline': '10-14 days with 4-8 H100s available'}\n181\t- **human_in_loop**: {'claude_api_cost': '$80-150 (est. 600-1000 Opus turns for coding, analysis, writing)', 'estimated_gpu_cost': '$600-$800', 'gpu_hours': '~200h H100 (hyperparameter exploration on gate architecture, GAR loss weighting λ, and two-stage fallback with human checkpoints)', 'gpu_utilization': 'Moderate (~55-65%); agent pipelines with human approval on direction changes', 'risk_note': 'Turn-boundary token identification varies across chat templates (Qwen uses <|im_start|>/<|im_end|>); need careful tokenizer-specific handling. GAR loss λ annealing schedule needs tuning — monitor NTP vs GAR Pareto front.', 'team': '1 researcher, ~20min/day for experiment review', 'timeline': '3-4 weeks'}\n182\t- **manual**: {'estimated_gpu_cost': '$540-$720 at ~$3/H100-hr', 'gpu_hours': '~180h H100 (2 model sizes × 5 baseline configs × ~12h fine-tuning each + evaluation + GAR measurement)', 'gpu_utilization': 'Low (~30-40%); idle between runs during analysis and iteration', 'team': '1 researcher with multi-turn LLM and attention mechanism experience', 'timeline': '6-8 weeks'}\n183\t\n184\t## Key References\n185\t\n186\t- When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction (arXiv 2605.12922, May 2026) — provides GAR diagnostic and mechanistic motivation; GAR = mean attention from response to goal tokens, declines 27-48%; pooled Mann-Kendall τ=−0.75 (p=1.5×10⁻¹⁴)\n187\t- Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias (arXiv 2603.10123, Mar 2026) — Cesaro matrix theory proving U-shaped bias is geometric property of causal decoder; provides our theoretical foundation for uniform gating insufficiency\n188\t- A Residual-Aware Theory of Position Bias in Transformers (arXiv 2602.16837, Feb 2026) — residual-aware rollout R(t) = (1-λ_t)I + λ_t A(t); uniform λ cannot target specific positions\n189\t- LLMs Get Lost In Multi-Turn Conversation (arXiv 2505.06120, ICLR 2026) — 39% multi-turn degradation; RECAP baseline improves GPT-4o-mini from 50.4% to 66.5% but doesn't close gap; demonstrates data-level fixes are insufficient\n190\t- Llama 2: Open Foundation and Fine-Tuned Chat Models (Meta, 2023) — introduces Ghost Attention (GAtt): instruction concatenation during training maintains following for 20+ turns until context exhausted; our data-level baseline\n191\t- Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conversation (arXiv 2602.07338, Feb 2026) — complementary: addresses intent ambiguity, not structural attention closure\n192\t- Mitigating Conversational Inertia in Multi-Turn Agents (arXiv 2602.03664, Feb 2026) — complementary behavioral approach: CPL with DPO (0.4% params) addresses response-level imitation bias; our work targets structural attention-channel closure\n193\t- Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization (ACL Findings 2024) — inference-time baseline; static calibration ~15pp recovery\n194\t- LLaMA-Adapter: Efficient Fine-tuning of Large Language Models with Zero-initialized Attention (ICLR 2024) — post-hoc gating paradigm for frozen LLMs; position-agnostic per-head gates; our ablation baseline for uniform gating\n195\t- LoR2C: Low-Rank Residual Connection Adaptation for Parameter-Efficient Fine-Tuning (arXiv 2503.00572, Mar 2025) — low-rank residual adaptation; position-agnostic, targets gradient vanishing; structural comparison baseline\n196\t- Regularizing the Entropy Landscape of Self-Attention (OPT-ML @ NeurIPS 2025) — learnable per-head entropy regularizer with head-wise strengths; up to 20% perplexity improvement on GPT-2; position-agnostic entropy prior; precedent for learnable per-head attention modification in decoders — our work differs by conditioning on turn-boundary position rather than regularizing entropy uniformly\n197\t- Attention Residuals (arXiv 2603.15031, Kimi Team, Mar 2026) — uniform residual gating; requires pretraining from scratch\n198\t- MUDDFormer: Breaking Residual Bottlenecks via Multiway Dynamic Dense Connections (ICML 2025) — dynamic cross-layer connections; trained from scratch\n199\t- Position-Aware Parameter Efficient Fine-Tuning Approach for Reducing Positional Bias in LLMs (arXiv 2404.01430, 2024) — position-aware adapter; targets list-position bias in RAG\n200\t- Gated Attention for Large Language Models (NeurIPS 2025, Qwen) — per-head sigmoid gating after SDPA; input-dependent but not position-conditioned\n201\t- Attention Projection Mixing with Exogenous Anchors (arXiv 2601.08131, ExoFormer, Jan 2026) — cross-layer anchor reuse\n202\t\n203\t## Reviewer Evaluation\n204\t\n205\t**Scores**:\n206\t  - clarity: **{'rationale': 'Exceptionally well-specified proposal: gating formula, goal-token identification strategy, efficient GAR computation complexity, training objective with fallback, 8 baselines with clear differentiation rationale, evaluation suite covering 7 dimensions, and explicit acknowledgment of the contribution-at-risk scenario. Every reviewer question from 4 rounds is now addressed.', 'score': 5}**/5\n207\t  - feasibility: **{'rationale': '195h H100 within the 200h budget, standard LoRA-style fine-tuning of Apache-2.0 Qwen2.5-7B/14B from checkpoints. The efficient GAR computation strategy (only at turn-boundary positions) is well-designed. Two-stage fallback addresses the loss-conflict risk. Main uncertainty: the 25% memory overhead estimate for GAR extraction may be optimistic at 14B scale.', 'score': 4}**/5\n208\t  - impact: **{'rationale': 'First post-hoc architectural fix for multi-turn degradation deployable on already-serving frozen models (unlike GAtt which requires training data modification). The Cesaro-theoretic proof has independent publishable value. Practical uncertainty remains in the actual recovery margin (15-35% relative is wide), and at typical conversation lengths GAtt may suffice — but the theoretical contribution and the structural-robustness-at-scale argument are compelling.', 'score': 4}**/5\n209\t  - novelty: **{'rationale': \"The formal proof that uniform gating is a rank-1 intervention preserving Cesaro eigenvector structure (while restoring T turn-boundary positions requires rank-T) is a genuine non-obvious insight. The method itself is a principled extension of the theory rather than a standalone surprising contribution, but the combination of formalism + testable prediction (uniform gates provably fail) elevates it above 'obvious extension.'\", 'score': 4}**/5\n210\t\n211\t## Human Review Note\n212\t\n213\t## Agent 审核结果（v4 holistic exit triage）\n214\t\n215\t**Verdict**: FAILED_below_36\n216\t\n217\t**入口三重共识 (X)**: 27%\n218\t**终审自评 (Y)**: 37.0%\n219\t**出口三重共识 (Z)**: 33.0%\n220\t**Z 区间**: [34%, 35%]\n221\t**真实提升 (Z-X)**: +6.0 pp\n222\t**幻觉幅度 (Y-Z)**: +4.0 pp\n223\t**出口一致性**: 高\n224\t**出口三次评估**: [35, 34, 34]\n225\t\n226\t### 优化方案\n227\t【优化方案】\n228\t\n229\t1. **[标题 / 全局叙事]** — 从 method-centric title（\"ThreadGate: ...\"）改为 framework-centric title（\"Structural Multi-Turn Degradation in Frozen Language Models: A Causal Framework, Theoretical Ceiling, and Position-Conditional Intervention\"）。ThreadGate 降格为\"存在性证明\"，框架+因果+理论升为一等贡献 — [命中 Novelty: 论文 robustness 不再依赖方法效果大小；命中 Significance: 框架有独立价值]\n230\t\n231\t2. **[Motivation / 第 1 节]** — 新增\"Operator Gap\"概念替代模糊的\"frozen model constraint\"。精确定义受众为\"有推理时内部访问权但无法重训练的部署者\"，将问题定位从\"方法比较\"提升为\"识别并解决一个结构性部署缺口\" — [命中 Significance: 明确\"who cares\"回答，覆盖产业绝大多数部署场景]\n232\t\n233\t3. **[Research Questions / 核心逻辑链]** — 原 proposal 将\"GAR decline → task degradation\"作为默认前提。改为 RQ1 显式验证因果方向（attention knockout + preservation + controls），新增\"GAR explanation ceiling\"子问题量化框架解释边界 — [命中 Significance + Technical Soundness: 从 assumed correlation 升级为 demonstrated causation with honest boundary]\n234\t\n235\t4. **[Framework / 新增章节]** — 新增 Structural vs. Information-Access 降解分类框架，含：(a) pathological vs. functional GAR decline 判定标准（不是所有 GAR 下降都是病理性的）；(b) 两类机制的交互效应讨论（正反馈环路 + 分别干预仍有效的论证）；(c) 明确的解释范围声明（不声称 exhaustive） — [命中 Novelty: 从 method paper 升级为 analysis+framework paper；命中 Significance: 框架可指导未来研究]\n236\t\n237\t5. **[理论贡献]** — 原 Cesaro 证明（\"uniform scaling preserves ratios\"，接近 trivial）改为两层不可能性结果：(a) 形式化定理覆盖\"无显式 turn-boundary 信号的 gate function\"类（非仅常数 gating）；(b) 机制性解释（RoPE 位置信号深层衰减，引 Haviv et al. 2022）；(c) linear + nonlinear probing 实验验证前提；(d) 跨架构 probing（LLaMA-3-8B）验证泛化性；(e) fallback plan（若非线性 probe 不 decay，退回以实验 ceiling 为证据） — [命中 Novelty: 从 trivial observation 升级为 architecturally-grounded impossibility result]\n238\t\n239\t6. **[方法论述 / ThreadGate 节]** — 新增对\"为什么 residual-level 而非 attention-level\"的理论论证（attention bias 无法放大已衰减信号 vs. residual gating 跨层复合）；新增对\"为什么显式 τ(t) 而非依赖 h_t\"的论证（probing 证明 h_t 中 turn-boundary 信号深层不足） — [命中 Novelty: 封堵 trivial alternative 质疑]\n240\t\n241\t7. **[Related Work / 新增覆盖]** — 原 proposal 仅覆盖 GAtt + uniform adapters。新增：(a) Activation engineering 方向（Turner, Zou）+ 区分论证（fixed-direction 无法满足 layer/position-heterogeneous 需求）；(b) Context extension 方向（YaRN, LongRoPE）+ 区分论证（smooth decay ≠ discontinuous turn-boundary shift + 违反 frozen 约束）；(c) Positional information decay 文献（Haviv et al.） — [命中 Related Work: 预防审稿人 3 个最可能提出的\"和 X 有什么区别\"质疑]\n242\t\n243\t8. **[Baselines / 实验设计]** — 从 3 个 baselines 扩展至 9+1 个：+Vanilla frozen, +RECAP reimplementation（含定量验证步骤）, +System prompt re-injection, +Attention logit bias, +GAR-direction activation addition, +Standard LoRA, +LoRA compute-matched, +Per-layer constant gating — [命中 Technical Soundness: 全面覆盖审稿人能想到的所有替代方案]\n244\t\n245\t9. **[Ablation / 实验设计]** — 从隐式单个 ablation 扩展为完整 6 变体表（w/o τ(t), w/o GAR loss, w/o LoRA, τ(t) encoding variants, α variants），含参数量 + FLOPs 对比表 — [命中 Technical Soundness: 每个组件独立贡献可验证]\n246\t\n247\t10. **[评估协议]** — (a) 新增 conversation-length scaling 实验（5/10/20/40/80 turns 梯度）含 GAR-vs-turns 曲线；(b) 新增 40-80 turn 构建方法（constraint-based incremental evaluation, 2 annotators, κ≥0.7）；(c) 新增 MMLU 单轮性能保持测试；(d) 新增推理效率评估（latency/throughput/memory）；(e) 新增 LongChat 长对话 benchmark；(f) 统计规范化（3 runs, mean±std, significance tests, 样本量明确, power analysis） — [命中 Technical Soundness: 从\"insufficient evaluation\"升级为\"comprehensive, reproducible methodology\"]\n248\t\n249\t11. **[训练细节]** — 原 proposal 无训练数据说明。新增：LMSYS-Chat-1M, ≥5 turns, English, ~180K filtered, distribution statistics; GAR loss 采样计算（每 4 步, top-50% layers）以管控显存 — [命中 Technical Soundness + Reproducibility]\n250\t\n251\t12. **[Limitations]** — 从无到有，明确列出 5 项限制（场景覆盖、解释 ceiling、定理条件强度、架构泛化、OOD 长度），展示学术诚实 — [命中 reviewer 印象: 诚实的 limitation 节减少 adversarial questioning]\n252\t\n253\t【主要风险】\n254\t\n255\t1. **不可能性定理的实际力度**：如果非线性 probing 在深层仍能高精度区分 turn boundary（>85%），定理的核心前提被削弱，理论贡献从\"formally grounded impossibility\"退化为\"linear-complexity gating 的局部 bound + empirical ceiling evidence\"。虽有 fallback plan，但审稿人可能判定理论贡献份量不足以支撑 Contribution #3 的地位。这是论文被降级至 Findings 的最大单一风险。\n256\t\n257\t2. **GAR explanation ceiling 可能偏低**：如果因果验证显示 GAR 恢复仅解释 30-40% 的多轮退化（而非 60%+），整个框架的\"structural degradation 是主要成因\"叙事会被削弱，ThreadGate 的最大可能收益也被 cap 在较低水平。审稿人可能质疑\"是否值得为 30% 的退化建立这么复杂的框架\"。\n258\t\n259\t【实施评估】\n260\t- **计算资源**: ~380 H100-hours 总计。需要 H100 GPU 集群（或等效 A100 × 1.5 倍时间）。可在主流云平台（AWS p5, GCP a3, Lambda Labs）完成。7B 训练每次约 35h（单节点 4×H100），14B 约 50h（单节点 8×H100 或双节点）。\n261\t- **数据需求**: LMSYS-Chat-1M（公开可得，HuggingFace 直接下载）；MT-Bench / MMLU / MT-Eval / LongChat 均为公开 benchmark；40-80 turn 评估数据需自建（LLM 生成 + 人工验证，约 200-300 条）。无需申请私有数据。\n262\t- **人工介入**: (a) 40-80 turn 评估数据的 constraint violation 标注：2 名标注者，约 200-300 条 × 5 probe points = 1000-1500 判断，预计 2-3 人日；(b) 数据质量审核（训练集 + 评估集）；(c) 定理形式化的数学审查。总人工约 5-8 人日（不含论文写作）。\n263\t- **训练需求**: 需要模型训练（ThreadGate 参数 + ablation 变体 + LoRA baselines）。模型本体 frozen（Qwen2.5-7B/14B），仅训练轻量 gating 参数（每个变体约 2-5M 额外参数）。单次 7B 训练约 35 H100-hours，非大规模训练但变体多（8 个）。\n264\t- **新 Benchmark**: 需构建一个 constraint-based incremental evaluation set（40-80 turns），约 200-300 条测试对话 + rule-based 评分器。工作量中等（数据生成自动化，验证需人工）。非独立发布级 benchmark，而是论文配套评测集。\n265\t- **预估周期**: 从启动到可投稿约 **14-18 周**。分解：理论证明 + probing 实验（3-4 周）→ 因果验证实验（2-3 周）→ ThreadGate 训练 + ablations（3-4 周，可部分并行）→ 全量评估（3-4 周）→ 论文写作 + 修改（3-4 周）。关键路径：定理证明难度不确定，可能成为 bottleneck；如果 proof 需要降级（取 fallback plan），写作方向需相应调整。EMNLP 2026 投稿 deadline（假设 2026 年 5-6 月）时间紧张但可行。\n266\t\n267\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "702ac9a1-2f5f-48f1-944b-3797eeb99aef",
+            "isSidechain": true,
+            "promptId": "e4934ee8-c8c7-4814-a6e2-b73108de72d2",
+            "agentId": "af1d19e5ea34bb3dc",
+            "type": "user",
+            "uuid": "fdea5cde-eb68-4ec9-ad33-78ad48570d60",
+            "sourceToolAssistantUUID": "702ac9a1-2f5f-48f1-944b-3797eeb99aef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T01:15:32.854Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the full content of the IDEA_BRIEF.md file for the turn_residual_gating project:\n\n---\n\n# Idea Brief: ThreadGate: Goal-Accessibility-Guided Residual Intervention for Multi-Turn Degradation\n\n\n- **Idea ID**: `idea_011`\n- **Created**: 2026-05-18\n- **Approved**: 2026-05-18\n- **Source**: foreign:be-idea-gen-0514-5\n- **Level**: top-tier\n- **Target Venues**: AAAI 2027 (abstract July 21, 2026; full paper July 28, 2026 — confirmed on official AAAI-27 Main Technical Track page, detailed CFP pending) — PRIMARY TARGET, 10 weeks from today, feasible with auto_research timeline, ARR August 2026 cycle (submission August 3, 2026) → EACL 2027 commitment (October 12, 2026) — BACKUP, allows additional experiments if AAAI submission reveals gaps\n\n## Seed Topic\n\nTarget: EMNLP 2026, ARR submission. Track: Dialogue and Interactive Systems / Machine Learning for NLP.\n\nDirection: Training-time architectural fix for multi-turn position bias (\"Lost-in-Middle-Turns\").\nLLMs exhibit a U-shaped attention bias across conversation turns — attending to first and last\nturns while systematically ignoring middle turns — causing a 39% average accuracy drop in\nmulti-turn settings (validated across 15+ models, 200K+ conversations, ICLR 2026 Outstanding\nPaper). A March 2026 theory paper proves this bias is an inherent geometric property of causal\ntransformers with residual connections (Cesaro matrix structure), present at initialization\nbefore any training occurs. The only existing training-based fix (RLAAR: curriculum RL with\nabstention rewards) recovers limited performance (62.6% → 75.1%) by teaching models to\nabstain, but does NOT address the architectural root cause. No method exists that directly\ntargets the geometric origin of the bias with a training-time intervention.\n\nSeed Papers:\n- \"LLMs Get Lost In Multi-Turn Conversation\" (ICLR 2026 Outstanding Paper, arXiv:2505.06120)\n  — establishes the 39% drop across 6 generation tasks, 15 models, 200K conversations\n- \"Lost in the Middle at Birth\" (arXiv:2603.10123) — proves U-shape is a geometric property\n  of causal attention with residual connections (iterated Cesaro matrices), validated on\n  untrained 24-layer Qwen2\n- \"Found in the Middle\" (ACL Findings 2024, arXiv:2406.16008) — inference-time calibration\n  subtracting positional bias from attention weights, recovers only ~15pp\n- RLAAR (arXiv:2510.18731) — curriculum RL + abstention rewards, partial behavioral fix\n- \"When Attention Closes\" (arXiv:2605.12922, May 2026) — latest mechanistic analysis via\n  \"Goal Accessibility Ratio\", diagnostic only, no training fix proposed\n\nKnown Gaps:\n- No training-time method targets the Cesaro matrix geometric bias directly\n- RLAAR teaches abstention (behavioral workaround), doesn't fix the attention pattern itself\n- \"Found in the Middle\" is inference-time only and designed for RAG, not multi-turn generation\n- The problem is multi-causal (verbosity, premature solutions, incorrect assumptions,\n  over-reliance on prior turns), but position bias is the mechanistically proven root cause\n  that enables the others\n- Longer context windows do NOT solve this — the bias is relative (middle of whatever\n  context is present), not absolute position dependent\n\nIn-scope: Training-time interventions that directly address the geometric cause of\nturn-position bias. Specifically: turn-position-aware attention regularization that penalizes\nU-shaped attention patterns, modified positional encodings (RoPE variants) that counteract\nthe Cesaro matrix decay at turn boundaries, turn-shuffling data augmentation with\nmulti-turn consistency losses, attention entropy regularization that enforces more uniform\nturn-level attention distribution, architectural modifications to residual connections that\nbreak the geometric bias at initialization.\n\nNOT in-scope: Inference-time-only methods (already done by \"Found in the Middle\"), pure\nprompting strategies, RAG-specific solutions, single-turn improvements, methods that only\nteach abstention without fixing attention patterns.\n\nContribution type: METHOD ONLY. Must propose a concrete training-time intervention with\ntheoretical motivation grounded in the Cesaro matrix analysis. The method must demonstrably\nreduce the 39% multi-turn accuracy gap beyond RLAAR's recovery, AND preserve single-turn\nperformance (no regression on standard benchmarks).\n\nEVAL PROTOCOL:\nTRAIN on multi-turn conversation data (use the \"sharded simulation\" benchmark from the\nICLR 2026 paper, covering 6 task types: summarization, extraction, reasoning, coding,\nmath, instruction following).\nEVALUATE on:\n- Multi-turn accuracy recovery (primary metric: close the 39% gap)\n- Comparison against RLAAR baseline (must exceed its 12.5pp recovery)\n- Comparison against \"Found in the Middle\" inference-time calibration\n- Turn-position attention entropy (measure whether U-shape is reduced)\n- Single-turn preservation (MT-Bench, MMLU — must not regress)\n- Ablation: regularization-only vs encoding-only vs combined\n- Analysis: visualize attention patterns before/after intervention, verify\n  Cesaro matrix eigenvalue structure is modified\n\nBuilding blocks: Open models (Qwen2.5-7B/14B, Llama-3-8B), the ICLR 2026 paper's\nevaluation framework and benchmark, positional encoding research (RoPE, ALiBi, NTK-aware\nscaling), attention regularization techniques, the Cesaro matrix theoretical framework\nfor designing principled interventions.\n\nHARD CONSTRAINTS:\nCompute: ≤200 H100-hours total. Fine-tune from existing checkpoints — no pretraining.\nAttention regularization and positional encoding modifications add minimal overhead.\nEval: Use the established \"sharded simulation\" benchmark (6 tasks × 5 turn depths).\nMust report both multi-turn recovery AND single-turn preservation.\n\nLook for: turn-boundary-aware RoPE modifications that reset or dampen the geometric\ndecay between turns, attention regularization losses derived directly from the Cesaro\nmatrix eigenvalue structure (targeting the specific eigenvalues that cause U-shape),\nconsistency training where the same information is placed at different turn positions\nand the model must produce identical outputs, residual connection gating at turn\nboundaries that prevents the accumulation pattern proven in \"Lost in the Middle at Birth\".\n\nAvoid: pure prompting tricks, inference-time-only solutions (already exists), methods\nthat only work for retrieval/RAG contexts (not multi-turn generation), approaches that\nteach abstention instead of fixing attention (RLAAR already does this), simple data\naugmentation without theoretical grounding, methods requiring full pretraining.\n\nIDEA GENERATION QUALITY CONSTRAINTS (hard rules from historical bad cases):\n\n1. No strawman problems: Any claim about \"current methods assume X\" or \"current methods\n   fail at Y\" MUST cite a specific paper with a specific passage as evidence. Do NOT\n   fabricate mainstream assumptions from pre-training knowledge. If you cannot find paper\n   evidence, the claim is invalid.\n\n2. No observation-only ideas: \"We discover that X happens\" is NOT a contribution.\n   Discovering a problem is not a contribution — solving it is. Output MUST include a\n   complete method, not an analysis/benchmark/empirical study.\n\n3. No mediocre methods: Your method MUST answer:\n   - Core Insight: What non-obvious structural property are you exploiting?\n   - Why Not Obvious: Why isn't this the first thing anyone would try?\n   - Information Exploited: What do you use that a naive baseline doesn't?\n   - Mechanistic Argument: Without experiments, explain from principles why this works.\n   If the method can be summarized in one sentence with zero counter-intuitive content → reject.\n\n4. No rehashing existing work: For every core technical component you propose, search with\n   at least 3 different queries to confirm no directly related work exists. If you find\n   1-2 papers doing similar things, you MUST explicitly state your specific differentiation.\n\n5. No experiment-padding disguise: An idea's value is NOT in how many experiments it can run.\n   Self-check with:\n   - \"Remove experiments test\": Delete all results, keep only method description — does it\n     teach the reader something non-trivial?\n   - \"Baseline fear test\": If a trivial baseline achieves similar results tomorrow, does\n     this paper still have value?\n   - \"Citation test\": In 5 years, will people cite the numbers or the insight?\n   If any test fails → the idea is garbage, start over.\n\n6. The following method patterns are REJECTED (unless extremely strong structural justification):\n   - \"Add an X module\" — Why this specific structure?\n   - \"Train on Y data\" — Is data construction itself the contribution?\n   - \"Transfer Z from domain A to B\" — What is the structural analogy between A and B?\n   - \"Combine P and Q\" — Where is the synergy? Why isn't it just 1+1=2?\n   - \"Use more/bigger/stronger X\" — Scaling is not a method contribution.\n\nCOMPETITION WARNING: \"When Attention Closes\" (May 13, 2026) shows active competition\non the mechanistic analysis side. Differentiate by focusing on the TRAINING FIX (not\njust diagnosis) and by connecting directly to the Cesaro matrix theory for principled\nintervention design. Speed matters.\n\nTag: direction=multi_turn_position_bias, contribution_type=method,\nsub_direction=geometric_attention_fix, target_venues=[\"EMNLP 2026\", \"ACL 2026\"].\n\n## Core Problem\n\nMulti-turn LLMs suffer systematic goal-instruction degradation across conversation turns. 'When Attention Closes' (arXiv 2605.12922, May 2026) mechanistically identifies that Goal Accessibility Ratio (GAR) — mean attention from response tokens to task-defining goal tokens — decays 27–48% from turn-1 levels as attention channels close at turn boundaries. The decay is steepest in the first 10 turns (pooled Mann-Kendall τ=−0.75, p=1.5×10⁻¹⁴ across 10 architectures; individual models range τ∈[−0.98, −0.19], all p<0.05) and occurs across all tested architectures. The 'Intent Mismatch' paper (Feb 2026) argues the problem is intent alignment, but GAR evidence shows structural attention closure even with unambiguous instructions. 'Mitigating Conversational Inertia' (arXiv 2602.03664, Feb 2026) identifies a complementary behavioral mechanism (diagonal self-attention causing imitation bias) and proposes Context Preference Learning — but this addresses response-level inertia, not the underlying architectural attention-channel closure to goal tokens. Data-level workarounds exist — Ghost Attention (GAtt, Llama 2) concatenates instructions to every turn during training, and RECAP ('LLMs Get Lost in Multi-Turn Conversation', ICLR 2026) summarizes accumulated context before final generation — but these succeed by keeping goal tokens in the recency window rather than fixing the underlying attention-channel closure. The architectural component is real, mechanistically proven, and currently unfixed at the structural level.\n\n## Opportunity / Why Now\n\nA unique gap exists: the diagnostic (GAR) is published, the mechanistic cause is identified (attention channel closure at turn boundaries), and 'Lost in the Middle at Birth' (arXiv 2603.10123, Mar 2026) provides the theoretical foundation showing this bias is an inherent geometric property of causal decoders with residual connections — yet NO targeted architectural intervention exists. Data-level approaches (GAtt, RECAP) achieve partial recovery (RECAP: +16pp on GPT-4o-mini, from 50.4% to 66.5%) but have a fundamental limitation: they work by keeping instructions in the recency window, so they fail when context budget is exhausted by repeated instructions or when conversation length exceeds the model's effective context. 'Found in the Middle' (ACL 2024) provides static inference-time calibration (~15pp recovery) but doesn't learn or adapt. LLaMA-Adapter (ICLR 2024) demonstrates post-hoc gating of frozen LLMs but uses position-agnostic zero-init gates. LoR2C (arXiv 2503.00572, Mar 2025) adapts residual connections with low-rank matrices but targets gradient vanishing, not positional degradation. 'Regularizing the Entropy Landscape of Self-Attention' (OPT-ML @ NeurIPS 2025) demonstrates learnable per-head entropy regularization with up to 20% perplexity gains, but is position-agnostic and requires training from scratch. The opportunity is a POST-HOC, lightweight, turn-boundary-CONDITIONED intervention that specifically restores GAR in already-deployed models — the first to connect the Cesaro-theoretic understanding of positional attention decay to a learnable fix targeting the exact positions where GAR collapses, complementing (not replacing) data-level workarounds.\n\n## Landscape (SOTA & Limitations)\n\nGhost Attention / GAtt (Llama 2, Meta 2023): data-level augmentation concatenating system instructions to every user turn during training; maintains instruction-following for 20+ turns until context budget exhausted; does NOT fix attention-channel closure — succeeds by keeping instructions within recency window. RECAP ('LLMs Get Lost in Multi-Turn Conversation', ICLR 2026): adds a summarization turn consolidating prior context before final generation; recovers GPT-4o-mini from 50.4% to 66.5% (+16pp); still underperforms single-turn by ~10-21pp; fails when conversation exceeds context length or when degradation is structural rather than information-access. Kimi Attention Residuals (arXiv 2603.15031, Mar 2026): softmax attention over preceding layers at residual connections — position-agnostic, requires pretraining from scratch. MUDDFormer (ICML 2025): dynamic dense connections with input-dependent weights — general cross-layer flow, no turn awareness; trained from scratch at 2.8B scale. ExoFormer (arXiv 2601.08131, Jan 2026): exogenous anchor projections — cross-layer reuse, no position/turn awareness. 'Found in the Middle' (ACL Findings 2024): training-free inference-time attention calibration by subtracting positional bias — ~15pp recovery, static, doesn't adapt. LLaMA-Adapter (ICLR 2024): zero-initialized per-head gating for frozen LLMs — similar post-hoc paradigm but entirely position-agnostic; gate modulates adapted prompt injection uniformly across sequence positions. LoR2C (arXiv 2503.00572, Mar 2025): low-rank residual connection adaptation with ShareLoR2C/MergeLoR2C/InjectLoR2C variants — targets gradient vanishing and parameter efficiency, not positional or turn-aware. PAPEFT (arXiv 2404.01430, 2024): position-aware adapter for reducing positional bias in retrieval tasks — list-position bias in RAG, not multi-turn goal degradation. 'Regularizing the Entropy Landscape of Self-Attention' (OPT-ML @ NeurIPS 2025): learnable per-head entropy regularizer with head-wise strengths and softmax temperatures — up to 20% perplexity improvement on GPT-2; operates as position-agnostic entropy prior, not turn-boundary-conditioned. 'Mitigating Conversational Inertia' (arXiv 2602.03664, Feb 2026): identifies diagonal self-attention (imitation bias) as a complementary mechanism; proposes Context Preference Learning (DPO-based, 0.4% parameters, LoRA rank-16) to calibrate response preferences — addresses behavioral inertia at the response-generation level, complementary to our structural attention-channel fix at the residual-stream level. 'When Attention Closes' (arXiv 2605.12922, May 2026): mechanistic GAR diagnostic — purely diagnostic, no intervention; notes that periodic user-role goal re-injection failed to prevent degradation (Appendix H). 'Intent Mismatch' (arXiv 2602.07338, Feb 2026): argues multi-turn degradation is intent alignment; proposes Mediator-Assistant — complementary to architectural fixes. FLUID (arXiv 2605.04421, May 2026): continuous-time hyperconnections — long-range temporal modeling, not discrete turn events. 'Lost in the Middle at Birth' (arXiv 2603.10123, Mar 2026): proves U-shaped position bias is inherent in causal decoders via Cesaro matrix theory; shows influence density ρ_H(x) = Σ C(H,r)(1-α)^(H-r)α^r · (ln(1/x))^(r-1)/(r-1)! — provides our theoretical foundation for why uniform gating cannot break position-dependent decay. 'A Residual-Aware Theory of Position Bias' (arXiv 2602.16837, Feb 2026): shows residual mixing R(t) = (1-λ_t)I + λ_t A(t), and that decreasing λ_t uniformly induces recency drift but cannot target specific positions. Gated Attention (NeurIPS 2025, Qwen): per-head sigmoid gating after SDPA — input-dependent but not position-conditioned; demonstrates gating can break attention sinks but does not target turn-boundary structure. No existing work provides a learnable, post-hoc, turn-boundary-conditioned architectural intervention for pre-trained models with theoretical grounding for why turn-conditioning is structurally necessary.\n\n## Proposed Approach\n\nInsert lightweight ThreadGate modules at residual connections of FROZEN pre-trained LLMs. Each ThreadGate computes g_l(t) = σ(W_g · [LoRA_down(h_t); τ(t)] + b_g), where τ(t) is a learned turn-boundary distance embedding (tokens since last turn delimiter + turn index) and LoRA_down projects the hidden state to low rank (r=16). The residual becomes x_{l+1} = g_l(t)·x_l + (1-g_l(t))·f_l(x_l). Only gate parameters and a rank-16 LoRA adapter are trained (~0.3% of model parameters); the base model is frozen.\n\n**Theoretical justification for turn-conditioning (why uniform gating provably fails):** From the Cesaro theory ('Lost in the Middle at Birth'), the influence density after H layers with residual mixing α is ρ_H(x) ∝ Σ C(H,r)α^r(1-α)^(H-r)(ln(1/x))^(r-1)/(r-1)!. A uniform gate g modifies the effective mixing: α → g·α. This scales ALL positional influences proportionally — the relative distribution I_A/I_B between any two positions is preserved under uniform gating (a monotone transformation of the Cesaro density). Formally: the residual-aware rollout P = Π_l[(1-λ_l)I + λ_l A_l]; uniform gating (λ_l → g·λ_l ∀l) preserves the eigenvector structure of P while only modifying eigenvalues — the positional bias PATTERN is invariant. To selectively restore attention at turn-boundary positions (specific rows of P), the gate must be position-conditional. Uniform gating is a rank-1 intervention in the space of positional modifications; restoring T distinct turn-boundary positions requires at minimum rank-T control. ThreadGate's turn-distance embedding τ(t) provides exactly this positional conditioning.\n\n**Goal-token identification strategy for GAR loss:** (a) For diagnostic benchmarks ('When Attention Closes' suite): use paper's exact protocol — system prompt tokens specifying persona/rules/format as 𝒢. (b) For general multi-turn training data (ShareGPT, WildChat, UltraChat): define 𝒢 = {system prompt tokens} ∪ {first user-turn instruction tokens}. Rationale: these tokens define the conversational 'thread' that should persist; this aligns with the GAR paper's finding that goal token attention declines. (c) Efficient GAR computation during training: compute GAR only at turn-boundary positions (last token of each assistant response) attending to 𝒢, yielding O(L×H×|𝒢|) per boundary vs prohibitive O(L×H×n²) for full maps. Implemented via forward hooks on attention layers with gradient checkpointing. Estimated overhead: ~25% memory, ~15% wall-clock.\n\n**Training objective:** Standard next-token loss L_NTP on multi-turn conversation data + auxiliary GAR-preservation loss L_GAR = Σ_τ max(0, GAR(τ-1) - GAR(τ) - ε) where ε is a small tolerance (e.g., 0.02) allowing natural minor decline. The combined loss is L = L_NTP + λ·L_GAR with λ annealed from 0→1 over warmup to avoid early instability.\n\n**Fallback if GAR loss conflicts with NTP:** Two-stage decoupled training: (1) Train gate parameters ONLY with L_GAR (attention map supervision, frozen generation) — learns WHERE to intervene. (2) Compose with standard LoRA fine-tuning on multi-turn data — ensures generation quality. This decouples 'structural fix' from 'generation quality.'\n\n**Models:** Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct (Apache 2.0).\n\n**Baselines & Ablations:** (1) ThreadGate (full), (2) Uniform learned gate (same parameters, no turn-position conditioning — equivalent to post-hoc LLaMA-Adapter-style gating; tests theoretical prediction), (3) LoRA-only (same parameter budget, no gate), (4) LoR2C-style residual adaptation (position-agnostic low-rank residual), (5) Found in the Middle inference calibration, (6) PAPEFT-style position adapter, (7) CPL from 'Mitigating Conversational Inertia' (same 0.4% budget, DPO behavioral training), (8) Ghost Attention (GAtt) — data-level instruction concatenation during multi-turn fine-tuning on same training data; tests whether data-level recency tricks match structural intervention at varying conversation lengths. The CRITICAL experiments: (A) Show that baselines (2) and (4) fail to selectively improve GAR at turn boundaries while improving/degrading uniformly across positions — validating the Cesaro-theoretic prediction that uniform gating preserves relative positional distribution. (B) Show that GAtt (baseline 8) succeeds at moderate lengths (≤20 turns within context budget) but degrades when conversation length forces instructions into middle/early positions beyond the recency window, while ThreadGate maintains GAR regardless of conversation length — demonstrating that structural fixes complement data-level workarounds.\n\n**Evaluation:** (a) GAR metric on 'When Attention Closes' diagnostic suite (exact replication), (b) MT-Bench multi-turn subset, (c) MT-Eval (4 interaction types), (d) Synthetic multi-turn needle-in-haystack with controlled turn-boundary distances, (e) RULER long-context to verify no regression, (f) WebArena/AgentBench subset (agentic multi-turn, connecting to 'Conversational Inertia' benchmarks), (g) Scaling analysis: vary conversation length from 5→50 turns to expose GAtt's context-budget failure mode vs ThreadGate's structural robustness.\n\n## Resource Estimate\n\n- **auto_research**: {'claude_api_cost': '$150-250 (est. 1500-2500 turns)', 'estimated_gpu_cost': '$585-$780', 'gpu_hours': '~195h H100 (fixed rank=16 motivated by LoRA convention; 2 model sizes × 8 baselines × ~8h avg fine-tuning + layer subset selection [every-4th vs all layers] + GAR loss λ grid [0.1, 0.5, 1.0] + two-stage vs joint comparison + conversation-length scaling analysis)', 'gpu_utilization': 'High (~85%+); back-to-back runs parallelized across available GPUs', 'risk_note': 'GAR-preservation auxiliary loss may conflict with next-token loss if poorly weighted; auto-agent should monitor both loss curves, flag Pareto-suboptimal runs, and trigger two-stage fallback automatically if joint loss diverges after 500 steps', 'speed_bottleneck': 'Each 7B fine-tuning run ~4h on 4×H100; 14B runs ~8h; total serialized ~65h but parallelizable to <2.5 days. GAR extraction adds ~25% overhead per run. GAtt baseline requires standard multi-turn SFT with instruction concatenation (~4h per model).', 'team': '0 after initial setup (define configs, data pipeline, evaluation harness)', 'timeline': '10-14 days with 4-8 H100s available'}\n- **human_in_loop**: {'claude_api_cost': '$80-150 (est. 600-1000 Opus turns for coding, analysis, writing)', 'estimated_gpu_cost': '$600-$800', 'gpu_hours': '~200h H100 (hyperparameter exploration on gate architecture, GAR loss weighting λ, and two-stage fallback with human checkpoints)', 'gpu_utilization': 'Moderate (~55-65%); agent pipelines with human approval on direction changes', 'risk_note': 'Turn-boundary token identification varies across chat templates (Qwen uses <|im_start|>/<|im_end|>); need careful tokenizer-specific handling. GAR loss λ annealing schedule needs tuning — monitor NTP vs GAR Pareto front.', 'team': '1 researcher, ~20min/day for experiment review', 'timeline': '3-4 weeks'}\n- **manual**: {'estimated_gpu_cost': '$540-$720 at ~$3/H100-hr', 'gpu_hours': '~180h H100 (2 model sizes × 5 baseline configs × ~12h fine-tuning each + evaluation + GAR measurement)', 'gpu_utilization': 'Low (~30-40%); idle between runs during analysis and iteration', 'team': '1 researcher with multi-turn LLM and attention mechanism experience', 'timeline': '6-8 weeks'}\n\n## Key References\n\n- When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction (arXiv 2605.12922, May 2026) — provides GAR diagnostic and mechanistic motivation; GAR = mean attention from response to goal tokens, declines 27-48%; pooled Mann-Kendall τ=−0.75 (p=1.5×10⁻¹⁴)\n- Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias (arXiv 2603.10123, Mar 2026) — Cesaro matrix theory proving U-shaped bias is geometric property of causal decoder; provides our theoretical foundation for uniform gating insufficiency\n- A Residual-Aware Theory of Position Bias in Transformers (arXiv 2602.16837, Feb 2026) — residual-aware rollout R(t) = (1-λ_t)I + λ_t A(t); uniform λ cannot target specific positions\n- LLMs Get Lost In Multi-Turn Conversation (arXiv 2505.06120, ICLR 2026) — 39% multi-turn degradation; RECAP baseline improves GPT-4o-mini from 50.4% to 66.5% but doesn't close gap; demonstrates data-level fixes are insufficient\n- Llama 2: Open Foundation and Fine-Tuned Chat Models (Meta, 2023) — introduces Ghost Attention (GAtt): instruction concatenation during training maintains following for 20+ turns until context exhausted; our data-level baseline\n- Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conversation (arXiv 2602.07338, Feb 2026) — complementary: addresses intent ambiguity, not structural attention closure\n- Mitigating Conversational Inertia in Multi-Turn Agents (arXiv 2602.03664, Feb 2026) — complementary behavioral approach: CPL with DPO (0.4% params) addresses response-level imitation bias; our work targets structural attention-channel closure\n- Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization (ACL Findings 2024) — inference-time baseline; static calibration ~15pp recovery\n- LLaMA-Adapter: Efficient Fine-tuning of Large Language Models with Zero-initialized Attention (ICLR 2024) — post-hoc gating paradigm for frozen LLMs; position-agnostic per-head gates; our ablation baseline for uniform gating\n- LoR2C: Low-Rank Residual Connection Adaptation for Parameter-Efficient Fine-Tuning (arXiv 2503.00572, Mar 2025) — low-rank residual adaptation; position-agnostic, targets gradient vanishing; structural comparison baseline\n- Regularizing the Entropy Landscape of Self-Attention (OPT-ML @ NeurIPS 2025) — learnable per-head entropy regularizer with head-wise strengths; up to 20% perplexity improvement on GPT-2; position-agnostic entropy prior; precedent for learnable per-head attention modification in decoders — our work differs by conditioning on turn-boundary position rather than regularizing entropy uniformly\n- Attention Residuals (arXiv 2603.15031, Kimi Team, Mar 2026) — uniform residual gating; requires pretraining from scratch\n- MUDDFormer: Breaking Residual Bottlenecks via Multiway Dynamic Dense Connections (ICML 2025) — dynamic cross-layer connections; trained from scratch\n- Position-Aware Parameter Efficient Fine-Tuning Approach for Reducing Positional Bias in LLMs (arXiv 2404.01430, 2024) — position-aware adapter; targets list-position bias in RAG\n- Gated Attention for Large Language Models (NeurIPS 2025, Qwen) — per-head sigmoid gating after SDPA; input-dependent but not position-conditioned\n- Attention Projection Mixing with Exogenous Anchors (arXiv 2601.08131, ExoFormer, Jan 2026) — cross-layer anchor reuse\n\n## Reviewer Evaluation\n\n**Scores**:\n  - clarity: **5/5** {'rationale': 'Exceptionally well-specified proposal: gating formula, goal-token identification strategy, efficient GAR computation complexity, training objective with fallback, 8 baselines with clear differentiation rationale, evaluation suite covering 7 dimensions, and explicit acknowledgment of the contribution-at-risk scenario. Every reviewer question from 4 rounds is now addressed.'}\n  - feasibility: **4/5** {'rationale': '195h H100 within the 200h budget, standard LoRA-style fine-tuning of Apache-2.0 Qwen2.5-7B/14B from checkpoints. The efficient GAR computation strategy (only at turn-boundary positions) is well-designed. Two-stage fallback addresses the loss-conflict risk. Main uncertainty: the 25% memory overhead estimate for GAR extraction may be optimistic at 14B scale.'}\n  - impact: **4/5** {'rationale': 'First post-hoc architectural fix for multi-turn degradation deployable on already-serving frozen models (unlike GAtt which requires training data modification). The Cesaro-theoretic proof has independent publishable value. Practical uncertainty remains in the actual recovery margin (15-35% relative is wide), and at typical conversation lengths GAtt may suffice — but the theoretical contribution and the structural-robustness-at-scale argument are compelling.'}\n  - novelty: **4/5** {'rationale': \"The formal proof that uniform gating is a rank-1 intervention preserving Cesaro eigenvector structure (while restoring T turn-boundary positions requires rank-T) is a genuine non-obvious insight. The method itself is a principled extension of the theory rather than a standalone surprising contribution, but the combination of formalism + testable prediction (uniform gates provably fail) elevates it above 'obvious extension.'\"}\n\n## Human Review Note\n\n## Agent 审核结果（v4 holistic exit triage）\n\n**Verdict**: FAILED_below_36\n\n**入口三重共识 (X)**: 27%\n**终审自评 (Y)**: 37.0%\n**出口三重共识 (Z)**: 33.0%\n**Z 区间**: [34%, 35%]\n**真实提升 (Z-X)**: +6.0 pp\n**幻觉幅度 (Y-Z)**: +4.0 pp\n**出口一致性**: 高\n**出口三次评估**: [35, 34, 34]\n\n### 优化方案\n【优化方案】\n\n1. **[标题 / 全局叙事]** — 从 method-centric title（\"ThreadGate: ...\"）改为 framework-centric title（\"Structural Multi-Turn Degradation in Frozen Language Models: A Causal Framework, Theoretical Ceiling, and Position-Conditional Intervention\"）。ThreadGate 降格为\"存在性证明\"，框架+因果+理论升为一等贡献 — [命中 Novelty: 论文 robustness 不再依赖方法效果大小；命中 Significance: 框架有独立价值]\n\n2. **[Motivation / 第 1 节]** — 新增\"Operator Gap\"概念替代模糊的\"frozen model constraint\"。精确定义受众为\"有推理时内部访问权但无法重训练的部署者\"，将问题定位从\"方法比较\"提升为\"识别并解决一个结构性部署缺口\" — [命中 Significance: 明确\"who cares\"回答，覆盖产业绝大多数部署场景]\n\n3. **[Research Questions / 核心逻辑链]** — 原 proposal 将\"GAR decline → task degradation\"作为默认前提。改为 RQ1 显式验证因果方向（attention knockout + preservation + controls），新增\"GAR explanation ceiling\"子问题量化框架解释边界 — [命中 Significance + Technical Soundness: 从 assumed correlation 升级为 demonstrated causation with honest boundary]\n\n4. **[Framework / 新增章节]** — 新增 Structural vs. Information-Access 降解分类框架，含：(a) pathological vs. functional GAR decline 判定标准（不是所有 GAR 下降都是病理性的）；(b) 两类机制的交互效应讨论（正反馈环路 + 分别干预仍有效的论证）；(c) 明确的解释范围声明（不声称 exhaustive） — [命中 Novelty: 从 method paper 升级为 analysis+framework paper；命中 Significance: 框架可指导未来研究]\n\n5. **[理论贡献]** — 原 Cesaro 证明（\"uniform scaling preserves ratios\"，接近 trivial）改为两层不可能性结果：(a) 形式化定理覆盖\"无显式 turn-boundary 信号的 gate function\"类（非仅常数 gating）；(b) 机制性解释（RoPE 位置信号深层衰减，引 Haviv et al. 2022）；(c) linear + nonlinear probing 实验验证前提；(d) 跨架构 probing（LLaMA-3-8B）验证泛化性；(e) fallback plan（若非线性 probe 不 decay，退回以实验 ceiling 为证据） — [命中 Novelty: 从 trivial observation 升级为 architecturally-grounded impossibility result]\n\n6. **[方法论述 / ThreadGate 节]** — 新增对\"为什么 residual-level 而非 attention-level\"的理论论证（attention bias 无法放大已衰减信号 vs. residual gating 跨层复合）；新增对\"为什么显式 τ(t) 而非依赖 h_t\"的论证（probing 证明 h_t 中 turn-boundary 信号深层不足） — [命中 Novelty: 封堵 trivial alternative 质疑]\n\n7. **[Related Work / 新增覆盖]** — 原 proposal 仅覆盖 GAtt + uniform adapters。新增：(a) Activation engineering 方向（Turner, Zou）+ 区分论证（fixed-direction 无法满足 layer/position-heterogeneous 需求）；(b) Context extension 方向（YaRN, LongRoPE）+ 区分论证（smooth decay ≠ discontinuous turn-boundary shift + 违反 frozen 约束）；(c) Positional information decay 文献（Haviv et al.） — [命中 Related Work: 预防审稿人 3 个最可能提出的\"和 X 有什么区别\"质疑]\n\n8. **[Baselines / 实验设计]** — 从 3 个 baselines 扩展至 9+1 个：+Vanilla frozen, +RECAP reimplementation（含定量验证步骤）, +System prompt re-injection, +Attention logit bias, +GAR-direction activation addition, +Standard LoRA, +LoRA compute-matched, +Per-layer constant gating — [命中 Technical Soundness: 全面覆盖审稿人能想到的所有替代方案]\n\n9. **[Ablation / 实验设计]** — 从隐式单个 ablation 扩展为完整 6 变体表（w/o τ(t), w/o GAR loss, w/o LoRA, τ(t) encoding variants, α variants），含参数量 + FLOPs 对比表 — [命中 Technical Soundness: 每个组件独立贡献可验证]\n\n10. **[评估协议]** — (a) 新增 conversation-length scaling 实验（5/10/20/40/80 turns 梯度）含 GAR-vs-turns 曲线；(b) 新增 40-80 turn 构建方法（constraint-based incremental evaluation, 2 annotators, κ≥0.7）；(c) 新增 MMLU 单轮性能保持测试；(d) 新增推理效率评估（latency/throughput/memory）；(e) 新增 LongChat 长对话 benchmark；(f) 统计规范化（3 runs, mean±std, significance tests, 样本量明确, power analysis） — [命中 Technical Soundness: 从\"insufficient evaluation\"升级为\"comprehensive, reproducible methodology\"]\n\n11. **[训练细节]** — 原 proposal 无训练数据说明。新增：LMSYS-Chat-1M, ≥5 turns, English, ~180K filtered, distribution statistics; GAR loss 采样计算（每 4 步, top-50% layers）以管控显存 — [命中 Technical Soundness + Reproducibility]\n\n12. **[Limitations]** — 从无到有，明确列出 5 项限制（场景覆盖、解释 ceiling、定理条件强度、架构泛化、OOD 长度），展示学术诚实 — [命中 reviewer 印象: 诚实的 limitation 节减少 adversarial questioning]\n\n【主要风险】\n\n1. **不可能性定理的实际力度**：如果非线性 probing 在深层仍能高精度区分 turn boundary（>85%），定理的核心前提被削弱，理论贡献从\"formally grounded impossibility\"退化为\"linear-complexity gating 的局部 bound + empirical ceiling evidence\"。虽有 fallback plan，但审稿人可能判定理论贡献份量不足以支撑 Contribution #3 的地位。这是论文被降级至 Findings 的最大单一风险。\n\n2. **GAR explanation ceiling 可能偏低**：如果因果验证显示 GAR 恢复仅解释 30-40% 的多轮退化（而非 60%+），整个框架的\"structural degradation 是主要成因\"叙事会被削弱，ThreadGate 的最大可能收益也被 cap 在较低水平。审稿人可能质疑\"是否值得为 30% 的退化建立这么复杂的框架\"。\n\n【实施评估】\n- **计算资源**: ~380 H100-hours 总计。需要 H100 GPU 集群（或等效 A100 × 1.5 倍时间）。可在主流云平台（AWS p5, GCP a3, Lambda Labs）完成。7B 训练每次约 35h（单节点 4×H100），14B 约 50h（单节点 8×H100 或双节点）。\n- **数据需求**: LMSYS-Chat-1M（公开可得，HuggingFace 直接下载）；MT-Bench / MMLU / MT-Eval / LongChat 均为公开 benchmark；40-80 turn 评估数据需自建（LLM 生成 + 人工验证，约 200-300 条）。无需申请私有数据。\n- **人工介入**: (a) 40-80 turn 评估数据的 constraint violation 标注：2 名标注者，约 200-300 条 × 5 probe points = 1000-1500 判断，预计 2-3 人日；(b) 数据质量审核（训练集 + 评估集）；(c) 定理形式化的数学审查。总人工约 5-8 人日（不含论文写作）。\n- **训练需求**: 需要模型训练（ThreadGate 参数 + ablation 变体 + LoRA baselines）。模型本体 frozen（Qwen2.5-7B/14B），仅训练轻量 gating 参数（每个变体约 2-5M 额外参数）。单次 7B 训练约 35 H100-hours，非大规模训练但变体多（8 个）。\n- **新 Benchmark**: 需构建一个 constraint-based incremental evaluation set（40-80 turns），约 200-300 条测试对话 + rule-based 评分器。工作量中等（数据生成自动化，验证需人工）。非独立发布级 benchmark，而是论文配套评测集。\n- **预估周期**: 从启动到可投稿约 **14-18 周**。分解：理论证明 + probing 实验（3-4 周）→ 因果验证实验（2-3 周）→ ThreadGate 训练 + ablations（3-4 周，可部分并行）→ 全量评估（3-4 周）→ 论文写作 + 修改（3-4 周）。关键路径：定理证明难度不确定，可能成为 bottleneck；如果 proof 需要降级（取 fallback plan），写作方向需相应调整。EMNLP 2026 投稿 deadline（假设 2026 年 5-6 月）时间紧张但可行。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fdea5cde-eb68-4ec9-ad33-78ad48570d60",
+            "isSidechain": true,
+            "agentId": "af1d19e5ea34bb3dc",
+            "requestId": "req_011CbB3FrANEjsQkKsiBMPh4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "210549ba-d7c1-44e4-889a-b3ca019a29b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/director_e14ea3a0",
+            "sessionId": "719d9d15-74ae-491a-9605-a322edd35529",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "lazy-conjuring-pascal",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QwWSJxPwSX8r5gp5J9S3K6",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 11744,
+                "cache_read_input_tokens": 39020,
+                "output_tokens": 11028,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11744
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 11028,
+                    "cache_read_input_tokens": 39020,
+                    "cache_creation_input_tokens": 11744,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11744,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        }
+      ],
+      "message_count": 8
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-the-idea-brief-md-file-for-the-turn-residual-gating-project-it-s.md"
+}

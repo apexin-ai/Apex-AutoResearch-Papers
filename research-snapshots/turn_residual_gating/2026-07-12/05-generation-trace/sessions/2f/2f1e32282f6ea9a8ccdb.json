@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2f1e32282f6ea9a8ccdb",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: turn_residual_gating ## 运行环境 - 服务器名: westd-20861 - SSH 连接命令: ssh connect.westd.seetacloud.com # ",
+  "task_key": "ba20d7f8-796c-4e5f-a729-05c675336b7c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ba20d7f8-796c-4e5f-a729-05c675336b7c.jsonl",
+    "occurrence": 1,
+    "bytes": 606818,
+    "sha256": "51f3ec543843c4e70cda74a830b292075f1f5a489507c6a075822d3aae49dec2"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 1,
+    "tool_calls": 46,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 58,
+      "tool_call": 46,
+      "tool_result": 46
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2f1e32282f6ea9a8ccdb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "2f1e32282f6ea9a8ccdb-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "2f1e32282f6ea9a8ccdb-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-turn-residual-gating-westd-20861-ssh-ssh-connect-westd-seetacl-copy-140.md"
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "id": "067c5801529b29cdf00b",
+  "project": "turn_residual_gating--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: phase-gated-compound-sparse ## 运行环境 - 服务器名: westd-22162 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "cb2d3dca-a410-4406-9f89-7b0139e463f8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/cb2d3dca-a410-4406-9f89-7b0139e463f8.jsonl",
+    "occurrence": 1,
+    "bytes": 4938962,
+    "sha256": "00b9d96c96f64f3b0cf2e2681cf0e9e82f4afbcf41477bde5fe175f8c3dab750"
+  },
+  "statistics": {
+    "messages": 2884,
+    "user_turns": 4,
+    "tool_calls": 1055,
+    "roles": {
+      "record": 404,
+      "user": 4,
+      "assistant": 363,
+      "tool_call": 1055,
+      "tool_result": 1055,
+      "system": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "067c5801529b29cdf00b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 600,
+      "chunks": [
+        {
+          "path": "067c5801529b29cdf00b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0004.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 662,
+      "chunks": [
+        {
+          "path": "067c5801529b29cdf00b-part-0004.json",
+          "message_count": 118
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0008.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1301,
+      "chunks": [
+        {
+          "path": "067c5801529b29cdf00b-part-0008.json",
+          "message_count": 176
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0015.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "067c5801529b29cdf00b-part-0015.json",
+          "message_count": 135
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "067c5801529b29cdf00b-part-0017.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-phase-gated-compound-sparse-westd-22162-ssh-root-ssh-execute-s-copy-361.md"
+}
