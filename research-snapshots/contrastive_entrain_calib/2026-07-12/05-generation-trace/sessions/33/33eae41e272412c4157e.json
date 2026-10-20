@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "33eae41e272412c4157e",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: action_cond_info_bottleneck ## 运行环境 - 服务器名: westb-13953 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "c4f29955-f46b-44b0-9be7-deac27447ac9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/c4f29955-f46b-44b0-9be7-deac27447ac9.jsonl",
+    "occurrence": 1,
+    "bytes": 577425,
+    "sha256": "25bc60512eecc660cd09928890f6a8e3064f2edbfabe769a3427bd7b87645113"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 1,
+    "tool_calls": 76,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 45,
+      "tool_call": 76,
+      "tool_result": 76
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "33eae41e272412c4157e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "33eae41e272412c4157e-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "33eae41e272412c4157e-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-action-cond-info-bottleneck-westb-13953-ssh-root-ssh-execute-s-copy-234.md"
+}

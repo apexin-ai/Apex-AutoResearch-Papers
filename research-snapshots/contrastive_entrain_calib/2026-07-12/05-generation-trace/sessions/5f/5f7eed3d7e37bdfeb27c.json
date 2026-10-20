@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "5f7eed3d7e37bdfeb27c",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "ce225ad6-5e0e-4a51-a4f6-6a5c6ff4c902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/ce225ad6-5e0e-4a51-a4f6-6a5c6ff4c902.jsonl",
+    "occurrence": 1,
+    "bytes": 2666183,
+    "sha256": "38a4d25162c04e3e76e34a4b0fe8893078e4f42f6f383f7876ae185bcebf34d0"
+  },
+  "statistics": {
+    "messages": 1515,
+    "user_turns": 3,
+    "tool_calls": 487,
+    "roles": {
+      "record": 219,
+      "user": 3,
+      "assistant": 317,
+      "tool_call": 487,
+      "tool_result": 487,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 259,
+      "chunks": [
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1234,
+      "chunks": [
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0002.json",
+          "message_count": 68
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0009.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "5f7eed3d7e37bdfeb27c-part-0009.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-419.md"
+}

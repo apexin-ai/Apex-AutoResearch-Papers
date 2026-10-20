@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "08550e4ff4e02d978d7b",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westb-13953 使用 conda 环境（/root/miniconda3），不是 venv。激活命令：source /root/miniconda3/etc/profile.d/conda.s",
+  "task_key": "5a56acd7-7fe5-409a-8c77-1a5438de842e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/5a56acd7-7fe5-409a-8c77-1a5438de842e.jsonl",
+    "occurrence": 1,
+    "bytes": 830537,
+    "sha256": "0dbd692993425c004d3f603c3269aabfa169a652f7b1d6e0702c201930a46ea0"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "record": 62,
+      "user": 1,
+      "assistant": 42,
+      "tool_call": 108,
+      "tool_result": 108
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "08550e4ff4e02d978d7b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "08550e4ff4e02d978d7b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "08550e4ff4e02d978d7b-part-0002.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westb-13953-conda-root-miniconda3-venv-source-root-miniconda3-et-copy-4.md"
+}

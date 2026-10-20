@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0d173f71fe5157a74440",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> westd-29046 环境： - Python: /root/miniconda3/bin/python - HF_HUB_OFFLINE=1 必须设置 - GPU 0 当前在跑 exp002v2-reca",
+  "task_key": "9ec71e25-cfde-427e-b39d-1f4bf7e960b8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/9ec71e25-cfde-427e-b39d-1f4bf7e960b8.jsonl",
+    "occurrence": 1,
+    "bytes": 687152,
+    "sha256": "d8f662f44c6682493bf68cdb9b6da3c9d4bee7e3bf57ef8c0db3250e32db02be"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "record": 49,
+      "user": 1,
+      "assistant": 55,
+      "tool_call": 61,
+      "tool_result": 61
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0d173f71fe5157a74440-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "0d173f71fe5157a74440-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "0d173f71fe5157a74440-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-29046-python-root-miniconda3-bin-python-hf-hub-offline-1-g.md"
+}

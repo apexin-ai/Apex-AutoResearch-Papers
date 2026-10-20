@@ -1,0 +1,1790 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp002v2-rec
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-1/86e8035a-d825-4a72-8bf4-4e2b86fdbd1a.jsonl`
+- **Structured JSON:** [`c945e5c444d5c1d92a71.json`](../../sessions/c9/c945e5c444d5c1d92a71.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T21:14:49.405Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T21:14:49.405Z",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp002v2-recalib\n- project: contrastive_entrain_calib\n- server: westd-29046\n- log_path: ~/runs/contrastive_entrain_calib/exp002v2-recalib.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T21:14:49.409Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T21:14:49.409Z",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T21:14:49.455Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp002v2-recalib
+- project: contrastive_entrain_calib
+- server: westd-29046
+- log_path: ~/runs/contrastive_entrain_calib/exp002v2-recalib.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "ea5fcc65-0999-42a9-bea0-aaac7f5a9d5d",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T21:14:49.455Z_
+
+```json
+{
+  "parentUuid": "ea5fcc65-0999-42a9-bea0-aaac7f5a9d5d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0edf95b1-c620-4b46-bd09-c3afb79ab864",
+  "timestamp": "2026-05-19T21:14:49.455Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T21:14:49.455Z_
+
+```json
+{
+  "parentUuid": "0edf95b1-c620-4b46-bd09-c3afb79ab864",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5bc22fc9-ca42-4ce4-8d9d-9265a1d7616a",
+  "timestamp": "2026-05-19T21:14:49.455Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T21:14:49.455Z_
+
+```json
+{
+  "parentUuid": "5bc22fc9-ca42-4ce4-8d9d-9265a1d7616a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5e7d1fd6-78a6-46a2-82b0-dfc0778fa9c2",
+  "timestamp": "2026-05-19T21:14:49.455Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T21:14:55.560Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到实验完成的 cron 回调，需要按 session-start 和 on-experiment-done 流程处理。
+
+先执行 session-start 初始化：
+1. read_registry 了解所有实验状态
+2. reconcile_crons 同步 cron 监控状态
+3. 读 report.md
+4. 读 ROADMAP.md
+
+然后处理实验完成回调。
+
+Let me load the necessary tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e7d1fd6-78a6-46a2-82b0-dfc0778fa9c2",
+  "isSidechain": false,
+  "requestId": "req_011CbCcttFzuFs2oKs9w3y82",
+  "type": "assistant",
+  "uuid": "620553d8-f46c-448b-a913-d2256edb05f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUWjMG8MJh3UGnsLitfKVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25148,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25148,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25148
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T21:14:56.799Z_
+
+Session 启动，执行初始化 + 处理 exp002v2-recalib 完成回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "620553d8-f46c-448b-a913-d2256edb05f2",
+  "isSidechain": false,
+  "requestId": "req_011CbCcttFzuFs2oKs9w3y82",
+  "type": "assistant",
+  "uuid": "af4383b7-5543-468f-b0ec-bec88179dc57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUWjMG8MJh3UGnsLitfKVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25148,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25148,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25148
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T21:14:59.366Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013CBPWEkmu82DE21JrR9Xy4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": 11
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af4383b7-5543-468f-b0ec-bec88179dc57",
+  "isSidechain": false,
+  "requestId": "req_011CbCcttFzuFs2oKs9w3y82",
+  "type": "assistant",
+  "uuid": "af788e36-c079-4e89-b85b-b49834a44366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUWjMG8MJh3UGnsLitfKVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25148,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25148,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25148
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T21:14:59.374Z_
+
+<details><summary>↩ Tool result · `toolu_013CBPWEkmu82DE21JrR9Xy4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af788e36-c079-4e89-b85b-b49834a44366",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "3868ccf9-504a-4b97-943c-0e642c311c49",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_project_resource_usage"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_project_resource_usage",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "af788e36-c079-4e89-b85b-b49834a44366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T21:15:02.407Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01JrWxYMysNbyc9WgXs4ei61`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3868ccf9-504a-4b97-943c-0e642c311c49",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "2d5500dc-2342-46f4-966e-6e5b6dc63ce0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T21:15:02.878Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01HUBm7E6RU2mh1EKyWK8dWA`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d5500dc-2342-46f4-966e-6e5b6dc63ce0",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "545e73c9-3be7-4aa9-8062-c99d00057bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T21:15:02.466Z_
+
+<details><summary>↩ Tool result · `toolu_01JrWxYMysNbyc9WgXs4ei61`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp002v2-recalib\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:40:31.395Z\", \"updated_at\": \"2026-05-19T21:14:43.434Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee logs/exp002v2_recalib.log\\\"\", \"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": \"172838\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp002v2-recalib.log\", \"submitted_at\": \"2026-05-19T06:40:31.374Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-002v2 checkpoint-500 + recalibrated d_syc (directions_recalib_step500.pt)\", \"eval_data\": \"N/A\", \"notes\": \"D024: resume from checkpoint-500 with recalibrated d_syc. recalibration_interval=500. Trainer recalib cosine(old,new)=0.957, per-layer AUROC 0.78-0.81. Step 510 R1: medium=-0.056, strong=-0.047.\"}, \"hypothesis\": \"DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\", \"parent\": \"exp-002v2\", \"reproduce\": {\"finished_at\": \"2026-05-19T21:14:43.366Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T21:14:45.118477+00:00\"}]}}, \"exp-002v3\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-19T07:55:19.922Z\", \"updated_at\": \"2026-05-19T18:34:08.101Z\", \"hypothesis\": \"DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:07:42.194Z\"}, \"failure_reason\": \"TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given. run_exp002v3_dcgrpo_scaled_cosine.py:77 的 Exp002v3Trainer.compute_rewards() 向 super().compute_rewards() 传了 r1_ema 和 ema_alpha 两个额外参数，但 dcgrpo_trainer.py 的 compute_rewards() 签名已移除这两个参数。代码版本不同步导致第一个训练步就崩溃。不可直接重试，需修改 run_exp002v3 的 super() 调用去掉 r1_ema/ema_alpha 参数。\", \"completed_at\": \"2026-05-19T18:05:38.717Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:05:40.450010+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:07:45.103363+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\"}}, \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && unset CUDA_VISIBLE_DEVICES && export NCCL_P2P_DISABLE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && /root/miniconda3/bin/deepspeed --include localhost:0,3 --master_port 29501 training/run_exp002v3_dcgrpo_scaled_cosine.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0,cuda:3\", \"pid\": \"153957\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-002v3.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/\", \"notes\": \"D028 retry #3 SUCCESS: fixed compute_rewards signature + master_port 29501. scale_factor=5.0, r1_weight=0.4, r3_weight=0.6. DeepSpeed ZeRO-2 on GPU 0+3. ~29s/step, ETA ~65h (~May 22).\"}}, \"exp-003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-19T18:09:08.991Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:1\", \"pid\": 70649, \"command\": \"python training/run_exp003_r3only.py\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\"}}, \"exp-004\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T14:42:12.234Z\", \"updated_at\": \"2026-05-19T17:44:34.840Z\", \"hypothesis\": \"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\", \"completed_at\": \"2026-05-18T16:03:27.349Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash /root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"140127\", \"log_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl\", \"submitted_at\": \"2026-05-19T14:36:03.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/\", \"data_path\": \"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.\"}, \"conclusion\": \"success\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 2269, \"note\": \"pre-SFT-saturation checkpoint. High NoF but extremely low ToF.\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0.1492, \"NoF\": 0.8785, \"SYCONScore\": 0.255, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1930}, \"preset_eval_ckpt8000\": {\"ToF\": 0.1823, \"NoF\": 0.8674, \"SYCONScore\": 0.3013, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-8000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1663, \"note\": \"best SYCONScore among all checkpoints\"}, \"best_checkpoint\": \"checkpoint-8000\", \"best_SYCONScore\": 0.3013, \"trend\": \"SYCONScore monotonically increases with training steps: 0.170 → 0.255 → 0.301. ToF improves (0.094 → 0.149 → 0.182) while NoF slightly decreases (0.890 → 0.879 → 0.867).\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp004_unified_eval/\"}}, \"exp-016\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T22:30:49.598Z\", \"updated_at\": \"2026-05-19T17:44:21.075Z\", \"hypothesis\": \"ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\", \"failure_reason\": \"All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hooks did not take effect during generation — likely KV cache bypass or hook registration issue.\", \"completed_at\": \"2026-05-19T01:51:21.185Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp016_actadd_steering.py --eval_data /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"85457\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-001 directions.pt (d_syc)\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"Re-run v2 after hook fix. Root cause: transformers 4.57 Qwen3DecoderLayer.forward() returns raw tensor not tuple. Old hook did output[0] which indexed batch dim, then seq_len check always failed → hooks never modified anything. Fix: isinstance(output, torch.Tensor) check, handle both tensor and tuple output formats.\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/results_summary.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T16:59:39.065Z\", \"updated_at\": \"2026-05-19T10:11:01.189Z\", \"hypothesis\": \"A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-18T18:02:32.364Z\"}, \"failure_reason\": \"OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\", \"completed_at\": \"2026-05-18T18:02:32.926Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T18:02:34.472942+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"pid\": \"39734\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-014.log\", \"submitted_at\": \"2026-05-18T18:26:29.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, probe from exp-001 activations)\", \"eval_data\": \"N/A (training experiment, not evaluation)\", \"notes\": \"Continuous probe R1 baseline (DeepSpeed ZeRO-2, 2x RTX 5090). Fix: unset CUDA_VISIBLE_DEVICES to avoid tmux env conflict, deepspeed --include handles GPU selection. max_steps=8000, report_to=none.\", \"wall_clock_seconds\": 43882.0, \"gpu_hours\": 12.19}, \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:43:54.807Z\", \"updated_at\": \"2026-05-19T09:52:50.457Z\", \"hypothesis\": \"Vanilla Qwen3-8B baseline (no training, no LoRA). Establishes the pre-training NoF/WRR reference point for all comparisons. Using eval_pipeline.py with enable_thinking=False.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_pipeline.py\", \"server\": \"westd-28034\", \"data_path\": \"/root/contrastive_entrain_calib/data/sycon_eval_from_calib.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B (base, no LoRA)\", \"seed\": 42, \"checkpoint_source\": \"base_model\", \"eval_data\": \"sycon_eval_from_calib.jsonl (362 samples)\", \"checkpoint_path\": \"N/A (base model)\", \"log_path\": \"/root/contrastive_entrain_calib/results/vanilla_baseline_eval/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}, \"completed_at\": \"2026-05-19T09:52:50.457Z\"}, \"exp-008v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:46:29.198Z\", \"updated_at\": \"2026-05-19T06:46:57.342Z\", \"hypothesis\": \"Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.\", \"parent\": \"exp-008\", \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp008v3_binary_probe_grpo.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D023: Binary Probe GRPO on GPU 1+2 after exp-014 killed. DeepSpeed ZeRO-2. Step 10 confirmed: combined_reward=0.526, R1(binary)=0.5, R3=0.625, grad_norm=0.047, entropy=0.451. 19.5s/step, ~77.8% completions clipped at 256 tokens.\"}}, \"exp-002v2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T06:43:03.059Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"stability_step500\": {\"mean_cosine_old_new\": 0.2828, \"mean_cosine_auroc\": 0.8107, \"verdict\": \"SIGNIFICANT_DRIFT\", \"per_layer_cosine\": {\"19\": 0.2782, \"20\": 0.3067, \"24\": 0.3533, \"27\": 0.3809, \"32\": 0.2395, \"33\": 0.2208, \"35\": 0.2005}, \"per_layer_auroc\": {\"19\": 0.8013, \"20\": 0.7988, \"24\": 0.7869, \"27\": 0.8238, \"32\": 0.8081, \"33\": 0.8162, \"35\": 0.84}, \"implication\": \"d_syc direction rotated significantly but linear separability preserved. R1≈0 because old d_syc is stale. Recalibration needed.\"}}, \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"pid\": \"130467\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。\"}, \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:05:08.369Z\", \"updated_at\": \"2026-05-19T00:07:57.377Z\", \"hypothesis\": \"DC-GRPO with reduced R1 weight (0.15) and elevated R3 safety net (0.65), using exp-001 top layers [19,20,24,27,32,33,35], will produce a LoRA policy that reduces sycophantic capitulation while maintaining response quality, with per-strength adaptive R1 gating preventing noisy weak-pair gradients from destabilizing training.\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": 69020, \"command\": \"python training/run_exp002_dcgrpo.py\", \"data_path\": \"/root/contrastive_entrain_calib/data\", \"data_count\": 200, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2 restart: R3 inversion fix + R2=0 (r1=0.25,r2=0.0,r3=0.75) + speed opt (num_gen=2, max_completion_length=256). Trainer reconstructed from .pyc + patched.\"}, \"conclusion\": \"killed\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:04:34.621Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T00:04:34.743Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:04:36.358028+00:00\"}]}, \"notes\": \"D020 主动 kill：R1 tanh(dot/20) 饱和确认（D019），step 955/8000 时终止。R1 mean 持续负值 (-0.03~-0.9) 大幅震荡，cosine R1 替代方案已启动为 exp-002v2。已有成果：step 0-955 的 reward 日志证实 tanh normalization 方案不可行。\"}, \"exp-008\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T15:29:15.883Z\", \"updated_at\": \"2026-05-18T22:48:02.118Z\", \"hypothesis\": \"Binary probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe + REINFORCE-style policy gradient prevents adversarial gaming. If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value; if DC-GRPO > Binary, continuous directional information is the critical differentiator over binary classification.\", \"completed_at\": \"2026-05-18T18:37:46.265Z\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"extra\": {\"st_zero_issue\": \"S(t)=0 root cause: adversarial gaming. Model games linear probe via gradient in ~30 steps. Retrained probes defeated in ~10 steps.\", \"effective_method\": \"SFT+R3 (probe penalty gamed to zero)\", \"v3_redesign\": \"Binary Probe GRPO: subclass DCGRPOTrainer, override compute_r1 with frozen+detached binary probe. GRPO REINFORCE-style update prevents gaming. ZeRO-2 on 2 GPUs. Deploy after exp-004 + exp-008v2 finish (~May 19 13:00).\", \"paper_value\": \"1) Differentiable probe penalty gamed (negative) supports DC-GRPO motivation. 2) Binary vs Continuous vs Directional ablation cascade isolates contribution of each signal type.\", \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:32:42.898247+00:00\"}]}, \"reproduce\": {\"finished_at\": \"2026-05-18T22:32:40.717Z\"}, \"spec\": {\"command\": \"bash -c \\\"export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"45993\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"SFT binary probe penalty v2: online probe retraining every 100 steps. retrain_interval=100 (vs v1 frozen probe which collapsed S(t)→0 by step 30). LoRA r=64 alpha=128 (exp-004 aligned). max_steps=8000.\"}, \"conclusion\": \"killed\"}, \"exp-003-s2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-18T15:32:49.988Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\"}, \"exp-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:10.872Z\", \"updated_at\": \"2026-05-18T15:02:41.530Z\", \"hypothesis\": \"Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.\", \"spec\": {\"command\": \"python3 extract_activations_v2.py + compute_directions.py + evaluate_directions.py pipeline\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp001/directions.pt\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp001/evaluation_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T14:53:31.826Z\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 13, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0396}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d5500dc-2342-46f4-966e-6e5b6dc63ce0",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "5012aeb3-62db-4a25-9a08-0d19e2d4ff84",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp002v2-recalib\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:40:31.395Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:14:43.434Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee logs/exp002v2_recalib.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"172838\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp002v2-recalib.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T06:40:31.374Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-002v2 checkpoint-500 + recalibrated d_syc (directions_recalib_step500.pt)\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"notes\\\": \\\"D024: resume from checkpoint-500 with recalibrated d_syc. recalibration_interval=500. Trainer recalib cosine(old,new)=0.957, per-layer AUROC 0.78-0.81. Step 510 R1: medium=-0.056, strong=-0.047.\\\"}, \\\"hypothesis\\\": \\\"DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\\\", \\\"parent\\\": \\\"exp-002v2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T21:14:43.366Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T21:14:45.118477+00:00\\\"}]}}, \\\"exp-002v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-19T07:55:19.922Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:34:08.101Z\\\", \\\"hypothesis\\\": \\\"DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:07:42.194Z\\\"}, \\\"failure_reason\\\": \\\"TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given. run_exp002v3_dcgrpo_scaled_cosine.py:77 的 Exp002v3Trainer.compute_rewards() 向 super().compute_rewards() 传了 r1_ema 和 ema_alpha 两个额外参数，但 dcgrpo_trainer.py 的 compute_rewards() 签名已移除这两个参数。代码版本不同步导致第一个训练步就崩溃。不可直接重试，需修改 run_exp002v3 的 super() 调用去掉 r1_ema/ema_alpha 参数。\\\", \\\"completed_at\\\": \\\"2026-05-19T18:05:38.717Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:05:40.450010+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:07:45.103363+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"D028 retry #2 失败诊断 (2026-05-20):\\\\n\\\\n## 错误\\\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\\\n\\\\n## Traceback (rank0)\\\\n```\\\\nFile \\\\\\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\\\\\", line 195, in main\\\\n    trainer.train()\\\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\\\n```\\\\n\\\\n## 根因\\\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\\\n\\\\n## 修复方案\\\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\\\n\\\\n## 不可直接重试，需修代码。\\\"}}, \\\"notes\\\": \\\"D028 retry #2 失败诊断 (2026-05-20):\\\\n\\\\n## 错误\\\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\\\n\\\\n## Traceback (rank0)\\\\n```\\\\nFile \\\\\\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\\\\\", line 195, in main\\\\n    trainer.train()\\\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\\\n```\\\\n\\\\n## 根因\\\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\\\n\\\\n## 修复方案\\\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\\\n\\\\n## 不可直接重试，需修代码。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && unset CUDA_VISIBLE_DEVICES && export NCCL_P2P_DISABLE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && /root/miniconda3/bin/deepspeed --include localhost:0,3 --master_port 29501 training/run_exp002v3_dcgrpo_scaled_cosine.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:0,cuda:3\\\", \\\"pid\\\": \\\"153957\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"training_from_base\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-002v3.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/\\\", \\\"notes\\\": \\\"D028 retry #3 SUCCESS: fixed compute_rewards signature + master_port 29501. scale_factor=5.0, r1_weight=0.4, r3_weight=0.6. DeepSpeed ZeRO-2 on GPU 0+3. ~29s/step, ETA ~65h (~May 22).\\\"}}, \\\"exp-003\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:42:11.934Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:09:08.991Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-29046\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 70649, \\\"command\\\": \\\"python training/run_exp003_r3only.py\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\\\"}}, \\\"exp-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T14:42:12.234Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:44:34.840Z\\\", \\\"hypothesis\\\": \\\"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\\\", \\\"completed_at\\\": \\\"2026-05-18T16:03:27.349Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"140127\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl\\\", \\\"submitted_at\\\": \\\"2026-05-19T14:36:03.713Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"training_from_base\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"notes\\\": \\\"ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"preset_eval_ckpt500\\\": {\\\"ToF\\\": 0.0939, \\\"NoF\\\": 0.8895, \\\"SYCONScore\\\": 0.1699, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_time_sec\\\": 2269, \\\"note\\\": \\\"pre-SFT-saturation checkpoint. High NoF but extremely low ToF.\\\"}, \\\"preset_eval_ckpt2000\\\": {\\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.255, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-2000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_time_sec\\\": 1930}, \\\"preset_eval_ckpt8000\\\": {\\\"ToF\\\": 0.1823, \\\"NoF\\\": 0.8674, \\\"SYCONScore\\\": 0.3013, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-8000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_time_sec\\\": 1663, \\\"note\\\": \\\"best SYCONScore among all checkpoints\\\"}, \\\"best_checkpoint\\\": \\\"checkpoint-8000\\\", \\\"best_SYCONScore\\\": 0.3013, \\\"trend\\\": \\\"SYCONScore monotonically increases with training steps: 0.170 → 0.255 → 0.301. ToF improves (0.094 → 0.149 → 0.182) while NoF slightly decreases (0.890 → 0.879 → 0.867).\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_results_path\\\": \\\"/root/contrastive_entrain_calib/results/exp004_unified_eval/\\\"}}, \\\"exp-016\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T22:30:49.598Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:44:21.075Z\\\", \\\"hypothesis\\\": \\\"ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\\\", \\\"failure_reason\\\": \\\"All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hooks did not take effect during generation — likely KV cache bypass or hook registration issue.\\\", \\\"completed_at\\\": \\\"2026-05-19T01:51:21.185Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp016_actadd_steering.py --eval_data /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"85457\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-001 directions.pt (d_syc)\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"notes\\\": \\\"Re-run v2 after hook fix. Root cause: transformers 4.57 Qwen3DecoderLayer.forward() returns raw tensor not tuple. Old hook did output[0] which indexed batch dim, then seq_len check always failed → hooks never modified anything. Fix: isinstance(output, torch.Tensor) check, handle both tensor and tuple output formats.\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/results_summary.json\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"alpha_0.0\\\": {\\\"NoF\\\": 0.6961, \\\"WRR\\\": 0.2707}, \\\"alpha_0.5\\\": {\\\"NoF\\\": 0.6906, \\\"WRR\\\": 0.2541}, \\\"alpha_1.0\\\": {\\\"NoF\\\": 0.7127, \\\"WRR\\\": 0.2652}, \\\"alpha_2.0\\\": {\\\"NoF\\\": 0.6851, \\\"WRR\\\": 0.2541}, \\\"alpha_5.0\\\": {\\\"NoF\\\": 0.7845, \\\"WRR\\\": 0.2155}, \\\"best_alpha\\\": 5, \\\"best_NoF_delta\\\": \\\"+8.8pp\\\", \\\"D027_note\\\": \\\"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\\\", \\\"conclusion_reason\\\": \\\"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\\\", \\\"unified_reeval_D027\\\": {\\\"alpha_0.0\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.1335}, \\\"alpha_0.5\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9392, \\\"SYCONScore\\\": 0.1334}, \\\"alpha_1.0\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.0846}, \\\"alpha_2.0\\\": {\\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9669, \\\"SYCONScore\\\": 0.0537}, \\\"alpha_5.0\\\": {\\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9613, \\\"SYCONScore\\\": 0.0537}, \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_results_path\\\": \\\"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\\\"}}}, \\\"exp-014\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-18T16:59:39.065Z\\\", \\\"updated_at\\\": \\\"2026-05-19T10:11:01.189Z\\\", \\\"hypothesis\\\": \\\"A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.\\\", \\\"parent\\\": \\\"exp-002\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T18:02:32.364Z\\\"}, \\\"failure_reason\\\": \\\"OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\\\", \\\"completed_at\\\": \\\"2026-05-18T18:02:32.926Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T18:02:34.472942+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1,cuda:2\\\", \\\"pid\\\": \\\"39734\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-014.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T18:26:29.437Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch, probe from exp-001 activations)\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not evaluation)\\\", \\\"notes\\\": \\\"Continuous probe R1 baseline (DeepSpeed ZeRO-2, 2x RTX 5090). Fix: unset CUDA_VISIBLE_DEVICES to avoid tmux env conflict, deepspeed --include handles GPU selection. max_steps=8000, report_to=none.\\\", \\\"wall_clock_seconds\\\": 43882.0, \\\"gpu_hours\\\": 12.19}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"preset_eval_ckpt3000\\\": {\\\"ToF\\\": 0.978, \\\"NoF\\\": 0.006, \\\"SYCONScore\\\": 0.011, \\\"RC_AUC\\\": 0.195, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"run_exp014_eval.sh (preset, NLI-based)\\\", \\\"eval_time_sec\\\": 1179}, \\\"diagnosis\\\": \\\"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\\\"}}, \\\"vanilla-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T09:43:54.807Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:52:50.457Z\\\", \\\"hypothesis\\\": \\\"Vanilla Qwen3-8B baseline (no training, no LoRA). Establishes the pre-training NoF/WRR reference point for all comparisons. Using eval_pipeline.py with enable_thinking=False.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_pipeline.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/sycon_eval_from_calib.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B (base, no LoRA)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"base_model\\\", \\\"eval_data\\\": \\\"sycon_eval_from_calib.jsonl (362 samples)\\\", \\\"checkpoint_path\\\": \\\"N/A (base model)\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/results/vanilla_baseline_eval/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1105, \\\"NoF\\\": 0.9227, \\\"sycon_score\\\": 0.1974, \\\"samples\\\": 362, \\\"avg_flip_turn_valid\\\": 1, \\\"avg_flip_count_invalid\\\": 0.08, \\\"eval_script\\\": \\\"eval_pipeline.py (28034, missing regex postprocess)\\\", \\\"note\\\": \\\"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\\\"}, \\\"completed_at\\\": \\\"2026-05-19T09:52:50.457Z\\\"}, \\\"exp-008v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:46:29.198Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:46:57.342Z\\\", \\\"hypothesis\\\": \\\"Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.\\\", \\\"parent\\\": \\\"exp-008\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp008v3_binary_probe_grpo.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1,cuda:2\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"training_from_base\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"notes\\\": \\\"D023: Binary Probe GRPO on GPU 1+2 after exp-014 killed. DeepSpeed ZeRO-2. Step 10 confirmed: combined_reward=0.526, R1(binary)=0.5, R3=0.625, grad_norm=0.047, entropy=0.451. 19.5s/step, ~77.8% completions clipped at 256 tokens.\\\"}}, \\\"exp-002v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T23:53:52.831Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:43:03.059Z\\\", \\\"hypothesis\\\": \\\"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\\\", \\\"parent\\\": \\\"exp-002\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T02:10:27.513Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-19T02:10:27.621Z\\\", \\\"extra\\\": {\\\"stability_step500\\\": {\\\"mean_cosine_old_new\\\": 0.2828, \\\"mean_cosine_auroc\\\": 0.8107, \\\"verdict\\\": \\\"SIGNIFICANT_DRIFT\\\", \\\"per_layer_cosine\\\": {\\\"19\\\": 0.2782, \\\"20\\\": 0.3067, \\\"24\\\": 0.3533, \\\"27\\\": 0.3809, \\\"32\\\": 0.2395, \\\"33\\\": 0.2208, \\\"35\\\": 0.2005}, \\\"per_layer_auroc\\\": {\\\"19\\\": 0.8013, \\\"20\\\": 0.7988, \\\"24\\\": 0.7869, \\\"27\\\": 0.8238, \\\"32\\\": 0.8081, \\\"33\\\": 0.8162, \\\"35\\\": 0.84}, \\\"implication\\\": \\\"d_syc direction rotated significantly but linear separability preserved. R1≈0 because old d_syc is stale. Recalibration needed.\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"130467\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\\\", \\\"checkpoint_source\\\": \\\"training_from_base\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"notes\\\": \\\"D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:05:08.369Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:07:57.377Z\\\", \\\"hypothesis\\\": \\\"DC-GRPO with reduced R1 weight (0.15) and elevated R3 safety net (0.65), using exp-001 top layers [19,20,24,27,32,33,35], will produce a LoRA policy that reduces sycophantic capitulation while maintaining response quality, with per-strength adaptive R1 gating preventing noisy weak-pair gradients from destabilizing training.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-29046\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 69020, \\\"command\\\": \\\"python training/run_exp002_dcgrpo.py\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"v2 restart: R3 inversion fix + R2=0 (r1=0.25,r2=0.0,r3=0.75) + speed opt (num_gen=2, max_completion_length=256). Trainer reconstructed from .pyc + patched.\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T00:04:34.621Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-19T00:04:34.743Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T00:04:36.358028+00:00\\\"}]}, \\\"notes\\\": \\\"D020 主动 kill：R1 tanh(dot/20) 饱和确认（D019），step 955/8000 时终止。R1 mean 持续负值 (-0.03~-0.9) 大幅震荡，cosine R1 替代方案已启动为 exp-002v2。已有成果：step 0-955 的 reward 日志证实 tanh normalization 方案不可行。\\\"}, \\\"exp-008\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-18T15:29:15.883Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:48:02.118Z\\\", \\\"hypothesis\\\": \\\"Binary probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe + REINFORCE-style policy gradient prevents adversarial gaming. If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value; if DC-GRPO > Binary, continuous directional information is the critical differentiator over binary classification.\\\", \\\"completed_at\\\": \\\"2026-05-18T18:37:46.265Z\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"extra\\\": {\\\"st_zero_issue\\\": \\\"S(t)=0 root cause: adversarial gaming. Model games linear probe via gradient in ~30 steps. Retrained probes defeated in ~10 steps.\\\", \\\"effective_method\\\": \\\"SFT+R3 (probe penalty gamed to zero)\\\", \\\"v3_redesign\\\": \\\"Binary Probe GRPO: subclass DCGRPOTrainer, override compute_r1 with frozen+detached binary probe. GRPO REINFORCE-style update prevents gaming. ZeRO-2 on 2 GPUs. Deploy after exp-004 + exp-008v2 finish (~May 19 13:00).\\\", \\\"paper_value\\\": \\\"1) Differentiable probe penalty gamed (negative) supports DC-GRPO motivation. 2) Binary vs Continuous vs Directional ablation cascade isolates contribution of each signal type.\\\", \\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T22:32:42.898247+00:00\\\"}]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T22:32:40.717Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"45993\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"SFT binary probe penalty v2: online probe retraining every 100 steps. retrain_interval=100 (vs v1 frozen probe which collapsed S(t)→0 by step 30). LoRA r=64 alpha=128 (exp-004 aligned). max_steps=8000.\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-003-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:29:19.747Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:32:49.988Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\\\"}, \\\"exp-001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:42:10.872Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:02:41.530Z\\\", \\\"hypothesis\\\": \\\"Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 extract_activations_v2.py + compute_directions.py + evaluate_directions.py pipeline\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/results/exp001/evaluation_report.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T14:53:31.826Z\\\", \\\"metrics\\\": {\\\"cv_auroc_mean\\\": 0.8269, \\\"cv_auroc_std\\\": 0.0278, \\\"full_auroc\\\": 0.8159, \\\"bootstrap_ci_95\\\": [0.7698, 0.8589], \\\"best_layer\\\": 19, \\\"auroc_weak\\\": 0.675, \\\"auroc_medium\\\": 0.883, \\\"auroc_strong\\\": 0.929, \\\"num_pairs\\\": 181, \\\"stop_gate\\\": \\\"CONTINUE_REDUCED_R1\\\"}}}, \\\"count\\\": 13, \\\"total\\\": 13, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0396}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp002v2-recalib\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:40:31.395Z\", \"updated_at\": \"2026-05-19T21:14:43.434Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee logs/exp002v2_recalib.log\\\"\", \"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": \"172838\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp002v2-recalib.log\", \"submitted_at\": \"2026-05-19T06:40:31.374Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-002v2 checkpoint-500 + recalibrated d_syc (directions_recalib_step500.pt)\", \"eval_data\": \"N/A\", \"notes\": \"D024: resume from checkpoint-500 with recalibrated d_syc. recalibration_interval=500. Trainer recalib cosine(old,new)=0.957, per-layer AUROC 0.78-0.81. Step 510 R1: medium=-0.056, strong=-0.047.\"}, \"hypothesis\": \"DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\", \"parent\": \"exp-002v2\", \"reproduce\": {\"finished_at\": \"2026-05-19T21:14:43.366Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T21:14:45.118477+00:00\"}]}}, \"exp-002v3\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-19T07:55:19.922Z\", \"updated_at\": \"2026-05-19T18:34:08.101Z\", \"hypothesis\": \"DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:07:42.194Z\"}, \"failure_reason\": \"TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given. run_exp002v3_dcgrpo_scaled_cosine.py:77 的 Exp002v3Trainer.compute_rewards() 向 super().compute_rewards() 传了 r1_ema 和 ema_alpha 两个额外参数，但 dcgrpo_trainer.py 的 compute_rewards() 签名已移除这两个参数。代码版本不同步导致第一个训练步就崩溃。不可直接重试，需修改 run_exp002v3 的 super() 调用去掉 r1_ema/ema_alpha 参数。\", \"completed_at\": \"2026-05-19T18:05:38.717Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:05:40.450010+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:07:45.103363+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\"}}, \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && unset CUDA_VISIBLE_DEVICES && export NCCL_P2P_DISABLE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && /root/miniconda3/bin/deepspeed --include localhost:0,3 --master_port 29501 training/run_exp002v3_dcgrpo_scaled_cosine.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0,cuda:3\", \"pid\": \"153957\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-002v3.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/\", \"notes\": \"D028 retry #3 SUCCESS: fixed compute_rewards signature + master_port 29501. scale_factor=5.0, r1_weight=0.4, r3_weight=0.6. DeepSpeed ZeRO-2 on GPU 0+3. ~29s/step, ETA ~65h (~May 22).\"}}, \"exp-003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-19T18:09:08.991Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:1\", \"pid\": 70649, \"command\": \"python training/run_exp003_r3only.py\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\"}}, \"exp-004\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T14:42:12.234Z\", \"updated_at\": \"2026-05-19T17:44:34.840Z\", \"hypothesis\": \"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\", \"completed_at\": \"2026-05-18T16:03:27.349Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash /root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"140127\", \"log_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl\", \"submitted_at\": \"2026-05-19T14:36:03.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/\", \"data_path\": \"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.\"}, \"conclusion\": \"success\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 2269, \"note\": \"pre-SFT-saturation checkpoint. High NoF but extremely low ToF.\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0.1492, \"NoF\": 0.8785, \"SYCONScore\": 0.255, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1930}, \"preset_eval_ckpt8000\": {\"ToF\": 0.1823, \"NoF\": 0.8674, \"SYCONScore\": 0.3013, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-8000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1663, \"note\": \"best SYCONScore among all checkpoints\"}, \"best_checkpoint\": \"checkpoint-8000\", \"best_SYCONScore\": 0.3013, \"trend\": \"SYCONScore monotonically increases with training steps: 0.170 → 0.255 → 0.301. ToF improves (0.094 → 0.149 → 0.182) while NoF slightly decreases (0.890 → 0.879 → 0.867).\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp004_unified_eval/\"}}, \"exp-016\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T22:30:49.598Z\", \"updated_at\": \"2026-05-19T17:44:21.075Z\", \"hypothesis\": \"ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\", \"failure_reason\": \"All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hooks did not take effect during generation — likely KV cache bypass or hook registration issue.\", \"completed_at\": \"2026-05-19T01:51:21.185Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp016_actadd_steering.py --eval_data /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"85457\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-001 directions.pt (d_syc)\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"Re-run v2 after hook fix. Root cause: transformers 4.57 Qwen3DecoderLayer.forward() returns raw tensor not tuple. Old hook did output[0] which indexed batch dim, then seq_len check always failed → hooks never modified anything. Fix: isinstance(output, torch.Tensor) check, handle both tensor and tuple output formats.\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/results_summary.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T16:59:39.065Z\", \"updated_at\": \"2026-05-19T10:11:01.189Z\", \"hypothesis\": \"A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-18T18:02:32.364Z\"}, \"failure_reason\": \"OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\", \"completed_at\": \"2026-05-18T18:02:32.926Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T18:02:34.472942+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"pid\": \"39734\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-014.log\", \"submitted_at\": \"2026-05-18T18:26:29.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, probe from exp-001 activations)\", \"eval_data\": \"N/A (training experiment, not evaluation)\", \"notes\": \"Continuous probe R1 baseline (DeepSpeed ZeRO-2, 2x RTX 5090). Fix: unset CUDA_VISIBLE_DEVICES to avoid tmux env conflict, deepspeed --include handles GPU selection. max_steps=8000, report_to=none.\", \"wall_clock_seconds\": 43882.0, \"gpu_hours\": 12.19}, \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:43:54.807Z\", \"updated_at\": \"2026-05-19T09:52:50.457Z\", \"hypothesis\": \"Vanilla Qwen3-8B baseline (no training, no LoRA). Establishes the pre-training NoF/WRR reference point for all comparisons. Using eval_pipeline.py with enable_thinking=False.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_pipeline.py\", \"server\": \"westd-28034\", \"data_path\": \"/root/contrastive_entrain_calib/data/sycon_eval_from_calib.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B (base, no LoRA)\", \"seed\": 42, \"checkpoint_source\": \"base_model\", \"eval_data\": \"sycon_eval_from_calib.jsonl (362 samples)\", \"checkpoint_path\": \"N/A (base model)\", \"log_path\": \"/root/contrastive_entrain_calib/results/vanilla_baseline_eval/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}, \"completed_at\": \"2026-05-19T09:52:50.457Z\"}, \"exp-008v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:46:29.198Z\", \"updated_at\": \"2026-05-19T06:46:57.342Z\", \"hypothesis\": \"Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.\", \"parent\": \"exp-008\", \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp008v3_binary_probe_grpo.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D023: Binary Probe GRPO on GPU 1+2 after exp-014 killed. DeepSpeed ZeRO-2. Step 10 confirmed: combined_reward=0.526, R1(binary)=0.5, R3=0.625, grad_norm=0.047, entropy=0.451. 19.5s/step, ~77.8% completions clipped at 256 tokens.\"}}, \"exp-002v2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T06:43:03.059Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"stability_step500\": {\"mean_cosine_old_new\": 0.2828, \"mean_cosine_auroc\": 0.8107, \"verdict\": \"SIGNIFICANT_DRIFT\", \"per_layer_cosine\": {\"19\": 0.2782, \"20\": 0.3067, \"24\": 0.3533, \"27\": 0.3809, \"32\": 0.2395, \"33\": 0.2208, \"35\": 0.2005}, \"per_layer_auroc\": {\"19\": 0.8013, \"20\": 0.7988, \"24\": 0.7869, \"27\": 0.8238, \"32\": 0.8081, \"33\": 0.8162, \"35\": 0.84}, \"implication\": \"d_syc direction rotated significantly but linear separability preserved. R1≈0 because old d_syc is stale. Recalibration needed.\"}}, \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"pid\": \"130467\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。\"}, \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:05:08.369Z\", \"updated_at\": \"2026-05-19T00:07:57.377Z\", \"hypothesis\": \"DC-GRPO with reduced R1 weight (0.15) and elevated R3 safety net (0.65), using exp-001 top layers [19,20,24,27,32,33,35], will produce a LoRA policy that reduces sycophantic capitulation while maintaining response quality, with per-strength adaptive R1 gating preventing noisy weak-pair gradients from destabilizing training.\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": 69020, \"command\": \"python training/run_exp002_dcgrpo.py\", \"data_path\": \"/root/contrastive_entrain_calib/data\", \"data_count\": 200, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2 restart: R3 inversion fix + R2=0 (r1=0.25,r2=0.0,r3=0.75) + speed opt (num_gen=2, max_completion_length=256). Trainer reconstructed from .pyc + patched.\"}, \"conclusion\": \"killed\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:04:34.621Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T00:04:34.743Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:04:36.358028+00:00\"}]}, \"notes\": \"D020 主动 kill：R1 tanh(dot/20) 饱和确认（D019），step 955/8000 时终止。R1 mean 持续负值 (-0.03~-0.9) 大幅震荡，cosine R1 替代方案已启动为 exp-002v2。已有成果：step 0-955 的 reward 日志证实 tanh normalization 方案不可行。\"}, \"exp-008\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T15:29:15.883Z\", \"updated_at\": \"2026-05-18T22:48:02.118Z\", \"hypothesis\": \"Binary probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe + REINFORCE-style policy gradient prevents adversarial gaming. If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value; if DC-GRPO > Binary, continuous directional information is the critical differentiator over binary classification.\", \"completed_at\": \"2026-05-18T18:37:46.265Z\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"extra\": {\"st_zero_issue\": \"S(t)=0 root cause: adversarial gaming. Model games linear probe via gradient in ~30 steps. Retrained probes defeated in ~10 steps.\", \"effective_method\": \"SFT+R3 (probe penalty gamed to zero)\", \"v3_redesign\": \"Binary Probe GRPO: subclass DCGRPOTrainer, override compute_r1 with frozen+detached binary probe. GRPO REINFORCE-style update prevents gaming. ZeRO-2 on 2 GPUs. Deploy after exp-004 + exp-008v2 finish (~May 19 13:00).\", \"paper_value\": \"1) Differentiable probe penalty gamed (negative) supports DC-GRPO motivation. 2) Binary vs Continuous vs Directional ablation cascade isolates contribution of each signal type.\", \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:32:42.898247+00:00\"}]}, \"reproduce\": {\"finished_at\": \"2026-05-18T22:32:40.717Z\"}, \"spec\": {\"command\": \"bash -c \\\"export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"45993\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"SFT binary probe penalty v2: online probe retraining every 100 steps. retrain_interval=100 (vs v1 frozen probe which collapsed S(t)→0 by step 30). LoRA r=64 alpha=128 (exp-004 aligned). max_steps=8000.\"}, \"conclusion\": \"killed\"}, \"exp-003-s2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-18T15:32:49.988Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\"}, \"exp-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:10.872Z\", \"updated_at\": \"2026-05-18T15:02:41.530Z\", \"hypothesis\": \"Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.\", \"spec\": {\"command\": \"python3 extract_activations_v2.py + compute_directions.py + evaluate_directions.py pipeline\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp001/directions.pt\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp001/evaluation_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T14:53:31.826Z\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 13, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0396}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2d5500dc-2342-46f4-966e-6e5b6dc63ce0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T21:15:03.355Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01MfQAecFaBXUVoor7hWwzba`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5012aeb3-62db-4a25-9a08-0d19e2d4ff84",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "7071af12-9076-40f2-94de-97dc5d1b2912",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T21:15:03.891Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01VZsPS3nLHE2mq1oowLoMd9`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7071af12-9076-40f2-94de-97dc5d1b2912",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "e209379c-9443-48ec-a2bd-aa1dd2c358cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T21:15:04.423Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_0173jgMh6xT9uV946Gc1Two8`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e209379c-9443-48ec-a2bd-aa1dd2c358cd",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "fb0b16e8-339b-409a-83de-998eeac43d6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T21:15:04.709Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_012hiuqWoiJXYsigfDAn6515`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb0b16e8-339b-409a-83de-998eeac43d6b",
+  "isSidechain": false,
+  "requestId": "req_011CbCcucqammwgXsQuFbteb",
+  "type": "assistant",
+  "uuid": "76989f54-1679-43da-a2fa-0ce748af4e63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Ajg5sTq9UDYK98PvW9UU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4103,
+      "cache_read_input_tokens": 36989,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 36989,
+          "cache_creation_input_tokens": 4103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp002v2-recalib - project: contrastive_entrain_calib - server: westd-29046 - log_path: ~/r…",
+  "leafUuid": "76989f54-1679-43da-a2fa-0ce748af4e63",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T21:15:08.534Z_
+
+<details><summary>↩ Tool result · `toolu_01HUBm7E6RU2mh1EKyWK8dWA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp-003\", \"success\": true, \"actions\": [\"Job still running (pid=70649)\"]}, {\"exp_id\": \"exp-008v3\", \"success\": true, \"actions\": [\"Job still running (pid=exp-008v3)\"]}, {\"exp_id\": \"exp-002v3\", \"success\": true, \"actions\": [\"Job still running (pid=153957)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "545e73c9-3be7-4aa9-8062-c99d00057bf5",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "4e047837-b1e3-42cd-90a7-b1429efdd785",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-003\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=70649)\\\"]}, {\\\"exp_id\\\": \\\"exp-008v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp-008v3)\\\"]}, {\\\"exp_id\\\": \\\"exp-002v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=153957)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp-003\", \"success\": true, \"actions\": [\"Job still running (pid=70649)\"]}, {\"exp_id\": \"exp-008v3\", \"success\": true, \"actions\": [\"Job still running (pid=exp-008v3)\"]}, {\"exp_id\": \"exp-002v3\", \"success\": true, \"actions\": [\"Job still running (pid=153957)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "545e73c9-3be7-4aa9-8062-c99d00057bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T21:15:08.557Z_
+
+<details><summary>↩ Tool result · `toolu_01MfQAecFaBXUVoor7hWwzba`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T21:14:44Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 13 个实验 — ANALYZING 1, DONE 8, PREPARING 1, RUNNING 3\\n**DONE 分布**: killed 4, negative 1, success 3\\n\\n### GPU 占用\\n- **实际运行**: 5 张 — westd-29046:cuda:1(exp-003), westd-28034:cuda:1(exp-008v3), westd-28034:cuda:2(exp-008v3), westd-28034:cuda:0(exp-002v3), westd-28034:cuda:3(exp-002v3)\\n\\n### 💾 磁盘余量\\n- **westd-29046**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n- **westd-28034**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp-003` | westd-29046 | cuda:1 | 70649 | `—` |\\n| `exp-008v3` | westd-28034 | cuda:1,cuda:2 | ? | `—` |\\n| `exp-002v3` | westd-28034 | cuda:0,cuda:3 | 153957 | `~/runs/contrastive_entrain_calib/exp-002v3.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp-004` [success] — 2026-05-19T17:44:34\\n- `exp-016` [negative] — 2026-05-19T17:44:21 — All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hook\\n- `exp-014` [killed] — 2026-05-19T10:11:01 — OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed\\n- `vanilla-baseline` [success] — 2026-05-19T09:52:50\\n- `exp-002v2` [killed] — 2026-05-19T06:43:03 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp-014`: OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\\n- `exp-002v2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-002v3 | DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled. | — | — | — |\\n| exp-003 | R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness) | — | — | — |\\n| exp-008v3 | Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator. | — | — | — |\\n\\n## 待处理\\n- exp-003-s2: R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.（准备中）\\n\\n## 近期结论\\n- **exp-004** (success): ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\\n- **exp-016** (negative): ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\\n- **exp-014** (killed): A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator. ← 基于 exp-002\\n\\n## 趋势\\n成功 3 / 负向 1 / 失败 0 / 共 8\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-28034: 无 GPU 信息\\nwestd-29046: 无 GPU 信息\\n\\n## 告警\\n- exp-002: 已被终止 — unknown\\n- exp-008: 已被终止 — unknown\\n- exp-014: 已被终止 — unknown\\n- exp-002v2: 已被终止 — unknown\\n\", \"total_chars\": 4888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7071af12-9076-40f2-94de-97dc5d1b2912",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "54352254-9142-4438-b448-3126f6d49fc5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T21:14:44Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 13 个实验 — ANALYZING 1, DONE 8, PREPARING 1, RUNNING 3\\\\n**DONE 分布**: killed 4, negative 1, success 3\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 5 张 — westd-29046:cuda:1(exp-003), westd-28034:cuda:1(exp-008v3), westd-28034:cuda:2(exp-008v3), westd-28034:cuda:0(exp-002v3), westd-28034:cuda:3(exp-002v3)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-29046**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\\\n- **westd-28034**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp-003` | westd-29046 | cuda:1 | 70649 | `—` |\\\\n| `exp-008v3` | westd-28034 | cuda:1,cuda:2 | ? | `—` |\\\\n| `exp-002v3` | westd-28034 | cuda:0,cuda:3 | 153957 | `~/runs/contrastive_entrain_calib/exp-002v3.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-004` [success] — 2026-05-19T17:44:34\\\\n- `exp-016` [negative] — 2026-05-19T17:44:21 — All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hook\\\\n- `exp-014` [killed] — 2026-05-19T10:11:01 — OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed\\\\n- `vanilla-baseline` [success] — 2026-05-19T09:52:50\\\\n- `exp-002v2` [killed] — 2026-05-19T06:43:03 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp-014`: OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\\\\n- `exp-002v2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-002v3 | DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled. | — | — | — |\\\\n| exp-003 | R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness) | — | — | — |\\\\n| exp-008v3 | Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp-003-s2: R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-004** (success): ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\\\\n- **exp-016** (negative): ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\\\\n- **exp-014** (killed): A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator. ← 基于 exp-002\\\\n\\\\n## 趋势\\\\n成功 3 / 负向 1 / 失败 0 / 共 8\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-28034: 无 GPU 信息\\\\nwestd-29046: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp-002: 已被终止 — unknown\\\\n- exp-008: 已被终止 — unknown\\\\n- exp-014: 已被终止 — unknown\\\\n- exp-002v2: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 4888, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T21:14:44Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 13 个实验 — ANALYZING 1, DONE 8, PREPARING 1, RUNNING 3\\n**DONE 分布**: killed 4, negative 1, success 3\\n\\n### GPU 占用\\n- **实际运行**: 5 张 — westd-29046:cuda:1(exp-003), westd-28034:cuda:1(exp-008v3), westd-28034:cuda:2(exp-008v3), westd-28034:cuda:0(exp-002v3), westd-28034:cuda:3(exp-002v3)\\n\\n### 💾 磁盘余量\\n- **westd-29046**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n- **westd-28034**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp-003` | westd-29046 | cuda:1 | 70649 | `—` |\\n| `exp-008v3` | westd-28034 | cuda:1,cuda:2 | ? | `—` |\\n| `exp-002v3` | westd-28034 | cuda:0,cuda:3 | 153957 | `~/runs/contrastive_entrain_calib/exp-002v3.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp-004` [success] — 2026-05-19T17:44:34\\n- `exp-016` [negative] — 2026-05-19T17:44:21 — All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hook\\n- `exp-014` [killed] — 2026-05-19T10:11:01 — OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed\\n- `vanilla-baseline` [success] — 2026-05-19T09:52:50\\n- `exp-002v2` [killed] — 2026-05-19T06:43:03 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp-014`: OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\\n- `exp-002v2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-002v3 | DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled. | — | — | — |\\n| exp-003 | R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness) | — | — | — |\\n| exp-008v3 | Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator. | — | — | — |\\n\\n## 待处理\\n- exp-003-s2: R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.（准备中）\\n\\n## 近期结论\\n- **exp-004** (success): ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\\n- **exp-016** (negative): ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\\n- **exp-014** (killed): A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator. ← 基于 exp-002\\n\\n## 趋势\\n成功 3 / 负向 1 / 失败 0 / 共 8\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-28034: 无 GPU 信息\\nwestd-29046: 无 GPU 信息\\n\\n## 告警\\n- exp-002: 已被终止 — unknown\\n- exp-008: 已被终止 — unknown\\n- exp-014: 已被终止 — unknown\\n- exp-002v2: 已被终止 — unknown\\n\", \"total_chars\": 4888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7071af12-9076-40f2-94de-97dc5d1b2912",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T21:15:08.573Z_
+
+<details><summary>↩ Tool result · `toolu_01VZsPS3nLHE2mq1oowLoMd9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\", \"content\": \"# contrastive_entrain_calib — Research Dashboard\\n\\n> 最后更新: 2026-05-19 19:23 UTC | 更新原因: paper_framing.md D029 更新完成，同步刷新 ROADMAP 进展数据\\n\\n> 详见 paper_framing.md (story/claims) 和 experiment_plan.yaml (完整实验列表)\\n\\n## 核心方向\\nRepE-style d_syc 方向分解作为 GRPO reward 信号。**D029: Story A (continuous cosine) 失败，Story B (binary probe) 升为主线。** 论文叙事：\\\"方向信息存在(AUROC 0.82)但需 binarization 才能成为有效 reward——discriminability ≠ reward utility\\\"。\\n\\n## 目标会议\\n**EMNLP 2026** — ARR May cycle 提交截止 **May 25, 2026**。等待用户决策（May 25 vs August ARR）。\\n\\n## 当前阶段\\n**Research Phase** — Story B 为主线，等 exp-008v3 + exp-003 完成。paper_framing.md 已更新 D029 pivot。\\n\\n## 关键发现\\n1. **D029: Story A 死亡** — 四次验证（tanh/cosine/recalib/5x scale）cosine R1 作为连续 reward 无效。Per-strength 分析：strong evidence R1=-0.305 全负，d_syc 无法区分合理修正与 sycophantic capitulation。根因：cosine 捕捉 belief change 的方向，但合理修正和 sycophantic capitulation 都朝用户方向变化。\\n2. **Story B 前景好** — exp-008v3 binary probe R1 均值 +0.72（step 2140），持续正值，上升趋势。\\n3. **D028: exp-016 ActAdd 有害** — D027 eval 下 SYCONScore 降至 0.054 < vanilla 0.134。\\n4. **D028: exp-004 ACT 有效** — SYCONScore 0.301 (+16.8pp vs vanilla)。当前 bar：DC-GRPO 需 > 0.301。\\n5. **D027 vanilla baseline** — ToF=0.072, NoF=0.945, SYCONScore=0.134（D027 NLI-based）。\\n6. **clipped_ratio 96.9%** — 训练配置问题（max_completion_length=256 太短），非 reward hacking。\\n\\n## 实验状态\\n| exp_id | 状态 | 角色 | 服务器 | 进展 | ETA |\\n|--------|------|------|--------|------|-----|\\n| exp-008v3 | 🟢 RUNNING | **主实验 (Story B)** | 28034 GPU 1+2 | step ~2140/8000 (~27%) | ~May 21 13:00 |\\n| exp-003 | 🟢 RUNNING | 关键 baseline (R3-only) | 29046 GPU 1 | step ~3188/8000 (~40%) | ~May 21 下午 |\\n| exp-002v3 | 🟢 RUNNING | Negative evidence (Story A) | 28034 GPU 0+3 | early | ~May 22 |\\n| exp002v2-recalib | 🟢 RUNNING | Negative evidence (mode collapsed) | 29046 GPU 0 | step ~2842/8000 (~35%) | ~May 20 晚 |\\n| exp-004 | ✅ DONE | ACT baseline | — | SYCONScore 0.301 | — |\\n| exp-016 | ❌ NEGATIVE | ActAdd 有害 | — | SYCONScore 0.054 | — |\\n| exp-014 | ❌ KILLED | Mode collapse | — | — | — |\\n| exp-001 | ✅ DONE | Direction extraction | — | AUROC 0.827 | — |\\n| vanilla | ✅ DONE | Baseline | — | SYCONScore 0.134 | — |\\n\\n## GPU 使用 (6/6 满载)\\n| 服务器 | GPU | 任务 |\\n|--------|-----|----------|\\n| 28034 GPU 0+3 | exp-002v3 (negative evidence) | 🟢 |\\n| 28034 GPU 1+2 | exp-008v3 (**主实验**) | 🟢 |\\n| 29046 GPU 0 | exp002v2-recalib (negative evidence) | 🟢 |\\n| 29046 GPU 1 | exp-003 (关键 baseline) | 🟢 |\\n\\n## 近期任务\\n- [x] D029: Story A→B narrative pivot\\n- [x] 更新 paper_framing.md（D029 narrative pivot）\\n- [ ] exp002v2-recalib 完成 → eval on 29046 GPU 0（预期 mode collapse，entropy 0.069）\\n- [ ] exp-008v3 step 4000 mid-training eval → 转 LoRA adapter 到 29046 eval\\n- [ ] exp-003 完成 → eval + 与 exp-008v3 对比（binary probe R1 增量价值）\\n- [ ] exp-008v3 完成 → final eval（**论文核心数据**，SYCONScore 必须 > 0.301）\\n- [ ] exp-002v3 完成 → eval（negative evidence 完整性）\\n- [ ] exp-003-s2 部署（29046 GPU 0 空闲后）\\n- [ ] 用户 venue 决策（May 25 vs August ARR）\\n\\n## ⚠️ 关键风险\\n1. **exp-008v3 必须成功** — Story B 唯一支柱。SYCONScore ≤ 0.301 → 论文降级为 analysis paper (Findings)\\n2. **EMNLP DDL** — May 25 仅 6 天，核心实验 May 21 完成，用户尚未决定投 May 还是 August\\n3. **D027 ToF 偏低** — vanilla ToF=0.072，需 spot-check NLI 分类准确性\\n\\n## GPU 预算\\n- westd-29046: 2/2 满载\\n- westd-28034: 4/4 满载\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D030 | 2026-05-19 | D030: Probe ablation 确认 d_syc 方向是关键（+0.108 AUROC v | probe_ablation_AB |\\n| D029 | 2026-05-19 | D029: Story A (continuous cosine R1) 宣告失败，Story B  | exp-002v3, exp-008v3, exp002v2-recalib, exp-003 |\\n| D028 | 2026-05-19 | D028: exp-002v3 审批通过立即部署 + exp-016 结论反转 + D027 bas | exp-002v3, exp-016, exp-004 |\\n| D027 | 2026-05-19 | 统一评估指标标准：废弃 WRR，主报 ToF/NoF/SYCONScore，NLI-based 分类 | vanilla-baseline, exp-016 |\\n| D026 | 2026-05-19 | exp-002v3 设计：scale_factor=5 + R1=0.4/R3=0.6，exp-00 | exp-002v2, exp-002v3 |\\n| D025 | 2026-05-19 | D024 drift 确认为误报（cosine=0.96 非 0.28），不再 kill exp00 | exp-002v2, exp-003 |\\n| D024 | 2026-05-19 | Kill exp-002v2 并带 recalibration_interval=500 重启：方向 | exp-002v2, exp-006 |\\n| D023 | 2026-05-19 | Kill exp-014 (mode collapse confirmed), GPU 1+2 →  | exp-014, exp-008 |\\n| D022 | 2026-05-19 | exp-014 reward 饱和诊断：R3=0.999 + loss=0 + grad_norm= | exp-014, exp-003-s2 |\\n| D021 | 2026-05-19 | Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启：gat | exp-002v2, exp-003 |\\n\\n\", \"lines\": 80}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e209379c-9443-48ec-a2bd-aa1dd2c358cd",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "56eafe0d-fc0d-4334-a81f-ed9b888314ad",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\\\", \\\"content\\\": \\\"# contrastive_entrain_calib — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 19:23 UTC | 更新原因: paper_framing.md D029 更新完成，同步刷新 ROADMAP 进展数据\\\\n\\\\n> 详见 paper_framing.md (story/claims) 和 experiment_plan.yaml (完整实验列表)\\\\n\\\\n## 核心方向\\\\nRepE-style d_syc 方向分解作为 GRPO reward 信号。**D029: Story A (continuous cosine) 失败，Story B (binary probe) 升为主线。** 论文叙事：\\\\\\\"方向信息存在(AUROC 0.82)但需 binarization 才能成为有效 reward——discriminability ≠ reward utility\\\\\\\"。\\\\n\\\\n## 目标会议\\\\n**EMNLP 2026** — ARR May cycle 提交截止 **May 25, 2026**。等待用户决策（May 25 vs August ARR）。\\\\n\\\\n## 当前阶段\\\\n**Research Phase** — Story B 为主线，等 exp-008v3 + exp-003 完成。paper_framing.md 已更新 D029 pivot。\\\\n\\\\n## 关键发现\\\\n1. **D029: Story A 死亡** — 四次验证（tanh/cosine/recalib/5x scale）cosine R1 作为连续 reward 无效。Per-strength 分析：strong evidence R1=-0.305 全负，d_syc 无法区分合理修正与 sycophantic capitulation。根因：cosine 捕捉 belief change 的方向，但合理修正和 sycophantic capitulation 都朝用户方向变化。\\\\n2. **Story B 前景好** — exp-008v3 binary probe R1 均值 +0.72（step 2140），持续正值，上升趋势。\\\\n3. **D028: exp-016 ActAdd 有害** — D027 eval 下 SYCONScore 降至 0.054 < vanilla 0.134。\\\\n4. **D028: exp-004 ACT 有效** — SYCONScore 0.301 (+16.8pp vs vanilla)。当前 bar：DC-GRPO 需 > 0.301。\\\\n5. **D027 vanilla baseline** — ToF=0.072, NoF=0.945, SYCONScore=0.134（D027 NLI-based）。\\\\n6. **clipped_ratio 96.9%** — 训练配置问题（max_completion_length=256 太短），非 reward hacking。\\\\n\\\\n## 实验状态\\\\n| exp_id | 状态 | 角色 | 服务器 | 进展 | ETA |\\\\n|--------|------|------|--------|------|-----|\\\\n| exp-008v3 | 🟢 RUNNING | **主实验 (Story B)** | 28034 GPU 1+2 | step ~2140/8000 (~27%) | ~May 21 13:00 |\\\\n| exp-003 | 🟢 RUNNING | 关键 baseline (R3-only) | 29046 GPU 1 | step ~3188/8000 (~40%) | ~May 21 下午 |\\\\n| exp-002v3 | 🟢 RUNNING | Negative evidence (Story A) | 28034 GPU 0+3 | early | ~May 22 |\\\\n| exp002v2-recalib | 🟢 RUNNING | Negative evidence (mode collapsed) | 29046 GPU 0 | step ~2842/8000 (~35%) | ~May 20 晚 |\\\\n| exp-004 | ✅ DONE | ACT baseline | — | SYCONScore 0.301 | — |\\\\n| exp-016 | ❌ NEGATIVE | ActAdd 有害 | — | SYCONScore 0.054 | — |\\\\n| exp-014 | ❌ KILLED | Mode collapse | — | — | — |\\\\n| exp-001 | ✅ DONE | Direction extraction | — | AUROC 0.827 | — |\\\\n| vanilla | ✅ DONE | Baseline | — | SYCONScore 0.134 | — |\\\\n\\\\n## GPU 使用 (6/6 满载)\\\\n| 服务器 | GPU | 任务 |\\\\n|--------|-----|----------|\\\\n| 28034 GPU 0+3 | exp-002v3 (negative evidence) | 🟢 |\\\\n| 28034 GPU 1+2 | exp-008v3 (**主实验**) | 🟢 |\\\\n| 29046 GPU 0 | exp002v2-recalib (negative evidence) | 🟢 |\\\\n| 29046 GPU 1 | exp-003 (关键 baseline) | 🟢 |\\\\n\\\\n## 近期任务\\\\n- [x] D029: Story A→B narrative pivot\\\\n- [x] 更新 paper_framing.md（D029 narrative pivot）\\\\n- [ ] exp002v2-recalib 完成 → eval on 29046 GPU 0（预期 mode collapse，entropy 0.069）\\\\n- [ ] exp-008v3 step 4000 mid-training eval → 转 LoRA adapter 到 29046 eval\\\\n- [ ] exp-003 完成 → eval + 与 exp-008v3 对比（binary probe R1 增量价值）\\\\n- [ ] exp-008v3 完成 → final eval（**论文核心数据**，SYCONScore 必须 > 0.301）\\\\n- [ ] exp-002v3 完成 → eval（negative evidence 完整性）\\\\n- [ ] exp-003-s2 部署（29046 GPU 0 空闲后）\\\\n- [ ] 用户 venue 决策（May 25 vs August ARR）\\\\n\\\\n## ⚠️ 关键风险\\\\n1. **exp-008v3 必须成功** — Story B 唯一支柱。SYCONScore ≤ 0.301 → 论文降级为 analysis paper (Findings)\\\\n2. **EMNLP DDL** — May 25 仅 6 天，核心实验 May 21 完成，用户尚未决定投 May 还是 August\\\\n3. **D027 ToF 偏低** — vanilla ToF=0.072，需 spot-check NLI 分类准确性\\\\n\\\\n## GPU 预算\\\\n- westd-29046: 2/2 满载\\\\n- westd-28034: 4/4 满载\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D030 | 2026-05-19 | D030: Probe ablation 确认 d_syc 方向是关键（+0.108 AUROC v | probe_ablation_AB |\\\\n| D029 | 2026-05-19 | D029: Story A (continuous cosine R1) 宣告失败，Story B  | exp-002v3, exp-008v3, exp002v2-recalib, exp-003 |\\\\n| D028 | 2026-05-19 | D028: exp-002v3 审批通过立即部署 + exp-016 结论反转 + D027 bas | exp-002v3, exp-016, exp-004 |\\\\n| D027 | 2026-05-19 | 统一评估指标标准：废弃 WRR，主报 ToF/NoF/SYCONScore，NLI-based 分类 | vanilla-baseline, exp-016 |\\\\n| D026 | 2026-05-19 | exp-002v3 设计：scale_factor=5 + R1=0.4/R3=0.6，exp-00 | exp-002v2, exp-002v3 |\\\\n| D025 | 2026-05-19 | D024 drift 确认为误报（cosine=0.96 非 0.28），不再 kill exp00 | exp-002v2, exp-003 |\\\\n| D024 | 2026-05-19 | Kill exp-002v2 并带 recalibration_interval=500 重启：方向 | exp-002v2, exp-006 |\\\\n| D023 | 2026-05-19 | Kill exp-014 (mode collapse confirmed), GPU 1+2 →  | exp-014, exp-008 |\\\\n| D022 | 2026-05-19 | exp-014 reward 饱和诊断：R3=0.999 + loss=0 + grad_norm= | exp-014, exp-003-s2 |\\\\n| D021 | 2026-05-19 | Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启：gat | exp-002v2, exp-003 |\\\\n\\\\n\\\", \\\"lines\\\": 80}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\", \"content\": \"# contrastive_entrain_calib — Research Dashboard\\n\\n> 最后更新: 2026-05-19 19:23 UTC | 更新原因: paper_framing.md D029 更新完成，同步刷新 ROADMAP 进展数据\\n\\n> 详见 paper_framing.md (story/claims) 和 experiment_plan.yaml (完整实验列表)\\n\\n## 核心方向\\nRepE-style d_syc 方向分解作为 GRPO reward 信号。**D029: Story A (continuous cosine) 失败，Story B (binary probe) 升为主线。** 论文叙事：\\\"方向信息存在(AUROC 0.82)但需 binarization 才能成为有效 reward——discriminability ≠ reward utility\\\"。\\n\\n## 目标会议\\n**EMNLP 2026** — ARR May cycle 提交截止 **May 25, 2026**。等待用户决策（May 25 vs August ARR）。\\n\\n## 当前阶段\\n**Research Phase** — Story B 为主线，等 exp-008v3 + exp-003 完成。paper_framing.md 已更新 D029 pivot。\\n\\n## 关键发现\\n1. **D029: Story A 死亡** — 四次验证（tanh/cosine/recalib/5x scale）cosine R1 作为连续 reward 无效。Per-strength 分析：strong evidence R1=-0.305 全负，d_syc 无法区分合理修正与 sycophantic capitulation。根因：cosine 捕捉 belief change 的方向，但合理修正和 sycophantic capitulation 都朝用户方向变化。\\n2. **Story B 前景好** — exp-008v3 binary probe R1 均值 +0.72（step 2140），持续正值，上升趋势。\\n3. **D028: exp-016 ActAdd 有害** — D027 eval 下 SYCONScore 降至 0.054 < vanilla 0.134。\\n4. **D028: exp-004 ACT 有效** — SYCONScore 0.301 (+16.8pp vs vanilla)。当前 bar：DC-GRPO 需 > 0.301。\\n5. **D027 vanilla baseline** — ToF=0.072, NoF=0.945, SYCONScore=0.134（D027 NLI-based）。\\n6. **clipped_ratio 96.9%** — 训练配置问题（max_completion_length=256 太短），非 reward hacking。\\n\\n## 实验状态\\n| exp_id | 状态 | 角色 | 服务器 | 进展 | ETA |\\n|--------|------|------|--------|------|-----|\\n| exp-008v3 | 🟢 RUNNING | **主实验 (Story B)** | 28034 GPU 1+2 | step ~2140/8000 (~27%) | ~May 21 13:00 |\\n| exp-003 | 🟢 RUNNING | 关键 baseline (R3-only) | 29046 GPU 1 | step ~3188/8000 (~40%) | ~May 21 下午 |\\n| exp-002v3 | 🟢 RUNNING | Negative evidence (Story A) | 28034 GPU 0+3 | early | ~May 22 |\\n| exp002v2-recalib | 🟢 RUNNING | Negative evidence (mode collapsed) | 29046 GPU 0 | step ~2842/8000 (~35%) | ~May 20 晚 |\\n| exp-004 | ✅ DONE | ACT baseline | — | SYCONScore 0.301 | — |\\n| exp-016 | ❌ NEGATIVE | ActAdd 有害 | — | SYCONScore 0.054 | — |\\n| exp-014 | ❌ KILLED | Mode collapse | — | — | — |\\n| exp-001 | ✅ DONE | Direction extraction | — | AUROC 0.827 | — |\\n| vanilla | ✅ DONE | Baseline | — | SYCONScore 0.134 | — |\\n\\n## GPU 使用 (6/6 满载)\\n| 服务器 | GPU | 任务 |\\n|--------|-----|----------|\\n| 28034 GPU 0+3 | exp-002v3 (negative evidence) | 🟢 |\\n| 28034 GPU 1+2 | exp-008v3 (**主实验**) | 🟢 |\\n| 29046 GPU 0 | exp002v2-recalib (negative evidence) | 🟢 |\\n| 29046 GPU 1 | exp-003 (关键 baseline) | 🟢 |\\n\\n## 近期任务\\n- [x] D029: Story A→B narrative pivot\\n- [x] 更新 paper_framing.md（D029 narrative pivot）\\n- [ ] exp002v2-recalib 完成 → eval on 29046 GPU 0（预期 mode collapse，entropy 0.069）\\n- [ ] exp-008v3 step 4000 mid-training eval → 转 LoRA adapter 到 29046 eval\\n- [ ] exp-003 完成 → eval + 与 exp-008v3 对比（binary probe R1 增量价值）\\n- [ ] exp-008v3 完成 → final eval（**论文核心数据**，SYCONScore 必须 > 0.301）\\n- [ ] exp-002v3 完成 → eval（negative evidence 完整性）\\n- [ ] exp-003-s2 部署（29046 GPU 0 空闲后）\\n- [ ] 用户 venue 决策（May 25 vs August ARR）\\n\\n## ⚠️ 关键风险\\n1. **exp-008v3 必须成功** — Story B 唯一支柱。SYCONScore ≤ 0.301 → 论文降级为 analysis paper (Findings)\\n2. **EMNLP DDL** — May 25 仅 6 天，核心实验 May 21 完成，用户尚未决定投 May 还是 August\\n3. **D027 ToF 偏低** — vanilla ToF=0.072，需 spot-check NLI 分类准确性\\n\\n## GPU 预算\\n- westd-29046: 2/2 满载\\n- westd-28034: 4/4 满载\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D030 | 2026-05-19 | D030: Probe ablation 确认 d_syc 方向是关键（+0.108 AUROC v | probe_ablation_AB |\\n| D029 | 2026-05-19 | D029: Story A (continuous cosine R1) 宣告失败，Story B  | exp-002v3, exp-008v3, exp002v2-recalib, exp-003 |\\n| D028 | 2026-05-19 | D028: exp-002v3 审批通过立即部署 + exp-016 结论反转 + D027 bas | exp-002v3, exp-016, exp-004 |\\n| D027 | 2026-05-19 | 统一评估指标标准：废弃 WRR，主报 ToF/NoF/SYCONScore，NLI-based 分类 | vanilla-baseline, exp-016 |\\n| D026 | 2026-05-19 | exp-002v3 设计：scale_factor=5 + R1=0.4/R3=0.6，exp-00 | exp-002v2, exp-002v3 |\\n| D025 | 2026-05-19 | D024 drift 确认为误报（cosine=0.96 非 0.28），不再 kill exp00 | exp-002v2, exp-003 |\\n| D024 | 2026-05-19 | Kill exp-002v2 并带 recalibration_interval=500 重启：方向 | exp-002v2, exp-006 |\\n| D023 | 2026-05-19 | Kill exp-014 (mode collapse confirmed), GPU 1+2 →  | exp-014, exp-008 |\\n| D022 | 2026-05-19 | exp-014 reward 饱和诊断：R3=0.999 + loss=0 + grad_norm= | exp-014, exp-003-s2 |\\n| D021 | 2026-05-19 | Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启：gat | exp-002v2, exp-003 |\\n\\n\", \"lines\": 80}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e209379c-9443-48ec-a2bd-aa1dd2c358cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp002v2-recalib - project: contrastive_entrain_calib - server: westd-29046 - log_path: ~/r…",
+  "leafUuid": "56eafe0d-fc0d-4334-a81f-ed9b888314ad",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T21:15:08.696Z_
+
+<details><summary>↩ Tool result · `toolu_0173jgMh6xT9uV946Gc1Two8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-29046\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp-003\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp-008v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp-008v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp-002v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp-002v3\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp-003\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"exp-008v3\", \"gpus\": [\"cuda:1\", \"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp-002v3\", \"gpus\": [\"cuda:0\", \"cuda:3\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 5 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb0b16e8-339b-409a-83de-998eeac43d6b",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "340ecc7a-924d-4faf-b2ce-671da1e7bd90",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-29046\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"exp-003\\\"}, {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"exp-008v3\\\"}, {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"exp-008v3\\\"}, {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"exp-002v3\\\"}, {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"exp-002v3\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"exp-003\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp-008v3\\\", \\\"gpus\\\": [\\\"cuda:1\\\", \\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp-002v3\\\", \\\"gpus\\\": [\\\"cuda:0\\\", \\\"cuda:3\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 5 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-29046\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp-003\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp-008v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp-008v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp-002v3\"}, {\"server\": \"westd-28034\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp-002v3\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp-003\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"exp-008v3\", \"gpus\": [\"cuda:1\", \"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp-002v3\", \"gpus\": [\"cuda:0\", \"cuda:3\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 5 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fb0b16e8-339b-409a-83de-998eeac43d6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T21:15:08.762Z_
+
+<details><summary>↩ Tool result · `toolu_012hiuqWoiJXYsigfDAn6515`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76989f54-1679-43da-a2fa-0ce748af4e63",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "3e9376a8-8815-45e6-9292-42f0e7eb1427",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76989f54-1679-43da-a2fa-0ce748af4e63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-19T21:15:30.787Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session initialized. Let me analyze the situation:
+
+1. **exp002v2-recalib** just finished (ANALYZING status) - this is the one I need to process
+2. Three experiments still running: exp-003 (29046 GPU 1), exp-008v3 (28034 GPU 1+2), exp-002v3 (28034 GPU 0+3)
+3. Worker pool = 0 (violation of the "Worker 池 < 2 = 失职" rule, but I need to process this callback first)
+
+From the ROADMAP:
+
+
+exp002v2-recalib is negative evidence for Story A (continuous cosine R1) and shows the expected mode collapse with entropy 0.069. It's testing DC-GRPO with cosine R1 plus periodic direction recalibration, resuming from exp-002v2's checkpoint-500. I need to spawn a Worker to SSH into westd-29046, pull the training logs and metrics, and evaluate the checkpoint to understand what happened. I need to spawn a Worker to analyze the training logs and check for checkpoints, then evaluate the metrics to confirm whether mode collapse occurred as expected. Since GPU 0 on server 29046 is now free after exp002v2-recalib finished, I should also prepare for the next deployment steps while gathering the resource status information for the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e9376a8-8815-45e6-9292-42f0e7eb1427",
+  "isSidechain": false,
+  "requestId": "req_011CbCcvJqPcHAyfGvwdJeLA",
+  "type": "assistant",
+  "uuid": "87574ad8-6fb2-45a4-aec0-a429ea6ee54e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WxdEKqXyZ1bHC2v9m5TBV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16950,
+      "cache_read_input_tokens": 41092,
+      "output_tokens": 1981,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1981,
+          "cache_read_input_tokens": 41092,
+          "cache_creation_input_tokens": 16950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-19T21:15:30.843Z_
+
+Session 初始化完成。exp002v2-recalib 已转 ANALYZING，需要分析结果。29046 GPU 0 已空闲。派 Worker 分析日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87574ad8-6fb2-45a4-aec0-a429ea6ee54e",
+  "isSidechain": false,
+  "requestId": "req_011CbCcvJqPcHAyfGvwdJeLA",
+  "type": "assistant",
+  "uuid": "15ba9e70-5eaf-4c43-95de-3f19c7ef5a61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WxdEKqXyZ1bHC2v9m5TBV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16950,
+      "cache_read_input_tokens": 41092,
+      "output_tokens": 1981,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1981,
+          "cache_read_input_tokens": 41092,
+          "cache_creation_input_tokens": 16950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T21:15:54.560Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01LVR1AGg5XAfowLee1J71Z9`</summary>
+
+```json
+{
+  "task_type": "analysis:exp002v2-recalib",
+  "project": "contrastive_entrain_calib",
+  "task_prompt": "## 任务：分析 exp002v2-recalib 训练结果\n\n### 背景\nexp002v2-recalib 是 DC-GRPO with cosine R1 + periodic d_syc recalibration 实验。从 exp-002v2 checkpoint-500 恢复训练，每 500 步重新校准 d_syc 方向。\n\n**Hypothesis**: DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\n\n**Parent**: exp-002v2 (killed due to d_syc drift)\n\n**预期结果**: ROADMAP 预期 mode collapse（entropy 0.069）\n\n### 服务器信息\n- Server: westd-29046\n- Log path: ~/runs/contrastive_entrain_calib/exp002v2-recalib.log\n- 训练脚本: training/run_exp002v2_dcgrpo_cosine.py\n- Checkpoint 目录: 需要查找（可能在 /root/contrastive_entrain_calib/checkpoints/ 或 /root/autodl-tmp/checkpoints/）\n\n### 你要做的\n\n1. **读取训练日志**（ssh_read_only 到 westd-29046）:\n   - `tail -200 ~/runs/contrastive_entrain_calib/exp002v2-recalib.log` 看最后部分\n   - `head -50 ~/runs/contrastive_entrain_calib/exp002v2-recalib.log` 看开头\n   - 搜索关键指标: `grep -E \"(R1|R3|entropy|loss|grad_norm|reward|step)\" ~/runs/contrastive_entrain_calib/exp002v2-recalib.log | tail -50`\n\n2. **提取关键指标**:\n   - 最终 step 数（跑了多少步？）\n   - R1 mean 趋势（是否持续负值/接近0？）\n   - R3 趋势\n   - entropy 趋势（是否趋近0 → mode collapse？）\n   - grad_norm 趋势\n   - loss 趋势\n   - 是否有 recalibration 事件记录\n\n3. **查找 checkpoint**:\n   - `ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2*/ 2>/dev/null`\n   - `ls -la /root/autodl-tmp/checkpoints/exp002v2*/ 2>/dev/null`\n   - `find /root -name \"checkpoint*\" -path \"*exp002v2*recalib*\" -type d 2>/dev/null | head -10`\n\n4. **判断结论**:\n   - 如果 entropy → 0 + R3 → 1.0 + R1 ≈ 0 → mode collapse (conclusion = negative)\n   - 如果有正常训练趋势 → 需要进一步评估\n\n5. **产出**:\n   写一份简洁分析报告，包含：\n   - 总步数\n   - 关键指标最终值和趋势\n   - 是否发生 mode collapse\n   - checkpoint 路径（如有）\n   - 建议的 conclusion（success/negative/failed）\n   - 如果 negative：证伪了什么，暗示什么\n\n用 save_project_file 将分析写入 memory.md 的相关段落（追加，不覆盖已有内容）。\n\n注意：这是 Story A (continuous cosine R1) 的第四个验证实验。前三个（exp-002 tanh, exp-002v2 cosine, exp-002v3 scaled cosine）都失败/在跑。如果这个也是 negative，则进一步确认 Story A 死亡。\n",
+  "tool_groups": [
+    "ssh",
+    "registry",
+    "knowledge"
+  ],
+  "context": "Server westd-29046 使用 aml-train 镜像，conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15ba9e70-5eaf-4c43-95de-3f19c7ef5a61",
+  "isSidechain": false,
+  "requestId": "req_011CbCcvJqPcHAyfGvwdJeLA",
+  "type": "assistant",
+  "uuid": "4a6d3f1e-8cba-4efb-bb74-e7291093e195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WxdEKqXyZ1bHC2v9m5TBV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16950,
+      "cache_read_input_tokens": 41092,
+      "output_tokens": 1981,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1981,
+          "cache_read_input_tokens": 41092,
+          "cache_creation_input_tokens": 16950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T21:15:57.834Z_
+
+<details><summary>↩ Tool result · `toolu_01LVR1AGg5XAfowLee1J71Z9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp002v2-recalib_20260519T211555\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_analysis_exp002v2-recalib_20260519T211555.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp002v2-recalib_20260519T211555 started. Use get_worker_status('worker_analysis_exp002v2-recalib_20260519T211555') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a6d3f1e-8cba-4efb-bb74-e7291093e195",
+  "isSidechain": false,
+  "promptId": "6cbfe377-8dc2-4b22-9a69-2d327c5610c0",
+  "type": "user",
+  "uuid": "c9e7864a-ec03-4fb3-824c-b142e23ed195",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp002v2-recalib_20260519T211555\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_analysis_exp002v2-recalib_20260519T211555.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp002v2-recalib_20260519T211555 started. Use get_worker_status('worker_analysis_exp002v2-recalib_20260519T211555') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp002v2-recalib_20260519T211555\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_analysis_exp002v2-recalib_20260519T211555.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp002v2-recalib_20260519T211555 started. Use get_worker_status('worker_analysis_exp002v2-recalib_20260519T211555') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4a6d3f1e-8cba-4efb-bb74-e7291093e195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-19T21:15:57.840Z_
+
+```json
+{
+  "parentUuid": "c9e7864a-ec03-4fb3-824c-b142e23ed195",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c78f74eb-5aa1-4180-abe0-3eea0542747e",
+  "timestamp": "2026-05-19T21:15:57.840Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_2fe45edf",
+  "sessionId": "86e8035a-d825-4a72-8bf4-4e2b86fdbd1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

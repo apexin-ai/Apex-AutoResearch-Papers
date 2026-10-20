@@ -1,0 +1,559 @@
+_next_id: 36
+mistakes:
+- id: M001
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: 校准数据两条件输入文本差异过大，AUROC=1.0 是 trivial confound 而非真实方向判别力
+  root_cause: 校准数据 warranted_revision 和 sycophantic_capitulation 两条件从 Turn 2 开始完全不同（错答案
+    vs 正确答案 + 纠正 vs 施压 + 修正 vs 抵抗）。Layer 0（embedding 输出）即达 AUROC 0.998，证明模型不需要任何计算就能区分——信号在输入文本差异中，不在模型学到的内部表示中。另外，sycophantic_capitulation
+    条件中模型实际行为是 resistance（抵抗）而非 capitulation（屈服），条件命名与数据内容不符。
+  prevention: 对照实验设计的通用规则：(1) contrastive pair 的输入差异必须最小化，只保留理论上关键的变量；(2) 任何基于激活的方向性分析必须检查
+    Layer 0 AUROC 作为 confound baseline——如果 Layer 0 已经很高，后续层的高 AUROC 不能归因于模型计算；(3)
+    条件命名必须与数据中模型的实际行为一致，不能把"应该发生的行为"当作"实际发生的行为"来命名。
+  status: active
+  context: MVP Phase 1 生成 320 对校准数据，Phase 2 提取 Qwen3-8B 全层激活，Phase 4 评估显示 asst_first
+    AUROC=1.0。Reviewer critical 审查发现 Layer 0 即达 0.998，诊断为 trivial confound。
+  fix: 重新设计校准数据：两条件共享 Turn 1-2（同一问题 + 同一错误回答），仅 Turn 3 不同（valid correction vs invalid
+    pressure）。新 Go/No-Go 增加 Layer 0 baseline check（best-layer AUROC 需显著 > Layer 0
+    AUROC，Δ ≥ 0.15）。
+  related_decisions:
+  - D004
+- id: M002
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: dcgrpo_trainer.py dtype 不匹配：directions.pt (Float32) vs hidden states (BFloat16)
+    导致 torch.dot crash
+  root_cause: directions.pt 在 CPU Float32 下生成并保存，加载后只做了 .to(device) 没做 .to(dtype)。smoke
+    test 脚本中 Worker 修复了测试代码但没回改 trainer 本体。
+  prevention: 所有 tensor 跨模块传递时用 .to(reference_tensor) 而非 .to(device)，一步匹配 device+dtype。代码审查时检查所有
+    .to(device) 是否遗漏 dtype。
+  status: active
+  context: Reviewer 审查 GPU smoke test 结果发现。smoke test 中 Worker 只修了测试脚本（gpu_smoke_test.py），没修
+    dcgrpo_trainer.py compute_r1 中的同一问题。如果不修，exp-002 第一步 reward 计算就会 crash。
+  fix: 将 self.d_syc[...].to(h.device) 改为 .to(h)，已派 urgent 给 Agent 修复。
+- id: M003
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: dcgrpo_trainer.py 远程同步连续两次失败：Worker 方案不可靠
+  root_cause: 两次都用 spawn_worker 做文件同步：第一次 SSH 上传消耗预算失败，第二次 rate limit 在第 2 行就终止。Worker
+    对简单文件传输任务 overhead 过大（需要建立 session、读文件、理解上下文），且容易因 rate limit 或预算限制中断。
+  prevention: 小文件（<50KB）同步不要 spawn_worker，Agent 自己直接用 ssh_execute base64 单次传输。步骤：(1)
+    读本地文件 (2) base64 编码后 echo | base64 -d > 远程路径 (3) wc -c/wc -l/grep 验证。大文件才考虑 Worker
+    或 scp。
+  status: active
+  context: dcgrpo_trainer.py 本地已修复 dtype bug (.to(h))，但远程仍是旧版 (.to(h.device))。fix_v2
+    worker 因 SSH 上传超预算失败，sync_final worker 因 rate limit 在第 2 行终止。如果不修，exp-002 第一步
+    reward 计算就会 crash。
+  fix: 第三次改为 Agent 自己直接 base64 传输，不再 spawn worker。
+- id: M004
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 训练启动前未预下载所有依赖模型（DeBERTa-v3-base），导致 exp-002/003 在 R3 reward 计算时因网络不可达双双崩溃
+  root_cause: westd-29046 无法直连 huggingface.co（Errno 101 Network unreachable），需要通过
+    HF_ENDPOINT=https://hf-mirror.com 镜像下载。训练脚本中 DeBERTa 是在首次计算 R3 reward 时懒加载的，未在启动前预缓存。之前
+    Qwen3-8B 下载也遇到过同样的网络问题（用了镜像解决），但这个教训没有推广到所有模型依赖。
+  prevention: 训练启动前检查清单：(1) 列出所有需要下载的模型（主模型 + reward 模型 + tokenizer），(2) 用 HF_ENDPOINT=https://hf-mirror.com
+    预下载到本地缓存，(3) 验证 from_pretrained 能离线加载。所有训练启动命令统一加 HF_ENDPOINT 环境变量。在两台服务器上都做。
+  status: active
+  context: 'exp-003 PID 55546 已崩溃（OSError: Can''t load deberta-v3-base），exp-002 正在重试（5次后也会崩溃）。westd-29046
+    两张 GPU 都将释放为空闲。'
+  fix: 用 HF_ENDPOINT 镜像预下载 DeBERTa 到两台服务器，重启 exp-002/003 时统一加 HF_ENDPOINT 环境变量。
+- id: M005
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: R3 NLI hypothesis 设计缺陷：meta-behavioral 判断而非事实蕴含，导致 R3≈0；R2 batch_size=1
+    结构性无法 pair
+  root_cause: R3 hypothesis 设计时用了 meta-behavioral 语句（"The model revised its answer..."），NLI
+    模型无法评估这类判断，entailment≈0.001。R2 需要同 batch 内同时出现 valid_correction 和 invalid_pressure
+    两种 condition，但 GRPO batch_size=1 每步只采样一种 condition，R2 恒为 0。两个设计缺陷在代码编写时未经 sanity
+    test 验证。
+  prevention: 1. 任何 reward 组件上线前必须先跑 sanity test（输入几个样本，打印每个 reward 分量的值，确认非零且在合理范围）。2.
+    NLI-based reward 的 hypothesis 必须是可由 premise 文本直接蕴含/矛盾的事实命题，不能是需要推理链的 meta-behavioral
+    判断。3. 涉及 paired sampling 的 reward 设计必须先确认 batch 组织方式是否支持 pairing。
+  status: active
+  context: exp-002/003 启动后 Reviewer 在 step 28 发现 R3_mean=0.0033, R2≡0。有效训练仅靠 R1，浪费了约
+    30 步 GPU 时间。修复验证：valid_correction 从 0.001→0.83-0.97；invalid_pressure 需 inversion
+    方案（同 hypothesis + 1-score）。R2 临时归零，权重重分配给 R1/R3。
+  fix: 'R3: 改用事实性 hypothesis + invalid_pressure 用 inversion。R2: 临时 weight=0，权重重分配
+    R1=0.25 R3=0.75。速度优化 num_gen=2 max_completion_length=256。部署中（worker 首次失败，已重新派单）。'
+  related_decisions:
+  - D009
+  - D012
+- id: M006
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: dcgrpo_trainer.py 原文件损坏，Worker 从 .pyc 反编译重建（790→630 行）
+  root_cause: 原 .py 文件在 Worker 编辑过程中"损坏"（具体原因不明，可能是并发写入或 ssh_execute 中断）。Worker 选择从
+    .pyc 字节码反编译重建而非从本地 workspace 重新同步。
+  prevention: 1. 关键代码文件修改前先备份（cp trainer.py trainer.py.bak）。2. Worker 编辑远程文件失败时，优先从本地
+    workspace rsync 完整文件再 patch，而非从 .pyc 反编译。3. 100 步后做 reward 分布 sanity check 验证反编译代码行为正确性。
+  status: active
+  context: Reviewer 验证 26 个函数、所有关键修复点均正确。但 .pyc 反编译在复杂语法（嵌套推导式、装饰器、异常处理）可能引入细微差异。前
+    5 步 reward 分布正常。
+  fix: Worker 从 .pyc 反编译重建成功，Reviewer 逐项验证通过。需在 100 步后再次验证。
+- id: M007
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: DeepSpeed --num_gpus 忽略 CUDA_VISIBLE_DEVICES，导致 exp-014 越界占用 exp-004 的
+    GPU 0
+  root_cause: DeepSpeed 的 --num_gpus N 参数默认从 GPU 0 开始分配，不尊重 CUDA_VISIBLE_DEVICES 环境变量。exp-014
+    指定 --num_gpus 2 时实际使用了 GPU 0+1 而非预期的 GPU 1+2，与 exp-004 (GPU 0) 冲突导致 OOM。
+  prevention: 所有 DeepSpeed 启动命令统一使用 `--include localhost:X,Y` 精确指定 GPU，禁止使用 `--num_gpus`。写入
+    ml-experiment-guide 作为通用规则。
+  status: active
+  context: 'exp-004 未受影响（OOM 导致 exp-014 自动终止），但这是 L1 红线 #4 相关的 near-miss。'
+  fix: 改用 deepspeed --include localhost:1,2 run_exp014_continuous_probe.py
+- id: M008
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: exp-008 frozen probe penalty 在 30 步后因 activation drift 坍缩到 S(t)=0
+  root_cause: Frozen linear probe 在 base model 的 activations 上训练，但 SFT 微调导致模型 hidden
+    states 分布快速漂移。30 步后 probe 输出的 P(syc) 坍缩到 0，probe penalty S(t)=0，loss 退化为纯 R3-only
+    SFT。与 M005 (R3 NLI 设计缺陷) 属于同类问题：reward 组件在训练动态中失效但未被及时检测。
+  prevention: 1. 任何 representation-level reward/penalty 使用 frozen detector 时，必须评估
+    distribution shift 耐受性（至少模拟 100 步的 activation 漂移）。2. 所有 reward 组件必须有运行时监控：连续 10
+    步输出恒定值 → 自动告警。3. 使用在线重训练/重校准机制（如每 500 步），与 DC-GRPO 的 d_syc 重校准对齐。
+  status: active
+  context: 'exp-008 step 10-40: S(t) 从 0.2257 衰减到 0.0000。对论文有正面价值：frozen probe 快速失效支撑
+    DC-GRPO recalibration 的设计动机。'
+  fix: 在线 probe 重训练（每 500 步），与 exp-002 的 d_syc recalibration 间隔对齐。
+  related_decisions:
+  - D012
+- id: M009
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: NLI entailment 标签索引硬编码错误：probs[2] 实际是 neutral 而非 entailment，扩散到 exp-016
+    和 eval_pipeline
+  root_cause: Agent 假设 cross-encoder/nli-deberta-v3-base 标签顺序为 0=contradiction, 1=neutral,
+    2=entailment，实际为 0=contradiction, 1=entailment, 2=neutral。dcgrpo_trainer.py 已有动态检测逻辑，但编写新代码时未复用，而是重新硬编码了错误的索引。同一
+    bug 在 exp-016 和 eval_pipeline.py 中各独立出现一次。
+  prevention: 1. 所有使用 NLI 模型的代码必须从 model.config.label2id 动态获取标签索引，禁止硬编码。2. 抽取共享 NLI
+    工具函数避免重复实现。3. 新代码涉及已有组件时，优先复用已验证的实现（如 dcgrpo_trainer.py 的 _ensure_nli_model）。
+  status: active
+  context: exp-016 的 check_stance_consistency 和 eval_pipeline 的 NLIStanceChecker 都用
+    probs[2] 当 entailment。如果不修复，所有评估指标（NoF, WRR, RC-AUC）都基于 neutral 概率计算，完全无效。训练代码
+    (dcgrpo_trainer.py) 不受影响（已有动态检测）。
+  fix: 创建共享 NLI 工具函数，从 model.config.label2id 动态检测 entailment index，exp-016 和 eval_pipeline
+    统一调用。
+  related_decisions:
+  - D012
+- id: M010
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 将 exp-004 的"每 10 步 log 间隔 ~98s"误读为"per-step 96s"，ETA 偏差 10 倍
+  root_cause: exp-004 日志每 10 步输出一行。Worker 把两行日志间的 ~98s 时间差直接当作 per-step 时间，没有注意 logging_steps=10
+    的设置。实际 per-step 约 9.8s。
+  prevention: 读取训练日志计算 per-step 时间时，必须先确认 logging_steps 间隔。公式：per_step_time = (elapsed_t2
+    - elapsed_t1) / (step_t2 - step_t1)。不能假设每行日志对应 1 步。
+  status: active
+  context: Worker 报告 exp-004 per-step ~96s、ETA May 25。实际 per-step 9.8s、ETA ~May 19
+    21:30。偏差导致 GPU 调度计划延迟 5.5 天。幸运的是 Reviewer 交叉核实发现了错误。
+  fix: Reviewer 从原始日志验证：step=2500 elapsed=23383s, step=2510 elapsed=23481s → 98s/10步
+    = 9.8s/step。ROADMAP ETA 已修正。
+  related_decisions:
+  - D017
+- id: M011
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: exp-002 d_syc recalibration 从未实现：experiment_plan 要求每 500 步重校准但训练代码中完全缺失
+  root_cause: experiment_plan.yaml exp-002 description 明确写"每 500 步重校准 d_syc"，exp-006
+    (direction_stability_monitoring) 也依赖此机制。但 dcgrpo_trainer.py 仅在 __init__ 时从 directions.pt
+    静态加载 d_syc，训练循环中无任何 recalibration/direction_update 逻辑。此设计意图在代码实现时被遗漏，且未在 dry-run/review
+    中发现。
+  prevention: 1. experiment_plan 中的每个设计要素必须在代码 review 时逐项 check off——尤其是动态/周期性机制（recalibration、online
+    retrain、scheduled evaluation）。2. dry-run 验证应包括模拟多步训练，检查周期性回调是否实际触发。3. 与 M008 (probe
+    gaming) 同源：固定的 representation-level 检测器在模型持续训练时失效。
+  status: active
+  context: exp-002 step 700, R1_mean≈0 大幅震荡。exp-003 (R3-only) R3 表现反而更好。R1 可能因 activation
+    drift 导致固定 d_syc 失去对齐。如果不实现 recalibration，无法区分"方法不 work"和"实现不完整"。
+  fix: 紧急实现 recalibrate_direction() 方法：每 500 步在当前模型上重新计算 d_syc，替换旧方向，记录 cosine similarity
+    + AUROC。Step 2000 前完成代码并测试（~9h 窗口）。D016 判断点增加 recalibration 选项。
+  related_decisions:
+  - D016
+  - D010
+- id: M012
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: exp-002 R1 跨 7 层 raw dot product 平均：深层 ||h|| 10x 大于浅层，均值被噪声主导，tanh 饱和
+  root_cause: exp-001 评估 AUROC 0.82 是 L19 单层 dot product（不饱和，norm ~108）。exp-002 R1
+    将 L19-35 共 7 层的 raw dot product 取平均后再 tanh(mean/20)。深层 ||h|| 达 1000+，dot product
+    量级差 10 倍，均值被深层主导。L27-35 约 80% 样本 tanh 饱和为 ±1，R1 退化为噪声二值信号。exp-001 的好信号被 6 个噪声层稀释。
+  prevention: 1. representation-level reward 使用多层信号时，必须先检查各层 activation norm 量级差异。norm
+    差 >2x 时禁止 raw value 平均，应先归一化（cosine/z-score）或按层 AUROC 加权。2. reward 函数上线前做 per-layer
+    分析：打印每层的 raw 值、tanh 后值、饱和比例。3. 新 reward 设计时逐项对照评估配置：层选择、位置、聚合方式必须与评估阶段一致。
+  status: active
+  context: exp-002 step 700，R1 震荡 [-0.75, +0.49]，均值≈0。Reviewer critical 诊断：L19 dot
+    product 在线性区（0-1/20 饱和），L32-35 全部饱和（17-19/20）。跨层平均后有效信号被淹没。这直接导致 R1 无效、R3 被干扰、exp-002
+    表现弱于 exp-003。
+  fix: Step 2000 fork 时将 R1 限制到 L19（或 L19-20），去掉深层噪声。等 per-layer AUROC on current
+    model 结果确认后执行。
+  related_decisions:
+  - D019
+  - D016
+- id: M013
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: D024 基于错误 cosine 数据（0.28 vs 实际 0.96）做出 kill+restart 决策——stability 脚本引用了旧版
+    directions.pt
+  root_cause: 工作目录中残留旧版实验产物 output/directions.pt（320 对旧数据集），与当前使用的 results/exp001/directions.pt（181
+    对）共存。measure_direction_stability.py 引用了旧版文件作为 baseline，导致 cosine=0.28 的假象。实际方向漂移仅
+    cosine≈0.96。
+  prevention: 1. 实验数据文件必须带版本标识或实验 ID（如 directions_exp001_v2.1.pt）。2. 诊断脚本执行前必须确认引用的
+    baseline 文件与当前实验匹配。3. 旧版实验产物应归档或删除，不留在工作目录中。4. 关键决策（kill+restart）前交叉验证——用两种独立方法确认同一发现。
+  status: active
+  context: stability script 报告 cosine=0.28（74° drift），recalibrate_direction() 报告 cosine=0.957。两个文件本身
+    cosine 只有 0.31。D024 基于错误的 0.28 数据做出 kill exp-002v2 并重启的决策，代价约 30min 延迟。recalibration
+    机制本身无害但非必要。
+  fix: Reviewer 确认真实 cosine=0.96。exp-002v2-recalib 已在运行中，不再二次 kill。需删除 output/directions.pt
+    避免再次误引用。
+  related_decisions:
+  - D024
+- id: M014
+  date: '2026-05-19'
+  category: code_bug
+  severity: medium
+  summary: Worker 编写 28034 部署脚本时忽视 memory.md 已记录的环境特殊性（CUDA_VISIBLE_DEVICES/DeepSpeed
+    冲突 + deepspeed 绝对路径），导致 launch_exp002v3.sh 有 2 个部署阻断 bug
+  root_cause: Worker 未读 memory.md 中 "westd-28034 环境特殊性" 一节，也未参考同服务器已成功运行的 exp-008v3
+    命令格式
+  prevention: Agent 派 Worker 写 28034 部署脚本前，必须在 prompt 中附带 memory.md 的 28034 环境特殊性段落
+    + 已有成功命令（exp-008v3）作为参考模板
+  status: active
+  context: 'exp-002v3 launch script: (1) export CUDA_VISIBLE_DEVICES=0,3 与 deepspeed
+    --include localhost:0,3 冲突 (2) deepspeed 未用绝对路径 /root/miniconda3/bin/deepspeed。两个问题在
+    memory.md 和 exp-008v3 中都有明确记录和解决方案。'
+  fix: Reviewer 审查时发现，指令 Agent 直接 SSH 修复：unset CUDA_VISIBLE_DEVICES + /root/miniconda3/bin/deepspeed
+- id: M015
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: eval_exp016_actadd_unified.py 重复了已修复的 --gpu bug（os.environ 在 import torch
+    之后设置无效），导致进程跑在 GPU 0 挤占 exp-004、GPU 3 空闲 5h+
+  root_cause: eval_unified_preset.py 的 --gpu bug 修复（D027 后 Reviewer 指出）未同步到同期创建的 actadd
+    版本。两个脚本独立编写，修复只应用到了其中一个。
+  prevention: 创建新 eval 脚本时，必须以最新修复版 eval_unified_preset.py 为模板。禁止在任何 eval 脚本中使用 args.gpu
+    + os.environ 模式，统一用 CUDA_VISIBLE_DEVICES 环境变量前缀。Agent 派 Worker 写 eval 脚本前，prompt
+    中明确注明此约束。
+  status: active
+  context: exp-016 re-eval (PID 125723) 在 GPU 0 上与 exp-004 (PID 18204) 共享 32GB 卡，GPU
+    0 仅剩 2.5GB。exp-016 因显存不足被迫 CPU offload，预期 90min 实际跑了 5h+ 未完成。GPU 3 完全空闲。
+  fix: Kill PID 125723，删除 --gpu 参数，用 CUDA_VISIBLE_DEVICES=3 前缀重启。
+- id: M016
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: exp-002v3 DeepSpeed master_port 冲突：同服务器两个 DeepSpeed 实验共用默认 port 29500，导致第二个实验启动即崩溃，GPU
+    0+3 空闲 6 小时
+  root_cause: launch_exp002v3.sh 未指定 --master_port，DeepSpeed 默认使用 29500。同一服务器上 exp-008v3（GPU
+    1+2）已占用该端口。启动脚本编写时未考虑同服务器多 DeepSpeed 实验共存的场景。
+  prevention: 同一服务器上运行多个 DeepSpeed 实验时，每个实验必须指定不同的 --master_port（如 29500, 29501, 29502）。写
+    DeepSpeed launch 脚本前，先用 `ss -tlnp | grep 295` 检查已占用端口。写入 ml-experiment-guide 作为通用规则。
+  status: active
+  context: exp-002v3 是 Story A 存在性实验（scaled cosine R1, scale_factor=5），GPU 0+3 从 eval
+    完成（~18:00 UTC）到发现 master_port 冲突（~02:00 UTC May 20）空闲约 6 小时。Worker 首次部署也失败（context
+    overflow），直接 submit_training_job 第二次部署因 port 冲突再次失败。
+  fix: 在 deepspeed 命令中添加 --master_port 29501，重新部署。
+  related_decisions:
+  - D028
+- id: M017
+  date: '2026-05-19'
+  category: code_bug
+  severity: medium
+  summary: exp-002v3 子类 compute_rewards() 传 6 个参数给父类（只接受 4 个），第二次启动失败
+  root_cause: run_exp002v3_dcgrpo_scaled_cosine.py 中 super().compute_rewards() 调用传递了
+    r1_ema 和 ema_alpha 两个子类扩展参数给父类 DCGRPOTrainer.compute_rewards()，后者签名只接受 4 个位置参数。代码在编写后未做基本的
+    import/signature 验证就部署。
+  prevention: 任何训练脚本修改后，部署前必须先做 dry-run 验证：(1) python -c "import module" 验证无语法/导入错误
+    (2) 如有子类覆盖，用 inspect.signature() 验证父子类方法签名匹配 (3) 启动后 30 秒内检查进程是否存活。写入 ml-experiment-guide。
+  status: active
+  context: exp-002v3 连续 3 次启动失败：(1) worker context overflow (2) master_port 29500
+    冲突 M016 (3) compute_rewards 签名不匹配。GPU 0+3 累计空闲超过 6 小时。
+  fix: 删除 super().compute_rewards() 中多余的 r1_ema 和 ema_alpha 参数，修复后先 python -c import
+    验证再部署。
+  related_decisions:
+  - D028
+- id: M018
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 'M018: Worker "fix_exp003s2-restart" 只做了 fix 没做 restart，GPU 0 空闲 >1h'
+  root_cause: Worker 任务名含 "restart" 但实际只完成了磁盘清理和 import 验证，未执行 submit_training_job。可能是
+    Worker context 中未包含启动命令，或 Worker 在 fix 阶段耗尽 turns。
+  prevention: Worker 任务描述中明确区分 "诊断修复" 和 "启动实验" 两步，且启动步骤用 submit_training_job 而非 Worker
+    自行 ssh_execute。Agent 确认 Worker 回调后检查 GPU 是否被占用，未占用则立即补发启动。
+  status: active
+  fix: Director 发 urgent message 要求 Agent 直接 submit_training_job 启动。
+- id: M019
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: exp-009 Worker 写的 load_dataset 使用了错误字段名 (turn1 vs turns)，导致启动后立即 crash
+  root_cause: Worker 写新脚本时没有验证数据文件的实际字段结构，假设了 turn1/turn2/turn3 平铺格式而非实际的 turns list
+    格式
+  prevention: 新实验脚本的 data loading 必须从已验证的实验（如 exp-008v3）复制而非重写。提交前必须 dry-run 完整跑通
+    1 个 sample，而非仅 import 检查
+  status: active
+  context: exp-009 continuous probe probability R1 实验。干运行只检查了 IMPORT_OK 但没验证数据加载路径。probe
+    训练成功（AUROC=0.9999）但 GRPO training 的 dataset loading 崩溃。
+  fix: Worker 正在修复，参考 exp-008v3 的 load_dataset 实现
+- id: M020
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: exp-003-s2 双进程冲突：29046 GPU 0 上两个 python 进程同时运行同一训练脚本，写同一 log 和 checkpoint
+    目录
+  root_cause: restart exp-003-s2 时未 kill 原进程就启动了新进程，或 submit_training_job 重复触发。Registry
+    只登记了新 PID，旧 PID 成为幽灵进程。
+  prevention: restart 实验前必须先检查是否有同名进程存活（ps aux | grep script_name）。submit_training_job
+    应有幂等检查：同一 exp_id 的 RUNNING 进程存在时拒绝重复提交。
+  status: active
+  context: exp-003-s2 在 disk full 修复后 restart，可能未 kill 原有进程就启动了新实例。两个进程交错写入导致日志时间戳错乱，checkpoint
+    完整性存疑。
+- id: M021
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: 28034 GPU 0 双 eval 任务冲突：vanilla reeval + exp-003 ckpt-4000 eval 同时提交，显存不足导致
+    exp-003 eval 卡死 29 分钟零进度
+  root_cause: Agent 在 GPU 0 上连续提交两个 eval job（vanilla reeval 和 exp-003 ckpt-4000 eval），未检查显存占用。两个
+    Qwen3-8B 实例共占 29799/32607 MiB（91%），exp-003 eval 的 LoRA 层被 offload 到 CPU，推理卡死。
+  prevention: 提交 eval 任务前必须先 nvidia-smi 检查目标 GPU 显存剩余。单卡 32GB 只能跑一个 Qwen3-8B eval
+    实例。多个 eval 任务应分配到不同 GPU 或串行执行。
+  status: active
+  fix: 不 kill 任何进程。等 vanilla reeval 完成（~1.2h）释放显存后，exp-003 eval 应自动恢复或需重启。
+- id: M022
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: DeepSpeed 多进程训练 kill 仅杀主 PID，4 个 rank worker 子进程残留继续占 GPU
+  root_cause: kill PID 200283 只终止了 tmux wrapper/launcher，DeepSpeed ZeRO-2 的 4 个子进程（200288/200584/200881/200882）通过
+    torch.distributed 独立运行，不受父进程 kill 影响。
+  prevention: Kill DeepSpeed 训练时必须：(1) 先 pgrep -P 查找所有子进程；(2) kill 整个进程组 kill -- -PGID
+    或逐个 kill 所有 rank worker；(3) kill 后 nvidia-smi 确认 GPU 显存已释放。
+  status: active
+- id: M023
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: D052 将 supervision density 从 Limitations caveat 升级为 §6 命名因果假说，Round 2 被两位
+    Reviewer 一致判定 overclaim
+  root_cause: Round 1 Reviewer 要求 "acknowledge supervision granularity confound in
+    main text, not just Limitations"。Director 误读为 "值得作为 core insight 展示"，创建了独立命名段落
+    "The supervision density hypothesis" 并使用因果语言 "The critical difference is supervision
+    granularity"。实际要求是增加 disclosure 的可见性（defensive），不是升级认识论地位（offensive）。
+  prevention: 当 Reviewer 要求 "move X from Limitations to main text"，正确反应是增加 disclosure
+    visibility（如在 Discussion 末尾加 1-2 句 caveat 列出混淆变量），不是升级 X 的 epistemic status（独立段落
+    + 因果语言 + 泛化声称）。区分 "这个问题需要在正文中被看到" vs "这个问题值得作为贡献来宣传"。
+  status: active
+  context: Round 1 MF5 指出 ACT vs GRPO 存在 supervision granularity confound。D052 决策中不仅在正文承认，还升级为
+    "The supervision density hypothesis" 独立段落，加入 PPO/RLOO 泛化声称。Round 2 两位 Reviewer
+    独立识别并交叉确认：ACT vs GRPO 有至少 4 个混淆变量，因果归因不成立（MF-1 critical）。
+  fix: 'Round 3: 删除独立段落标题，内容合并为 2-3 句 caveat；因果语言全部改为 observational；列出 4 个混淆变量；PPO/RLOO
+    泛化改为 hypothesis。'
+  related_decisions:
+  - D052
+- id: M024
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: ACT s2 第二次在 step 2500 磁盘满崩溃——Worker 声称已迁移 output_dir 但未修改训练脚本参数
+  root_cause: Worker 在第一次崩溃修复中声称将 output_dir 迁移到数据盘 /root/autodl-tmp/，但实际训练脚本的 output_dir
+    参数仍指向根分区 /root/contrastive_entrain_calib/outputs/。根分区 30G 在 ckpt-2500 保存时再次耗尽。
+  prevention: 磁盘迁移修复后必须验证：(1) grep 训练脚本/config 确认 output_dir 指向数据盘；(2) 启动训练后 ls -la
+    确认新 checkpoint 写入正确路径；(3) df -h 确认根分区未增长。Director 审批重启时要求 Agent 汇报验证截图。
+  status: active
+  context: exp-004 ACT s2 在 29046 上训练。第一次 step 2500 根分区满崩溃 → Worker 修复并从 ckpt-2000
+    重启 → 第二次训练到 step 2500 同一问题再次发生。两次崩溃共浪费 ~2h 训练时间 + 诊断时间。
+  fix: 第三次重启需显式修改训练脚本 output_dir 参数 + 清理根分区 + 启动后验证写入路径
+- id: M025
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: 'M025: 29046 GPU1 上两个 exp-004-s2 训练进程同时运行，互相覆盖 checkpoint 和日志'
+  root_cause: Worker 在已有训练进程运行时启动了第二个进程写入同一 output_dir。可能原因：(1) 第三次 resume 时未确认旧进程已结束，(2)
+    缺少进程锁机制检测同目录已有训练。PID 502516 未注册到 registry，说明是未经审批的启动。
+  prevention: 训练脚本启动前必须检查目标 output_dir 是否有正在运行的写入进程（fuser/lsof）。Worker 启动训练前必须用 nvidia-smi
+    确认目标 GPU 无同项目进程。所有训练进程必须注册到 registry。
+  status: active
+  context: PID 494017 (step 3920, 18:49 启动) 和 PID 502516 (step 3290, 20:25 启动) 同时写入同一
+    train_log.jsonl 和 checkpoint 目录。日志行交叉混杂，checkpoint 时间戳非单调。
+  fix: Kill PID 502516，保留 494017，检查 checkpoint 完整性后从最新可信 checkpoint 继续。
+  related_decisions:
+  - D057
+- id: M026
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: D058 GRPO experiments dispatched to 32GB GPUs (RTX 5090) that cannot fit
+    Qwen3-8B GRPO
+  root_cause: 'exp-002v3-gs8 already OOM''d on 28034 with gs=8, but we assumed gs=2
+    would fit. In reality Qwen3-8B + LoRA + KV cache + 2 generations = ~29GB, exceeding
+    32GB capacity. This is a systemic constraint: no Qwen3-8B GRPO variant fits on
+    32GB regardless of group_size.'
+  prevention: 'Before dispatching ANY GRPO experiment to a GPU, verify VRAM requirement:
+    8B model GRPO needs ≥48GB. 32GB cards can only run SFT/eval. Add to experiment
+    approval checklist: match experiment type (GRPO vs SFT) to GPU VRAM class.'
+  status: active
+  context: exp-003-s3 OOM'd on 28034 cuda:2. exp-003-len512 (also GRPO) dispatched
+    to 28034 cuda:0 will also OOM. Only exp-004-reduced-lora (SFT) can run on 28034.
+  fix: Redirect GRPO experiments (len512, s3) to 29046 96GB GPUs. Only SFT experiments
+    on 28034.
+  related_decisions:
+  - D058
+- id: M027
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: 'M027: Second duplicate training process — exp-003-gs8 launched twice on
+    29046 GPU0, step time 25s→65s'
+  root_cause: 'Launch flow bug: Worker submitted exp-003-gs8 training script twice,
+    creating two competing processes on same GPU. Same root cause as M025 (duplicate
+    ACT s2 processes). Launch script lacks PID dedup check.'
+  prevention: 1) Before launching ANY training, check `nvidia-smi` or `pgrep -f <script_name>`
+    for existing processes on target GPU. 2) Training launch scripts should write
+    PID to a lockfile and check before starting. 3) After launch, immediately verify
+    exactly 1 process on target GPU.
+  status: active
+  context: PID 516696 (38188 MiB) + PID 519538 (38186 MiB) both running run_exp003_gs8_r3only.py
+    on 29046 cuda:0. Combined 76GB/97GB. Step time 25s→65s. At 65s/step, 8000 steps
+    = 144h, far exceeding May 25 DDL. Must kill PID 519538 immediately.
+  fix: Kill PID 519538, verify single process remains, check checkpoint integrity.
+  related_decisions:
+  - D057
+- id: M028
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: 'M028: 第三次 duplicate 进程事故 — eval Worker 重复 spawn 导致 28034 cuda:0 和 cuda:2
+    各出现两个 eval 进程'
+  root_cause: Agent 的 eval launch 流程缺少 dedup 检查。同一 checkpoint 被多次 spawn_worker eval，且
+    Worker 启动时未 pgrep 检查目标 GPU 是否已有同类进程。此前 M025（训练 duplicate）和 M027（gs8 duplicate）已暴露同源问题，但
+    Agent 只在训练场景加了 pgrep 检查，eval 场景未覆盖。
+  prevention: 1. Worker launch 前必须在目标服务器上 pgrep 检查同一 exp_id / checkpoint 是否已有进程——训练和
+    eval 均适用。2. Agent 层面维护 active_eval 状态表，spawn 前查表去重。3. Director 派 eval 任务时明确要求
+    dedup 检查。
+  status: active
+  context: 28034 cuda:0 出现两个 s2-v2 ckpt-5000 eval（PID 37742 + 667859），cuda:2 出现两个
+    reduced-lora ckpt-500 eval（PID 1979 + 108611，exp_id 略不同）。duplicate 占满显存但 eval
+    是确定性的，结果不受影响，但浪费资源且流程不规范。
+  fix: Kill 重复进程（PID 667859 和 108611/1979 之一），要求 Agent 在所有 launch 流程加 dedup 检查。
+- id: M029
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: 'M029: len512-v2 仍在运行但被 Worker 错误标记为 failed，Director 基于错误状态决定释放 GPU 给 heldout'
+  root_cause: Worker len512-exit-diag 基于 v1 (PID 552217) 的崩溃信息错误地将 v2 (PID 553700)
+    标记为 DONE/failed。Director 未独立验证进程状态就做了 GPU 重分配决策。
+  prevention: 1. Registry 标记实验为 failed/killed 前必须用 ssh_read_only 确认目标 PID 已不存在。2.
+    Director 在做 GPU 重分配决策前，如果信息来源是 Worker 诊断而非直接 nvidia-smi，应要求 Agent 先验证。3. 版本迭代时
+    registry 和 cron 需要精确绑定到正确的 PID/版本。
+  status: active
+  context: exp-003-len512-v2 PID 553700 在 29046 cuda:1 正常运行（step 14/8000, 48s/step），但
+    registry 在 02:26 UTC 被标记为 failed。Director 据此决定释放 cuda:1 给 exp-004-heldout（D061），幸好
+    Reviewer 发现进程仍在运行。如果 heldout 已启动会导致 len512 训练被干扰。
+  fix: 取消 heldout 在 29046 cuda:1 的启动，恢复 len512-v2 registry 为 RUNNING，重新注册 cron 监控。
+- id: M030
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: high
+  summary: 'M030: 28034 GPU 0/2/3 空闲 8 小时，两个 ALLOCATED eval 注册后从未启动'
+  root_cause: Agent session 重启后 eval Worker 回调链断裂。Worker 完成的 eval 结果被收集，但后续链式 eval
+    没有被自动启动。ALLOCATED 状态的实验在 registry 中注册但无人执行。Director 也未及时发现空闲（因为等 eval 完成回调）。
+  prevention: 1. Agent session 重启后必须检查所有 ALLOCATED 实验并确认是否在运行。2. Director 不能只等回调——每
+    30min keepalive 时主动 get_gpu_health 确认 GPU 利用率。3. ALLOCATED 状态超过 1h 未变为 RUNNING
+    应触发告警。
+  status: active
+  context: exp-004-s2-eval-ckpt2500-v2 和 exp-004-reduced-lora-eval-ckpt6000 于 05:38
+    UTC 注册 ALLOCATED 状态，但直到 13:40 UTC（8 小时后）仍未启动。28034 GPU 0/2/3 全部空闲（0% util, 2 MiB），距
+    DDL 不到 36h 这是严重资源浪费。
+  fix: 立即启动所有 ALLOCATED eval + 填满空闲 GPU。要求 Agent 解释根因。
+- id: M031
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Held-out 三方对比结果被误读为"泛化验证"——实际上模型均在全量数据（含 held-out）上训练，eval on held-out
+    只反映子集稳定性
+  root_cause: 混淆了两个概念：(1) 全量训练模型在数据子集上的 eval 稳定性 vs (2) 仅在训练集上训练的模型在未见数据上的泛化能力。前者不能证明泛化，只能作为
+    reference ceiling。
+  prevention: 涉及 train-test overlap 的实验解读时，必须确认 eval 数据是否在训练集中。"held-out eval" ≠ "泛化验证"，除非模型确实未在
+    eval 数据上训练过。在论文中使用 "confirms generalization" 等强表述前，先验证训练数据是否包含 eval 数据。
+  status: active
+  context: ACT s1 ckpt-8000 在 held-out 35 pairs 上 eval=0.284，Director 误报为"train-test
+    overlap 顾虑消除"。Reviewer 指出这是错误的——ACT s1 训练数据包含全部 362 lines，held-out 35 pairs 也在其中。真正的泛化验证需等
+    exp-004-heldout（80% 训练）完成。已向用户报告了错误结论，需纠正。
+  fix: ROADMAP 修正为"baseline 已建立，待 heldout 重训结果确认"。Paper Agent 纠正 Limitations 措辞。D063
+    决策表述有误，记录纠正。
+  related_decisions:
+  - D063
+- id: M032
+  date: '2026-05-23'
+  category: communication
+  severity: high
+  summary: Abstract 关键数据过时未更新：17/17→32/32, 4/25→4/28。多轮 Paper Agent patch 均跳过 abstract
+    数字核对
+  root_cause: Paper Agent 的多次 patch（Batch 11/12、gs8、reduced-lora、held-out）都标注"Abstract
+    无需改"，但只检查了新增数据是否涉及 abstract，未回溯检查 abstract 中已有的数据是否仍然正确。17/17 和 4/25 是更早版本的数据，在
+    s2 eval 全部完成后应更新为 32/32 和 4/28。
+  prevention: 每次 Paper Agent patch 完成后，必须运行 check_paper_consistency 做跨 section 数字一致性检查。特别是
+    abstract 和 conclusion 中的 headline numbers 必须在每次数据更新后验证。提交前必做全面数据审计。
+  status: active
+  fix: Paper Agent 紧急 patch 修复 abstract 17/17→32/32, 4/25→4/28。Reviewer 做全面数值审计。
+- id: M033
+  date: '2026-05-23'
+  category: experiment_design
+  severity: medium
+  summary: Bootstrap CI 与 AUROC 值基础指标不匹配
+  root_cause: Paper Agent 在写论文时从 registry 取了 cv_auroc_mean (0.827) 作为 AUROC 值，但 CI
+    数值 [0.795, 0.857] 既不匹配 registry 的 bootstrap_ci_95 [0.770, 0.859]（该 CI 对应 full_auroc），也无法从
+    cv_auroc_std 推导。CI 来源不明，可能是早期分析脚本产出后未更新。
+  prevention: 1. Registry 中 bootstrap_ci_95 应标注对应的基础指标（cv_auroc 还是 full_auroc）。2.
+    Paper Agent 写入不确定性数值时，必须验证 CI 与报告的点估计对应同一指标。3. 数据审计 checklist 增加 "CI 基础指标匹配" 检查项。
+  status: active
+  fix: 统一为 ± cv_auroc_std 格式，消除 bootstrap CI 溯源问题。修改了 framework.tex, direction_quality.tex,
+    discussion.tex 中 6 处。
+- id: M034
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: 论文声称 probe reward trap 在 SFT 下发现，实际 exp-008v3 使用 GRPO 训练框架
+  root_cause: 'exp-008v3 脚本名含 ''binary_probe_grpo''，继承 DCGRPOTrainer，但论文中被归类为 ''F2:
+    Binary probe (SFT)''。可能是因为 probe 作为 reward 的机制与 SFT 的 loss function 概念混淆，或者早期版本确实是
+    SFT 但后来切换为 GRPO 而论文描述未同步更新。多轮审稿（8 轮）均未发现此根本性事实错误。'
+  prevention: 1. 实验归类（SFT/GRPO/RL）必须通过代码审查确认（检查 Trainer 基类），不能仅凭实验名称或描述推断。2. 论文中涉及训练框架的声明必须与
+    adapter_config.json/训练脚本交叉验证。3. 对核心声明（如"independent of RL"）做 provenance 追踪时，验证支撑实验的实际训练方式。
+  status: active
+  context: Reviewer 通过检查 exp-008v3 的 adapter_config.json (lora_alpha=64, 4 modules)
+    和训练脚本 (DCGRPOTrainer) 发现不一致。论文多处声称 trap 在 SFT 下发现：framework.tex, conclusion.tex,
+    introduction.tex, abstract.tex。服务器上存在真正的 SFT 版脚本 run_exp008_binary_probe_penalty.py
+    (alpha=128, 7 modules)，但 exp-008v3 checkpoint 不匹配此配置。
+  fix: C1 多 seed 实验改用真正的 SFT 脚本 (run_exp008_binary_probe_penalty.py)。如果 SFT 也出现 probe
+    trap → 论文声明变为正确且有真实证据；如果不出现 → 修正论文声明。同时 Paper Agent 需修正 framework.tex/introduction/abstract/conclusion
+    中的错误声明。
+  related_decisions:
+  - D068
+- id: M035
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: medium
+  summary: cuda:0 空闲 6h（exp-008-seed2 完成后未自动排 seed3/seed4 训练）
+  root_cause: exp-008-seed2 训练完成后 Agent 未主动启动后续 seed 训练，Director 也未提前下达 seed3/seed4
+    的排队指令。ROADMAP 已写明需要 3 seeds 但缺乏自动衔接机制。
+  prevention: 审批多 seed 实验时，一次性下达全部 seed 的训练指令（含 seed 值），要求 Agent 前一个完成后立即启动下一个，不等
+    Director 逐个派单。
+  status: active
+  context: exp-008-seed2 于 May 24 23:50 UTC 完成，cuda:0 空闲至 May 25 ~06:00（约 6h）。期间可完成
+    seed3+seed4 训练（各 ~2h）+ 至少 1 个 eval。
+  fix: 立即派 Agent 完成 seed2 eval + 启动 seed3/seed4 训练

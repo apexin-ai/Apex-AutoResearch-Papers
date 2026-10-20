@@ -1,0 +1,2511 @@
+{
+  "schema_version": "1.0",
+  "id": "661b2db3aa59c24d2043",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Research LIBERO-Plus, which is a perturbation-based evaluation extension for the LIBERO benchmark in robot manipulation.",
+  "task_key": "agent-aada8a30ff0506204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aada8a30ff0506204.jsonl",
+    "occurrence": 1,
+    "bytes": 125195,
+    "sha256": "fe8b6aa93f857842515437bd456daea84ced2730dbd592744aad49ec4740b895"
+  },
+  "statistics": {
+    "messages": 52,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:11:54.413Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Research LIBERO-Plus, which is a perturbation-based evaluation extension for the LIBERO benchmark in robot manipulation.\n\nI need to find:\n1. What LIBERO-Plus is — what it adds on top of LIBERO\n2. GitHub repo or paper source\n3. The 4 perturbation dimensions: camera perturbation, lighting change, texture swap, sensor noise — exact definitions\n4. Installation and running instructions\n5. How it integrates with standard LIBERO evaluation\n\nAlso research whether LIBERO's simulation environment has built-in randomization options (camera jitter, color/lighting changes, background texture randomization). If it does, how to configure them. If not, whether LIBERO-Plus perturbation implementations can be reused as training-time data augmentation.\n\nUse WebSearch to find papers and repos related to \"LIBERO-Plus\" or \"LIBERO perturbation evaluation\" or \"LIBERO robustness\". Then use WebFetch to read relevant GitHub repos and paper details.\n\nReport everything in structured format with exact commands and code paths where possible."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "4d5e06ef-c0fc-451a-a8a4-1ce7bda6a3f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T11:11:54.414Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4d5e06ef-c0fc-451a-a8a4-1ce7bda6a3f9",
+                "isSidechain": true,
+                "agentId": "aada8a30ff0506204",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "a175e9f7-21a6-47fe-9b9a-03e2ad593b95",
+                "timestamp": "2026-05-15T11:11:54.414Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+                "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T11:11:57.183Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll research LIBERO-Plus and LIBERO's built-in randomization capabilities. Let me start by loading the web search and fetch tools."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a175e9f7-21a6-47fe-9b9a-03e2ad593b95",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgbwfmzeGqWuQgL6GZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b10e8a52-afcc-4c7f-a07a-dba0903ac011",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HscfT99oUBNzjyHLLPNHFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6065,
+                "cache_read_input_tokens": 8256,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6065,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T11:11:57.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XRqEnpJu6K7JtZjw3ZpdFZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b10e8a52-afcc-4c7f-a07a-dba0903ac011",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgbwfmzeGqWuQgL6GZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f1493836-ecb4-4065-b6ea-583c92a55e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HscfT99oUBNzjyHLLPNHFk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6065,
+                "cache_read_input_tokens": 8256,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6065
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 8256,
+                    "cache_creation_input_tokens": 6065,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6065,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T11:11:57.610Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XRqEnpJu6K7JtZjw3ZpdFZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1493836-ecb4-4065-b6ea-583c92a55e87",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "6f7afe10-0410-4333-8d30-7543a987318a",
+            "sourceToolAssistantUUID": "f1493836-ecb4-4065-b6ea-583c92a55e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T11:12:00.620Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me search for LIBERO-Plus across multiple queries in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f7afe10-0410-4333-8d30-7543a987318a",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgqtKNxFwHfxBqdd5Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b1725956-be83-4b07-a0d7-c5d6a785acf0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012EUZP4boqB9ozLNdCRA5c7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 14321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1969,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T11:12:00.785Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A6mhyUFE9P8zgUTypbGNfp",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO-Plus perturbation evaluation robot manipulation benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1725956-be83-4b07-a0d7-c5d6a785acf0",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgqtKNxFwHfxBqdd5Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d73fed2d-d301-4c16-82c3-acdc8b781030",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012EUZP4boqB9ozLNdCRA5c7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 14321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1969,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T11:12:01.561Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013NKXDr4xSgfHfazRsFCode",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO-Plus GitHub repo robustness perturbation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d73fed2d-d301-4c16-82c3-acdc8b781030",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgqtKNxFwHfxBqdd5Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "74154388-ae5d-43de-bd12-71c6cf7b70d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012EUZP4boqB9ozLNdCRA5c7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 14321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1969,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T11:12:02.057Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017vWJBqAopQtDFKLeX5WN1b",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO benchmark robustness evaluation camera lighting texture noise perturbation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74154388-ae5d-43de-bd12-71c6cf7b70d0",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgqtKNxFwHfxBqdd5Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9902aecd-014b-4bf2-a1ed-9155db9ffe18",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012EUZP4boqB9ozLNdCRA5c7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 14321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1969,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T11:12:02.140Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UBf9UkKwZgRTuZfMUn2iFz",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO simulation environment randomization domain randomization options"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9902aecd-014b-4bf2-a1ed-9155db9ffe18",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FgqtKNxFwHfxBqdd5Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1e28fea5-669f-4be0-8000-c3ed1c7b9fd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012EUZP4boqB9ozLNdCRA5c7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 14321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1969,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T11:12:07.845Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A6mhyUFE9P8zgUTypbGNfp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO-Plus perturbation evaluation robot manipulation benchmark\"\n\nLinks: [{\"title\":\"LIBERO Benchmark: Vision-Language-Action in Robotics\",\"url\":\"https://www.emergentmind.com/topics/libero\"},{\"title\":\"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub\",\"url\":\"https://github.com/sylvestf/LIBERO-plus\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://sylvestf.github.io/LIBERO-plus/\"},{\"title\":\"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO\"},{\"title\":\"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626\"},{\"title\":\"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-\",\"url\":\"https://arxiv.org/pdf/2510.13626\"},{\"title\":\"LIBERO-PRO: Towards Robust and Fair Evaluation of ...\",\"url\":\"https://arxiv.org/pdf/2510.03827\"},{\"title\":\"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://huggingface.co/papers/2510.13626\"},{\"title\":\"[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626v1\"}]\n\nBased on the search results, here's comprehensive information about LIBERO-Plus:\n\n## Overview\n\nLIBERO-plus is a generalized benchmark for in-depth robustness analysis of vision-language-action models. LIBERO-Plus is an extensive benchmark with 10,030 tasks spanning seven perturbation dimensions, and includes a diverse training dataset with over 20,000 successful trajectories collected under systematically varied conditions.\n\n## Key Perturbation Dimensions\n\nThe benchmark introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n## Main Findings\n\nThe research exposes significant vulnerabilities in Vision-Language-Action models:\n\n- **Extreme Sensitivity**: Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n- **Language Ignorance**: Models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\n- **Compositional Failures**: Their learned representations are entangled and cannot handle the complex, multi-dimensional perturbations that characterize real-world environments.\n\n## Benchmark Features\n\nLIBERO-plus offers three key advancements: (1) Comprehensive evaluation across seven robustness dimensions and 21 sub-dimensions, ensuring a thorough assessment of model generalization, (2) Automated task generation, enabling the creation of a large number of diverse training and test samples, (3) Fine-grained incorporation of difficulty levels (L1–L5), providing detailed insights into when and how VLA models fail.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d73fed2d-d301-4c16-82c3-acdc8b781030",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "a6666c3d-3b6d-4c94-9e79-1dda43d8ed51",
+            "sourceToolAssistantUUID": "d73fed2d-d301-4c16-82c3-acdc8b781030",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T11:12:07.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013NKXDr4xSgfHfazRsFCode",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO-Plus GitHub repo robustness perturbation\"\n\nLinks: [{\"title\":\"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub\",\"url\":\"https://github.com/sylvestf/LIBERO-plus\"},{\"title\":\"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus\",\"url\":\"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://sylvestf.github.io/LIBERO-plus/\"},{\"title\":\"LIBERO-plus · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/main/libero_plus\"},{\"title\":\"LIBERO-plus/index.html at main · sylvestf/LIBERO-plus\",\"url\":\"https://github.com/sylvestf/LIBERO-plus/blob/main/index.html\"},{\"title\":\"Sylvest/LIBERO-plus · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/Sylvest/LIBERO-plus\"},{\"title\":\"GitHub - Zxy-MLlab/LIBERO-PRO: LIBERO-PRO is the official repository of the LIBERO-PRO — an evaluation extension of the original LIBERO benchmark\",\"url\":\"https://github.com/Zxy-MLlab/LIBERO-PRO\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://huggingface.co/papers/2510.13626\"},{\"title\":\"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626\"}]\n\nBased on the search results, here's information about the LIBERO-Plus GitHub repository and its robustness perturbation approach:\n\n## Overview\n\nLIBERO-Plus contains the official implementation and benchmark for a paper on \"In-depth Robustness Analysis for Vision-Language-Action Models\". LIBERO-Plus is a robustness benchmark for Vision-Language-Action (VLA) models built on top of LIBERO that systematically stress-tests policies by applying seven independent perturbation dimensions to the original LIBERO task set, exposing failure modes that standard benchmarks miss.\n\n## Perturbation Dimensions\n\nThe benchmark introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n## Key Findings\n\nVLA models exhibit extreme sensitivity to camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations, models largely ignore language instructions, and combined perturbations reveal complex interaction effects beyond independent factors.\n\n## Benchmark Scale\n\nThe benchmark construction follows a systematic two-stage process of expanding the original LIBERO benchmark through seven distinct perturbation factors, followed by task filtering and category balancing, and evaluating the resulting tasks using four representative models and stratifying them into five difficulty levels.\n\nThe GitHub repository is located at: **https://github.com/sylvestf/LIBERO-plus**\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74154388-ae5d-43de-bd12-71c6cf7b70d0",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "84a4a192-264d-4b8a-92a4-3f2d373d248e",
+            "sourceToolAssistantUUID": "74154388-ae5d-43de-bd12-71c6cf7b70d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T11:12:08.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017vWJBqAopQtDFKLeX5WN1b",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO benchmark robustness evaluation camera lighting texture noise perturbation\"\n\nLinks: [{\"title\":\"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://huggingface.co/papers/2510.13626\"},{\"title\":\"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://sylvestf.github.io/LIBERO-plus/\"},{\"title\":\"LIBERO Benchmark: Vision-Language-Action in Robotics\",\"url\":\"https://www.emergentmind.com/topics/libero\"},{\"title\":\"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub\",\"url\":\"https://github.com/sylvestf/LIBERO-plus\"},{\"title\":\"Efficient Spatial Adaptation in VLA Models\",\"url\":\"https://www.emergentmind.com/papers/2512.02902\"},{\"title\":\"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models\",\"url\":\"https://cvpr.thecvf.com/virtual/2026/poster/38735\"},{\"title\":\"[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626v1\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | Takara TLDR\",\"url\":\"https://tldr.takara.ai/p/2510.13626\"}]\n\nI found comprehensive information about the LIBERO benchmark and its robustness evaluation capabilities. Here's what the search revealed:\n\n## LIBERO-Plus: Robustness Evaluation Framework\n\nLIBERO-Plus is an in-depth robustness analysis framework for Visual-Language-Action (VLA) models that performs systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n### Key Findings\n\nAnalysis of VLA models reveals critical weaknesses, with models exhibiting extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nLIBERO-Plus offers a robust benchmarking framework with 7 perturbation dimensions and 21 sub-dimensions, providing a fine-grained difficulty scale from L1 to L5 for systematically assessing model performance across various challenges.\n\n### Benchmark Composition\n\nLIBERO-Plus was constructed as an extensive benchmark with 10,030 tasks spanning seven perturbation dimensions, created with a diverse training dataset with over 20,000 successful trajectories collected under systematically varied conditions.\n\n### Specific Perturbation Types\n\nThe benchmark evaluates models across:\n- Camera Viewpoints: changes to the viewpoint/pose and field-of-view of the third-person camera\n- Light Conditions: variations in illumination intensity, direction, color, and shadow patterns\n- Background Textures: scene and surface appearance changes, and Sensor Noise: photometric distortions and image degradation\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9902aecd-014b-4bf2-a1ed-9155db9ffe18",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "897e6a87-eea7-4ae6-8ee8-2365afde5624",
+            "sourceToolAssistantUUID": "9902aecd-014b-4bf2-a1ed-9155db9ffe18",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T11:12:09.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UBf9UkKwZgRTuZfMUn2iFz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO simulation environment randomization domain randomization options\"\n\nLinks: [{\"title\":\"Domain Randomization for Sim2Real Transfer | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2019-05-05-domain-randomization/\"},{\"title\":\"Continual Domain Randomization\",\"url\":\"https://arxiv.org/pdf/2403.12193\"},{\"title\":\"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization\",\"url\":\"https://arxiv.org/html/2510.03827v1\"},{\"title\":\"Flow-based Domain Randomization for Learning and Sequencing Robotic Skills\",\"url\":\"https://arxiv.org/html/2502.01800v1\"},{\"title\":\"9.4. Domain Randomization for RL — Omniverse IsaacSim latest documentation\",\"url\":\"https://docs.isaacsim.omniverse.nvidia.com/2023.1.1/isaac_gym_tutorials/tutorial_gym_domain_randomization.html\"},{\"title\":\"A Domain Data Pattern Randomization based Deep Reinforcement Learning method for Sim-to-Real transfer\",\"url\":\"https://dl.acm.org/doi/fullHtml/10.1145/3461353.3461373\"},{\"title\":\"Cyclic policy distillation: Sample-efficient sim-to-real reinforcement learning with domain randomization - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0921889023000647\"},{\"title\":\"Flow-based Domain Randomization for Learning and Sequencing Robotic Skills | OpenReview\",\"url\":\"https://openreview.net/forum?id=9JQXuyzdGL\"},{\"title\":\"2. Domain Randomization for RL — Omniverse IsaacSim latest documentation\",\"url\":\"https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/tutorial_gym_domain_randomization.html\"},{\"title\":\"Domain Randomization\",\"url\":\"https://stevengong.co/notes/Domain-Randomization\"}]\n\nBased on the search results, I found relevant information about LIBERO and domain randomization options. Here's what I discovered:\n\n## LIBERO and Domain Randomization\n\nLIBERO-PRO is a plug-and-play benchmark that incorporates carefully designed perturbations across four dimensions—manipulated objects, initial states, task instructions, and environments—and supports randomized combinations of these dimensions for more faithful evaluation.\n\n### Specific Domain Randomization Dimensions in LIBERO:\n\nThe benchmark supports randomization across these key areas:\n\n1. **Object Variation**: For object variation, new assets are created by modifying the appearance, size, and color of the original objects.\n\n2. **Position Variation**: For position variation, alternative spatial regions are defined for all manipulable objects while strictly adhering to physical constraints and task definitions.\n\n3. **Instruction Variation**: For instruction variation, three distinct paraphrased versions of each task description are provided.\n\n4. **Task Variation**: For task variation, tasks are redesigned in a principled manner to ensure feasibility, and new sets of relevant objects and target states for each modified task are supplied.\n\n5. **Environment Variation**: For environment variation, the five environment categories built into the LIBERO benchmark are leveraged and randomly substituted across tasks.\n\nTo avoid meaningless combinations, task variation is restricted from being combined with other types, while allowing all other dimensions of variation to be freely and randomly combined for more comprehensive evaluation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e28fea5-669f-4be0-8000-c3ed1c7b9fd8",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "00f56bd1-d059-48e5-9c61-2db5045f3c07",
+            "sourceToolAssistantUUID": "1e28fea5-669f-4be0-8000-c3ed1c7b9fd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T11:12:12.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have the key sources. Now let me fetch the detailed content from the GitHub repo, the paper, and the project page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00f56bd1-d059-48e5-9c61-2db5045f3c07",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fhi6HLPCWDZoc1VczM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4a3dd4b5-3c78-4ca1-bd46-f9ec2601ed2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hgbj1ouCgXrztWAeWRCTda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3840,
+                "cache_read_input_tokens": 16290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3840,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T11:12:13.781Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L5mbVAKU4poVAfpeGpdbhC",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md",
+                "prompt": "Extract the full README content including: installation instructions, perturbation dimensions with exact definitions, how to run evaluation, project structure, configuration options, and any code examples. Include all technical details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a3dd4b5-3c78-4ca1-bd46-f9ec2601ed2f",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fhi6HLPCWDZoc1VczM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b9bcfb13-814e-49bd-92bb-ad42849f472b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hgbj1ouCgXrztWAeWRCTda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3840,
+                "cache_read_input_tokens": 16290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3840,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T11:12:16.605Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ULA9B8PqczvmkX3LtiFQVR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.13626v1",
+                "prompt": "Extract detailed information about: 1) All 7 perturbation dimensions and their exact definitions/sub-dimensions, 2) How perturbations are implemented in the simulation (MuJoCo/robosuite), 3) Difficulty levels L1-L5, 4) Training data augmentation details, 5) Integration with LIBERO's simulation environment, 6) Any details about camera, lighting, texture, sensor noise implementations specifically. Include technical specifics like parameter ranges."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9bcfb13-814e-49bd-92bb-ad42849f472b",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fhi6HLPCWDZoc1VczM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b42c9831-be67-4fb5-9f04-0d9a6cda15a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hgbj1ouCgXrztWAeWRCTda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3840,
+                "cache_read_input_tokens": 16290,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3840,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T11:12:17.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U23B7oC9XDUA1Q53BwWsAc",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://sylvestf.github.io/LIBERO-plus/",
+                "prompt": "Extract all technical details about LIBERO-Plus: perturbation dimensions, implementation details, benchmark construction, evaluation protocol, and any information about how perturbations are applied in the simulation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b42c9831-be67-4fb5-9f04-0d9a6cda15a0",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fhi6HLPCWDZoc1VczM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e39f9f1-ca24-4d39-9ac7-6d90b6cf049f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hgbj1ouCgXrztWAeWRCTda",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3840,
+                "cache_read_input_tokens": 16290,
+                "output_tokens": 435,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3840
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 435,
+                    "cache_read_input_tokens": 16290,
+                    "cache_creation_input_tokens": 3840,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3840,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T11:12:22.453Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L5mbVAKU4poVAfpeGpdbhC",
+              "type": "tool_result",
+              "content": "# LIBERO-Plus: Robustness Analysis Framework\n\n## Overview\n\nLIBERO-Plus is a comprehensive benchmark evaluating vision-language-action (VLA) models across multiple perturbation dimensions. The project functions as a drop-in replacement for the original LIBERO package, maintaining backward compatibility while adding extensive robustness testing capabilities.\n\n## Installation\n\nThe setup process mirrors the original LIBERO system. Users should:\n\n1. Clone the repository and navigate to the directory\n2. Uninstall any existing LIBERO installation\n3. Verify configuration paths at `/root/.libero/config.yaml`\n4. Install via `pip install -e .`\n5. Add system dependencies (libexpat1, libfontconfig1-dev, libmagickwand-dev)\n6. Install additional Python packages from extra_requirements.txt\n\nAssets must be downloaded from Hugging Face and extracted to `LIBERO-plus/libero/libero/assets/`, creating subdirectories for articulated objects, new objects, scenes, textures, and supporting files.\n\n## Seven Perturbation Dimensions\n\nThe benchmark evaluates resilience across:\n\n1. **Objects Layout** – \"Confounding objects and target object displacement\"\n2. **Camera Viewpoints** – Position, orientation, and field-of-view modifications\n3. **Robot Initial States** – Manipulator pose variations\n4. **Language Instructions** – LLM-based instruction rewrites\n5. **Light Conditions** – Intensity, direction, color, and shadow changes\n6. **Background Textures** – Scene and surface appearance modifications\n7. **Sensor Noise** – \"Photometric distortions and image degradation\"\n\n## Evaluation Protocol\n\nThe evaluation methodology closely follows original LIBERO standards with one critical adjustment: modify `num_trials_per_task` from 50 to 1 in configuration files. Task classification mappings between IDs, perturbation categories, and difficulty levels are located in `.libero/libero/benchmark/task_classification.json`.\n\n## Project Structure\n\nThe extracted asset directory should contain:\n- articulated_objects/\n- new_objects/\n- scenes/\n- stable_hope_objects/\n- stable_scanned_objects/\n- textures/\n- turbosquid_objects/\n- Supporting XML files (serving_region.xml, wall.xml, wall.stl)\n\n## Key Findings\n\nResearch reveals that current VLA models demonstrate \"extreme sensitivity to camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\" Additionally, models exhibit substantial language instruction ignorance and negative compositional generalization when multiple perturbations combine.\n\n## Citation\n\nFor research using this benchmark, cite: Fei et al., \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models,\" arXiv:2510.13626 (2025)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9bcfb13-814e-49bd-92bb-ad42849f472b",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "085d2d76-0f6a-4b23-b237-c1f026d0ebfb",
+            "sourceToolAssistantUUID": "b9bcfb13-814e-49bd-92bb-ad42849f472b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T11:12:24.619Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U23B7oC9XDUA1Q53BwWsAc",
+              "type": "tool_result",
+              "content": "# LIBERO-Plus Technical Details\n\n## Seven Perturbation Dimensions\n\nThe study introduces controlled perturbations across: \"(i) objects layout, (ii) camera viewpoints, (iii) robot initial states, (iv) language instructions, (v) light conditions, (vi) background textures and (vii) sensor noise.\"\n\n## Benchmark Construction\n\nThe researchers employed a \"systematic two-stage process\": first, they expanded the original LIBERO benchmark through seven distinct perturbation factors, then filtered tasks and balanced categories based on empirical findings. Subsequently, they evaluated results using four representative models and stratified tasks into five difficulty levels (Level-1 to Level-5) according to accuracy distributions.\n\n## Key Implementation Findings\n\n**Language Perturbations:**\n- Blank instruction tests removed valid language input entirely\n- Goal replacement tests substituted target objects with alternatives\n- Results showed models degrade into vision-action patterns, largely disregarding language signals\n\n**Visual Perturbations:**\n- Camera changes (position, orientation, field-of-view) caused dramatic performance drops\n- Robot initial pose variations significantly impacted success rates\n- Background and lighting changes showed surprising resilience, attributed to wrist camera stability\n\n**Compositional Testing:**\nThe study measured interaction effects using: \"Δij = P(Di=1, Dj=1 | Y=1) - P(Di=1 | Y=1) · P(Dj=1 | Y=1)\" where negative values indicate negative interactions between perturbation pairs.\n\n## Benchmark Scale\n\nLIBERO-Plus comprises \"10,030 tasks spanning seven perturbation dimensions\" with over 20,000 successful trajectories collected under systematically varied conditions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e39f9f1-ca24-4d39-9ac7-6d90b6cf049f",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "49ab52ce-af74-4ad0-a66c-1df43757a72a",
+            "sourceToolAssistantUUID": "6e39f9f1-ca24-4d39-9ac7-6d90b6cf049f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T11:12:35.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ULA9B8PqczvmkX3LtiFQVR",
+              "type": "tool_result",
+              "content": "# LIBERO-Plus: Perturbation Framework Technical Details\n\n## 1. Seven Perturbation Dimensions\n\n**Objects Layout (O1-O2):**\n- O1 adds \"n additional unseen objects into the task scene\" from a set of 416 distractor objects via BDDL modifications\n- O2 applies \"random perturbations to the target object's initial position (x,y,z) and orientation\" while preserving semantic relationships\n\n**Background Textures (B1-B2):**\n- B1 changes \"scene texture of the environment\" using 950 curated textures via XML scene definition files\n- B2 randomly alters \"texture of the working surface (e.g., tabletop or floor)\"\n\n**Light Conditions (L1-L4):**\n- L1: Diffuse color adjustment via RGB channels\n- L2: Parallel light source direction changes\n- L3: Specular highlight intensity (affecting reflective surfaces)\n- L4: Boolean shadow casting control\n\n**Camera Viewpoints (C1-C3):**\n- C1: Distance scaling from 1.01× to 2.00× original value along optical axis\n- C2: Spherical position changes with azimuth (Δθ) and elevation (Δφ) within 15°–75° cones\n- C3: Camera orientation perturbation (yaw, pitch, roll) within 2°–10°\n\n**Robot Initial States:**\n- \"Random perturbations are applied to the robot arm's initial joint positions\" with magnitudes 0.1–0.5 via Problem class interface modifications\n\n**Language Instructions (R1-R3):**\n- R1: Distraction rewrites adding task-irrelevant contextual information\n- R2: Commonsense-based object description replacements\n- R3: Reasoning complexity alterations for multi-step tasks\n\n**Sensor Noise (N1-N5):**\n- Motion Blur: kernel radius (r=5 to 35), Gaussian σ (2 to 20), angle θ ∈ U(-45°, 45°)\n- Gaussian Blur: σ from 1 to 10\n- Zoom Blur: scaling factors [s_min, s_max, step] from [1, 1.11, 0.01] to [1, 1.56, 0.03]\n- Fog: density α (0.5–5.0), decay rate β (1.3–3.0)\n- Glass Blur: σ (0.5–2.5), pixel displacement δ (1–5), iterations (1–3)\n\n## 2. Simulation Implementation\n\n**Environment Framework:** LIBERO benchmark built on MuJoCo physics engine via robosuite\n\n**Implementation Methods:**\n- Object layout modifications: \"modifying the task description files (BDDL)\"\n- Background/lighting: \"modifying scene XML definition files\" and \"registering new scene classes\"\n- Camera changes: \"modifying the Problem class interface, with parameters derived from task filenames\"\n- Robot initial states: \"modifying the Problem class interface\"\n- Sensor noise: Applied via image-space post-processing (albumentations-style transformations)\n\nNo wrist camera distortions noted; perturbations target third-person camera observations primarily.\n\n## 3. Difficulty Levels L1-L5\n\nStratification based on multi-model consensus from OpenVLA-OFT, π0, π0-fast, and UniVLA:\n\n- **L1:** Solved by all four models\n- **L2:** Solved by exactly three models\n- **L3:** Solved by exactly two models\n- **L4:** Solved by exactly one model\n- **L5:** Solved by none\n\n\"Figure 7 illustrates the proportion of tasks at each difficulty level for every dimension,\" showing imbalanced distributions across perturbation types.\n\n## 4. Training Data Augmentation\n\n**Dataset Scale:** \"Over 20,000 successful trajectories\" generated from expanded LIBERO base\n\n**Generation Process:**\n- Objects: 2,400 trajectories with distractor variations (non-overlapping with test set)\n- Other dimensions: 4,000 trajectories each (light, camera, background, language, noise)\n- Total before filtering: 22,400 trajectories; \"over 20,000 high-quality trajectories retained\"\n\n**Filtering:** \"Only successful trajectories were retained, and any actions corresponding to no-ops were filtered out\"\n\n**Storage Format:** \"All trajectories are stored in the rlds format, consistent with standard practices\"\n\n## 5. LIBERO Integration\n\n**Benchmark Construction:**\n- Started with 40 evaluation tasks, generated 500 instances per LIBERO sub-task (Spatial, Object, Goal, Long)\n- Initial pool: 14,000 candidates; final test set: \"10,030 tasks spanning seven perturbation factors with twenty-one low-level components\"\n\n**Task Filtering:** Tasks solved by all or large majorities were excluded; remaining tasks balanced across sub-dimensions\n\n**Distribution:** Final dataset spans all four LIBERO suites with representation shown in Table 7 (approximately 1,500-2,600 tasks per dimension)\n\n## 6. Technical Implementation Details\n\n**Lighting Parameters (from Table 5 context):** XML-based control enabling precise diffuse/specular/direction/shadow manipulation\n\n**Camera Parameters:** Spherical coordinate system with degree-based precision; first-person wrist camera (when present) receives fewer perturbations than third-person view\n\n**Noise Application:** Image-space transforms applied post-rendering; fog and blur effects use standard computer vision parameterization\n\n**Language Perturbations:** \"LLMs to rewrite original task instructions\" (specific LLM model not disclosed in excerpt)\n\n---\n\n**Key Finding:** \"Models are most vulnerable to changes in camera viewpoint and robot initial state,\" while \"background variations...constitute more superficial, low-level visual changes,\" suggesting the framework effectively stratifies perturbation semantic depth."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b42c9831-be67-4fb5-9f04-0d9a6cda15a0",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "023485b5-f9d2-4082-87bf-9e2fc30b13c0",
+            "sourceToolAssistantUUID": "b42c9831-be67-4fb5-9f04-0d9a6cda15a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T11:12:39.471Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more details on the GitHub repo structure, LIBERO's original simulation capabilities, and LIBERO-PRO (since it also appeared in search results and may have relevant perturbation info)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "023485b5-f9d2-4082-87bf-9e2fc30b13c0",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FjdqMYQtRQ3pwso5PZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b3dbb544-8bd3-4e25-8901-2871c5c097bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eJ2NyPG9VENPy3EL2HLdN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 410,
+                "cache_creation_input_tokens": 2540,
+                "cache_read_input_tokens": 20130,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2540,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T11:12:40.429Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PBsuwnMvyKfQdEfvR9YP4Q",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/sylvestf/LIBERO-plus",
+                "prompt": "Extract the full repository structure, installation commands, configuration details, how to run evaluation, and any code examples. Include exact pip install commands, asset download links, and configuration file paths."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3dbb544-8bd3-4e25-8901-2871c5c097bf",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FjdqMYQtRQ3pwso5PZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9d7ed0d6-85c3-46ac-b444-2d73e070ee33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eJ2NyPG9VENPy3EL2HLdN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 410,
+                "cache_creation_input_tokens": 2540,
+                "cache_read_input_tokens": 20130,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2540,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T11:12:41.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fwVuh2KUdmNnLe8tZkWZV",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO robosuite MuJoCo built-in camera randomization lighting randomization domain randomization config"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d7ed0d6-85c3-46ac-b444-2d73e070ee33",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FjdqMYQtRQ3pwso5PZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c5a2486e-7a44-4f63-8fd3-49c3ded605c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eJ2NyPG9VENPy3EL2HLdN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 410,
+                "cache_creation_input_tokens": 2540,
+                "cache_read_input_tokens": 20130,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2540,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T11:12:41.835Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JciYF7tRfPJRqeRRAcxXdu",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:github.com Lifelong-Robot-Learning LIBERO domain randomization camera jitter"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5a2486e-7a44-4f63-8fd3-49c3ded605c1",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FjdqMYQtRQ3pwso5PZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a60d5ca5-3f91-4570-bfd5-fb85b6aeda6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eJ2NyPG9VENPy3EL2HLdN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 410,
+                "cache_creation_input_tokens": 2540,
+                "cache_read_input_tokens": 20130,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2540
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 410,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 20130,
+                    "cache_creation_input_tokens": 2540,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2540,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T11:12:47.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JciYF7tRfPJRqeRRAcxXdu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:github.com Lifelong-Robot-Learning LIBERO domain randomization camera jitter\"\n\nLinks: [{\"title\":\"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO\"},{\"title\":\"Issues · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/issues\"},{\"title\":\"Lifelong Robot Learning · GitHub\",\"url\":\"https://github.com/Lifelong-Robot-Learning\"},{\"title\":\"Technical details Regarding LIBERO Dataset · Issue #95 · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/issues/95\"},{\"title\":\"Issues with Playback · Issue #16 · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/issues/16\"},{\"title\":\"GitHub - Zxy-MLlab/LIBERO-PRO: LIBERO-PRO is the official repository of the LIBERO-PRO — an evaluation extension of the original LIBERO benchmark\",\"url\":\"https://github.com/Zxy-MLlab/LIBERO-PRO\"},{\"title\":\"LIBERO-Object image rendering issue: darker floors · Issue #88 · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/issues/88\"},{\"title\":\"LIBERO/README.md at master · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md\"},{\"title\":\"Activity · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/activity\"},{\"title\":\"collect_demonstrations.py · Issue #48 · Lifelong-Robot-Learning/LIBERO\",\"url\":\"https://github.com/Lifelong-Robot-Learning/LIBERO/issues/48\"}]\n\nThe search returned results from the LIBERO GitHub repository and related pages. LIBERO is designed for studying knowledge transfer in multitask and lifelong robot learning problems. It provides a procedural generation pipeline that could generate an infinite number of manipulation tasks, with 130 tasks grouped into four task suites: LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-100.\n\nWhile the search results contain general information about LIBERO, the specific terms \"domain randomization\" and \"camera jitter\" do not appear in the returned pages. The results show information about the benchmark structure, setup instructions, and some issues related to rendering and environment setup, but they don't specifically address domain randomization or camera jitter perturbations in LIBERO.\n\nIf you're looking for specific documentation about domain randomization or camera jitter features in LIBERO, you may need to check the actual LIBERO codebase files directly on the GitHub repository, or consult the paper or more detailed technical documentation associated with the project.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a60d5ca5-3f91-4570-bfd5-fb85b6aeda6e",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "e5e92419-de25-4f6a-893c-69a55d572236",
+            "sourceToolAssistantUUID": "a60d5ca5-3f91-4570-bfd5-fb85b6aeda6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T11:12:47.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PBsuwnMvyKfQdEfvR9YP4Q",
+              "type": "tool_result",
+              "content": "# LIBERO-Plus Repository Summary\n\n## Overview\nLIBERO-Plus is \"a generalized benchmark for in-depth robustness analysis of vision-language-action models\" offering comprehensive evaluation across 7 perturbation dimensions with 10,030 tasks.\n\n## Installation Commands\n\n```bash\n# Clone repository\ngit clone https://github.com/sylvestf/LIBERO-plus.git\ncd LIBERO-plus\n\n# Uninstall existing LIBERO if present\n\n# Install package\npip install -e .\n\n# Install system dependencies\napt install libexpat1\napt install libfontconfig1-dev\napt install libpython3-stdlib\napt-get install libmagickwand-dev\n\n# Install additional Python requirements\npip install -r extra_requirements.txt\n```\n\n## Asset Download & Configuration\n\n**Assets Location:** Download from [Hugging Face LIBERO-plus dataset](https://huggingface.co/datasets/Sylvest/LIBERO-plus/tree/main)\n\n**Installation Path:** Extract `assets.zip` to `LIBERO-plus/libero/libero/`\n\n**Configuration File:** `/root/.libero/config.yaml` (verify repo path in `libero/__init__.py`)\n\n**Required Asset Structure:**\n```\nlibero/libero/assets/\n├── articulated_objects/\n├── new_objects/\n├── scenes/\n├── stable_hope_objects/\n├── stable_scanned_objects/\n├── textures/\n├── turbosquid_objects/\n└── supporting XML/STL files\n```\n\n## Evaluation Setup\n\nModify configuration to set `num_trials_per_task: 1` (adjusted from original 50). Task mappings between IDs, perturbation categories, and difficulty levels are provided in `.libero/libero/benchmark/task_classification.json`.\n\n## Additional Resources\n\n- **RLDS Training Dataset:** Available on Hugging Face\n- **Fine-tuned Model:** OpenVLA-OFT weights after mix-SFT provided\n- **LeRobot Dataset:** Alternative training dataset available\n\n## Key Performance Metrics\n\nTop-performing model (OpenVLA-OFT+) achieves 79.6% average across perturbation categories, with particularly strong results in camera robustness (92.8%) and light conditions (94.9%)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d7ed0d6-85c3-46ac-b444-2d73e070ee33",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "58463115-31e4-4adc-a26d-b5a467a2a9fc",
+            "sourceToolAssistantUUID": "9d7ed0d6-85c3-46ac-b444-2d73e070ee33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T11:12:48.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fwVuh2KUdmNnLe8tZkWZV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO robosuite MuJoCo built-in camera randomization lighting randomization domain randomization config\"\n\nLinks: [{\"title\":\"Demo Showcases — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/demos.html\"},{\"title\":\"robosuite/robosuite/utils/mjmod.py at master · ARISE-Initiative/robosuite\",\"url\":\"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/utils/mjmod.py\"},{\"title\":\"Environments — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/modules/environments.html\"},{\"title\":\"Sim-to-Real Transfer — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/algorithms/sim2real.html\"},{\"title\":\"Changelog — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/changelog.html\"},{\"title\":\"robosuite.utils package — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/source/robosuite.utils.html\"},{\"title\":\"robosuite | robosuite: A Modular Simulation Framework and Benchmark for Robot Learning\",\"url\":\"https://robosuite.ai/\"},{\"title\":\"GitHub - ARISE-Initiative/robosuite: robosuite: A Modular Simulation Framework and Benchmark for Robot Learning · GitHub\",\"url\":\"https://github.com/ARISE-Initiative/robosuite\"},{\"title\":\"robosuite · PyPI\",\"url\":\"https://pypi.org/project/robosuite/\"},{\"title\":\"GitHub - Robot-Learning-Library/robolite: This is a fork of Surreal Robotics Suite that enables support to domain randomization and inverse kinematics (IK).\",\"url\":\"https://github.com/Robot-Learning-Library/robolite\"}]\n\nBased on the search results, here's what I found about LIBERO, robosuite, MuJoCo, and domain randomization features:\n\n## Domain Randomization in Robosuite\n\nDomain randomization can be easily enabled by wrapping an environment with the DomainRandomizationWrapper, with randomization functionality focusing on visual variations, including colors, textures, and camera viewpoints.\n\n## Randomization Modders\n\nRobosuite provides three main Modders: CameraModder for controlling camera parameters including FOV and pose, TextureModder for controlling visual objects' appearances including texture and material properties, and LightingModder for controlling lighting parameters including light source properties and pose.\n\n## Camera Randomization Parameters\n\nThe randomization system includes parameters like camera_names (list of camera names to use for randomization, with all cameras used if not provided) and rotation_perturbation_size (magnitude of camera rotation perturbations in axis-angle, defaulting to around 5 degrees).\n\n## Documentation and Examples\n\nThe demo_domain_randomization.py script showcases domain randomization functionality.\n\nThe search results provide information about robosuite's built-in camera, lighting, and visual randomization capabilities, but don't include specific information about LIBERO itself. LIBERO is a benchmark that builds on top of robosuite, so these randomization features would be available for use with LIBERO environments as well.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5a2486e-7a44-4f63-8fd3-49c3ded605c1",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "0c0bb3c2-d800-4325-bdad-a6e61f9a0b1d",
+            "sourceToolAssistantUUID": "c5a2486e-7a44-4f63-8fd3-49c3ded605c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T11:12:51.782Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the robosuite domain randomization details and also check the LIBERO-Plus implementation specifics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c0bb3c2-d800-4325-bdad-a6e61f9a0b1d",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fkc8SoGVqKtRgChsek",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "77871654-2910-4707-8c1f-1648a4e33f34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BagSeBG8mMDsQNn9y1Jgtg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 802,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 22670,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2074,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T11:12:53.272Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EQVJbHhLUGi7rXZfsu1QcS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://robosuite.ai/docs/algorithms/sim2real.html",
+                "prompt": "Extract all details about domain randomization in robosuite: CameraModder, TextureModder, LightingModder parameters, DomainRandomizationWrapper usage, configuration options, parameter ranges, and code examples. Include exact API details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77871654-2910-4707-8c1f-1648a4e33f34",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fkc8SoGVqKtRgChsek",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5b8b5a3f-9028-4087-91cb-c8b67d5f9d9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BagSeBG8mMDsQNn9y1Jgtg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 802,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 22670,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2074,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T11:12:55.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dvd7vLwaSK4nd3scbSqZNa",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/utils/mjmod.py",
+                "prompt": "Extract the CameraModder, TextureModder, and LightingModder class definitions. Include all parameters they can modify, default values, and method signatures. Focus on what visual properties can be randomized."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b8b5a3f-9028-4087-91cb-c8b67d5f9d9d",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fkc8SoGVqKtRgChsek",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "acf32032-82c0-47cf-beec-39552c1de4ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BagSeBG8mMDsQNn9y1Jgtg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 802,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 22670,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2074,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T11:12:56.198Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GPqQRYBRGsJeYhttZTzWCi",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/datasets/Sylvest/LIBERO-plus",
+                "prompt": "Extract all details about the LIBERO-plus dataset: file structure, download instructions, dataset contents, how the training data is organized, and any usage instructions."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acf32032-82c0-47cf-beec-39552c1de4ca",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4Fkc8SoGVqKtRgChsek",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1db165f1-52bd-464f-8c35-fa915fb533b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BagSeBG8mMDsQNn9y1Jgtg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 802,
+                "cache_creation_input_tokens": 2074,
+                "cache_read_input_tokens": 22670,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2074
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 802,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 22670,
+                    "cache_creation_input_tokens": 2074,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2074,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T11:12:58.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EQVJbHhLUGi7rXZfsu1QcS",
+              "type": "tool_result",
+              "content": "# Domain Randomization in robosuite\n\nBased on the documentation, robosuite provides three primary `Modder` classes for visual domain randomization:\n\n## Visual Modders\n\n**CameraModder**: Handles camera parameters including field of view and positioning adjustments.\n\n**TextureModder**: Controls the appearance of simulation objects through texture and material property modifications.\n\n**LightingModder**: Manages lighting environment by adjusting light source characteristics and their spatial placement.\n\nThe documentation notes that these tools enable users to either \"directly override default simulation settings, or to randomize their respective properties mid-sim.\"\n\n## Dynamics Randomization\n\nThe `DynamicsModder` class addresses physics parameter variation across four categories:\n\n**Global Parameters** (Opt): density and viscosity of the medium\n\n**Body Parameters**: position, quaternion orientation, inertia components, and mass\n\n**Geom Parameters**: friction coefficients (sliding, torsional, rolling), contact solver values (solref), and impedance settings (solimp)\n\n**Joint Parameters**: stiffness, friction loss, damping, and armature values\n\n## API Usage Pattern\n\nThe basic workflow involves creating the modder instance, calling `.mod()` to adjust parameters, then invoking `.update()` to propagate changes into the simulation. The documentation includes a code example demonstrating modification of cube mass and friction values, followed by restoration of defaults.\n\nThe system includes \"sanity checks to prevent presumably undesired / non-sensical behavior\" such as preventing damping additions to free joints."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b8b5a3f-9028-4087-91cb-c8b67d5f9d9d",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "6a5ffa9d-a3ea-46d4-913e-7125ae2bd719",
+            "sourceToolAssistantUUID": "5b8b5a3f-9028-4087-91cb-c8b67d5f9d9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T11:13:01.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dvd7vLwaSK4nd3scbSqZNa",
+              "type": "tool_result",
+              "content": "# Visual Property Randomization in Robosuite\n\n## LightingModder\n\nThe LightingModder class enables domain randomization for light sources. Key parameters include:\n\n**Modifiable Properties:**\n- Position (with `position_perturbation_size=0.1`)\n- Direction (with `direction_perturbation_size=0.35`)\n- Specular attribute (with `specular_perturbation_size=0.1`)\n- Ambient attribute (with `ambient_perturbation_size=0.1`)\n- Diffuse attribute (with `diffuse_perturbation_size=0.1`)\n- Active status (on/off)\n\n**Key Methods:** `randomize()`, `save_defaults()`, `restore_defaults()`, and individual getters/setters for each property.\n\n## CameraModder\n\nThis modder adjusts camera viewing parameters during simulation. Configurable aspects are:\n\n**Modifiable Properties:**\n- Position (with `position_perturbation_size=0.01`)\n- Rotation/orientation via quaternions (with `rotation_perturbation_size=0.087`)\n- Field of view (fovy) in degrees (with `fovy_perturbation_size=5.0`)\n\n**Key Methods:** `randomize()`, `_randomize_position()`, `_randomize_rotation()`, `_randomize_fovy()`, plus accessor methods for position, quaternion orientation, and fovy values.\n\n## TextureModder\n\nThis comprehensive modder handles surface appearance changes. As noted, \"in order for the textures to take full effect, you'll need to set the rgba values for all materials to [1, 1, 1, 1].\"\n\n**Modifiable Properties:**\n- RGB colors (with `local_rgb_interpolation=0.1`)\n- Texture patterns: RGB, checker, noise, gradient\n- Material properties: reflectance, shininess, specular (with `local_material_interpolation=0.2`)\n- Skybox textures (when `randomize_skybox=True`)\n\n**Key Methods:** `randomize()`, `rand_rgb()`, `rand_checker()`, `rand_gradient()`, `rand_noise()`, plus material and texture management functions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acf32032-82c0-47cf-beec-39552c1de4ca",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "8249f956-94d0-469a-96a8-f0ac91e11816",
+            "sourceToolAssistantUUID": "acf32032-82c0-47cf-beec-39552c1de4ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T11:13:07.228Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GPqQRYBRGsJeYhttZTzWCi",
+              "type": "tool_result",
+              "content": "# LIBERO-plus Dataset Details\n\n## Overview\nLIBERO-plus is a comprehensive robustness benchmark for Vision-Language-Action (VLA) models containing **10,030 tasks** across 7 perturbation dimensions. It extends the original LIBERO benchmark with systematic robustness evaluation.\n\n## File Structure\n\nAfter extraction, the directory structure should be:\n\n```\nLIBERO-plus/\n└── libero/\n    └── libero/\n        └── assets/\n            ├── articulated_objects/\n            ├── new_objects/\n            ├── scenes/\n            ├── stable_hope_objects/\n            ├── stable_scanned_objects/\n            ├── textures/\n            ├── turbosquid_objects/\n            ├── serving_region.xml\n            ├── wall_frames.stl\n            └── wall.xml\n```\n\n## Installation Instructions\n\n```bash\n# Clone the repository\ngit clone https://github.com/sylvestf/LIBERO-plus.git\ncd LIBERO-plus\n\n# Install system dependencies\napt install libexpat1\napt install libfontconfig1-dev\napt install libpython3-stdlib\napt-get install libmagickwand-dev\n\n# Install Python package\npip install -e .\npip install -r extra_requirements.txt\n```\n\n**Note:** If you have the original LIBERO installed, uninstall it first. Update the config path at `/root/.libero/config.yaml`.\n\n## Dataset Contents\n\n### 7 Perturbation Dimensions\n\n1. **Objects Layout** - Confounding objects and target object displacement\n2. **Camera Viewpoints** - Position, orientation, and field-of-view changes\n3. **Robot Initial States** - Manipulator initial pose variations\n4. **Language Instructions** - LLM-based instruction rewriting\n5. **Light Conditions** - Intensity, direction, color, and shadow variations\n6. **Background Textures** - Scene and surface appearance changes\n7. **Sensor Noise** - Photometric distortions and image degradation\n\n### Total Size\n**6.4 GB** with 1,591 downloads\n\n## Training Data\n\n**Location:** [LIBERO-plus RLDS Dataset](https://huggingface.co/datasets/Sylvest/libero_plus_rlds/tree/main)\n\n**Pre-trained Model:** [OpenVLA-7B-OFT Fine-tuned](https://huggingface.co/Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata/tree/main)\n\n## Download Instructions\n\n1. Download assets from the [Hugging Face LIBERO-plus repository](https://huggingface.co/datasets/Sylvest/LIBERO-plus/tree/main)\n2. Unzip `assets.zip` to `LIBERO-plus/libero/libero/` path\n3. Update config file path if needed\n\n## Usage Instructions\n\n### Evaluation\n\n```python\n# Modify your configuration\n# Change: num_trials_per_task: 50 → num_trials_per_task: 1\n```\n\nThe evaluation method is nearly identical to LIBERO; only adjust `num_trials_per_task` from 50 to 1 in your configuration.\n\n### Key Usage Note\n\n> \"You can simply replace the original `libero` with a `pip install -e .` without modifying your code.\"\n\n## Evaluated Models\n\n- OpenVLA and variants (OFT, OFT_w, OFT_m)\n- π₀ and π₀-fast\n- Nora, WorldVLA, UniVLA, RIPT-VLA\n\n## Resources\n\n- 📄 **Paper:** [arXiv:2510.13626](https://arxiv.org/pdf/2510.13626v1)\n- 🏗️ **Repository:** [GitHub](https://github.com/sylvestf/LIBERO-plus)\n- 🌐 **Website:** [Project Page](https://sylvestf.github.io/LIBERO-plus)\n- 📁 **Training Dataset:** [LIBERO-plus RLDS](https://huggingface.co/datasets/Sylvest/libero_plus_rlds)\n\n## Citation\n\n```bibtex\n@article{fei25libero-plus,\n    title={LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models},\n    author={Senyu Fei and Siyin Wang and Junhao Shi and others},\n    journal = {arXiv preprint arXiv:2510.13626},\n    year={2025},\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1db165f1-52bd-464f-8c35-fa915fb533b8",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "ca567609-5b88-46b6-a5b4-97c1d6b9f928",
+            "sourceToolAssistantUUID": "1db165f1-52bd-464f-8c35-fa915fb533b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T11:13:09.964Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check for the robosuite DomainRandomizationWrapper specifically to see how it can be used with LIBERO."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca567609-5b88-46b6-a5b4-97c1d6b9f928",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FmyJSau881yp2twDrX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8f2d35a0-6b08-4466-be35-5751af7833da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bcg3e7hKqM6XFSjemhxDjW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3249,
+                "cache_read_input_tokens": 24744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3249,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T11:13:11.041Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BqbiFe79oqYoM9EKEEJnm2",
+              "name": "WebSearch",
+              "input": {
+                "query": "robosuite DomainRandomizationWrapper example code camera_names randomize_color randomize_camera"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f2d35a0-6b08-4466-be35-5751af7833da",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FmyJSau881yp2twDrX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "40102fe4-9856-47f3-8836-2428a669a2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bcg3e7hKqM6XFSjemhxDjW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3249,
+                "cache_read_input_tokens": 24744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3249,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T11:13:11.555Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011PMJHQNu2JmfTbUvAjCCtZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO-Plus training augmentation reuse perturbation training time data augmentation robustness"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40102fe4-9856-47f3-8836-2428a669a2d1",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FmyJSau881yp2twDrX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0094bb74-c15f-4874-8be1-a4f8a924965b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bcg3e7hKqM6XFSjemhxDjW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3249,
+                "cache_read_input_tokens": 24744,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3249
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 24744,
+                    "cache_creation_input_tokens": 3249,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3249,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T11:13:17.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BqbiFe79oqYoM9EKEEJnm2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"robosuite DomainRandomizationWrapper example code camera_names randomize_color randomize_camera\"\n\nLinks: [{\"title\":\"Demo Showcases — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/demos.html\"},{\"title\":\"robosuite/robosuite/utils/camera_utils.py at master · ARISE-Initiative/robosuite\",\"url\":\"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/utils/camera_utils.py\"},{\"title\":\"Sim-to-Real Transfer — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/algorithms/sim2real.html\"},{\"title\":\"robosuite/robosuite/demos/demo_segmentation.py at master · ARISE-Initiative/robosuite\",\"url\":\"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/demos/demo_segmentation.py\"},{\"title\":\"GitHub - quantumiracle/robolite: This is a fork of Surreal Robotics Suite that enables support to domain randomization and inverse kinematics (IK). · GitHub\",\"url\":\"https://github.com/quantumiracle/robolite\"},{\"title\":\"robosuite | robosuite: A Modular Simulation Framework and Benchmark for Robot Learning\",\"url\":\"https://robosuite.ai/\"},{\"title\":\"robosuite/robosuite/environments/manipulation/stack.py at master · ARISE-Initiative/robosuite\",\"url\":\"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/environments/manipulation/stack.py\"},{\"title\":\"robosuite.environments.manipulation package — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/source/robosuite.environments.manipulation.html\"},{\"title\":\"robosuite.utils package — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/source/robosuite.utils.html\"},{\"title\":\"Environments — robosuite 1.5 documentation\",\"url\":\"https://robosuite.ai/docs/modules/environments.html\"}]\n\nBased on the search results, here's what I found about the DomainRandomizationWrapper in robosuite:\n\n## DomainRandomizationWrapper Overview\n\nThe randomization functionality focuses on visual variations, including colors, textures, and camera viewpoints.\n\n## Example Code\n\nHere's an example of using the DomainRandomizationWrapper with parameters:\n\n```python\ndefault_dr_args = {\n    \"seed\": 1,\n    \"randomize_camera\": False,\n    \"randomize_every_n_steps\": 10,\n}\ndefault_dr_args.update(dr_args)\nenv = DomainRandomizationWrapper(\n    env=self.env,\n    **default_dr_args,\n)\n```\n\n\n## Related Randomization Tools\n\nrobosuite provides various Modder classes to control different aspects of the visual environment, including: CameraModder for controlling camera parameters like FOV and pose, TextureModder for controlling visual objects' appearances including texture and material properties, and LightingModder for controlling lighting parameters.\n\nThe demo_domain_randomization.py script showcases all of these modders being applied to randomize an environment during every sim step.\n\n## Camera Names Parameter\n\nThe camera_names parameter specifies the name of camera to be rendered, and should either be a single string if the same name is to be used for all cameras' rendering or a list of cameras to render.\n\nThe search results show example usage of the wrapper with basic parameters, though specific documentation on all the detailed parameters like `randomize_color` wasn't fully detailed in these results. For complete parameter documentation, you may want to check the official robosuite GitHub repository or API documentation directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40102fe4-9856-47f3-8836-2428a669a2d1",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "b628a0f6-3291-4498-859c-53909ef27ee1",
+            "sourceToolAssistantUUID": "40102fe4-9856-47f3-8836-2428a669a2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T11:13:19.437Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011PMJHQNu2JmfTbUvAjCCtZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO-Plus training augmentation reuse perturbation training time data augmentation robustness\"\n\nLinks: [{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://sylvestf.github.io/LIBERO-plus/\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"LIBERO-X: Robustness Litmus for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2602.06556v1\"},{\"title\":\"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://huggingface.co/papers/2510.13626\"},{\"title\":\"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub\",\"url\":\"https://github.com/sylvestf/LIBERO-plus\"},{\"title\":\"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-\",\"url\":\"https://arxiv.org/pdf/2510.13626\"},{\"title\":\"LIBERO-plus · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/main/libero_plus\"},{\"title\":\"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626\"},{\"title\":\"RL with LIBERO-Pro & LIBERO-Plus Benchmark — RLinf documentation\",\"url\":\"https://rlinf.readthedocs.io/en/latest/rst_source/examples/embodied/liberoplus_pro.html\"},{\"title\":\"LIBERO Benchmark: Vision-Language-Action in Robotics\",\"url\":\"https://www.emergentmind.com/topics/libero\"}]\n\nI've found comprehensive information about LIBERO-Plus and related research. Here's what the search reveals:\n\n## LIBERO-Plus Overview\n\nLIBERO-Plus is an extensive benchmark with 10,030 tasks spanning seven perturbation dimensions, with a diverse training dataset containing over 20,000 successful trajectories collected under systematically varied conditions.\n\n## Training Data Augmentation and Diversity\n\nTraining strategies that emphasize diversity and exposure to varied data distributions consistently yield more robust models across multiple perturbation types. The research demonstrates that an automated generalization pipeline was used to construct an extensive training dataset comprising over 20,000 successful trajectories through substantial expansion of the original LIBERO benchmark, greatly increasing the number of trajectories and scene diversity.\n\n## Perturbation Robustness Testing\n\nThe benchmark introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n## Key Findings\n\nTraining data diversity significantly improves robustness. Additionally, models incorporating a first-person wrist camera demonstrate superior generalization compared to those reliant solely on a third-person view, and training strategies that emphasize diversity and co-training consistently yield more robust models across multiple perturbation types.\n\nThe research highlights that recent extensions reuse original training trajectories, introducing perturbations but model them independently, failing to capture complex distribution shifts, which LIBERO-Plus aims to address through its comprehensive augmentation approach.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0094bb74-c15f-4874-8be1-a4f8a924965b",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "96a55e22-9bcd-43b3-b555-ee69a6b2323e",
+            "sourceToolAssistantUUID": "0094bb74-c15f-4874-8be1-a4f8a924965b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T11:13:22.300Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more details on the robosuite DomainRandomizationWrapper and also check LIBERO-X which appeared in results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96a55e22-9bcd-43b3-b555-ee69a6b2323e",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FnsUEUq6bTT1NdpaXv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "32da33f6-18dd-4270-8acf-95c49f17ebab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014nBBJpzXWbgJoCiqjarh4c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2026,
+                "cache_read_input_tokens": 27993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2026,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T11:13:23.640Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RiDfFZebcFLHam2jDutLqe",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://robosuite.ai/docs/demos.html",
+                "prompt": "Extract the full domain randomization demo details: DomainRandomizationWrapper parameters, how to use it, what it randomizes (camera, texture, lighting, dynamics), code examples, and all configurable parameters with their defaults."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32da33f6-18dd-4270-8acf-95c49f17ebab",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FnsUEUq6bTT1NdpaXv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ca9579e0-3a10-4ba7-a5be-1cfe8447ff37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014nBBJpzXWbgJoCiqjarh4c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2026,
+                "cache_read_input_tokens": 27993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2026,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T11:13:25.095Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AGdrLDS92VXhX7N9wUnxbB",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/docs/lerobot/main/libero_plus",
+                "prompt": "Extract all details about LIBERO-plus integration with LeRobot: setup instructions, how to use the dataset, training commands, and any code examples for using LIBERO-plus perturbations during training."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca9579e0-3a10-4ba7-a5be-1cfe8447ff37",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FnsUEUq6bTT1NdpaXv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6eaa64f-e15e-4c38-a451-866993ac8943",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014nBBJpzXWbgJoCiqjarh4c",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2026,
+                "cache_read_input_tokens": 27993,
+                "output_tokens": 275,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2026
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 275,
+                    "cache_read_input_tokens": 27993,
+                    "cache_creation_input_tokens": 2026,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2026,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T11:13:25.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGdrLDS92VXhX7N9wUnxbB",
+              "type": "tool_result",
+              "content": "# LIBERO-plus\n\nLIBERO-plus is a **robustness benchmark** for Vision-Language-Action (VLA) models built on top of [LIBERO](./libero). It systematically stress-tests policies by applying **seven independent perturbation dimensions** to the original LIBERO task set, exposing failure modes that standard benchmarks miss.\n\n- Paper: [In-depth Robustness Analysis of Vision-Language-Action Models](https://arxiv.org/abs/2510.13626)\n- GitHub: [sylvestf/LIBERO-plus](https://github.com/sylvestf/LIBERO-plus)\n- Dataset: [lerobot/libero_plus](https://huggingface.co/datasets/lerobot/libero_plus)\n\n![An overview of the LIBERO-plus benchmark perturbation dimensions](https://github.com/sylvestf/LIBERO-plus/raw/main/static/images/libero-plus.jpg)\n\n## Perturbation dimensions\n\nLIBERO-plus creates ~10 000 task variants by perturbing each original LIBERO task along these axes:\n\n| Dimension             | What changes                                          |\n| --------------------- | ----------------------------------------------------- |\n| Objects layout        | Target position, presence of confounding objects      |\n| Camera viewpoints     | Camera position, orientation, field-of-view           |\n| Robot initial states  | Manipulator start pose                                |\n| Language instructions | LLM-rewritten task description (paraphrase / synonym) |\n| Light conditions      | Intensity, direction, color, shadow                   |\n| Background textures   | Scene surface and object appearance                   |\n| Sensor noise          | Photometric distortions and image degradation         |\n\n## Available task suites\n\nLIBERO-plus covers the same five suites as LIBERO:\n\n| Suite          | CLI name         | Tasks | Max steps | Description                                        |\n| -------------- | ---------------- | ----- | --------- | -------------------------------------------------- |\n| LIBERO-Spatial | `libero_spatial` | 10    | 280       | Tasks requiring reasoning about spatial relations  |\n| LIBERO-Object  | `libero_object`  | 10    | 280       | Tasks centered on manipulating different objects   |\n| LIBERO-Goal    | `libero_goal`    | 10    | 300       | Goal-conditioned tasks with changing targets       |\n| LIBERO-90      | `libero_90`      | 90    | 400       | Short-horizon tasks from the LIBERO-100 collection |\n| LIBERO-Long    | `libero_10`      | 10    | 520       | Long-horizon tasks from the LIBERO-100 collection  |\n\n  Installing LIBERO-plus **replaces** vanilla LIBERO — it uninstalls `hf-libero`\n  so that `import libero` resolves to the LIBERO-plus fork. You cannot have both\n  installed at the same time. To switch back to vanilla LIBERO, uninstall the\n  fork and reinstall with `pip install -e \".[libero]\"`.\n\n## Installation\n\n### System dependencies (Linux only)\n\n```bash\nsudo apt install libexpat1 libfontconfig1-dev libmagickwand-dev\n```\n\n### Python package\n\n```bash\npip install -e \".[libero]\" \"robosuite==1.4.1\" bddl easydict mujoco wand scikit-image gym\ngit clone https://github.com/sylvestf/LIBERO-plus.git\ncd LIBERO-plus && pip install --no-deps -e .\npip uninstall -y hf-libero  # so `import libero` resolves to the fork\n```\n\nLIBERO-plus is installed from its GitHub fork rather than a pyproject extra — the fork ships as a namespace package that pip can't handle, so it must be cloned and added to `PYTHONPATH`. See `docker/Dockerfile.benchmark.libero_plus` for the canonical install. MuJoCo is required, so only Linux is supported.\n\nSet the MuJoCo rendering backend before running evaluation:\n\n```bash\nexport MUJOCO_GL=egl   # headless / HPC / cloud\n```\n\n### Download LIBERO-plus assets\n\nLIBERO-plus ships its extended asset pack separately. Download `assets.zip` from the [Hugging Face dataset](https://huggingface.co/datasets/Sylvest/LIBERO-plus/tree/main) and extract it into the LIBERO-plus package directory:\n\n```bash\n# After installing the package, find where it was installed:\npython -c \"import libero; print(libero.__file__)\"\n# Then extract assets.zip into <package_root>/libero/assets/\n```\n\n## Evaluation\n\n### Default evaluation (recommended)\n\nEvaluate across the four standard suites (10 episodes per task):\n\n```bash\nlerobot-eval \\\n  --policy.path=\"your-policy-id\" \\\n  --env.type=libero_plus \\\n  --env.task=libero_spatial,libero_object,libero_goal,libero_10 \\\n  --eval.batch_size=1 \\\n  --eval.n_episodes=10 \\\n  --env.max_parallel_tasks=1\n```\n\n### Single-suite evaluation\n\nEvaluate on one LIBERO-plus suite:\n\n```bash\nlerobot-eval \\\n  --policy.path=\"your-policy-id\" \\\n  --env.type=libero_plus \\\n  --env.task=libero_spatial \\\n  --eval.batch_size=1 \\\n  --eval.n_episodes=10\n```\n\n- `--env.task` picks the suite (`libero_spatial`, `libero_object`, etc.).\n- `--env.task_ids` restricts to specific task indices (`[0]`, `[1,2,3]`, etc.). Omit to run all tasks in the suite.\n- `--eval.batch_size` controls how many environments run in parallel.\n- `--eval.n_episodes` sets how many episodes to run per task.\n\n### Multi-suite evaluation\n\nBenchmark a policy across multiple suites at once by passing a comma-separated list:\n\n```bash\nlerobot-eval \\\n  --policy.path=\"your-policy-id\" \\\n  --env.type=libero_plus \\\n  --env.task=libero_spatial,libero_object \\\n  --eval.batch_size=1 \\\n  --eval.n_episodes=10\n```\n\n### Control mode\n\nLIBERO-plus supports two control modes — `relative` (default) and `absolute`. Different VLA checkpoints are trained with different action parameterizations, so make sure the mode matches your policy:\n\n```bash\n--env.control_mode=relative   # or \"absolute\"\n```\n\n### Policy inputs and outputs\n\n**Observations:**\n\n- `observation.state` — 8-dim proprioceptive features (eef position, axis-angle orientation, gripper qpos)\n- `observation.images.image` — main camera view (`agentview_image`), HWC uint8\n- `observation.images.image2` — wrist camera view (`robot0_eye_in_hand_image`), HWC uint8\n\n**Actions:**\n\n- Continuous control in `Box(-1, 1, shape=(7,))` — 6D end-effector delta + 1D gripper\n\n### Recommended evaluation episodes\n\nFor reproducible benchmarking, use **10 episodes per task** across all four standard suites (Spatial, Object, Goal, Long). This gives 400 total episodes and matches the protocol used for published results.\n\n## Training\n\n### Dataset\n\nA LeRobot-format training dataset for LIBERO-plus is available at:\n\n- [lerobot/libero_plus](https://huggingface.co/datasets/lerobot/libero_plus)\n\n### Example training command\n\n```bash\nlerobot-train \\\n    --policy.type=smolvla \\\n    --policy.repo_id=${HF_USER}/smolvla_libero_plus \\\n    --policy.load_vlm_weights=true \\\n    --dataset.repo_id=lerobot/libero_plus \\\n    --env.type=libero_plus \\\n    --env.task=libero_spatial \\\n    --output_dir=./outputs/ \\\n    --steps=100000 \\\n    --batch_size=4 \\\n    --eval.batch_size=1 \\\n    --eval.n_episodes=1 \\\n    --eval_freq=1000\n```\n\n## Relationship to LIBERO\n\nLIBERO-plus is a drop-in extension of LIBERO:\n\n- Same Python gym interface (`LiberoEnv`, `LiberoProcessorStep`)\n- Same camera names and observation/action format\n- Same task suite names\n- Installs under the same `libero` Python package name (different GitHub repo)\n\nTo use the original LIBERO benchmark, see [LIBERO](./libero) and use `--env.type=libero`.\n\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6eaa64f-e15e-4c38-a451-866993ac8943",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "de5cbc3b-e96b-4a27-b11e-1c90c1e10d39",
+            "sourceToolAssistantUUID": "e6eaa64f-e15e-4c38-a451-866993ac8943",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T11:13:28.000Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RiDfFZebcFLHam2jDutLqe",
+              "type": "tool_result",
+              "content": "# Domain Randomization Demo Details\n\nBased on the provided documentation, the information available about the Domain Randomization demo is limited:\n\n## What the Documentation States\n\nThe `demo_domain_randomization.py` script is described as showcasing \"domain randomization functionality.\" According to the content, this feature \"can be easily enabled by wrapping an environment with the DomainRandomizationWrapper.\"\n\nThe documentation specifies that **\"the randomization functionality focuses on visual variations, including colors, textures, and camera viewpoints.\"**\n\n## Limitations of Available Information\n\nUnfortunately, the provided webpage content does not include:\n- Specific parameters for the DomainRandomizationWrapper\n- Code examples showing implementation\n- Default values for any configurable settings\n- Details on dynamics randomization (though it mentions visual variations only)\n- Detailed usage instructions beyond wrapping an environment\n\n## Recommendation\n\nTo obtain comprehensive details about DomainRandomizationWrapper parameters, code examples, and all configurable options, you would need to:\n1. Consult the full robosuite source code repository\n2. Review the `robosuite.wrappers` module documentation\n3. Examine the actual `demo_domain_randomization.py` script in the [robosuite GitHub repository](https://github.com/ARISE-Initiative/robosuite)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca9579e0-3a10-4ba7-a5be-1cfe8447ff37",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "de363c52-98c1-424c-a0db-5b802d2dc8b3",
+            "sourceToolAssistantUUID": "ca9579e0-3a10-4ba7-a5be-1cfe8447ff37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T11:13:30.881Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the robosuite wrapper source code for exact parameters."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de363c52-98c1-424c-a0db-5b802d2dc8b3",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FoW4eXF2G8UDJBLMJW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f2fb59eb-da6f-4d82-a135-99c233eec199",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CP6stPQt8vGELWxtjKhmDR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2197,
+                "cache_creation_input_tokens": 596,
+                "cache_read_input_tokens": 30019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 596,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T11:13:31.728Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H5fcnANzeubgqZen5nvqc7",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/wrappers/domain_randomization_wrapper.py",
+                "prompt": "Extract the complete DomainRandomizationWrapper class definition including all constructor parameters, their defaults, and descriptions. Include the full docstring and all randomization-related parameters."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2fb59eb-da6f-4d82-a135-99c233eec199",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FoW4eXF2G8UDJBLMJW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9ff26e6d-744d-410a-9146-f84207ace560",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CP6stPQt8vGELWxtjKhmDR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2197,
+                "cache_creation_input_tokens": 596,
+                "cache_read_input_tokens": 30019,
+                "output_tokens": 154,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 596
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2197,
+                    "output_tokens": 154,
+                    "cache_read_input_tokens": 30019,
+                    "cache_creation_input_tokens": 596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 596,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T11:13:38.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H5fcnANzeubgqZen5nvqc7",
+              "type": "tool_result",
+              "content": "# DomainRandomizationWrapper Class Definition\n\n## Class Overview\nThe `DomainRandomizationWrapper` is designed to \"allow for domain randomization mid-simulation\" in robosuite environments.\n\n## Constructor Parameters\n\n**Core Parameters:**\n- `env` (MujocoEnv): The environment being wrapped\n- `seed` (int, optional): Used to create isolated `np.random.RandomState` instance\n\n**Randomization Toggles:**\n- `randomize_color` (bool, default=True): Controls geom and texture color randomization\n- `randomize_camera` (bool, default=True): Controls camera location and parameter changes\n- `randomize_lighting` (bool, default=True): Controls light location and property modifications\n- `randomize_dynamics` (bool, default=True): Controls physics parameter randomization\n\n**Configuration Dictionaries:**\n- `color_randomization_args`: Includes geom names, local color sampling, material properties, texture variations, and skybox settings\n- `camera_randomization_args`: Includes camera names, position/rotation/fovy randomization with perturbation sizes\n- `lighting_randomization_args`: Includes light names and randomization flags for position, direction, specular, ambient, and diffuse properties\n- `dynamics_randomization_args`: Includes body, geom, and joint parameters with density, viscosity, friction, and inertia controls\n\n**Execution Parameters:**\n- `randomize_on_reset` (bool, default=True): Applies randomization at episode reset\n- `randomize_every_n_steps` (int, default=1): Sets randomization frequency during steps\n\n## Key Methods\n- `reset()`: Restores defaults, resets environment, saves parameters, applies randomization if enabled\n- `step()`: Calls step randomization before delegating to superclass\n- `randomize_domain()`: Executes randomization across all active modders\n- `save_default_domain()`: Preserves current simulation parameters\n- `restore_default_domain()`: Reverts to saved parameters"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ff26e6d-744d-410a-9146-f84207ace560",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "6094e08e-0a36-4a5e-a28e-7db37e7c55ad",
+            "sourceToolAssistantUUID": "9ff26e6d-744d-410a-9146-f84207ace560",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T11:13:40.838Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Let me compile the comprehensive report."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6094e08e-0a36-4a5e-a28e-7db37e7c55ad",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FpG7n75XQBdWFWRMrF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4c513d85-73b4-4ae8-a672-2819bba16b86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQBadPYzkj6nJYWNELNhC4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2828,
+                "cache_read_input_tokens": 30615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2828,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T11:13:41.632Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173q63qhK6XB8QeKNj4hQFQ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c513d85-73b4-4ae8-a672-2819bba16b86",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FpG7n75XQBdWFWRMrF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "289de43c-d20a-474d-bf1f-78bb0b40d5c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQBadPYzkj6nJYWNELNhC4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2828,
+                "cache_read_input_tokens": 30615,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2828
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 30615,
+                    "cache_creation_input_tokens": 2828,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2828,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T11:13:41.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0173q63qhK6XB8QeKNj4hQFQ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "289de43c-d20a-474d-bf1f-78bb0b40d5c7",
+            "isSidechain": true,
+            "promptId": "d2c42f79-e375-4b9b-b7c3-7e1496f88b5b",
+            "agentId": "aada8a30ff0506204",
+            "type": "user",
+            "uuid": "ab4add5b-f3a1-450c-ad6e-b1158428733b",
+            "sourceToolAssistantUUID": "289de43c-d20a-474d-bf1f-78bb0b40d5c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T11:14:56.783Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nHere is the structured research report.\n\n---\n\n## 1. What LIBERO-Plus Is\n\nLIBERO-Plus is a robustness evaluation benchmark that extends the original LIBERO robot manipulation benchmark. It was published as \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\" (arXiv:2510.13626, accepted at CVPR 2026).\n\n**What it adds on top of LIBERO:**\n- **10,030 task variants** generated by applying systematic perturbations to original LIBERO tasks\n- **7 perturbation dimensions** with **21 sub-dimensions**\n- **5 difficulty levels** (L1-L5) stratified by multi-model consensus (how many of 4 reference models solve the task)\n- **20,000+ training trajectories** collected under varied conditions (stored in RLDS format)\n- Drop-in replacement for vanilla LIBERO — same Python interface, same camera names, same observation/action format\n\n## 2. Source\n\n- **Paper:** [arXiv:2510.13626](https://arxiv.org/abs/2510.13626)\n- **GitHub:** [github.com/sylvestf/LIBERO-plus](https://github.com/sylvestf/LIBERO-plus)\n- **Project page:** [sylvestf.github.io/LIBERO-plus](https://sylvestf.github.io/LIBERO-plus/)\n- **Assets (HuggingFace):** [Sylvest/LIBERO-plus](https://huggingface.co/datasets/Sylvest/LIBERO-plus)\n- **Training dataset (RLDS):** [Sylvest/libero_plus_rlds](https://huggingface.co/datasets/Sylvest/libero_plus_rlds)\n- **LeRobot-format dataset:** [lerobot/libero_plus](https://huggingface.co/datasets/lerobot/libero_plus)\n\n## 3. The 7 Perturbation Dimensions (Exact Definitions)\n\nNote: The user asked about 4 dimensions. LIBERO-Plus actually defines **7**, not 4.\n\n### 3.1 Objects Layout (O1, O2)\n- **O1 — Confounding objects:** Adds n additional unseen distractor objects into the scene from a pool of 416 objects, implemented by modifying BDDL task description files.\n- **O2 — Target displacement:** Applies random perturbations to the target object's initial position (x, y, z) and orientation while preserving semantic relationships.\n\n### 3.2 Camera Viewpoints (C1, C2, C3)\n- **C1 — Distance scaling:** Scales camera distance from 1.01x to 2.00x the original value along the optical axis.\n- **C2 — Spherical position:** Changes azimuth (delta-theta) and elevation (delta-phi) within 15 to 75 degree cones.\n- **C3 — Orientation perturbation:** Perturbs yaw, pitch, roll within 2 to 10 degrees.\n\nImplementation: Modifies the `Problem` class interface; parameters derived from task filenames. Targets the third-person camera primarily (not wrist camera).\n\n### 3.3 Robot Initial States\n- Applies random perturbations to the robot arm's initial joint positions with magnitudes 0.1 to 0.5.\n- Implementation: Modifies the `Problem` class interface.\n\n### 3.4 Language Instructions (R1, R2, R3)\n- **R1 — Distraction rewrites:** Adds task-irrelevant contextual information.\n- **R2 — Commonsense substitution:** Replaces object descriptions with commonsense-based alternatives.\n- **R3 — Reasoning complexity:** Alters reasoning complexity for multi-step tasks.\n- Implementation: LLM-based instruction rewriting.\n\n### 3.5 Light Conditions (L1, L2, L3, L4)\n- **L1 — Diffuse color:** RGB channel adjustment of diffuse lighting.\n- **L2 — Direction:** Parallel light source direction changes.\n- **L3 — Specular intensity:** Specular highlight intensity (reflective surfaces).\n- **L4 — Shadow casting:** Boolean shadow on/off control.\n- Implementation: Modifies MuJoCo scene XML definition files, registers new scene classes.\n\n### 3.6 Background Textures (B1, B2)\n- **B1 — Scene texture:** Changes the environment scene texture using 950 curated textures via XML scene files.\n- **B2 — Surface texture:** Randomly alters working surface texture (tabletop, floor).\n- Implementation: Modifies XML scene definition files with new texture assets.\n\n### 3.7 Sensor Noise (N1-N5)\nApplied as image-space post-processing (not physics-level):\n- **N1 — Motion blur:** Kernel radius r=5-35, Gaussian sigma=2-20, angle theta in U(-45, 45) degrees.\n- **N2 — Gaussian blur:** Sigma from 1 to 10.\n- **N3 — Zoom blur:** Scaling factors [s_min, s_max, step] from [1, 1.11, 0.01] to [1, 1.56, 0.03].\n- **N4 — Fog:** Density alpha=0.5-5.0, decay rate beta=1.3-3.0.\n- **N5 — Glass blur:** Sigma=0.5-2.5, pixel displacement delta=1-5, iterations=1-3.\n\n### Difficulty Levels (L1-L5)\nStratified by how many of 4 reference models (OpenVLA-OFT, pi0, pi0-fast, UniVLA) solve each task:\n- L1: All 4 solve it. L2: 3 solve. L3: 2 solve. L4: 1 solves. L5: None solve.\n\n## 4. Installation and Running\n\n### Installation\n\n```bash\n# System dependencies\nsudo apt install libexpat1 libfontconfig1-dev libmagickwand-dev\n\n# Clone and install\ngit clone https://github.com/sylvestf/LIBERO-plus.git\ncd LIBERO-plus\npip install -e .\npip install -r extra_requirements.txt\n\n# If vanilla LIBERO was installed, uninstall first\npip uninstall -y hf-libero\n\n# Set rendering backend\nexport MUJOCO_GL=egl\n```\n\n### Download assets\n\nDownload `assets.zip` from [HuggingFace](https://huggingface.co/datasets/Sylvest/LIBERO-plus/tree/main) and extract to `LIBERO-plus/libero/libero/assets/`.\n\nExpected structure:\n```\nlibero/libero/assets/\n├── articulated_objects/\n├── new_objects/\n├── scenes/\n├── stable_hope_objects/\n├── stable_scanned_objects/\n├── textures/\n├── turbosquid_objects/\n├── serving_region.xml\n├── wall_frames.stl\n└── wall.xml\n```\n\n### Configuration\n\nVerify config at `/root/.libero/config.yaml`. Key change for evaluation: set `num_trials_per_task: 1` (instead of 50).\n\nTask-to-perturbation-category mappings: `.libero/libero/benchmark/task_classification.json`.\n\n### Evaluation via LeRobot\n\n```bash\nlerobot-eval \\\n  --policy.path=\"your-policy-id\" \\\n  --env.type=libero_plus \\\n  --env.task=libero_spatial,libero_object,libero_goal,libero_10 \\\n  --eval.batch_size=1 \\\n  --eval.n_episodes=10 \\\n  --env.max_parallel_tasks=1\n```\n\nObservations: `observation.images.image` (agentview), `observation.images.image2` (wrist cam), `observation.state` (8-dim proprioception). Actions: `Box(-1, 1, shape=(7,))` — 6D EEF delta + 1D gripper. Control modes: `relative` (default) or `absolute`.\n\n## 5. Integration with Standard LIBERO Evaluation\n\nLIBERO-Plus is a **drop-in replacement** for vanilla LIBERO:\n- Installs under the same `libero` Python package name (replaces it)\n- Same `LiberoEnv` gym interface\n- Same camera names (`agentview_image`, `robot0_eye_in_hand_image`)\n- Same observation/action format\n- Same task suite names (`libero_spatial`, `libero_object`, `libero_goal`, `libero_10`, `libero_90`)\n- You can swap by doing `pip install -e .` in the LIBERO-plus repo without modifying evaluation code\n\n**You cannot have both vanilla LIBERO and LIBERO-Plus installed simultaneously.** Switching back requires uninstalling the fork and reinstalling vanilla LIBERO.\n\n## 6. LIBERO's Built-in Randomization (via robosuite)\n\nLIBERO is built on **robosuite** (which uses MuJoCo). Robosuite **does** have built-in domain randomization via `DomainRandomizationWrapper` and three visual Modder classes. These are available to any robosuite-based environment, including LIBERO.\n\n### DomainRandomizationWrapper\n\n```python\nfrom robosuite.wrappers import DomainRandomizationWrapper\n\nenv = DomainRandomizationWrapper(\n    env=base_env,\n    seed=42,\n    randomize_color=True,        # Geom/texture color randomization\n    randomize_camera=True,       # Camera position/orientation/FOV\n    randomize_lighting=True,     # Light position/direction/color\n    randomize_dynamics=True,     # Physics parameters\n    randomize_on_reset=True,     # Randomize at episode reset\n    randomize_every_n_steps=1,   # Frequency during rollout\n    # Optional: pass detailed config dicts\n    color_randomization_args={...},\n    camera_randomization_args={...},\n    lighting_randomization_args={...},\n    dynamics_randomization_args={...},\n)\n```\n\n### CameraModder (built-in)\n- **Position** perturbation: default size 0.01\n- **Rotation** perturbation (quaternion): default size 0.087 (~5 degrees)\n- **FOV** perturbation: default size 5.0 degrees\n\n### LightingModder (built-in)\n- **Position** perturbation: default size 0.1\n- **Direction** perturbation: default size 0.35\n- **Specular** perturbation: default size 0.1\n- **Ambient** perturbation: default size 0.1\n- **Diffuse** perturbation: default size 0.1\n- **Active** status: on/off toggle\n\n### TextureModder (built-in)\n- RGB color randomization (local interpolation 0.1)\n- Texture patterns: RGB, checker, noise, gradient\n- Material properties: reflectance, shininess, specular (local interpolation 0.2)\n- Skybox randomization (optional)\n- Note: For full effect, set all material RGBA to [1,1,1,1]\n\n### Demo script\n`robosuite/demos/demo_domain_randomization.py` showcases all modders.\n\n## 7. Can LIBERO-Plus Perturbations Be Reused for Training-Time Augmentation?\n\n**Yes, and the paper explicitly does this.** LIBERO-Plus provides both evaluation tasks AND a training dataset:\n\n### What's already provided\n- **22,400 training trajectories** (20,000+ after filtering) generated under varied perturbation conditions\n- Breakdown: 2,400 with object layout variations + 4,000 each for light/camera/background/language/noise dimensions\n- Stored in RLDS format, also available in LeRobot format at `lerobot/libero_plus`\n- The paper shows that training with this diverse data (\"mix-SFT\") improves robustness — the OpenVLA-OFT+ model trained on this data achieves 79.6% average vs. much lower for vanilla-trained models\n\n### Two paths for training-time augmentation\n\n**Path A — Use LIBERO-Plus training data directly:**\n```bash\nlerobot-train \\\n    --policy.type=smolvla \\\n    --dataset.repo_id=lerobot/libero_plus \\\n    --env.type=libero_plus \\\n    ...\n```\n\n**Path B — Use robosuite's built-in DomainRandomizationWrapper for online augmentation during training:**\nThis covers camera jitter, lighting changes, texture/color randomization natively. Wrap the LIBERO environment:\n```python\nfrom robosuite.wrappers import DomainRandomizationWrapper\nenv = DomainRandomizationWrapper(env=libero_env, randomize_camera=True, randomize_lighting=True, randomize_color=True)\n```\n\n**Path C — Reuse LIBERO-Plus perturbation code for custom augmentation:**\n- Lighting/texture perturbations: Modify scene XML files + register new scenes (same approach as LIBERO-Plus)\n- Camera perturbations: Modify the `Problem` class interface\n- Sensor noise (blur, fog, etc.): Image-space post-processing — trivially reusable as training-time augmentation since it's just image transforms applied after rendering\n\n### Key distinction\n- Robosuite's built-in randomization (Path B) is **online** — applies random perturbations every N steps during simulation. Good for training-time augmentation but less controllable.\n- LIBERO-Plus perturbations (Path C) are **structured** with specific parameter ranges per sub-dimension and difficulty stratification. More suitable for systematic robustness training.\n- Sensor noise (N1-N5) is pure image-space post-processing and can be applied as standard data augmentation on any stored trajectory without re-rendering.\n\n### Paper's finding on augmentation effectiveness\nTraining strategies emphasizing diversity consistently yield more robust models. Models with wrist camera input show superior generalization. The paper demonstrates that combining perturbation-augmented training data with mix-SFT is the most effective approach.\n\n---\n\nSources:\n- [LIBERO-Plus paper (arXiv)](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus GitHub](https://github.com/sylvestf/LIBERO-plus)\n- [LIBERO-Plus project page](https://sylvestf.github.io/LIBERO-plus/)\n- [LIBERO-Plus HuggingFace dataset](https://huggingface.co/datasets/Sylvest/LIBERO-plus)\n- [LIBERO-Plus LeRobot docs](https://huggingface.co/docs/lerobot/main/libero_plus)\n- [robosuite Sim2Real / Domain Randomization](https://robosuite.ai/docs/algorithms/sim2real.html)\n- [robosuite mjmod.py (Modder classes)](https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/utils/mjmod.py)\n- [Original LIBERO repo](https://github.com/Lifelong-Robot-Learning/LIBERO)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab4add5b-f3a1-450c-ad6e-b1158428733b",
+            "isSidechain": true,
+            "agentId": "aada8a30ff0506204",
+            "requestId": "req_011Cb4FpWbRhBk53QgXHR1vc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aa9b0c0a-a99a-419a-900f-f8be8844ee2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+            "sessionId": "2e86c8de-c2a5-4dae-af4d-f49fa73af83b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161wo5HoMeigrAV9CGC6eD5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 379,
+                "cache_read_input_tokens": 33443,
+                "output_tokens": 3772,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 379
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3772,
+                    "cache_read_input_tokens": 33443,
+                    "cache_creation_input_tokens": 379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 379,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000052"
+        }
+      ],
+      "message_count": 52
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-research-libero-plus-which-is-a-perturbation-based-evaluation-extension-for-th.md"
+}

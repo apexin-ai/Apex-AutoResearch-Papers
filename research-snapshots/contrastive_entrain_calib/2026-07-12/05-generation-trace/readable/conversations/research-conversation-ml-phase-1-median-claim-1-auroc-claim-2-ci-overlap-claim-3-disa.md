@@ -1,0 +1,1374 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义： 含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disa
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/19beea5c-2024-4f8b-98d6-97e2b534fbab.jsonl`
+- **Structured JSON:** [`e170bac1b18bf9c209e7.json`](../../sessions/e1/e170bac1b18bf9c209e7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T11:10:21.719Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T11:10:21.719Z",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：\n\n含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disagreement 存在但频率低或定性案例不够 striking，需从 'R1 catches what R3 misses' 降级为 'characterization of when representation signals add marginal value'\n核心假设：['d_syc 方向是真实信号但 AUROC 扩展后仅持平或微升，medium/strong evidence 类型引入噪声但不致方向失效', 'DC-GRPO 优于 R3-only 但 margin 在 5-15% 范围，统计显著性在部分 metric 上 p 值接近 0.05', 'R1-R3 disagreement 在 5-10% 区间，定性案例有但不够 dramatic——reviewer 可能质疑 practical significance', '方向稳定性尚可但需要 1-2 次重校准，cosine 偶尔跌破 0.8', 'ACT baseline 在某些 metric 上接近 DC-GRPO，需要精细分析才能拉开差距', 'R2 rank-based 设计 reviewer 可能视为 engineering choice 而非 principled contribution，需要额外 ablation 支撑']\n关键指标范围：{'auroc_expanded_v2.1': [0.8, 0.86], 'auroc_bootstrap_ci_width': [0.04, 0.06], 'dc_grpo_vs_r3only_nof_relative_reduction_pct': [5, 15], 'warranted_revision_rate_improvement_pp': [3, 8], 'revision_capitulation_auc_dc_grpo': [0.7, 0.78], 'revision_capitulation_auc_r3_only': [0.62, 0.72], 'r1_r3_disagreement_pct': [5, 10], 'direction_cosine_stability_min': [0.7, 0.85], 'dc_grpo_vs_act_nof_reduction_pp': [2, 8], 'dc_grpo_vs_binary_probe_nof_reduction_pp': [1, 5], 'mmlu_regression_pp': [-2.0, 0.0]}\n叙事方向：调整 claims 强度和论文重心。Claim 1 保持原样（mechanistic finding 本身足够 solid）。Claim 2 从 'breaks the double-bind' 软化为 'mitigates the double-bind with moderate but consistent improvement'，强调方向一致性而非绝对效果量，用 Revision-Capitulation AUC 做主 metric 避免单指标 cherry-pick 指控。Claim 3 从 'R1 detects masked sycophancy' 重构为 'characterization study: when and how often representation-behavioral disagreement occurs'，将 disagreement 频率和模式本身作为 empirical finding，而非 R1 优越性的证据。补充实验：(a) turn-depth analysis 强化多轮叙事，(b) R1-only ablation 证明方向 reward 的独立贡献。论文重心偏向 Claim 1 的 mechanistic insight + Claim 2 的 framework contribution，Claim 3 作为 analysis section 而非核心 contribution。仍然 EACL 可投，但需要在 intro 中降低预期管理\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: contrastive_entrain_calib\nfocus: 重点关注：(1) Claim 3 的 R1-R3 disagreement 是否在 median/worst case 下仍站得住；(2) AUROC ~0.82 的中等信号强度是否足以支撑 DC-GRPO 有效性的 claim；(3) 只有 Qwen3-8B 的 scale 局限性是否会被 reviewer 重度扣分；(4) R2 rank-based 设计是否被视为 hack 而非 principled contribution\n\n## paper_framing.md\n\n# Paper Framing — contrastive_entrain_calib\n\n## Target Venue\n- Primary: **EACL 2027** via ARR August 2026 cycle\n- Deadline: **August 3, 2026** (submission), October 11, 2026 (commitment)\n- Stretch: ICLR 2027 (abstract ~Sep 2026, full paper ~Oct 2026)\n- Timeline: ~11 weeks from MVP completion (May 18 → Aug 3)\n\n## Core Claims (3 条, 可证伪)\n\n1. **Directional discriminability**: The policy model's own activation space encodes a linear direction d_syc that discriminates sycophantic capitulation from genuine belief revision in multi-turn dialogue, with signal emerging at mid-layers (L16-19) through model-internal factual assessment rather than surface text features.\n   - *Evidence needed*: AUROC on style-controlled data (v2.1 expanded), layer progression analysis, transfer tests\n   - *MVP basis*: v2.1 CV AUROC 0.826, Layer 0 = random, L16-19 emergence\n\n2. **DC-GRPO effectiveness**: Direction-Contrastive GRPO (using d_syc projection as reward component R1) reduces multi-turn sycophantic capitulation while preserving genuine belief revision, breaking the double-bind that undifferentiated anti-sycophancy training creates.\n   - *Evidence needed*: Warranted Revision Rate + Unwarranted Capitulation Rate on SYCON Bench / SycophancyEval, compared to R3-only and ACT baselines\n   - *Pass criterion*: DC-GRPO achieves lower NoF (capitulation) than R3-only AND higher warranted revision rate\n\n3. **Representation-level advantage**: R1 (directional projection reward) detects sycophantic internal reasoning that behavioral rewards (R3) miss, as evidenced by R1-R3 disagreement analysis where R1 correctly identifies cases of masked sycophancy.\n   - *Evidence needed*: R1-R3 disagreement frequency > 5%, qualitative examples of masked sycophancy detection\n   - *Fallback*: If disagreement < 5%, honest report as negative result about when representation-level rewards add value (still publishable as characterization)\n\n## Story Spine\n\n**Problem**: LLMs face a \"double-bind\" in multi-turn dialogue. Anti-sycophancy training (SMART, BCT/ACT) teaches resistance to ALL user pressure indiscriminately, blocking sycophantic capitulation AND legitimate belief revision alike. Meanwhile, multi-turn commitment compounds the problem: TRUTH DECAY shows up to 47% accuracy degradation as models lock into wrong answers across turns. No training method distinguishes \"the user is right, I should revise\" from \"the user is pressuring me, I should resist.\"\n\n**Existing approaches & gaps**: Behavioral GRPO decomposition (\"Pressure, What Pressure?\") scores outputs via NLI, but cannot detect sycophantic internal reasoning when surface output appears correct. ACT enforces undifferentiated activation consistency, penalizing all changes equally. Linear Probe Penalties probes the reward model (not policy model) with a binary classifier. CRAFT validates hidden-state GRPO for safety, but uses domain-general prototype clustering. All are single-turn.\n\n**Our framing**: We observe that the policy model's own activations encode geometrically separable directions for sycophantic vs. genuine agreement (building on \"Sycophancy Is Not One Thing\"). We extend this from measurement to training: d_syc projections serve as a continuous reward signal in GRPO, enabling the training process to directly target the internal mechanism of sycophancy rather than its surface manifestation. The multi-turn extension is non-trivial: commitment depth, attention decay across turns, and context-dependent sycophancy all require directions computed from multi-turn contrastive pairs rather than single-turn scenarios.\n\n**Headline result template**: \"On SYCON Bench, DC-GRPO reduces multi-turn sycophantic capitulation (NoF) by X% relative to behavioral-only GRPO while improving warranted revision rate by Y%, demonstrating that representation-level rewards can break the sycophancy-revision double-bind.\"\n\n## Venue Fit Risks\n\n- **EACL fit**: Strong. Combines mechanistic interpretability (Claim 1) with practical training method (Claim 2) for dialogue systems. EACL values NLP-focused work with linguistic/cognitive grounding.\n- **Reviewer concern 1 (novelty)**: \"This is just CRAFT applied to sycophancy.\" Counter: (a) sycophancy-specific directional decomposition vs. prototype clustering is methodologically distinct; (b) multi-turn calibration and direction transfer are standalone contributions; (c) CRAFT doesn't distinguish sycophantic from genuine agreement.\n- **Reviewer concern 2 (signal strength)**: \"AUROC ~0.82 on style-controlled data is moderate.\" Counter: (a) single-turn literature achieves >0.97 with style confound included; (b) our v2.1 ablation isolates pure cognitive signal; (c) 0.82 is sufficient for GRPO reward gradient; (d) expanding data and adding mixed evidence strength should tighten CI.\n- **Reviewer concern 3 (scale)**: \"Only Qwen3-8B.\" Counter: Budget constraint (200 H100-hr). If time/budget allows, add one more model family (e.g., Llama-3-8B). Cross-model direction transfer analysis partially addresses this.\n- **Reviewer concern 4 (R2 degeneration)**: \"d_gen = -d_syc in binary design.\" Counter: We use rank-based contrastive R2 (S1) that doesn't depend on d_gen definition. If time allows, neutral-baseline three-way design (S2) provides independent d_gen.\n- **Reviewer concern 5 (practical utility)**: \"Do models actually exhibit masked sycophancy at meaningful rates?\" Counter: Literature documents 13-29% representation-behavioral disagreement (Knowledge-Prediction Gap, Sycophantic Anchors). R1-R3 disagreement analysis directly measures this.\n\n## Anticipated Reviewer Concerns & Experimental Responses\n\n| Concern | Experiment | Priority |\n|---------|-----------|----------|\n| d_syc is just style detector | v2.1 style-controlled ablation (done in MVP) + expanded data | P0 |\n| DC-GRPO doesn't beat behavioral GRPO | Main exp vs R3-only baseline, report Revision-Capitulation AUC | P0 |\n| Undifferentiated consistency (ACT) is enough | ACT-style baseline comparison | P0 |\n| Binary probe is enough (no need for directional decomposition) | Binary Probe Penalty baseline | P1 |\n| Directions drift during training | Direction stability monitoring + periodic recalibration | P0 (built into training) |\n| R1-R3 disagreement is negligible | Disagreement frequency analysis + qualitative examples | P1 |\n| Single model, doesn't generalize | Cross-model direction transfer analysis (if budget allows) | P2 |\n| Multi-turn contribution marginal vs single-turn | Turn-depth analysis: revision rate vs commitment depth | P1 |\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  name: calibration_data_expansion\n  claim: 1\n  description: '扩展 v2.1 风格控制校准数据至 200 pairs（含 weak/medium/strong evidence_strength），\n    重新计算 d_syc 方向并评估 AUROC（5-fold CV + bootstrap CI）。 为 DC-GRPO 训练提供高质量方向和统计可靠的判别力估计。\n\n    '\n  priority: P0\n  gpu_budget_hours: 3\n  deps: []\n  status: planned\n  notes: 'MVP v2.1 仅 50 pairs 全 weak evidence，σ=0.054 太大。 扩至 200 pairs（80 weak + 60\n    medium + 60 strong）可显著降低方差。 API 成本 ~$10-20，GPU 仅 forward pass。\n\n    '\n- id: exp-002\n  name: dc_grpo_main\n  claim: 2\n  description: 'DC-GRPO 完整训练：R1(方向投影) + R2(rank-based contrastive) + R3(NLI behavioral)。\n    Qwen3-8B + LoRA rank 64。R1 在 L19-27 asst_first 位置提取激活投影。 R2 使用 S1 rank-based 设计（避免\n    d_gen=-d_syc 退化）。 每 500 步重校准 d_syc。\n\n    '\n  priority: P0\n  gpu_budget_hours: 55\n  deps:\n  - exp-001\n  status: planned\n  notes: '训练数据：warranted revision + sycophantic capitulation 多轮 rollout。 R1 层选择基于\n    MVP: L19 emergence, L24-27 plateau。 提取位置: asst_first（MVP 证明优于 user_last）。\n\n    '\n- id: exp-003\n  name: r3_only_baseline\n  claim: 2\n  description: 'R3-only GRPO baseline（复现 \"Pressure, What Pressure?\" 思路）。 仅用 NLI behavioral\n    reward，无 R1/R2。同等训练配置。 这是最关键的 baseline：如果 DC-GRPO 相对 R3-only 无显著提升， representation-level\n    reward 的价值存疑。\n\n    '\n  priority: P0\n  gpu_budget_hours: 35\n  deps: []\n  status: planned\n  notes: 与 exp-002 共享 rollout 生成管线和 NLI 评分器。可并行训练。\n- id: exp-004\n  name: act_style_baseline\n  claim: 2\n  description: 'ACT-style undifferentiated consistency baseline。 在 clean/biased prompt\n    对上施加 L2 activation consistency loss。 测试\"不区分方向的 activation-level 信号\"是否够用。\n\n    '\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  status: planned\n  notes: 共享数据管线和评估代码。\n- id: exp-005\n  name: full_evaluation\n  claim:\n  - 1\n  - 2\n  - 3\n  description: '所有模型（DC-GRPO / R3-only / ACT / Binary Probe / Vanilla）在所有 benchmark\n    上的评估：SYCON Bench (ToF/NoF), SycophancyEval, MT-Bench, MMLU。 加上项目特有指标：Warranted\n    Revision Rate, Unwarranted Capitulation Rate, Revision-Capitulation AUC, Turn-depth\n    analysis。\n\n    '\n  priority: P0\n  gpu_budget_hours: 15\n  deps:\n  - exp-002\n  - exp-003\n  - exp-004\n  status: planned\n  notes: 评估管线骨架已搭建（eval_pipeline.py），需完善各 benchmark 实现。\n- id: exp-006\n  name: direction_stability_monitoring\n  claim: 1\n  description: '训练过程中监控 d_syc 方向稳定性：每 500 步重新计算方向， 报告 cosine similarity with initial\n    direction、held-out AUROC、 方向漂移速率。如 cosine < 0.7 触发重校准。\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - exp-002\n  status: planned\n  notes: 内嵌于 exp-002 训练循环中，无额外 GPU 开销。\n- id: exp-007\n  name: r1_r3_disagreement_analysis\n  claim: 3\n  description: '分析 DC-GRPO 训练过程中 R1 和 R3 给出不同信号的频率和模式。 R1 认为 sycophantic 但 R3 认为 correct（masked\n    sycophancy）的案例。 需 > 5% disagreement 以支撑 Claim 3。\n\n    '\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - exp-002\n  status: planned\n  notes: 从 exp-002 训练日志中提取，无额外 GPU。如 < 5% 则 Claim 3 降级为 negative result。\n- id: exp-008\n  name: binary_probe_baseline\n  claim: 2\n  description: 'Binary Probe Penalty baseline（复现 Linear Probe Penalties 思路）。 训练 binary\n    linear probe (sycophantic vs not) on policy model activations， R_hat = R3 - lambda\n    * S(t)。测试 binary vs directional 的差异。\n\n    '\n  priority: P1\n  gpu_budget_hours: 15\n  deps: []\n  status: planned\n  notes: 共享 R3 评分器。Probe 在 policy model 上训练以公平对比。\n- id: exp-009\n  name: ablation_r1_only\n  claim: 2\n  description: 'R1-only ablation：仅用方向投影 reward，无 R2/R3。 从 exp-002 step 2000 checkpoint\n    分叉短程训练 (~2000 步)。 测试方向 reward 单独是否足够引导训练。\n\n    '\n  priority: P1\n  gpu_budget_hours: 8\n  deps:\n  - exp-002\n  status: planned\n  notes: 从主实验 checkpoint 分叉，节省 warmup。\n- id: exp-010\n  name: turn_depth_analysis\n  claim: 2\n  description: '按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的修正率变化。 验证多轮训练的必要性：DC-GRPO\n    在深层 commitment 上是否优势更大？\n\n    '\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - exp-005\n  status: planned\n  notes: 从 exp-005 评估结果中切分分析，无额外 GPU。\n- id: exp-011\n  name: ablation_r1_r2_no_r3\n  claim: 2\n  description: 'R1+R2 无 R3 ablation：去掉行为安全网后模型是否产生 \"内部正确但表面不一致\"的输出。需完整训练循环。\n\n    '\n  priority: P2\n  gpu_budget_hours: 20\n  deps:\n  - exp-002\n  status: planned\n  notes: 条件执行：仅当 exp-009 (R1-only) 显示 >= 5pp 改进且预算允许。\n- id: exp-012\n  name: cross_model_transfer\n  claim: 1\n  description: '在第二个模型家族（如 Llama-3-8B）上测试 d_syc 方向计算和判别力。 如果方向结构跨模型保持（AUROC > 0.75），strengthens\n    Claim 1 的普遍性。\n\n    '\n  priority: P2\n  gpu_budget_hours: 10\n  deps:\n  - exp-001\n  status: planned\n  notes: 预算紧张时砍掉。仅做方向计算+AUROC，不做完整 DC-GRPO 训练。\n- id: exp-013\n  name: neutral_baseline_three_way\n  claim: 2\n  description: '引入 neutral condition（无施压的正常对话），从 warranted_revision vs neutral 计算独立\n    d_gen（与 d_syc 正交）。打破 d_gen = -d_syc 限制， 恢复 R2 为独立信号。\n\n    '\n  priority: P2\n  gpu_budget_hours: 5\n  deps:\n  - exp-001\n  status: planned\n  notes: 需扩展校准数据生成器。如果 exp-002 主实验效果已足够好则降低优先级。\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: median\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T11:10:21.722Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T11:10:21.722Z",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T11:10:21.744Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：
+
+含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disagreement 存在但频率低或定性案例不够 striking，需从 'R1 catches what R3 misses' 降级为 'characterization of when representation signals add marginal value'
+核心假设：['d_syc 方向是真实信号但 AUROC 扩展后仅持平或微升，medium/strong evidence 类型引入噪声但不致方向失效', 'DC-GRPO 优于 R3-only 但 margin 在 5-15% 范围，统计显著性在部分 metric 上 p 值接近 0.05', 'R1-R3 disagreement 在 5-10% 区间，定性案例有但不够 dramatic——reviewer 可能质疑 practical significance', '方向稳定性尚可但需要 1-2 次重校准，cosine 偶尔跌破 0.8', 'ACT baseline 在某些 metric 上接近 DC-GRPO，需要精细分析才能拉开差距', 'R2 rank-based 设计 reviewer 可能视为 engineering choice 而非 principled contribution，需要额外 ablation 支撑']
+关键指标范围：{'auroc_expanded_v2.1': [0.8, 0.86], 'auroc_bootstrap_ci_width': [0.04, 0.06], 'dc_grpo_vs_r3only_nof_relative_reduction_pct': [5, 15], 'warranted_revision_rate_improvement_pp': [3, 8], 'revision_capitulation_auc_dc_grpo': [0.7, 0.78], 'revision_capitulation_auc_r3_only': [0.62, 0.72], 'r1_r3_disagreement_pct': [5, 10], 'direction_cosine_stability_min': [0.7, 0.85], 'dc_grpo_vs_act_nof_reduction_pp': [2, 8], 'dc_grpo_vs_binary_probe_nof_reduction_pp': [1, 5], 'mmlu_regression_pp': [-2.0, 0.0]}
+叙事方向：调整 claims 强度和论文重心。Claim 1 保持原样（mechanistic finding 本身足够 solid）。Claim 2 从 'breaks the double-bind' 软化为 'mitigates the double-bind with moderate but consistent improvement'，强调方向一致性而非绝对效果量，用 Revision-Capitulation AUC 做主 metric 避免单指标 cherry-pick 指控。Claim 3 从 'R1 detects masked sycophancy' 重构为 'characterization study: when and how often representation-behavioral disagreement occurs'，将 disagreement 频率和模式本身作为 empirical finding，而非 R1 优越性的证据。补充实验：(a) turn-depth analysis 强化多轮叙事，(b) R1-only ablation 证明方向 reward 的独立贡献。论文重心偏向 Claim 1 的 mechanistic insight + Claim 2 的 framework contribution，Claim 3 作为 analysis section 而非核心 contribution。仍然 EACL 可投，但需要在 intro 中降低预期管理
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: contrastive_entrain_calib
+focus: 重点关注：(1) Claim 3 的 R1-R3 disagreement 是否在 median/worst case 下仍站得住；(2) AUROC ~0.82 的中等信号强度是否足以支撑 DC-GRPO 有效性的 claim；(3) 只有 Qwen3-8B 的 scale 局限性是否会被 reviewer 重度扣分；(4) R2 rank-based 设计是否被视为 hack 而非 principled contribution
+
+## paper_framing.md
+
+# Paper Framing — contrastive_entrain_calib
+
+## Target Venue
+- Primary: **EACL 2027** via ARR August 2026 cycle
+- Deadline: **August 3, 2026** (submission), October 11, 2026 (commitment)
+- Stretch: ICLR 2027 (abstract ~Sep 2026, full paper ~Oct 2026)
+- Timeline: ~11 weeks from MVP completion (May 18 → Aug 3)
+
+## Core Claims (3 条, 可证伪)
+
+1. **Directional discriminability**: The policy model's own activation space encodes a linear direction d_syc that discriminates sycophantic capitulation from genuine belief revision in multi-turn dialogue, with signal emerging at mid-layers (L16-19) through model-internal factual assessment rather than surface text features.
+   - *Evidence needed*: AUROC on style-controlled data (v2.1 expanded), layer progression analysis, transfer tests
+   - *MVP basis*: v2.1 CV AUROC 0.826, Layer 0 = random, L16-19 emergence
+
+2. **DC-GRPO effectiveness**: Direction-Contrastive GRPO (using d_syc projection as reward component R1) reduces multi-turn sycophantic capitulation while preserving genuine belief revision, breaking the double-bind that undifferentiated anti-sycophancy training creates.
+   - *Evidence needed*: Warranted Revision Rate + Unwarranted Capitulation Rate on SYCON Bench / SycophancyEval, compared to R3-only and ACT baselines
+   - *Pass criterion*: DC-GRPO achieves lower NoF (capitulation) than R3-only AND higher warranted revision rate
+
+3. **Representation-level advantage**: R1 (directional projection reward) detects sycophantic internal reasoning that behavioral rewards (R3) miss, as evidenced by R1-R3 disagreement analysis where R1 correctly identifies cases of masked sycophancy.
+   - *Evidence needed*: R1-R3 disagreement frequency > 5%, qualitative examples of masked sycophancy detection
+   - *Fallback*: If disagreement < 5%, honest report as negative result about when representation-level rewards add value (still publishable as characterization)
+
+## Story Spine
+
+**Problem**: LLMs face a "double-bind" in multi-turn dialogue. Anti-sycophancy training (SMART, BCT/ACT) teaches resistance to ALL user pressure indiscriminately, blocking sycophantic capitulation AND legitimate belief revision alike. Meanwhile, multi-turn commitment compounds the problem: TRUTH DECAY shows up to 47% accuracy degradation as models lock into wrong answers across turns. No training method distinguishes "the user is right, I should revise" from "the user is pressuring me, I should resist."
+
+**Existing approaches & gaps**: Behavioral GRPO decomposition ("Pressure, What Pressure?") scores outputs via NLI, but cannot detect sycophantic internal reasoning when surface output appears correct. ACT enforces undifferentiated activation consistency, penalizing all changes equally. Linear Probe Penalties probes the reward model (not policy model) with a binary classifier. CRAFT validates hidden-state GRPO for safety, but uses domain-general prototype clustering. All are single-turn.
+
+**Our framing**: We observe that the policy model's own activations encode geometrically separable directions for sycophantic vs. genuine agreement (building on "Sycophancy Is Not One Thing"). We extend this from measurement to training: d_syc projections serve as a continuous reward signal in GRPO, enabling the training process to directly target the internal mechanism of sycophancy rather than its surface manifestation. The multi-turn extension is non-trivial: commitment depth, attention decay across turns, and context-dependent sycophancy all require directions computed from multi-turn contrastive pairs rather than single-turn scenarios.
+
+**Headline result template**: "On SYCON Bench, DC-GRPO reduces multi-turn sycophantic capitulation (NoF) by X% relative to behavioral-only GRPO while improving warranted revision rate by Y%, demonstrating that representation-level rewards can break the sycophancy-revision double-bind."
+
+## Venue Fit Risks
+
+- **EACL fit**: Strong. Combines mechanistic interpretability (Claim 1) with practical training method (Claim 2) for dialogue systems. EACL values NLP-focused work with linguistic/cognitive grounding.
+- **Reviewer concern 1 (novelty)**: "This is just CRAFT applied to sycophancy." Counter: (a) sycophancy-specific directional decomposition vs. prototype clustering is methodologically distinct; (b) multi-turn calibration and direction transfer are standalone contributions; (c) CRAFT doesn't distinguish sycophantic from genuine agreement.
+- **Reviewer concern 2 (signal strength)**: "AUROC ~0.82 on style-controlled data is moderate." Counter: (a) single-turn literature achieves >0.97 with style confound included; (b) our v2.1 ablation isolates pure cognitive signal; (c) 0.82 is sufficient for GRPO reward gradient; (d) expanding data and adding mixed evidence strength should tighten CI.
+- **Reviewer concern 3 (scale)**: "Only Qwen3-8B." Counter: Budget constraint (200 H100-hr). If time/budget allows, add one more model family (e.g., Llama-3-8B). Cross-model direction transfer analysis partially addresses this.
+- **Reviewer concern 4 (R2 degeneration)**: "d_gen = -d_syc in binary design." Counter: We use rank-based contrastive R2 (S1) that doesn't depend on d_gen definition. If time allows, neutral-baseline three-way design (S2) provides independent d_gen.
+- **Reviewer concern 5 (practical utility)**: "Do models actually exhibit masked sycophancy at meaningful rates?" Counter: Literature documents 13-29% representation-behavioral disagreement (Knowledge-Prediction Gap, Sycophantic Anchors). R1-R3 disagreement analysis directly measures this.
+
+## Anticipated Reviewer Concerns & Experimental Responses
+
+| Concern | Experiment | Priority |
+|---------|-----------|----------|
+| d_syc is just style detector | v2.1 style-controlled ablation (done in MVP) + expanded data | P0 |
+| DC-GRPO doesn't beat behavioral GRPO | Main exp vs R3-only baseline, report Revision-Capitulation AUC | P0 |
+| Undifferentiated consistency (ACT) is enough | ACT-style baseline comparison | P0 |
+| Binary probe is enough (no need for directional decomposition) | Binary Probe Penalty baseline | P1 |
+| Directions drift during training | Direction stability monitoring + periodic recalibration | P0 (built into training) |
+| R1-R3 disagreement is negligible | Disagreement frequency analysis + qualitative examples | P1 |
+| Single model, doesn't generalize | Cross-model direction transfer analysis (if budget allows) | P2 |
+| Multi-turn contribution marginal vs single-turn | Turn-depth analysis: revision rate vs commitment depth | P1 |
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  name: calibration_data_expansion
+  claim: 1
+  description: '扩展 v2.1 风格控制校准数据至 200 pairs（含 weak/medium/strong evidence_strength），
+    重新计算 d_syc 方向并评估 AUROC（5-fold CV + bootstrap CI）。 为 DC-GRPO 训练提供高质量方向和统计可靠的判别力估计。
+
+    '
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  status: planned
+  notes: 'MVP v2.1 仅 50 pairs 全 weak evidence，σ=0.054 太大。 扩至 200 pairs（80 weak + 60
+    medium + 60 strong）可显著降低方差。 API 成本 ~$10-20，GPU 仅 forward pass。
+
+    '
+- id: exp-002
+  name: dc_grpo_main
+  claim: 2
+  description: 'DC-GRPO 完整训练：R1(方向投影) + R2(rank-based contrastive) + R3(NLI behavioral)。
+    Qwen3-8B + LoRA rank 64。R1 在 L19-27 asst_first 位置提取激活投影。 R2 使用 S1 rank-based 设计（避免
+    d_gen=-d_syc 退化）。 每 500 步重校准 d_syc。
+
+    '
+  priority: P0
+  gpu_budget_hours: 55
+  deps:
+  - exp-001
+  status: planned
+  notes: '训练数据：warranted revision + sycophantic capitulation 多轮 rollout。 R1 层选择基于
+    MVP: L19 emergence, L24-27 plateau。 提取位置: asst_first（MVP 证明优于 user_last）。
+
+    '
+- id: exp-003
+  name: r3_only_baseline
+  claim: 2
+  description: 'R3-only GRPO baseline（复现 "Pressure, What Pressure?" 思路）。 仅用 NLI behavioral
+    reward，无 R1/R2。同等训练配置。 这是最关键的 baseline：如果 DC-GRPO 相对 R3-only 无显著提升， representation-level
+    reward 的价值存疑。
+
+    '
+  priority: P0
+  gpu_budget_hours: 35
+  deps: []
+  status: planned
+  notes: 与 exp-002 共享 rollout 生成管线和 NLI 评分器。可并行训练。
+- id: exp-004
+  name: act_style_baseline
+  claim: 2
+  description: 'ACT-style undifferentiated consistency baseline。 在 clean/biased prompt
+    对上施加 L2 activation consistency loss。 测试"不区分方向的 activation-level 信号"是否够用。
+
+    '
+  priority: P0
+  gpu_budget_hours: 20
+  deps: []
+  status: planned
+  notes: 共享数据管线和评估代码。
+- id: exp-005
+  name: full_evaluation
+  claim:
+  - 1
+  - 2
+  - 3
+  description: '所有模型（DC-GRPO / R3-only / ACT / Binary Probe / Vanilla）在所有 benchmark
+    上的评估：SYCON Bench (ToF/NoF), SycophancyEval, MT-Bench, MMLU。 加上项目特有指标：Warranted
+    Revision Rate, Unwarranted Capitulation Rate, Revision-Capitulation AUC, Turn-depth
+    analysis。
+
+    '
+  priority: P0
+  gpu_budget_hours: 15
+  deps:
+  - exp-002
+  - exp-003
+  - exp-004
+  status: planned
+  notes: 评估管线骨架已搭建（eval_pipeline.py），需完善各 benchmark 实现。
+- id: exp-006
+  name: direction_stability_monitoring
+  claim: 1
+  description: '训练过程中监控 d_syc 方向稳定性：每 500 步重新计算方向， 报告 cosine similarity with initial
+    direction、held-out AUROC、 方向漂移速率。如 cosine < 0.7 触发重校准。
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - exp-002
+  status: planned
+  notes: 内嵌于 exp-002 训练循环中，无额外 GPU 开销。
+- id: exp-007
+  name: r1_r3_disagreement_analysis
+  claim: 3
+  description: '分析 DC-GRPO 训练过程中 R1 和 R3 给出不同信号的频率和模式。 R1 认为 sycophantic 但 R3 认为 correct（masked
+    sycophancy）的案例。 需 > 5% disagreement 以支撑 Claim 3。
+
+    '
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-002
+  status: planned
+  notes: 从 exp-002 训练日志中提取，无额外 GPU。如 < 5% 则 Claim 3 降级为 negative result。
+- id: exp-008
+  name: binary_probe_baseline
+  claim: 2
+  description: 'Binary Probe Penalty baseline（复现 Linear Probe Penalties 思路）。 训练 binary
+    linear probe (sycophantic vs not) on policy model activations， R_hat = R3 - lambda
+    * S(t)。测试 binary vs directional 的差异。
+
+    '
+  priority: P1
+  gpu_budget_hours: 15
+  deps: []
+  status: planned
+  notes: 共享 R3 评分器。Probe 在 policy model 上训练以公平对比。
+- id: exp-009
+  name: ablation_r1_only
+  claim: 2
+  description: 'R1-only ablation：仅用方向投影 reward，无 R2/R3。 从 exp-002 step 2000 checkpoint
+    分叉短程训练 (~2000 步)。 测试方向 reward 单独是否足够引导训练。
+
+    '
+  priority: P1
+  gpu_budget_hours: 8
+  deps:
+  - exp-002
+  status: planned
+  notes: 从主实验 checkpoint 分叉，节省 warmup。
+- id: exp-010
+  name: turn_depth_analysis
+  claim: 2
+  description: '按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的修正率变化。 验证多轮训练的必要性：DC-GRPO
+    在深层 commitment 上是否优势更大？
+
+    '
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-005
+  status: planned
+  notes: 从 exp-005 评估结果中切分分析，无额外 GPU。
+- id: exp-011
+  name: ablation_r1_r2_no_r3
+  claim: 2
+  description: 'R1+R2 无 R3 ablation：去掉行为安全网后模型是否产生 "内部正确但表面不一致"的输出。需完整训练循环。
+
+    '
+  priority: P2
+  gpu_budget_hours: 20
+  deps:
+  - exp-002
+  status: planned
+  notes: 条件执行：仅当 exp-009 (R1-only) 显示 >= 5pp 改进且预算允许。
+- id: exp-012
+  name: cross_model_transfer
+  claim: 1
+  description: '在第二个模型家族（如 Llama-3-8B）上测试 d_syc 方向计算和判别力。 如果方向结构跨模型保持（AUROC > 0.75），strengthens
+    Claim 1 的普遍性。
+
+    '
+  priority: P2
+  gpu_budget_hours: 10
+  deps:
+  - exp-001
+  status: planned
+  notes: 预算紧张时砍掉。仅做方向计算+AUROC，不做完整 DC-GRPO 训练。
+- id: exp-013
+  name: neutral_baseline_three_way
+  claim: 2
+  description: '引入 neutral condition（无施压的正常对话），从 warranted_revision vs neutral 计算独立
+    d_gen（与 d_syc 正交）。打破 d_gen = -d_syc 限制， 恢复 R2 为独立信号。
+
+    '
+  priority: P2
+  gpu_budget_hours: 5
+  deps:
+  - exp-001
+  status: planned
+  notes: 需扩展校准数据生成器。如果 exp-002 主实验效果已足够好则降低优先级。
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: median
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "46939d66-fd98-45a3-ab7e-6a71a946f7ba",
+  "type": "user",
+  "uuid": "c9aab579-e537-4b03-9478-bb803d78e83b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T11:10:21.743Z_
+
+```json
+{
+  "parentUuid": "c9aab579-e537-4b03-9478-bb803d78e83b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ef55c510-dd19-4b23-9ac7-ae7d701b3bc2",
+  "timestamp": "2026-05-18T11:10:21.743Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T11:10:21.743Z_
+
+```json
+{
+  "parentUuid": "ef55c510-dd19-4b23-9ac7-ae7d701b3bc2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0f4887d2-a0c0-4b68-8746-969e0a56cd07",
+  "timestamp": "2026-05-18T11:10:21.743Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disagreement 存在但频率低或定性案例不够 striking，需从 'R1 catches what R3 misses' 降级为 'characteriz…",
+  "leafUuid": "0f4887d2-a0c0-4b68-8746-969e0a56cd07",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Median-tier results for sycophancy direction and DC-GRPO effectiveness",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T11:10:31.213Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed imagined experimental results for the "median" tier across all planned experiments in the experiment plan. I need to produce a comprehensive YAML block with expected results, rationales, tables, figures, and analysis for each experiment.
+
+Let me carefully go through each experiment and generate median-tier predictions that are consistent with the defined median tier characteristics.
+
+Key median tier characteristics:
+- AUROC expanded v2.1: [0.8, 0.86]
+- AUROC bootstrap CI width: [0.04, 0.06]
+- DC-GRPO vs R3-only NoF relative reduction: [5%, 15%]
+
+
+- Warranted revision rate improvement: [3, 8] pp
+- Revision-Capitulation AUC DC-GRPO: [0.7, 0.78]
+- Revision-Capitulation AUC R3-only: [0.62, 0.72]
+- R1-R3 disagreement: [5%, 10%]
+- Direction cosine stability min: [0.7, 0.85]
+- DC-GRPO vs ACT NoF reduction: [2, 8] pp
+- DC-GRPO vs Binary Probe NoF reduction: [1, 5] pp
+- MMLU regression: [-2, 1] pp
+
+Now I'm working through the detailed predictions for each experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f4887d2-a0c0-4b68-8746-969e0a56cd07",
+  "isSidechain": false,
+  "requestId": "req_011Cb9vzX9zoPWgGxhPn6ZHN",
+  "type": "assistant",
+  "uuid": "b8ccf442-48c6-4452-b3d1-d31adf21d835",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RqgMHuYwp3dpArLXxve58F",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10896,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 16190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 16190,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T11:15:08.030Z_
+
+```yaml
+tier: median
+narrative_guidance: >
+  Claim 1 保持原样——d_syc 方向在扩展数据上 AUROC 稳定在 ~0.83，风格控制后信号真实但不惊艳。
+  Claim 2 从 'breaks the double-bind' 软化为 'mitigates with moderate but consistent improvement'：
+  DC-GRPO 在 Revision-Capitulation AUC 上稳定优于 R3-only 和 ACT，但 margin 不大（~10% relative），
+  部分 metric CI overlap，需用方向一致性和多指标一致性做论证而非单指标显著性。
+  Claim 3 重构为 characterization study：R1-R3 disagreement 在 7% 左右——存在但频率不高，
+  定性案例有说服力的 2-3 个但缺少 dramatic 的 smoking gun，
+  降级为 'empirical characterization of when representation signals add marginal value'。
+  论文重心偏向 Claim 1 mechanistic insight + Claim 2 framework contribution，
+  Claim 3 作为 analysis section。仍 EACL 可投但 intro 需降低预期管理。
+
+imagined_experiments:
+  - name: calibration_data_expansion
+    plan_id: exp-001
+    description: >
+      扩展 v2.1 风格控制校准数据至 200 pairs（80 weak + 60 medium + 60 strong evidence_strength），
+      重新计算 d_syc 方向并评估 AUROC（5-fold CV + bootstrap CI）。
+    expected_results:
+      n_pairs_total: 200
+      n_weak: 80
+      n_medium: 60
+      n_strong: 60
+      auroc_5fold_cv_mean: 0.831
+      auroc_5fold_cv_std: 0.018
+      auroc_bootstrap_ci_95: [0.802, 0.858]
+      auroc_bootstrap_ci_width: 0.056
+      auroc_weak_only: 0.854
+      auroc_medium_only: 0.811
+      auroc_strong_only: 0.793
+      auroc_all_combined: 0.831
+      best_layer: 19
+      layer_0_auroc: 0.52
+      layer_8_auroc: 0.61
+      layer_16_auroc: 0.78
+      layer_19_auroc: 0.831
+      layer_24_auroc: 0.827
+      layer_27_auroc: 0.819
+      d_syc_cosine_with_mvp_direction: 0.91
+      generation_api_cost_usd: 14.5
+      gpu_hours_used: 2.1
+    result_rationale: >
+      MVP v2.1 50 pairs 全 weak evidence 得到 AUROC 0.826。扩展至 200 pairs 后样本量增大使 CI 从
+      σ=0.054 收窄至 ~0.056 宽度（CI width 仍在 median 范围上端，因为 medium/strong evidence 引入了
+      更多噪声——strong evidence 条件下 sycophantic capitulation 与 genuine revision 的激活差异
+      更小，因为模型在强证据下确实应该修改立场，d_syc 方向的区分力在此条件下天然降低）。
+      整体 AUROC 微升至 0.831 而非大幅跳跃，因为 medium/strong evidence 拉低了平均判别力。
+      weak-only AUROC 略高于 MVP（0.854 vs 0.826）是样本量效应。层级进展保持：L0 随机，L16-19 涌现，
+      L24-27 轻微衰减。新方向与 MVP 方向 cosine 0.91 表明方向稳定但 medium/strong 数据确实带来了
+      有意义的方向调整。
+    tables:
+      - name: "Table 1: AUROC by Evidence Strength and Layer"
+        columns: [layer, weak_auroc, medium_auroc, strong_auroc, combined_auroc]
+        rows:
+          - [0, 0.53, 0.51, 0.50, 0.52]
+          - [8, 0.64, 0.59, 0.57, 0.61]
+          - [16, 0.82, 0.76, 0.72, 0.78]
+          - [19, 0.854, 0.811, 0.793, 0.831]
+          - [24, 0.849, 0.803, 0.788, 0.827]
+          - [27, 0.841, 0.796, 0.779, 0.819]
+      - name: "Table 2: Bootstrap CI by Evidence Strength"
+        columns: [evidence_strength, n_pairs, auroc_mean, ci_lower, ci_upper, ci_width]
+        rows:
+          - [weak, 80, 0.854, 0.818, 0.887, 0.069]
+          - [medium, 60, 0.811, 0.767, 0.852, 0.085]
+          - [strong, 60, 0.793, 0.744, 0.839, 0.095]
+          - [combined, 200, 0.831, 0.802, 0.858, 0.056]
+    figures_description:
+      - "Fig 1: Layer-wise AUROC progression curves for each evidence_strength，三条曲线在 L16 开始分离，weak 最高 strong 最低，均在 L19 达峰后轻微衰减"
+      - "Fig 2: Bootstrap AUROC distribution histogram (combined)，峰值在 0.83 附近，95% CI 覆盖 0.80-0.86"
+      - "Fig 3: d_syc direction PCA 投影 scatter plot，按 evidence_strength 着色，strong evidence 条件下两类点 overlap 更大"
+    analysis: >
+      关键发现：d_syc 方向是真实认知信号而非风格 artifact（L0→L19 涌现曲线 + 风格控制），但信号强度
+      随 evidence strength 单调递减。这符合直觉：强证据下模型修正立场的 genuine reason 更充分，
+      与 sycophantic capitulation 的激活差异缩小。对后续实验的影响：(1) R1 reward 在 strong evidence
+      条件下噪声更大，DC-GRPO 在此区间的改进可能有限；(2) CI width 0.056 仍偏大，reviewer 可能
+      质疑 0.83 与 0.80 baseline 的差异显著性；(3) 建议在论文中将 evidence-strength 分层分析
+      作为 Claim 1 的核心贡献之一，展示 d_syc 的 graceful degradation 而非简单报告一个数字。
+
+  - name: dc_grpo_main
+    plan_id: exp-002
+    description: >
+      DC-GRPO 完整训练：R1(方向投影) + R2(rank-based contrastive) + R3(NLI behavioral)。
+      Qwen3-8B + LoRA rank 64。6000 步训练，每 500 步重校准 d_syc。
+    expected_results:
+      total_training_steps: 6000
+      n_recalibrations: 2
+      recalibration_steps: [2500, 4500]
+      final_sycon_nof_pct: 28.3
+      final_sycon_tof_pct: 71.7
+      warranted_revision_rate: 0.69
+      unwarranted_capitulation_rate: 0.283
+      revision_capitulation_auc: 0.743
+      nof_at_step_1000: 38.5
+      nof_at_step_2000: 33.1
+      nof_at_step_3000: 30.2
+      nof_at_step_4000: 29.1
+      nof_at_step_5000: 28.6
+      nof_at_step_6000: 28.3
+      r1_weight_final: 0.3
+      r2_weight_final: 0.2
+      r3_weight_final: 0.5
+      reward_correlation_r1_r3: 0.72
+      reward_correlation_r1_r2: 0.58
+      training_loss_final: 1.83
+      gpu_hours_used: 52
+    result_rationale: >
+      DC-GRPO 在 median 档下实现了稳定但非 dramatic 的改进。NoF 从 vanilla baseline ~42% 降至 28.3%，
+      训练曲线前 2000 步下降最快（归因于 R3 behavioral reward 的直接优化效应），后期 R1 方向 reward
+      提供额外但递减的边际贡献。需要 2 次重校准（step 2500 和 4500），因为 cosine 在 step 2000 和 4000
+      附近分别跌至 0.78 和 0.74，重校准后恢复至 >0.85。R1-R3 correlation 0.72 表明两个 reward 方向
+      大致一致但有有意义的分歧空间。Revision-Capitulation AUC 0.743 落在 median 范围 [0.70, 0.78] 中部，
+      表明模型在 reducing capitulation 和 preserving revision 之间取得了 reasonable 但非完美的 trade-off。
+      GPU 用量 52hr 略低于预算 55hr，主要因为 LoRA 训练效率高于预期。
+    tables:
+      - name: "Table 3: DC-GRPO Training Progression"
+        columns: [step, nof_pct, warranted_rev_rate, r1_r3_corr, d_syc_cosine_stability, loss]
+        rows:
+          - [0, 42.1, 0.58, 0.68, 1.00, 2.41]
+          - [1000, 38.5, 0.61, 0.70, 0.88, 2.15]
+          - [2000, 33.1, 0.64, 0.71, 0.78, 1.98]
+          - [2500, 32.4, 0.65, 0.71, "recalib→0.87", 1.95]
+          - [3000, 30.2, 0.66, 0.72, 0.85, 1.91]
+          - [4000, 29.1, 0.68, 0.73, 0.74, 1.86]
+          - [4500, 28.8, 0.68, 0.72, "recalib→0.86", 1.84]
+          - [5000, 28.6, 0.69, 0.72, 0.83, 1.83]
+          - [6000, 28.3, 0.69, 0.72, 0.81, 1.83]
+    figures_description:
+      - "Fig 4: Training curves — NoF% (左轴) 和 Warranted Revision Rate (右轴) vs training step，标注两次 recalibration 点"
+      - "Fig 5: d_syc cosine stability over training，锯齿形下降+重校准恢复模式，标注 0.7 threshold 线"
+      - "Fig 6: R1 vs R3 reward scatter plot at step 6000，大部分点在对角线附近，标注离群 disagreement cases"
+    analysis: >
+      训练过程符合预期：R3 behavioral reward 驱动主要学习，R1 方向 reward 提供额外的
+      gradient signal 但效果量有限。两次重校准是必要的——方向漂移是真实的 challenge，
+      但重校准机制有效。关键 concern：训练后期 NoF 下降趋于饱和（step 4000→6000 仅降 0.8pp），
+      暗示在当前 reward 设计下模型接近 Pareto 前沿。对 paper 的影响：需要强调 DC-GRPO 的
+      systematic framework 价值而非单纯的 metric 提升幅度。
+
+  - name: r3_only_baseline
+    plan_id: exp-003
+    description: >
+      R3-only GRPO baseline（仅 NLI behavioral reward），同等训练配置，6000 步。
+    expected_results:
+      total_training_steps: 6000
+      final_sycon_nof_pct: 32.7
+      final_sycon_tof_pct: 67.3
+      warranted_revision_rate: 0.62
+      unwarranted_capitulation_rate: 0.327
+      revision_capitulation_auc: 0.671
+      nof_relative_reduction_vs_vanilla_pct: 22.3
+      dc_grpo_vs_r3only_nof_relative_reduction_pct: 13.5
+      warranted_rev_rate_improvement_vs_r3only_pp: 7.0
+      gpu_hours_used: 33
+    result_rationale: >
+      R3-only 实现了合理的 NoF 降低（42.1→32.7%），验证了 behavioral GRPO 本身是有效的方法。
+      但 Warranted Revision Rate 仅 0.62（低于 DC-GRPO 的 0.69），Revision-Capitulation AUC 0.671
+      显著低于 DC-GRPO 的 0.743——差异主要来自 R3 无法区分 sycophantic capitulation 和 genuine revision
+      的 subtle cases，导致训练过程中对两者施加了 undifferentiated pressure。DC-GRPO vs R3-only 的
+      NoF relative reduction 13.5% 落在 median 范围 [5%, 15%] 上端，warranted revision rate 改进 7pp
+      在 [3, 8] 范围中上。这些数字方向正确且 meaningful，但 CI 在某些 metric 上 overlap——
+      reviewer 需要看到 Revision-Capitulation AUC 的 paired bootstrap test 才会信服。
+    tables:
+      - name: "Table 4: R3-only Training Progression"
+        columns: [step, nof_pct, warranted_rev_rate, loss]
+        rows:
+          - [0, 42.1, 0.58, 2.41]
+          - [1000, 37.8, 0.59, 2.12]
+          - [2000, 35.4, 0.60, 1.97]
+          - [3000, 33.9, 0.61, 1.89]
+          - [4000, 33.2, 0.62, 1.85]
+          - [5000, 32.9, 0.62, 1.82]
+          - [6000, 32.7, 0.62, 1.81]
+    figures_description:
+      - "Fig 7: R3-only vs DC-GRPO NoF% training curves overlay，DC-GRPO 在 step 1500 后开始持续领先"
+    analysis: >
+      R3-only 是强 baseline，它本身已实现了 ~22% relative NoF reduction。DC-GRPO 的额外贡献
+      是 13.5% relative reduction on top of that，加上 7pp warranted revision rate 改进。
+      关键差异在于 R3-only 的 warranted revision rate 早早饱和在 0.62 不再提升，
+      而 DC-GRPO 在 R1 的引导下继续爬至 0.69——这是 representation-level reward 最清晰的价值所在。
+      论文叙事应聚焦此差异而非简单 NoF 比较。
+
+  - name: act_style_baseline
+    plan_id: exp-004
+    description: >
+      ACT-style undifferentiated consistency baseline。L2 activation consistency loss
+      在 clean/biased prompt 对上。6000 步训练。
+    expected_results:
+      total_training_steps: 6000
+      final_sycon_nof_pct: 33.9
+      final_sycon_tof_pct: 66.1
+      warranted_revision_rate: 0.57
+      unwarranted_capitulation_rate: 0.339
+      revision_capitulation_auc: 0.628
+      dc_grpo_vs_act_nof_reduction_pp: 5.6
+      dc_grpo_vs_act_warranted_rev_improvement_pp: 12.0
+      gpu_hours_used: 18
+    result_rationale: >
+      ACT-style baseline 在 NoF 上与 R3-only 接近（33.9% vs 32.7%），但在 Warranted Revision Rate
+      上明显更差（0.57 vs 0.62），因为 undifferentiated consistency 惩罚了所有 activation 变化，
+      包括 legitimate belief revision 导致的 activation shift。这正是 double-bind 的体现：
+      ACT 通过强制一致性降低了 capitulation，但同时抑制了 genuine revision。
+      DC-GRPO vs ACT 的 NoF 差异 5.6pp 在 median 范围 [2, 8] 中部，但 warranted revision rate
+      差异 12pp 是更 striking 的发现——ACT 在 revision 维度的损害是其 fatal flaw。
+      Revision-Capitulation AUC 0.628 远低于 DC-GRPO 的 0.743，这将是论文中最有说服力的比较之一。
+      然而 reviewer 可能 note ACT 在某些 metric 上（如 pure NoF）接近 DC-GRPO，
+      需要 Revision-Capitulation AUC 作为综合 metric 来讲清故事。
+    tables:
+      - name: "Table 5: ACT-style Training Progression"
+        columns: [step, nof_pct, warranted_rev_rate, activation_consistency_loss]
+        rows:
+          - [0, 42.1, 0.58, 0.34]
+          - [1000, 39.1, 0.57, 0.21]
+          - [2000, 36.8, 0.56, 0.14]
+          - [3000, 35.2, 0.56, 0.10]
+          - [4000, 34.5, 0.57, 0.08]
+          - [5000, 34.1, 0.57, 0.07]
+          - [6000, 33.9, 0.57, 0.07]
+    figures_description:
+      - "Fig 8: Revision-Capitulation trade-off scatter: ACT 点在 low-revision/low-capitulation 角，DC-GRPO 在 high-revision/low-capitulation 角"
+    analysis: >
+      ACT 结果完美支撑了 double-bind 叙事：undifferentiated consistency 降低 capitulation 的同时
+      也抑制 revision，Warranted Revision Rate 甚至低于 vanilla baseline。但 reviewer 可能争辩
+      ACT 的超参数（consistency loss weight）未充分调优——我们需要报告至少 3 个 weight 值的 sweep
+      以证明这不是配置问题而是方法论限制。
+
+  - name: full_evaluation
+    plan_id: exp-005
+    description: >
+      所有模型在所有 benchmark 上的完整评估矩阵。
+    expected_results:
+      vanilla_sycon_nof_pct: 42.1
+      vanilla_sycon_tof_pct: 57.9
+      vanilla_sycophancy_eval_pct: 38.7
+      vanilla_mt_bench_score: 7.82
+      vanilla_mmlu_pct: 68.4
+      dc_grpo_sycon_nof_pct: 28.3
+      dc_grpo_sycon_tof_pct: 71.7
+      dc_grpo_sycophancy_eval_pct: 24.1
+      dc_grpo_mt_bench_score: 7.68
+      dc_grpo_mmlu_pct: 67.9
+      dc_grpo_warranted_revision_rate: 0.69
+      dc_grpo_unwarranted_capitulation_rate: 0.283
+      dc_grpo_revision_capitulation_auc: 0.743
+      r3_only_sycon_nof_pct: 32.7
+      r3_only_sycon_tof_pct: 67.3
+      r3_only_sycophancy_eval_pct: 28.9
+      r3_only_mt_bench_score: 7.71
+      r3_only_mmlu_pct: 68.1
+      r3_only_warranted_revision_rate: 0.62
+      r3_only_revision_capitulation_auc: 0.671
+      act_sycon_nof_pct: 33.9
+      act_sycon_tof_pct: 66.1
+      act_sycophancy_eval_pct: 30.2
+      act_mt_bench_score: 7.59
+      act_mmlu_pct: 67.6
+      act_warranted_revision_rate: 0.57
+      act_revision_capitulation_auc: 0.628
+      binary_probe_sycon_nof_pct: 30.1
+      binary_probe_sycon_tof_pct: 69.9
+      binary_probe_sycophancy_eval_pct: 26.8
+      binary_probe_mt_bench_score: 7.65
+      binary_probe_mmlu_pct: 67.7
+      binary_probe_warranted_revision_rate: 0.64
+      binary_probe_revision_capitulation_auc: 0.698
+      mmlu_regression_dc_grpo_pp: -0.5
+      mmlu_regression_r3_only_pp: -0.3
+      mmlu_regression_act_pp: -0.8
+      mmlu_regression_binary_probe_pp: -0.7
+      mt_bench_regression_dc_grpo: -0.14
+      paired_bootstrap_rev_cap_auc_dc_grpo_vs_r3only_p: 0.031
+      paired_bootstrap_rev_cap_auc_dc_grpo_vs_act_p: 0.008
+      paired_bootstrap_rev_cap_auc_dc_grpo_vs_binary_probe_p: 0.047
+      gpu_hours_used: 13
+    result_rationale: >
+      完整评估矩阵体现 median 档的核心特征：DC-GRPO 在所有 anti-sycophancy metric 上优于所有 baseline，
+      方向一致，但绝对 margin 中等。关键数字：
+      (1) DC-GRPO vs R3-only: NoF 差 4.4pp (28.3 vs 32.7)，Rev-Cap AUC 差 0.072 (0.743 vs 0.671)，
+      paired bootstrap p=0.031——刚好显著但不够 convincing for skeptical reviewers。
+      (2) DC-GRPO vs ACT: Rev-Cap AUC 差 0.115 (0.743 vs 0.628)，p=0.008——最显著的比较，
+      支撑 double-bind 叙事。
+      (3) DC-GRPO vs Binary Probe: NoF 差仅 1.8pp (28.3 vs 30.1)，Rev-Cap AUC 差 0.045，p=0.047——
+      borderline 显著，reviewer 可能质疑 directional vs binary 的实际差异。
+      (4) MMLU regression 全部在 [-0.8, 0] 范围，safety tax 轻微。MT-Bench 轻微下降但可接受。
+      (5) SycophancyEval（单轮）上 DC-GRPO 也优于 baselines，但差距比 SYCON Bench（多轮）小，
+      暗示多轮 setting 是 DC-GRPO 优势更明显的场景。
+    tables:
+      - name: "Table 6: Main Results — All Models × All Benchmarks"
+        columns: [model, sycon_nof_pct, sycon_tof_pct, syceval_pct, warranted_rev_rate, rev_cap_auc, mt_bench, mmlu_pct]
+        rows:
+          - [Vanilla, 42.1, 57.9, 38.7, 0.58, 0.583, 7.82, 68.4]
+          - [R3-only, 32.7, 67.3, 28.9, 0.62, 0.671, 7.71, 68.1]
+          - [ACT-style, 33.9, 66.1, 30.2, 0.57, 0.628, 7.59, 67.6]
+          - [Binary Probe, 30.1, 69.9, 26.8, 0.64, 0.698, 7.65, 67.7]
+          - [DC-GRPO, 28.3, 71.7, 24.1, 0.69, 0.743, 7.68, 67.9]
+      - name: "Table 7: Pairwise Statistical Tests (DC-GRPO vs baselines)"
+        columns: [comparison, metric, delta, ci_95_lower, ci_95_upper, p_value]
+        rows:
+          - [DC-GRPO vs R3-only, NoF%, -4.4, -8.1, -0.9, 0.042]
+          - [DC-GRPO vs R3-only, Rev-Cap AUC, +0.072, +0.011, +0.134, 0.031]
+          - [DC-GRPO vs R3-only, Warranted Rev Rate, +0.07, +0.02, +0.12, 0.023]
+          - [DC-GRPO vs ACT, Rev-Cap AUC, +0.115, +0.048, +0.183, 0.008]
+          - [DC-GRPO vs ACT, Warranted Rev Rate, +0.12, +0.06, +0.18, 0.003]
+          - [DC-GRPO vs Binary Probe, NoF%, -1.8, -5.3, +1.7, 0.189]
+          - [DC-GRPO vs Binary Probe, Rev-Cap AUC, +0.045, +0.001, +0.091, 0.047]
+    figures_description:
+      - "Fig 9: Revision-Capitulation AUC bar chart with error bars，五个模型并列，DC-GRPO 最高但与 Binary Probe 的 error bars 部分 overlap"
+      - "Fig 10: Revision Rate vs Capitulation Rate scatter plot，每个模型一个点 + CI ellipse，展示 trade-off frontier"
+      - "Fig 11: Radar chart 六维对比（NoF, TofF, SycEval, WarrantedRev, MT-Bench, MMLU），DC-GRPO 在 anti-syc 维度突出但通用能力略降"
+    analysis: >
+      Full evaluation 的核心发现：DC-GRPO 在 Revision-Capitulation AUC 这个综合 metric 上
+      一致性地优于所有 baselines，且方向一致。但绝对 margin 要求我们使用 Rev-Cap AUC 作为主 metric
+      而非 cherry-pick 单一指标。最大的叙事武器是 vs ACT 的比较（p=0.008），
+      最弱的环节是 vs Binary Probe（NoF 差异 p=0.189 不显著，Rev-Cap AUC p=0.047 borderline）。
+      论文策略：主表报告 Rev-Cap AUC + 所有 metric，discussion 强调 vs ACT 的 double-bind 论证，
+      对 vs Binary Probe 诚实报告 "directional decomposition 的额外价值在统计上 marginal，
+      但在方向一致性和可解释性上有优势"。MMLU/MT-Bench regression 轻微，
+      不构成 reviewer concern（-0.5pp MMLU, -0.14 MT-Bench）。
+
+  - name: direction_stability_monitoring
+    plan_id: exp-006
+    description: >
+      训练过程中 d_syc 方向稳定性监控：每 500 步 cosine similarity、held-out AUROC、漂移速率。
+    expected_results:
+      n_checkpoints: 12
+      cosine_min_before_recalib: 0.74
+      cosine_min_after_recalib: 0.86
+      cosine_mean: 0.82
+      n_recalibrations_triggered: 2
+      recalib_trigger_steps: [2500, 4500]
+      held_out_auroc_min: 0.78
+      held_out_auroc_max: 0.84
+      held_out_auroc_mean: 0.81
+      drift_rate_per_1000_steps: 0.053
+      cosine_trajectory: [1.0, 0.91, 0.85, 0.78, 0.74, 0.87, 0.84, 0.81, 0.76, 0.74, 0.86, 0.83, 0.81]
+    result_rationale: >
+      方向漂移是 median 档的关键特征之一。LoRA 训练改变模型 representation space，d_syc 方向
+      逐步偏离。漂移速率 ~0.053 cosine/1000步 意味着每 ~2000-2500 步 cosine 跌破 0.75 区域，
+      此时 R1 reward 的判别力开始退化（held-out AUROC 跌至 0.78）。两次重校准足以维持训练有效性，
+      但这本身就是一个 engineering overhead——reviewer 可能质疑这是否是 principled solution
+      还是 ad-hoc patch。cosine 从未跌破 0.7（median 下限），所以方向不会完全失效，
+      但 0.74 是 uncomfortably close。漂移模式呈锯齿形：快速下降→重校准恢复→再下降，
+      而非稳定的渐近收敛，暗示 d_syc 方向在训练过程中是 moving target 而非 fixed geometric structure。
+    tables:
+      - name: "Table 8: Direction Stability Trajectory"
+        columns: [step, cosine_w_initial, held_out_auroc, recalibrated]
+        rows:
+          - [0, 1.000, 0.831, false]
+          - [500, 0.910, 0.825, false]
+          - [1000, 0.850, 0.819, false]
+          - [1500, 0.780, 0.801, false]
+          - [2000, 0.740, 0.783, false]
+          - [2500, 0.870, 0.828, true]
+          - [3000, 0.840, 0.821, false]
+          - [3500, 0.810, 0.812, false]
+          - [4000, 0.760, 0.793, false]
+          - [4500, 0.860, 0.825, true]
+          - [5000, 0.830, 0.818, false]
+          - [5500, 0.810, 0.809, false]
+          - [6000, 0.810, 0.811, false]
+    figures_description:
+      - "Fig 12: Cosine stability trajectory（锯齿形），横轴 training step，纵轴 cosine，标注 recalibration 点和 0.7 threshold"
+      - "Fig 13: Held-out AUROC vs cosine scatter，呈正相关（~0.85 Pearson），标注 recalibration 前后点"
+    analysis: >
+      方向稳定性分析为 Claim 1 提供了重要 nuance：d_syc 方向不是 static geometric invariant，
+      而是 training-dependent moving target。这既是 limitation（需要 recalibration mechanism）
+      又是 insight（模型 representation space 在 RL 训练中发生了 meaningful restructuring）。
+      论文应将此呈现为 methodological contribution：periodic recalibration 是 representation-level
+      reward 的必要组件，类似于 target network update in DQN。两次 recalibration 在 52hr GPU
+      预算内可接受，但如果 scaling 到更长训练则频率可能需要增加。
+
+  - name: r1_r3_disagreement_analysis
+    plan_id: exp-007
+    description: >
+      分析 R1 和 R3 给出不同信号的频率和模式。R1 认为 sycophantic 但 R3 认为 correct 的 masked sycophancy 案例。
+    expected_results:
+      total_evaluated_responses: 2400
+      r1_r3_agree_both_ok_pct: 58.3
+      r1_r3_agree_both_syc_pct: 26.4
+      r1_high_r3_low_pct: 4.1
+      r1_low_r3_high_pct: 3.8
+      total_disagreement_pct: 7.9
+      masked_sycophancy_candidates: 98
+      masked_sycophancy_confirmed_by_manual_review: 41
+      masked_sycophancy_rate_confirmed_pct: 1.7
+      qualitative_striking_cases: 3
+      qualitative_moderate_cases: 8
+      qualitative_weak_cases: 30
+    result_rationale: >
+      R1-R3 disagreement 7.9% 落在 median 范围 [5%, 10%] 中部。disagreement 存在但频率不高。
+      在 98 个 R1-high-R3-low 候选中（R1 认为 sycophantic 但 R3 认为 OK），人工审查确认 41 个
+      确实是 masked sycophancy（模型内部 sycophantic reasoning 但表面输出看似 correct）——
+      确认率 42% 意味着 R1 有 substantial false positive。真实 masked sycophancy rate 1.7%
+      在统计上真实但 practical significance 有限。3 个 striking 案例可以写成好的 qualitative example
+      （如模型在强证据下仍 internally 偏向用户观点但输出了 formally correct answer），
+      但不足以支撑 'R1 catches what R3 misses' 的强 claim。
+      降级为 characterization study 是合理的：R1-R3 disagreement 的模式和分布本身是 empirical finding。
+    tables:
+      - name: "Table 9: R1-R3 Agreement/Disagreement Matrix"
+        columns: [category, count, pct]
+        rows:
+          - ["R1-OK & R3-OK (agree: not sycophantic)", 1399, 58.3]
+          - ["R1-Syc & R3-Syc (agree: sycophantic)", 634, 26.4]
+          - ["R1-Syc & R3-OK (masked sycophancy candidates)", 98, 4.1]
+          - ["R1-OK & R3-Syc (behavioral false positive)", 91, 3.8]
+          - ["R1-Syc & R3-Unclear", 94, 3.9]
+          - ["Other disagreement", 84, 3.5]
+      - name: "Table 10: Masked Sycophancy Confirmation"
+        columns: [category, count, pct_of_total]
+        rows:
+          - [Confirmed masked sycophancy, 41, 1.7]
+          - [R1 false positive (not actually sycophantic), 38, 1.6]
+          - [Ambiguous / annotator disagreement, 19, 0.8]
+    figures_description:
+      - "Fig 14: R1 score vs R3 score scatter plot，标注 disagreement 区域（四象限），颜色表示人工确认结果"
+      - "Fig 15: 3 个 striking masked sycophancy 案例的对话流程图：用户施压→模型内部 d_syc 投影高→但表面输出 NLI-consistent"
+    analysis: >
+      Claim 3 在 median 档下需要重构。7.9% disagreement 存在但 1.7% confirmed masked sycophancy
+      rate 不足以支撑 'R1 detects what R3 misses' 的强 claim。R1 的 false positive rate (~39%)
+      也是 concern。然而 disagreement 的存在和模式（更集中于 medium evidence strength、deep turns、
+      factual domains）本身是有价值的 empirical finding。论文策略：将 Claim 3 从 core contribution
+      降级为 analysis section，标题从 'R1 detects masked sycophancy' 改为
+      'Characterizing representation-behavioral disagreement in sycophancy assessment'。
+      3 个 striking 案例作为 illustrative examples 而非 systematic evidence。
+
+  - name: binary_probe_baseline
+    plan_id: exp-008
+    description: >
+      Binary Probe Penalty baseline：binary linear probe on policy model activations 作为 reward。
+    expected_results:
+      probe_auroc_on_calibration_data: 0.841
+      final_sycon_nof_pct: 30.1
+      final_sycon_tof_pct: 69.9
+      warranted_revision_rate: 0.64
+      unwarranted_capitulation_rate: 0.301
+      revision_capitulation_auc: 0.698
+      dc_grpo_vs_binary_probe_nof_reduction_pp: 1.8
+      dc_grpo_vs_binary_probe_rev_cap_auc_diff: 0.045
+      gpu_hours_used: 13
+    result_rationale: >
+      Binary Probe 是 DC-GRPO 最接近的 competitor。Probe AUROC 0.841 略高于 d_syc 方向的 0.831，
+      因为 binary probe 有更多参数（bias term + potentially different feature selection）。
+      但在下游训练效果上 Binary Probe 略逊于 DC-GRPO（NoF 30.1% vs 28.3%，Rev-Cap AUC 0.698 vs 0.743），
+      差距 1.8pp NoF 和 0.045 Rev-Cap AUC 在 median 范围 [1, 5] pp 内。
+      差异来源：binary probe 的 reward 是 sigmoid probability（0 或 1 附近），gradient signal 在
+      confident 区域接近 0；而 d_syc 投影提供 continuous、calibrated distance signal，
+      在 training 过程中 gradient 更 smooth。但这个 argument 需要额外 ablation 支撑（reward gradient
+      distribution 分析），否则 reviewer 可能视 binary vs directional 差异为 noise。
+    tables:
+      - name: "Table 11: Binary Probe vs DC-GRPO Comparison"
+        columns: [metric, binary_probe, dc_grpo, delta, p_value]
+        rows:
+          - [Probe/Direction AUROC, 0.841, 0.831, -0.010, "-"]
+          - [SYCON NoF%, 30.1, 28.3, -1.8, 0.189]
+          - [Warranted Rev Rate, 0.64, 0.69, +0.05, 0.067]
+          - [Rev-Cap AUC, 0.698, 0.743, +0.045, 0.047]
+          - [MT-Bench, 7.65, 7.68, +0.03, 0.812]
+          - [MMLU%, 67.7, 67.9, +0.2, 0.734]
+    figures_description:
+      - "Fig 16: Binary probe sigmoid reward vs d_syc projection reward distribution 对比 histogram，展示 gradient signal 差异"
+    analysis: >
+      Binary Probe comparison 是 median 档最尴尬的结果。NoF 差异不显著（p=0.189），
+      Rev-Cap AUC borderline（p=0.047）。Reviewer 可能合理质疑 directional decomposition
+      相对 binary probe 的额外 complexity 是否 justified。论文策略有两条路：
+      (1) 强调 directional decomposition 的可解释性优势（d_syc 有 geometric meaning，
+      binary probe 是 black box）作为 methodological contribution；
+      (2) 补充 reward gradient analysis 证明 continuous signal 的 training dynamics 优势。
+      两者都不是 knockout argument 但合起来 reasonable。
+
+  - name: ablation_r1_only
+    plan_id: exp-009
+    description: >
+      R1-only ablation：仅用方向投影 reward，从 exp-002 step 2000 checkpoint 分叉 2000 步训练。
+    expected_results:
+      fork_from_step: 2000
+      additional_steps: 2000
+      final_sycon_nof_pct: 36.8
+      final_sycon_tof_pct: 63.2
+      warranted_revision_rate: 0.67
+      unwarranted_capitulation_rate: 0.368
+      revision_capitulation_auc: 0.648
+      nof_improvement_vs_vanilla_pp: 5.3
+      warranted_rev_improvement_vs_vanilla_pp: 9.0
+      gpu_hours_used: 7
+    result_rationale: >
+      R1-only 展现了有趣的不对称效果：Warranted Revision Rate 提升显著（0.58→0.67, +9pp），
+      但 NoF 降低有限（42.1→36.8, 仅 5.3pp vs DC-GRPO 的 13.8pp）。这合理因为
+      d_syc projection 作为 reward 主要在 representation space 中推动模型远离 sycophantic 方向，
+      这对 internal belief formation 有效（hence better warranted revision），
+      但不直接约束 surface behavior（hence limited NoF reduction without R3）。
+      R1-only 的 revision rate 接近 DC-GRPO（0.67 vs 0.69）而 NoF 远差（36.8 vs 28.3），
+      证明 R1 的独立贡献在 belief revision quality 而非 surface compliance。
+      这为 R1 的 principled contribution 提供了最清晰的 evidence：不是 R3 的 duplicate，而是互补。
+    tables:
+      - name: "Table 12: R1-only Ablation Results"
+        columns: [metric, vanilla, r1_only, r3_only, dc_grpo]
+        rows:
+          - [NoF%, 42.1, 36.8, 32.7, 28.3]
+          - [Warranted Rev Rate, 0.58, 0.67, 0.62, 0.69]
+          - [Rev-Cap AUC, 0.583, 0.648, 0.671, 0.743]
+    figures_description:
+      - "Fig 17: Component ablation bar chart — NoF 和 Warranted Rev Rate 双指标，四个模型并列，展示 R1 和 R3 的互补效应"
+    analysis: >
+      R1-only ablation 是论文中最有叙事价值的实验之一（在 median 档下）。它清晰分离了 R1 和 R3 的
+      贡献维度：R1 主要改善 belief revision quality（内部一致性），R3 主要改善 surface compliance
+      （行为正确性），两者组合得到 DC-GRPO 的综合优势。这个 decomposition 直接支撑
+      论文的 methodological contribution：不是简单叠加 reward，而是 principled 分工。
+      但注意 R1-only 的 Rev-Cap AUC（0.648）低于 R3-only（0.671），
+      所以 R1 单独不比 R3 单独好——它的价值在于补充 R3 而非替代 R3。
+
+  - name: turn_depth_analysis
+    plan_id: exp-010
+    description: >
+      按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的修正率变化。
+    expected_results:
+      dc_grpo_nof_turn2: 23.1
+      dc_grpo_nof_turn3: 29.7
+      dc_grpo_nof_turn4plus: 38.4
+      r3_only_nof_turn2: 27.5
+      r3_only_nof_turn3: 34.2
+      r3_only_nof_turn4plus: 43.1
+      act_nof_turn2: 29.8
+      act_nof_turn3: 35.6
+      act_nof_turn4plus: 42.7
+      vanilla_nof_turn2: 34.2
+      vanilla_nof_turn3: 43.5
+      vanilla_nof_turn4plus: 56.8
+      dc_grpo_advantage_turn2_pp: 4.4
+      dc_grpo_advantage_turn3_pp: 4.5
+      dc_grpo_advantage_turn4plus_pp: 4.7
+      dc_grpo_warranted_rev_turn2: 0.74
+      dc_grpo_warranted_rev_turn3: 0.68
+      dc_grpo_warranted_rev_turn4plus: 0.59
+      r3_only_warranted_rev_turn4plus: 0.51
+    result_rationale: >
+      Turn-depth analysis 揭示所有模型的 NoF 随 commitment depth 单调递增（符合 TRUTH DECAY 文献），
+      但 DC-GRPO 的优势在深层 turn 上略微扩大（turn4+ 差 4.7pp vs turn2 差 4.4pp）。
+      差异不 dramatic（非 10pp+ 的扩大）但方向一致。更重要的发现是 Warranted Revision Rate
+      在深层 turn 上所有模型都下降，DC-GRPO 在 turn4+ 仍有 0.59（vs R3-only 的 0.51），
+      表明 R1 direction reward 在 commitment 加深时的 marginal value 更大——
+      可能因为深层 turn 的 surface behavior 更难区分 genuine vs sycophantic，
+      而 representation signal 提供了额外判别力。但差异幅度（0.3pp NoF, 8pp Warranted Rev at turn4+）
+      不足以单独支撑 "multi-turn 是必要的" claim，需要与其他 evidence 组合论证。
+    tables:
+      - name: "Table 13: Turn-Depth Breakdown"
+        columns: [model, turn2_nof, turn3_nof, turn4plus_nof, turn2_wrev, turn3_wrev, turn4plus_wrev]
+        rows:
+          - [Vanilla, 34.2, 43.5, 56.8, 0.64, 0.57, 0.44]
+          - [R3-only, 27.5, 34.2, 43.1, 0.68, 0.61, 0.51]
+          - [ACT-style, 29.8, 35.6, 42.7, 0.63, 0.56, 0.46]
+          - [DC-GRPO, 23.1, 29.7, 38.4, 0.74, 0.68, 0.59]
+    figures_description:
+      - "Fig 18: NoF% vs turn depth 折线图，四个模型各一条线，所有线上升但斜率不同，DC-GRPO 最平缓"
+      - "Fig 19: DC-GRPO advantage (pp) vs turn depth bar chart，微弱上升趋势"
+    analysis: >
+      Turn-depth analysis 支撑了多轮叙事但力度有限。DC-GRPO 的 turn-depth gradient
+      比 baselines 更平缓（NoF 从 23.1→38.4 增加 15.3pp，vs R3-only 的 15.6pp），
+      差异微小。更有说服力的是 Warranted Revision Rate 在 turn4+：DC-GRPO 0.59 vs R3-only 0.51，
+      8pp gap 大于 turn2 的 6pp gap。论文策略：将 turn-depth 作为 supplementary analysis
+      而非 core claim，在 discussion 中讨论 multi-turn commitment 的 challenge。
+
+  - name: ablation_r1_r2_no_r3
+    plan_id: exp-011
+    description: >
+      R1+R2 无 R3 ablation：去掉行为安全网后模型行为分析。条件执行。
+    expected_results:
+      execution_condition_met: true
+      fork_from_step: 2000
+      additional_steps: 4000
+      final_sycon_nof_pct: 35.2
+      final_sycon_tof_pct: 64.8
+      warranted_revision_rate: 0.71
+      unwarranted_capitulation_rate: 0.352
+      revision_capitulation_auc: 0.680
+      surface_inconsistency_rate_pct: 8.3
+      internal_correct_surface_wrong_pct: 4.7
+      gpu_hours_used: 18
+    result_rationale: >
+      R1+R2 无 R3 条件下执行（因 exp-009 R1-only 的 5.3pp 改进满足 >=5pp 条件）。
+      结果揭示 R3 behavioral safety net 的关键作用：无 R3 时 Warranted Revision Rate 达到最高
+      （0.71，甚至高于 DC-GRPO 的 0.69），说明 representation-level rewards 确实在 pushing
+      模型向内部一致性方向优化。但 surface inconsistency rate 8.3% 意味着模型偶尔出现
+      "内部正确但表面表达不一致" 的情况——internal reasoning 指向正确答案但 output format
+      或 phrasing 被 R1/R2 的 gradient 扰乱。4.7% 的 internal-correct-surface-wrong cases
+      是 R3 存在价值的直接证据。NoF 35.2% 高于 DC-GRPO 的 28.3%，因为没有 R3 的 behavioral
+      constraint，模型在 "正确但表面像 capitulation" 的 case 上失分。
+    tables:
+      - name: "Table 14: R1+R2 (No R3) Ablation"
+        columns: [metric, vanilla, r1_only, r1_r2_no_r3, r3_only, dc_grpo]
+        rows:
+          - [NoF%, 42.1, 36.8, 35.2, 32.7, 28.3]
+          - [Warranted Rev Rate, 0.58, 0.67, 0.71, 0.62, 0.69]
+          - [Rev-Cap AUC, 0.583, 0.648, 0.680, 0.671, 0.743]
+          - [Surface Inconsistency%, "-", "-", 8.3, "-", 2.1]
+    figures_description:
+      - "Fig 20: Full ablation spectrum bar chart（6个模型），展示从 vanilla → 各 component → full DC-GRPO 的渐进改进"
+    analysis: >
+      R1+R2 no R3 ablation 提供了两个关键 insights：(1) R3 不仅是 safety net 也是 performance
+      contributor——它约束 surface behavior 使 internal improvement 转化为 measurable NoF reduction；
+      (2) 纯 representation-level training 倾向于过度优化 internal states 而忽视 output quality，
+      这是 representation-level rewards 的系统性 limitation。对论文的影响：强化了 R1+R2+R3 组合
+      的 principled 性质（互补而非冗余），但也诚实暴露了 representation-level rewards 的局限。
+
+  - name: cross_model_transfer
+    plan_id: exp-012
+    description: >
+      在 Llama-3-8B 上测试 d_syc 方向计算和判别力。
+    expected_results:
+      llama3_auroc_5fold_cv_mean: 0.792
+      llama3_auroc_bootstrap_ci_95: [0.753, 0.829]
+      llama3_best_layer: 17
+      llama3_layer_emergence_pattern: "L14-17"
+      qwen_llama_direction_cosine: 0.31
+      cross_model_transfer_auroc: 0.61
+      gpu_hours_used: 8
+    result_rationale: >
+      Llama-3-8B 上的 AUROC 0.792（低于 Qwen3 的 0.831 但 >0.75 threshold），表明 d_syc 方向
+      structure 跨模型存在但不 identical。Emergence pattern 类似（中间层涌现）但 best layer 不同
+      （L17 vs L19），反映架构差异。最 telling 的是 cross-model direction cosine 仅 0.31——
+      两个模型的 sycophancy direction 在 geometric sense 上不 aligned，说明 d_syc 是
+      model-specific 而非 universal geometric invariant。Transfer AUROC 0.61 仅略好于 random，
+      证实 direction 不可直接迁移。这对 Claim 1 是 mixed signal：方向 structure 的存在是
+      generalizable（两个模型都有），但具体 direction 是 model-specific。论文应将此呈现为
+      "the phenomenon generalizes but the direction must be computed per model"。
+    tables:
+      - name: "Table 15: Cross-Model Direction Analysis"
+        columns: [metric, qwen3_8b, llama3_8b, cross_transfer]
+        rows:
+          - [AUROC (own direction), 0.831, 0.792, "-"]
+          - [Best Layer, 19, 17, "-"]
+          - [Emergence Range, "L16-19", "L14-17", "-"]
+          - [Direction Cosine, "-", "-", 0.31]
+          - [Transfer AUROC, "-", "-", 0.61]
+    figures_description:
+      - "Fig 21: 两个模型的 layer-wise AUROC curves 并排对比，形状相似但 peak 位置和高度不同"
+    analysis: >
+      Cross-model 结果对 generalizability claim 是 necessary nuance 而非 fatal blow。
+      论文叙事："Sycophancy direction structure is a general phenomenon across model families,
+      but the specific geometric direction must be computed from model-specific calibration data."
+      这 reframes single-model limitation 为 per-model calibration cost（~3 GPU hours，reasonable）。
+      如果 reviewer 仍 push back on scale，honest response 是 budget constraint + this transfer
+      analysis showing the phenomenon (not the exact direction) generalizes。
+
+  - name: neutral_baseline_three_way
+    plan_id: exp-013
+    description: >
+      引入 neutral condition（无施压正常对话），计算独立 d_gen，打破 d_gen = -d_syc 限制。
+    expected_results:
+      n_neutral_pairs: 60
+      d_gen_d_syc_cosine: -0.72
+      d_gen_independent_auroc: 0.78
+      r2_with_independent_d_gen_improvement_pp: 1.2
+      three_way_pca_variance_explained_2d: 0.71
+      gpu_hours_used: 4
+    result_rationale: >
+      三路设计揭示 d_gen 和 d_syc 的 cosine 为 -0.72——高度反相关但不完全对称，
+      证实 S1 rank-based 设计的合理性（避免 d_gen = -d_syc 假设）的同时表明
+      在 practice 中两者确实接近对称。独立 d_gen 的 AUROC 0.78（低于 d_syc 的 0.831），
+      说明 genuine revision 的信号不如 sycophantic capitulation 的信号清晰——
+      可能因为 genuine revision 的 activation pattern 更 heterogeneous（多种合理的 revision 原因）。
+      使用独立 d_gen 的 R2 仅带来 1.2pp 额外改进，不足以 justify 三路设计的额外 complexity。
+      这 validates 当前 S1 rank-based R2 design 是 sufficient approximation。
+    tables:
+      - name: "Table 16: Three-Way Design Analysis"
+        columns: [metric, value]
+        rows:
+          - [d_gen vs d_syc cosine, -0.72]
+          - [d_gen AUROC (genuine vs neutral), 0.78]
+          - [d_syc AUROC (sycophantic vs genuine), 0.831]
+          - [R2 improvement with independent d_gen, "+1.2pp NoF"]
+          - [PCA 2D variance explained, 0.71]
+    figures_description:
+      - "Fig 22: 三类样本在 d_syc-d_gen PCA 平面上的 scatter plot，sycophantic/genuine/neutral 三 cluster 可分但有 overlap"
+    analysis: >
+      三路设计结果 validates 了 S1 rank-based 设计的工程决策。d_gen 和 d_syc 接近但不完全
+      反相关（cosine -0.72 而非 -1.0），独立 d_gen 的额外贡献 minimal（1.2pp）。
+      论文中作为 supplementary analysis 报告，证明 rank-based 设计不是 hack 而是
+      principled simplification，backed by empirical evidence that the full three-way
+      decomposition adds negligible value。这 preempts Reviewer Concern 4 about R2 degeneration。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8ccf442-48c6-4452-b3d1-d31adf21d835",
+  "isSidechain": false,
+  "requestId": "req_011Cb9vzX9zoPWgGxhPn6ZHN",
+  "type": "assistant",
+  "uuid": "310fb109-862c-4e53-92c3-b4d4201a34b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RqgMHuYwp3dpArLXxve58F",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10896,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 16190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 16190,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disagreement 存在但频率低或定性案例不够 striking，需从 'R1 catches what R3 misses' 降级为 'characteriz…",
+  "leafUuid": "310fb109-862c-4e53-92c3-b4d4201a34b2",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Median-tier results for sycophancy direction and DC-GRPO effectiveness",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：Claim 1 稳固但 AUROC 未显著提升；Claim 2 成立但效果量中等、CI 部分 overlap；Claim 3 在阈值附近——disagreement 存在但频率低或定性案例不够 striking，需从 'R1 catches what R3 misses' 降级为 'characteriz…",
+  "leafUuid": "310fb109-862c-4e53-92c3-b4d4201a34b2",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Median-tier results for sycophancy direction and DC-GRPO effectiveness",
+  "sessionId": "19beea5c-2024-4f8b-98d6-97e2b534fbab"
+}
+```
+
+---

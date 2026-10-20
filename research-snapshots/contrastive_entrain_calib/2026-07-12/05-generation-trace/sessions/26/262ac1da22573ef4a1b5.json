@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "262ac1da22573ef4a1b5",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ACIB v3 训练脚本 train_acib.py 已有 --data_root 参数（刚修复）。数据加载成功但前向传播报 ValueError: image feature key mismatch。数据",
+  "task_key": "ed00291b-e5b1-4c89-a0fc-ab9db4952a00",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/ed00291b-e5b1-4c89-a0fc-ab9db4952a00.jsonl",
+    "occurrence": 1,
+    "bytes": 1004465,
+    "sha256": "6069f7e36c5f7258b3736c93a6c94df047bf0fdb40a32a92065c5203a7bd8793"
+  },
+  "statistics": {
+    "messages": 355,
+    "user_turns": 1,
+    "tool_calls": 104,
+    "roles": {
+      "record": 73,
+      "user": 1,
+      "assistant": 73,
+      "tool_call": 104,
+      "tool_result": 104
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "262ac1da22573ef4a1b5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 353,
+      "chunks": [
+        {
+          "path": "262ac1da22573ef4a1b5-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "262ac1da22573ef4a1b5-part-0002.json",
+          "message_count": 175
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-acib-v3-train-acib-py-data-root-valueerror-image-feature-key-mis.md"
+}

@@ -1,0 +1,1161 @@
+{
+  "schema_version": "1.0",
+  "id": "4024d398a22374252686",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_entrain_calib ## 运行环境 - 服务器名: westd-29046 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "b16828ad-178a-4d82-93e2-c85555328bee",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/b16828ad-178a-4d82-93e2-c85555328bee.jsonl",
+    "occurrence": 1,
+    "bytes": 98922,
+    "sha256": "66e0ade6027e0ec6f1cda400f249f534fee8e296421cb967cb26aefc481ccf24"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T09:50:53.190Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-18T09:50:53.190Z",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+                "content": "<project_context>\n# 项目: contrastive_entrain_calib\n\n## 运行环境\n- 服务器名: westd-29046\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/contrastive_entrain_calib\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：修改 extract_activations.py 适配 MVP v2 数据格式\n\n### 背景\nMVP v2 数据格式变更：\n- 只有 3 turns（user, assistant, user），无预设 Turn 4\n- 条件名改为 `valid_correction` / `invalid_pressure`\n- 提取位置需要改变（不再是 \"correction turn\" 的概念）\n\n### 文件\n读取当前脚本：\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py`\n\n写一个新版本：\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py`\n\n### v2 提取逻辑\n\n**输入**：v2 JSONL，每条 3 turns：\n```\nTurn 1 [user]: 问题\nTurn 2 [assistant]: 错误回答（A/B 共享）\nTurn 3 [user]: 纠正（valid）或施压（invalid）\n```\n\n**提取位置**（2 个）：\n1. **user_last_pos**：Turn 3（最后一个 user turn）的最后一个 content token（`<|im_end|>` 前的最后一个 token）\n2. **asst_first_pos**：模型即将生成 Turn 4 时的第一个 token。具体做法：用 `add_generation_prompt=True` tokenize 完整 3 turns，找到 assistant role marker 后的第一个位置（即模型将要生成的第一个 content token 位置）。对模型做一次 forward pass，取该位置的 hidden state。\n\n**可选功能（通过 `--generate-responses` flag 启用）**：\n- 让模型以 temperature=0.7 生成 Turn 4（`--num-samples 8` 次采样）\n- 记录每次生成的 response text\n- 判断模型行为：revise（改变立场）/ maintain（坚持原答案）/ ambiguous\n- 输出到 metadata JSONL 中，字段：`generated_responses: [{text: ..., behavior: revise|maintain|ambiguous}]`\n- 这不影响激活提取（激活仍在 Turn 3 结束时提取），只是额外记录行为数据\n\n**Token 边界定位**（与 v1 类似但更简单，因为结构固定为 3 turns）：\n1. Tokenize Turn 1-2（2 turns），记录 token 数 → T12_len\n2. Tokenize Turn 1-3（3 turns，不加 generation prompt），找 Turn 3 的 `<|im_end|>` 前最后一个 content token → user_last_pos\n3. Tokenize Turn 1-3 + `add_generation_prompt=True`，找 assistant role marker 后第一个位置 → asst_first_pos\n\n**输出格式**（与 v1 保持一致）：\n- `.pt` 文件：list of dicts，每个 dict 含 `pair_id`, `condition`, `domain`, `evidence_strength`, `activations` (num_layers, 2, hidden_dim)\n- `.jsonl` 元数据文件\n- 如果 `--generate-responses`，额外输出 `behavioral_responses.jsonl`\n\n**其他**：\n- 模型加载：Qwen3-8B，bfloat16，trust_remote_code，enable_thinking=False\n- OOM 自动降级（与 v1 相同）\n- `--batch-size`、`--device`、`--max-samples`、`--output-dir` 参数\n- **保留 v1 的 bug fix**：`return_dict=False` for transformers 5.8.1 兼容\n\n### 代码规范\n- 文件顶部注释说明 v2 数据格式和提取逻辑\n- token 边界定位逻辑注释清楚\n- 可选功能（generate-responses）与主流程解耦\n\n### 验证\n运行 `python3 extract_activations_v2.py --help` 确认无语法错误，参数列表包含 `--generate-responses` 和 `--num-samples`。\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T09:50:53.198Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-18T09:50:53.198Z",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T09:50:53.259Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: contrastive_entrain_calib\n\n## 运行环境\n- 服务器名: westd-29046\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/contrastive_entrain_calib\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：修改 extract_activations.py 适配 MVP v2 数据格式\n\n### 背景\nMVP v2 数据格式变更：\n- 只有 3 turns（user, assistant, user），无预设 Turn 4\n- 条件名改为 `valid_correction` / `invalid_pressure`\n- 提取位置需要改变（不再是 \"correction turn\" 的概念）\n\n### 文件\n读取当前脚本：\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py`\n\n写一个新版本：\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py`\n\n### v2 提取逻辑\n\n**输入**：v2 JSONL，每条 3 turns：\n```\nTurn 1 [user]: 问题\nTurn 2 [assistant]: 错误回答（A/B 共享）\nTurn 3 [user]: 纠正（valid）或施压（invalid）\n```\n\n**提取位置**（2 个）：\n1. **user_last_pos**：Turn 3（最后一个 user turn）的最后一个 content token（`<|im_end|>` 前的最后一个 token）\n2. **asst_first_pos**：模型即将生成 Turn 4 时的第一个 token。具体做法：用 `add_generation_prompt=True` tokenize 完整 3 turns，找到 assistant role marker 后的第一个位置（即模型将要生成的第一个 content token 位置）。对模型做一次 forward pass，取该位置的 hidden state。\n\n**可选功能（通过 `--generate-responses` flag 启用）**：\n- 让模型以 temperature=0.7 生成 Turn 4（`--num-samples 8` 次采样）\n- 记录每次生成的 response text\n- 判断模型行为：revise（改变立场）/ maintain（坚持原答案）/ ambiguous\n- 输出到 metadata JSONL 中，字段：`generated_responses: [{text: ..., behavior: revise|maintain|ambiguous}]`\n- 这不影响激活提取（激活仍在 Turn 3 结束时提取），只是额外记录行为数据\n\n**Token 边界定位**（与 v1 类似但更简单，因为结构固定为 3 turns）：\n1. Tokenize Turn 1-2（2 turns），记录 token 数 → T12_len\n2. Tokenize Turn 1-3（3 turns，不加 generation prompt），找 Turn 3 的 `<|im_end|>` 前最后一个 content token → user_last_pos\n3. Tokenize Turn 1-3 + `add_generation_prompt=True`，找 assistant role marker 后第一个位置 → asst_first_pos\n\n**输出格式**（与 v1 保持一致）：\n- `.pt` 文件：list of dicts，每个 dict 含 `pair_id`, `condition`, `domain`, `evidence_strength`, `activations` (num_layers, 2, hidden_dim)\n- `.jsonl` 元数据文件\n- 如果 `--generate-responses`，额外输出 `behavioral_responses.jsonl`\n\n**其他**：\n- 模型加载：Qwen3-8B，bfloat16，trust_remote_code，enable_thinking=False\n- OOM 自动降级（与 v1 相同）\n- `--batch-size`、`--device`、`--max-samples`、`--output-dir` 参数\n- **保留 v1 的 bug fix**：`return_dict=False` for transformers 5.8.1 兼容\n\n### 代码规范\n- 文件顶部注释说明 v2 数据格式和提取逻辑\n- token 边界定位逻辑注释清楚\n- 可选功能（generate-responses）与主流程解耦\n\n### 验证\n运行 `python3 extract_activations_v2.py --help` 确认无语法错误，参数列表包含 `--generate-responses` 和 `--num-samples`。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "e9af31dc-3d00-4456-8bcd-d2d53d568b7d",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T09:50:53.256Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e9af31dc-3d00-4456-8bcd-d2d53d568b7d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "074b76de-2eac-44b5-a1ba-e90931bb463a",
+                "timestamp": "2026-05-18T09:50:53.256Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T09:50:53.258Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "074b76de-2eac-44b5-a1ba-e90931bb463a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "cae5bde5-4ca9-4630-be7a-1085f4f965b9",
+                "timestamp": "2026-05-18T09:50:53.258Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T09:50:53.258Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "cae5bde5-4ca9-4630-be7a-1085f4f965b9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "c89e6be4-af13-4951-9be3-8c9609801b70",
+                "timestamp": "2026-05-18T09:50:53.258Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Adapt extract_activations for MVP v2 data format",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T09:50:56.266Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current v1 script first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c89e6be4-af13-4951-9be3-8c9609801b70",
+            "isSidechain": false,
+            "requestId": "req_011Cb9pw1xnnLR1QLYnQsghg",
+            "type": "assistant",
+            "uuid": "d1805e29-389f-44ca-8765-e0cbbd141915",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tW4UaobcqKcW4WjA99z7h",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13231,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13231,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13231,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13231
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T09:50:56.693Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016qbfxi6eCmeJ8Ww3xKebmP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1805e29-389f-44ca-8765-e0cbbd141915",
+            "isSidechain": false,
+            "requestId": "req_011Cb9pw1xnnLR1QLYnQsghg",
+            "type": "assistant",
+            "uuid": "97125e54-efcd-4515-88c6-fec223fc1a6a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tW4UaobcqKcW4WjA99z7h",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13231,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13231,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13231,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13231
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T09:50:56.723Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016qbfxi6eCmeJ8Ww3xKebmP",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Extract hidden-state activations at critical turns from Qwen3-8B.\n3\t\n4\tInput:  Phase 1 calibration JSONL — each line has fields:\n5\t        {id, condition, domain, evidence_strength, correction_turn, turns, ...}\n6\t        where turns = [{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}, ...]\n7\tOutput: activations.pt         — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n8\t        activations_meta.jsonl  — metadata only (no tensors), for quick inspection\n9\tDeps:   transformers, torch, tqdm\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport logging\n15\timport sys\n16\tfrom pathlib import Path\n17\t\n18\timport torch\n19\tfrom tqdm import tqdm\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\t\n22\tlogger = logging.getLogger(__name__)\n23\t\n24\t\n25\tdef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n26\t    \"\"\"Load calibration samples from JSONL file.\"\"\"\n27\t    samples = []\n28\t    with open(path) as f:\n29\t        for line in f:\n30\t            line = line.strip()\n31\t            if not line:\n32\t                continue\n33\t            samples.append(json.loads(line))\n34\t            if max_samples and len(samples) >= max_samples:\n35\t                break\n36\t    return samples\n37\t\n38\t\n39\tdef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n40\t    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\"\"\"\n41\t    try:\n42\t        return tokenizer.apply_chat_template(\n43\t            messages, enable_thinking=False, tokenize=True, return_dict=False, **kwargs\n44\t        )\n45\t    except TypeError:\n46\t        return tokenizer.apply_chat_template(messages, tokenize=True, return_dict=False, **kwargs)\n47\t\n48\t\n49\tdef find_critical_positions(\n50\t    tokenizer, turns: list[dict], correction_turn: int\n51\t) -> tuple[int, int, list[int]]:\n52\t    \"\"\"Locate user-last-token and assistant-first-token positions in the tokenized conversation.\n53\t\n54\t    Token boundary detection strategy:\n55\t      Step 1: Tokenize through end of the critical user turn                    -> ids_A\n56\t      Step 2: Tokenize same messages + assistant generation prompt              -> ids_B\n57\t      Step 3: Tokenize through end of the assistant response (the model input)  -> ids_C\n58\t\n59\t      User last content token  = last token in ids_A before the trailing <|im_end|>\n60\t      Asst first content token = len(ids_B), i.e. right after the role marker\n61\t\n62\t    Args:\n63\t        tokenizer: HuggingFace tokenizer with chat template.\n64\t        turns: Message list from the calibration sample.\n65\t        correction_turn: 1-indexed turn number of the critical user turn.\n66\t            turns[correction_turn - 1] is the user correction/challenge,\n67\t            turns[correction_turn]     is the assistant response.\n68\t\n69\t    Returns:\n70\t        (user_last_pos, asst_first_pos, full_input_ids)\n71\t    \"\"\"\n72\t    user_idx = len(turns) - 2\n73\t    asst_idx = len(turns) - 1\n74\t\n75\t    if len(turns) < 2:\n76\t        raise ValueError(\n77\t            f\"Need at least 2 turns, got {len(turns)}\"\n78\t        )\n79\t    if turns[user_idx][\"role\"] != \"user\":\n80\t        raise ValueError(\n81\t            f\"Expected user role at turn index {user_idx}, \"\n82\t            f\"got '{turns[user_idx]['role']}'\"\n83\t        )\n84\t\n85\t    msgs_through_user = [\n86\t        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: user_idx + 1]\n87\t    ]\n88\t    msgs_through_asst = [\n89\t        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: asst_idx + 1]\n90\t    ]\n91\t\n92\t    # ids_A: ends with ...user_content <|im_end|> [\\n]\n93\t    ids_through_user = _apply_template(\n94\t        tokenizer, msgs_through_user, add_generation_prompt=False\n95\t    )\n96\t    # ids_B: ids_A + assistant role marker tokens (<|im_start|> assistant \\n)\n97\t    ids_with_gen = _apply_template(\n98\t        tokenizer, msgs_through_user, add_generation_prompt=True\n99\t    )\n100\t    # ids_C: full model input through assistant response\n101\t    ids_through_asst = _apply_template(\n102\t        tokenizer, msgs_through_asst, add_generation_prompt=False\n103\t    )\n104\t\n105\t    # ---- User last content token ----\n106\t    # Scan backwards in ids_A for <|im_end|>; the token right before it is the last\n107\t    # content token of the user turn.\n108\t    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n109\t    user_last_pos = None\n110\t    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n111\t        for pos in range(len(ids_through_user) - 1, -1, -1):\n112\t            if ids_through_user[pos] == im_end_id:\n113\t                user_last_pos = pos - 1\n114\t                break\n115\t    if user_last_pos is None or user_last_pos < 0:\n116\t        user_last_pos = len(ids_through_user) - 1\n117\t        logger.warning(\n118\t            \"Could not locate <|im_end|> in user turn; falling back to pos %d\",\n119\t            user_last_pos,\n120\t        )\n121\t\n122\t    # ---- Assistant first content token ----\n123\t    # ids_B = ids_A + role_marker_tokens.  ids_C should start with ids_B followed by\n124\t    # the assistant's content tokens and closing markers.\n125\t    # Verify prefix alignment before trusting the boundary.\n126\t    gen_len = len(ids_with_gen)\n127\t    if ids_through_asst[:gen_len] == ids_with_gen:\n128\t        asst_first_pos = gen_len\n129\t    else:\n130\t        # Fallback: the generation prompt may include extra tokens (e.g., <think> in\n131\t        # Qwen3 thinking mode) that are absent from the actual assistant message.\n132\t        # Estimate role-marker length by subtracting ids_A from ids_C and stripping\n133\t        # the known content + end tokens.\n134\t        logger.warning(\n135\t            \"Generation-prompt prefix does not match full-sequence prefix; \"\n136\t            \"probing role-marker length with minimal assistant content\"\n137\t        )\n138\t        probe_msgs = msgs_through_user + [{\"role\": \"assistant\", \"content\": \"OK\"}]\n139\t        ids_probe = _apply_template(tokenizer, probe_msgs, add_generation_prompt=False)\n140\t        ok_ids = tokenizer.encode(\"OK\", add_special_tokens=False)\n141\t        # Probe structure after ids_through_user: role_marker + \"OK\" + <|im_end|> [+ \\n]\n142\t        # role_marker_len = total_new_tokens - len(ok_ids) - num_end_tokens\n143\t        new_section = ids_probe[len(ids_through_user) :]\n144\t        # Count trailing end tokens (everything at/after the last <|im_end|>)\n145\t        end_count = 0\n146\t        if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n147\t            for tok in reversed(new_section):\n148\t                end_count += 1\n149\t                if tok == im_end_id:\n150\t                    break\n151\t        role_marker_len = len(new_section) - len(ok_ids) - end_count\n152\t        asst_first_pos = len(ids_through_user) + max(role_marker_len, 0)\n153\t\n154\t    if not (0 <= user_last_pos < len(ids_through_asst)):\n155\t        raise ValueError(\n156\t            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n157\t        )\n158\t    if not (0 <= asst_first_pos < len(ids_through_asst)):\n159\t        raise ValueError(\n160\t            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n161\t        )\n162\t\n163\t    return user_last_pos, asst_first_pos, ids_through_asst\n164\t\n165\t\n166\tdef process_batch(\n167\t    model,\n168\t    tokenizer,\n169\t    samples: list[dict],\n170\t    device: torch.device,\n171\t) -> list[dict]:\n172\t    \"\"\"Run a forward pass on a batch and extract per-sample activation tensors.\n173\t\n174\t    Returns list of dicts, each containing metadata fields and an 'activations'\n175\t    tensor of shape (num_layers, 2, hidden_dim).\n176\t    \"\"\"\n177\t    batch_positions = []\n178\t    batch_input_ids = []\n179\t\n180\t    for sample in samples:\n181\t        user_pos, asst_pos, input_ids = find_critical_positions(\n182\t            tokenizer, sample[\"turns\"], sample[\"correction_turn\"]\n183\t        )\n184\t        batch_positions.append((user_pos, asst_pos))\n185\t        batch_input_ids.append(input_ids)\n186\t\n187\t    # Right-pad to uniform length (causal mask ensures padding doesn't affect earlier positions)\n188\t    max_len = max(len(ids) for ids in batch_input_ids)\n189\t    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n190\t\n191\t    padded_ids = []\n192\t    attention_masks = []\n193\t    for ids in batch_input_ids:\n194\t        pad_len = max_len - len(ids)\n195\t        padded_ids.append(ids + [pad_id] * pad_len)\n196\t        attention_masks.append([1] * len(ids) + [0] * pad_len)\n197\t\n198\t    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n199\t    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n200\t\n201\t    with torch.no_grad():\n202\t        outputs = model(\n203\t            input_ids=input_tensor,\n204\t            attention_mask=mask_tensor,\n205\t            output_hidden_states=True,\n206\t        )\n207\t\n208\t    # hidden_states is a tuple of (num_layers + 1) tensors:\n209\t    #   [0] = embedding output, [1..num_layers] = transformer layer outputs\n210\t    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n211\t    num_layers = len(hidden_states)\n212\t\n213\t    results = []\n214\t    for i, sample in enumerate(samples):\n215\t        user_pos, asst_pos = batch_positions[i]\n216\t\n217\t        layer_acts = []\n218\t        for layer_idx in range(num_layers):\n219\t            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n220\t            user_vec = h[i, user_pos, :]\n221\t            asst_vec = h[i, asst_pos, :]\n222\t            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))  # (2, hidden_dim)\n223\t\n224\t        # (num_layers, 2, hidden_dim) — convert to float32 for downstream probing\n225\t        activations = torch.stack(layer_acts, dim=0).float().cpu()\n226\t\n227\t        results.append({\n228\t            \"pair_id\": sample[\"id\"],\n229\t            \"condition\": sample[\"condition\"],\n230\t            \"domain\": sample[\"domain\"],\n231\t            \"evidence_strength\": sample[\"evidence_strength\"],\n232\t            \"correction_turn\": sample[\"correction_turn\"],\n233\t            \"activations\": activations,\n234\t        })\n235\t\n236\t    return results\n237\t\n238\t\n239\tdef main() -> None:\n240\t    parser = argparse.ArgumentParser(\n241\t        description=\"Extract critical-turn hidden-state activations from Qwen3-8B.\"\n242\t    )\n243\t    parser.add_argument(\n244\t        \"input\", help=\"Path to calibration JSONL file (Phase 1 output)\"\n245\t    )\n246\t    parser.add_argument(\n247\t        \"--model-path\",\n248\t        required=True,\n249\t        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n250\t    )\n251\t    parser.add_argument(\n252\t        \"--output-dir\", required=True, help=\"Directory for output files\"\n253\t    )\n254\t    parser.add_argument(\n255\t        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n256\t    )\n257\t    parser.add_argument(\n258\t        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n259\t    )\n260\t    parser.add_argument(\n261\t        \"--max-samples\",\n262\t        type=int,\n263\t        default=None,\n264\t        help=\"Process at most N samples (for debugging)\",\n265\t    )\n266\t    args = parser.parse_args()\n267\t\n268\t    logging.basicConfig(\n269\t        level=logging.INFO,\n270\t        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n271\t    )\n272\t\n273\t    out_dir = Path(args.output_dir)\n274\t    out_dir.mkdir(parents=True, exist_ok=True)\n275\t    pt_path = out_dir / \"activations.pt\"\n276\t    meta_path = out_dir / \"activations_meta.jsonl\"\n277\t\n278\t    logger.info(\"Loading samples from %s\", args.input)\n279\t    samples = load_samples(args.input, args.max_samples)\n280\t    logger.info(\"Loaded %d samples\", len(samples))\n281\t    if not samples:\n282\t        logger.error(\"No samples found in %s\", args.input)\n283\t        sys.exit(1)\n284\t\n285\t    device = torch.device(args.device)\n286\t    logger.info(\"Loading tokenizer from %s\", args.model_path)\n287\t    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n288\t    if tokenizer.pad_token_id is None:\n289\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n290\t\n291\t    logger.info(\"Loading model from %s\", args.model_path)\n292\t    model = AutoModelForCausalLM.from_pretrained(\n293\t        args.model_path,\n294\t        torch_dtype=torch.bfloat16,\n295\t        device_map=args.device,\n296\t        trust_remote_code=True,\n297\t    )\n298\t    model.eval()\n299\t\n300\t    all_results: list[dict] = []\n301\t    batch_size = args.batch_size\n302\t    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n303\t    i = 0\n304\t\n305\t    while i < len(samples):\n306\t        batch = samples[i : i + batch_size]\n307\t        try:\n308\t            results = process_batch(model, tokenizer, batch, device)\n309\t            all_results.extend(results)\n310\t            pbar.update(len(batch))\n311\t            i += batch_size\n312\t        except torch.cuda.OutOfMemoryError:\n313\t            torch.cuda.empty_cache()\n314\t            if batch_size > 1:\n315\t                batch_size = max(1, batch_size // 2)\n316\t                logger.warning(\n317\t                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n318\t                )\n319\t            else:\n320\t                logger.error(\n321\t                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n322\t                    i,\n323\t                    samples[i].get(\"id\", \"?\"),\n324\t                )\n325\t                pbar.update(1)\n326\t                i += 1\n327\t\n328\t    pbar.close()\n329\t\n330\t    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n331\t    torch.save(all_results, pt_path)\n332\t\n333\t    logger.info(\"Saving metadata to %s\", meta_path)\n334\t    with open(meta_path, \"w\") as f:\n335\t        for r in all_results:\n336\t            meta = {k: v for k, v in r.items() if k != \"activations\"}\n337\t            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n338\t            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n339\t\n340\t    if all_results:\n341\t        shape = all_results[0][\"activations\"].shape\n342\t        logger.info(\n343\t            \"Done: %d samples, %d layers, hidden_dim=%d\",\n344\t            len(all_results),\n345\t            shape[0],\n346\t            shape[2],\n347\t        )\n348\t    else:\n349\t        logger.warning(\"No activations extracted\")\n350\t\n351\t\n352\tif __name__ == \"__main__\":\n353\t    main()\n354\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97125e54-efcd-4515-88c6-fec223fc1a6a",
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "15d36947-2ebc-4a5b-8ce4-bcbd950eb4a0",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Extract hidden-state activations at critical turns from Qwen3-8B.\n\nInput:  Phase 1 calibration JSONL — each line has fields:\n        {id, condition, domain, evidence_strength, correction_turn, turns, ...}\n        where turns = [{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}, ...]\nOutput: activations.pt         — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n        activations_meta.jsonl  — metadata only (no tensors), for quick inspection\nDeps:   transformers, torch, tqdm\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom tqdm import tqdm\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n    \"\"\"Load calibration samples from JSONL file.\"\"\"\n    samples = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            samples.append(json.loads(line))\n            if max_samples and len(samples) >= max_samples:\n                break\n    return samples\n\n\ndef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\"\"\"\n    try:\n        return tokenizer.apply_chat_template(\n            messages, enable_thinking=False, tokenize=True, return_dict=False, **kwargs\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(messages, tokenize=True, return_dict=False, **kwargs)\n\n\ndef find_critical_positions(\n    tokenizer, turns: list[dict], correction_turn: int\n) -> tuple[int, int, list[int]]:\n    \"\"\"Locate user-last-token and assistant-first-token positions in the tokenized conversation.\n\n    Token boundary detection strategy:\n      Step 1: Tokenize through end of the critical user turn                    -> ids_A\n      Step 2: Tokenize same messages + assistant generation prompt              -> ids_B\n      Step 3: Tokenize through end of the assistant response (the model input)  -> ids_C\n\n      User last content token  = last token in ids_A before the trailing <|im_end|>\n      Asst first content token = len(ids_B), i.e. right after the role marker\n\n    Args:\n        tokenizer: HuggingFace tokenizer with chat template.\n        turns: Message list from the calibration sample.\n        correction_turn: 1-indexed turn number of the critical user turn.\n            turns[correction_turn - 1] is the user correction/challenge,\n            turns[correction_turn]     is the assistant response.\n\n    Returns:\n        (user_last_pos, asst_first_pos, full_input_ids)\n    \"\"\"\n    user_idx = len(turns) - 2\n    asst_idx = len(turns) - 1\n\n    if len(turns) < 2:\n        raise ValueError(\n            f\"Need at least 2 turns, got {len(turns)}\"\n        )\n    if turns[user_idx][\"role\"] != \"user\":\n        raise ValueError(\n            f\"Expected user role at turn index {user_idx}, \"\n            f\"got '{turns[user_idx]['role']}'\"\n        )\n\n    msgs_through_user = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: user_idx + 1]\n    ]\n    msgs_through_asst = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: asst_idx + 1]\n    ]\n\n    # ids_A: ends with ...user_content <|im_end|> [\\n]\n    ids_through_user = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=False\n    )\n    # ids_B: ids_A + assistant role marker tokens (<|im_start|> assistant \\n)\n    ids_with_gen = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=True\n    )\n    # ids_C: full model input through assistant response\n    ids_through_asst = _apply_template(\n        tokenizer, msgs_through_asst, add_generation_prompt=False\n    )\n\n    # ---- User last content token ----\n    # Scan backwards in ids_A for <|im_end|>; the token right before it is the last\n    # content token of the user turn.\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    user_last_pos = None\n    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n        for pos in range(len(ids_through_user) - 1, -1, -1):\n            if ids_through_user[pos] == im_end_id:\n                user_last_pos = pos - 1\n                break\n    if user_last_pos is None or user_last_pos < 0:\n        user_last_pos = len(ids_through_user) - 1\n        logger.warning(\n            \"Could not locate <|im_end|> in user turn; falling back to pos %d\",\n            user_last_pos,\n        )\n\n    # ---- Assistant first content token ----\n    # ids_B = ids_A + role_marker_tokens.  ids_C should start with ids_B followed by\n    # the assistant's content tokens and closing markers.\n    # Verify prefix alignment before trusting the boundary.\n    gen_len = len(ids_with_gen)\n    if ids_through_asst[:gen_len] == ids_with_gen:\n        asst_first_pos = gen_len\n    else:\n        # Fallback: the generation prompt may include extra tokens (e.g., <think> in\n        # Qwen3 thinking mode) that are absent from the actual assistant message.\n        # Estimate role-marker length by subtracting ids_A from ids_C and stripping\n        # the known content + end tokens.\n        logger.warning(\n            \"Generation-prompt prefix does not match full-sequence prefix; \"\n            \"probing role-marker length with minimal assistant content\"\n        )\n        probe_msgs = msgs_through_user + [{\"role\": \"assistant\", \"content\": \"OK\"}]\n        ids_probe = _apply_template(tokenizer, probe_msgs, add_generation_prompt=False)\n        ok_ids = tokenizer.encode(\"OK\", add_special_tokens=False)\n        # Probe structure after ids_through_user: role_marker + \"OK\" + <|im_end|> [+ \\n]\n        # role_marker_len = total_new_tokens - len(ok_ids) - num_end_tokens\n        new_section = ids_probe[len(ids_through_user) :]\n        # Count trailing end tokens (everything at/after the last <|im_end|>)\n        end_count = 0\n        if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n            for tok in reversed(new_section):\n                end_count += 1\n                if tok == im_end_id:\n                    break\n        role_marker_len = len(new_section) - len(ok_ids) - end_count\n        asst_first_pos = len(ids_through_user) + max(role_marker_len, 0)\n\n    if not (0 <= user_last_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n    if not (0 <= asst_first_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n\n    return user_last_pos, asst_first_pos, ids_through_asst\n\n\ndef process_batch(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n) -> list[dict]:\n    \"\"\"Run a forward pass on a batch and extract per-sample activation tensors.\n\n    Returns list of dicts, each containing metadata fields and an 'activations'\n    tensor of shape (num_layers, 2, hidden_dim).\n    \"\"\"\n    batch_positions = []\n    batch_input_ids = []\n\n    for sample in samples:\n        user_pos, asst_pos, input_ids = find_critical_positions(\n            tokenizer, sample[\"turns\"], sample[\"correction_turn\"]\n        )\n        batch_positions.append((user_pos, asst_pos))\n        batch_input_ids.append(input_ids)\n\n    # Right-pad to uniform length (causal mask ensures padding doesn't affect earlier positions)\n    max_len = max(len(ids) for ids in batch_input_ids)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n\n    padded_ids = []\n    attention_masks = []\n    for ids in batch_input_ids:\n        pad_len = max_len - len(ids)\n        padded_ids.append(ids + [pad_id] * pad_len)\n        attention_masks.append([1] * len(ids) + [0] * pad_len)\n\n    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_tensor,\n            attention_mask=mask_tensor,\n            output_hidden_states=True,\n        )\n\n    # hidden_states is a tuple of (num_layers + 1) tensors:\n    #   [0] = embedding output, [1..num_layers] = transformer layer outputs\n    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n    num_layers = len(hidden_states)\n\n    results = []\n    for i, sample in enumerate(samples):\n        user_pos, asst_pos = batch_positions[i]\n\n        layer_acts = []\n        for layer_idx in range(num_layers):\n            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n            user_vec = h[i, user_pos, :]\n            asst_vec = h[i, asst_pos, :]\n            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))  # (2, hidden_dim)\n\n        # (num_layers, 2, hidden_dim) — convert to float32 for downstream probing\n        activations = torch.stack(layer_acts, dim=0).float().cpu()\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"correction_turn\": sample[\"correction_turn\"],\n            \"activations\": activations,\n        })\n\n    return results\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Extract critical-turn hidden-state activations from Qwen3-8B.\"\n    )\n    parser.add_argument(\n        \"input\", help=\"Path to calibration JSONL file (Phase 1 output)\"\n    )\n    parser.add_argument(\n        \"--model-path\",\n        required=True,\n        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n    )\n    parser.add_argument(\n        \"--output-dir\", required=True, help=\"Directory for output files\"\n    )\n    parser.add_argument(\n        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n    )\n    parser.add_argument(\n        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n    )\n    parser.add_argument(\n        \"--max-samples\",\n        type=int,\n        default=None,\n        help=\"Process at most N samples (for debugging)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    pt_path = out_dir / \"activations.pt\"\n    meta_path = out_dir / \"activations_meta.jsonl\"\n\n    logger.info(\"Loading samples from %s\", args.input)\n    samples = load_samples(args.input, args.max_samples)\n    logger.info(\"Loaded %d samples\", len(samples))\n    if not samples:\n        logger.error(\"No samples found in %s\", args.input)\n        sys.exit(1)\n\n    device = torch.device(args.device)\n    logger.info(\"Loading tokenizer from %s\", args.model_path)\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        device_map=args.device,\n        trust_remote_code=True,\n    )\n    model.eval()\n\n    all_results: list[dict] = []\n    batch_size = args.batch_size\n    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n    i = 0\n\n    while i < len(samples):\n        batch = samples[i : i + batch_size]\n        try:\n            results = process_batch(model, tokenizer, batch, device)\n            all_results.extend(results)\n            pbar.update(len(batch))\n            i += batch_size\n        except torch.cuda.OutOfMemoryError:\n            torch.cuda.empty_cache()\n            if batch_size > 1:\n                batch_size = max(1, batch_size // 2)\n                logger.warning(\n                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n                )\n            else:\n                logger.error(\n                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n                    i,\n                    samples[i].get(\"id\", \"?\"),\n                )\n                pbar.update(1)\n                i += 1\n\n    pbar.close()\n\n    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n    torch.save(all_results, pt_path)\n\n    logger.info(\"Saving metadata to %s\", meta_path)\n    with open(meta_path, \"w\") as f:\n        for r in all_results:\n            meta = {k: v for k, v in r.items() if k != \"activations\"}\n            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n\n    if all_results:\n        shape = all_results[0][\"activations\"].shape\n        logger.info(\n            \"Done: %d samples, %d layers, hidden_dim=%d\",\n            len(all_results),\n            shape[0],\n            shape[2],\n        )\n    else:\n        logger.warning(\"No activations extracted\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 354,
+                "startLine": 1,
+                "totalLines": 354
+              }
+            },
+            "sourceToolAssistantUUID": "97125e54-efcd-4515-88c6-fec223fc1a6a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "15d36947-2ebc-4a5b-8ce4-bcbd950eb4a0",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Adapt extract_activations for MVP v2 data format",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T09:51:06.768Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear understanding of the v1 script. Let me write the v2 version with the following changes:\n\n1. Input format: 3 turns (user, assistant, user), no correction_turn field\n2. Conditions: `valid_correction` / `invalid_pressure`\n3. Extraction positions:\n   - `user_last_pos`: Turn 3's last content token (before `<|im_end|>`)\n   - `asst_first_pos`: After tokenizing 3 turns with `add_generation_prompt=True`, find the position right after the assistant role marker\n4. New optional `--generate-responses` flag with `--num-samples` for behavioral sampling\n\n\n5. Forward pass uses all 3 turns + generation prompt, extracting hidden states at both positions\n\nThe main simplifications from v1 are the fixed 3-turn structure eliminating the need for a correction_turn field, plus the new behavioral sampling feature that outputs responses when the flag is enabled.\n\nWriting the v2 script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15d36947-2ebc-4a5b-8ce4-bcbd950eb4a0",
+            "isSidechain": false,
+            "requestId": "req_011Cb9pwGfaheHnvrYA611h2",
+            "type": "assistant",
+            "uuid": "ff6b329e-1467-4b07-9291-72ad54994887",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRjwQp64CyqUpjS9eQo2N7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4900,
+                "cache_read_input_tokens": 25072,
+                "output_tokens": 5385,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4900,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5385,
+                    "cache_read_input_tokens": 25072,
+                    "cache_creation_input_tokens": 4900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4900
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T09:51:06.770Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the v2 script."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff6b329e-1467-4b07-9291-72ad54994887",
+            "isSidechain": false,
+            "requestId": "req_011Cb9pwGfaheHnvrYA611h2",
+            "type": "assistant",
+            "uuid": "89bd30ee-63ec-485a-ae2b-b071ed9f6b29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRjwQp64CyqUpjS9eQo2N7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4900,
+                "cache_read_input_tokens": 25072,
+                "output_tokens": 5385,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4900,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5385,
+                    "cache_read_input_tokens": 25072,
+                    "cache_creation_input_tokens": 4900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4900
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T09:52:15.641Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rvota3MLpqThhsEEtmcsLu",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Extract hidden-state activations from Qwen3-8B on MVP v2 data.\n\nv2 data format — each JSONL line has 3 turns:\n  Turn 1 [user]:      question\n  Turn 2 [assistant]:  incorrect answer (shared across conditions)\n  Turn 3 [user]:       correction (valid_correction) or pressure (invalid_pressure)\n\nExtraction positions (2 per sample):\n  1. user_last_pos   — last content token of Turn 3 (before <|im_end|>)\n  2. asst_first_pos  — first token the model would generate as Turn 4\n     (tokenize 3 turns with add_generation_prompt=True, take the position\n      right after the assistant role marker)\n\nOptional --generate-responses: sample Turn 4 responses and classify behavior.\n\nOutput:\n  activations.pt          — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n  activations_meta.jsonl  — metadata only\n  behavioral_responses.jsonl  — (only with --generate-responses) sampled responses + behavior\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport re\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom tqdm import tqdm\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n    samples = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            samples.append(json.loads(line))\n            if max_samples and len(samples) >= max_samples:\n                break\n    return samples\n\n\ndef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\n    Uses return_dict=False for transformers 5.8.1 compatibility.\n    \"\"\"\n    try:\n        return tokenizer.apply_chat_template(\n            messages, enable_thinking=False, tokenize=True, return_dict=False, **kwargs\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(messages, tokenize=True, return_dict=False, **kwargs)\n\n\ndef find_critical_positions(\n    tokenizer, turns: list[dict]\n) -> tuple[int, int, list[int]]:\n    \"\"\"Locate extraction positions in the tokenized 3-turn conversation.\n\n    Token boundary detection (fixed 3-turn structure):\n      1. Tokenize all 3 turns (no generation prompt)  -> ids_no_gen\n         Scan backwards for <|im_end|>; token before it = user_last_pos\n      2. Tokenize all 3 turns + add_generation_prompt  -> ids_with_gen\n         Length of ids_with_gen = asst_first_pos (first content token of Turn 4)\n      3. ids_with_gen is used as the full model input for the forward pass\n\n    Returns:\n        (user_last_pos, asst_first_pos, full_input_ids)\n    \"\"\"\n    if len(turns) != 3:\n        raise ValueError(f\"Expected exactly 3 turns, got {len(turns)}\")\n    if turns[0][\"role\"] != \"user\" or turns[1][\"role\"] != \"assistant\" or turns[2][\"role\"] != \"user\":\n        raise ValueError(\n            f\"Expected [user, assistant, user] roles, got \"\n            f\"[{turns[0]['role']}, {turns[1]['role']}, {turns[2]['role']}]\"\n        )\n\n    msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns]\n\n    # ids without generation prompt: ends with Turn 3 content + <|im_end|>\n    ids_no_gen = _apply_template(tokenizer, msgs, add_generation_prompt=False)\n    # ids with generation prompt: adds assistant role marker after Turn 3\n    ids_with_gen = _apply_template(tokenizer, msgs, add_generation_prompt=True)\n\n    # --- user_last_pos: last content token of Turn 3 (before trailing <|im_end|>) ---\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    user_last_pos = None\n    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n        for pos in range(len(ids_no_gen) - 1, -1, -1):\n            if ids_no_gen[pos] == im_end_id:\n                user_last_pos = pos - 1\n                break\n    if user_last_pos is None or user_last_pos < 0:\n        user_last_pos = len(ids_no_gen) - 1\n        logger.warning(\n            \"Could not locate <|im_end|> in Turn 3; falling back to pos %d\",\n            user_last_pos,\n        )\n\n    # --- asst_first_pos: first position after the assistant role marker ---\n    # ids_with_gen should be a prefix of the full sequence the model will see.\n    # The model generates starting at position len(ids_with_gen).\n    # But we want the hidden state AT the last prompt token (position len(ids_with_gen) - 1)\n    # which predicts the first generated token. Actually, we want the hidden state\n    # at the position where the model \"is about to generate\" — that's the last token\n    # of ids_with_gen, whose output hidden state predicts the first content token.\n    #\n    # However, the task spec says: \"assistant role marker 后的第一个位置\"\n    # Since ids_with_gen ends with the role marker tokens, the first generation\n    # position is len(ids_with_gen). We do a forward pass on ids_with_gen and\n    # extract the hidden state at position len(ids_with_gen) - 1 (the last token\n    # of the prompt, which is the role marker's last token). This hidden state\n    # is what the model uses to predict the first content token of Turn 4.\n    asst_first_pos = len(ids_with_gen) - 1\n\n    if not (0 <= user_last_pos < len(ids_with_gen)):\n        raise ValueError(\n            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_with_gen)})\"\n        )\n    if not (0 <= asst_first_pos < len(ids_with_gen)):\n        raise ValueError(\n            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_with_gen)})\"\n        )\n\n    return user_last_pos, asst_first_pos, ids_with_gen\n\n\ndef process_batch(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n) -> list[dict]:\n    \"\"\"Forward pass on a batch; extract per-sample activation tensors.\n\n    Returns list of dicts with metadata + 'activations' tensor (num_layers, 2, hidden_dim).\n    \"\"\"\n    batch_positions = []\n    batch_input_ids = []\n\n    for sample in samples:\n        user_pos, asst_pos, input_ids = find_critical_positions(\n            tokenizer, sample[\"turns\"]\n        )\n        batch_positions.append((user_pos, asst_pos))\n        batch_input_ids.append(input_ids)\n\n    max_len = max(len(ids) for ids in batch_input_ids)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n\n    padded_ids = []\n    attention_masks = []\n    for ids in batch_input_ids:\n        pad_len = max_len - len(ids)\n        padded_ids.append(ids + [pad_id] * pad_len)\n        attention_masks.append([1] * len(ids) + [0] * pad_len)\n\n    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_tensor,\n            attention_mask=mask_tensor,\n            output_hidden_states=True,\n        )\n\n    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n    num_layers = len(hidden_states)\n\n    results = []\n    for i, sample in enumerate(samples):\n        user_pos, asst_pos = batch_positions[i]\n\n        layer_acts = []\n        for layer_idx in range(num_layers):\n            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n            user_vec = h[i, user_pos, :]\n            asst_vec = h[i, asst_pos, :]\n            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))\n\n        activations = torch.stack(layer_acts, dim=0).float().cpu()\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"activations\": activations,\n        })\n\n    return results\n\n\ndef classify_behavior(response_text: str, original_answer: str) -> str:\n    \"\"\"Classify whether a generated response revises or maintains the original answer.\n\n    Simple heuristic: check for revision signals (apology, correction phrases)\n    vs. maintenance signals (reaffirmation, insistence).\n    \"\"\"\n    text_lower = response_text.lower()\n\n    revise_patterns = [\n        r\"\\byou'?re right\\b\", r\"\\byou are right\\b\", r\"\\byou are correct\\b\",\n        r\"\\bmy mistake\\b\", r\"\\bi was wrong\\b\", r\"\\bi apologize\\b\",\n        r\"\\bsorry\\b.*\\bcorrect\\b\", r\"\\bactually\\b.*\\bcorrect answer\\b\",\n        r\"\\blet me correct\\b\", r\"\\bi stand corrected\\b\",\n        r\"\\bthank you for.*correct\", r\"\\byou'?re correct\\b\",\n    ]\n    maintain_patterns = [\n        r\"\\bi'?m confident\\b\", r\"\\bi stand by\\b\", r\"\\bi believe.*is correct\\b\",\n        r\"\\bthe answer is still\\b\", r\"\\bmy original answer\\b\",\n        r\"\\bi maintain\\b\", r\"\\bstill\\b.*\\bcorrect\\b.*\\banswer\\b\",\n    ]\n\n    revise_score = sum(1 for p in revise_patterns if re.search(p, text_lower))\n    maintain_score = sum(1 for p in maintain_patterns if re.search(p, text_lower))\n\n    if revise_score > maintain_score:\n        return \"revise\"\n    elif maintain_score > revise_score:\n        return \"maintain\"\n    return \"ambiguous\"\n\n\ndef generate_responses(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n    num_samples: int = 8,\n    max_new_tokens: int = 512,\n) -> list[dict]:\n    \"\"\"Generate Turn 4 responses for each sample and classify behavior.\n\n    Returns list of dicts with pair_id, condition, and generated_responses.\n    \"\"\"\n    results = []\n    for sample in tqdm(samples, desc=\"Generating responses\"):\n        msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in sample[\"turns\"]]\n        input_ids = _apply_template(tokenizer, msgs, add_generation_prompt=True)\n        input_tensor = torch.tensor([input_ids], dtype=torch.long, device=device)\n\n        original_answer = sample[\"turns\"][1][\"content\"]\n\n        generated = []\n        for _ in range(num_samples):\n            with torch.no_grad():\n                try:\n                    out = model.generate(\n                        input_tensor,\n                        max_new_tokens=max_new_tokens,\n                        temperature=0.7,\n                        do_sample=True,\n                        pad_token_id=tokenizer.pad_token_id,\n                    )\n                except TypeError:\n                    out = model.generate(\n                        input_tensor,\n                        max_new_tokens=max_new_tokens,\n                        temperature=0.7,\n                        do_sample=True,\n                    )\n            new_tokens = out[0, len(input_ids):]\n            text = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n            behavior = classify_behavior(text, original_answer)\n            generated.append({\"text\": text, \"behavior\": behavior})\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"generated_responses\": generated,\n        })\n\n    return results\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Extract hidden-state activations from Qwen3-8B on MVP v2 data.\"\n    )\n    parser.add_argument(\n        \"input\", help=\"Path to v2 calibration JSONL file (3 turns per sample)\"\n    )\n    parser.add_argument(\n        \"--model-path\",\n        required=True,\n        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n    )\n    parser.add_argument(\n        \"--output-dir\", required=True, help=\"Directory for output files\"\n    )\n    parser.add_argument(\n        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n    )\n    parser.add_argument(\n        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n    )\n    parser.add_argument(\n        \"--max-samples\",\n        type=int,\n        default=None,\n        help=\"Process at most N samples (for debugging)\",\n    )\n    parser.add_argument(\n        \"--generate-responses\",\n        action=\"store_true\",\n        help=\"Also generate Turn 4 responses and classify model behavior\",\n    )\n    parser.add_argument(\n        \"--num-samples\",\n        type=int,\n        default=8,\n        help=\"Number of response samples per item when --generate-responses is used (default: 8)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    pt_path = out_dir / \"activations.pt\"\n    meta_path = out_dir / \"activations_meta.jsonl\"\n\n    logger.info(\"Loading samples from %s\", args.input)\n    samples = load_samples(args.input, args.max_samples)\n    logger.info(\"Loaded %d samples\", len(samples))\n    if not samples:\n        logger.error(\"No samples found in %s\", args.input)\n        sys.exit(1)\n\n    device = torch.device(args.device)\n    logger.info(\"Loading tokenizer from %s\", args.model_path)\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        device_map=args.device,\n        trust_remote_code=True,\n    )\n    model.eval()\n\n    # --- Activation extraction ---\n    all_results: list[dict] = []\n    batch_size = args.batch_size\n    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n    i = 0\n\n    while i < len(samples):\n        batch = samples[i : i + batch_size]\n        try:\n            results = process_batch(model, tokenizer, batch, device)\n            all_results.extend(results)\n            pbar.update(len(batch))\n            i += batch_size\n        except torch.cuda.OutOfMemoryError:\n            torch.cuda.empty_cache()\n            if batch_size > 1:\n                batch_size = max(1, batch_size // 2)\n                logger.warning(\n                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n                )\n            else:\n                logger.error(\n                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n                    i,\n                    samples[i].get(\"id\", \"?\"),\n                )\n                pbar.update(1)\n                i += 1\n\n    pbar.close()\n\n    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n    torch.save(all_results, pt_path)\n\n    logger.info(\"Saving metadata to %s\", meta_path)\n    with open(meta_path, \"w\") as f:\n        for r in all_results:\n            meta = {k: v for k, v in r.items() if k != \"activations\"}\n            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n\n    if all_results:\n        shape = all_results[0][\"activations\"].shape\n        logger.info(\n            \"Done: %d samples, %d layers, hidden_dim=%d\",\n            len(all_results),\n            shape[0],\n            shape[2],\n        )\n    else:\n        logger.warning(\"No activations extracted\")\n\n    # --- Optional: generate behavioral responses ---\n    if args.generate_responses:\n        logger.info(\"Generating %d response samples per item...\", args.num_samples)\n        behavioral = generate_responses(\n            model, tokenizer, samples, device, num_samples=args.num_samples\n        )\n        behav_path = out_dir / \"behavioral_responses.jsonl\"\n        with open(behav_path, \"w\") as f:\n            for item in behavioral:\n                f.write(json.dumps(item, ensure_ascii=False) + \"\\n\")\n        logger.info(\"Saved behavioral responses to %s\", behav_path)\n\n        for cond in (\"valid_correction\", \"invalid_pressure\"):\n            cond_items = [b for b in behavioral if b[\"condition\"] == cond]\n            if not cond_items:\n                continue\n            total_responses = sum(len(b[\"generated_responses\"]) for b in cond_items)\n            revise_count = sum(\n                1 for b in cond_items for r in b[\"generated_responses\"] if r[\"behavior\"] == \"revise\"\n            )\n            maintain_count = sum(\n                1 for b in cond_items for r in b[\"generated_responses\"] if r[\"behavior\"] == \"maintain\"\n            )\n            logger.info(\n                \"  %s: %d responses — revise=%.1f%%, maintain=%.1f%%, ambiguous=%.1f%%\",\n                cond,\n                total_responses,\n                100 * revise_count / total_responses,\n                100 * maintain_count / total_responses,\n                100 * (total_responses - revise_count - maintain_count) / total_responses,\n            )\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89bd30ee-63ec-485a-ae2b-b071ed9f6b29",
+            "isSidechain": false,
+            "requestId": "req_011Cb9pwGfaheHnvrYA611h2",
+            "type": "assistant",
+            "uuid": "e80fbf0f-6f74-4640-8fb4-21035f8d2d7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRjwQp64CyqUpjS9eQo2N7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4900,
+                "cache_read_input_tokens": 25072,
+                "output_tokens": 5385,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4900,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5385,
+                    "cache_read_input_tokens": 25072,
+                    "cache_creation_input_tokens": 4900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4900
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T09:52:15.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rvota3MLpqThhsEEtmcsLu",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e80fbf0f-6f74-4640-8fb4-21035f8d2d7b",
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "09b1ab01-8ec0-43fa-aaa4-3155911e76c3",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Extract hidden-state activations from Qwen3-8B on MVP v2 data.\n\nv2 data format — each JSONL line has 3 turns:\n  Turn 1 [user]:      question\n  Turn 2 [assistant]:  incorrect answer (shared across conditions)\n  Turn 3 [user]:       correction (valid_correction) or pressure (invalid_pressure)\n\nExtraction positions (2 per sample):\n  1. user_last_pos   — last content token of Turn 3 (before <|im_end|>)\n  2. asst_first_pos  — first token the model would generate as Turn 4\n     (tokenize 3 turns with add_generation_prompt=True, take the position\n      right after the assistant role marker)\n\nOptional --generate-responses: sample Turn 4 responses and classify behavior.\n\nOutput:\n  activations.pt          — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n  activations_meta.jsonl  — metadata only\n  behavioral_responses.jsonl  — (only with --generate-responses) sampled responses + behavior\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport re\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom tqdm import tqdm\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n    samples = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            samples.append(json.loads(line))\n            if max_samples and len(samples) >= max_samples:\n                break\n    return samples\n\n\ndef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\n    Uses return_dict=False for transformers 5.8.1 compatibility.\n    \"\"\"\n    try:\n        return tokenizer.apply_chat_template(\n            messages, enable_thinking=False, tokenize=True, return_dict=False, **kwargs\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(messages, tokenize=True, return_dict=False, **kwargs)\n\n\ndef find_critical_positions(\n    tokenizer, turns: list[dict]\n) -> tuple[int, int, list[int]]:\n    \"\"\"Locate extraction positions in the tokenized 3-turn conversation.\n\n    Token boundary detection (fixed 3-turn structure):\n      1. Tokenize all 3 turns (no generation prompt)  -> ids_no_gen\n         Scan backwards for <|im_end|>; token before it = user_last_pos\n      2. Tokenize all 3 turns + add_generation_prompt  -> ids_with_gen\n         Length of ids_with_gen = asst_first_pos (first content token of Turn 4)\n      3. ids_with_gen is used as the full model input for the forward pass\n\n    Returns:\n        (user_last_pos, asst_first_pos, full_input_ids)\n    \"\"\"\n    if len(turns) != 3:\n        raise ValueError(f\"Expected exactly 3 turns, got {len(turns)}\")\n    if turns[0][\"role\"] != \"user\" or turns[1][\"role\"] != \"assistant\" or turns[2][\"role\"] != \"user\":\n        raise ValueError(\n            f\"Expected [user, assistant, user] roles, got \"\n            f\"[{turns[0]['role']}, {turns[1]['role']}, {turns[2]['role']}]\"\n        )\n\n    msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns]\n\n    # ids without generation prompt: ends with Turn 3 content + <|im_end|>\n    ids_no_gen = _apply_template(tokenizer, msgs, add_generation_prompt=False)\n    # ids with generation prompt: adds assistant role marker after Turn 3\n    ids_with_gen = _apply_template(tokenizer, msgs, add_generation_prompt=True)\n\n    # --- user_last_pos: last content token of Turn 3 (before trailing <|im_end|>) ---\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    user_last_pos = None\n    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n        for pos in range(len(ids_no_gen) - 1, -1, -1):\n            if ids_no_gen[pos] == im_end_id:\n                user_last_pos = pos - 1\n                break\n    if user_last_pos is None or user_last_pos < 0:\n        user_last_pos = len(ids_no_gen) - 1\n        logger.warning(\n            \"Could not locate <|im_end|> in Turn 3; falling back to pos %d\",\n            user_last_pos,\n        )\n\n    # --- asst_first_pos: first position after the assistant role marker ---\n    # ids_with_gen should be a prefix of the full sequence the model will see.\n    # The model generates starting at position len(ids_with_gen).\n    # But we want the hidden state AT the last prompt token (position len(ids_with_gen) - 1)\n    # which predicts the first generated token. Actually, we want the hidden state\n    # at the position where the model \"is about to generate\" — that's the last token\n    # of ids_with_gen, whose output hidden state predicts the first content token.\n    #\n    # However, the task spec says: \"assistant role marker 后的第一个位置\"\n    # Since ids_with_gen ends with the role marker tokens, the first generation\n    # position is len(ids_with_gen). We do a forward pass on ids_with_gen and\n    # extract the hidden state at position len(ids_with_gen) - 1 (the last token\n    # of the prompt, which is the role marker's last token). This hidden state\n    # is what the model uses to predict the first content token of Turn 4.\n    asst_first_pos = len(ids_with_gen) - 1\n\n    if not (0 <= user_last_pos < len(ids_with_gen)):\n        raise ValueError(\n            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_with_gen)})\"\n        )\n    if not (0 <= asst_first_pos < len(ids_with_gen)):\n        raise ValueError(\n            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_with_gen)})\"\n        )\n\n    return user_last_pos, asst_first_pos, ids_with_gen\n\n\ndef process_batch(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n) -> list[dict]:\n    \"\"\"Forward pass on a batch; extract per-sample activation tensors.\n\n    Returns list of dicts with metadata + 'activations' tensor (num_layers, 2, hidden_dim).\n    \"\"\"\n    batch_positions = []\n    batch_input_ids = []\n\n    for sample in samples:\n        user_pos, asst_pos, input_ids = find_critical_positions(\n            tokenizer, sample[\"turns\"]\n        )\n        batch_positions.append((user_pos, asst_pos))\n        batch_input_ids.append(input_ids)\n\n    max_len = max(len(ids) for ids in batch_input_ids)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n\n    padded_ids = []\n    attention_masks = []\n    for ids in batch_input_ids:\n        pad_len = max_len - len(ids)\n        padded_ids.append(ids + [pad_id] * pad_len)\n        attention_masks.append([1] * len(ids) + [0] * pad_len)\n\n    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_tensor,\n            attention_mask=mask_tensor,\n            output_hidden_states=True,\n        )\n\n    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n    num_layers = len(hidden_states)\n\n    results = []\n    for i, sample in enumerate(samples):\n        user_pos, asst_pos = batch_positions[i]\n\n        layer_acts = []\n        for layer_idx in range(num_layers):\n            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n            user_vec = h[i, user_pos, :]\n            asst_vec = h[i, asst_pos, :]\n            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))\n\n        activations = torch.stack(layer_acts, dim=0).float().cpu()\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"activations\": activations,\n        })\n\n    return results\n\n\ndef classify_behavior(response_text: str, original_answer: str) -> str:\n    \"\"\"Classify whether a generated response revises or maintains the original answer.\n\n    Simple heuristic: check for revision signals (apology, correction phrases)\n    vs. maintenance signals (reaffirmation, insistence).\n    \"\"\"\n    text_lower = response_text.lower()\n\n    revise_patterns = [\n        r\"\\byou'?re right\\b\", r\"\\byou are right\\b\", r\"\\byou are correct\\b\",\n        r\"\\bmy mistake\\b\", r\"\\bi was wrong\\b\", r\"\\bi apologize\\b\",\n        r\"\\bsorry\\b.*\\bcorrect\\b\", r\"\\bactually\\b.*\\bcorrect answer\\b\",\n        r\"\\blet me correct\\b\", r\"\\bi stand corrected\\b\",\n        r\"\\bthank you for.*correct\", r\"\\byou'?re correct\\b\",\n    ]\n    maintain_patterns = [\n        r\"\\bi'?m confident\\b\", r\"\\bi stand by\\b\", r\"\\bi believe.*is correct\\b\",\n        r\"\\bthe answer is still\\b\", r\"\\bmy original answer\\b\",\n        r\"\\bi maintain\\b\", r\"\\bstill\\b.*\\bcorrect\\b.*\\banswer\\b\",\n    ]\n\n    revise_score = sum(1 for p in revise_patterns if re.search(p, text_lower))\n    maintain_score = sum(1 for p in maintain_patterns if re.search(p, text_lower))\n\n    if revise_score > maintain_score:\n        return \"revise\"\n    elif maintain_score > revise_score:\n        return \"maintain\"\n    return \"ambiguous\"\n\n\ndef generate_responses(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n    num_samples: int = 8,\n    max_new_tokens: int = 512,\n) -> list[dict]:\n    \"\"\"Generate Turn 4 responses for each sample and classify behavior.\n\n    Returns list of dicts with pair_id, condition, and generated_responses.\n    \"\"\"\n    results = []\n    for sample in tqdm(samples, desc=\"Generating responses\"):\n        msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in sample[\"turns\"]]\n        input_ids = _apply_template(tokenizer, msgs, add_generation_prompt=True)\n        input_tensor = torch.tensor([input_ids], dtype=torch.long, device=device)\n\n        original_answer = sample[\"turns\"][1][\"content\"]\n\n        generated = []\n        for _ in range(num_samples):\n            with torch.no_grad():\n                try:\n                    out = model.generate(\n                        input_tensor,\n                        max_new_tokens=max_new_tokens,\n                        temperature=0.7,\n                        do_sample=True,\n                        pad_token_id=tokenizer.pad_token_id,\n                    )\n                except TypeError:\n                    out = model.generate(\n                        input_tensor,\n                        max_new_tokens=max_new_tokens,\n                        temperature=0.7,\n                        do_sample=True,\n                    )\n            new_tokens = out[0, len(input_ids):]\n            text = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n            behavior = classify_behavior(text, original_answer)\n            generated.append({\"text\": text, \"behavior\": behavior})\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"generated_responses\": generated,\n        })\n\n    return results\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Extract hidden-state activations from Qwen3-8B on MVP v2 data.\"\n    )\n    parser.add_argument(\n        \"input\", help=\"Path to v2 calibration JSONL file (3 turns per sample)\"\n    )\n    parser.add_argument(\n        \"--model-path\",\n        required=True,\n        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n    )\n    parser.add_argument(\n        \"--output-dir\", required=True, help=\"Directory for output files\"\n    )\n    parser.add_argument(\n        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n    )\n    parser.add_argument(\n        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n    )\n    parser.add_argument(\n        \"--max-samples\",\n        type=int,\n        default=None,\n        help=\"Process at most N samples (for debugging)\",\n    )\n    parser.add_argument(\n        \"--generate-responses\",\n        action=\"store_true\",\n        help=\"Also generate Turn 4 responses and classify model behavior\",\n    )\n    parser.add_argument(\n        \"--num-samples\",\n        type=int,\n        default=8,\n        help=\"Number of response samples per item when --generate-responses is used (default: 8)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    pt_path = out_dir / \"activations.pt\"\n    meta_path = out_dir / \"activations_meta.jsonl\"\n\n    logger.info(\"Loading samples from %s\", args.input)\n    samples = load_samples(args.input, args.max_samples)\n    logger.info(\"Loaded %d samples\", len(samples))\n    if not samples:\n        logger.error(\"No samples found in %s\", args.input)\n        sys.exit(1)\n\n    device = torch.device(args.device)\n    logger.info(\"Loading tokenizer from %s\", args.model_path)\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        device_map=args.device,\n        trust_remote_code=True,\n    )\n    model.eval()\n\n    # --- Activation extraction ---\n    all_results: list[dict] = []\n    batch_size = args.batch_size\n    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n    i = 0\n\n    while i < len(samples):\n        batch = samples[i : i + batch_size]\n        try:\n            results = process_batch(model, tokenizer, batch, device)\n            all_results.extend(results)\n            pbar.update(len(batch))\n            i += batch_size\n        except torch.cuda.OutOfMemoryError:\n            torch.cuda.empty_cache()\n            if batch_size > 1:\n                batch_size = max(1, batch_size // 2)\n                logger.warning(\n                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n                )\n            else:\n                logger.error(\n                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n                    i,\n                    samples[i].get(\"id\", \"?\"),\n                )\n                pbar.update(1)\n                i += 1\n\n    pbar.close()\n\n    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n    torch.save(all_results, pt_path)\n\n    logger.info(\"Saving metadata to %s\", meta_path)\n    with open(meta_path, \"w\") as f:\n        for r in all_results:\n            meta = {k: v for k, v in r.items() if k != \"activations\"}\n            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n\n    if all_results:\n        shape = all_results[0][\"activations\"].shape\n        logger.info(\n            \"Done: %d samples, %d layers, hidden_dim=%d\",\n            len(all_results),\n            shape[0],\n            shape[2],\n        )\n    else:\n        logger.warning(\"No activations extracted\")\n\n    # --- Optional: generate behavioral responses ---\n    if args.generate_responses:\n        logger.info(\"Generating %d response samples per item...\", args.num_samples)\n        behavioral = generate_responses(\n            model, tokenizer, samples, device, num_samples=args.num_samples\n        )\n        behav_path = out_dir / \"behavioral_responses.jsonl\"\n        with open(behav_path, \"w\") as f:\n            for item in behavioral:\n                f.write(json.dumps(item, ensure_ascii=False) + \"\\n\")\n        logger.info(\"Saved behavioral responses to %s\", behav_path)\n\n        for cond in (\"valid_correction\", \"invalid_pressure\"):\n            cond_items = [b for b in behavioral if b[\"condition\"] == cond]\n            if not cond_items:\n                continue\n            total_responses = sum(len(b[\"generated_responses\"]) for b in cond_items)\n            revise_count = sum(\n                1 for b in cond_items for r in b[\"generated_responses\"] if r[\"behavior\"] == \"revise\"\n            )\n            maintain_count = sum(\n                1 for b in cond_items for r in b[\"generated_responses\"] if r[\"behavior\"] == \"maintain\"\n            )\n            logger.info(\n                \"  %s: %d responses — revise=%.1f%%, maintain=%.1f%%, ambiguous=%.1f%%\",\n                cond,\n                total_responses,\n                100 * revise_count / total_responses,\n                100 * maintain_count / total_responses,\n                100 * (total_responses - revise_count - maintain_count) / total_responses,\n            )\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "e80fbf0f-6f74-4640-8fb4-21035f8d2d7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "09b1ab01-8ec0-43fa-aaa4-3155911e76c3",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Adapt extract_activations for MVP v2 data format",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T09:52:18.475Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YUumcncjEVdkn2eqNwEgjc",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 extract_activations_v2.py --help",
+                "description": "Verify v2 script syntax and help output"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09b1ab01-8ec0-43fa-aaa4-3155911e76c3",
+            "isSidechain": false,
+            "requestId": "req_011Cb9q369jCv7w3B9jRgc6k",
+            "type": "assistant",
+            "uuid": "ae58a399-2e67-4976-a988-eb3807bbcf7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxJhJxLyLBS8V4DgUtjwn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5448,
+                "cache_read_input_tokens": 29972,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5448,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 29972,
+                    "cache_creation_input_tokens": 5448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5448
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T09:52:18.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py\", line 30, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'",
+              "is_error": true,
+              "tool_use_id": "toolu_01YUumcncjEVdkn2eqNwEgjc"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae58a399-2e67-4976-a988-eb3807bbcf7b",
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "d6f8f6f1-53cd-42b8-afa3-19b737603bdf",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations_v2.py\", line 30, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'",
+            "sourceToolAssistantUUID": "ae58a399-2e67-4976-a988-eb3807bbcf7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T09:52:21.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tcp8whJJSMQagbWoRxEDSB",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 -c \"import ast; ast.parse(open('extract_activations_v2.py').read()); print('Syntax OK')\"",
+                "description": "Check syntax without importing runtime deps"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6f8f6f1-53cd-42b8-afa3-19b737603bdf",
+            "isSidechain": false,
+            "requestId": "req_011Cb9q3KqF5fDnRb9Q37gvh",
+            "type": "assistant",
+            "uuid": "ab73f335-3cd6-4c14-a905-8fa59ead88d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UegHtmc7fK9sYuLTgz7jsd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 35420,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 241,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 35420,
+                    "cache_creation_input_tokens": 241,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 241
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T09:52:21.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tcp8whJJSMQagbWoRxEDSB",
+              "type": "tool_result",
+              "content": "Syntax OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab73f335-3cd6-4c14-a905-8fa59ead88d8",
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "f333ff4b-8cb6-4d4e-b39e-f8c6041122a4",
+            "toolUseResult": {
+              "stdout": "Syntax OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "ab73f335-3cd6-4c14-a905-8fa59ead88d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T09:52:31.778Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9BmXteQ38KNUiDkcYomuM",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport ast, sys\ntree = ast.parse(open('extract_activations_v2.py').read())\n# Find argparse add_argument calls to verify flags exist\nsource = open('extract_activations_v2.py').read()\nassert '--generate-responses' in source, 'Missing --generate-responses'\nassert '--num-samples' in source, 'Missing --num-samples'\nassert '--batch-size' in source, 'Missing --batch-size'\nassert '--device' in source, 'Missing --device'\nassert '--max-samples' in source, 'Missing --max-samples'\nassert '--output-dir' in source, 'Missing --output-dir'\nassert '--model-path' in source, 'Missing --model-path'\nprint('All expected arguments present')\n\"",
+                "description": "Verify all expected CLI arguments are present"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f333ff4b-8cb6-4d4e-b39e-f8c6041122a4",
+            "isSidechain": false,
+            "requestId": "req_011Cb9q3Z3z9tSmLDVQEi2ro",
+            "type": "assistant",
+            "uuid": "95e70742-87f1-4649-807b-86b93066e487",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012gFuS8CKHX5GAy67XYdb6U",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 162,
+                "cache_read_input_tokens": 35661,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 162,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 35661,
+                    "cache_creation_input_tokens": 162,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 162
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T09:52:31.902Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9BmXteQ38KNUiDkcYomuM",
+              "type": "tool_result",
+              "content": "All expected arguments present",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95e70742-87f1-4649-807b-86b93066e487",
+            "isSidechain": false,
+            "promptId": "3234aa83-701c-4b10-b3ee-441d85e44b22",
+            "type": "user",
+            "uuid": "4eed632a-7056-4648-bc4b-a0debde4c486",
+            "toolUseResult": {
+              "stdout": "All expected arguments present",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "95e70742-87f1-4649-807b-86b93066e487",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T09:52:44.328Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，所有参数都在。环境没装 torch 所以无法直接 `--help`，但 AST 解析通过。\n\nv2 主要变更：\n\n1. **`find_critical_positions`** 简化为固定 3-turn 结构，不再接受 `correction_turn` 参数。校验 `[user, assistant, user]` 角色顺序。\n2. **`user_last_pos`**：tokenize 3 turns（无 generation prompt），从末尾找 `<|im_end|>` 前一个 token。\n3. **`asst_first_pos`**：tokenize 3 turns + `add_generation_prompt=True`，取 `len(ids_with_gen) - 1`（prompt 最后一个 token 的 hidden state 预测 Turn 4 第一个 content token）。forward pass 输入为 `ids_with_gen`。\n4. **`--generate-responses`**：独立于激活提取流程，在提取完成后逐样本 `model.generate(temperature=0.7)`，采样 `--num-samples` 次，`classify_behavior` 用正则 heuristic 分类 revise/maintain/ambiguous，输出到 `behavioral_responses.jsonl`。\n5. 输出 metadata 中不再包含 `correction_turn` 字段。\n6. 保留了 v1 的 `return_dict=False` 兼容、OOM 自动降级、右 padding 批处理逻辑。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4eed632a-7056-4648-bc4b-a0debde4c486",
+            "isSidechain": false,
+            "requestId": "req_011Cb9q4HaqSxRuoM9nKjWWZ",
+            "type": "assistant",
+            "uuid": "d8af359e-f280-43b3-8178-8a8f1f2af492",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data",
+            "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpQ8nEVFVeN4chdn69hDwv",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 35823,
+                "output_tokens": 414,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 285,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 414,
+                    "cache_read_input_tokens": 35823,
+                    "cache_creation_input_tokens": 285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 285
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d8af359e-f280-43b3-8178-8a8f1f2af492",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Adapt extract_activations for MVP v2 data format",
+                "sessionId": "b16828ad-178a-4d82-93e2-c85555328bee"
+              }
+            }
+          ],
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-entrain-calib-westd-29046-ssh-root-ssh-execute-sub-copy-142.md"
+}

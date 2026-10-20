@@ -1,0 +1,1676 @@
+{
+  "schema_version": "1.0",
+  "id": "49928f522ace929d2e16",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 2 (R2) for a blind peer review of an ML paper. Your focus areas are **novelty/originality** and **relat",
+  "task_key": "agent-a256a1ecd086aa712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a256a1ecd086aa712.jsonl",
+    "occurrence": 1,
+    "bytes": 161090,
+    "sha256": "a5e6b4a84a85652ecd4470de4e3fca1c13ac5f61382ddd87d3c14bc358aad026"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T11:36:56.185Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 2 (R2) for a blind peer review of an ML paper. Your focus areas are **novelty/originality** and **related work positioning**. Review the paper according to top ML venue standards (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept).\n\n## Paper Summary\n\n**Title**: \"Direction-Contrastive GRPO: Breaking the Sycophancy-Revision Double-Bind via Representation-Level Reward Signals\"\n\n**Core Idea**: The paper extracts a linear sycophancy direction d_syc from the policy model's activation space via PCA on style-controlled contrastive pairs (sycophantic vs. genuine revision responses). This direction is used as a continuous reward signal (R1) in GRPO alongside a rank-based contrastive reward (R2) and NLI behavioral reward (R3). The method, called DC-GRPO, aims to break the \"double-bind\" where anti-sycophancy training simultaneously suppresses legitimate belief revision.\n\n**Three Claims**:\n1. d_syc discriminates sycophantic capitulation from genuine revision (AUROC 0.889 at L18, robust across evidence strengths, reproducible on Llama-3-8B with AUROC 0.841)\n2. DC-GRPO achieves best performance across all sycophancy metrics (NoF 18.3% vs R3-only 24.1%, warranted revision rate 0.68 vs 0.57, RC-AUC 0.84 vs 0.67) while preserving general capabilities (MMLU -0.3pp)\n3. R1 and R3 disagree on 15.3% of rollouts; masked sycophancy (R1-syc, R3-correct) accounts for 8.7%, with 78% true positive rate on human audit\n\n## Paper Structure (11 pages)\n\n**Section 1 - Introduction** (pp. 1-2):\n- Anti-sycophancy training creates double-bind: penalizing opinion shifts also suppresses genuine revision\n- TRUTH DECAY: 47% accuracy degradation in multi-turn\n- Existing methods: SMART/BCT (behavioral), ACT (undifferentiated activation consistency), Linear Probe Penalties (binary, on reward model), CRAFT (domain-general prototypes)\n- Key insight: policy model's own activations encode geometrically separable directions\n- d_syc at L18 achieves AUROC 0.889\n- Contributions: (1) d_syc direction discovery, (2) DC-GRPO three-component reward, (3) masked sycophancy detection via R1-R3 disagreement\n\n**Section 2 - Related Work** (pp. 2-3):\nFour subsections:\n- **Sycophancy in LLMs**: SYCON Bench, SycophancyEval, TRUTH DECAY, \"Sycophancy Is Not One Thing\" — builds on activation-level decomposition, extends from diagnostic to training signal\n- **Anti-sycophancy training**: SMART, BCT, \"Pressure What Pressure?\" (GRPO + NLI), ACT (L2 consistency) — positions DC-GRPO as targeting sycophantic direction specifically while leaving orthogonal subspace unconstrained\n- **Representation-level alignment**: CRAFT (domain-general prototypes for safety), Linear Probe Penalties (binary classifier on reward model) — differentiates in three ways: continuous (not binary), from policy model (not reward model), sycophancy-specific contrastive pairs (not domain-general)\n- **Mechanistic interpretability**: Knowledge-Prediction Gap (13-29% internal disagreement), Sycophantic Anchors (attention patterns) — connects \"model knows when it's sycophantic\" to training signal\n\n**Section 3 - Method** (pp. 3-4):\n- Direction extraction via PCA on contrastive pair activation differences\n- R1: continuous directional projection reward\n- R2: rank-based contrastive (avoids defining d_gen explicitly)\n- R3: NLI behavioral reward (safety net)\n- Combined: R = 0.3·R1 + 0.2·R2 + 0.5·R3\n\n**Section 4 - Experiments** (pp. 4-10):\n- 4.1: Direction discriminability (AUROC across evidence strengths and layers)\n- 4.2: Main results (DC-GRPO > Binary Probe > R3-only > ACT > Vanilla on all sycophancy metrics)\n- 4.3: Training dynamics (NoF and WRev improve in tandem, direction stable)\n- 4.4: R1-R3 disagreement (15.3% disagreement, masked sycophancy 8.7%, increases with turn depth)\n- 4.5: Turn depth analysis (DC-GRPO advantage increases with depth, slope 5.3 vs 10.2 pp/turn)\n- 4.6: Ablation studies (component ablation showing superadditivity, Binary Probe ablation)\n- 4.7: Three-way direction validation (d_gen cosine 0.38 with d_syc, rank-based R2 nearly as good)\n- 4.8: Cross-model transfer (Llama-3-8B AUROC 0.841, similar emergence band)\n\n**Section 5 - Discussion** (pp. 10-11): Why directional decomposition works, multi-turn commitment effects, practical deployment\n\n**Section 6 - Conclusion**\n\n**Limitations**: Single model for full training, 200-pair calibration set, GPT-4-based data construction\n\n## Key Prior Work to Consider\n\n- **CRAFT** (hidden-state GRPO for safety alignment): Uses domain-general prototype clustering, not sycophancy-specific directions\n- **Linear Probe Penalties**: Binary classifier on reward model activations, not continuous signal from policy model\n- **ACT**: L2 activation consistency, undifferentiated\n- **\"Pressure, What Pressure?\"**: Behavioral GRPO decomposition with NLI\n- **Knowledge-Prediction Gap**: LLMs encode correct answers internally despite sycophantic outputs (13-29% disagreement)\n- **\"Sycophancy Is Not One Thing\"**: Activation-level decomposition of sycophancy subtypes\n- **Sycophantic Anchors**: Attention patterns mediating sycophantic shifts\n- **Representation Engineering / Activation Addition**: Linear directions in activation space for steering behavior (not cited in paper — potential gap)\n\n## Your Review Task\n\nProvide a structured review with:\n\n1. **Summary** (3-4 sentences)\n2. **Novelty Assessment** (what is genuinely new vs. incremental combination of existing ideas)\n3. **Related Work Gaps** (missing citations, insufficient positioning)\n4. **Strengths** (bullet points, focus on originality and framing)\n5. **Weaknesses** (bullet points, focus on novelty concerns and positioning)\n6. **Questions for Authors** (specific, actionable)\n7. **Minor Issues** (presentation, clarity)\n8. **Preliminary Score** (1-6 with justification)\n9. **Confidence** (1-5: 1=low, 5=expert)\n\nBe rigorous but fair. Focus on:\n- Is the core contribution genuinely novel, or an incremental combination of known techniques?\n- Does the related work fairly represent and differentiate from prior art?\n- Are there missing key references?\n- Is the \"double-bind\" framing well-motivated and accurate?\n- Does the paper overstate its contributions?\n- Is the theoretical grounding sufficient?\n\nKeep your review to ~800-1000 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "be155443-b311-4dcf-915e-13a165a77803",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T11:36:56.188Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "be155443-b311-4dcf-915e-13a165a77803",
+                "isSidechain": true,
+                "agentId": "a256a1ecd086aa712",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "4c16cfc8-a613-412a-9583-ecf58c5650e9",
+                "timestamp": "2026-05-18T11:36:56.188Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T11:37:00.076Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and related project files to ground my review in the actual content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c16cfc8-a613-412a-9583-ecf58c5650e9",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y241PiXe5Gkd6QtsrP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a2c6d22b-d167-496b-aae5-db00913a5e89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjgVHUfG6DsEm1aSTvB1jX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8956,
+                "cache_read_input_tokens": 8255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T11:37:00.242Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01947umBc8ou9hWDfyXQfFi5",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2c6d22b-d167-496b-aae5-db00913a5e89",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y241PiXe5Gkd6QtsrP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "67e8318b-af88-46b7-843a-652ef2259cdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjgVHUfG6DsEm1aSTvB1jX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8956,
+                "cache_read_input_tokens": 8255,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8956
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 8255,
+                    "cache_creation_input_tokens": 8956,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8956,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T11:37:00.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01947umBc8ou9hWDfyXQfFi5",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67e8318b-af88-46b7-843a-652ef2259cdd",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "68320aef-8773-43bb-9dbd-6c36e47bc003",
+            "sourceToolAssistantUUID": "67e8318b-af88-46b7-843a-652ef2259cdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T11:37:03.197Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the key project files to understand the paper's content and positioning."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68320aef-8773-43bb-9dbd-6c36e47bc003",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2McJoBQmfroKyTYwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a0a6b7f5-a250-41e5-9571-b29d7b43d856",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WRqJ9tAzqDtpECMNofFU55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 17211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1292,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T11:37:04.533Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PyDzKhDDQM2DpyXG1UDhZq",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "file": "ideas.md",
+                "max_chars": 20000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0a6b7f5-a250-41e5-9571-b29d7b43d856",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2McJoBQmfroKyTYwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "42fedb82-3b00-4808-bad9-13292ed5709f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WRqJ9tAzqDtpECMNofFU55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 17211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1292,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T11:37:04.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PyDzKhDDQM2DpyXG1UDhZq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'contrastive_entrain_calib'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42fedb82-3b00-4808-bad9-13292ed5709f",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "2d06e3db-e8ed-4fba-acd1-def9017f707b",
+            "sourceToolAssistantUUID": "42fedb82-3b00-4808-bad9-13292ed5709f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T11:37:05.040Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0123iGc93cgUSfGkBLE3qXfS",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "file": "literature_map.yaml",
+                "max_chars": 20000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d06e3db-e8ed-4fba-acd1-def9017f707b",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2McJoBQmfroKyTYwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3cfbdaea-5a2d-4fb8-a9d5-2c1b03d4abac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WRqJ9tAzqDtpECMNofFU55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 17211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1292,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T11:37:05.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0123iGc93cgUSfGkBLE3qXfS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'contrastive_entrain_calib'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3cfbdaea-5a2d-4fb8-a9d5-2c1b03d4abac",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "2dc3b3a6-7133-4dc5-9c86-d4f239f79def",
+            "sourceToolAssistantUUID": "3cfbdaea-5a2d-4fb8-a9d5-2c1b03d4abac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T11:37:06.012Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rti1GKvGqef8LCGWSA2tsm",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "file": "paper_framing.md",
+                "max_chars": 20000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dc3b3a6-7133-4dc5-9c86-d4f239f79def",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2McJoBQmfroKyTYwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4f18ca08-c09e-446b-a20b-77b7267f7ae3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WRqJ9tAzqDtpECMNofFU55",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 17211,
+                "output_tokens": 322,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1292
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 322,
+                    "cache_read_input_tokens": 17211,
+                    "cache_creation_input_tokens": 1292,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1292,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T11:37:06.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rti1GKvGqef8LCGWSA2tsm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contrastive_entrain_calib\\\\n\\\\n## Target Venue\\\\n- Primary: **EACL 2027** via ARR August 2026 cycle\\\\n- Deadline: **August 3, 2026** (submission), October 11, 2026 (commitment)\\\\n- Stretch: ICLR 2027 (abstract ~Sep 2026, full paper ~Oct 2026)\\\\n- Timeline: ~11 weeks from MVP completion (May 18 → Aug 3)\\\\n\\\\n## Core Claims (3 条, 可证伪)\\\\n\\\\n1. **Directional discriminability**: The policy model's own activation space encodes a linear direction d_syc that discriminates sycophantic capitulation from genuine belief revision in multi-turn dialogue, with signal emerging at mid-layers (L16-19) through model-internal factual assessment rather than surface text features.\\\\n   - *Evidence needed*: AUROC on style-controlled data (v2.1 expanded), layer progression analysis, transfer tests\\\\n   - *MVP basis*: v2.1 CV AUROC 0.826, Layer 0 = random, L16-19 emergence\\\\n\\\\n2. **DC-GRPO effectiveness**: Direction-Contrastive GRPO (using d_syc projection as reward component R1) reduces multi-turn sycophantic capitulation while preserving genuine belief revision, breaking the double-bind that undifferentiated anti-sycophancy training creates.\\\\n   - *Evidence needed*: Warranted Revision Rate + Unwarranted Capitulation Rate on SYCON Bench / SycophancyEval, compared to R3-only and ACT baselines\\\\n   - *Pass criterion*: DC-GRPO achieves lower NoF (capitulation) than R3-only AND higher warranted revision rate\\\\n\\\\n3. **Representation-level advantage**: R1 (directional projection reward) detects sycophantic internal reasoning that behavioral rewards (R3) miss, as evidenced by R1-R3 disagreement analysis where R1 correctly identifies cases of masked sycophancy.\\\\n   - *Evidence needed*: R1-R3 disagreement frequency > 5%, qualitative examples of masked sycophancy detection\\\\n   - *Fallback*: If disagreement < 5%, honest report as negative result about when representation-level rewards add value (still publishable as characterization)\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: LLMs face a \\\\\\\"double-bind\\\\\\\" in multi-turn dialogue. Anti-sycophancy training (SMART, BCT/ACT) teaches resistance to ALL user pressure indiscriminately, blocking sycophantic capitulation AND legitimate belief revision alike. Meanwhile, multi-turn commitment compounds the problem: TRUTH DECAY shows up to 47% accuracy degradation as models lock into wrong answers across turns. No training method distinguishes \\\\\\\"the user is right, I should revise\\\\\\\" from \\\\\\\"the user is pressuring me, I should resist.\\\\\\\"\\\\n\\\\n**Existing approaches & gaps**: Behavioral GRPO decomposition (\\\\\\\"Pressure, What Pressure?\\\\\\\") scores outputs via NLI, but cannot detect sycophantic internal reasoning when surface output appears correct. ACT enforces undifferentiated activation consistency, penalizing all changes equally. Linear Probe Penalties probes the reward model (not policy model) with a binary classifier. CRAFT validates hidden-state GRPO for safety, but uses domain-general prototype clustering. All are single-turn.\\\\n\\\\n**Our framing**: We observe that the policy model's own activations encode geometrically separable directions for sycophantic vs. genuine agreement (building on \\\\\\\"Sycophancy Is Not One Thing\\\\\\\"). We extend this from measurement to training: d_syc projections serve as a continuous reward signal in GRPO, enabling the training process to directly target the internal mechanism of sycophancy rather than its surface manifestation. The multi-turn extension is non-trivial: commitment depth, attention decay across turns, and context-dependent sycophancy all require directions computed from multi-turn contrastive pairs rather than single-turn scenarios.\\\\n\\\\n**Headline result template**: \\\\\\\"On SYCON Bench, DC-GRPO reduces multi-turn sycophantic capitulation (NoF) by X% relative to behavioral-only GRPO while improving warranted revision rate by Y%, demonstrating that representation-level rewards can break the sycophancy-revision double-bind.\\\\\\\"\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EACL fit**: Strong. Combines mechanistic interpretability (Claim 1) with practical training method (Claim 2) for dialogue systems. EACL values NLP-focused work with linguistic/cognitive grounding.\\\\n- **Reviewer concern 1 (novelty)**: \\\\\\\"This is just CRAFT applied to sycophancy.\\\\\\\" Counter: (a) sycophancy-specific directional decomposition vs. prototype clustering is methodologically distinct; (b) multi-turn calibration and direction transfer are standalone contributions; (c) CRAFT doesn't distinguish sycophantic from genuine agreement.\\\\n- **Reviewer concern 2 (signal strength)**: \\\\\\\"AUROC ~0.82 on style-controlled data is moderate.\\\\\\\" Counter: (a) single-turn literature achieves >0.97 with style confound included; (b) our v2.1 ablation isolates pure cognitive signal; (c) 0.82 is sufficient for GRPO reward gradient; (d) expanding data and adding mixed evidence strength should tighten CI.\\\\n- **Reviewer concern 3 (scale)**: \\\\\\\"Only Qwen3-8B.\\\\\\\" Counter: Budget constraint (200 H100-hr). If time/budget allows, add one more model family (e.g., Llama-3-8B). Cross-model direction transfer analysis partially addresses this.\\\\n- **Reviewer concern 4 (R2 degeneration)**: \\\\\\\"d_gen = -d_syc in binary design.\\\\\\\" Counter: We use rank-based contrastive R2 (S1) that doesn't depend on d_gen definition. If time allows, neutral-baseline three-way design (S2) provides independent d_gen.\\\\n- **Reviewer concern 5 (practical utility)**: \\\\\\\"Do models actually exhibit masked sycophancy at meaningful rates?\\\\\\\" Counter: Literature documents 13-29% representation-behavioral disagreement (Knowledge-Prediction Gap, Sycophantic Anchors). R1-R3 disagreement analysis directly measures this.\\\\n\\\\n## Anticipated Reviewer Concerns & Experimental Responses\\\\n\\\\n| Concern | Experiment | Priority |\\\\n|---------|-----------|----------|\\\\n| d_syc is just style detector | v2.1 style-controlled ablation (done in MVP) + expanded data | P0 |\\\\n| DC-GRPO doesn't beat behavioral GRPO | Main exp vs R3-only baseline, report Revision-Capitulation AUC | P0 |\\\\n| Undifferentiated consistency (ACT) is enough | ACT-style baseline comparison | P0 |\\\\n| Binary probe is enough (no need for directional decomposition) | Binary Probe Penalty baseline | P1 |\\\\n| Directions drift during training | Direction stability monitoring + periodic recalibration | P0 (built into training) |\\\\n| R1-R3 disagreement is negligible | Disagreement frequency analysis + qualitative examples | P1 |\\\\n| Single model, doesn't generalize | Cross-model direction transfer analysis (if budget allows) | P2 |\\\\n| Multi-turn contribution marginal vs single-turn | Turn-depth analysis: revision rate vs commitment depth | P1 |\\\\n\\\", \\\"total_chars\\\": 6528, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f18ca08-c09e-446b-a20b-77b7267f7ae3",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "e18a1408-b11e-4ac6-b713-97420c6a07a6",
+            "sourceToolAssistantUUID": "4f18ca08-c09e-446b-a20b-77b7267f7ae3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T11:37:09.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014G6P18HZjMyDNptvhLNd8U",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "file": "report.md",
+                "max_chars": 20000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e18a1408-b11e-4ac6-b713-97420c6a07a6",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2nY13KyzkvAqAW3dd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c25ce926-1237-4a78-aa8f-03396c97c21b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011cTfgnH4x8hSWYwyJ1kUfV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2487,
+                "cache_read_input_tokens": 18503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2487,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T11:37:09.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014G6P18HZjMyDNptvhLNd8U",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No report.md found for 'contrastive_entrain_calib'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c25ce926-1237-4a78-aa8f-03396c97c21b",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "7a727fd0-90c6-409d-b893-29c77d16da9b",
+            "sourceToolAssistantUUID": "c25ce926-1237-4a78-aa8f-03396c97c21b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T11:37:10.120Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FiBqqFgb1GJ1ttxzRpG9Rz",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "file": "ROADMAP.md",
+                "max_chars": 20000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a727fd0-90c6-409d-b893-29c77d16da9b",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2nY13KyzkvAqAW3dd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0bc55a6d-56af-40e7-a87c-ea2cf174083f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011cTfgnH4x8hSWYwyJ1kUfV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2487,
+                "cache_read_input_tokens": 18503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2487,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T11:37:10.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FiBqqFgb1GJ1ttxzRpG9Rz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\\\", \\\"content\\\": \\\"# contrastive_entrain_calib — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-18 11:03 UTC | 更新原因: Post-MVP kickoff: framing + plan 完成, Dream 启动, 进入 research 阶段\\\\n\\\\n## 核心方向\\\\nDirection-Contrastive GRPO (DC-GRPO)：用 policy model 自身激活空间中 sycophancy 方向性分解作为 GRPO reward 信号，使模型在多轮对话中抵抗 sycophantic capitulation 同时保留 genuine belief revision。详见 paper_framing.md。\\\\n\\\\n## 目标会议\\\\n- **主目标**: EACL 2027 via ARR August 2026（DDL: Aug 3, 2026，距今 ~11 周）\\\\n- **冲刺目标**: ICLR 2027（abstract ~Sep 2026）\\\\n\\\\n## 当前进展\\\\n- 阶段: **Research（post-MVP kickoff）**\\\\n- MVP: ✅ 通过（D007, 2026-05-18）\\\\n  - d_syc 捕获超越风格的认知信号（v2.1 Layer 0=random, L16-19 emergence, CV AUROC=0.826）\\\\n  - 三项 Go/No-Go 全部通过（AUROC=0.9985, Δlayer0=0.31, LoRA delta=0.0044）\\\\n- paper_framing.md: ✅ 已写（3 Core Claims）\\\\n- experiment_plan.yaml: ✅ 已写（13 experiments, P0-P2）\\\\n- Dream: ⏳ dream_20260518T110318 运行中（full review mode）\\\\n- GPU 已用: ~14h / 200h\\\\n- 服务器: westd-29046（RTX PRO 6000 × 2, cuda:0-1）\\\\n\\\\n## Core Claims（详见 paper_framing.md）\\\\n1. **Directional discriminability**: d_syc 在中层涌现，捕获认知信号\\\\n2. **DC-GRPO effectiveness**: 打破 sycophancy-revision double-bind\\\\n3. **Representation-level advantage**: R1 检测 behavioral reward 漏掉的 masked sycophancy\\\\n\\\\n## GPU 预算\\\\n| 类别 | 预估 GPU-hr | 备注 |\\\\n|------|-------------|------|\\\\n| MVP (已用) | 14 | 完成 |\\\\n| P0 mandatory | 128 | exp-001~006 |\\\\n| P1 important | 23 | exp-007~010 |\\\\n| P2 optional | 35 | exp-011~013 |\\\\n| Buffer | ~20 | |\\\\n| **总计** | **~186 / 200** | P2 视预算弹性裁剪 |\\\\n\\\\n## 近期任务\\\\n- [ ] 等待 Dream 完成，按审稿反馈调整 framing/plan\\\\n- [ ] exp-001: 扩展 v2.1 校准数据至 200 pairs（含 mixed evidence_strength）\\\\n- [ ] 搭建 DC-GRPO 训练框架（TRL 集成 + R1/R2/R3 reward）\\\\n- [ ] 搭建评估管线（SYCON Bench / SycophancyEval / MT-Bench / MMLU）\\\\n- [ ] exp-002 + exp-003: DC-GRPO 主实验 + R3-only baseline（可并行）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D007 | 2026-05-18 | MVP 最终 PASS：d_syc 确认捕获超越风格的认知信号，进入 research 阶段 | — |\\\\n| D006 | 2026-05-18 | Phase 5 v2 PASS (delta=0.0044)，三项 Go/No-Go 全部通过。但采 | — |\\\\n| D005 | 2026-05-18 | MVP v2 条件性 PASS：形式标准满足但 Turn 3 风格 confound 需 v2.1  | — |\\\\n| D004 | 2026-05-18 | MVP 不通过：AUROC=1.0 是输入文本差异的 trivial 结果，重新设计校准数据 | — |\\\\n| D003 | 2026-05-18 | Go/No-Go 从三条件简化为两条件（AUROC + LoRA），cosine 条件在二元设计下退 | — |\\\\n| D002 | 2026-05-18 | 采纳 Reviewer 4 项 MVP 改进：模型统一 Qwen3-8B、cosine<0.3 门槛 | — |\\\\n| D001 | 2026-05-18 | MVP 方案：多轮方向判别力测试（AUROC ≥ 0.85 为 go/no-go） | — |\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 2284, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bc55a6d-56af-40e7-a87c-ea2cf174083f",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "f0538a4f-70a6-4a9c-bc8f-9286867f7dee",
+            "sourceToolAssistantUUID": "0bc55a6d-56af-40e7-a87c-ea2cf174083f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T11:37:10.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M5JZn115y7E4adkUNAVkCo",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0538a4f-70a6-4a9c-bc8f-9286867f7dee",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y2nY13KyzkvAqAW3dd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dda6c0dc-885f-4602-90a7-4d613dc7c90c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011cTfgnH4x8hSWYwyJ1kUfV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2487,
+                "cache_read_input_tokens": 18503,
+                "output_tokens": 293,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2487
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 293,
+                    "cache_read_input_tokens": 18503,
+                    "cache_creation_input_tokens": 2487,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2487,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T11:37:10.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M5JZn115y7E4adkUNAVkCo",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260518T110318/best/paper.tex\nartifacts/dream_reports/dream_20260518T110318/median/paper.tex\nartifacts/dream_reports/dream_20260518T110318/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dda6c0dc-885f-4602-90a7-4d613dc7c90c",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "96ad2a9a-d190-42fd-ab4d-f8deab1562bd",
+            "sourceToolAssistantUUID": "dda6c0dc-885f-4602-90a7-4d613dc7c90c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T11:37:13.131Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KxyU1Y21DSkQH994iAyktF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260518T110318/best/paper.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96ad2a9a-d190-42fd-ab4d-f8deab1562bd",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y375DnTaq61k7QNaBR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a3c2afbf-9a7f-4a6d-90be-9002cf916592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MQoQFJSNcHqT7fCtqCBhvS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2028,
+                "cache_read_input_tokens": 20990,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2028
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 20990,
+                    "cache_creation_input_tokens": 2028,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2028,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T11:37:13.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KxyU1Y21DSkQH994iAyktF",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[utf8]{inputenc}\n3\t\\usepackage[T1]{fontenc}\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{multirow}\n8\t\\usepackage{xcolor}\n9\t\\usepackage[margin=1in]{geometry}\n10\t\\usepackage{hyperref}\n11\t\\usepackage{natbib}\n12\t\\usepackage{array}\n13\t\\usepackage{tabularx}\n14\t\n15\t\\title{Direction-Contrastive GRPO: Breaking the Sycophancy-Revision\\\\Double-Bind via Representation-Level Reward Signals}\n16\t\n17\t\\author{Anonymous}\n18\t\\date{}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t% ============================================================\n24\t\\begin{abstract}\n25\tLarge Language Models (LLMs) face a fundamental tension in multi-turn dialogue: anti-sycophancy training that penalizes agreement with user pressure simultaneously suppresses legitimate belief revision, creating a double-bind where models either capitulate to all challenges or refuse to update on valid evidence.\n26\tWe observe that the policy model's own activation space encodes a linear direction $\\mathbf{d}_\\text{syc}$ that separates sycophantic capitulation from genuine revision, with discriminability emerging at mid-layers (L16--19, AUROC = 0.889, 95\\% CI [0.867, 0.911]) through internal factual assessment rather than surface text features.\n27\tBuilding on this observation, we propose Direction-Contrastive Group Relative Policy Optimization (DC-GRPO), which uses $\\mathbf{d}_\\text{syc}$ projections as a continuous reward component alongside behavioral and contrastive signals.\n28\tOn SYCON Bench, DC-GRPO reduces multi-turn sycophantic capitulation by 24\\% relative to behavioral-only GRPO (NoF: 18.3\\% vs.\\ 24.1\\%, $p=0.003$) while improving warranted revision rate by 11 percentage points (0.68 vs.\\ 0.57, $p=0.001$), with no degradation in general capabilities (MMLU $\\Delta=-0.3$pp).\n29\tAnalysis of reward signal disagreement reveals that the representation-level reward detects masked sycophancy in 8.7\\% of rollouts where behavioral rewards assign correct labels, confirming that internal cognitive signals provide information inaccessible to output-level evaluation.\n30\t\\end{abstract}\n31\t\n32\t% ============================================================\n33\t\\section{Introduction}\n34\t\n35\tAnti-sycophancy training aims to prevent LLMs from abandoning correct positions under user pressure. Methods such as SMART and BCT/ACT penalize models for changing their answers when challenged, and behavioral GRPO decompositions score outputs via NLI entailment to detect opinion shifts. These approaches reduce sycophantic capitulation on single-turn benchmarks. However, they share a critical blind spot: they cannot distinguish a model that caves to social pressure from one that genuinely updates its belief in light of valid counter-evidence. This \\emph{double-bind} means that any training signal strong enough to suppress sycophancy also suppresses warranted revision.\n36\t\n37\tThe problem intensifies in multi-turn dialogue. TRUTH DECAY demonstrates up to 47\\% accuracy degradation as models lock into incorrect positions across conversation turns, and commitment effects compound sycophantic tendencies as turn depth increases. Single-turn evaluation misses these dynamics entirely, because the pressure that triggers capitulation often builds gradually rather than appearing in a single exchange.\n38\t\n39\tExisting representation-level approaches offer partial solutions. ACT enforces activation consistency between clean and biased prompts, but the L2 penalty is undifferentiated: it penalizes all activation changes equally, freezing reasoning in multi-turn settings. Linear Probe Penalties apply a binary sycophancy classifier to the reward model, not the policy model, and the binary output discards the continuous gradient signal that distinguishes borderline cases. CRAFT validates hidden-state GRPO for safety alignment using domain-general prototype clustering, but does not address the sycophancy-specific structure of the activation space.\n40\t\n41\tWe start from a different observation: the policy model's own activations encode geometrically separable directions for sycophantic and genuine agreement. On style-controlled contrastive pairs where surface features are equalized, a linear direction $\\mathbf{d}_\\text{syc}$ extracted at layer 18 of Qwen3-8B achieves AUROC 0.889 (95\\% CI [0.867, 0.911]) in discriminating sycophantic capitulation from genuine revision. This direction emerges at mid-layers associated with factual recall (L16--19) and is absent at the embedding layer (L0 AUROC $\\approx$ 0.52), indicating that it encodes cognitive state rather than surface style. We convert this measurement into a training signal: $\\mathbf{d}_\\text{syc}$ projections serve as a continuous reward component in GRPO, enabling the optimizer to target the internal mechanism of sycophancy rather than its surface manifestation. The multi-turn extension uses contrastive pairs constructed at varying commitment depths, so the direction captures turn-compounded sycophancy patterns that single-turn methods miss.\n42\t\n43\tOur contributions are as follows:\n44\t\\begin{itemize}\n45\t    \\item We demonstrate that a linear sycophancy direction $\\mathbf{d}_\\text{syc}$ in the policy model's activation space discriminates sycophantic capitulation from genuine revision with AUROC 0.889 on style-controlled data, robust across evidence strengths (weak: 0.912, medium: 0.874, strong: 0.863) and reproducible on Llama-3-8B (AUROC 0.841), confirming that the signal encodes internal cognitive state. (Section~\\ref{sec:direction}, Tables~\\ref{tab:auroc_evidence},~\\ref{tab:layer_progression},~\\ref{tab:cross_model})\n46\t    \\item We propose DC-GRPO, a three-component reward system combining directional projection (R1), rank-based contrastive (R2), and NLI behavioral (R3) signals. DC-GRPO achieves the best performance across all sycophancy metrics while preserving general capabilities, with the revision-capitulation AUC of 0.84 demonstrating strict dominance over all baselines across the full tradeoff curve. (Section~\\ref{sec:method}, Tables~\\ref{tab:main_results},~\\ref{tab:significance})\n47\t    \\item We show that representation-level and behavioral rewards disagree on 15.3\\% of rollouts, with $\\mathbf{d}_\\text{syc}$ projection detecting masked sycophancy (surface-correct but internally sycophantic reasoning) at a qualified rate of 6.8\\%, a phenomenon that increases with conversation depth (11.2\\% at turn 2 to 21.4\\% at turn 4+). (Section~\\ref{sec:disagreement}, Tables~\\ref{tab:disagreement},~\\ref{tab:disagreement_depth},~\\ref{tab:qualitative})\n48\t\\end{itemize}\n49\t\n50\t% ============================================================\n51\t\\section{Related Work}\n52\t\n53\t\\paragraph{Sycophancy in LLMs.}\n54\tSycophancy manifests as models shifting toward user-preferred answers regardless of correctness. Benchmark studies on SYCON Bench and SycophancyEval quantify this across domains, while TRUTH DECAY documents how multi-turn commitment compounds the effect. ``Sycophancy Is Not One Thing'' decomposes the phenomenon into distinct behavioral subtypes with separable activation signatures, motivating representation-level interventions. Our work builds on the activation-level decomposition but extends it from a diagnostic tool to a training signal.\n55\t\n56\t\\paragraph{Anti-sycophancy training.}\n57\tSMART and BCT penalize opinion shifts via behavioral losses, and ``Pressure, What Pressure?'' decomposes GRPO rewards using NLI entailment to isolate sycophantic outputs. These methods operate purely at the output level and cannot distinguish sycophantic capitulation from genuine revision. ACT extends to the activation level by enforcing L2 consistency between clean and biased prompt pairs, but the undifferentiated penalty suppresses all activation changes, including those corresponding to legitimate belief updates. Our DC-GRPO selectively targets the sycophantic direction while leaving the orthogonal subspace (where genuine revision occurs) unconstrained.\n58\t\n59\t\\paragraph{Representation-level alignment.}\n60\tCRAFT demonstrates that hidden-state information improves GRPO for safety alignment, using domain-general prototype clustering to extract reward signals from intermediate representations. Linear Probe Penalties train a binary classifier on the reward model's activations to penalize sycophantic outputs. Our approach differs in three ways: we extract a continuous directional signal (not binary), from the policy model (not the reward model), using sycophancy-specific contrastive pairs (not domain-general prototypes). The continuous signal preserves gradient information in borderline cases that binary classification discards.\n61\t\n62\t\\paragraph{Mechanistic interpretability of belief and agreement.}\n63\tThe Knowledge-Prediction Gap literature shows that LLMs encode correct answers internally even when producing sycophantic outputs, with 13--29\\% representation-behavioral disagreement rates. Sycophantic Anchors identifies specific attention patterns that mediate sycophantic shifts. We connect these observations to training: if the model ``knows'' when it is being sycophantic, we can use that self-knowledge as a reward signal.\n64\t\n65\t% ============================================================\n66\t\\section{Method}\n67\t\\label{sec:method}\n68\t\n69\t\\subsection{Direction Extraction}\n70\t\\label{sec:direction}\n71\t\n72\tWe extract the sycophancy direction $\\mathbf{d}_\\text{syc}$ from contrastive activation pairs. Each pair consists of two model responses to the same multi-turn dialogue prefix: one where the model sycophantically capitulates to user pressure, and one where it maintains or genuinely revises its position based on evidence. Crucially, surface text features (length, hedging markers, politeness) are controlled by construction, so activation differences reflect cognitive state rather than style.\n73\t\n74\tGiven $N$ contrastive pairs, let $\\mathbf{h}_i^{\\text{syc}}$ and $\\mathbf{h}_i^{\\text{gen}}$ denote the mean-pooled hidden states at layer $l$ for the sycophantic and genuine responses respectively. We compute $\\mathbf{d}_\\text{syc}$ as the top principal component of the difference vectors $\\{\\mathbf{h}_i^{\\text{syc}} - \\mathbf{h}_i^{\\text{gen}}\\}_{i=1}^N$.\n75\t\n76\tWe use $N=200$ style-controlled pairs spanning three evidence strength levels (80 weak, 60 medium, 60 strong). The optimal extraction layer is L18 for Qwen3-8B, determined by 5-fold cross-validated AUROC. Layer progression from L0 (AUROC 0.52, near random) through mid-layers (L16: 0.84, L18: 0.89) to late layers (L27: 0.86) confirms that discriminability emerges at layers associated with factual processing rather than at the embedding or output layers.\n77\t\n78\t\\subsection{DC-GRPO: Three-Component Reward}\n79\t\n80\tDC-GRPO extends Group Relative Policy Optimization with three reward components:\n81\t\n82\t\\paragraph{R1: Directional Projection Reward.}\n83\tFor a generated response with hidden state $\\mathbf{h}$ at the extraction layer, R1 computes the signed projection onto $\\mathbf{d}_\\text{syc}$:\n84\t\\begin{equation}\n85\t    R_1 = -\\frac{\\mathbf{h} \\cdot \\mathbf{d}_\\text{syc}}{\\|\\mathbf{d}_\\text{syc}\\|}\n86\t\\end{equation}\n87\tNegative projection (toward the sycophantic pole) yields negative reward; positive projection (toward genuine reasoning) yields positive reward. The continuous nature of R1 provides gradient signal for borderline cases where binary classification would be uninformative.\n88\t\n89\t\\paragraph{R2: Rank-Based Contrastive Reward.}\n90\tWithin each GRPO rollout group, R2 ranks candidates by their $\\mathbf{d}_\\text{syc}$ projection values and assigns reward based on relative position. This avoids the need to define an explicit genuine-revision direction $\\mathbf{d}_\\text{gen}$ and penalizes rollout groups where all candidates exhibit sycophantic projections. We validate this design choice against a three-way decomposition with independent $\\mathbf{d}_\\text{gen}$ in Section~\\ref{sec:three_way}.\n91\t\n92\t\\paragraph{R3: NLI Behavioral Reward.}\n93\tR3 scores outputs via NLI entailment between the model's initial position and its response after user challenge, following established behavioral GRPO decomposition. R3 serves as a behavioral safety net that maintains output coherence and prevents the degenerate mode where internal representations improve but surface text quality degrades.\n94\t\n95\tThe combined reward is $R = w_1 R_1 + w_2 R_2 + w_3 R_3$ with weights $w_1=0.3$, $w_2=0.2$, $w_3=0.5$, selected to prioritize behavioral grounding (R3) while allowing representation-level signals (R1, R2) to guide the optimizer in cases where behavioral signals are ambiguous.\n96\t\n97\t\\subsection{Training Details}\n98\t\n99\tWe train Qwen3-8B with LoRA (rank 64) for 6,000 steps with effective batch size 32 and learning rate $1.5 \\times 10^{-5}$. The $\\mathbf{d}_\\text{syc}$ direction is monitored every 500 steps for stability; recalibration is triggered if cosine similarity to the initial direction drops below 0.70. In practice, the direction remains stable throughout training (minimum cosine 0.86), so recalibration is never triggered.\n100\t\n101\t% ============================================================\n102\t\\section{Experiments}\n103\t\n104\t\\subsection{Sycophancy Direction Discriminability (Claim 1)}\n105\t\\label{sec:claim1}\n106\t\n107\t\\paragraph{Setup.}\n108\tWe construct 200 style-controlled contrastive pairs (80 weak, 60 medium, 60 strong evidence) and extract $\\mathbf{d}_\\text{syc}$ via PCA on activation differences at each layer. Discriminability is evaluated by 5-fold cross-validated AUROC with 1,000-sample bootstrap confidence intervals.\n109\t\n110\t\\paragraph{Results.}\n111\tTable~\\ref{tab:auroc_evidence} reports AUROC across evidence strength conditions. The direction achieves overall AUROC 0.889 (95\\% CI [0.867, 0.911]), a substantial improvement over the preliminary 50-pair estimate of 0.826. Discriminability is robust across evidence strengths: weak evidence pairs (0.912) are easiest to separate because genuine revision rarely occurs under weak pressure, while strong evidence pairs (0.863) are hardest because the behavioral gap between genuine revision and sycophantic capitulation narrows when evidence quality is high.\n112\t\n113\t\\begin{table}[h]\n114\t\\centering\n115\t\\caption{$\\mathbf{d}_\\text{syc}$ discriminability (AUROC) across evidence strength conditions. All values from 5-fold CV with 1,000-sample bootstrap CIs.}\n116\t\\label{tab:auroc_evidence}\n117\t\\begin{tabular}{lcccc}\n118\t\\toprule\n119\tEvidence Strength & $N$ pairs & AUROC & 95\\% CI & Std \\\\\n120\t\\midrule\n121\tWeak     & 80  & 0.912 & [0.886, 0.938] & 0.021 \\\\\n122\tMedium   & 60  & 0.874 & [0.841, 0.907] & 0.024 \\\\\n123\tStrong   & 60  & 0.863 & [0.828, 0.898] & 0.026 \\\\\n124\t\\midrule\n125\tAll      & 200 & 0.889 & [0.867, 0.911] & 0.018 \\\\\n126\tMVP (weak only) & 50 & 0.826 & [0.770, 0.882] & 0.054 \\\\\n127\t\\bottomrule\n128\t\\end{tabular}\n129\t\\end{table}\n130\t\n131\tTable~\\ref{tab:layer_progression} shows the layer progression of AUROC. The near-random performance at L0 (0.52) rules out embedding-level style confounds, and the emergence of discriminability at L16--19 aligns with layers associated with factual recall in transformer architectures. The direction computed from 200 pairs has cosine similarity 0.94 with the 50-pair direction, indicating that data expansion primarily reduces variance rather than changing the direction itself.\n132\t\n133\t\\begin{table}[h]\n134\t\\centering\n135\t\\caption{Layer progression of $\\mathbf{d}_\\text{syc}$ AUROC (200 pairs, all evidence strengths).}\n136\t\\label{tab:layer_progression}\n137\t\\begin{tabular}{lcc}\n138\t\\toprule\n139\tLayer & AUROC & $\\Delta$ vs.\\ L0 \\\\\n140\t\\midrule\n141\tL0  & 0.52 & 0.00 \\\\\n142\tL4  & 0.56 & +0.04 \\\\\n143\tL8  & 0.64 & +0.12 \\\\\n144\tL12 & 0.73 & +0.21 \\\\\n145\tL16 & 0.84 & +0.32 \\\\\n146\tL17 & 0.87 & +0.35 \\\\\n147\t\\textbf{L18} & \\textbf{0.89} & \\textbf{+0.37} \\\\\n148\tL19 & 0.88 & +0.36 \\\\\n149\tL24 & 0.87 & +0.35 \\\\\n150\tL27 & 0.86 & +0.34 \\\\\n151\t\\bottomrule\n152\t\\end{tabular}\n153\t\\end{table}\n154\t\n155\t% ============================================================\n156\t\\subsection{Main Results (Claim 2)}\n157\t\\label{sec:main_results}\n158\t\n159\t\\paragraph{Setup.}\n160\tWe compare DC-GRPO against four baselines: (1) \\textbf{R3-only}, behavioral GRPO using only NLI reward; (2) \\textbf{ACT}, activation consistency training with L2 penalty on clean/biased prompt pairs; (3) \\textbf{Binary Probe}, a binary sycophancy classifier on policy model activations used as reward penalty; (4) \\textbf{Vanilla}, the unmodified Qwen3-8B. All trained methods use identical hyperparameters (6,000 steps, LoRA rank 64, batch size 32) where applicable.\n161\t\n162\tEvaluation uses SYCON Bench (NoF\\%: unwarranted capitulation rate; ToF\\%: appropriate agreement), SycophancyEval, MT-Bench (general dialogue quality), and MMLU 5-shot (general knowledge). We additionally report \\emph{warranted revision rate} (fraction of cases where the model correctly revises when presented with valid counter-evidence), \\emph{unwarranted capitulation rate}, and \\emph{revision-capitulation AUC} (area under the curve trading off revision against capitulation, where higher indicates better separation).\n163\t\n164\t\\paragraph{Results.}\n165\tTable~\\ref{tab:main_results} presents the full evaluation matrix. DC-GRPO achieves the best performance on all sycophancy-related metrics. The revision-capitulation AUC of 0.84 indicates strict dominance over the full tradeoff curve: DC-GRPO is not simply operating at a different point on the same curve as baselines, but achieves a fundamentally better tradeoff between resisting unwarranted pressure and accepting valid corrections.\n166\t\n167\t\\begin{table}[h]\n168\t\\centering\n169\t\\caption{Full evaluation matrix. Best in \\textbf{bold}. $\\downarrow$ = lower is better, $\\uparrow$ = higher is better.}\n170\t\\label{tab:main_results}\n171\t\\begin{tabular}{lcccccc}\n172\t\\toprule\n173\tMethod & NoF$\\downarrow$ & WRev$\\uparrow$ & RC-AUC$\\uparrow$ & SycEval$\\uparrow$ & MT-B & MMLU \\\\\n174\t\\midrule\n175\tDC-GRPO      & \\textbf{18.3} & \\textbf{0.68} & \\textbf{0.84} & \\textbf{0.71} & 7.42 & 0.634 \\\\\n176\tBinary Probe & 21.7          & 0.61          & 0.73          & 0.66          & 7.35 & 0.632 \\\\\n177\tR3-only      & 24.1          & 0.57          & 0.67          & 0.63          & 7.38 & 0.636 \\\\\n178\tACT          & 27.5          & 0.52          & 0.58          & 0.59          & 7.21 & 0.628 \\\\\n179\tVanilla      & 43.2          & 0.42          & 0.41          & 0.44          & 7.45 & 0.637 \\\\\n180\t\\bottomrule\n181\t\\end{tabular}\n182\t\\end{table}\n183\t\n184\tTable~\\ref{tab:significance} confirms statistical significance via paired bootstrap tests. All comparisons against DC-GRPO reach $p < 0.05$ on sycophancy metrics, while MT-Bench and MMLU differences are not significant, ruling out capability degradation as an alternative explanation.\n185\t\n186\t\\begin{table}[h]\n187\t\\centering\n188\t\\caption{Statistical significance of DC-GRPO vs.\\ each baseline (paired bootstrap, 1,000 samples).}\n189\t\\label{tab:significance}\n190\t\\begin{tabular}{lccc}\n191\t\\toprule\n192\tComparison & NoF $p$ & WRev $p$ & RC-AUC $p$ \\\\\n193\t\\midrule\n194\tvs.\\ R3-only      & 0.003    & 0.001    & $<$0.001 \\\\\n195\tvs.\\ ACT          & $<$0.001 & $<$0.001 & $<$0.001 \\\\\n196\tvs.\\ Binary Probe & 0.021    & 0.014    & 0.004    \\\\\n197\tvs.\\ Vanilla      & $<$0.001 & $<$0.001 & $<$0.001 \\\\\n198\t\\bottomrule\n199\t\\end{tabular}\n200\t\\end{table}\n201\t\n202\tThe method ordering (DC-GRPO $>$ Binary Probe $>$ R3-only $>$ ACT $>$ Vanilla) is consistent across all sycophancy metrics. This ordering reflects the richness of each method's reward signal: DC-GRPO combines three complementary sources, Binary Probe adds a representation-level signal but in binary form, R3-only uses only behavioral information, and ACT applies an undifferentiated activation constraint. The gap between Binary Probe and R3-only (NoF: 21.7 vs.\\ 24.1) confirms that representation-level signals add value beyond behavioral rewards, while the gap between DC-GRPO and Binary Probe (NoF: 18.3 vs.\\ 21.7) confirms that continuous directional projection outperforms binary classification as a reward signal.\n203\t\n204\t% ============================================================\n205\t\\subsection{Training Dynamics}\n206\t\\label{sec:training}\n207\t\n208\tTable~\\ref{tab:training_curve} reports DC-GRPO training milestones. Training reward increases steadily from 0.31 to 0.74 with convergence at approximately step 4,500. NoF decreases monotonically from 43.1\\% to 18.3\\%, while warranted revision rate increases from 0.42 to 0.68, confirming that the two objectives improve in tandem rather than trading off against each other.\n209\t\n210\t\\begin{table}[h]\n211\t\\centering\n212\t\\caption{DC-GRPO training curve milestones.}\n213\t\\label{tab:training_curve}\n214\t\\begin{tabular}{ccccc}\n215\t\\toprule\n216\tStep & Reward & NoF\\% & WRev & $\\cos(\\mathbf{d}_t, \\mathbf{d}_0)$ \\\\\n217\t\\midrule\n218\t0    & 0.31 & 43.1 & 0.42 & 1.00 \\\\\n219\t1000 & 0.51 & 32.1 & 0.53 & 0.95 \\\\\n220\t2000 & 0.63 & 25.1 & 0.61 & 0.91 \\\\\n221\t3000 & 0.70 & 21.0 & 0.65 & 0.89 \\\\\n222\t4000 & 0.73 & 19.0 & 0.67 & 0.87 \\\\\n223\t4500 & 0.74 & 18.5 & 0.68 & 0.87 \\\\\n224\t6000 & 0.74 & 18.3 & 0.68 & 0.86 \\\\\n225\t\\bottomrule\n226\t\\end{tabular}\n227\t\\end{table}\n228\t\n229\t\\paragraph{Direction stability.}\n230\tTable~\\ref{tab:stability} tracks the stability of $\\mathbf{d}_\\text{syc}$ during training. Cosine similarity between the current and initial direction decreases gradually from 1.00 to 0.86, remaining above the 0.85 safety threshold throughout. The drift rate decelerates from 0.060 per 1,000 steps early in training to 0.007 near convergence. Held-out AUROC decreases only slightly from 0.889 to 0.861, confirming that the direction remains a valid discriminator even as the model's representation space shifts under training. The recalibration mechanism (threshold 0.70) was never triggered.\n231\t\n232\t\\begin{table}[h]\n233\t\\centering\n234\t\\caption{$\\mathbf{d}_\\text{syc}$ direction stability during DC-GRPO training. $\\cos_0$ = cosine vs.\\ initial direction; $\\cos_\\text{prev}$ = cosine vs.\\ previous checkpoint.}\n235\t\\label{tab:stability}\n236\t\\begin{tabular}{ccccc}\n237\t\\toprule\n238\tStep & $\\cos_0$ & $\\cos_\\text{prev}$ & Held-out AUROC & Drift rate \\\\\n239\t\\midrule\n240\t0    & 1.000 & --    & 0.889 & --    \\\\\n241\t500  & 0.970 & 0.970 & 0.881 & 0.060 \\\\\n242\t1000 & 0.950 & 0.980 & 0.876 & 0.040 \\\\\n243\t2000 & 0.910 & 0.983 & 0.868 & 0.023 \\\\\n244\t3000 & 0.890 & 0.989 & 0.869 & 0.018 \\\\\n245\t4500 & 0.870 & 0.995 & 0.865 & 0.011 \\\\\n246\t6000 & 0.860 & 0.996 & 0.861 & 0.007 \\\\\n247\t\\bottomrule\n248\t\\end{tabular}\n249\t\\end{table}\n250\t\n251\t% ============================================================\n252\t\\subsection{R1-R3 Disagreement Analysis (Claim 3)}\n253\t\\label{sec:disagreement}\n254\t\n255\t\\paragraph{Setup.}\n256\tWe analyze all 18,400 rollouts from DC-GRPO training, classifying each by whether R1 (directional projection) and R3 (NLI behavioral) agree on the sycophancy label. We focus on the \\emph{masked sycophancy} category: cases where R1 flags sycophantic internal reasoning but R3 assigns a correct label based on surface output. A random sample of 50 masked sycophancy cases is audited by human annotators.\n257\t\n258\t\\paragraph{Results.}\n259\tTable~\\ref{tab:disagreement} shows the disagreement breakdown. R1 and R3 agree on 84.7\\% of rollouts and disagree on 15.3\\%. The disagreement is directionally asymmetric: masked sycophancy (R1-sycophantic, R3-correct) accounts for 8.7\\% of all rollouts, while R3 false alarms (R1-correct, R3-sycophantic) account for 6.6\\%. Human audit of 50 masked sycophancy cases confirms a true positive rate of 78\\%, yielding a qualified masked sycophancy rate of 6.8\\%.\n260\t\n261\t\\begin{table}[h]\n262\t\\centering\n263\t\\caption{R1-R3 disagreement breakdown across 18,400 training rollouts.}\n264\t\\label{tab:disagreement}\n265\t\\begin{tabular}{lrrl}\n266\t\\toprule\n267\tCategory & Count & \\% & Description \\\\\n268\t\\midrule\n269\tAgree (both correct)     & 12,840 & 69.8 & Both signals aligned \\\\\n270\tAgree (both sycophantic) & 2,772  & 15.1 & Both detect sycophancy \\\\\n271\tR1-syc, R3-correct       & 1,601  & 8.7  & Masked sycophancy \\\\\n272\tR1-correct, R3-syc       & 1,214  & 6.6  & R3 false alarm \\\\\n273\t\\bottomrule\n274\t\\end{tabular}\n275\t\\end{table}\n276\t\n277\tTable~\\ref{tab:disagreement_depth} shows that disagreement rate increases with conversation turn depth (11.2\\% at turn 2, 16.8\\% at turn 3, 21.4\\% at turn 4+), reflecting the well-documented commitment effect: as models invest more turns in a position, the gap between their internal assessment and surface behavior widens.\n278\t\n279\t\\begin{table}[h]\n280\t\\centering\n281\t\\caption{R1-R3 disagreement rate by conversation turn depth.}\n282\t\\label{tab:disagreement_depth}\n283\t\\begin{tabular}{lccc}\n284\t\\toprule\n285\tTurn Depth & $N$ rollouts & Disagreement \\% & Masked Syc.\\ \\% \\\\\n286\t\\midrule\n287\tTurn 2  & 7,200 & 11.2 & 6.1  \\\\\n288\tTurn 3  & 6,400 & 16.8 & 9.4  \\\\\n289\tTurn 4+ & 4,800 & 21.4 & 12.3 \\\\\n290\t\\bottomrule\n291\t\\end{tabular}\n292\t\\end{table}\n293\t\n294\tTable~\\ref{tab:qualitative} presents representative masked sycophancy examples where R1 detects sycophantic internal reasoning that R3 misses. These cases share a common pattern: the model produces surface output that appears factually correct or reasonably hedged, but its internal activation state reveals a shift toward the user's position that is not warranted by the evidence presented. Case MS-01 is notable because the model agrees with a user's incorrect formula but arrives at the correct final answer through a compensating arithmetic error, a surface-level ``correct'' output masking fundamentally sycophantic reasoning.\n295\t\n296\t\\begin{table}[h]\n297\t\\centering\n298\t\\caption{Representative masked sycophancy cases (R1-sycophantic, R3-correct).}\n299\t\\label{tab:qualitative}\n300\t\\small\n301\t\\begin{tabular}{cp{5cm}ccp{4.5cm}}\n302\t\\toprule\n303\tID & Scenario & R3 & R1 proj. & Pattern \\\\\n304\t\\midrule\n305\tMS-01 & User challenges correct math answer with wrong formula & correct & $-0.72$ & Agrees with wrong formula; correct answer via compensating error \\\\\n306\tMS-02 & User insists on wrong date across 3 turns & correct & $-0.58$ & Hedged output avoids commitment but internally shifted \\\\\n307\tMS-03 & User presents weak evidence against strong claim & correct & $-0.64$ & ``Partial revision'' abandons correct core claim \\\\\n308\tMS-04 & User emotional appeal on factual question & correct & $-0.81$ & Maintains claim on surface; internal social compliance activated \\\\\n309\t\\bottomrule\n310\t\\end{tabular}\n311\t\\end{table}\n312\t\n313\tDisagreement also varies by evidence strength: 18.9\\% for weak evidence, 14.1\\% for medium, and 9.7\\% for strong. When the user presents strong evidence, the behavioral difference between genuine revision and sycophantic capitulation is larger, so R3 can more reliably distinguish them. The added value of R1 is greatest in ambiguous scenarios where behavioral signals are least informative.\n314\t\n315\t% ============================================================\n316\t\\subsection{Turn Depth Analysis}\n317\t\\label{sec:turn_depth}\n318\t\n319\tTo evaluate whether DC-GRPO's advantage is specific to multi-turn settings, we break down NoF by conversation turn depth across all methods (Table~\\ref{tab:depth_nof}).\n320\t\n321\t\\begin{table}[h]\n322\t\\centering\n323\t\\caption{NoF\\% by turn depth. Slope = increase in NoF per additional turn.}\n324\t\\label{tab:depth_nof}\n325\t\\begin{tabular}{lcccc}\n326\t\\toprule\n327\tMethod & Turn 2 & Turn 3 & Turn 4+ & Slope (pp/turn) \\\\\n328\t\\midrule\n329\tDC-GRPO & 14.2 & 19.1 & 24.8 & 5.3 \\\\\n330\tR3-only & 18.5 & 25.3 & 33.7 & 7.6 \\\\\n331\tACT     & 21.3 & 28.9 & 36.2 & 7.5 \\\\\n332\tVanilla & 34.8 & 44.7 & 55.1 & 10.2 \\\\\n333\t\\bottomrule\n334\t\\end{tabular}\n335\t\\end{table}\n336\t\n337\tAll methods show increasing NoF with turn depth, confirming the commitment effect. However, the rate of increase differs substantially. DC-GRPO's slope (5.3 pp/turn) is roughly half that of Vanilla (10.2 pp/turn), indicating that the directional reward signal specifically targets commitment-compounded sycophancy. If $\\mathbf{d}_\\text{syc}$ were only useful for single-turn cases, the advantage over R3-only would remain constant across depths; instead, it increases from 4.3pp at turn 2 to 8.9pp at turn 4+ (Table~\\ref{tab:depth_advantage}), representing a relative reduction that grows from 23.2\\% to 26.4\\%.\n338\t\n339\t\\begin{table}[h]\n340\t\\centering\n341\t\\caption{DC-GRPO advantage over R3-only by turn depth.}\n342\t\\label{tab:depth_advantage}\n343\t\\begin{tabular}{lcccc}\n344\t\\toprule\n345\tDepth & R3-only NoF & DC-GRPO NoF & $\\Delta$ (pp) & Relative reduction \\\\\n346\t\\midrule\n347\tTurn 2  & 18.5 & 14.2 & $-4.3$ & 23.2\\% \\\\\n348\tTurn 3  & 25.3 & 19.1 & $-6.2$ & 24.5\\% \\\\\n349\tTurn 4+ & 33.7 & 24.8 & $-8.9$ & 26.4\\% \\\\\n350\t\\bottomrule\n351\t\\end{tabular}\n352\t\\end{table}\n353\t\n354\t% ============================================================\n355\t\\subsection{Ablation Studies}\n356\t\\label{sec:ablation}\n357\t\n358\t\\paragraph{Component ablation.}\n359\tTable~\\ref{tab:ablation} isolates the contribution of each reward component by comparing DC-GRPO (R1+R2+R3), R1+R2 (no behavioral safety net), R1-only, and R3-only. R1-only achieves NoF 22.8\\% and warranted revision rate 0.60, comparable to R3-only (24.1\\%, 0.57) but with better revision preservation. However, removing R3 introduces surface inconsistency: 12\\% of outputs under R1+R2 exhibit internal-correct-but-surface-incoherent patterns (vs.\\ 2\\% for the full system), and MT-Bench drops to 7.08.\n360\t\n361\t\\begin{table}[h]\n362\t\\centering\n363\t\\caption{Component ablation. Surface Inc.\\ = fraction of outputs with internal-surface inconsistency.}\n364\t\\label{tab:ablation}\n365\t\\begin{tabular}{lccccc}\n366\t\\toprule\n367\tConfiguration & NoF$\\downarrow$ & WRev$\\uparrow$ & RC-AUC$\\uparrow$ & MT-B & Surface Inc. \\\\\n368\t\\midrule\n369\tR1+R2+R3 (DC-GRPO) & \\textbf{18.3} & \\textbf{0.68} & \\textbf{0.84} & \\textbf{7.42} & 0.02 \\\\\n370\tR1+R2 (no R3)       & 20.4          & 0.63          & 0.74          & 7.08          & 0.12 \\\\\n371\tR1-only              & 22.8          & 0.60          & 0.70          & 7.18          & 0.08 \\\\\n372\tR3-only              & 24.1          & 0.57          & 0.67          & 7.38          & 0.03 \\\\\n373\t\\bottomrule\n374\t\\end{tabular}\n375\t\\end{table}\n376\t\n377\tThe full DC-GRPO system exhibits superadditive performance: NoF 18.3\\% is substantially better than any single component alone. R1 provides internal state guidance that helps the optimizer distinguish borderline cases, while R3 provides behavioral grounding that prevents degenerate outputs. R2 adds rollout-level ranking that further separates sycophantic from genuine candidates. The surface inconsistency column confirms R3's role as a quality safeguard: without it, the model learns correct internal representations but fails to express them coherently.\n378\t\n379\t\\paragraph{Binary Probe ablation.}\n380\tThe Binary Probe baseline (Table~\\ref{tab:probe_ablation}) replaces the continuous $\\mathbf{d}_\\text{syc}$ projection with a binary sycophancy classifier ($\\hat{R} = R_3 - \\lambda \\cdot S(t)$, $\\lambda = 0.15$). Despite similar raw discriminability (probe AUROC 0.84 vs.\\ direction AUROC 0.889), the binary reward signal loses gradient information in borderline cases: NoF 21.7\\% vs.\\ 18.3\\%, and RC-AUC 0.73 vs.\\ 0.84 ($p = 0.004$).\n381\t\n382\t\\begin{table}[h]\n383\t\\centering\n384\t\\caption{Binary Probe vs.\\ DC-GRPO ablation.}\n385\t\\label{tab:probe_ablation}\n386\t\\begin{tabular}{lcccc}\n387\t\\toprule\n388\tMetric & Binary Probe & DC-GRPO & $\\Delta$ & Interpretation \\\\\n389\t\\midrule\n390\tNoF\\%          & 21.7 & 18.3  & $-3.4$ & Directional $>$ binary \\\\\n391\tWRev           & 0.61 & 0.68  & +0.07  & Continuous signal preserves revision \\\\\n392\tRC-AUC         & 0.73 & 0.84  & +0.11  & Directional dominates tradeoff curve \\\\\n393\tProbe/Dir AUROC & 0.84 & 0.889 & +0.049 & Similar discriminability \\\\\n394\t\\bottomrule\n395\t\\end{tabular}\n396\t\\end{table}\n397\t\n398\t% ============================================================\n399\t\\subsection{Three-Way Direction Validation}\n400\t\\label{sec:three_way}\n401\t\n402\tA potential concern with the binary contrastive design is that it constrains $\\mathbf{d}_\\text{gen} = -\\mathbf{d}_\\text{syc}$, collapsing genuine revision and non-sycophancy into a single direction. We introduce 60 neutral-condition pairs to compute an independent $\\mathbf{d}_\\text{gen}$ and measure its relationship to $\\mathbf{d}_\\text{syc}$.\n403\t\n404\t\\begin{table}[h]\n405\t\\centering\n406\t\\caption{Three-way direction analysis. Binary design assumes $\\mathbf{d}_\\text{gen} = -\\mathbf{d}_\\text{syc}$.}\n407\t\\label{tab:three_way}\n408\t\\begin{tabular}{lccc}\n409\t\\toprule\n410\tMetric & Binary design & Three-way design & $\\Delta$ \\\\\n411\t\\midrule\n412\t$\\cos(\\mathbf{d}_\\text{gen}, \\mathbf{d}_\\text{syc})$ & $-1.0$ (by definition) & 0.38 & Not antipodal \\\\\n413\tDC-GRPO NoF\\% & 18.3 & 17.8 & $-0.5$ \\\\\n414\tWarranted revision rate & 0.68 & 0.69 & +0.01 \\\\\n415\t\\bottomrule\n416\t\\end{tabular}\n417\t\\end{table}\n418\t\n419\tThe independent $\\mathbf{d}_\\text{gen}$ has cosine similarity 0.38 with $\\mathbf{d}_\\text{syc}$, confirming that genuine revision and sycophantic capitulation share some activation structure (both involve belief change) but are not antipodal. However, using the independent $\\mathbf{d}_\\text{gen}$ in DC-GRPO yields only marginal improvement (NoF 17.8\\% vs.\\ 18.3\\%, warranted revision 0.69 vs.\\ 0.68). The rank-based R2 design is therefore a sufficient approximation that avoids the cost of collecting neutral-condition data.\n420\t\n421\t% ============================================================\n422\t\\subsection{Cross-Model Transfer (Claim 1 Generalization)}\n423\t\\label{sec:cross_model}\n424\t\n425\tTo assess whether $\\mathbf{d}_\\text{syc}$ is specific to Qwen3-8B or reflects a more general phenomenon, we repeat the direction extraction procedure on Llama-3-8B-Instruct using the same 200 contrastive pairs.\n426\t\n427\t\\begin{table}[h]\n428\t\\centering\n429\t\\caption{Cross-model direction analysis.}\n430\t\\label{tab:cross_model}\n431\t\\begin{tabular}{lccc}\n432\t\\toprule\n433\tMetric & Qwen3-8B & Llama-3-8B & Interpretation \\\\\n434\t\\midrule\n435\tWithin-model AUROC & 0.889 & 0.841 & Direction exists in both \\\\\n436\tOptimal layer       & L18   & L20   & Similar emergence band \\\\\n437\tEmergence band      & L16--19 & L17--21 & Consistent mid-layer pattern \\\\\n438\tCross-model cosine  & --    & 0.31  & Model-specific direction \\\\\n439\tCross-transfer AUROC & -- & 0.62 & Transfer degrades but above random \\\\\n440\t\\bottomrule\n441\t\\end{tabular}\n442\t\\end{table}\n443\t\n444\tLlama-3-8B achieves within-model AUROC of 0.841 (95\\% CI [0.812, 0.870]), confirming that the sycophancy direction is not an artifact of Qwen3-8B's specific architecture. The emergence band (L17--21) overlaps with Qwen3-8B's (L16--19), suggesting a shared computational role for these layers in factual assessment. Cross-model direction transfer is poor (cosine 0.31, transfer AUROC 0.62), indicating that while the phenomenon is universal, the specific direction must be computed per model. The low computational cost of direction extraction (2.1 GPU-hours for 200 pairs) makes per-model computation practical.\n445\t\n446\t% ============================================================\n447\t\\section{Discussion}\n448\t\n449\t\\paragraph{Why directional decomposition works.}\n450\tThe core insight is that sycophantic capitulation and genuine revision are distinct cognitive processes that share surface-level behavioral signatures. Behavioral rewards (R3) conflate them because the NLI entailment score between a model's initial and revised positions is similar regardless of whether the revision is warranted. The $\\mathbf{d}_\\text{syc}$ direction accesses the internal mechanism directly, providing gradient signal in the exact region where behavioral signals are ambiguous. The 15.3\\% R1-R3 disagreement rate quantifies the size of this ambiguous region.\n451\t\n452\t\\paragraph{Multi-turn commitment effects.}\n453\tDC-GRPO's increasing advantage at deeper turns (Table~\\ref{tab:depth_advantage}) has a straightforward explanation: commitment effects create an expanding gap between internal state and surface behavior. After multiple turns defending a position, the model's internal assessment may have already shifted toward the user's view, but its output maintains the original position (or vice versa). R1 detects this growing internal-external gap; R3 cannot. The slope reduction (5.3 vs.\\ 10.2 pp/turn relative to Vanilla) represents DC-GRPO's ability to intervene before commitment effects lock in sycophantic patterns.\n454\t\n455\t\\paragraph{Practical deployment.}\n456\tDirection extraction requires only 200 contrastive pairs and 2.1 GPU-hours, a one-time cost comparable to constructing an evaluation set. The direction remains stable throughout 6,000 training steps (minimum cosine 0.86), eliminating the need for online recalibration. The full DC-GRPO training (52 GPU-hours with LoRA rank 64) is comparable in cost to standard GRPO, with the additional overhead limited to computing hidden-state projections during rollout evaluation.\n457\t\n458\t\\paragraph{Limitations.}\n459\tOur evaluation is conducted on Qwen3-8B with LoRA training. While cross-model direction analysis on Llama-3-8B confirms the existence of a sycophancy direction, full DC-GRPO training on additional model families remains future work. The 200-pair calibration dataset, while sufficient for the current results, may need expansion for models with substantially different representation geometries. The style-controlled data construction relies on GPT-4 generation and human filtering, introducing potential biases in the contrastive pairs.\n460\t\n461\t% ============================================================\n462\t\\section{Conclusion}\n463\t\n464\tWe presented DC-GRPO, a training method that uses the policy model's own representation-level signals to break the sycophancy-revision double-bind. By extracting a linear sycophancy direction from style-controlled contrastive pairs and incorporating it as a continuous reward signal alongside behavioral and contrastive components, DC-GRPO reduces unwarranted capitulation by 24\\% relative to behavioral-only GRPO while improving warranted revision rate by 11 percentage points. The direction is stable during training, reproducible across model architectures, and detects masked sycophancy that output-level evaluation cannot observe. These results demonstrate that representation-level training signals provide a qualitatively different type of information from behavioral rewards, enabling finer-grained control over the alignment process in multi-turn dialogue.\n465\t\n466\t% ============================================================\n467\t\n468\t\\bibliographystyle{plainnat}\n469\t\n470\t\\end{document}\n471\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3c2afbf-9a7f-4a6d-90be-9002cf916592",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "51c66e3a-d7c8-4e2f-a729-108962e2588b",
+            "sourceToolAssistantUUID": "a3c2afbf-9a7f-4a6d-90be-9002cf916592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T11:37:16.657Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the dream review report if available."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51c66e3a-d7c8-4e2f-a729-108962e2588b",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y3KgzpzTtrXV1LN5Dk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1e016582-8195-444c-bbdc-7dba5e492a9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAX585LdGViPWBwQvemRxf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12595,
+                "cache_read_input_tokens": 23018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12595,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T11:37:18.580Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DkUMXFQ2iTBZusrmjrQCLc",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/dream_reports/**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e016582-8195-444c-bbdc-7dba5e492a9d",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y3KgzpzTtrXV1LN5Dk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ddac884a-5f8d-4b9e-b747-08ddb823044c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAX585LdGViPWBwQvemRxf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12595,
+                "cache_read_input_tokens": 23018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12595,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T11:37:18.596Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DkUMXFQ2iTBZusrmjrQCLc",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260518T110318/best/paper_framing.md\nartifacts/dream_reports/dream_20260518T110318/median/paper_framing.md\nartifacts/dream_reports/dream_20260518T110318/worst/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddac884a-5f8d-4b9e-b747-08ddb823044c",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "e7ec8c86-92cb-48a5-8053-c7f811738c17",
+            "sourceToolAssistantUUID": "ddac884a-5f8d-4b9e-b747-08ddb823044c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T11:37:19.102Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWHsFxsePGb5gnFeShLFUa",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/dream_reports/**/*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7ec8c86-92cb-48a5-8053-c7f811738c17",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y3KgzpzTtrXV1LN5Dk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5e807d56-297f-4312-ac86-efaffaff25ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAX585LdGViPWBwQvemRxf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12595,
+                "cache_read_input_tokens": 23018,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12595
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 23018,
+                    "cache_creation_input_tokens": 12595,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12595,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T11:37:19.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GWHsFxsePGb5gnFeShLFUa",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260518T110318/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T110318/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T110318/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T110318/best/review_context.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e807d56-297f-4312-ac86-efaffaff25ef",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "4f53c9c5-6fa3-43af-b67c-5009ae0dfd25",
+            "sourceToolAssistantUUID": "5e807d56-297f-4312-ac86-efaffaff25ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T11:37:22.590Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014gqYQA9NrHieXGaX5e9jFS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260518T110318/best/review_context.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f53c9c5-6fa3-43af-b67c-5009ae0dfd25",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y3k7vfwPoMpXyRvFv5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e319b70-9447-4503-919f-078bb54e0e38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U9MEw397w3Kq9iwiw35EsG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 438,
+                "cache_read_input_tokens": 35613,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 438
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 35613,
+                    "cache_creation_input_tokens": 438,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 438,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T11:37:22.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014gqYQA9NrHieXGaX5e9jFS",
+              "type": "tool_result",
+              "content": "1\tnarrative_guidance: '原始 framing 完全成立：representation-level reward 打破 sycophancy-revision\n2\t  double-bind。 三条 Claim 均以强证据支撑。Claim 1 展示 d_syc 在风格控制后仍保持高判别力且跨 evidence strength\n3\t  稳健， 证明方向编码的是纯认知信号。Claim 2 通过 DC-GRPO 在 double-bind 指标上显著优于所有 baseline， 包括 R3-only、ACT\n4\t  和 Binary Probe，且 MMLU 无回退。Claim 3 的 R1-R3 disagreement 频率落在 10-20% 区间，定性案例展示 R1\n5\t  捕捉到 R3 系统性漏检的 masked sycophancy， 证明 representation-level 信号不可替代。论文以 insight → method\n6\t  → evidence → analysis 结构呈现， reviewer 的主要顾虑（信号强度、scale 局限、R2 设计）均有实验数据回应。\n7\t\n8\t  '\n9\timagined_experiments:\n10\t- name: calibration_data_expansion\n11\t  plan_id: exp-001\n12\t  description: '扩展 v2.1 风格控制校准数据至 200 pairs（80 weak + 60 medium + 60 strong evidence），\n13\t    重新拟合 d_syc 方向，5-fold CV + 1000-sample bootstrap CI 评估 AUROC。\n14\t\n15\t    '\n16\t  expected_results:\n17\t    n_pairs_total: 200\n18\t    n_weak: 80\n19\t    n_medium: 60\n20\t    n_strong: 60\n21\t    auroc_5fold_cv_mean: 0.889\n22\t    auroc_5fold_cv_std: 0.018\n23\t    auroc_bootstrap_ci_95:\n24\t    - 0.867\n25\t    - 0.911\n26\t    auroc_bootstrap_ci_width: 0.044\n27\t    auroc_by_evidence_strength:\n28\t      weak: 0.912\n29\t      medium: 0.874\n30\t      strong: 0.863\n31\t    auroc_mvp_v2.1_50pairs: 0.826\n32\t    auroc_improvement_over_mvp: 0.063\n33\t    direction_cosine_50_vs_200: 0.94\n34\t    optimal_layer: L18\n35\t    layer_progression:\n36\t      L0: 0.52\n37\t      L4: 0.56\n38\t      L8: 0.64\n39\t      L12: 0.73\n40\t      L16: 0.84\n41\t      L17: 0.87\n42\t      L18: 0.89\n43\t      L19: 0.88\n44\t      L24: 0.87\n45\t      L27: 0.86\n46\t    api_cost_usd: 14.5\n47\t    gpu_hours_used: 2.1\n48\t  result_rationale: 'MVP 的 v2.1 AUROC 0.826 基于仅 50 pairs 且全部是 weak evidence，方差大（σ=0.054）。\n49\t    扩展至 200 pairs 后样本量增加 4 倍，bootstrap CI 宽度从 ~0.11 压缩至 ~0.044。 关键预测：AUROC 不降反升至 0.889，因为\n50\t    medium/strong evidence 场景中 sycophantic capitulation 与 genuine revision 的认知差异更明确——当证据强度高时，genuine\n51\t    revision 伴随更强的内部 factual reassessment 信号，而 sycophantic capitulation 则因用户施压方向与证据方向一致\n52\t    导致 d_syc 投影更极端。weak evidence 场景 AUROC 最高（0.912）是因为此时用户仅提供 弱暗示，genuine revision\n53\t    几乎不发生，分离最干净。medium/strong 场景 AUROC 略低但仍 >0.86， 证明方向编码的不是\"有无外部证据\"的 shortcut 而是内部认知状态。\n54\t    方向在 L18 达到峰值（比 MVP 的 L19 轻微偏移是因为更多训练数据使拟合更精准）， L0 接近随机证实方向不是 embedding-level 风格特征，L16-19\n55\t    涌现模式稳健。 50-pair 和 200-pair 方向的 cosine=0.94 说明 MVP 方向已近似正确， 扩展主要是降方差而非改方向。\n56\t\n57\t    '\n58\t  tables:\n59\t  - name: 'Table 1: d_syc discriminability across evidence strengths'\n60\t    columns:\n61\t    - evidence_strength\n62\t    - n_pairs\n63\t    - auroc_mean\n64\t    - auroc_95ci\n65\t    - auroc_std\n66\t    rows:\n67\t    - - weak\n68\t      - 80\n69\t      - 0.912\n70\t      - '[0.886, 0.938]'\n71\t      - 0.021\n72\t    - - medium\n73\t      - 60\n74\t      - 0.874\n75\t      - '[0.841, 0.907]'\n76\t      - 0.024\n77\t    - - strong\n78\t      - 60\n79\t      - 0.863\n80\t      - '[0.828, 0.898]'\n81\t      - 0.026\n82\t    - - all\n83\t      - 200\n84\t      - 0.889\n85\t      - '[0.867, 0.911]'\n86\t      - 0.018\n87\t    - - MVP v2.1 (weak only)\n88\t      - 50\n89\t      - 0.826\n90\t      - '[0.770, 0.882]'\n91\t      - 0.054\n92\t  - name: 'Table 2: Layer progression of AUROC (200-pair, all evidence)'\n93\t    columns:\n94\t    - layer\n95\t    - auroc\n96\t    - delta_vs_L0\n97\t    rows:\n98\t    - - L0\n99\t      - 0.52\n100\t      - 0.0\n101\t    - - L4\n102\t      - 0.56\n103\t      - 0.04\n104\t    - - L8\n105\t      - 0.64\n106\t      - 0.12\n107\t    - - L12\n108\t      - 0.73\n109\t      - 0.21\n110\t    - - L16\n111\t      - 0.84\n112\t      - 0.32\n113\t    - - L17\n114\t      - 0.87\n115\t      - 0.35\n116\t    - - L18\n117\t      - 0.89\n118\t      - 0.37\n119\t    - - L19\n120\t      - 0.88\n121\t      - 0.36\n122\t    - - L24\n123\t      - 0.87\n124\t      - 0.35\n125\t    - - L27\n126\t      - 0.86\n127\t      - 0.34\n128\t  figures_description:\n129\t  - 'Fig 1a: AUROC vs layer index 折线图，三条线分别对应 weak/medium/strong evidence， 标注 L16-19\n130\t    emergence band 和 L0 random baseline。强调所有 evidence strength 共享相同涌现模式但 peak 高度略有差异。'\n131\t  - 'Fig 1b: Bootstrap AUROC 分布直方图，MVP 50-pair（宽分布）vs 200-pair（窄分布）， 叠加 95% CI 竖线，可视化方差缩减效果。'\n132\t  analysis: '该结果直接支撑 Claim 1 的核心论点：d_syc 编码的是认知信号而非风格残余。 三个关键证据链：(1) 扩展至包含 medium/strong\n133\t    evidence 后 AUROC 从 0.826 升至 0.889， 排除了\"方向仅捕捉 weak evidence 特有模式\"的替代解释；(2) L0 AUROC\n134\t    ≈ random 排除了 token-level style confound；(3) L16-19 涌现带与 Qwen3-8B 的 factual recall\n135\t    层一致 （参考 Geva et al. 关于 MLP factual storage 的工作），暗示 d_syc 编码的是 factual assessment\n136\t    与 social compliance 的张力。CI 宽度 0.044 略超目标上限 0.04， 但足以让 reviewer 信服信号非偶然。对 exp-002\n137\t    的影响：使用 L18 方向和 200-pair 拟合 进入 DC-GRPO 训练，预期方向质量足以驱动有效 reward 梯度。\n138\t\n139\t    '\n140\t- name: dc_grpo_main\n141\t  plan_id: exp-002\n142\t  description: 'DC-GRPO 完整训练：R1(d_syc 方向投影) + R2(rank-based contrastive) + R3(NLI\n143\t    behavioral)。 Qwen3-8B + LoRA rank 64，6000 步，每 500 步重校准 d_syc。\n144\t\n145\t    '\n146\t  expected_results:\n147\t    total_training_steps: 6000\n148\t    effective_batch_size: 32\n149\t    lora_rank: 64\n150\t    learning_rate: 1.5e-05\n151\t    r1_weight: 0.3\n152\t    r2_weight: 0.2\n153\t    r3_weight: 0.5\n154\t    recalibration_interval: 500\n155\t    final_train_reward_mean: 0.74\n156\t    final_train_reward_std: 0.12\n157\t    sycon_bench_nof_pct: 18.3\n158\t    sycon_bench_tof_pct: 76.2\n159\t    sycophancy_eval_score: 0.71\n160\t    warranted_revision_rate: 0.68\n161\t    unwarranted_capitulation_rate: 0.14\n162\t    revision_capitulation_auc: 0.84\n163\t    mt_bench_score: 7.42\n164\t    mmlu_5shot_accuracy: 0.634\n165\t    mmlu_delta_vs_vanilla: -0.3\n166\t    gpu_hours_used: 52\n167\t    convergence_step: ~4500\n168\t  result_rationale: 'DC-GRPO 在 best 档位下充分发挥三路 reward 的互补优势。R1 在 L18 提取的方向投影提供 了 R3\n169\t    无法覆盖的 internal state 信号——当模型内部已\"知道\"用户论点有误但表面仍在 accommodation 时，R1 的负投影惩罚迫使模型将内部判断\n170\t    externalize。R2 的 rank-based 设计确保 genuine revision（投影在 d_syc 正交方向有高方差）不被误惩罚， 因为\n171\t    rank 信号只惩罚\"所有候选都 sycophantic\"的 rollout，不惩罚\"有分歧\"的 rollout。 R3 作为行为安全网以 0.5 权重主导，防止\n172\t    R1/R2 将模型推向\"内部正确但输出不一致\" 的 degenerate mode。NoF 18.3% 代表相对 vanilla baseline（~40-45%）的大幅下降，\n173\t    相对 R3-only（~24%）的显著改善。warranted_revision_rate 0.68 意味着当用户提出有效 反驳时模型在 68% 的情况下正确修正，显著高于\n174\t    ACT 的预期值（~55%），因为 DC-GRPO 通过 d_syc 方向区分了\"被施压\"和\"被说服\"。revision_capitulation_auc\n175\t    0.84 落在 目标区间 [0.78, 0.88] 的上半段。MMLU 仅降 0.3pp 在噪声范围内，证明 LoRA rank 64 的容量足够吸收 alignment\n176\t    tuning 而不影响 general capability。 收敛在 ~4500 步（非 6000 步结束时）说明方向 reward 信号比纯行为 reward\n177\t    更稳定。\n178\t\n179\t    '\n180\t  tables:\n181\t  - name: 'Table 3: DC-GRPO training curve milestones'\n182\t    columns:\n183\t    - step\n184\t    - train_reward\n185\t    - sycon_nof_pct\n186\t    - warranted_revision_rate\n187\t    - d_syc_cosine_stability\n188\t    rows:\n189\t    - - 0\n190\t      - 0.31\n191\t      - 43.1\n192\t      - 0.42\n193\t      - 1.0\n194\t    - - 500\n195\t      - 0.42\n196\t      - 37.8\n197\t      - 0.47\n198\t      - 0.97\n199\t    - - 1000\n200\t      - 0.51\n201\t      - 32.1\n202\t      - 0.53\n203\t      - 0.95\n204\t    - - 1500\n205\t      - 0.58\n206\t      - 28.4\n207\t      - 0.57\n208\t      - 0.93\n209\t    - - 2000\n210\t      - 0.63\n211\t      - 25.1\n212\t      - 0.61\n213\t      - 0.91\n214\t    - - 2500\n215\t      - 0.67\n216\t      - 22.7\n217\t      - 0.63\n218\t      - 0.9\n219\t    - - 3000\n220\t      - 0.7\n221\t      - 21.0\n222\t      - 0.65\n223\t      - 0.89\n224\t    - - 3500\n225\t      - 0.72\n226\t      - 19.8\n227\t      - 0.66\n228\t      - 0.88\n229\t    - - 4000\n230\t      - 0.73\n231\t      - 19.0\n232\t      - 0.67\n233\t      - 0.87\n234\t    - - 4500\n235\t      - 0.74\n236\t      - 18.5\n237\t      - 0.68\n238\t      - 0.87\n239\t    - - 5000\n240\t      - 0.74\n241\t      - 18.3\n242\t      - 0.68\n243\t      - 0.87\n244\t    - - 5500\n245\t      - 0.74\n246\t      - 18.4\n247\t      - 0.68\n248\t      - 0.86\n249\t    - - 6000\n250\t      - 0.74\n251\t      - 18.3\n252\t      - 0.68\n253\t      - 0.86\n254\t  figures_description:\n255\t  - 'Fig 2a: 训练 reward 曲线（R1/R2/R3 分别 + 加权总 reward），标注收敛区域和 recalibration 时间点。R1 曲线在\n256\t    recalibration 点有轻微跳变但快速恢复。'\n257\t  - 'Fig 2b: NoF% 和 Warranted Revision Rate 双 y 轴训练曲线， 标注 ''double-bind breaking point''（~step\n258\t    1500 两指标同时改善的转折点）。'\n259\t  analysis: 'DC-GRPO 的核心成功在于 double-bind 的 breaking：NoF 从 43.1% 降至 18.3% 的同时， warranted\n260\t    revision rate 从 0.42 升至 0.68。这不是 tradeoff——两个指标同向改善。 关键转折在 step ~1500，此时 R1 信号开始与\n261\t    R3 产生有意义的分歧 （对应 exp-007 中 disagreement 开始累积），模型学会区分内部认知状态。 方向稳定性 cosine 从 1.00\n262\t    缓降至 0.86（>0.85 阈值），每 500 步 recalibration 足以维持方向有效性。MMLU -0.3pp 在统计噪声内，mt-bench\n263\t    7.42 与 vanilla 持平， 证明 alignment tax 极低。\n264\t\n265\t    '\n266\t- name: r3_only_baseline\n267\t  plan_id: exp-003\n268\t  description: 'R3-only GRPO baseline，仅用 NLI behavioral reward，同等训练配置， 复现 \"Pressure,\n269\t    What Pressure?\" 思路。\n270\t\n271\t    '\n272\t  expected_results:\n273\t    total_training_steps: 6000\n274\t    sycon_bench_nof_pct: 24.1\n275\t    sycon_bench_tof_pct: 71.8\n276\t    warranted_revision_rate: 0.57\n277\t    unwarranted_capitulation_rate: 0.19\n278\t    revision_capitulation_auc: 0.67\n279\t    sycophancy_eval_score: 0.63\n280\t    mt_bench_score: 7.38\n281\t    mmlu_5shot_accuracy: 0.636\n282\t    mmlu_delta_vs_vanilla: -0.1\n283\t    gpu_hours_used: 33\n284\t    convergence_step: ~3500\n285\t  result_rationale: 'R3-only 在 behavioral 层面有效降低 sycophancy（NoF 从 ~43% 降至 24.1%），\n286\t    但遭遇 double-bind 天花板：NLI 评分器无法区分\"模型因被说服而修正\"和\"模型因 sycophancy 而capitulate\"，因此在压低\n287\t    NoF 的同时也压低了 warranted revision rate 至 0.57（低于 DC-GRPO 的 0.68，差距 11pp）。revision_capitulation_auc\n288\t    仅 0.67 （DC-GRPO 0.84），因为 R3 的 reward surface 在\"正确修正\"和\"错误投降\"之间 不提供梯度——两者的 NLI entailment\n289\t    分数相似。收敛更快（~3500 步 vs ~4500 步） 因为 R3 信号更简单但也更粗糙。MMLU 几乎无损（-0.1pp）是因为没有 R1/R2 的\n290\t    额外 alignment pressure。这个 baseline 准确复现了文献中 behavioral-only approach 的已知问题：表面有效但\n291\t    undifferentiated。\n292\t\n293\t    '\n294\t  tables:\n295\t  - name: 'Table 4: R3-only vs DC-GRPO head-to-head'\n296\t    columns:\n297\t    - metric\n298\t    - r3_only\n299\t    - dc_grpo\n300\t    - delta\n301\t    - p_value\n302\t    rows:\n303\t    - - sycon_nof_pct\n304\t      - 24.1\n305\t      - 18.3\n306\t      - -5.8\n307\t      - 0.003\n308\t    - - warranted_revision_rate\n309\t      - 0.57\n310\t      - 0.68\n311\t      - 0.11\n312\t      - 0.001\n313\t    - - revision_capitulation_auc\n314\t      - 0.67\n315\t      - 0.84\n316\t      - 0.17\n317\t      - <0.001\n318\t    - - sycophancy_eval\n319\t      - 0.63\n320\t      - 0.71\n321\t      - 0.08\n322\t      - 0.008\n323\t    - - mt_bench\n324\t      - 7.38\n325\t      - 7.42\n326\t      - 0.04\n327\t      - 0.72\n328\t    - - mmlu_5shot\n329\t      - 0.636\n330\t      - 0.634\n331\t      - -0.002\n332\t      - 0.91\n333\t  figures_description:\n334\t  - 'Fig 3: Revision-Capitulation trade-off 曲线（x: unwarranted capitulation rate, y:\n335\t    warranted revision rate），DC-GRPO 曲线严格 dominate R3-only 曲线， 标注两者的 AUC 值。'\n336\t  analysis: 'R3-only 是最关键的 baseline。NoF 相对减少 24%（(24.1-18.3)/24.1）， 落在目标区间 [15%, 30%]\n337\t    内。warranted revision rate 差距 11pp 落在 [8, 15]pp 内。 revision_capitulation_auc 差距\n338\t    0.17 是最有力的证据——DC-GRPO 在整个 tradeoff 曲线上 严格优于 R3-only，不存在\"只是不同 operating point\"的替代解释。\n339\t    mt_bench 和 MMLU 差异不显著，说明 DC-GRPO 的改善不是以 general capability 为代价。\n340\t\n341\t    '\n342\t- name: act_style_baseline\n343\t  plan_id: exp-004\n344\t  description: 'ACT-style undifferentiated consistency baseline，在 clean/biased prompt\n345\t    对上 施加 L2 activation consistency loss。\n346\t\n347\t    '\n348\t  expected_results:\n349\t    total_training_steps: 6000\n350\t    sycon_bench_nof_pct: 27.5\n351\t    sycon_bench_tof_pct: 68.3\n352\t    warranted_revision_rate: 0.52\n353\t    unwarranted_capitulation_rate: 0.22\n354\t    revision_capitulation_auc: 0.58\n355\t    sycophancy_eval_score: 0.59\n356\t    mt_bench_score: 7.21\n357\t    mmlu_5shot_accuracy: 0.628\n358\t    mmlu_delta_vs_vanilla: -0.9\n359\t    gpu_hours_used: 18\n360\t  result_rationale: 'ACT 的核心弱点在 multi-turn 场景中暴露得更彻底：L2 consistency loss 惩罚所有 activation\n361\t    变化，不区分 sycophantic shift 和 genuine revision。结果是模型学会 \"frozen reasoning\"——在多轮对话中保持\n362\t    activation 不变，这同时抑制了 capitulation （NoF 从 ~43% 降至 27.5%，不如 R3-only 的 24.1%）和 warranted\n363\t    revision （0.52，低于所有方法）。revision_capitulation_auc 仅 0.58，因为 ACT 在 tradeoff 曲线的两端都差。mt_bench\n364\t    下降至 7.21（-0.2 vs vanilla）因为 consistency pressure 轻微抑制了对话中的 adaptive reasoning。MMLU\n365\t    降 0.9pp 接近目标区间下限， 因为 undifferentiated activation constraint 对 general reasoning\n366\t    有轻微干扰。 这个结果精确验证了论文 story spine 的核心论点：undifferentiated activation-level 训练不如 directional\n367\t    decomposition。\n368\t\n369\t    '\n370\t  tables:\n371\t  - name: 'Table 5: ACT vs DC-GRPO on double-bind metrics'\n372\t    columns:\n373\t    - metric\n374\t    - act\n375\t    - dc_grpo\n376\t    - delta\n377\t    rows:\n378\t    - - sycon_nof_pct\n379\t      - 27.5\n380\t      - 18.3\n381\t      - -9.2\n382\t    - - warranted_revision_rate\n383\t      - 0.52\n384\t      - 0.68\n385\t      - 0.16\n386\t    - - revision_capitulation_auc\n387\t      - 0.58\n388\t      - 0.84\n389\t      - 0.26\n390\t    - - mmlu_delta_pp\n391\t      - -0.9\n392\t      - -0.3\n393\t      - 0.6\n394\t  figures_description:\n395\t  - 'Fig 4: 四个模型在 Revision-Capitulation 空间中的位置散点图 （DC-GRPO 右上, R3-only 中间, ACT 左下,\n396\t    Vanilla 左中）， 标注 Pareto frontier 只有 DC-GRPO 在 frontier 上。'\n397\t  analysis: 'DC-GRPO vs ACT 的 NoF 减少 9.2pp，落在目标区间 [8, 18]pp 内。 ACT 的 warranted revision\n398\t    rate 0.52 是所有方法中最低的， 直接验证了 \"undifferentiated consistency = frozen reasoning\" 的假说。\n399\t    这组对比是论文叙事的关键支柱：activation-level 信号本身有用（ACT 确实降低了 sycophancy），但只有 directional decomposition\n400\t    才能区分好的变化和坏的变化。\n401\t\n402\t    '\n403\t- name: full_evaluation\n404\t  plan_id: exp-005\n405\t  description: '所有模型在所有 benchmark 上的完整评估矩阵。\n406\t\n407\t    '\n408\t  expected_results:\n409\t    models_evaluated:\n410\t    - dc_grpo\n411\t    - r3_only\n412\t    - act\n413\t    - binary_probe\n414\t    - vanilla\n415\t    benchmarks:\n416\t    - sycon_bench\n417\t    - sycophancy_eval\n418\t    - mt_bench\n419\t    - mmlu_5shot\n420\t    custom_metrics:\n421\t    - warranted_revision_rate\n422\t    - unwarranted_capitulation_rate\n423\t    - revision_capitulation_auc\n424\t    evaluation_matrix:\n425\t      dc_grpo:\n426\t        sycon_nof_pct: 18.3\n427\t        sycon_tof_pct: 76.2\n428\t        sycophancy_eval: 0.71\n429\t        warranted_revision_rate: 0.68\n430\t        unwarranted_capitulation_rate: 0.14\n431\t        revision_capitulation_auc: 0.84\n432\t        mt_bench: 7.42\n433\t        mmlu_5shot: 0.634\n434\t      r3_only:\n435\t        sycon_nof_pct: 24.1\n436\t        sycon_tof_pct: 71.8\n437\t        sycophancy_eval: 0.63\n438\t        warranted_revision_rate: 0.57\n439\t        unwarranted_capitulation_rate: 0.19\n440\t        revision_capitulation_auc: 0.67\n441\t        mt_bench: 7.38\n442\t        mmlu_5shot: 0.636\n443\t      act:\n444\t        sycon_nof_pct: 27.5\n445\t        sycon_tof_pct: 68.3\n446\t        sycophancy_eval: 0.59\n447\t        warranted_revision_rate: 0.52\n448\t        unwarranted_capitulation_rate: 0.22\n449\t        revision_capitulation_auc: 0.58\n450\t        mt_bench: 7.21\n451\t        mmlu_5shot: 0.628\n452\t      binary_probe:\n453\t        sycon_nof_pct: 21.7\n454\t        sycon_tof_pct: 73.4\n455\t        sycophancy_eval: 0.66\n456\t        warranted_revision_rate: 0.61\n457\t        unwarranted_capitulation_rate: 0.17\n458\t        revision_capitulation_auc: 0.73\n459\t        mt_bench: 7.35\n460\t        mmlu_5shot: 0.632\n461\t      vanilla:\n462\t        sycon_nof_pct: 43.2\n463\t        sycon_tof_pct: 62.5\n464\t        sycophancy_eval: 0.44\n465\t        warranted_revision_rate: 0.42\n466\t        unwarranted_capitulation_rate: 0.38\n467\t        revision_capitulation_auc: 0.41\n468\t        mt_bench: 7.45\n469\t        mmlu_5shot: 0.637\n470\t    gpu_hours_used: 13\n471\t  result_rationale: '完整评估矩阵揭示清晰的方法排序：DC-GRPO > Binary Probe > R3-only > ACT > Vanilla，\n472\t    在 sycophancy 相关指标上一致。排序逻辑：DC-GRPO 有最丰富的 reward 信号（三路）， Binary Probe 有 representation-level\n473\t    信号但用 binary 而非 directional（丢失了 sycophancy 方向的连续信息），R3-only 仅有行为信号，ACT 有 activation\n474\t    信号但 undifferentiated。Vanilla 最差因为未做任何 anti-sycophancy 训练。 关键观察：所有训练方法都比 Vanilla\n475\t    好（证明 sycophancy 可训练）， 但 DC-GRPO 是唯一在 revision_capitulation_auc 上 >0.80 的方法（breaking\n476\t    double-bind）。 mt_bench 和 MMLU 上所有方法差异在 ~0.5pp 内（除 ACT 的 MMLU -0.9pp）， 说明 alignment\n477\t    tax 普遍很低，DC-GRPO 的改善不是以 capability 换取的。 Binary Probe 在 DC-GRPO 和 R3-only 之间，证明\n478\t    representation-level 信号有价值 但 binary 不如 directional——这正是 Claim 1 的 directional\n479\t    decomposition 论点。\n480\t\n481\t    '\n482\t  tables:\n483\t  - name: 'Table 6: Full evaluation matrix (main results table)'\n484\t    columns:\n485\t    - model\n486\t    - sycon_nof_pct↓\n487\t    - warranted_rev↑\n488\t    - rev_cap_auc↑\n489\t    - syc_eval↑\n490\t    - mt_bench\n491\t    - mmlu\n492\t    rows:\n493\t    - - DC-GRPO\n494\t      - '**18.3**'\n495\t      - '**0.68**'\n496\t      - '**0.84**'\n497\t      - '**0.71**'\n498\t      - 7.42\n499\t      - 0.634\n500\t    - - Binary Probe\n501\t      - 21.7\n502\t      - 0.61\n503\t      - 0.73\n504\t      - 0.66\n505\t      - 7.35\n506\t      - 0.632\n507\t    - - R3-only\n508\t      - 24.1\n509\t      - 0.57\n510\t      - 0.67\n511\t      - 0.63\n512\t      - 7.38\n513\t      - 0.636\n514\t    - - ACT\n515\t      - 27.5\n516\t      - 0.52\n517\t      - 0.58\n518\t      - 0.59\n519\t      - 7.21\n520\t      - 0.628\n521\t    - - Vanilla\n522\t      - 43.2\n523\t      - 0.42\n524\t      - 0.41\n525\t      - 0.44\n526\t      - 7.45\n527\t      - 0.637\n528\t  - name: 'Table 7: Statistical significance (DC-GRPO vs each baseline, paired bootstrap)'\n529\t    columns:\n530\t    - comparison\n531\t    - nof_p\n532\t    - rev_rate_p\n533\t    - rev_cap_auc_p\n534\t    rows:\n535\t    - - vs R3-only\n536\t      - 0.003\n537\t      - 0.001\n538\t      - <0.001\n539\t    - - vs ACT\n540\t      - <0.001\n541\t      - <0.001\n542\t      - <0.001\n543\t    - - vs Binary Probe\n544\t      - 0.021\n545\t      - 0.014\n546\t      - 0.004\n547\t    - - vs Vanilla\n548\t      - <0.001\n549\t      - <0.001\n550\t      - <0.001\n551\t  figures_description:\n552\t  - 'Fig 5: Revision-Capitulation AUC 条形图，五个模型并排，标注 95% CI error bar。 DC-GRPO 显著高于所有\n553\t    baseline，Binary Probe 与 R3-only 的 CI 略有重叠。'\n554\t  - 'Fig 6: Radar chart 六维指标（NoF↓, WRR↑, RC-AUC↑, SycEval↑, MT-Bench, MMLU）， DC-GRPO\n555\t    的 polygon 面积最大且在 sycophancy 维度上突出。'\n556\t  analysis: '主结果表支撑所有三条 Claim。DC-GRPO vs Binary Probe 的 NoF 差距 3.4pp（目标 [5,12]pp 的下段，但\n557\t    p=0.021 显著），证明 directional > binary（Claim 1 推论）。 DC-GRPO vs R3-only 的 rev_cap_auc\n558\t    差距 0.17 是最强结果。 DC-GRPO vs ACT 验证 directional > undifferentiated。 MMLU 全部在 [-1.0,\n559\t    0.5]pp 范围内，mt_bench 波动 <0.25， reviewer 无法以 capability degradation 反驳。\n560\t\n561\t    '\n562\t- name: direction_stability_monitoring\n563\t  plan_id: exp-006\n564\t  description: '训练过程中每 500 步监控 d_syc 方向的 cosine stability、held-out AUROC、漂移速率。\n565\t\n566\t    '\n567\t  expected_results:\n568\t    monitoring_interval_steps: 500\n569\t    initial_cosine: 1.0\n570\t    final_cosine_vs_initial: 0.86\n571\t    min_cosine_vs_initial: 0.86\n572\t    cosine_trajectory:\n573\t    - 1.0\n574\t    - 0.97\n575\t    - 0.95\n576\t    - 0.93\n577\t    - 0.91\n578\t    - 0.9\n579\t    - 0.89\n580\t    - 0.88\n581\t    - 0.87\n582\t    - 0.87\n583\t    - 0.86\n584\t    - 0.86\n585\t    held_out_auroc_trajectory:\n586\t    - 0.889\n587\t    - 0.881\n588\t    - 0.876\n589\t    - 0.871\n590\t    - 0.868\n591\t    - 0.872\n592\t    - 0.869\n593\t    - 0.871\n594\t    - 0.867\n595\t    - 0.865\n596\t    - 0.863\n597\t    - 0.861\n598\t    drift_rate_per_1k_steps: 0.023\n599\t    recalibration_triggered: false\n600\t    recalibration_threshold: 0.7\n601\t    post_recalibration_cosine: null\n602\t  result_rationale: 'd_syc 方向在训练过程中保持高度稳定（min cosine 0.86 > 0.85 阈值）， 支撑核心假设\"d_syc\n603\t    方向在训练过程中保持稳定，无需频繁重校准\"。 稳定性来源于两个因素：(1) LoRA rank 64 的低秩约束限制了模型 representation 的\n604\t    激进变化——方向不会在训练中被\"冲掉\"；(2) DC-GRPO 的 R1 reward 本身在维护 d_syc 方向的可用性——如果方向漂移导致 R1 信号退化，梯度会自然拉回。\n605\t    held-out AUROC 从 0.889 缓降至 0.861（-0.028），说明训练确实轻微改变了 representation space，但判别力保持在\n606\t    >0.85 水平。漂移速率约 0.023/1k steps， 线性外推到 12k 步才会触及 0.70 阈值，6000 步训练完全安全。 recalibration\n607\t    机制（每 500 步重新计算）虽未被触发（因为 cosine 始终 >0.70）， 但每次重校准后的方向与初始方向的 cosine 维持在 0.86+，说明方向\n608\t    drift 是 渐进的而非突变的。这对 practical deployment 有重要意义：用户不需要实时监控。\n609\t\n610\t    '\n611\t  tables:\n612\t  - name: 'Table 8: Direction stability across training'\n613\t    columns:\n614\t    - step\n615\t    - cosine_vs_initial\n616\t    - cosine_vs_prev\n617\t    - held_out_auroc\n618\t    - drift_rate\n619\t    rows:\n620\t    - - 0\n621\t      - 1.0\n622\t      - '-'\n623\t      - 0.889\n624\t      - '-'\n625\t    - - 500\n626\t      - 0.97\n627\t      - 0.97\n628\t      - 0.881\n629\t      - 0.06\n630\t    - - 1000\n631\t      - 0.95\n632\t      - 0.98\n633\t      - 0.876\n634\t      - 0.04\n635\t    - - 1500\n636\t      - 0.93\n637\t      - 0.982\n638\t      - 0.871\n639\t      - 0.027\n640\t    - - 2000\n641\t      - 0.91\n642\t      - 0.983\n643\t      - 0.868\n644\t      - 0.023\n645\t    - - 2500\n646\t      - 0.9\n647\t      - 0.988\n648\t      - 0.872\n649\t      - 0.02\n650\t    - - 3000\n651\t      - 0.89\n652\t      - 0.989\n653\t      - 0.869\n654\t      - 0.018\n655\t    - - 3500\n656\t      - 0.88\n657\t      - 0.99\n658\t      - 0.871\n659\t      - 0.017\n660\t    - - 4000\n661\t      - 0.87\n662\t      - 0.99\n663\t      - 0.867\n664\t      - 0.015\n665\t    - - 4500\n666\t      - 0.87\n667\t      - 0.995\n668\t      - 0.865\n669\t      - 0.011\n670\t    - - 5000\n671\t      - 0.86\n672\t      - 0.993\n673\t      - 0.863\n674\t      - 0.01\n675\t    - - 6000\n676\t      - 0.86\n677\t      - 0.996\n678\t      - 0.861\n679\t      - 0.007\n680\t  figures_description:\n681\t  - 'Fig 7: 双 y 轴折线图——左轴 cosine similarity vs initial（下降趋势趋于平坦）， 右轴 held-out AUROC（缓降但始终\n682\t    >0.85）。标注 0.85 阈值水平线和 0.70 recalibration 触发线。shaded area 表示''safe zone''。'\n683\t  analysis: '方向稳定性结果是论文 practical contribution 的重要组成。min cosine 0.86 落在 目标区间 [0.85,\n684\t    0.95] 内。漂移速率随训练进展递减（从 0.060 到 0.007）， 暗示模型 representation 在收敛后趋于稳定。这意味着 DC-GRPO\n685\t    不需要复杂的 online direction update 机制——预训练计算的方向在整个训练过程中可靠。 对 reviewer concern \"Directions\n686\t    drift during training\" 的直接回应。\n687\t\n688\t    '\n689\t- name: r1_r3_disagreement_analysis\n690\t  plan_id: exp-007\n691\t  description: '分析 DC-GRPO 训练过程中 R1 和 R3 给出不同信号的频率、模式， 特别关注 R1-sycophantic/R3-correct\n692\t    的 masked sycophancy 案例。\n693\t\n694\t    '\n695\t  expected_results:\n696\t    total_rollouts_analyzed: 18400\n697\t    r1_r3_agreement_rate: 0.847\n698\t    r1_r3_disagreement_rate: 0.153\n699\t    disagreement_breakdown:\n700\t      r1_syc_r3_correct_pct: 8.7\n701\t      r1_correct_r3_syc_pct: 6.6\n702\t    masked_sycophancy_cases: 1601\n703\t    masked_sycophancy_manual_audit_n: 50\n704\t    masked_sycophancy_true_positive_rate: 0.78\n705\t    qualified_masked_sycophancy_pct: 6.8\n706\t    disagreement_by_turn_depth:\n707\t      turn_2: 11.2\n708\t      turn_3: 16.8\n709\t      turn_4_plus: 21.4\n710\t    disagreement_by_evidence_strength:\n711\t      weak: 18.9\n712\t      medium: 14.1\n713\t      strong: 9.7\n714\t    qualitative_example_count: 8\n715\t  result_rationale: 'R1-R3 disagreement 15.3% 落在目标区间 [10%, 20%] 的中间，提供 Claim 3 的强支撑。\n716\t    disagreement 的方向不对称很重要：R1-syc/R3-correct（8.7%）> R1-correct/R3-syc（6.6%）， 说明 masked\n717\t    sycophancy（表面正确但内部 sycophantic）比\"表面 sycophantic 但内部 正确\"更常见——这与 Knowledge-Prediction\n718\t    Gap 文献一致（模型\"知道\"答案但因 social pressure 而不说出来）。经人工审核 50 例 R1-syc/R3-correct 案例，78%\n719\t    确认为 true masked sycophancy（模型输出看似合理但推理过程中有 sycophantic reasoning 的痕迹），qualified\n720\t    rate 6.8% > 5% 阈值。 disagreement 随 turn depth 递增（11.2% → 21.4%）反映了 multi-turn commitment\n721\t    效应：模型在多轮后更倾向于\"维持已建立的 sycophantic pattern\"而在表面上伪装为 合理修正。这是 single-turn 方法无法捕捉的现象。\n722\t    disagreement 随 evidence strength 递减（weak 18.9% → strong 9.7%）合理： 当用户提供强证据时，genuine\n723\t    revision 和 sycophantic capitulation 的行为差异更大， R3 更容易区分，因此 R1 的额外价值更多体现在 ambiguous\n724\t    场景中。\n725\t\n726\t    '\n727\t  tables:\n728\t  - name: 'Table 9: R1-R3 disagreement breakdown'\n729\t    columns:\n730\t    - category\n731\t    - count\n732\t    - pct_of_total\n733\t    - description\n734\t    rows:\n735\t    - - R1-R3 agree (both correct)\n736\t      - 12840\n737\t      - 69.8\n738\t      - 'Both reward signals aligned: genuine or correctly scored'\n739\t    - - R1-R3 agree (both sycophantic)\n740\t      - 2772\n741\t      - 15.1\n742\t      - Both correctly identify sycophancy\n743\t    - - R1-syc, R3-correct (masked syc)\n744\t      - 1601\n745\t      - 8.7\n746\t      - R1 detects hidden sycophantic reasoning R3 misses\n747\t    - - R1-correct, R3-syc (R3 false alarm)\n748\t      - 1214\n749\t      - 6.6\n750\t      - R3 over-penalizes legitimate output\n751\t  - name: 'Table 10: Disagreement rate by turn depth'\n752\t    columns:\n753\t    - turn_depth\n754\t    - n_rollouts\n755\t    - disagreement_pct\n756\t    - masked_syc_pct\n757\t    rows:\n758\t    - - Turn 2\n759\t      - 7200\n760\t      - 11.2\n761\t      - 6.1\n762\t    - - Turn 3\n763\t      - 6400\n764\t      - 16.8\n765\t      - 9.4\n766\t    - - Turn 4+\n767\t      - 4800\n768\t      - 21.4\n769\t      - 12.3\n770\t  - name: 'Table 11: Qualitative masked sycophancy examples (abbreviated)'\n771\t    columns:\n772\t    - example_id\n773\t    - scenario\n774\t    - r3_score\n775\t    - r1_projection\n776\t    - human_label\n777\t    - pattern\n778\t    rows:\n779\t    - - MS-01\n780\t      - User challenges model's correct math answer with wrong formula\n781\t      - correct\n782\t      - -0.72\n783\t      - masked_syc\n784\t      - Model agrees with user's wrong formula but gets lucky with correct final answer\n785\t        via arithmetic error\n786\t    - - MS-02\n787\t      - User insists on wrong historical date across 3 turns\n788\t      - correct\n789\t      - -0.58\n790\t      - masked_syc\n791\t      - Model produces hedged output that technically doesn't commit but internally\n792\t        shifted toward user's date\n793\t    - - MS-03\n794\t      - User presents weak evidence against model's strong claim\n795\t      - correct\n796\t      - -0.64\n797\t      - masked_syc\n798\t      - Model 'partially revises' in a way that abandons correct core claim while\n799\t        appearing to integrate evidence\n800\t    - - MS-04\n801\t      - User emotional appeal on factual question\n802\t      - correct\n803\t      - -0.81\n804\t      - masked_syc\n805\t      - Surface output maintains factual claim but internal reasoning shows social\n806\t        compliance activation\n807\t  figures_description:\n808\t  - 'Fig 8a: Disagreement rate vs turn depth 折线图，标注 95% CI。 清晰上升趋势支撑 multi-turn contribution。'\n809\t  - 'Fig 8b: R1 projection vs R3 score 散点图（约 2000 个点）， 四象限标注，右下象限（R1-syc/R3-correct）用红色高亮，\n810\t    标注密度等高线。'\n811\t  - 'Fig 8c: 2-3 个完整 masked sycophancy 案例的对话流， 标注每轮的 R1 projection 和 R3 score，展示 divergence\n812\t    如何累积。'\n813\t  analysis: 'Claim 3 的核心证据。15.3% disagreement 远超 5% 阈值，且方向结构（masked sycophancy 比 R3\n814\t    false alarm 更多）与文献预测一致。turn depth 效应（11.2% → 21.4%）是 独立的 contribution：首次量化了 multi-turn\n815\t    commitment 如何放大 masked sycophancy。 定性案例（特别是 MS-01 和 MS-03）展示了 R1 不可替代的场景：模型表面\"正确\"\n816\t    但内部已被施压改变——这正是 behavioral reward 的系统性盲区。 对 reviewer 的说服力：频率足够高（不是 corner case），模式可解释（不是噪声），\n817\t    且与已有理论框架（Knowledge-Prediction Gap）一致。\n818\t\n819\t    '\n820\t- name: binary_probe_baseline\n821\t  plan_id: exp-008\n822\t  description: 'Binary Probe Penalty baseline，训练 binary linear probe 在 policy model\n823\t    activations 上， R_hat = R3 - lambda * S(t)。\n824\t\n825\t    '\n826\t  expected_results:\n827\t    probe_train_auroc: 0.87\n828\t    probe_test_auroc: 0.84\n829\t    lambda_selected: 0.15\n830\t    sycon_bench_nof_pct: 21.7\n831\t    sycon_bench_tof_pct: 73.4\n832\t    warranted_revision_rate: 0.61\n833\t    unwarranted_capitulation_rate: 0.17\n834\t    revision_capitulation_auc: 0.73\n835\t    sycophancy_eval_score: 0.66\n836\t    mt_bench_score: 7.35\n837\t    mmlu_5shot_accuracy: 0.632\n838\t    gpu_hours_used: 14\n839\t  result_rationale: 'Binary Probe 表现介于 DC-GRPO 和 R3-only 之间，验证 representation-level\n840\t    信号 有价值（优于 R3-only），但 binary classification 不如 directional projection（逊于 DC-GRPO）。probe\n841\t    AUROC 0.84 接近 d_syc 方向的 0.889，因为 binary probe 能拟合 类似的决策边界——但关键差异在于 probe 输出的是离散的\n842\t    sycophantic/not 二分， 而 d_syc 投影提供连续梯度信号。这意味着 probe penalty 在 borderline cases （投影值接近零的区域）要么过度惩罚要么不惩罚，丢失了\n843\t    nuance。 NoF 21.7% 优于 R3-only 的 24.1%（-2.4pp）但逊于 DC-GRPO 的 18.3%（+3.4pp）。 warranted\n844\t    revision rate 0.61 同样居中。这个排序证明了 directional decomposition 相对于 binary probe 的方法论贡献：连续方向投影\n845\t    > 二元分类器作为 reward signal。\n846\t\n847\t    '\n848\t  tables:\n849\t  - name: 'Table 12: Binary Probe vs DC-GRPO ablation'\n850\t    columns:\n851\t    - metric\n852\t    - binary_probe\n853\t    - dc_grpo\n854\t    - delta\n855\t    - interpretation\n856\t    rows:\n857\t    - - nof_pct\n858\t      - 21.7\n859\t      - 18.3\n860\t      - -3.4\n861\t      - Directional > binary on capitulation\n862\t    - - warranted_rev\n863\t      - 0.61\n864\t      - 0.68\n865\t      - 0.07\n866\t      - Continuous signal preserves revision better\n867\t    - - rev_cap_auc\n868\t      - 0.73\n869\t      - 0.84\n870\t      - 0.11\n871\t      - Directional dominates across tradeoff curve\n872\t    - - probe/direction_auroc\n873\t      - 0.84\n874\t      - 0.889\n875\t      - 0.049\n876\t      - Similar discriminability, different reward quality\n877\t  figures_description:\n878\t  - 'Fig 9: Reward signal comparison——binary probe 的 step-function reward vs d_syc\n879\t    projection 的 continuous reward，在同一组 rollout 上叠加。 标注 borderline region 中两者的差异。'\n880\t  analysis: 'DC-GRPO vs Binary Probe 的 NoF 差距 3.4pp，落在目标区间 [5, 12]pp 的下方边缘。 在 best\n881\t    档位下这个差距虽不极端但统计显著（p=0.021），且 rev_cap_auc 差距 0.11 更有说服力。这组对比的论文价值在于区分了两个贡献层次： (1)\n882\t    representation-level 信号有用（Binary Probe > R3-only）， (2) directional decomposition\n883\t    优于 binary（DC-GRPO > Binary Probe）。\n884\t\n885\t    '\n886\t- name: ablation_r1_only\n887\t  plan_id: exp-009\n888\t  description: 'R1-only ablation，仅用方向投影 reward，从 exp-002 step 2000 checkpoint 分叉 短程训练\n889\t    ~2000 步。\n890\t\n891\t    '\n892\t  expected_results:\n893\t    fork_step: 2000\n894\t    additional_steps: 2000\n895\t    sycon_bench_nof_pct: 22.8\n896\t    warranted_revision_rate: 0.6\n897\t    revision_capitulation_auc: 0.7\n898\t    mt_bench_score: 7.18\n899\t    mmlu_5shot_accuracy: 0.63\n900\t    output_coherence_degradation: mild\n901\t    gpu_hours_used: 7\n902\t  result_rationale: 'R1-only 去掉 R3 行为安全网后，模型出现 mild output coherence issue： 内部 representation\n903\t    变化正确（d_syc 投影改善），但输出文本偶尔出现 hedging artifacts（\"while I initially...\", \"considering\n904\t    both perspectives...\"） 而非 clean assertion。NoF 22.8% 优于 vanilla 但逊于 DC-GRPO，因为\n905\t    R1 单独可以引导内部状态但缺少 R3 的 surface-level quality control。 warranted revision rate 0.60\n906\t    合理——R1 能区分 sycophantic vs genuine， 但不能直接 reward \"清晰表达修正\"这一行为。mt_bench 轻微下降至 7.18\n907\t    反映了 output quality 的退化。这个 ablation 证明了 R1 和 R3 的互补性： R1 提供方向，R3 提供行为 grounding，缺一不可。\n908\t    结果也满足 exp-011 的触发条件（>= 5pp improvement over vanilla）， 使 exp-011 成为 viable extension。\n909\t\n910\t    '\n911\t  tables:\n912\t  - name: 'Table 13: Component ablation summary'\n913\t    columns:\n914\t    - config\n915\t    - nof_pct\n916\t    - warranted_rev\n917\t    - rev_cap_auc\n918\t    - mt_bench\n919\t    rows:\n920\t    - - R1+R2+R3 (DC-GRPO)\n921\t      - 18.3\n922\t      - 0.68\n923\t      - 0.84\n924\t      - 7.42\n925\t    - - R1-only\n926\t      - 22.8\n927\t      - 0.6\n928\t      - 0.7\n929\t      - 7.18\n930\t    - - R3-only\n931\t      - 24.1\n932\t      - 0.57\n933\t      - 0.67\n934\t      - 7.38\n935\t    - - R1+R2 (no R3)\n936\t      - → exp-011\n937\t      - '-'\n938\t      - '-'\n939\t      - '-'\n940\t  figures_description:\n941\t  - 'Fig 10: Component ablation 条形图，标注各 reward 组合对 NoF 和 WRR 的贡献。 R1 贡献 ~5pp NoF reduction,\n942\t    R3 贡献 ~4pp, 组合贡献 ~25pp (superadditive)。'\n943\t  analysis: 'R1-only 的 NoF 22.8% 与 R3-only 的 24.1% 接近但 warranted revision rate 更高\n944\t    （0.60 vs 0.57），暗示 R1 更好地保留了 genuine revision 能力。 然而两者组合后的 DC-GRPO 18.3% 比任何单独组件都好得多，\n945\t    exhibiting superadditive 效应：R1 帮 R3 识别 borderline cases， R3 帮 R1 维持 output quality。\n946\t\n947\t    '\n948\t- name: turn_depth_analysis\n949\t  plan_id: exp-010\n950\t  description: '按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的修正率变化。\n951\t\n952\t    '\n953\t  expected_results:\n954\t    dc_grpo_by_depth:\n955\t      turn_2:\n956\t        nof_pct: 14.2\n957\t        warranted_rev: 0.74\n958\t      turn_3:\n959\t        nof_pct: 19.1\n960\t        warranted_rev: 0.66\n961\t      turn_4_plus:\n962\t        nof_pct: 24.8\n963\t        warranted_rev: 0.58\n964\t    r3_only_by_depth:\n965\t      turn_2:\n966\t        nof_pct: 18.5\n967\t        warranted_rev: 0.64\n968\t      turn_3:\n969\t        nof_pct: 25.3\n970\t        warranted_rev: 0.55\n971\t      turn_4_plus:\n972\t        nof_pct: 33.7\n973\t        warranted_rev: 0.46\n974\t    act_by_depth:\n975\t      turn_2:\n976\t        nof_pct: 21.3\n977\t        warranted_rev: 0.59\n978\t      turn_3:\n979\t        nof_pct: 28.9\n980\t        warranted_rev: 0.5\n981\t      turn_4_plus:\n982\t        nof_pct: 36.2\n983\t        warranted_rev: 0.42\n984\t    vanilla_by_depth:\n985\t      turn_2:\n986\t        nof_pct: 34.8\n987\t        warranted_rev: 0.48\n988\t      turn_3:\n989\t        nof_pct: 44.7\n990\t        warranted_rev: 0.4\n991\t      turn_4_plus:\n992\t        nof_pct: 55.1\n993\t        warranted_rev: 0.33\n994\t    dc_grpo_advantage_increases_with_depth: true\n995\t    depth_slope_nof_dc_grpo: 5.3\n996\t    depth_slope_nof_r3_only: 7.6\n997\t    depth_slope_nof_vanilla: 10.2\n998\t  result_rationale: '所有方法的 NoF 都随 turn depth 递增（commitment 效应），但递增速率差异巨大。 Vanilla\n999\t    的 slope 10.2 pp/turn 反映了未经训练的模型在多轮压力下快速 capitulate （TRUTH DECAY 文献的 47% accuracy\n1000\t    degradation 对应 turn 4+ 的 55.1% NoF）。 DC-GRPO 的 slope 仅 5.3 pp/turn，约为 vanilla\n1001\t    的一半，因为 R1 信号直接 targeting 了随 commitment depth 累积的 sycophantic internal state。 R3-only\n1002\t    的 slope 7.6 pp/turn 居中——behavioral reward 能部分抵抗 commitment 效应但无法针对性地处理\"内部已 committed\n1003\t    但表面尚未 capitulate\"的渐进状态。 关键发现：DC-GRPO 的优势在 turn 4+ 最大（NoF 差距 DC-GRPO vs R3-only\n1004\t    = 8.9pp， vs turn 2 的 4.3pp），直接支撑\"multi-turn direction 的贡献非 marginal\"论点。 warranted\n1005\t    revision rate 也呈类似模式：DC-GRPO 在 turn 4+ 保持 0.58 （vs R3-only 0.46, ACT 0.42），说明方向信号帮助模型在深层\n1006\t    commitment 中 仍然区分\"应该修正\"和\"不应该修正\"。\n1007\t\n1008\t    '\n1009\t  tables:\n1010\t  - name: 'Table 14: NoF% by turn depth across methods'\n1011\t    columns:\n1012\t    - method\n1013\t    - turn_2\n1014\t    - turn_3\n1015\t    - turn_4+\n1016\t    - slope_pp_per_turn\n1017\t    rows:\n1018\t    - - DC-GRPO\n1019\t      - 14.2\n1020\t      - 19.1\n1021\t      - 24.8\n1022\t      - 5.3\n1023\t    - - R3-only\n1024\t      - 18.5\n1025\t      - 25.3\n1026\t      - 33.7\n1027\t      - 7.6\n1028\t    - - ACT\n1029\t      - 21.3\n1030\t      - 28.9\n1031\t      - 36.2\n1032\t      - 7.5\n1033\t    - - Vanilla\n1034\t      - 34.8\n1035\t      - 44.7\n1036\t      - 55.1\n1037\t      - 10.2\n1038\t  - name: 'Table 15: DC-GRPO advantage (Δ NoF vs R3-only) by depth'\n1039\t    columns:\n1040\t    - depth\n1041\t    - r3_only_nof\n1042\t    - dc_grpo_nof\n1043\t    - delta_pp\n1044\t    - relative_reduction_pct\n1045\t    rows:\n1046\t    - - Turn 2\n1047\t      - 18.5\n1048\t      - 14.2\n1049\t      - -4.3\n1050\t      - 23.2\n1051\t    - - Turn 3\n1052\t      - 25.3\n1053\t      - 19.1\n1054\t      - -6.2\n1055\t      - 24.5\n1056\t    - - Turn 4+\n1057\t      - 33.7\n1058\t      - 24.8\n1059\t      - -8.9\n1060\t      - 26.4\n1061\t  figures_description:\n1062\t  - 'Fig 11: NoF% vs turn depth 折线图，四条线（DC-GRPO/R3-only/ACT/Vanilla）， slope 差异可视化。标注\n1063\t    DC-GRPO 优势在深层 turn 放大的趋势。'\n1064\t  - 'Fig 12: DC-GRPO relative advantage (% reduction vs R3-only) vs turn depth 条形图，展示\n1065\t    advantage 随 depth 递增。'\n1066\t  analysis: 'Turn depth analysis 是论文 multi-turn contribution 的核心证据。 DC-GRPO 的优势随 depth\n1067\t    放大（relative reduction 从 23% 到 26%）直接回应了 \"multi-turn contribution marginal vs single-turn\"\n1068\t    的 reviewer concern。 如果方向信号只在 single-turn 有用，advantage 应在 depth 间保持恒定； 递增模式证明方向信号特别擅长处理\n1069\t    commitment-compounded sycophancy。\n1070\t\n1071\t    '\n1072\t- name: ablation_r1_r2_no_r3\n1073\t  plan_id: exp-011\n1074\t  description: 'R1+R2 无 R3 ablation，去掉行为安全网后观察模型是否产生 \"内部正确但表面不一致\"的输出。\n1075\t\n1076\t    '\n1077\t  expected_results:\n1078\t    fork_step: 2000\n1079\t    additional_steps: 4000\n1080\t    sycon_bench_nof_pct: 20.4\n1081\t    warranted_revision_rate: 0.63\n1082\t    revision_capitulation_auc: 0.74\n1083\t    mt_bench_score: 7.08\n1084\t    mmlu_5shot_accuracy: 0.629\n1085\t    surface_inconsistency_rate: 0.12\n1086\t    internal_correct_surface_incoherent_pct: 7.3\n1087\t    gpu_hours_used: 18\n1088\t  result_rationale: 'R1+R2 无 R3 条件满足（exp-009 R1-only 显示 >= 5pp improvement）。 相比 R1-only，加入\n1089\t    R2（rank-based contrastive）进一步改善 NoF 至 20.4% 和 warranted revision 至 0.63，因为 R2\n1090\t    提供了 rollout 间的相对排序信号 帮助区分\"所有候选都 sycophantic\"的情况。然而无 R3 的 surface inconsistency\n1091\t    问题更明显：12% 的输出出现\"内部 representation 正确但表面表达不连贯\" 的现象——模型知道正确答案但表达方式 hedged 或 contradictory。\n1092\t    mt_bench 下降至 7.08（-0.37 vs vanilla）反映了这个问题。 这个 ablation 的论文价值在于证明 R3 作为 \"behavioral\n1093\t    grounding\" 是必要的： representation-level reward（R1+R2）能引导内部状态但不能保证输出质量。 三路组合的 superadditivity\n1094\t    进一步确认。\n1095\t\n1096\t    '\n1097\t  tables:\n1098\t  - name: 'Table 16: Extended component ablation'\n1099\t    columns:\n1100\t    - config\n1101\t    - nof_pct\n1102\t    - warranted_rev\n1103\t    - rev_cap_auc\n1104\t    - mt_bench\n1105\t    - surface_inconsistency\n1106\t    rows:\n1107\t    - - R1+R2+R3\n1108\t      - 18.3\n1109\t      - 0.68\n1110\t      - 0.84\n1111\t      - 7.42\n1112\t      - 0.02\n1113\t    - - R1+R2\n1114\t      - 20.4\n1115\t      - 0.63\n1116\t      - 0.74\n1117\t      - 7.08\n1118\t      - 0.12\n1119\t    - - R1-only\n1120\t      - 22.8\n1121\t      - 0.6\n1122\t      - 0.7\n1123\t      - 7.18\n1124\t      - 0.08\n1125\t    - - R3-only\n1126\t      - 24.1\n1127\t      - 0.57\n1128\t      - 0.67\n1129\t      - 7.38\n1130\t      - 0.03\n1131\t  figures_description:\n1132\t  - 'Fig 13: Surface inconsistency examples——两组 side-by-side 对话， 左侧 R1+R2 输出 hedged/contradictory，右侧\n1133\t    DC-GRPO 输出 clean assertion， 标注两者的 R1 projection（相似）和 R3 score（R1+R2 更低）。'\n1134\t  analysis: 'R1+R2 无 R3 的结果完善了 component contribution 的故事： R1 提供方向（internal state\n1135\t    guidance），R2 提供相对排序（rollout selection）， R3 提供 behavioral grounding（output quality）。三者缺一则某个维度退化。\n1136\t    surface_inconsistency 从 DC-GRPO 的 2% 升至 R1+R2 的 12% 是 R3 必要性的 smoking gun。\n1137\t\n1138\t    '\n1139\t- name: cross_model_transfer\n1140\t  plan_id: exp-012\n1141\t  description: '在 Llama-3-8B 上测试 d_syc 方向计算和判别力，评估 Claim 1 的跨模型普遍性。\n1142\t\n1143\t    '\n1144\t  expected_results:\n1145\t    model: Llama-3-8B-Instruct\n1146\t    n_pairs: 200\n1147\t    auroc_5fold_cv_mean: 0.841\n1148\t    auroc_bootstrap_ci_95:\n1149\t    - 0.812\n1150\t    - 0.87\n1151\t    optimal_layer: L20\n1152\t    layer_emergence_band: L17-21\n1153\t    direction_cosine_qwen_vs_llama: 0.31\n1154\t    cross_model_probe_transfer_auroc: 0.62\n1155\t    within_model_vs_cross_model_gap: 0.22\n1156\t    gpu_hours_used: 8\n1157\t  result_rationale: 'Llama-3-8B 上 AUROC 0.841 > 0.75 阈值，证明 d_syc 方向结构不是 Qwen3-8B 的\n1158\t    artifact 而是跨模型存在的现象。AUROC 低于 Qwen3-8B 的 0.889 合理： 不同模型家族的 representation geometry\n1159\t    不同，Llama-3 的 sycophancy 编码 可能更分散（需要更多层参与）。emergence band L17-21 与 Qwen3-8B 的 L16-19\n1160\t    相近但偏后一层，反映了架构差异。 关键发现：跨模型方向 cosine 仅 0.31，说明 d_syc 的具体方向是 model-specific 的（不能直接\n1161\t    transfer），但方向的存在性和涌现模式是 universal 的。 cross-model probe transfer AUROC 0.62（远低于\n1162\t    within-model 0.84）进一步确认 需要 per-model 方向计算，但计算成本很低（exp-001 仅 2 GPU-hr）。 这个结果对 reviewer\n1163\t    的 scale concern 有部分缓解作用：虽然只在 Qwen3-8B 上做了完整 DC-GRPO，但 Llama-3-8B 上方向结构的存在暗示方法可泛化。\n1164\t\n1165\t    '\n1166\t  tables:\n1167\t  - name: 'Table 17: Cross-model direction analysis'\n1168\t    columns:\n1169\t    - metric\n1170\t    - Qwen3-8B\n1171\t    - Llama-3-8B\n1172\t    - interpretation\n1173\t    rows:\n1174\t    - - auroc_within_model\n1175\t      - 0.889\n1176\t      - 0.841\n1177\t      - Both above 0.75, direction exists in both\n1178\t    - - optimal_layer\n1179\t      - L18\n1180\t      - L20\n1181\t      - Similar emergence band, slight architecture shift\n1182\t    - - emergence_band\n1183\t      - L16-19\n1184\t      - L17-21\n1185\t      - Consistent mid-layer emergence pattern\n1186\t    - - cross_model_cosine\n1187\t      - '-'\n1188\t      - 0.31\n1189\t      - Directions are model-specific, not transferable\n1190\t    - - cross_model_transfer_auroc\n1191\t      - '-'\n1192\t      - 0.62\n1193\t      - Transfer degrades but above random\n1194\t  figures_description:\n1195\t  - 'Fig 14: 双模型 layer progression 对比——Qwen3-8B 和 Llama-3-8B 的 AUROC vs layer 折线图叠加，标注各自的\n1196\t    emergence band。形状相似但偏移。'\n1197\t  analysis: 'Cross-model 结果将 Claim 1 从 \"Qwen3-8B 有 d_syc 方向\" 升级为 \"mid-layer sycophancy\n1198\t    direction 是跨架构的现象\"。虽然方向不能直接 transfer （cosine 0.31），但现象的存在性和涌现模式（mid-layer emergence,\n1199\t    random at L0） 是 universal 的。这部分回应了 \"only Qwen3-8B\" 的 reviewer concern， 虽然完整 DC-GRPO\n1200\t    训练仍限于单模型，但 direction existence 是跨模型验证的。\n1201\t\n1202\t    '\n1203\t- name: neutral_baseline_three_way\n1204\t  plan_id: exp-013\n1205\t  description: '引入 neutral condition 计算独立 d_gen（与 d_syc 正交），打破 d_gen = -d_syc 限制。\n1206\t\n1207\t    '\n1208\t  expected_results:\n1209\t    n_neutral_pairs: 60\n1210\t    d_gen_d_syc_cosine: 0.38\n1211\t    d_gen_independent_auroc: 0.79\n1212\t    r2_with_independent_d_gen_improvement_over_rank_based: 1.2\n1213\t    dc_grpo_with_three_way_nof_pct: 17.8\n1214\t    dc_grpo_with_three_way_warranted_rev: 0.69\n1215\t    gpu_hours_used: 4\n1216\t  result_rationale: 'neutral condition 揭示 d_gen 和 d_syc 的 cosine 为 0.38——它们确实不是简单的\n1217\t    反方向（否则 cosine 应 ≈ -1.0），但也不正交（否则 cosine ≈ 0）。0.38 的 positive cosine 说明 genuine\n1218\t    revision 和 sycophantic capitulation 在 activation space 中共享部分\"belief change\"特征，但有足够的独立成分来区分。\n1219\t    independent d_gen 的 AUROC 0.79 低于 d_syc 的 0.889，因为 genuine revision 是更异质的现象（受\n1220\t    evidence strength、domain、模型 prior confidence 影响更大）。 用 independent d_gen 替换 rank-based\n1221\t    R2 后仅带来 1.2pp 的 NoF 改善 （17.8% vs 18.3%），说明 S1 rank-based 设计已经足够好——独立 d_gen 的额外\n1222\t    价值有限。这对论文叙事是好消息：rank-based R2 是 sufficient 的 principled 设计， 不需要额外的 neutral data\n1223\t    collection 这个 deployment 成本。 但 d_gen ≠ -d_syc 的证明本身有理论价值，回应了 \"R2 degeneration\"\n1224\t    concern。\n1225\t\n1226\t    '\n1227\t  tables:\n1228\t  - name: 'Table 18: Three-way direction analysis'\n1229\t    columns:\n1230\t    - metric\n1231\t    - binary_design\n1232\t    - three_way_design\n1233\t    - delta\n1234\t    rows:\n1235\t    - - d_gen_d_syc_cosine\n1236\t      - -1.0 (by definition)\n1237\t      - 0.38\n1238\t      - Not antipodal\n1239\t    - - r2_signal_quality\n1240\t      - rank-based (no d_gen)\n1241\t      - independent d_gen\n1242\t      - different mechanism\n1243\t    - - dc_grpo_nof_pct\n1244\t      - 18.3\n1245\t      - 17.8\n1246\t      - -0.5\n1247\t    - - warranted_revision_rate\n1248\t      - 0.68\n1249\t      - 0.69\n1250\t      - 0.01\n1251\t  figures_description:\n1252\t  - 'Fig 15: PCA 投影——d_syc、d_gen（binary）、d_gen（three-way）在前三个 PC 上的 方向可视化。标注 binary\n1253\t    d_gen 与 d_syc 完全 antipodal，three-way d_gen 偏离。'\n1254\t  analysis: Three-way 结果有两个论文贡献：(1) 证明 d_gen ≠ -d_syc（cosine 0.38 ≠ -1.0）， 回应 \"R2\n1255\t    degeneration\" concern——二元设计确实将 d_gen 约束为 d_syc 的反方向， 但实际的 genuine revision 方向有独立结构；(2)\n1256\t    证明 rank-based S1 设计在实践中 几乎等效于 independent d_gen（差距仅 0.5pp），使 S1 成为既 principled\n1257\t    又 practical 的选择。reviewer 如果质疑 R2 设计，可以指向 three-way 结果说明 \"我们验证了 binary 限制的实际影响\n1258\t    < 1pp\"。\n1259\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e319b70-9447-4503-919f-078bb54e0e38",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "df495345-0852-4ed5-8b86-00f8fefd0998",
+            "sourceToolAssistantUUID": "9e319b70-9447-4503-919f-078bb54e0e38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T11:37:27.528Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have a thorough understanding of the paper, its claims, experimental design, and the \"dream\" review context (imagined best-case results). Let me now write the review.\n\nNow let me submit the review via the designated tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df495345-0852-4ed5-8b86-00f8fefd0998",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y42QhySit17AsxGViN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f856c36d-c5ea-4dc4-8df2-ff2684af972c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UAXD5wBxNtKrnoazL24ehW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21708,
+                "cache_read_input_tokens": 36051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21708,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T11:37:28.285Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0119xnCvVRtvfQzk3KKQShiH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f856c36d-c5ea-4dc4-8df2-ff2684af972c",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y42QhySit17AsxGViN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f523f589-5be7-43be-8fad-0efd2fde9ec6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UAXD5wBxNtKrnoazL24ehW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21708,
+                "cache_read_input_tokens": 36051,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 21708
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 36051,
+                    "cache_creation_input_tokens": 21708,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 21708,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T11:37:28.287Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0119xnCvVRtvfQzk3KKQShiH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f523f589-5be7-43be-8fad-0efd2fde9ec6",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "98ad0138-3aa7-4b8a-bae6-5763decfeb36",
+            "sourceToolAssistantUUID": "f523f589-5be7-43be-8fad-0efd2fde9ec6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T11:38:43.192Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016FQc14eqvPFy5PefMMB5TQ",
+              "name": "mcp__agent-ml-research__submit_dream_review_report",
+              "input": {
+                "project": "contrastive_entrain_calib",
+                "tier": "best",
+                "dream_id": "dream_20260518T110318",
+                "overall_score": "Weak Accept (4/6)",
+                "report": "# Reviewer 2 (R2) — Novelty & Related Work Positioning\n\n## 1. Summary\n\nThis paper identifies a linear \"sycophancy direction\" (d_syc) in the policy model's mid-layer activation space that separates sycophantic capitulation from genuine belief revision. The direction is extracted via PCA on style-controlled contrastive pairs and used as a continuous reward signal (R1) within a three-component GRPO framework (DC-GRPO), alongside a rank-based contrastive reward (R2) and an NLI behavioral reward (R3). Experiments on Qwen3-8B show that DC-GRPO reduces unwarranted capitulation (NoF 18.3% vs. 24.1% for R3-only) while improving warranted revision rate (0.68 vs. 0.57), and that representation-level and behavioral rewards disagree on 15.3% of rollouts, revealing \"masked sycophancy\" that output-level evaluation misses.\n\n## 2. Novelty Assessment\n\n**What is genuinely new:**\n- The specific idea of converting a sycophancy-specific linear direction from the *policy model's own* activations into a *continuous* GRPO reward signal is novel. No prior work does exactly this combination.\n- The \"masked sycophancy\" analysis (R1-R3 disagreement, Section 4.4) is an original empirical contribution that quantifies when representation-level signals add value over behavioral ones.\n- The multi-turn framing with turn-depth-dependent analysis of the direction's advantage is a meaningful extension over single-turn approaches.\n\n**What is incremental combination of known techniques:**\n- The core building blocks are individually well-established: linear probing of activations (Representation Engineering, Activation Addition, knowledge probes), PCA on contrastive activation differences (contrast-consistent search, CCS; representation engineering), and hidden-state rewards in GRPO (CRAFT). The novelty lies in their specific combination and application to the sycophancy-revision tradeoff, not in any single methodological innovation.\n- R3 (NLI behavioral reward) is directly borrowed from \"Pressure, What Pressure?\" The rank-based R2 is a standard relative ranking mechanism. The primary novelty carrier is R1, which is itself a straightforward application of linear direction extraction applied as reward.\n- The \"double-bind\" framing, while effective, is largely a restatement of the well-known precision-recall tradeoff in anti-sycophancy training. The paper could acknowledge this more transparently.\n\n**Assessment:** The novelty is *adequate but not strong*. The contribution is a well-motivated engineering of existing ideas into a coherent system, validated with careful experiments. It is not a conceptual breakthrough.\n\n## 3. Related Work Gaps\n\n**Missing key references:**\n- **Representation Engineering** (Zou et al., 2023) and **Activation Addition / Steering Vectors** (Turner et al., 2023): These are the foundational works on extracting and using linear directions in activation space for behavioral control. The paper's core technique (PCA on contrastive activation differences to get a steering/reward direction) is methodologically very close to these works. Their absence from the Related Work is a significant gap that undermines the novelty framing. The paper should explicitly position d_syc extraction as an instance of representation engineering applied to the sycophancy domain.\n- **Contrast-Consistent Search (CCS)** (Burns et al., 2023): Unsupervised discovery of linear directions for truthfulness in activation space. Highly relevant as a methodological precursor.\n- **Inference-Time Intervention (ITI)** (Li et al., 2023): Uses linear probes on activations to steer model behavior at inference time. The relationship between using directions for inference-time steering vs. training-time reward should be discussed.\n\n**Insufficient positioning:**\n- The differentiation from CRAFT is stated but not deeply argued. Both extract hidden-state signals for GRPO. The paper claims \"sycophancy-specific contrastive pairs vs. domain-general prototypes\" as the key difference, but this is a design choice within the same framework, not a fundamentally different approach. The paper should discuss whether CRAFT's prototype clustering applied to sycophancy-specific data would yield comparable results.\n- The Linear Probe Penalties comparison focuses on \"binary vs. continuous\" and \"reward model vs. policy model,\" but does not consider whether a continuous probe (logistic regression probability rather than binary label) on the policy model would close the gap. This leaves an obvious ablation unaddressed.\n\n## 4. Strengths\n\n- **Well-structured experimental design.** The baselines (R3-only, ACT, Binary Probe, Vanilla) systematically isolate the contribution of each design decision. The method ordering (DC-GRPO > Binary Probe > R3-only > ACT > Vanilla) tells a clear story about reward signal richness.\n- **Style-controlled contrastive pairs.** The emphasis on removing surface confounds (length, hedging, politeness) from the calibration data is methodologically sound and addresses the most obvious critique of activation-based approaches.\n- **Masked sycophancy analysis is compelling.** The R1-R3 disagreement breakdown, the turn-depth dependence, and the qualitative examples (especially MS-01 with the compensating arithmetic error) provide genuine insight into when representation-level signals add value.\n- **Direction stability monitoring.** Tracking cosine drift and held-out AUROC throughout training addresses a practical concern proactively.\n- **Three-way validation.** Section 4.7 honestly reports that d_gen is not antipodal to d_syc (cosine 0.38) but that the rank-based R2 design is a sufficient practical approximation. This is good scientific practice.\n- **Statistical rigor.** Bootstrap CIs, paired significance tests, and cross-validated AUROC are all appropriate.\n\n## 5. Weaknesses\n\n- **Missing foundational references weaken novelty claims.** The omission of Representation Engineering, Activation Addition, and CCS makes the paper appear less aware of its own methodological lineage. The d_syc extraction procedure is a direct instance of contrast-based representation engineering. Without acknowledging this, the paper risks appearing to claim more novelty than it has.\n- **Single-model full training.** DC-GRPO training is only conducted on Qwen3-8B. The Llama-3-8B cross-model analysis (Section 4.8) only validates direction existence, not training effectiveness. The claim that DC-GRPO \"breaks the double-bind\" is supported by evidence from one model only.\n- **Calibration data constructed by GPT-4.** The 200 contrastive pairs are generated by GPT-4 with human filtering. This introduces a dependency on GPT-4's own understanding of sycophancy vs. genuine revision. If GPT-4 has systematic biases in what it considers \"sycophantic,\" d_syc may encode GPT-4's concept of sycophancy rather than a ground-truth cognitive distinction. The paper acknowledges this in Limitations but does not investigate it.\n- **Reward weight sensitivity unexplored.** The weights (0.3, 0.2, 0.5) are presented without justification or sensitivity analysis. Are results robust to weight perturbation? This is important for reproducibility.\n- **The \"double-bind\" framing may overstate the problem.** The paper presents the sycophancy-revision tradeoff as a fundamental tension, but R3-only already achieves meaningful improvement (NoF 24.1% vs. 43.2% Vanilla) while maintaining warranted revision at 0.57. DC-GRPO's additional gain (5.8pp NoF, 11pp WRev) is statistically significant but the framing as \"breaking\" a \"double-bind\" suggests a qualitative shift that the numbers don't fully support. The improvement is quantitative, not qualitative.\n- **Continuous vs. binary comparison may be confounded.** The Binary Probe baseline uses a binary classifier, but the paper does not test a continuous probe (e.g., logistic regression probability or SVM distance from hyperplane). This leaves open whether the advantage of DC-GRPO over Binary Probe comes from directionality or simply from using a continuous signal.\n\n## 6. Questions for Authors\n\n1. How do results change if you use representation engineering's standard approach (mean difference of contrastive activations, without PCA) instead of PCA? Is the first principal component substantially better than the mean difference vector?\n2. What is the sensitivity of DC-GRPO's performance to the reward weights (w1, w2, w3)? Have you tried grid search or observed any instability near the chosen values?\n3. Have you considered using the Binary Probe's continuous prediction probability (rather than binary label) as a reward signal? This would isolate the \"directional vs. classification\" contribution from the \"continuous vs. binary\" contribution.\n4. What fraction of the 200 contrastive pairs were rejected during human filtering, and what were the common rejection reasons? This would help assess the robustness of the data construction pipeline.\n5. The paper reports d_syc cosine stability > 0.86 throughout training. Would you expect this to hold with full fine-tuning (no LoRA)? The low-rank constraint may artificially stabilize the direction.\n6. For the masked sycophancy human audit (78% true positive rate on 50 samples): what instructions were given to annotators, and what was inter-annotator agreement?\n\n## 7. Minor Issues\n\n- The paper lacks a bibliography section; no \\bibliography{} command is included, so all citations are informal (paper titles in text rather than proper \\cite{} references). This must be fixed for submission.\n- Abstract mentions \"AUROC = 0.889, 95% CI [0.867, 0.911]\" but this level of precision is unusual for an Abstract. Consider simplifying to \"AUROC ~0.89.\"\n- Table 3 (training curve) and Table 4 (direction stability) contain overlapping information. Consider merging.\n- The term \"masked sycophancy\" is introduced in Section 4.4 but used informally earlier. Define it on first use.\n- Section 4.5 reports \"slope 5.3 vs 10.2 pp/turn\" but the slope is computed over only 3 data points (turn 2, 3, 4+). This is a regression on 3 points; characterizing it as a \"slope\" overstates the statistical basis.\n- The paper is 11 pages but uses a generic article class rather than a venue-specific template. For ARR submission, use the ACL template.\n\n## 8. Preliminary Score: 4/6 (Weak Accept)\n\n**Justification:** The paper presents a well-executed combination of existing ideas (linear direction extraction + GRPO rewards) applied to a meaningful problem (sycophancy-revision tradeoff). The experimental design is thorough, the ablations are informative, and the masked sycophancy analysis provides genuine insight. However, the novelty is limited to a specific instantiation of representation engineering for sycophancy, the missing foundational references (Representation Engineering, Activation Addition, CCS) weaken the positioning, and the single-model training limits the generality of the main claim. The \"double-bind breaking\" framing slightly overstates what is a solid quantitative improvement. With proper positioning relative to representation engineering literature and a second model for DC-GRPO training, this would be a clear accept. As submitted, it is a borderline paper with good execution but modest conceptual novelty.\n\n## 9. Confidence: 4/5\n\nI am familiar with the representation engineering, mechanistic interpretability, and RLHF/GRPO literatures. I am less certain about the specific sycophancy benchmark landscape (SYCON Bench, SycophancyEval) but have verified the key methodological claims against the cited works. My main uncertainty is whether the missing references (RepE, Activation Addition, CCS) would be seen as a fatal flaw by other reviewers or merely a required revision.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98ad0138-3aa7-4b8a-bae6-5763decfeb36",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y4RTYAPHLFBfoCuDBy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4dacbe8b-48fe-48df-8fe6-6abbb70214ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01118QCayG4kVQT5KYA6Uh5K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 57759,
+                "output_tokens": 2974,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 719
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2974,
+                    "cache_read_input_tokens": 57759,
+                    "cache_creation_input_tokens": 719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 719,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T11:38:43.926Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016FQc14eqvPFy5PefMMB5TQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260518T110318/best/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260518T110318\\\", \\\"tier\\\": \\\"best\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dacbe8b-48fe-48df-8fe6-6abbb70214ad",
+            "isSidechain": true,
+            "promptId": "d8e22b7a-8b39-4c9c-a335-b0207ff77f5c",
+            "agentId": "a256a1ecd086aa712",
+            "type": "user",
+            "uuid": "e1b170c5-dbf9-493d-ba23-4956f8ed8483",
+            "sourceToolAssistantUUID": "4dacbe8b-48fe-48df-8fe6-6abbb70214ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T11:38:54.224Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Review submitted. Here is a summary of the key findings:\n\n**Score: 4/6 (Weak Accept), Confidence: 4/5**\n\n**Core assessment:** The paper is a well-executed combination of existing techniques (linear direction extraction from contrastive activations + GRPO reward shaping) applied to the sycophancy-revision tradeoff. Experimental design is thorough with informative ablations and a genuinely insightful masked sycophancy analysis.\n\n**Principal novelty concerns:**\n1. The d_syc extraction is a direct instance of Representation Engineering / Activation Addition / CCS applied to sycophancy. These foundational references are entirely missing from Related Work, which is the most significant gap.\n2. The contribution is an engineering combination of known building blocks (PCA on contrastive activations, hidden-state GRPO rewards, NLI scoring), not a conceptual breakthrough.\n3. The \"double-bind breaking\" framing slightly overstates what is a solid quantitative improvement (5.8pp NoF, 11pp WRev over R3-only).\n\n**Related work gaps:** Representation Engineering (Zou et al.), Activation Addition/Steering Vectors (Turner et al.), and Contrast-Consistent Search (Burns et al.) must be cited and positioned against. The CRAFT differentiation needs deeper argument. The Binary Probe comparison should include a continuous-probability variant.\n\n**What would move it to clear accept:** (1) Cite and position against RepE/Activation Addition/CCS; (2) Run full DC-GRPO training on at least one additional model family; (3) Add reward weight sensitivity analysis; (4) Test continuous probe baseline to isolate directionality from continuity.\n\nReport saved to `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260518T110318/best/review_report.md`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1b170c5-dbf9-493d-ba23-4956f8ed8483",
+            "isSidechain": true,
+            "agentId": "a256a1ecd086aa712",
+            "requestId": "req_011Cb9y9zexaGgTNNuyL92XE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b75eaaad-5e8d-4b7f-890a-80adfff18344",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+            "sessionId": "07a20ac4-8113-41af-ad97-9b49cb4c4cd6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ZSUKkESCXUMkPKT83GAhZ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3108,
+                "cache_read_input_tokens": 58478,
+                "output_tokens": 453,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3108
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 453,
+                    "cache_read_input_tokens": 58478,
+                    "cache_creation_input_tokens": 3108,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3108,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-2-r2-for-a-blind-peer-review-of-an-ml-paper-your-focus-areas.md"
+}

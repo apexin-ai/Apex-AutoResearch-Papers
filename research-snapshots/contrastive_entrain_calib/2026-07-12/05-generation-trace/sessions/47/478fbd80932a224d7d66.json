@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "id": "478fbd80932a224d7d66",
+  "project": "contrastive_entrain_calib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: contrastive_entrain_calib - 论文路径: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/pr",
+  "task_key": "a524acfa-55a6-494b-8191-f58f525c24d3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/a524acfa-55a6-494b-8191-f58f525c24d3.jsonl",
+    "occurrence": 1,
+    "bytes": 572646,
+    "sha256": "6681b0e399ee7be63e6b1874b559c4f0825200b66e59291ed2a5720df3bd3acc"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 10,
+    "tool_calls": 43,
+    "roles": {
+      "record": 47,
+      "user": 10,
+      "assistant": 29,
+      "tool_call": 43,
+      "tool_result": 43
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "478fbd80932a224d7d66-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-contrastive-entrain-calib-home-ubuntu-agent-ml-research-be-idea-gen-0515-3-pr.md"
+}
